@@ -4,4 +4,4 @@
 
 # Lexickon iOS
 
-iOS project for Lexickon project
+iOS project for Lexickon
