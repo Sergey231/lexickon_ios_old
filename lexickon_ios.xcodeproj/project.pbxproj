@@ -14,6 +14,9 @@
 		ECDD70D42261A6CE00B1FB44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECDD70D22261A6CE00B1FB44 /* LaunchScreen.storyboard */; };
 		ECDD70DF2261A6CE00B1FB44 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDD70DE2261A6CE00B1FB44 /* lexickon_iosTests.swift */; };
 		ECDD70EA2261A6CE00B1FB44 /* lexickon_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDD70E92261A6CE00B1FB44 /* lexickon_iosUITests.swift */; };
+		ECDD70F82261A89000B1FB44 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = ECDD70F72261A88F00B1FB44 /* Cartfile */; };
+		ECDD70FC2261AC5300B1FB44 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD70FA2261AC5300B1FB44 /* RxSwift.framework */; };
+		ECDD70FD2261AC5300B1FB44 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		ECDD70E52261A6CE00B1FB44 /* lexickon_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECDD70E92261A6CE00B1FB44 /* lexickon_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lexickon_iosUITests.swift; sourceTree = "<group>"; };
 		ECDD70EB2261A6CE00B1FB44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECDD70F72261A88F00B1FB44 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
+		ECDD70FA2261AC5300B1FB44 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDD70FC2261AC5300B1FB44 /* RxSwift.framework in Frameworks */,
+				ECDD70FD2261AC5300B1FB44 /* RxCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +89,7 @@
 				ECDD70DD2261A6CE00B1FB44 /* lexickon_iosTests */,
 				ECDD70E82261A6CE00B1FB44 /* lexickon_iosUITests */,
 				ECDD70C72261A6CC00B1FB44 /* Products */,
+				ECDD70F92261AC5300B1FB44 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +112,7 @@
 				ECDD70D02261A6CE00B1FB44 /* Assets.xcassets */,
 				ECDD70D22261A6CE00B1FB44 /* LaunchScreen.storyboard */,
 				ECDD70D52261A6CE00B1FB44 /* Info.plist */,
+				ECDD70F72261A88F00B1FB44 /* Cartfile */,
 			);
 			path = lexickon_ios;
 			sourceTree = "<group>";
@@ -123,6 +133,15 @@
 				ECDD70EB2261A6CE00B1FB44 /* Info.plist */,
 			);
 			path = lexickon_iosUITests;
+			sourceTree = "<group>";
+		};
+		ECDD70F92261AC5300B1FB44 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */,
+				ECDD70FA2261AC5300B1FB44 /* RxSwift.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +250,7 @@
 			files = (
 				ECDD70D42261A6CE00B1FB44 /* LaunchScreen.storyboard in Resources */,
 				ECDD70D12261A6CE00B1FB44 /* Assets.xcassets in Resources */,
+				ECDD70F82261A89000B1FB44 /* Cartfile in Resources */,
 				ECDD70CF2261A6CC00B1FB44 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,12 +454,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lexickon_ios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wakeapper.lexickon-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexickon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -452,12 +477,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = lexickon_ios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wakeapper.lexickon-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lexickon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
