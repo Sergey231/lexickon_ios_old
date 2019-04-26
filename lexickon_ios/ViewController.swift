@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Swinject
 
 class ViewController: UIViewController {
 

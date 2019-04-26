@@ -17,6 +17,7 @@
 		ECDD70F82261A89000B1FB44 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = ECDD70F72261A88F00B1FB44 /* Cartfile */; };
 		ECDD70FC2261AC5300B1FB44 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD70FA2261AC5300B1FB44 /* RxSwift.framework */; };
 		ECDD70FD2261AC5300B1FB44 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */; };
+		ECDD73DB2265A5ED00B1FB44 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD73DA2265A5ED00B1FB44 /* Swinject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC18DA862273579B00FB40CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		ECDD70C62261A6CC00B1FB44 /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECDD70C92261A6CC00B1FB44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECDD70CB2261A6CC00B1FB44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		ECDD70F72261A88F00B1FB44 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		ECDD70FA2261AC5300B1FB44 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		ECDD73DA2265A5ED00B1FB44 /* Swinject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swinject.framework; path = Carthage/Build/iOS/Swinject.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,7 @@
 			files = (
 				ECDD70FC2261AC5300B1FB44 /* RxSwift.framework in Frameworks */,
 				ECDD70FD2261AC5300B1FB44 /* RxCocoa.framework in Frameworks */,
+				ECDD73DB2265A5ED00B1FB44 /* Swinject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +89,7 @@
 		ECDD70BD2261A6CC00B1FB44 = {
 			isa = PBXGroup;
 			children = (
+				EC18DA862273579B00FB40CE /* README.md */,
 				ECDD70C82261A6CC00B1FB44 /* lexickon_ios */,
 				ECDD70DD2261A6CE00B1FB44 /* lexickon_iosTests */,
 				ECDD70E82261A6CE00B1FB44 /* lexickon_iosUITests */,
@@ -138,6 +143,7 @@
 		ECDD70F92261AC5300B1FB44 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECDD73DA2265A5ED00B1FB44 /* Swinject.framework */,
 				ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */,
 				ECDD70FA2261AC5300B1FB44 /* RxSwift.framework */,
 			);
