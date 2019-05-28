@@ -12,27 +12,26 @@ import RxSwift
 
 extension UIView {
     
-    func appear(duration: TimeInterval = 0.5) -> Observable<Void> {
+    func appear(duration: TimeInterval = 0.5) -> Single<Void> {
         return changeAlpha(duration: duration, to: 1)
     }
     
-    func disappear(duration: TimeInterval = 0.5) -> Observable<Void> {
+    func disappear(duration: TimeInterval = 0.5) -> Single<Void> {
         return changeAlpha(duration: duration, to: 0)
     }
     
-    private func changeAlpha(duration: TimeInterval = 0.5, to alpha: CGFloat) -> Observable<Void> {
+    private func changeAlpha(duration: TimeInterval = 0.5, to alpha: CGFloat) -> Single<Void> {
         
-        return Observable.create { observer -> Disposable in
+        return Single<Void>.create { single -> Disposable in
             
             UIView.animate(
                 withDuration: duration,
                 animations: { self.alpha = alpha },
-                completion: { _ in observer.onNext(()) }
+                completion: { _ in single(.success(())) }
             )
             
             return Disposables.create()
             
-            }.take(1)
-            .observeOn(MainScheduler.instance)
+            }
     }
 }
