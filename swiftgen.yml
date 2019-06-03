@@ -1,0 +1,13 @@
+strings:
+  inputs: Resources/Localizable.strings
+  filter: .+\.strings$
+  outputs:
+    - templateName: flat-swift4
+      output: Resources/Generated/Strings.swift
+xcassets:
+  inputs:
+    - Resources/Colors.xcassets
+    - Resources/Images.xcassets
+  outputs:
+    - templateName: swift4
+      output: Resources/Generated/Colors.swift
