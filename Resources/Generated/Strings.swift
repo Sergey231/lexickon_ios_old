@@ -10,6 +10,12 @@ import Foundation
 
 // swiftlint:disable function_parameter_count identifier_name line_length type_body_length
 internal enum L10n {
+  /// НАЧАТЬ
+  internal static let begin = L10n.tr("Localizable", "begin")
+  /// СОЗДАТЬ АККАУНТ
+  internal static let createAccount = L10n.tr("Localizable", "CreateAccount")
+  /// У МЕНЯ ЕСТЬ АККАУНТ
+  internal static let iHaveAccountButtonTitle = L10n.tr("Localizable", "iHaveAccountButtonTitle")
 }
 // swiftlint:enable function_parameter_count identifier_name line_length type_body_length
 

@@ -24,6 +24,7 @@
 		EC317D72227DA5B4002927D9 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD70FB2261AC5300B1FB44 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EC317D73227DA5BF002927D9 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD73DA2265A5ED00B1FB44 /* Swinject.framework */; };
 		EC317D74227DA5BF002927D9 /* Swinject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ECDD73DA2265A5ED00B1FB44 /* Swinject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EC8560B7229CE1D700ACF60E /* ButtonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8560B6229CE1D700ACF60E /* ButtonControl.swift */; };
 		EC9BFF15228EFF21001C5CB4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9BFF14228EFF21001C5CB4 /* Colors.swift */; };
 		EC9BFF18228F06F5001C5CB4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC9BFF17228F06F5001C5CB4 /* Localizable.strings */; };
 		EC9BFF1A228F0764001C5CB4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9BFF19228F0764001C5CB4 /* Strings.swift */; };
@@ -83,6 +84,7 @@
 		EC317D66227D523A002927D9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		EC317D68227D99ED002927D9 /* DataAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAssembler.swift; sourceTree = "<group>"; };
 		EC317D6A227D9C0E002927D9 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		EC8560B6229CE1D700ACF60E /* ButtonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonControl.swift; sourceTree = "<group>"; };
 		EC9BFF14228EFF21001C5CB4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		EC9BFF16228F01FC001C5CB4 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		EC9BFF17228F06F5001C5CB4 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				EC9BFF1D2291836D001C5CB4 /* StartLogoView.swift */,
+				EC8560B6229CE1D700ACF60E /* ButtonControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				EC9BFF1E2291836D001C5CB4 /* StartLogoView.swift in Sources */,
 				EC18DA932276BFCA00FB40CE /* AppAssembler.swift in Sources */,
 				EC18DA912276BCC100FB40CE /* StartViewController.swift in Sources */,
+				EC8560B7229CE1D700ACF60E /* ButtonControl.swift in Sources */,
 				ECDD70CA2261A6CC00B1FB44 /* AppDelegate.swift in Sources */,
 				EC317D63227CA505002927D9 /* DomainAssembler.swift in Sources */,
 				EC317D67227D523A002927D9 /* UserRepository.swift in Sources */,

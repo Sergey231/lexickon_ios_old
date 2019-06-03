@@ -27,7 +27,6 @@ final class StartLogoView: UIView {
         logoImageView.image = Asset.Images.logo.image
         logoImageView.contentMode = .scaleAspectFit
         textLogoImageView.image = Asset.Images.textLogo.image
-        textLogoImageView.contentMode = .scaleAspectFit
         textLogoImageView.alpha = 0
     }
     
@@ -35,7 +34,7 @@ final class StartLogoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func shiftUp(duration: TimeInterval = 0.6) -> Observable<Void> {
+    private func shiftUp(duration: TimeInterval = 1) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             
             UIView.animate(
@@ -44,7 +43,7 @@ final class StartLogoView: UIView {
                     self.logoImageView.pin
                         .size(94)
                         .hCenter()
-                        .bottom(80)
+                        .bottom(100)
             }, completion: { _ in observer.onNext(()) })
             
             return Disposables.create()
@@ -54,10 +53,10 @@ final class StartLogoView: UIView {
     }
     
     func animate() -> Driver<Void> {
-        return Observable.concat([
+        return Observable.concat(
             shiftUp(),
-            textLogoImageView.appear(duration: 0.6).asObservable()
-            ]).asDriver(onErrorJustReturn: ())
+            textLogoImageView.appear().asObservable()
+            ).asDriver(onErrorJustReturn: ())
     }
     
     override func layoutSubviews() {

@@ -5,3 +5,7 @@
   Created by Sergey Borovikov on 5/17/19.
   Copyright © 2019 Sergey Borovikov. All rights reserved.
 */
+
+"begin" = "НАЧАТЬ";
+"iHaveAccountButtonTitle" = "У МЕНЯ ЕСТЬ АККАУНТ";
+"CreateAccount" = "СОЗДАТЬ АККАУНТ";
