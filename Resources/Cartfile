@@ -1,4 +1,0 @@
-github "ReactiveX/RxSwift" ~> 4.0
-github "Swinject/Swinject"
-github "layoutBox/PinLayout"
-github "mac-cain13/R.swift.Library"

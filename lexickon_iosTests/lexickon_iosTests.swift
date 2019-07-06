@@ -2,7 +2,7 @@
 //  lexickon_iosTests.swift
 //  lexickon_iosTests
 //
-//  Created by Sergey Borovikov on 4/13/19.
+//  Created by Sergey Borovikov on 7/6/19.
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
