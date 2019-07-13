@@ -1,5 +1,5 @@
 strings:
-  inputs: Resources/Localizable.strings
+  inputs: lexickon_ios/Resources/Localizable.strings
   filter: .+\.strings$
   outputs:
     - templateName: structured-swift4
