@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Swinject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: ContentView())
+            let initialView = DI.share.assembler.resolver.resolve(StartView.self)
+            window.rootViewController = UIHostingController(rootView: initialView)
             self.window = window
             window.makeKeyAndVisible()
         }

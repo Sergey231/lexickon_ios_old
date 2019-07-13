@@ -1,23 +1,23 @@
 //
-//  ContentView.swift
+//  StartLogoView.swift
 //  lexickon_ios
 //
-//  Created by Sergey Borovikov on 7/6/19.
+//  Created by Sergey Borovikov on 7/9/19.
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
 import SwiftUI
 
-struct ContentView : View {
+struct StartLogoView : View {
     var body: some View {
-        Text("Hello World")
+        Image("Logo")
     }
 }
 
 #if DEBUG
-struct ContentView_Previews : PreviewProvider {
+struct StartLogoView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView()
+        StartLogoView()
     }
 }
 #endif
