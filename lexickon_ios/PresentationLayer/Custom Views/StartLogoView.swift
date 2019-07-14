@@ -14,8 +14,8 @@ struct StartLogoView : View {
             
             VStack {
                 
-                Image("Logo")
-                Image("TextLogo")
+                Asset.Images.imageLogo
+                Asset.Images.textLogo
             }
         }
         .frame(

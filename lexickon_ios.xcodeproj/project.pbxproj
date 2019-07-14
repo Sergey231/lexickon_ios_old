@@ -11,6 +11,7 @@
 		EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EC1505F522D4C9D6007E2B3B /* Swinject */; };
 		EC15C42022DA10C0005FC300 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC15C41F22DA10C0005FC300 /* Preview Assets.xcassets */; };
 		EC1E217D22D7753F00CED229 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E217C22D7753F00CED229 /* ButtonView.swift */; };
+		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3EAB1222D4DCAA00BFCBFC /* StartLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3EAB1122D4DCAA00BFCBFC /* StartLogoView.swift */; };
 		EC48727522DA0ECD00F20D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727422DA0ECD00F20D59 /* Images.xcassets */; };
 		EC48727722DA0F0A00F20D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727622DA0F0A00F20D59 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		EC15C41F22DA10C0005FC300 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC1E217C22D7753F00CED229 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3EAB1122D4DCAA00BFCBFC /* StartLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartLogoView.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +195,7 @@
 				ECA5C75022DA0E2D001FC830 /* swiftgen.yml */,
 				EC52C75C22DA0C1F000C88C5 /* README.md */,
 				ECF9974422D9E76E002A77D8 /* Constants.swift */,
+				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				EC15C42022DA10C0005FC300 /* Preview Assets.xcassets in Resources */,
 				EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */,
 				EC52C75E22DA0C1F000C88C5 /* logo.png in Resources */,
+				EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */,
 				EC48727522DA0ECD00F20D59 /* Images.xcassets in Resources */,
 				EC48727722DA0F0A00F20D59 /* Assets.xcassets in Resources */,
 				EC48727922DA0F3D00F20D59 /* Colors.xcassets in Resources */,
