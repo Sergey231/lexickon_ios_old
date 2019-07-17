@@ -18,34 +18,33 @@ struct StartView : View {
     
     var body: some View {
         ZStack {
-        
+            
             Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
             
+            StartLogoView()
+            
             VStack {
+                
                 Spacer()
-                StartLogoView()
-                Spacer()
-                VStack {
-                    
-                    ButtonView(
-                        title: Localizable.createAccount,
-                        style: .filled(
-                            bgColor: .white,
-                            labelColor: Asset.Colors.mainBG)
-                    ).padding(Constants.Margin.small)
-                    
-                    ButtonView(
-                        title: Localizable.iHaveAccountButtonTitle,
-                        style: .filled(
-                            bgColor: .white,
-                            labelColor: Asset.Colors.mainBG)
-                    ).padding(Constants.Margin.small)
-                    
-                    ButtonView(
-                        title: Localizable.begin,
-                        style: .normal(titntColor: Color.white)
-                    ).padding(Constants.Margin.small)
-                }
+                
+                ButtonView(
+                    title: Localizable.createAccount,
+                    style: .filled(
+                        bgColor: .white,
+                        labelColor: Asset.Colors.mainBG)
+                ).padding(Constants.Margin.small)
+                
+                ButtonView(
+                    title: Localizable.iHaveAccountButtonTitle,
+                    style: .filled(
+                        bgColor: .white,
+                        labelColor: Asset.Colors.mainBG)
+                ).padding(Constants.Margin.small)
+                
+                ButtonView(
+                    title: Localizable.begin,
+                    style: .normal(titntColor: Color.white)
+                ).padding(Constants.Margin.small)
             }
             
         }

@@ -18,7 +18,7 @@ internal enum Asset {
     internal static let mainBG = Color("mainBG")
   }
   internal enum Images {
-    internal static let logo = Image("Logo")
+    internal static let imageLogo = Image("ImageLogo")
     internal static let textLogo = Image("TextLogo")
   }
 }
