@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ImageLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Cst-IK-nmq">
-                                <rect key="frame" x="160" y="401" width="94" height="94"/>
+                                <rect key="frame" x="136.5" y="377.5" width="141" height="141"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="94" id="8IZ-2t-uVC"/>
-                                    <constraint firstAttribute="height" constant="94" id="bZl-pk-wQu"/>
+                                    <constraint firstAttribute="width" constant="141" id="8IZ-2t-uVC"/>
+                                    <constraint firstAttribute="height" constant="141" id="bZl-pk-wQu"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -34,7 +34,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="42" y="164"/>
         </scene>
     </scenes>
     <resources>
