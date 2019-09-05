@@ -1,53 +1,50 @@
 //
-//  Button.swift
+//  NavigationLinkView.swift
 //  lexickon_ios
 //
-//  Created by Sergey Borovikov on 7/11/19.
+//  Created by Sergey Borovikov on 7/31/19.
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
 import SwiftUI
 
-struct ButtonView : View {
+struct NavigationLinkView: View {
     
     enum Style {
         case filled(bgColor: Color, labelColor: Color)
         case normal(tintColor: Color)
     }
     
-    init(
+    init<V>(
+        destination: V,
         title: String = "Button Lable",
-        style: Style = .normal(tintColor: Asset.Colors.mainBG),
-        action: (() -> ())? = nil
-    ) {
+        style: Style = .normal(tintColor: Asset.Colors.mainBG)) where V: View {
         
         switch style {
-            
         case .normal(let tintColor):
             self.titleColor = tintColor
             self.bgColor = Color.clear
             self.borderColor = titleColor
-            
         case .filled(let bgColor, let labelColor):
             self.titleColor = labelColor
             self.bgColor = bgColor
             self.borderColor = bgColor
         }
         self.title = title
-        self.action = action
+        self.destination = AnyView(destination)
     }
     
     private let bgColor: Color
     private let title: String
     private let titleColor: Color
     private let borderColor: Color
-    private let action: (() -> ())?
+    
+    private let destination: AnyView
     
     var body: some View {
         
-        Button(action: {
-            self.action?()
-        }) {
+        NavigationLink(
+        destination: destination) {
             ZStack {
                 Rectangle()
                     .frame(
@@ -71,10 +68,11 @@ struct ButtonView : View {
 }
 
 #if DEBUG
-struct ButtonView_Previews : PreviewProvider {
+struct NavigationLinkView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ButtonView(
+            NavigationLinkView(
+                destination: Text("Hello World!"),
                 title: "Filled Style",
                 style: .filled(
                     bgColor: Asset.Colors.mainBG,
@@ -82,7 +80,8 @@ struct ButtonView_Previews : PreviewProvider {
                 )
             )
             
-            ButtonView(
+            NavigationLinkView(
+                destination: Text("Hello World!"),
                 title: "Normal Style",
                 style: .normal(
                     tintColor: Asset.Colors.mainBG

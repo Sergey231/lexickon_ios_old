@@ -27,6 +27,9 @@
 		EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEEA22D08E7400012079 /* ProfileInteracter.swift */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartView.swift */; };
+		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
+		EC7D6F5A22EDC1E000DE4B18 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationView.swift */; };
+		EC7D6F5C22F14E2300DE4B18 /* NavigationLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5B22F14E2300DE4B18 /* NavigationLinkView.swift */; };
 		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
@@ -66,6 +69,9 @@
 		EC6CDEEA22D08E7400012079 /* ProfileInteracter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteracter.swift; sourceTree = "<group>"; };
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationPresenter.swift; path = ../../../../../../../../../System/Volumes/Data/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/lexickon_ios/PresentationLayer/Screens/Registration/RegistrationPresenter.swift; sourceTree = "<group>"; };
+		EC7D6F5922EDC1E000DE4B18 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = ../../../../../../../../../System/Volumes/Data/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/lexickon_ios/PresentationLayer/Screens/Registration/RegistrationView.swift; sourceTree = "<group>"; };
+		EC7D6F5B22F14E2300DE4B18 /* NavigationLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NavigationLinkView.swift; path = "../../../../../../../../System/Volumes/Data/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/lexickon_ios/PresentationLayer/Custom Views/NavigationLinkView.swift"; sourceTree = "<group>"; };
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -101,6 +107,7 @@
 			children = (
 				EC3EAB1122D4DCAA00BFCBFC /* StartLogoView.swift */,
 				EC1E217C22D7753F00CED229 /* ButtonView.swift */,
+				EC7D6F5B22F14E2300DE4B18 /* NavigationLinkView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -108,6 +115,7 @@
 		EC3EAB1022D4DC1C00BFCBFC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EC7D6F5622EDC13100DE4B18 /* Registration */,
 				EC6CDEEC22D08EC100012079 /* Start */,
 			);
 			path = Screens;
@@ -216,6 +224,15 @@
 				EC6CDEF122D08F3800012079 /* StartView.swift */,
 			);
 			path = Start;
+			sourceTree = "<group>";
+		};
+		EC7D6F5622EDC13100DE4B18 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */,
+				EC7D6F5922EDC1E000DE4B18 /* RegistrationView.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		ECA97C7322D084D400918828 /* Interacters */ = {
@@ -342,10 +359,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4CB13222D2419400CB826E /* DataAssembler.swift in Sources */,
+				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
+				EC7D6F5A22EDC1E000DE4B18 /* RegistrationView.swift in Sources */,
 				EC548B2722D9D48C0086BA83 /* Assets.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartView.swift in Sources */,
 				EC4CB13622D241BE00CB826E /* PresentationAssembler.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
+				EC7D6F5C22F14E2300DE4B18 /* NavigationLinkView.swift in Sources */,
 				EC3EAB1222D4DCAA00BFCBFC /* StartLogoView.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,

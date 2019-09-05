@@ -23,7 +23,7 @@ struct StartLogoView : View {
             
             Asset.Images.textLogo
                 .opacity(animate ? 1 : 0)
-                .animation(.basic(duration: 1))
+                .animation(Animation.easeInOut(duration: 1))
                 .padding(.bottom, 100)
         }
         .frame(
