@@ -17,36 +17,43 @@ struct StartView : View {
     }
     
     var body: some View {
-        ZStack {
+        
+        NavigationView {
             
-            Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
-            
-            StartLogoView()
-            
-            VStack {
+            ZStack {
                 
-                Spacer()
+                Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
                 
-                ButtonView(
-                    title: Localizable.createAccount,
-                    style: .filled(
-                        bgColor: .white,
-                        labelColor: Asset.Colors.mainBG)
-                ).padding(Constants.Margin.small)
+                StartLogoView()
                 
-                ButtonView(
-                    title: Localizable.iHaveAccountButtonTitle,
-                    style: .filled(
-                        bgColor: .white,
-                        labelColor: Asset.Colors.mainBG)
-                ).padding(Constants.Margin.small)
+                VStack {
+                    
+                    Spacer()
+                    
+                    NavigationLinkView(
+                        destination: Text(Localizable.createAccount),
+                        title: Localizable.createAccount,
+                        style: .filled(
+                            bgColor: .white,
+                            labelColor: Asset.Colors.mainBG)
+                    ).padding(Constants.Margin.small)
+                    
+                    NavigationLinkView(
+                        destination: Text(Localizable.iHaveAccountButtonTitle),
+                        title: Localizable.iHaveAccountButtonTitle,
+                        style: .filled(
+                            bgColor: .white,
+                            labelColor: Asset.Colors.mainBG)
+                    ).padding(Constants.Margin.small)
+                    
+                    NavigationLinkView(
+                        destination: Text(Localizable.begin),
+                        title: Localizable.begin,
+                        style: .normal(tintColor: Color.white)
+                    ).padding(Constants.Margin.small)
+                }
                 
-                ButtonView(
-                    title: Localizable.begin,
-                    style: .normal(titntColor: Color.white)
-                ).padding(Constants.Margin.small)
             }
-            
         }
     }
 }
