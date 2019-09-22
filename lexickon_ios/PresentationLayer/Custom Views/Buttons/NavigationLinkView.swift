@@ -25,6 +25,7 @@ struct NavigationLinkView: View {
             self.titleColor = tintColor
             self.bgColor = Color.clear
             self.borderColor = titleColor
+            
         case .filled(let bgColor, let labelColor):
             self.titleColor = labelColor
             self.bgColor = bgColor
@@ -57,7 +58,7 @@ struct NavigationLinkView: View {
                     .overlay(RoundedRectangle(
                         cornerRadius: Constants.Sizes.button.height/2)
                         .stroke(lineWidth: 2)
-                        .foregroundColor(borderColor))
+                    .foregroundColor(borderColor))
                 
                 Text(title)
                     .foregroundColor(titleColor)

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct StartView : View {
     
@@ -31,28 +32,27 @@ struct StartView : View {
                     Spacer()
                     
                     NavigationLinkView(
-                        destination: Text(Localizable.createAccount),
-                        title: Localizable.createAccount,
+                        destination: DI.share.assembler.resolver.resolve(RegistrationView.self),
+                        title: Localizable.startCreateAccountButtonTitle,
                         style: .filled(
                             bgColor: .white,
                             labelColor: Asset.Colors.mainBG)
                     ).padding(Constants.Margin.small)
                     
                     NavigationLinkView(
-                        destination: Text(Localizable.iHaveAccountButtonTitle),
-                        title: Localizable.iHaveAccountButtonTitle,
+                        destination: Text(Localizable.startIHaveAccountButtonTitle),
+                        title: Localizable.startIHaveAccountButtonTitle,
                         style: .filled(
                             bgColor: .white,
                             labelColor: Asset.Colors.mainBG)
                     ).padding(Constants.Margin.small)
                     
                     NavigationLinkView(
-                        destination: Text(Localizable.begin),
-                        title: Localizable.begin,
+                        destination: Text(Localizable.startBeginButtonTitle),
+                        title: Localizable.startBeginButtonTitle,
                         style: .normal(tintColor: Color.white)
                     ).padding(Constants.Margin.small)
                 }
-                
             }
         }
     }

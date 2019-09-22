@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RegistrationPresenterPorotocol {
+protocol RegistrationPresenterProtocol {
     
 }
 
@@ -16,6 +16,6 @@ final class RegistrationPresenter {
     
 }
 
-extension RegistrationPresenter: RegistrationPresenterPorotocol {
+extension RegistrationPresenter: RegistrationPresenterProtocol {
     
 }

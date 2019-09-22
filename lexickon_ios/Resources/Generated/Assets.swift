@@ -18,7 +18,10 @@ internal enum Asset {
     internal static let mainBG = Color("mainBG")
   }
   internal enum Images {
+    internal static let backArrow = Image("BackArrow")
     internal static let imageLogo = Image("ImageLogo")
+    internal static let accountOutline = Image("account-outline")
+    internal static let emailIcon = Image("email_icon")
     internal static let textLogo = Image("TextLogo")
   }
 }
