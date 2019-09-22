@@ -42,27 +42,39 @@ struct NavigationLinkView: View {
     
     private let destination: AnyView
     
+    private var bgViewOverlay: some View {
+        return RoundedRectangle(cornerRadius: Constants.Sizes.button.height/2)
+            .stroke(lineWidth: 2)
+            .foregroundColor(borderColor)
+    }
+    
+    private var bgViewClipShape: some Shape {
+        return RoundedRectangle(cornerRadius: Constants.Sizes.button.height/2)
+    }
+    
+    private var bgView: some View {
+        return Rectangle()
+            .frame(
+                width: Constants.Sizes.button.width,
+                height: Constants.Sizes.button.height,
+                alignment: .center)
+            .foregroundColor(bgColor)
+            .clipShape(bgViewClipShape)
+            .overlay(bgViewOverlay)
+    }
+    
+    private var buttonTitle: some View {
+        return Text(title)
+            .foregroundColor(titleColor)
+            .fontWeight(.bold)
+    }
+    
     var body: some View {
         
-        NavigationLink(
-        destination: destination) {
+        NavigationLink(destination: destination) {
             ZStack {
-                Rectangle()
-                    .frame(
-                        width: Constants.Sizes.button.width,
-                        height: Constants.Sizes.button.height,
-                        alignment: .center)
-                    .foregroundColor(bgColor)
-                    .clipShape(RoundedRectangle(
-                        cornerRadius: Constants.Sizes.button.height/2))
-                    .overlay(RoundedRectangle(
-                        cornerRadius: Constants.Sizes.button.height/2)
-                        .stroke(lineWidth: 2)
-                    .foregroundColor(borderColor))
-                
-                Text(title)
-                    .foregroundColor(titleColor)
-                    .fontWeight(.bold)
+                bgView
+                buttonTitle
             }
         }
     }
