@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct NavigationLinkView: View {
+struct LXNavigationLink: View {
     
     enum Style {
         case filled(bgColor: Color, labelColor: Color)
@@ -84,7 +84,7 @@ struct NavigationLinkView: View {
 struct NavigationLinkView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            NavigationLinkView(
+            LXNavigationLink(
                 destination: Text("Hello World!"),
                 title: "Filled Style",
                 style: .filled(
@@ -93,7 +93,7 @@ struct NavigationLinkView_Previews: PreviewProvider {
                 )
             )
             
-            NavigationLinkView(
+            LXNavigationLink(
                 destination: Text("Hello World!"),
                 title: "Normal Style",
                 style: .normal(

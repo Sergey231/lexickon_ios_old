@@ -18,7 +18,7 @@ struct StartView : View {
     }
     
     private var createAccountButton: some View {
-        return NavigationLinkView(
+        return LXNavigationLink(
             destination: DI.share.assembler.resolver.resolve(RegistrationView.self),
             title: Localizable.startCreateAccountButtonTitle,
             style: .filled(
@@ -29,7 +29,7 @@ struct StartView : View {
     }
     
     private var iHaveAccountButton: some View {
-        return NavigationLinkView(
+        return LXNavigationLink(
             destination: Text(Localizable.startIHaveAccountButtonTitle),
             title: Localizable.startIHaveAccountButtonTitle,
             style: .filled(
@@ -40,7 +40,7 @@ struct StartView : View {
     }
     
     private var beginButton: some View {
-        return NavigationLinkView(
+        return LXNavigationLink(
             destination: Text(Localizable.startBeginButtonTitle),
             title: Localizable.startBeginButtonTitle,
             style: .normal(tintColor: Color.white)
@@ -55,7 +55,7 @@ struct StartView : View {
                 
                 Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
                 
-                StartLogoView()
+                LXStartLogo()
                 
                 VStack {
                     

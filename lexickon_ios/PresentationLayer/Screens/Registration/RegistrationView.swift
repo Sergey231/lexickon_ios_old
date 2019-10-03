@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct RegistrationView: View {
     
@@ -39,36 +40,51 @@ struct RegistrationView: View {
         }
     }
     
-    @State private var nameTextFieldValue: String = ""
-    @State private var emailTextFieldValue: String = ""
+    @State private var nameValue: String = ""
+    @State private var emailValue: String = ""
     
-    private var nameTextField: TextFieldView {
-        TextFieldView(
-            value: $nameTextFieldValue,
+//    private var scrollView: some View {
+//        
+//        
+//    }
+    
+    private var nameTextField: some View {
+        
+        let input = LXTextField.Input(
+            value: $nameValue,
             placeholder: Localizable.registrationNameTextfield,
             icon: Asset.Images.accountOutline,
             tintColor: .white
         )
+        
+        return LXTextField(input: input)
     }
     
-    private var mailTextField: TextFieldView {
-        TextFieldView(
-            value: $emailTextFieldValue,
+    private var emialTextField: some View {
+        
+        let input = LXTextField.Input(
+            value: $emailValue,
             placeholder: Localizable.registrationEmailTextfield,
             icon: Asset.Images.emailIcon,
             tintColor: .white
         )
+        
+        return LXTextField(input: input)
     }
     
     var body: some View {
-            
+        
         ZStack {
             
             Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
             
-            VStack {
-                nameTextField.padding(.horizontal, 40)
-                mailTextField.padding(.horizontal, 40)
+            GeometryReader { geometry in
+                ScrollView {
+                    VStack {
+                        self.nameTextField.padding(.horizontal, 40)
+                        self.emialTextField.padding(.horizontal, 40)
+                    }.frame(height: geometry.size.height)
+                }
             }
         }
             

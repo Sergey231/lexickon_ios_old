@@ -10,12 +10,14 @@
 		EC1505F322D4C9A4007E2B3B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC1505F222D4C9A4007E2B3B /* Alamofire */; };
 		EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EC1505F522D4C9D6007E2B3B /* Swinject */; };
 		EC15C42022DA10C0005FC300 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC15C41F22DA10C0005FC300 /* Preview Assets.xcassets */; };
-		EC1E217D22D7753F00CED229 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E217C22D7753F00CED229 /* ButtonView.swift */; };
+		EC1E217D22D7753F00CED229 /* LXButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1E217C22D7753F00CED229 /* LXButton.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
-		EC3EAB1222D4DCAA00BFCBFC /* StartLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3EAB1122D4DCAA00BFCBFC /* StartLogoView.swift */; };
-		EC4850F6232E106300F3B71F /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4850F5232E106300F3B71F /* TextFieldView.swift */; };
-		EC4850F82331EAF300F3B71F /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4850F72331EAF300F3B71F /* DividerView.swift */; };
-		EC4850FC2331EDD000F3B71F /* NavigationLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4850FB2331ECED00F3B71F /* NavigationLinkView.swift */; };
+		EC3EAB1222D4DCAA00BFCBFC /* LXStartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */; };
+		EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */; };
+		EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */; };
+		EC4850F6232E106300F3B71F /* LXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4850F5232E106300F3B71F /* LXTextField.swift */; };
+		EC4850F82331EAF300F3B71F /* LXDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4850F72331EAF300F3B71F /* LXDivider.swift */; };
+		EC4850FC2331EDD000F3B71F /* LXNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4850FB2331ECED00F3B71F /* LXNavigationLink.swift */; };
 		EC48727522DA0ECD00F20D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727422DA0ECD00F20D59 /* Images.xcassets */; };
 		EC48727722DA0F0A00F20D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727622DA0F0A00F20D59 /* Assets.xcassets */; };
 		EC48727922DA0F3D00F20D59 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727822DA0F3D00F20D59 /* Colors.xcassets */; };
@@ -52,14 +54,16 @@
 
 /* Begin PBXFileReference section */
 		EC15C41F22DA10C0005FC300 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EC1E217C22D7753F00CED229 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		EC1E217C22D7753F00CED229 /* LXButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXButton.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC3EAB1122D4DCAA00BFCBFC /* StartLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartLogoView.swift; sourceTree = "<group>"; };
+		EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStartLogo.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC4850F5232E106300F3B71F /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
-		EC4850F72331EAF300F3B71F /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
-		EC4850FB2331ECED00F3B71F /* NavigationLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkView.swift; sourceTree = "<group>"; };
+		EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
+		EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		EC4850F5232E106300F3B71F /* LXTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTextField.swift; sourceTree = "<group>"; };
+		EC4850F72331EAF300F3B71F /* LXDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXDivider.swift; sourceTree = "<group>"; };
+		EC4850FB2331ECED00F3B71F /* LXNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXNavigationLink.swift; sourceTree = "<group>"; };
 		EC48727422DA0ECD00F20D59 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC48727622DA0F0A00F20D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC48727822DA0F3D00F20D59 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -111,8 +115,8 @@
 			children = (
 				EC4850F92331ECCF00F3B71F /* Graphics and Animations */,
 				EC4850FA2331ECED00F3B71F /* Buttons */,
-				EC4850F5232E106300F3B71F /* TextFieldView.swift */,
-				EC4850F72331EAF300F3B71F /* DividerView.swift */,
+				EC4721A5233A751B00C596C0 /* Text Controls */,
+				EC4850F72331EAF300F3B71F /* LXDivider.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -190,6 +194,7 @@
 				EC4CB13522D241BE00CB826E /* PresentationAssembler.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Screens */,
+				EC4721AA233DC96600C596C0 /* UIExtensions */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -213,10 +218,27 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EC4721A5233A751B00C596C0 /* Text Controls */ = {
+			isa = PBXGroup;
+			children = (
+				EC4850F5232E106300F3B71F /* LXTextField.swift */,
+			);
+			path = "Text Controls";
+			sourceTree = "<group>";
+		};
+		EC4721AA233DC96600C596C0 /* UIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */,
+				EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */,
+			);
+			path = UIExtensions;
+			sourceTree = "<group>";
+		};
 		EC4850F92331ECCF00F3B71F /* Graphics and Animations */ = {
 			isa = PBXGroup;
 			children = (
-				EC3EAB1122D4DCAA00BFCBFC /* StartLogoView.swift */,
+				EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */,
 			);
 			path = "Graphics and Animations";
 			sourceTree = "<group>";
@@ -224,8 +246,8 @@
 		EC4850FA2331ECED00F3B71F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				EC1E217C22D7753F00CED229 /* ButtonView.swift */,
-				EC4850FB2331ECED00F3B71F /* NavigationLinkView.swift */,
+				EC1E217C22D7753F00CED229 /* LXButton.swift */,
+				EC4850FB2331ECED00F3B71F /* LXNavigationLink.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -384,21 +406,23 @@
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationView.swift in Sources */,
 				EC548B2722D9D48C0086BA83 /* Assets.swift in Sources */,
-				EC4850F82331EAF300F3B71F /* DividerView.swift in Sources */,
+				EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */,
+				EC4850F82331EAF300F3B71F /* LXDivider.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartView.swift in Sources */,
 				EC4CB13622D241BE00CB826E /* PresentationAssembler.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
-				EC4850F6232E106300F3B71F /* TextFieldView.swift in Sources */,
-				EC3EAB1222D4DCAA00BFCBFC /* StartLogoView.swift in Sources */,
+				EC4850F6232E106300F3B71F /* LXTextField.swift in Sources */,
+				EC3EAB1222D4DCAA00BFCBFC /* LXStartLogo.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				ECF9974122D9D644002A77D8 /* Strings.swift in Sources */,
+				EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
-				EC4850FC2331EDD000F3B71F /* NavigationLinkView.swift in Sources */,
+				EC4850FC2331EDD000F3B71F /* LXNavigationLink.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
-				EC1E217D22D7753F00CED229 /* ButtonView.swift in Sources */,
+				EC1E217D22D7753F00CED229 /* LXButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

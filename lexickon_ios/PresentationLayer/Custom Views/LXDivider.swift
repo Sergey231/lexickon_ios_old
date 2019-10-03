@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct DividerView: View {
+struct LXDivider: View {
     
     private let tintColor: Color
     private let width: CGFloat
@@ -43,25 +43,25 @@ struct DividerView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 54) {
             
-            DividerView()
+            LXDivider()
             
-            DividerView(width: 2)
+            LXDivider(width: 2)
             
-            DividerView(width: 4)
+            LXDivider(width: 4)
             
-            DividerView(width: 8)
+            LXDivider(width: 8)
             
-            DividerView(width: 8, rounded: true)
+            LXDivider(width: 8, rounded: true)
             
-            DividerView(tintColor: Asset.Colors.mainBG)
+            LXDivider(tintColor: Asset.Colors.mainBG)
             
-            DividerView(tintColor: Asset.Colors.mainBG, width: 2)
+            LXDivider(tintColor: Asset.Colors.mainBG, width: 2)
             
-            DividerView(tintColor: Asset.Colors.mainBG, width: 4)
+            LXDivider(tintColor: Asset.Colors.mainBG, width: 4)
             
-            DividerView(tintColor: Asset.Colors.mainBG, width: 8)
+            LXDivider(tintColor: Asset.Colors.mainBG, width: 8)
             
-            DividerView(tintColor: Asset.Colors.mainBG, width: 8, rounded: true)
+            LXDivider(tintColor: Asset.Colors.mainBG, width: 8, rounded: true)
             
         }.padding()
     }

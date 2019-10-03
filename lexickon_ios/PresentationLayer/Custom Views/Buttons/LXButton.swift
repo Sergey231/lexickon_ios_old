@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ButtonView : View {
+struct LXButton : View {
     
     enum Style {
         case filled(bgColor: Color, labelColor: Color)
@@ -85,7 +85,7 @@ struct ButtonView : View {
 struct ButtonView_Previews : PreviewProvider {
     static var previews: some View {
         VStack {
-            ButtonView(
+            LXButton(
                 title: "Filled Style",
                 style: .filled(
                     bgColor: Asset.Colors.mainBG,
@@ -93,7 +93,7 @@ struct ButtonView_Previews : PreviewProvider {
                 )
             )
             
-            ButtonView(
+            LXButton(
                 title: "Normal Style",
                 style: .normal(
                     tintColor: Asset.Colors.mainBG
