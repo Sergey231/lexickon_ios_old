@@ -52,7 +52,7 @@ struct RegistrationView: View {
         
         let input = LXTextField.Input(
             value: $nameValue,
-            placeholder: Localizable.registrationNameTextfield,
+            placeholder: Localized.registrationNameTextfield,
             icon: Asset.Images.accountOutline,
             tintColor: .white
         )
@@ -64,7 +64,7 @@ struct RegistrationView: View {
         
         let input = LXTextField.Input(
             value: $emailValue,
-            placeholder: Localizable.registrationEmailTextfield,
+            placeholder: Localized.registrationEmailTextfield,
             icon: Asset.Images.emailIcon,
             tintColor: .white
         )
@@ -89,7 +89,7 @@ struct RegistrationView: View {
         }
             
         .statusBar(hidden: true)
-        .navigationBarTitle(Localizable.registrationCreateAccountTitle)
+        .navigationBarTitle(Localized.registrationCreateAccountTitle)
     }
 }
 

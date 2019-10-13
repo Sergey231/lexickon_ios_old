@@ -20,7 +20,7 @@ struct StartView : View {
     private var createAccountButton: some View {
         return LXNavigationLink(
             destination: DI.share.assembler.resolver.resolve(RegistrationView.self),
-            title: Localizable.startCreateAccountButtonTitle,
+            title: Localized.registrationCreateAccountTitle,
             style: .filled(
                 bgColor: .white,
                 labelColor: Asset.Colors.mainBG
@@ -30,8 +30,8 @@ struct StartView : View {
     
     private var iHaveAccountButton: some View {
         return LXNavigationLink(
-            destination: Text(Localizable.startIHaveAccountButtonTitle),
-            title: Localizable.startIHaveAccountButtonTitle,
+            destination: Text(Localized.startIHaveAccountButtonTitle),
+            title: Localized.startIHaveAccountButtonTitle,
             style: .filled(
                 bgColor: .white,
                 labelColor: Asset.Colors.mainBG
@@ -41,8 +41,8 @@ struct StartView : View {
     
     private var beginButton: some View {
         return LXNavigationLink(
-            destination: Text(Localizable.startBeginButtonTitle),
-            title: Localizable.startBeginButtonTitle,
+            destination: Text(Localized.startBeginButtonTitle),
+            title: Localized.startBeginButtonTitle,
             style: .normal(tintColor: Color.white)
         )
     }
