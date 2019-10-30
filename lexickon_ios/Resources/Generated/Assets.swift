@@ -20,8 +20,11 @@ internal enum Asset {
   internal enum Images {
     internal static let backArrow = ImageAsset("BackArrow")
     internal static let imageLogo = ImageAsset("ImageLogo")
-    internal static let accountOutline = ImageAsset("account-outline")
+    internal static let accountIcon = ImageAsset("account_icon")
     internal static let emailIcon = ImageAsset("email_icon")
+    internal static let eyeHideIcon = ImageAsset("eye_hide_icon")
+    internal static let eyeShowIcon = ImageAsset("eye_show_icon")
+    internal static let lockIcon = ImageAsset("lock_icon")
     internal static let textLogo = ImageAsset("TextLogo")
   }
 }

@@ -21,12 +21,12 @@ final class PresentationAssembler: Assembly {
         }.inObjectScope(ObjectScope.appObjectScope)
         
         
-        container.register(RegistrationPresenterProtocol.self) { _ in
+        container.register(RegistrationPresenter.self) { _ in
             RegistrationPresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
         container.register(RegistrationView.self) { r in
-            RegistrationView()
+            RegistrationView(presenter: r.resolve(RegistrationPresenter.self)!)
         }.inObjectScope(ObjectScope.appObjectScope)
         
     }

@@ -11,9 +11,15 @@ import Combine
 
 struct RegistrationView: View {
     
+    @ObservedObject var presenter: RegistrationPresenter
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    init() {
+    private var cancellableSet: Set<AnyCancellable> = []
+    
+    init(presenter: RegistrationPresenter) {
+        
+        self.presenter = presenter
         
         // for navigation bar large title color
         UINavigationBar.appearance()
@@ -40,36 +46,25 @@ struct RegistrationView: View {
         }
     }
     
-    @State private var nameValue: String = ""
-    @State private var emailValue: String = ""
-    
-//    private var scrollView: some View {
-//        
-//        
-//    }
-    
     private var nameTextField: some View {
-        
-        let input = LXTextField.Input(
-            value: $nameValue,
-            placeholder: Localized.registrationNameTextfield,
-            icon: Asset.Images.accountOutline,
-            tintColor: .white
-        )
-        
-        return LXTextField(input: input)
+        return TextField(
+            Localized.registrationNameTextfield,
+            text: $presenter.name
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.accountIcon))
     }
     
     private var emialTextField: some View {
-        
-        let input = LXTextField.Input(
-            value: $emailValue,
-            placeholder: Localized.registrationEmailTextfield,
-            icon: Asset.Images.emailIcon,
-            tintColor: .white
-        )
-        
-        return LXTextField(input: input)
+        return TextField(
+            Localized.registrationEmailTextfield,
+            text: $presenter.email
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.emailIcon))
+    }
+    
+    private var passwordTextField: some View {
+        return SecureField(
+            Localized.registrationPasswordTextfield,
+            text: $presenter.password
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.lockIcon))
     }
     
     var body: some View {
@@ -78,25 +73,27 @@ struct RegistrationView: View {
             
             Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
             
-            GeometryReader { geometry in
-                ScrollView {
-                    VStack {
-                        self.nameTextField.padding(.horizontal, 40)
-                        self.emialTextField.padding(.horizontal, 40)
-                    }.frame(height: geometry.size.height)
-                }
-            }
+            VStack {
+                self.nameTextField
+                self.emialTextField
+                self.passwordTextField
+            }.offset(
+                x: 0,
+                y: self.presenter.keyboardHeight/(-2)
+            ).animation(Animation.default.speed(1.3))
         }
             
         .statusBar(hidden: true)
         .navigationBarTitle(Localized.registrationCreateAccountTitle)
+        
     }
 }
+
 
 #if DEBUG
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        RegistrationView(presenter: DI.share.assembler.resolver.resolve(RegistrationPresenter.self)!)
     }
 }
 #endif

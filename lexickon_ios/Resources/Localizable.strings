@@ -15,3 +15,5 @@
 "Registration_create_account_title" = "Создать аккаут";
 "Registration_name_textfield" = "Имя";
 "Registration_email_textfield" = "Email";
+"Registration_password_textfield" = "Пароль";
+"Registration_confirm_password_textfield" = "Повторите пароль";

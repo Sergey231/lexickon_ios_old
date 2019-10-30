@@ -18,33 +18,28 @@ struct StartView : View {
     }
     
     private var createAccountButton: some View {
-        return LXNavigationLink(
-            destination: DI.share.assembler.resolver.resolve(RegistrationView.self),
-            title: Localized.registrationCreateAccountTitle,
-            style: .filled(
-                bgColor: .white,
-                labelColor: Asset.Colors.mainBG
-            )
-        )
+        return NavigationLink(
+            destination: DI.share.assembler.resolver.resolve(RegistrationView.self)) {
+                Text(Localized.startCreateAccountButtonTitle).fontWeight(.bold)
+        }
+        .buttonStyle(LXFilledButtonStyle())
     }
     
     private var iHaveAccountButton: some View {
-        return LXNavigationLink(
-            destination: Text(Localized.startIHaveAccountButtonTitle),
-            title: Localized.startIHaveAccountButtonTitle,
-            style: .filled(
-                bgColor: .white,
-                labelColor: Asset.Colors.mainBG
-            )
-        )
+        return NavigationLink(
+        destination: Text(Localized.startIHaveAccountButtonTitle)) {
+            Text(Localized.startIHaveAccountButtonTitle).fontWeight(.bold)
+        }
+        .buttonStyle(LXFilledButtonStyle())
     }
     
     private var beginButton: some View {
-        return LXNavigationLink(
-            destination: Text(Localized.startBeginButtonTitle),
-            title: Localized.startBeginButtonTitle,
-            style: .normal(tintColor: Color.white)
-        )
+        return NavigationLink(
+        destination: Text(Localized.startBeginButtonTitle)) {
+            Text(Localized.startBeginButtonTitle).fontWeight(.bold)
+        }
+        .buttonStyle(LXRoundedWhiteButtonStyle())
+        .padding(.bottom, Constants.Margin.regular)
     }
     
     var body: some View {
@@ -58,12 +53,10 @@ struct StartView : View {
                 LXStartLogo()
                 
                 VStack {
-                    
                     Spacer()
-                    
-                    createAccountButton.padding(Constants.Margin.small)
-                    iHaveAccountButton.padding(Constants.Margin.small)
-                    beginButton.padding(Constants.Margin.small)
+                    createAccountButton
+                    iHaveAccountButton
+                    beginButton
                 }
             }
         }
