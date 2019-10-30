@@ -50,7 +50,7 @@ struct RegistrationView: View {
         return TextField(
             Localized.registrationNameTextfield,
             text: $presenter.name
-        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.accountIcon))
+        ).modifier(LXTextFieldStyle(leftIcon: SFIcons.TextField.person))
     }
     
     private var emialTextField: some View {

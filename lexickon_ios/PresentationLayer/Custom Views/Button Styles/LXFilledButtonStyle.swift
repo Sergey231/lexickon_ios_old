@@ -19,6 +19,6 @@ struct LXFilledButtonStyle: ButtonStyle {
             .foregroundColor(Asset.Colors.mainBG)
             .background(Color.white)
             .clipShape(Capsule())
-            .padding(8)
+            .padding(Constants.Margin.small)
     }
 }

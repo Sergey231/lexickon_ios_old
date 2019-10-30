@@ -40,6 +40,7 @@
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
+		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
 		ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF9974422D9E76E002A77D8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
+		ECF20D5D236951D700DA8715 /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
 		ECF9974422D9E76E002A77D8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +250,7 @@
 		EC4850F92331ECCF00F3B71F /* Graphics and Animations */ = {
 			isa = PBXGroup;
 			children = (
+				ECF20D5D236951D700DA8715 /* SFIcons.swift */,
 				EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */,
 			);
 			path = "Graphics and Animations";
@@ -432,6 +435,7 @@
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC1C3E492353155900C82DFF /* LXFilledButtonStyle.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
+				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				EC1C3E4F23532F6500C82DFF /* LXTextFieldStyle.swift in Sources */,
 				EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,

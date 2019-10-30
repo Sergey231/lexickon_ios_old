@@ -44,6 +44,14 @@ final class RegistrationPresenter: PresenterType {
             .map { _ in 0 }
             .assign(to: \.keyboardHeight, on: self)
             .store(in: &cancellableSet)
+        
+        Publishers.CombineLatest(
+            isPasswordEmptyPublisher,
+            isUsernameValidPublisher
+        )
+        .map { $0 && $1 }
+        .assign(to: \.isValid, on: self)
+        .store(in: &cancellableSet)
     }
     
     private var isUsernameValidPublisher: AnyPublisher<Bool, Never> {
