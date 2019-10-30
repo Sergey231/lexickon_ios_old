@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct StartView : View {
     
@@ -14,6 +15,31 @@ struct StartView : View {
     
     init(presenter: StartPresenterProtocol) {
         self.presenter = presenter
+    }
+    
+    private var createAccountButton: some View {
+        return NavigationLink(
+            destination: DI.share.assembler.resolver.resolve(RegistrationView.self)) {
+                Text(Localized.startCreateAccountButtonTitle).fontWeight(.bold)
+        }
+        .buttonStyle(LXFilledButtonStyle())
+    }
+    
+    private var iHaveAccountButton: some View {
+        return NavigationLink(
+        destination: Text(Localized.startIHaveAccountButtonTitle)) {
+            Text(Localized.startIHaveAccountButtonTitle).fontWeight(.bold)
+        }
+        .buttonStyle(LXFilledButtonStyle())
+    }
+    
+    private var beginButton: some View {
+        return NavigationLink(
+        destination: Text(Localized.startBeginButtonTitle)) {
+            Text(Localized.startBeginButtonTitle).fontWeight(.bold)
+        }
+        .buttonStyle(LXRoundedWhiteButtonStyle())
+        .padding(.bottom, Constants.Margin.regular)
     }
     
     var body: some View {
@@ -24,35 +50,14 @@ struct StartView : View {
                 
                 Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
                 
-                StartLogoView()
+                LXStartLogo()
                 
                 VStack {
-                    
                     Spacer()
-                    
-                    NavigationLinkView(
-                        destination: Text(Localizable.createAccount),
-                        title: Localizable.createAccount,
-                        style: .filled(
-                            bgColor: .white,
-                            labelColor: Asset.Colors.mainBG)
-                    ).padding(Constants.Margin.small)
-                    
-                    NavigationLinkView(
-                        destination: Text(Localizable.iHaveAccountButtonTitle),
-                        title: Localizable.iHaveAccountButtonTitle,
-                        style: .filled(
-                            bgColor: .white,
-                            labelColor: Asset.Colors.mainBG)
-                    ).padding(Constants.Margin.small)
-                    
-                    NavigationLinkView(
-                        destination: Text(Localizable.begin),
-                        title: Localizable.begin,
-                        style: .normal(tintColor: Color.white)
-                    ).padding(Constants.Margin.small)
+                    createAccountButton
+                    iHaveAccountButton
+                    beginButton
                 }
-                
             }
         }
     }

@@ -9,13 +9,13 @@
 import Foundation
 import SwiftUI
 
-public struct Constants {
+public enum Constants {
     
-    struct Sizes {
+    enum Sizes {
         static let button: CGSize = .init(width: 280, height: 56)
     }
     
-    struct Margin {
+    enum Margin {
         static let regular: CGFloat = 16
         static let small: CGFloat = 8
     }

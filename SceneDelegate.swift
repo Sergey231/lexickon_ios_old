@@ -10,6 +10,13 @@ import UIKit
 import SwiftUI
 import Swinject
 
+// MARK: - For chanching of status bar
+class HostingController: UIHostingController<StartView> {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -24,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let initialView = DI.share.assembler.resolver.resolve(StartView.self)
-            window.rootViewController = UIHostingController(rootView: initialView)
+            window.rootViewController = HostingController(rootView: initialView!)
             self.window = window
             window.makeKeyAndVisible()
         }

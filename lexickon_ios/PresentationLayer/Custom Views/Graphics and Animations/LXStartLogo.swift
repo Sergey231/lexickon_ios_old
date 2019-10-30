@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct StartLogoView : View {
+struct LXStartLogo : View {
     
     @State var animate = false
     
@@ -41,7 +41,7 @@ struct StartLogoView : View {
 struct StartLogoView_Previews : PreviewProvider {
     static var previews: some View {
         
-        StartLogoView()
+        LXStartLogo()
             .previewLayout(.fixed(width: 200, height: 430))
             .background(Asset.Colors.mainBG)
     }

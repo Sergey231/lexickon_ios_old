@@ -7,10 +7,19 @@
 //
 
 import SwiftUI
+import Combine
 
 struct RegistrationView: View {
     
-    init() {
+    @ObservedObject var presenter: RegistrationPresenter
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    private var cancellableSet: Set<AnyCancellable> = []
+    
+    init(presenter: RegistrationPresenter) {
+        
+        self.presenter = presenter
         
         // for navigation bar large title color
         UINavigationBar.appearance()
@@ -18,49 +27,73 @@ struct RegistrationView: View {
         
         // for navigation bar title color
         UINavigationBar.appearance()
-            .titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+            .titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        // for navigation bar items
+        UINavigationBar.appearance()
+            .tintColor = .white
         
         UINavigationBar.appearance().showsLargeContentViewer = false
     }
     
-    var body: some View {
-        
-        NavigationView {
-            
-            ZStack {
-                
-                Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    
-                    Spacer()
-                    
-                    NavigationLink(destination: Text("1")) {
-                        
-                        Text("tttt")
-                        
-//                        ButtonView(
-//                            title: "Создать",
-//                            style: .filled(
-//                                bgColor: .white,
-//                                labelColor: Asset.Colors.mainBG)
-//                        ).padding(Constants.Margin.small)
-                    }
-                    .navigationBarTitle(
-                        Text("Создать аккаут")
-                    )
-                    
-                }
-            }
-            
+    var btnBack : some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            Asset.Images.backArrow
+                .foregroundColor(.white)
+                .aspectRatio(contentMode: .fit)
         }
     }
+    
+    private var nameTextField: some View {
+        return TextField(
+            Localized.registrationNameTextfield,
+            text: $presenter.name
+        ).modifier(LXTextFieldStyle(leftIcon: SFIcons.TextField.person))
+    }
+    
+    private var emialTextField: some View {
+        return TextField(
+            Localized.registrationEmailTextfield,
+            text: $presenter.email
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.emailIcon))
+    }
+    
+    private var passwordTextField: some View {
+        return SecureField(
+            Localized.registrationPasswordTextfield,
+            text: $presenter.password
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.lockIcon))
+    }
+    
+    var body: some View {
+        
+        ZStack {
+            
+            Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                self.nameTextField
+                self.emialTextField
+                self.passwordTextField
+            }.offset(
+                x: 0,
+                y: self.presenter.keyboardHeight/(-2)
+            ).animation(Animation.default.speed(1.3))
+        }
+            
+        .statusBar(hidden: true)
+        .navigationBarTitle(Localized.registrationCreateAccountTitle)
+        
+    }
 }
+
 
 #if DEBUG
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        RegistrationView(presenter: DI.share.assembler.resolver.resolve(RegistrationPresenter.self)!)
     }
 }
 #endif

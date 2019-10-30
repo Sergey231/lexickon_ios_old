@@ -2,7 +2,7 @@ strings:
   inputs: lexickon_ios/Resources/Localizable.strings
   filter: .+\.strings$
   outputs:
-    - templateName: structured-swift4
+    - templateName: lexickon_swiftgen_string_template
       output: lexickon_ios/Resources/Generated/Strings.swift
 xcassets:
   inputs:

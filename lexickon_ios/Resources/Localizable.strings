@@ -6,6 +6,14 @@
   Copyright © 2019 Sergey Borovikov. All rights reserved.
 */
 
-"begin" = "НАЧАТЬ";
-"iHaveAccountButtonTitle" = "У МЕНЯ ЕСТЬ АККАУНТ";
-"CreateAccount" = "СОЗДАТЬ АККАУНТ";
+// MARK: Start Screen
+"Start_begin_button_title" = "НАЧАТЬ";
+"Start_i_have_account_button_title" = "У МЕНЯ ЕСТЬ АККАУНТ";
+"Start_create_account_button_title" = "СОЗДАТЬ АККАУНТ";
+
+// MARK: Registration Screen
+"Registration_create_account_title" = "Создать аккаут";
+"Registration_name_textfield" = "Имя";
+"Registration_email_textfield" = "Email";
+"Registration_password_textfield" = "Пароль";
+"Registration_confirm_password_textfield" = "Повторите пароль";

@@ -14,10 +14,20 @@ final class PresentationAssembler: Assembly {
         
         container.register(StartPresenterProtocol.self) { _ in
             StartPresenter()
-            }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.appObjectScope)
         
         container.register(StartView.self) { r in
             StartView(presenter: r.resolve(StartPresenterProtocol.self)!)
-            }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.appObjectScope)
+        
+        
+        container.register(RegistrationPresenter.self) { _ in
+            RegistrationPresenter()
+        }.inObjectScope(ObjectScope.appObjectScope)
+        
+        container.register(RegistrationView.self) { r in
+            RegistrationView(presenter: r.resolve(RegistrationPresenter.self)!)
+        }.inObjectScope(ObjectScope.appObjectScope)
+        
     }
 }
