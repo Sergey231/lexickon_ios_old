@@ -46,31 +46,29 @@ final class RegistrationPresenter: PresenterType {
             .store(in: &cancellableSet)
         
         Publishers.CombineLatest(
-            isPasswordEmptyPublisher,
-            isUsernameValidPublisher
-        )
-        .map { $0 && $1 }
+            isUsernameValidPublisher,
+            isPasswordValidPublisher
+        ).map { $0 && $1 }
+        .eraseToAnyPublisher()
         .assign(to: \.isValid, on: self)
         .store(in: &cancellableSet)
     }
     
-    private var isUsernameValidPublisher: AnyPublisher<Bool, Never> {
-      $name
-        .debounce(for: 0.8, scheduler: RunLoop.main)
-        .removeDuplicates()
-        .map { input in
-          return input.count >= 3
+    private lazy var isUsernameValidPublisher: AnyPublisher<Bool, Never> = {
+        $name
+            .removeDuplicates()
+            .map { input in
+                return input.count >= 3
         }
         .eraseToAnyPublisher()
-    }
+    }()
     
-    private var isPasswordEmptyPublisher: AnyPublisher<Bool, Never> {
-      $password
-        .debounce(for: 0.8, scheduler: RunLoop.main)
-        .removeDuplicates()
-        .map { password in
-          return password == ""
+    private lazy var isPasswordValidPublisher: AnyPublisher<Bool, Never> = {
+        $password
+            .removeDuplicates()
+            .map { password in
+                return password.count > 3
         }
         .eraseToAnyPublisher()
-    }
+    }()
 }

@@ -29,8 +29,6 @@
 		EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB13322D241A300CB826E /* DomainAssembler.swift */; };
 		EC4CB13622D241BE00CB826E /* PresentationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB13522D241BE00CB826E /* PresentationAssembler.swift */; };
 		EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC52C75A22DA0C1F000C88C5 /* Localizable.strings */; };
-		EC52C75E22DA0C1F000C88C5 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EC52C75B22DA0C1F000C88C5 /* logo.png */; };
-		EC52C75F22DA0C1F000C88C5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EC52C75C22DA0C1F000C88C5 /* README.md */; };
 		EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEEA22D08E7400012079 /* ProfileInteracter.swift */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartView.swift */; };
@@ -41,6 +39,8 @@
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
+		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
+		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
 		ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF9974422D9E76E002A77D8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,13 +77,11 @@
 		EC4CB13322D241A300CB826E /* DomainAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainAssembler.swift; sourceTree = "<group>"; };
 		EC4CB13522D241BE00CB826E /* PresentationAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationAssembler.swift; sourceTree = "<group>"; };
 		EC52C75A22DA0C1F000C88C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		EC52C75B22DA0C1F000C88C5 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		EC52C75C22DA0C1F000C88C5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC6CDEEA22D08E7400012079 /* ProfileInteracter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteracter.swift; sourceTree = "<group>"; };
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
-		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationPresenter.swift; path = ../../../../../../../../../System/Volumes/Data/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/lexickon_ios/PresentationLayer/Screens/Registration/RegistrationPresenter.swift; sourceTree = "<group>"; };
-		EC7D6F5922EDC1E000DE4B18 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegistrationView.swift; path = ../../../../../../../../../System/Volumes/Data/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/lexickon_ios/PresentationLayer/Screens/Registration/RegistrationView.swift; sourceTree = "<group>"; };
+		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		EC7D6F5922EDC1E000DE4B18 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -91,6 +89,8 @@
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
 		ECF20D5D236951D700DA8715 /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
+		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
+		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
 		ECF9974422D9E76E002A77D8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,12 +218,12 @@
 				ECA97C6922D0808500918828 /* Info.plist */,
 				EC548B2922D9D4C50086BA83 /* Generated */,
 				EC52C75A22DA0C1F000C88C5 /* Localizable.strings */,
-				EC52C75B22DA0C1F000C88C5 /* logo.png */,
+				ECF20D60236D942500DA8715 /* logo.png */,
+				ECF20D5F236D942500DA8715 /* README.md */,
 				EC48727622DA0F0A00F20D59 /* Assets.xcassets */,
 				EC48727422DA0ECD00F20D59 /* Images.xcassets */,
 				EC48727822DA0F3D00F20D59 /* Colors.xcassets */,
 				ECA5C75022DA0E2D001FC830 /* swiftgen.yml */,
-				EC52C75C22DA0C1F000C88C5 /* README.md */,
 				ECF9974422D9E76E002A77D8 /* Constants.swift */,
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
@@ -391,12 +391,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */,
-				EC52C75E22DA0C1F000C88C5 /* logo.png in Resources */,
 				EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */,
 				EC48727522DA0ECD00F20D59 /* Images.xcassets in Resources */,
+				ECF20D61236D942500DA8715 /* README.md in Resources */,
+				ECF20D62236D942500DA8715 /* logo.png in Resources */,
 				EC48727722DA0F0A00F20D59 /* Assets.xcassets in Resources */,
 				EC48727922DA0F3D00F20D59 /* Colors.xcassets in Resources */,
-				EC52C75F22DA0C1F000C88C5 /* README.md in Resources */,
 				ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

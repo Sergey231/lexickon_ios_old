@@ -50,7 +50,7 @@ struct RegistrationView: View {
         return TextField(
             Localized.registrationNameTextfield,
             text: $presenter.name
-        ).modifier(LXTextFieldStyle(leftIcon: SFIcons.TextField.person))
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.accountIcon))
     }
     
     private var emialTextField: some View {
@@ -74,6 +74,7 @@ struct RegistrationView: View {
             Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
             
             VStack {
+                Text(presenter.isValid ? "valid" : "not valid")
                 self.nameTextField
                 self.emialTextField
                 self.passwordTextField
