@@ -10,14 +10,19 @@ import SwiftUI
 
 struct LXRoundedWhiteButtonStyle: ButtonStyle {
     
+    var disabled: Bool  = false
+    
     func makeBody(configuration: Self.Configuration) -> some View {
+        
         configuration.label
             .frame(
                 width: Constants.Sizes.button.width,
                 height: Constants.Sizes.button.height,
                 alignment: .center)
             .foregroundColor(.white)
+            .background(Asset.Colors.mainBG)
             .overlay(Capsule().stroke(lineWidth: 2).foregroundColor(.white))
-            .padding(8)
+            .padding(Constants.Margin.small)
+            .opacity(disabled == true ? 0.5 : 1)
     }
 }

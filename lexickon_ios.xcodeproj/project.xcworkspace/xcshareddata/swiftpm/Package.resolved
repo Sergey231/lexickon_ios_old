@@ -18,6 +18,15 @@
           "revision": "8a76d2c74bafbb455763487cc6a08e91bad1f78b",
           "version": "2.7.1"
         }
+      },
+      {
+        "package": "Validator",
+        "repositoryURL": "https://github.com/Sergey231/Validator.git",
+        "state": {
+          "branch": null,
+          "revision": "fa4a53510662aab70b2eb2224dec981887561f4f",
+          "version": "0.0.8"
+        }
       }
     ]
   },

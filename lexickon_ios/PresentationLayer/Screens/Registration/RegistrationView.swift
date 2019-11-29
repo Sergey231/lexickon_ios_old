@@ -50,7 +50,7 @@ struct RegistrationView: View {
         return TextField(
             Localized.registrationNameTextfield,
             text: $presenter.name
-        ).modifier(LXTextFieldStyle(leftIcon: SFIcons.TextField.person))
+        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.accountIcon))
     }
     
     private var emialTextField: some View {
@@ -67,6 +67,15 @@ struct RegistrationView: View {
         ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.lockIcon))
     }
     
+    private var submitButton: some View {
+        return NavigationLink(
+            Localized.registrationCreateAccountTitle,
+            destination: Text("In App")
+        ).disabled(!presenter.canSubmit)
+            .buttonStyle(LXRoundedWhiteButtonStyle(disabled: !presenter.canSubmit))
+        .padding([.top, .bottom], 16)
+    }
+    
     var body: some View {
         
         ZStack {
@@ -77,6 +86,7 @@ struct RegistrationView: View {
                 self.nameTextField
                 self.emialTextField
                 self.passwordTextField
+                self.submitButton
             }.offset(
                 x: 0,
                 y: self.presenter.keyboardHeight/(-2)

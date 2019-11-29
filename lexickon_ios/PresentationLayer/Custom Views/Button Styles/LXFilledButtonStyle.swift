@@ -10,6 +10,8 @@ import SwiftUI
 
 struct LXFilledButtonStyle: ButtonStyle {
     
+    var disabled: Bool  = false
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .frame(
@@ -20,5 +22,6 @@ struct LXFilledButtonStyle: ButtonStyle {
             .background(Color.white)
             .clipShape(Capsule())
             .padding(Constants.Margin.small)
+            .opacity(disabled == true ? 0.5 : 1)
     }
 }
