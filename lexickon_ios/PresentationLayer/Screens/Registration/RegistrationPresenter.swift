@@ -8,6 +8,7 @@
 
 import Combine
 import SwiftUI
+import Validator
 
 final class RegistrationPresenter: PresenterType {
     
@@ -20,7 +21,10 @@ final class RegistrationPresenter: PresenterType {
     
     // MARK: Output
     @Published var keyboardHeight: CGFloat = 0
-    @Published var isValid = false
+    @Published var nameValidation: ValidationResult = ValidationResult.valid
+    @Published var emailValidation: ValidationResult = ValidationResult.valid
+    @Published var passwordValidation: ValidationResult = ValidationResult.valid
+    @Published var canSubmit: Bool = false
     
     private var cancellableSet: Set<AnyCancellable> = []
     
@@ -45,30 +49,131 @@ final class RegistrationPresenter: PresenterType {
             .assign(to: \.keyboardHeight, on: self)
             .store(in: &cancellableSet)
         
-        Publishers.CombineLatest(
+        isUsernameValidPublisher
+            .assign(to: \.nameValidation, on: self)
+            .store(in: &cancellableSet)
+        
+        isEmailValidPublisher
+            .assign(to: \.emailValidation, on: self)
+            .store(in: &cancellableSet)
+        
+        isPasswordValidPublisher
+            .assign(to: \.passwordValidation, on: self)
+            .store(in: &cancellableSet)
+        
+        Publishers.CombineLatest3(
             isUsernameValidPublisher,
-            isPasswordValidPublisher
-        ).map { $0 && $1 }
-        .eraseToAnyPublisher()
-        .assign(to: \.isValid, on: self)
-        .store(in: &cancellableSet)
+            isEmailValidPublisher,
+            isPasswordValidPublisher)
+            .map { $0.isValid && $1.isValid && $2.isValid }
+            .assign(to: \.canSubmit, on: self)
+            .store(in: &cancellableSet)
     }
     
-    private lazy var isUsernameValidPublisher: AnyPublisher<Bool, Never> = {
-        $name
-            .removeDuplicates()
+    private lazy var isUsernameValidPublisher: AnyPublisher<ValidationResult, Never> = {
+        
+        let nameMinRule = ValidationRuleLength(
+            min: 2,
+            error: LXError.incorrectName
+        )
+        
+        return $name.removeDuplicates()
             .map { input in
-                return input.count >= 3
+                input.validate(rule: nameMinRule)
         }
         .eraseToAnyPublisher()
     }()
     
-    private lazy var isPasswordValidPublisher: AnyPublisher<Bool, Never> = {
-        $password
-            .removeDuplicates()
-            .map { password in
-                return password.count > 3
+    private lazy var isEmailValidPublisher: AnyPublisher<ValidationResult, Never> = {
+        
+        let emailRule = ValidationRulePattern(
+            pattern: EmailValidationPattern.standard,
+            error: LXError.incorrectEmail)
+        
+        return $email.removeDuplicates()
+            .map { input in
+                input.validate(rule: emailRule)
         }
         .eraseToAnyPublisher()
     }()
+    
+    private lazy var isPasswordValidPublisher: AnyPublisher<ValidationResult, Never> = {
+        
+        let minLengthRule = ValidationRuleLength(
+            min: 5,
+            error: LXError.Password.tooShort
+        )
+        
+        let maxLengthRule = ValidationRuleLength(
+            max: 18,
+            error: LXError.Password.tooLong
+        )
+        
+        let digitRule = ValidationRulePattern(
+            pattern: ContainsNumberValidationPattern(),
+            error: LXError.Password.needDigital
+        )
+        
+        let lowcaseRule = ValidationRulePattern(
+            pattern: CaseValidationPattern.lowercase,
+            error: LXError.Password.needLowcase
+        )
+        
+        let upcaseRule = ValidationRulePattern(
+            pattern: CaseValidationPattern.uppercase,
+            error: LXError.Password.needUpcase
+        )
+        
+        var passwordValidationRules = ValidationRuleSet<String>()
+        passwordValidationRules.add(rule: digitRule)
+        passwordValidationRules.add(rule: minLengthRule)
+        passwordValidationRules.add(rule: lowcaseRule)
+        passwordValidationRules.add(rule: upcaseRule)
+        
+        return $password.removeDuplicates()
+            .map { password in
+                password.validate(rules: passwordValidationRules)
+        }
+        .eraseToAnyPublisher()
+    }()
+}
+
+// MARK: - Extract in future
+enum LXError: ValidationError {
+    
+    enum Password: ValidationError {
+        
+        case needDigital
+        case needUpcase
+        case needLowcase
+        case tooShort
+        case tooLong
+        
+        var message: String {
+            switch self {
+            case .needDigital:
+                return Localized.registrationPasswordMustContainDigits
+            case .needUpcase:
+                return Localized.registrationPasswordMustContainUpercaseCharacters
+            case .needLowcase:
+                return Localized.registrationPasswordMustContainLowercaseCharacters
+            case .tooShort:
+                return Localized.registrationPasswordTooShort
+            case .tooLong:
+                return Localized.registrationPasswordTooLong
+            }
+        }
+    }
+    
+    case incorrectEmail
+    case incorrectName
+    
+    var message: String {
+        switch self {
+        case .incorrectEmail:
+            return Localized.registrationIncorrectEmail
+        case .incorrectName:
+            return Localized.registrationIncorrectName
+        }
+    }
 }

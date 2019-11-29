@@ -67,6 +67,15 @@ struct RegistrationView: View {
         ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.lockIcon))
     }
     
+    private var submitButton: some View {
+        return NavigationLink(
+            Localized.registrationCreateAccountTitle,
+            destination: Text("In App")
+        ).disabled(!presenter.canSubmit)
+            .buttonStyle(LXRoundedWhiteButtonStyle(disabled: !presenter.canSubmit))
+        .padding([.top, .bottom], 16)
+    }
+    
     var body: some View {
         
         ZStack {
@@ -74,10 +83,10 @@ struct RegistrationView: View {
             Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
             
             VStack {
-                Text(presenter.isValid ? "valid" : "not valid")
                 self.nameTextField
                 self.emialTextField
                 self.passwordTextField
+                self.submitButton
             }.offset(
                 x: 0,
                 y: self.presenter.keyboardHeight/(-2)

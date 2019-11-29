@@ -17,10 +17,24 @@ internal enum Localized {
   internal static let registrationCreateAccountTitle = Localized.tr("Localizable", "Registration_create_account_title")
   /// Email
   internal static let registrationEmailTextfield = Localized.tr("Localizable", "Registration_email_textfield")
+  /// Не корректный email
+  internal static let registrationIncorrectEmail = Localized.tr("Localizable", "Registration_incorrect_email")
+  /// Не корректный имя пользователя
+  internal static let registrationIncorrectName = Localized.tr("Localizable", "Registration_incorrect_name")
   /// Имя
   internal static let registrationNameTextfield = Localized.tr("Localizable", "Registration_name_textfield")
+  /// Пароль должен содержать цифры
+  internal static let registrationPasswordMustContainDigits = Localized.tr("Localizable", "Registration_password_must_contain_digits")
+  /// Пароль должен содержать строчные символы
+  internal static let registrationPasswordMustContainLowercaseCharacters = Localized.tr("Localizable", "Registration_password_must_contain_lowercase characters")
+  /// Пароль должен содержать заглавные символы
+  internal static let registrationPasswordMustContainUpercaseCharacters = Localized.tr("Localizable", "Registration_password_must_contain_upercase_characters")
   /// Пароль
   internal static let registrationPasswordTextfield = Localized.tr("Localizable", "Registration_password_textfield")
+  /// Пароль слишком длинный
+  internal static let registrationPasswordTooLong = Localized.tr("Localizable", "Registration_password_too_long")
+  /// Пароль слишком короткий
+  internal static let registrationPasswordTooShort = Localized.tr("Localizable", "Registration_password_too_short")
   /// НАЧАТЬ
   internal static let startBeginButtonTitle = Localized.tr("Localizable", "Start_begin_button_title")
   /// СОЗДАТЬ АККАУНТ

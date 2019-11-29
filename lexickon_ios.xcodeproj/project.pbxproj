@@ -19,6 +19,7 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3EAB1222D4DCAA00BFCBFC /* LXStartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */; };
+		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */; };
 		EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */; };
 		EC48727522DA0ECD00F20D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727422DA0ECD00F20D59 /* Images.xcassets */; };
@@ -101,6 +102,7 @@
 			files = (
 				EC1505F322D4C9A4007E2B3B /* Alamofire in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
+				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +322,7 @@
 			packageProductDependencies = (
 				EC1505F222D4C9A4007E2B3B /* Alamofire */,
 				EC1505F522D4C9D6007E2B3B /* Swinject */,
+				EC407EDE237C3B8400A3FD42 /* Validator */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -374,6 +377,7 @@
 			packageReferences = (
 				EC1505F122D4C9A4007E2B3B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */,
+				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -704,6 +708,14 @@
 				minimumVersion = 2.6.2;
 			};
 		};
+		EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sergey231/Validator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.8;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -716,6 +728,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		EC407EDE237C3B8400A3FD42 /* Validator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */;
+			productName = Validator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
