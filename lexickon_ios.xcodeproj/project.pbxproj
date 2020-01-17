@@ -22,6 +22,8 @@
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */; };
 		EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */; };
+		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
+		EC47965223923E6400C9BDD3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginView.swift */; };
 		EC48727522DA0ECD00F20D59 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727422DA0ECD00F20D59 /* Images.xcassets */; };
 		EC48727722DA0F0A00F20D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727622DA0F0A00F20D59 /* Assets.xcassets */; };
 		EC48727922DA0F3D00F20D59 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC48727822DA0F3D00F20D59 /* Colors.xcassets */; };
@@ -70,6 +72,8 @@
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
 		EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		EC47965123923E6400C9BDD3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EC48727422DA0ECD00F20D59 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EC48727622DA0F0A00F20D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC48727822DA0F3D00F20D59 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		EC3EAB1022D4DC1C00BFCBFC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EC47964E23923E2400C9BDD3 /* Enter */,
 				EC7D6F5622EDC13100DE4B18 /* Registration */,
 				EC6CDEEC22D08EC100012079 /* Start */,
 			);
@@ -247,6 +252,15 @@
 				EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */,
 			);
 			path = UIExtensions;
+			sourceTree = "<group>";
+		};
+		EC47964E23923E2400C9BDD3 /* Enter */ = {
+			isa = PBXGroup;
+			children = (
+				EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */,
+				EC47965123923E6400C9BDD3 /* LoginView.swift */,
+			);
+			path = Enter;
 			sourceTree = "<group>";
 		};
 		EC4850F92331ECCF00F3B71F /* Graphics and Animations */ = {
@@ -424,6 +438,7 @@
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				EC1C3E4D23532E9700C82DFF /* LXScaledAnimationButtonStyle.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationView.swift in Sources */,
+				EC47965223923E6400C9BDD3 /* LoginView.swift in Sources */,
 				EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */,
 				EC1C3E5223533D7A00C82DFF /* LXRoundedDeviderStyle.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartView.swift in Sources */,
@@ -438,6 +453,7 @@
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC1C3E492353155900C82DFF /* LXFilledButtonStyle.swift in Sources */,
+				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				EC1C3E4F23532F6500C82DFF /* LXTextFieldStyle.swift in Sources */,
