@@ -8,9 +8,13 @@
 
 import Swinject
 
-final class DomainAssembler: Assembly {
+struct DomainLayerAssemblers {
     
-    func assemble(container: Container) {
+    static var assemblers: [Assembly] {
         
+        return [
+        
+            
+        ]
     }
 }

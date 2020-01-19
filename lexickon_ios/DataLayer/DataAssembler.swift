@@ -8,9 +8,13 @@
 
 import Swinject
 
-final class DataAssembler: Assembly {
+struct DataLayerAssemblers {
    
-    func assemble(container: Container) {
+    static var assemblers: [Assembly] {
         
+        return [
+        
+        
+        ]
     }
 }

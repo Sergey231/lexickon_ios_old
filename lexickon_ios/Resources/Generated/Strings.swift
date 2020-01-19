@@ -11,6 +11,10 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name
 internal enum Localized {
+  /// Войти
+  internal static let loginLoginButtonTitle = Localized.tr("Localizable", "Login_login_button_title")
+  /// У меня есть аккаунт
+  internal static let loginScreenTitle = Localized.tr("Localizable", "Login_screen_title")
   /// Повторите пароль
   internal static let registrationConfirmPasswordTextfield = Localized.tr("Localizable", "Registration_confirm_password_textfield")
   /// Создать аккаут

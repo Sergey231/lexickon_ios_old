@@ -18,6 +18,11 @@
 "Registration_password_textfield" = "Пароль";
 "Registration_confirm_password_textfield" = "Повторите пароль";
 
+// MARK: Login Screen
+
+"Login_login_button_title" = "Войти";
+"Login_screen_title" = "У меня есть аккаунт";
+
 // Validation Error Messages
 
 "Registration_incorrect_email" = "Не корректный email";
