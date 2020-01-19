@@ -30,8 +30,8 @@
 		EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppAssembler.swift */; };
 		EC4CB13222D2419400CB826E /* DataAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB13122D2419400CB826E /* DataAssembler.swift */; };
 		EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB13322D241A300CB826E /* DomainAssembler.swift */; };
-		EC4CB13622D241BE00CB826E /* PresentationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB13522D241BE00CB826E /* PresentationAssembler.swift */; };
 		EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC52C75A22DA0C1F000C88C5 /* Localizable.strings */; };
+		EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67163223D2106F003B28E3 /* LoginAssembler.swift */; };
 		EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEEA22D08E7400012079 /* ProfileInteracter.swift */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartView.swift */; };
@@ -40,6 +40,9 @@
 		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
+		ECA66A2D23D47BDC00B39E68 /* RgictrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */; };
+		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
+		ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
@@ -80,8 +83,8 @@
 		EC4CB12F22D2418800CB826E /* AppAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
 		EC4CB13122D2419400CB826E /* DataAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAssembler.swift; sourceTree = "<group>"; };
 		EC4CB13322D241A300CB826E /* DomainAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainAssembler.swift; sourceTree = "<group>"; };
-		EC4CB13522D241BE00CB826E /* PresentationAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationAssembler.swift; sourceTree = "<group>"; };
 		EC52C75A22DA0C1F000C88C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		EC67163223D2106F003B28E3 /* LoginAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAssembler.swift; sourceTree = "<group>"; };
 		EC6CDEEA22D08E7400012079 /* ProfileInteracter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteracter.swift; sourceTree = "<group>"; };
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -90,6 +93,9 @@
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgictrationAssembler.swift; sourceTree = "<group>"; };
+		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
+		ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayerAssemblers.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
@@ -142,7 +148,7 @@
 		EC3EAB1022D4DC1C00BFCBFC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				EC47964E23923E2400C9BDD3 /* Enter */,
+				EC47964E23923E2400C9BDD3 /* Login */,
 				EC7D6F5622EDC13100DE4B18 /* Registration */,
 				EC6CDEEC22D08EC100012079 /* Start */,
 			);
@@ -210,7 +216,7 @@
 		EC4278FC22D07199001218AB /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				EC4CB13522D241BE00CB826E /* PresentationAssembler.swift */,
+				ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Screens */,
@@ -254,13 +260,14 @@
 			path = UIExtensions;
 			sourceTree = "<group>";
 		};
-		EC47964E23923E2400C9BDD3 /* Enter */ = {
+		EC47964E23923E2400C9BDD3 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				EC67163223D2106F003B28E3 /* LoginAssembler.swift */,
 				EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */,
 				EC47965123923E6400C9BDD3 /* LoginView.swift */,
 			);
-			path = Enter;
+			path = Login;
 			sourceTree = "<group>";
 		};
 		EC4850F92331ECCF00F3B71F /* Graphics and Animations */ = {
@@ -294,6 +301,7 @@
 		EC6CDEEC22D08EC100012079 /* Start */ = {
 			isa = PBXGroup;
 			children = (
+				ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */,
 				EC6CDEED22D08EE900012079 /* StartPresenter.swift */,
 				EC6CDEF122D08F3800012079 /* StartView.swift */,
 			);
@@ -303,6 +311,7 @@
 		EC7D6F5622EDC13100DE4B18 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */,
 				EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */,
 				EC7D6F5922EDC1E000DE4B18 /* RegistrationView.swift */,
 			);
@@ -434,7 +443,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4CB13222D2419400CB826E /* DataAssembler.swift in Sources */,
+				ECA66A2D23D47BDC00B39E68 /* RgictrationAssembler.swift in Sources */,
 				EC1C3E4B23532E6F00C82DFF /* LXRoundedWhiteButtonStyle.swift in Sources */,
+				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				EC1C3E4D23532E9700C82DFF /* LXScaledAnimationButtonStyle.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationView.swift in Sources */,
@@ -442,11 +453,12 @@
 				EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */,
 				EC1C3E5223533D7A00C82DFF /* LXRoundedDeviderStyle.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartView.swift in Sources */,
-				EC4CB13622D241BE00CB826E /* PresentationAssembler.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
+				ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */,
 				EC3EAB1222D4DCAA00BFCBFC /* LXStartLogo.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
+				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
 				EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */,

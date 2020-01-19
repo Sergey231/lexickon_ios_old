@@ -27,7 +27,7 @@ struct StartView : View {
     
     private var iHaveAccountButton: some View {
         return NavigationLink(
-        destination: Text(Localized.startIHaveAccountButtonTitle)) {
+        destination: DI.share.assembler.resolver.resolve(LoginView.self)) {
             Text(Localized.startIHaveAccountButtonTitle).fontWeight(.bold)
         }
         .buttonStyle(LXFilledButtonStyle())
