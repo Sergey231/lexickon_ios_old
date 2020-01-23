@@ -10,10 +10,12 @@ import UIKit
 import SwiftUI
 import Swinject
 import Combine
+import PinLayout
 
 final class StartViewController: UIViewController {
     
     private let presenter: StartPresenter
+    private var beginButton = UIButton()
     
     init(presenter: StartPresenter) {
         self.presenter = presenter
@@ -27,6 +29,26 @@ final class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.mainBG.color
+        navigationController?.navigationBar.isHidden = true
+        createUI()
+        configureUI()
+    }
+    
+    private func configureUI() {
+        beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
+    }
+    
+    private func createUI() {
+        view.addSubview(beginButton)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        beginButton.pin
+            .vCenter()
+            .horizontally(16)
+            .height(44)
     }
 }
 

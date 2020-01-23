@@ -42,6 +42,9 @@
 		ECA66A2D23D47BDC00B39E68 /* RgictrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */; };
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
 		ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */; };
+		ECA66A3623D9E80E00B39E68 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3523D9E80E00B39E68 /* Coordinator.swift */; };
+		ECA66A3923D9EE4D00B39E68 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* MainCoordinator.swift */; };
+		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
@@ -94,6 +97,8 @@
 		ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgictrationAssembler.swift; sourceTree = "<group>"; };
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
 		ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayerAssemblers.swift; sourceTree = "<group>"; };
+		ECA66A3523D9E80E00B39E68 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		ECA66A3823D9EE4D00B39E68 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 			files = (
 				EC1505F322D4C9A4007E2B3B /* Alamofire in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
+				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4850F92331ECCF00F3B71F /* Graphics and Animations */,
-				EC4850FA2331ECED00F3B71F /* Button Styles */,
+				EC4850FA2331ECED00F3B71F /* Buttons */,
 				EC4721A5233A751B00C596C0 /* TextField Styles */,
 				EC1C3E5023533BED00C82DFF /* View Styles */,
 			);
@@ -177,6 +183,7 @@
 				EC4CB12F22D2418800CB826E /* AppAssembler.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
+				ECA66A3723D9EE3100B39E68 /* Coordinator */,
 				EC4278FA22D0717E001218AB /* DataLayer */,
 				EC4278FB22D0718E001218AB /* DomainLayer */,
 				EC4278FC22D07199001218AB /* PresentationLayer */,
@@ -276,14 +283,14 @@
 			path = "Graphics and Animations";
 			sourceTree = "<group>";
 		};
-		EC4850FA2331ECED00F3B71F /* Button Styles */ = {
+		EC4850FA2331ECED00F3B71F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
 				EC1C3E482353155900C82DFF /* LXFilledButtonStyle.swift */,
 				EC1C3E4A23532E6F00C82DFF /* LXRoundedWhiteButtonStyle.swift */,
 				EC1C3E4C23532E9700C82DFF /* LXScaledAnimationButtonStyle.swift */,
 			);
-			path = "Button Styles";
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		EC548B2922D9D4C50086BA83 /* Generated */ = {
@@ -315,6 +322,15 @@
 			path = Registration;
 			sourceTree = "<group>";
 		};
+		ECA66A3723D9EE3100B39E68 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				ECA66A3523D9E80E00B39E68 /* Coordinator.swift */,
+				ECA66A3823D9EE4D00B39E68 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		ECA97C7322D084D400918828 /* Interacters */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +359,7 @@
 				EC1505F222D4C9A4007E2B3B /* Alamofire */,
 				EC1505F522D4C9D6007E2B3B /* Swinject */,
 				EC407EDE237C3B8400A3FD42 /* Validator */,
+				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -398,6 +415,7 @@
 				EC1505F122D4C9A4007E2B3B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */,
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
+				ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -452,11 +470,13 @@
 				EC6CDEF222D08F3800012079 /* StartView.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
+				ECA66A3923D9EE4D00B39E68 /* MainCoordinator.swift in Sources */,
 				ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
+				ECA66A3623D9E80E00B39E68 /* Coordinator.swift in Sources */,
 				EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
@@ -740,6 +760,14 @@
 				minimumVersion = 0.0.8;
 			};
 		};
+		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/layoutBox/PinLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.13;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -757,6 +785,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */;
 			productName = Validator;
+		};
+		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
+			productName = PinLayout;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
