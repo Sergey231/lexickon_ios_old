@@ -12,12 +12,12 @@ final class StartAssembler: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(StartPresenterProtocol.self) { _ in
+        container.register(StartPresenter.self) { _ in
             StartPresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(StartView.self) { r in
-            StartView(presenter: r.resolve(StartPresenterProtocol.self)!)
+        container.register(StartViewController.self) { r in
+            StartViewController(presenter: r.resolve(StartPresenter.self)!)
         }.inObjectScope(ObjectScope.appObjectScope)
     }
 }

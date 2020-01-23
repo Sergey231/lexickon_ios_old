@@ -9,5 +9,5 @@ xcassets:
     - lexickon_ios/Resources/Images.xcassets
     - lexickon_ios/Resources/Colors.xcassets
   outputs:
-    - templateName: swiftUI
+    - templateName: swift5
       output: lexickon_ios/Resources/Generated/Assets.swift

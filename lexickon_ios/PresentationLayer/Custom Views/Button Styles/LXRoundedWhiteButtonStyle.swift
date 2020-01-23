@@ -20,7 +20,7 @@ struct LXRoundedWhiteButtonStyle: ButtonStyle {
                 height: Constants.Sizes.button.height,
                 alignment: .center)
             .foregroundColor(.white)
-            .background(Asset.Colors.mainBG)
+            .background(Color.green)
             .overlay(Capsule().stroke(lineWidth: 2).foregroundColor(.white))
             .padding(Constants.Margin.small)
             .opacity(disabled == true ? 0.5 : 1)

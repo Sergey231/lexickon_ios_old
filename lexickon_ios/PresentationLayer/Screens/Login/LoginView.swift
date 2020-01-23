@@ -40,14 +40,14 @@ struct LoginView: View {
         return TextField(
             Localized.registrationEmailTextfield,
             text: $presenter.email
-        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.emailIcon))
+        )
     }
     
     private var passwordTextField: some View {
         return SecureField(
             Localized.registrationPasswordTextfield,
             text: $presenter.password
-        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.lockIcon))
+        )
     }
     
     private var submitButton: some View {
@@ -63,7 +63,7 @@ struct LoginView: View {
         
         ZStack {
             
-            Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
+            Color.green.edgesIgnoringSafeArea(.all)
             
             VStack {
                 self.emialTextField

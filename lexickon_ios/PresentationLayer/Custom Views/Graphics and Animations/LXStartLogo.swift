@@ -43,7 +43,7 @@ struct StartLogoView_Previews : PreviewProvider {
         
         LXStartLogo()
             .previewLayout(.fixed(width: 200, height: 430))
-            .background(Asset.Colors.mainBG)
+            .background(Color.green)
     }
 }
 #endif

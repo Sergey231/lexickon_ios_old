@@ -18,7 +18,6 @@
 		EC1C3E5223533D7A00C82DFF /* LXRoundedDeviderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5123533D7A00C82DFF /* LXRoundedDeviderStyle.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
-		EC3EAB1222D4DCAA00BFCBFC /* LXStartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC4721AC233DC9AE00C596C0 /* TextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */; };
 		EC4721AE233DC9EE00C596C0 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4721AD233DC9EE00C596C0 /* ColorExtensions.swift */; };
@@ -70,7 +69,6 @@
 		EC1C3E5123533D7A00C82DFF /* LXRoundedDeviderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXRoundedDeviderStyle.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXStartLogo.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4721AB233DC9AE00C596C0 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
@@ -148,9 +146,9 @@
 		EC3EAB1022D4DC1C00BFCBFC /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EC6CDEEC22D08EC100012079 /* Start */,
 				EC47964E23923E2400C9BDD3 /* Login */,
 				EC7D6F5622EDC13100DE4B18 /* Registration */,
-				EC6CDEEC22D08EC100012079 /* Start */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -274,7 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				ECF20D5D236951D700DA8715 /* SFIcons.swift */,
-				EC3EAB1122D4DCAA00BFCBFC /* LXStartLogo.swift */,
 			);
 			path = "Graphics and Animations";
 			sourceTree = "<group>";
@@ -456,7 +453,6 @@
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
 				ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */,
-				EC3EAB1222D4DCAA00BFCBFC /* LXStartLogo.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,

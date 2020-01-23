@@ -18,7 +18,7 @@ struct LXFilledButtonStyle: ButtonStyle {
                 width: Constants.Sizes.button.width,
                 height: Constants.Sizes.button.height,
                 alignment: .center)
-            .foregroundColor(Asset.Colors.mainBG)
+            .foregroundColor(Color.green)
             .background(Color.white)
             .clipShape(Capsule())
             .padding(Constants.Margin.small)

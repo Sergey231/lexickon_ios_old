@@ -6,67 +6,41 @@
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
+import UIKit
 import SwiftUI
 import Swinject
+import Combine
 
-struct StartView : View {
+final class StartViewController: UIViewController {
     
-    private var presenter: StartPresenterProtocol
+    private let presenter: StartPresenter
     
-    init(presenter: StartPresenterProtocol) {
+    init(presenter: StartPresenter) {
         self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
     }
     
-    private var createAccountButton: some View {
-        return NavigationLink(
-            destination: DI.share.assembler.resolver.resolve(RegistrationView.self)) {
-                Text(Localized.startCreateAccountButtonTitle).fontWeight(.bold)
-        }
-        .buttonStyle(LXFilledButtonStyle())
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    private var iHaveAccountButton: some View {
-        return NavigationLink(
-        destination: DI.share.assembler.resolver.resolve(LoginView.self)) {
-            Text(Localized.startIHaveAccountButtonTitle).fontWeight(.bold)
-        }
-        .buttonStyle(LXFilledButtonStyle())
-    }
-    
-    private var beginButton: some View {
-        return NavigationLink(
-        destination: Text(Localized.startBeginButtonTitle)) {
-            Text(Localized.startBeginButtonTitle).fontWeight(.bold)
-        }
-        .buttonStyle(LXRoundedWhiteButtonStyle())
-        .padding(.bottom, Constants.Margin.regular)
-    }
-    
-    var body: some View {
-        
-        NavigationView {
-            
-            ZStack {
-                
-                Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
-                
-                LXStartLogo()
-                
-                VStack {
-                    Spacer()
-                    createAccountButton
-                    iHaveAccountButton
-                    beginButton
-                }
-            }
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = Asset.Colors.mainBG.color
     }
 }
 
-#if DEBUG
-struct StartView_Previews : PreviewProvider {
+extension StartViewController: UIViewRepresentable {
+    
+    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+        return StartViewController(presenter: StartPresenter()).view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct StartViewController_Preview: PreviewProvider {
     static var previews: some View {
-        StartView(presenter: StartPresenter())
+        StartViewController(presenter: StartPresenter())
     }
 }
-#endif

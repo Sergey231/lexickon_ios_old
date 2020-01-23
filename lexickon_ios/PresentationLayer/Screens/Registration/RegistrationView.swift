@@ -40,9 +40,7 @@ struct RegistrationView: View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
         }) {
-            Asset.Images.backArrow
-                .foregroundColor(.white)
-                .aspectRatio(contentMode: .fit)
+            Text("ss")
         }
     }
     
@@ -50,21 +48,21 @@ struct RegistrationView: View {
         return TextField(
             Localized.registrationNameTextfield,
             text: $presenter.name
-        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.accountIcon))
+        )
     }
     
     private var emialTextField: some View {
         return TextField(
             Localized.registrationEmailTextfield,
             text: $presenter.email
-        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.emailIcon))
+        )
     }
     
     private var passwordTextField: some View {
         return SecureField(
             Localized.registrationPasswordTextfield,
             text: $presenter.password
-        ).modifier(LXTextFieldStyle(leftIcon: Asset.Images.lockIcon))
+        )
     }
     
     private var submitButton: some View {
@@ -80,7 +78,7 @@ struct RegistrationView: View {
         
         ZStack {
             
-            Asset.Colors.mainBG.edgesIgnoringSafeArea(.all)
+            Color.green.edgesIgnoringSafeArea(.all)
             
             VStack {
                 self.nameTextField

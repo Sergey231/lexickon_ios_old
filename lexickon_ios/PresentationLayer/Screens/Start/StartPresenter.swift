@@ -8,14 +8,6 @@
 
 import Foundation
 
-protocol StartPresenterProtocol {
-    
-}
-
 final class StartPresenter {
-    
-}
-
-extension StartPresenter: StartPresenterProtocol {
     
 }

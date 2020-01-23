@@ -12,7 +12,8 @@
 {% set accessModifier %}{% if param.publicAccess %}public{% else %}internal{% endif %}{% endset %}
 
 import SwiftUI
-{{accessModifier}} typealias {{colorAlias}} = Color
+import UIKit
+{{accessModifier}} typealias {{colorAlias}} = UIColor
 {{accessModifier}} typealias {{imageAlias}} = Image
 
 
