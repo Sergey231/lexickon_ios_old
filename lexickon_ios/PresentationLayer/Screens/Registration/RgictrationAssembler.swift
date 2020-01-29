@@ -16,8 +16,12 @@ final class RegistrationAssembler: Assembly {
             RegistrationPresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(RegistrationView.self) { r in
-            RegistrationView(presenter: r.resolve(RegistrationPresenter.self)!)
+        container.register(RegistrationViewController.self) { resolver in
+            RegistrationViewController(presenter: resolver.resolve(RegistrationPresenter.self)!)
+        }.inObjectScope(ObjectScope.appObjectScope)
+        
+        container.register(RegistrationCoordinator.self) { resolver, nc in
+            RegistrationCoordinator(navigationController: nc)
         }.inObjectScope(ObjectScope.appObjectScope)
     }
 }

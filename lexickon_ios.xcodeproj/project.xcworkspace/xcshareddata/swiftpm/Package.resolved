@@ -11,6 +11,24 @@
         }
       },
       {
+        "package": "CombineCocoa",
+        "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "c31c85b6f8494247b69997324312dce8bf55b34b",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "PinLayout",
+        "repositoryURL": "https://github.com/layoutBox/PinLayout",
+        "state": {
+          "branch": null,
+          "revision": "930593a02857d25472a1965ce052e6d716b37c58",
+          "version": "1.8.13"
+        }
+      },
+      {
         "package": "Swinject",
         "repositoryURL": "https://github.com/Swinject/Swinject.git",
         "state": {

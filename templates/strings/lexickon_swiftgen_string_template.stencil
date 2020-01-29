@@ -47,7 +47,7 @@ import Foundation
 {% endmacro %}
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name
-{% set enumName %}{{param.enumName|default:"Localized"}}{% endset %}
+{% set enumName %}{{param.enumName|default:"Localizable"}}{% endset %}
 {{accessModifier}} enum {{enumName}} {
   {% if tables.count > 1 %}
   {% for table in tables %}
