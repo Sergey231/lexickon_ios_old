@@ -8,4 +8,4 @@
 
 import Combine
 
-protocol PresenterType: ObservableObject {}
+protocol PresenterType {}

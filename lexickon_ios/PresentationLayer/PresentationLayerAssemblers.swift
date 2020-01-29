@@ -14,7 +14,9 @@ struct PresentationLayerAssemblers {
         return [
             LoginAssembler(),
             RegistrationAssembler(),
-            StartAssembler()
+            StartAssembler(),
+            MainAssembler(),
+            IntroAssembler()
         ]
     }
 }

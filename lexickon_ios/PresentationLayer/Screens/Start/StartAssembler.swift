@@ -19,5 +19,9 @@ final class StartAssembler: Assembly {
         container.register(StartViewController.self) { r in
             StartViewController(presenter: r.resolve(StartPresenter.self)!)
         }.inObjectScope(ObjectScope.appObjectScope)
+        
+        container.register(StartCoordinator.self) { resolver, nc in
+            StartCoordinator(navigationController: nc)
+        }.inObjectScope(ObjectScope.appObjectScope)
     }
 }

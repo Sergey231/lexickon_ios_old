@@ -8,6 +8,4 @@
 
 import Foundation
 
-final class StartPresenter {
-    
-}
+final class StartPresenter: PresenterType {}

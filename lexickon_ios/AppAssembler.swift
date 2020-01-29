@@ -25,7 +25,7 @@ extension ObjectScope {
 
 final class DI {
     
-    static let share = DI()
+    static let shr = DI()
     let assembler: Assembler
     
     init() {
