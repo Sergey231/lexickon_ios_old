@@ -37,7 +37,7 @@ final class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     fileprivate var instructor: LaunchInstructor {
-        return LaunchInstructor.setup(isSeenIntro: false, isAuthorized: true)
+        return LaunchInstructor.setup(isSeenIntro: false, isAuthorized: false)
     }
     
     init(navigationController: UINavigationController) {

@@ -7,16 +7,16 @@
 //
 
 import Foundation
-import SwiftUI
+import UIKit
+    
+enum Sizes {
+    static let button: CGSize = .init(width: 280, height: 56)
+}
 
-public enum Constants {
-    
-    enum Sizes {
-        static let button: CGSize = .init(width: 280, height: 56)
-    }
-    
-    enum Margin {
-        static let regular: CGFloat = 16
-        static let small: CGFloat = 8
-    }
+enum Margin {
+    static let small: CGFloat = 8
+    static let regular: CGFloat = 16
+    static let mid: CGFloat = 24
+    static let big: CGFloat = 32
+    static let huge: CGFloat = 56
 }

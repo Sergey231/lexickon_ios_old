@@ -49,8 +49,12 @@ final class StartViewController: UIViewController {
     private func configureUI() {
         
         beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
+        beginButton.setRoundedFilledStyle()
         iAmHaveAccountButton.setTitle(Localized.startIHaveAccountButtonTitle, for: .normal)
+        iAmHaveAccountButton.setRoundedBorderedStyle()
         createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
+        createAccountButton.setRoundedStyle()
+        createAccountButton.setShadow()
         
         guard let coordinator = coordinator else { return }
         
@@ -79,21 +83,21 @@ final class StartViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         beginButton.pin
-            .vCenter()
-            .horizontally(16)
-            .height(44)
+            .center()
+            .size(Sizes.button)
+            .height(56)
         
         iAmHaveAccountButton.pin
-            .horizontally(16)
-            .height(44)
+            .hCenter()
+            .size(Sizes.button)
             .below(of: beginButton)
-            .marginTop(16)
+            .marginTop(Margin.mid)
         
         createAccountButton.pin
-            .horizontally(16)
-            .height(44)
+            .hCenter()
+            .size(Sizes.button)
             .below(of: iAmHaveAccountButton)
-            .margin(16)
+            .marginTop(Margin.mid)
     }
 }
 
