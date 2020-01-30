@@ -12,10 +12,8 @@
 		EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E442352E68C00C82DFF /* Assets.swift */; };
 		EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E462352E95E00C82DFF /* Strings.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
-		EC1F9DE723E1E6250044EF9D /* UIView+AddShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9DE623E1E6250044EF9D /* UIView+AddShadow.swift */; };
-		EC1F9DE923E1E6750044EF9D /* UIButton+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9DE823E1E6750044EF9D /* UIButton+Styles.swift */; };
-		EC1F9DEB23E1E6BF0044EF9D /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9DEA23E1E6BF0044EF9D /* UIView+Animations.swift */; };
 		EC1F9DED23E1E8700044EF9D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9DEC23E1E8700044EF9D /* Button.swift */; };
+		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
@@ -40,7 +38,6 @@
 		EC873D7023DD5B3200787E51 /* IntroCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6F23DD5B3200787E51 /* IntroCoordinator.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC873D7423DD6EC400787E51 /* CombineCocoa */; };
-		EC873D7723DD726C00787E51 /* UIView+AddSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7623DD726C00787E51 /* UIView+AddSubviews.swift */; };
 		EC873D7A23DD754D00787E51 /* MainAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* MainAssembler.swift */; };
 		EC873D7C23DD755E00787E51 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* MainPresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* MainViewController.swift */; };
@@ -76,9 +73,6 @@
 		EC1C3E442352E68C00C82DFF /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
-		EC1F9DE623E1E6250044EF9D /* UIView+AddShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddShadow.swift"; sourceTree = "<group>"; };
-		EC1F9DE823E1E6750044EF9D /* UIButton+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styles.swift"; sourceTree = "<group>"; };
-		EC1F9DEA23E1E6BF0044EF9D /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		EC1F9DEC23E1E8700044EF9D /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,7 +98,6 @@
 		EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		EC873D6F23DD5B3200787E51 /* IntroCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCoordinator.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
-		EC873D7623DD726C00787E51 /* UIView+AddSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AddSubviews.swift"; sourceTree = "<group>"; };
 		EC873D7923DD754D00787E51 /* MainAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembler.swift; sourceTree = "<group>"; };
 		EC873D7B23DD755E00787E51 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		EC873D7D23DD756F00787E51 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F322D4C9A4007E2B3B /* Alamofire in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
@@ -150,6 +144,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +178,7 @@
 				EC4278D722D070E5001218AB /* lexickon_ios */,
 				EC4278EE22D070E7001218AB /* lexickon_iosTests */,
 				EC4278D622D070E5001218AB /* Products */,
+				EC1F9E2123E3478B0044EF9D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,7 +239,6 @@
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Screens */,
-				EC4721AA233DC96600C596C0 /* UIExtensions */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -258,17 +259,6 @@
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		EC4721AA233DC96600C596C0 /* UIExtensions */ = {
-			isa = PBXGroup;
-			children = (
-				EC873D7623DD726C00787E51 /* UIView+AddSubviews.swift */,
-				EC1F9DE623E1E6250044EF9D /* UIView+AddShadow.swift */,
-				EC1F9DEA23E1E6BF0044EF9D /* UIView+Animations.swift */,
-				EC1F9DE823E1E6750044EF9D /* UIButton+Styles.swift */,
-			);
-			path = UIExtensions;
 			sourceTree = "<group>";
 		};
 		EC47964E23923E2400C9BDD3 /* Login */ = {
@@ -382,6 +372,7 @@
 				EC407EDE237C3B8400A3FD42 /* Validator */,
 				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
 				EC873D7423DD6EC400787E51 /* CombineCocoa */,
+				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -486,7 +477,6 @@
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
-				EC1F9DEB23E1E6BF0044EF9D /* UIView+Animations.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
@@ -494,13 +484,11 @@
 				ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */,
 				EC873D6723DC785C00787E51 /* RegistrationCoordinator.swift in Sources */,
 				ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */,
-				EC1F9DE723E1E6250044EF9D /* UIView+AddShadow.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC873D7023DD5B3200787E51 /* IntroCoordinator.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
-				EC1F9DE923E1E6750044EF9D /* UIButton+Styles.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* MainViewController.swift in Sources */,
 				ECA66A3623D9E80E00B39E68 /* Coordinator.swift in Sources */,
 				EC873D7A23DD754D00787E51 /* MainAssembler.swift in Sources */,
@@ -511,7 +499,6 @@
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */,
-				EC873D7723DD726C00787E51 /* UIView+AddSubviews.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */,
@@ -820,6 +807,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIExtensions;
 		};
 		EC407EDE237C3B8400A3FD42 /* Validator */ = {
 			isa = XCSwiftPackageProductDependency;

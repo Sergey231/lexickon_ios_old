@@ -49,11 +49,11 @@ final class StartViewController: UIViewController {
     private func configureUI() {
         
         beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
-        beginButton.setRoundedFilledStyle()
+        beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
         iAmHaveAccountButton.setTitle(Localized.startIHaveAccountButtonTitle, for: .normal)
-        iAmHaveAccountButton.setRoundedBorderedStyle()
+        iAmHaveAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
-        createAccountButton.setRoundedStyle()
+        createAccountButton.setRoundedStyle(bgColor: Asset.Colors.mainBG.color)
         createAccountButton.setShadow()
         
         guard let coordinator = coordinator else { return }
