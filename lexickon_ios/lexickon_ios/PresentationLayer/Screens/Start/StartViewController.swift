@@ -45,6 +45,7 @@ final class StartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        logo.startAnimation()
     }
     
     private func configureUI() {
@@ -84,8 +85,6 @@ final class StartViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         logo.pin
-            .hCenter()
-            .vCenter(-100)
             .center()
         
         createAccountButton.pin

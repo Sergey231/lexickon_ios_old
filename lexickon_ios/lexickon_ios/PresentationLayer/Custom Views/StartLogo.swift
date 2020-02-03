@@ -11,8 +11,35 @@ import SwiftUI
 
 final class StartLogo: UIView {
     
+    private enum AnimationState {
+        case start
+        case end
+        
+        var logoSize: CGFloat {
+            switch self {
+            case .start: return 141
+            case .end: return 100
+            }
+        }
+        
+        var logoPosition: CGFloat {
+            switch self {
+            case .start: return 0
+            case .end: return -100
+            }
+        }
+        
+        var textLogoAlpha: CGFloat {
+            switch self {
+            case .start: return 0
+            case .end: return 1
+            }
+        }
+    }
+    
     private let logoImageView = UIImageView()
     private let textLogoImageView = UIImageView()
+    private var animationState: AnimationState = .start
     
     //MARK: init programmatically
     override init(frame: CGRect) {
@@ -28,17 +55,32 @@ final class StartLogo: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        logoImageView.pin
-            .size(100)
-            .center()
-        
-        textLogoImageView.pin
-            .hCenter()
-            .height(80)
-            .width(200)
-            .below(of: logoImageView)
+        layout()
+    }
+    
+    func startAnimation() {
+        animationState = .end
+        UIView.animate(withDuration: 1, animations: {
+            self.layout()
+        }, completion: { _ in
+            UIView.animate(withDuration: 1) {
+                self.textLogoImageView.alpha = self.animationState.textLogoAlpha
+            }
+        })
     }
 
+    private func layout() {
+        logoImageView.pin
+            .size(animationState.logoSize)
+            .hCenter()
+            .vCenter(animationState.logoPosition)
+        
+        textLogoImageView.pin
+            .center()
+            .height(80)
+            .width(200)
+    }
+    
     private func configureView() {
         createUI()
         configureUI()
@@ -53,10 +95,11 @@ final class StartLogo: UIView {
     
     private func configureUI() {
         backgroundColor = .gray
-        logoImageView.image = Asset.Images.imageLogo.image
+        logoImageView.image = Asset.Images.logoWithoutEyes.image
         logoImageView.contentMode = .scaleAspectFit
         textLogoImageView.image = Asset.Images.textLogo.image
         textLogoImageView.contentMode = .scaleAspectFit
+        textLogoImageView.alpha = animationState.textLogoAlpha
     }
 }
 

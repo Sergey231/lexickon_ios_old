@@ -24,4 +24,16 @@ extension UIView {
         
         layer.add(shake, forKey: "position")
     }
+    
+    public func fadeInAnimate(timeInterval: TimeInterval = 1) {
+        UIView.animate(withDuration: timeInterval) {
+            self.alpha = 1
+        }
+    }
+    
+    public func fadeOutAnimate(timeInterval: TimeInterval = 1) {
+        UIView.animate(withDuration: timeInterval) {
+            self.alpha = 0
+        }
+    }
 }
