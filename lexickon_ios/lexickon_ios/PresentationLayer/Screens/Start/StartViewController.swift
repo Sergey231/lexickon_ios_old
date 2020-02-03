@@ -19,6 +19,7 @@ final class StartViewController: UIViewController {
     private let presenter: StartPresenter
     var onCompletion : CompletionBlock?
     
+    private let logo = StartLogo()
     private let beginButton = UIButton()
     private let iAmHaveAccountButton = UIButton()
     private let createAccountButton = UIButton()
@@ -53,8 +54,7 @@ final class StartViewController: UIViewController {
         iAmHaveAccountButton.setTitle(Localized.startIHaveAccountButtonTitle, for: .normal)
         iAmHaveAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
-        createAccountButton.setRoundedStyle(bgColor: Asset.Colors.mainBG.color)
-        createAccountButton.setShadow()
+        createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
         guard let coordinator = coordinator else { return }
         
@@ -72,32 +72,38 @@ final class StartViewController: UIViewController {
     }
     
     private func createUI() {
-        view.addSubviews([
+        view.addSubviews(
+            logo,
             beginButton,
             iAmHaveAccountButton,
             createAccountButton
-        ])
+        )
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        beginButton.pin
-            .center()
-            .size(Sizes.button)
-            .height(56)
-        
-        iAmHaveAccountButton.pin
+        logo.pin
             .hCenter()
-            .size(Sizes.button)
-            .below(of: beginButton)
-            .marginTop(Margin.mid)
+            .vCenter(-100)
+            .center()
         
         createAccountButton.pin
             .hCenter()
             .size(Sizes.button)
-            .below(of: iAmHaveAccountButton)
-            .marginTop(Margin.mid)
+            .bottom(Margin.huge)
+        
+        iAmHaveAccountButton.pin
+            .hCenter()
+            .size(Sizes.button)
+            .above(of: createAccountButton)
+            .marginBottom(Margin.mid)
+        
+        beginButton.pin
+            .hCenter()
+            .size(Sizes.button)
+            .above(of: iAmHaveAccountButton)
+            .marginBottom(Margin.mid)
     }
 }
 

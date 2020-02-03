@@ -12,8 +12,8 @@
 		EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E442352E68C00C82DFF /* Assets.swift */; };
 		EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E462352E95E00C82DFF /* Strings.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
-		EC1F9DED23E1E8700044EF9D /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9DEC23E1E8700044EF9D /* Button.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
+		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
 		EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
@@ -73,7 +73,7 @@
 		EC1C3E442352E68C00C82DFF /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
-		EC1F9DEC23E1E8700044EF9D /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLogo.swift; sourceTree = "<group>"; };
 		EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +154,7 @@
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC1F9DEC23E1E8700044EF9D /* Button.swift */,
+				EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */,
 				EC4850F92331ECCF00F3B71F /* Graphics and Animations */,
 			);
 			path = "Custom Views";
@@ -474,6 +474,7 @@
 				EC4CB13222D2419400CB826E /* DataAssembler.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RgictrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
+				EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */,
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
@@ -504,7 +505,6 @@
 				EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */,
 				EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
-				EC1F9DED23E1E8700044EF9D /* Button.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
