@@ -11,6 +11,7 @@ import PinLayout
 import SwiftUI
 import CombineCocoa
 import UIExtensions
+import Combine
 
 final class IntroViewController: UIViewController {
     
@@ -22,6 +23,8 @@ final class IntroViewController: UIViewController {
     private let imageView = UIImageView()
     private let pageControl = UIPageControl()
     private let goMarvelButton = UIButton()
+    
+    private var cancellableSet = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +74,6 @@ final class IntroViewController: UIViewController {
         // Buttons
         goMarvelButton.tapPublisher.sink { _ in
             self.onGoMarvel?()
-        }
+        }.store(in: &cancellableSet)
     }
 }

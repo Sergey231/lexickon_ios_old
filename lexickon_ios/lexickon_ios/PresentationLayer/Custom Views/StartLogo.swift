@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import PinLayout
 
 final class StartLogo: UIView {
     
@@ -35,11 +36,41 @@ final class StartLogo: UIView {
             case .end: return 1
             }
         }
+        
+        var eyesSize: CGFloat {
+            switch self {
+            case .start: return 14
+            case .end: return 11
+            }
+        }
+        
+        var eyesVCenter: CGFloat {
+            switch self {
+            case .start: return 34
+            case .end: return 26
+            }
+        }
+        
+        var leftEyeHCenter: CGFloat {
+            switch self {
+            case .start: return -9
+            case .end: return -8
+            }
+        }
+        
+        var rightEyeHCenter: CGFloat {
+            switch self {
+            case .start: return 13
+            case .end: return 9
+            }
+        }
     }
     
     private let logoImageView = UIImageView()
     private let textLogoImageView = UIImageView()
     private var animationState: AnimationState = .start
+    private let leftEyeView = UIView()
+    private let rightEyeView = UIView()
     
     //MARK: init programmatically
     override init(frame: CGRect) {
@@ -60,7 +91,11 @@ final class StartLogo: UIView {
     
     func startAnimation() {
         animationState = .end
-        UIView.animate(withDuration: 1, animations: {
+        leftEyeView.round()
+        rightEyeView.round()
+        UIView.animate(withDuration: 10, animations: {
+            self.leftEyeView.round()
+            self.rightEyeView.round()
             self.layout()
         }, completion: { _ in
             UIView.animate(withDuration: 1) {
@@ -70,6 +105,7 @@ final class StartLogo: UIView {
     }
 
     private func layout() {
+        
         logoImageView.pin
             .size(animationState.logoSize)
             .hCenter()
@@ -79,6 +115,16 @@ final class StartLogo: UIView {
             .center()
             .height(80)
             .width(200)
+        
+        leftEyeView.pin
+            .size(animationState.eyesSize)
+            .hCenter(animationState.leftEyeHCenter)
+            .vCenter(animationState.eyesVCenter)
+        
+        rightEyeView.pin
+            .size(animationState.eyesSize)
+            .hCenter(animationState.rightEyeHCenter)
+            .vCenter(animationState.eyesVCenter)
     }
     
     private func configureView() {
@@ -91,6 +137,11 @@ final class StartLogo: UIView {
             logoImageView,
             textLogoImageView
         )
+        
+        logoImageView.addSubviews(
+            leftEyeView,
+            rightEyeView
+        )
     }
     
     private func configureUI() {
@@ -100,6 +151,13 @@ final class StartLogo: UIView {
         textLogoImageView.image = Asset.Images.textLogo.image
         textLogoImageView.contentMode = .scaleAspectFit
         textLogoImageView.alpha = animationState.textLogoAlpha
+        
+        // Eyes
+        leftEyeView.backgroundColor = .white
+        rightEyeView.backgroundColor = .white
+        
+//        leftEyeView.performVCollapseAnimation()
+//        rightEyeView.performVCollapseAnimation()
     }
 }
 
