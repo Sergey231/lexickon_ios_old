@@ -46,14 +46,16 @@ extension UIView {
     }
     
     public func performVCollapseAnimation(
-        timeInterval: TimeInterval = 0.5,
-        completion: (() -> Void)? = nil
+        timeInterval: TimeInterval = 0.1,
+        completion: (() -> Void)? = nil,
+        repeatCount: Float = 1
     ) {
         CATransaction.begin()
         let anim = CABasicAnimation(keyPath: "transform")
         anim.toValue = CATransform3DMakeRotation(-1.6, 1, 0, 0)
         anim.duration = timeInterval
         anim.autoreverses = true
+        anim.repeatCount = repeatCount
         CATransaction.setCompletionBlock(completion)
         layer.add(anim, forKey: "transform")
         CATransaction.commit()

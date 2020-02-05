@@ -93,15 +93,23 @@ final class StartLogo: UIView {
         animationState = .end
         leftEyeView.round()
         rightEyeView.round()
-        UIView.animate(withDuration: 10, animations: {
+        UIView.animate(withDuration: 1, animations: {
             self.leftEyeView.round()
             self.rightEyeView.round()
             self.layout()
         }, completion: { _ in
+            
+            self.eyesFlipAnimate()
+            
             UIView.animate(withDuration: 1) {
                 self.textLogoImageView.alpha = self.animationState.textLogoAlpha
             }
         })
+    }
+    
+    private func eyesFlipAnimate() {
+        leftEyeView.performVCollapseAnimation()
+        rightEyeView.performVCollapseAnimation()
     }
 
     private func layout() {
@@ -155,9 +163,6 @@ final class StartLogo: UIView {
         // Eyes
         leftEyeView.backgroundColor = .white
         rightEyeView.backgroundColor = .white
-        
-//        leftEyeView.performVCollapseAnimation()
-//        rightEyeView.performVCollapseAnimation()
     }
 }
 
