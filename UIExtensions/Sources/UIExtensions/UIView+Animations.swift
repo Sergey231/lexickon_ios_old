@@ -60,4 +60,30 @@ extension UIView {
         layer.add(anim, forKey: "transform")
         CATransaction.commit()
     }
+    
+    public func startFlayingAnimation() {
+        UIView.flayingAnimate = true
+        flayingAnimate()
+    }
+    
+    public func stopFlayingAnimation() {
+        UIView.flayingAnimate = false
+    }
+    
+    private static var flayingAnimate: Bool = false
+    private func flayingAnimate() {
+        let startY = layer.frame.origin.y
+        UIView.animate(withDuration: 3, animations: {
+            self.layer.frame.origin.y = startY + 10
+        }) { _ in
+            let startY = self.layer.frame.origin.y
+            UIView.animate(withDuration: 3, animations: {
+                self.layer.frame.origin.y = startY - 10
+            }) { _ in
+                if UIView.flayingAnimate {
+                    self.flayingAnimate()
+                }
+            }
+        }
+    }
 }

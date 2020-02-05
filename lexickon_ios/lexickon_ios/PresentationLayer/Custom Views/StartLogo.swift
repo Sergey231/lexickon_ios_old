@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUI
 import PinLayout
+import Combine
 
 final class StartLogo: UIView {
     
@@ -54,7 +55,7 @@ final class StartLogo: UIView {
         var leftEyeHCenter: CGFloat {
             switch self {
             case .start: return -9
-            case .end: return -8
+            case .end: return -7
             }
         }
         
@@ -71,6 +72,13 @@ final class StartLogo: UIView {
     private var animationState: AnimationState = .start
     private let leftEyeView = UIView()
     private let rightEyeView = UIView()
+
+    private var cancellableSet = Set<AnyCancellable>()
+    private let timePublisher = Timer.TimerPublisher(
+        interval: 1.0,
+        runLoop: .main,
+        mode: .default
+    )
     
     //MARK: init programmatically
     override init(frame: CGRect) {
@@ -99,7 +107,7 @@ final class StartLogo: UIView {
             self.layout()
         }, completion: { _ in
             
-            self.eyesFlipAnimate()
+            self.logoImageView.startFlayingAnimation()
             
             UIView.animate(withDuration: 1) {
                 self.textLogoImageView.alpha = self.animationState.textLogoAlpha
@@ -163,6 +171,16 @@ final class StartLogo: UIView {
         // Eyes
         leftEyeView.backgroundColor = .white
         rightEyeView.backgroundColor = .white
+        
+        timePublisher
+            .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 6))) }
+            .filter { $0 == 0 }
+            .sink { _ in self.eyesFlipAnimate() }
+            .store(in: &cancellableSet)
+        
+        timePublisher
+            .connect()
+            .store(in: &cancellableSet)
     }
 }
 
