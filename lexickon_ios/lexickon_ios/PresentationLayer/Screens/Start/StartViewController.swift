@@ -12,8 +12,11 @@ import Swinject
 import Combine
 import PinLayout
 import CombineCocoa
+import XCoordinator
 
-final class StartViewController: UIViewController {
+class StartViewController: UIViewController {
+    
+    private let router: UnownedRouter<AppRoute>
     
     weak var coordinator: StartCoordinator?
     private let presenter: StartPresenter
@@ -26,8 +29,13 @@ final class StartViewController: UIViewController {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(presenter: StartPresenter) {
+    init(
+        presenter: StartPresenter,
+        router: UnownedRouter<AppRoute>
+    ) {
         self.presenter = presenter
+        print(router)
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -111,17 +119,17 @@ final class StartViewController: UIViewController {
 }
 
 
-extension StartViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-        return StartViewController(presenter: StartPresenter()).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
+//extension StartViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+//        return StartViewController(presenter: StartPresenter(), router: "teetetete").view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
 
-struct StartViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        StartViewController(presenter: StartPresenter())
-    }
-}
+//struct StartViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        StartViewController(presenter: StartPresenter())
+//    }
+//}

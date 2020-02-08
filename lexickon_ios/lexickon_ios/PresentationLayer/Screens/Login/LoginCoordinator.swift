@@ -8,10 +8,10 @@
 
 import UIKit
 
-final class LoginCoordinator: Coordinator {
+final class LoginCoordinator: _Coordinator {
     
     var completions: RouterCompletions = [:]
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [_Coordinator] = []
     var finishFlow: CompletionBlock?
     var navigationController: UINavigationController
     

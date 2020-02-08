@@ -11,9 +11,9 @@ import UIKit
 typealias CompletionBlock = ()->()
 typealias RouterCompletions = [UIViewController : CompletionBlock]
 
-protocol Coordinator: class {
+protocol _Coordinator: class {
     
-    var childCoordinators: [Coordinator] { get set }
+    var childCoordinators: [_Coordinator] { get set }
     
     var navigationController: UINavigationController { get set }
     var completions: RouterCompletions { get set }
@@ -42,9 +42,9 @@ extension UIViewController: Presentable {
 }
 
 //MARK: Coordinators Hierarhcy Implementation
-extension Coordinator {
+extension _Coordinator {
     
-    func addChild(_ coordinator: Coordinator) {
+    func addChild(_ coordinator: _Coordinator) {
         for element in childCoordinators {
             if element === coordinator {
                 return
@@ -53,7 +53,7 @@ extension Coordinator {
         childCoordinators.append(coordinator)
     }
     
-    func removeChild(_ coordinator: Coordinator?) {
+    func removeChild(_ coordinator: _Coordinator?) {
         guard
             !childCoordinators.isEmpty,
             let coordinator = coordinator
@@ -69,7 +69,7 @@ extension Coordinator {
 }
 
 //MARK: Default Implementation Of Navigation Methods
-extension Coordinator {
+extension _Coordinator {
     
     func present(_ module: Presentable?, animated: Bool = true) {
         guard let controller = module?.toPresent else { return }

@@ -8,6 +8,61 @@
 
 import UIKit
 import Swinject
+import XCoordinator
+
+enum AppRoute: Route {
+    case intro
+    case authorization
+    case main
+}
+
+class AppCoordinator: NavigationCoordinator<AppRoute> {
+    
+    
+    init() { super.init(initialRoute: .authorization) }
+    
+    fileprivate var instructor: AppRoute {
+        return AppCoordinator.setup(isSeenIntro: false, isAuthorized: false)
+    }
+    
+    override func prepareTransition(for route: AppRoute) -> NavigationTransition {
+        switch route {
+        case .authorization:
+            let startViewController = DI.shr.assembler.resolver.resolve(
+                StartViewController.self, argument: unownedRouter
+                )!
+            return .push(startViewController)
+        case .intro:
+            let introVC = DI.shr.assembler.resolver.resolve(IntroViewController.self)!
+            return .present(introVC)
+        case .main:
+            let mainVC = DI.shr.assembler.resolver.resolve(MainViewController.self)!
+            return .push(mainVC)
+        }
+    }
+    
+    static func setup(
+        isSeenIntro: Bool,
+        isAuthorized: Bool
+    ) -> AppRoute {
+        switch (isSeenIntro, isAuthorized) {
+        case (false, false), (true, false):
+            return .authorization
+        case (false, true):
+            return .intro
+        case (true, true):
+            return .main
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 fileprivate enum LaunchInstructor {
     case intro
@@ -29,10 +84,10 @@ fileprivate enum LaunchInstructor {
     }
 }
 
-final class AppCoordinator: Coordinator {
+final class _AppCoordinator: _Coordinator {
     
     var completions: RouterCompletions = [:]
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [_Coordinator] = []
     var finishFlow: CompletionBlock?
     var navigationController: UINavigationController
     
