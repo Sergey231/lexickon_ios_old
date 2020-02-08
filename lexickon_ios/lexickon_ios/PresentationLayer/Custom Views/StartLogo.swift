@@ -161,6 +161,9 @@ final class StartLogo: UIView {
     }
     
     private func configureUI() {
+        
+        setShadow()
+        
         backgroundColor = .gray
         logoImageView.image = Asset.Images.logoWithoutEyes.image
         logoImageView.contentMode = .scaleAspectFit
@@ -173,7 +176,7 @@ final class StartLogo: UIView {
         rightEyeView.backgroundColor = .white
         
         timePublisher
-            .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 6))) }
+            .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 4))) }
             .filter { $0 == 0 }
             .sink { _ in self.eyesFlipAnimate() }
             .store(in: &cancellableSet)
