@@ -16,12 +16,11 @@ final class MainAssembler: Assembly {
             MainPresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(MainViewController.self) { r in
-            MainViewController(presenter: r.resolve(MainPresenter.self)!)
-        }.inObjectScope(ObjectScope.appObjectScope)
-        
-        container.register(MainCoordinator.self) { resolver, nc in
-            MainCoordinator(navigationController: nc)
+        container.register(MainViewController.self) { resolver, router in
+            MainViewController(
+                presenter: resolver.resolve(MainPresenter.self)!,
+                router: router
+            )
         }.inObjectScope(ObjectScope.appObjectScope)
     }
 }

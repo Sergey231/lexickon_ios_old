@@ -12,15 +12,19 @@ import Swinject
 import PinLayout
 import Combine
 import CombineCocoa
+import XCoordinator
 
 final class MainViewController: UIViewController {
     
-    weak var coordinator: MainCoordinator?
     private let presenter: MainPresenter
-    var onCompletion: CompletionBlock?
+    private let router: UnownedRouter<AppRoute>
     
-    init(presenter: MainPresenter) {
+    init(
+        presenter: MainPresenter,
+        router: UnownedRouter<AppRoute>
+    ) {
         self.presenter = presenter
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,17 +38,17 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<MainViewController>) -> UIView {
-        return MainViewController(presenter: MainPresenter()).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct MainViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        MainViewController(presenter: MainPresenter())
-    }
-}
+//extension MainViewController: UIViewRepresentable {
+//    
+//    func makeUIView(context: UIViewRepresentableContext<MainViewController>) -> UIView {
+//        return MainViewController(presenter: MainPresenter()).view
+//    }
+//    
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct MainViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        MainViewController(presenter: MainPresenter())
+//    }
+//}

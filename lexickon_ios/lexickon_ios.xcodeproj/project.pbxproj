@@ -52,7 +52,7 @@
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
 		ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */; };
 		ECA66A3623D9E80E00B39E68 /* _Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3523D9E80E00B39E68 /* _Coordinator.swift */; };
-		ECA66A3923D9EE4D00B39E68 /* _AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* _AppCoordinator.swift */; };
+		ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
@@ -112,7 +112,7 @@
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
 		ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayerAssemblers.swift; sourceTree = "<group>"; };
 		ECA66A3523D9E80E00B39E68 /* _Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Coordinator.swift; sourceTree = "<group>"; };
-		ECA66A3823D9EE4D00B39E68 /* _AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _AppCoordinator.swift; sourceTree = "<group>"; };
+		ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				ECA66A3523D9E80E00B39E68 /* _Coordinator.swift */,
-				ECA66A3823D9EE4D00B39E68 /* _AppCoordinator.swift */,
+				ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -489,7 +489,7 @@
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
-				ECA66A3923D9EE4D00B39E68 /* _AppCoordinator.swift in Sources */,
+				ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */,
 				EC873D6723DC785C00787E51 /* RegistrationCoordinator.swift in Sources */,
 				ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,

@@ -21,7 +21,7 @@ final class MainCoordinator: _Coordinator {
     
     func startFlow() {
         let vc = DI.shr.assembler.resolver.resolve(MainViewController.self)!
-        vc.coordinator = self
+//        vc.coordinator = self
         setRootModule(vc, hideBar: true, animated: true)
     }
 }

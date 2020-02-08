@@ -13,7 +13,6 @@ import Swinject
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appCoordinator: _AppCoordinator?
     let router = AppCoordinator().strongRouter
 
     func scene(

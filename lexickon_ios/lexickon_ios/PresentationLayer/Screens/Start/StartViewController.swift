@@ -14,7 +14,7 @@ import PinLayout
 import CombineCocoa
 import XCoordinator
 
-class StartViewController: UIViewController {
+final class StartViewController: UIViewController {
     
     private let router: UnownedRouter<AppRoute>
     
@@ -34,7 +34,6 @@ class StartViewController: UIViewController {
         router: UnownedRouter<AppRoute>
     ) {
         self.presenter = presenter
-        print(router)
         self.router = router
         super.init(nibName: nil, bundle: nil)
     }

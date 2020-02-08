@@ -22,9 +22,5 @@ final class StartAssembler: Assembly {
                 router: router
             )
         }.inObjectScope(ObjectScope.appObjectScope)
-        
-        container.register(StartCoordinator.self) { resolver, nc in
-            StartCoordinator(navigationController: nc)
-        }.inObjectScope(ObjectScope.appObjectScope)
     }
 }
