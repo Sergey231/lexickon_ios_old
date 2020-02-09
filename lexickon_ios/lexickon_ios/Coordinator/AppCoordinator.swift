@@ -19,17 +19,16 @@ enum AppRoute: Route {
 class AppCoordinator: NavigationCoordinator<AppRoute> {
     
     init() {
-        super.init(initialRoute: Self.appRoute(isSeenIntro: true, isAuthorized: true))
+        super.init(initialRoute: Self.appRoute(isSeenIntro: false, isAuthorized: false))
     }
     
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .authorization:
-            let startViewController = DI.shr.assembler.resolver.resolve(
-                StartViewController.self,
-                argument: unownedRouter
-                )!
-            return .push(startViewController)
+            let authorizationCoordinator = AuthorizationCoordinator(rootViewController: self.rootViewController)
+            addChild(authorizationCoordinator)
+            return .none()
+            
         case .intro:
             let introVC = DI.shr.assembler.resolver.resolve(
                 IntroViewController.self,

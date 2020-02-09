@@ -14,6 +14,7 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
+		EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */; };
 		EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */; };
@@ -44,7 +45,6 @@
 		EC873D7C23DD755E00787E51 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* MainPresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* MainViewController.swift */; };
 		EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7F23DD759000787E51 /* MainCoordinator.swift */; };
-		EC873D8423DDAEE400787E51 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* StartCoordinator.swift */; };
 		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
@@ -104,7 +104,7 @@
 		EC873D7B23DD755E00787E51 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		EC873D7D23DD756F00787E51 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EC873D7F23DD759000787E51 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		EC873D8323DDAEE400787E51 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -155,6 +155,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EC291AF623F034860082E45C /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */,
+				EC7D6F5622EDC13100DE4B18 /* Registration */,
+				EC47964E23923E2400C9BDD3 /* Login */,
+				EC6CDEEC22D08EC100012079 /* Start */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,16 +175,14 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
-		EC3EAB1022D4DC1C00BFCBFC /* Screens */ = {
+		EC3EAB1022D4DC1C00BFCBFC /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EC6CDEEC22D08EC100012079 /* Start */,
+				EC291AF623F034860082E45C /* Authorization */,
 				EC873D6823DD5AD800787E51 /* Intro */,
-				EC47964E23923E2400C9BDD3 /* Login */,
-				EC7D6F5622EDC13100DE4B18 /* Registration */,
 				EC873D7823DD753400787E51 /* Main */,
 			);
-			path = Screens;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		EC4278CC22D070E5001218AB = {
@@ -242,7 +251,7 @@
 				ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
-				EC3EAB1022D4DC1C00BFCBFC /* Screens */,
+				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -299,7 +308,6 @@
 				ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */,
 				EC6CDEED22D08EE900012079 /* StartPresenter.swift */,
 				EC6CDEF122D08F3800012079 /* StartViewController.swift */,
-				EC873D8323DDAEE400787E51 /* StartCoordinator.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -501,7 +509,6 @@
 				ECA66A3623D9E80E00B39E68 /* _Coordinator.swift in Sources */,
 				EC873D7A23DD754D00787E51 /* MainAssembler.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
-				EC873D8423DDAEE400787E51 /* StartCoordinator.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* MainPresenter.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
@@ -510,6 +517,7 @@
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */,
+				EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */,
 				EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,

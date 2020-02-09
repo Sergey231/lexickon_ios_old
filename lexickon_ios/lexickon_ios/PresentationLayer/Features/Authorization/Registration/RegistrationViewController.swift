@@ -11,16 +11,21 @@ import SwiftUI
 import Swinject
 import Combine
 import PinLayout
+import XCoordinator
 
 final class RegistrationViewController: UIViewController {
 
-    var onCompletion : CompletionBlock?
-    weak var coordinator: RegistrationCoordinator?
+    private let router: UnownedRouter<AppRoute>
+    
     private let presenter: RegistrationPresenter
     private let testLabel = UILabel()
     
-    init(presenter: RegistrationPresenter) {
+    init(
+        presenter: RegistrationPresenter,
+        router: UnownedRouter<AppRoute>
+    ) {
         self.presenter = presenter
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,7 +47,7 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        coordinator?.finishFlow(for: self)
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -65,19 +70,17 @@ final class RegistrationViewController: UIViewController {
 }
 
 
-extension RegistrationViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
-        return RegistrationViewController(presenter: RegistrationPresenter()).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct RegistrationView_Preview: PreviewProvider {
-    static var previews: some View {
-        RegistrationViewController(presenter: RegistrationPresenter())
-    }
-}
-    
-    
+//extension RegistrationViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
+//        return RegistrationViewController(presenter: RegistrationPresenter()).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct RegistrationView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        RegistrationViewController(presenter: RegistrationPresenter())
+//    }
+//}

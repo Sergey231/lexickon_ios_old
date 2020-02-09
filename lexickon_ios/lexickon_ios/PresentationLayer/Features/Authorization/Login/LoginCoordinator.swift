@@ -21,7 +21,7 @@ final class LoginCoordinator: _Coordinator {
     
     func startFlow() {
         let vc = DI.shr.assembler.resolver.resolve(LoginViewController.self)!
-        vc.coordinator = self
+//        vc.coordinator = self
         push(vc, animated: true) {
             print("⚽️")
         }

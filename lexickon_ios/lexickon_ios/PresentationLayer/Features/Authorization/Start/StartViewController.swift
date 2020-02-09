@@ -16,11 +16,9 @@ import XCoordinator
 
 final class StartViewController: UIViewController {
     
-    private let router: UnownedRouter<AppRoute>
+    private let router: UnownedRouter<AuthorizationRoute>
     
-    weak var coordinator: StartCoordinator?
     private let presenter: StartPresenter
-    var onCompletion : CompletionBlock?
     
     private let logo = StartLogo()
     private let beginButton = UIButton()
@@ -31,7 +29,7 @@ final class StartViewController: UIViewController {
     
     init(
         presenter: StartPresenter,
-        router: UnownedRouter<AppRoute>
+        router: UnownedRouter<AuthorizationRoute>
     ) {
         self.presenter = presenter
         self.router = router
@@ -68,18 +66,16 @@ final class StartViewController: UIViewController {
         createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
         createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
-        guard let coordinator = coordinator else { return }
-        
         beginButton.tapPublisher.sink { _ in
-            coordinator.main()
+//            coordinator.main()
         }.store(in: &cancellableSet)
         
         iAmHaveAccountButton.tapPublisher.sink { _ in
-            coordinator.login()
+//            coordinator.login()
         }.store(in: &cancellableSet)
         
         createAccountButton.tapPublisher.sink { _ in
-            coordinator.createAccount()
+//            coordinator.createAccount()
         }.store(in: &cancellableSet)
     }
     

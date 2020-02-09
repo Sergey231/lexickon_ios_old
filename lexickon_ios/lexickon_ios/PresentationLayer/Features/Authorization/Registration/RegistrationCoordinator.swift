@@ -21,7 +21,7 @@ final class RegistrationCoordinator: _Coordinator {
     
     func startFlow() {
         let vc = DI.shr.assembler.resolver.resolve(RegistrationViewController.self)!
-        vc.coordinator = self
+//        vc.coordinator = self
         push(vc, animated: true) {
             print("🎲")
         }
