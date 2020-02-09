@@ -12,12 +12,13 @@ import Swinject
 import Combine
 import PinLayout
 import CombineCocoa
+import XCoordinator
 
 final class StartViewController: UIViewController {
     
-    weak var coordinator: StartCoordinator?
+    private let router: UnownedRouter<AuthorizationRoute>
+    
     private let presenter: StartPresenter
-    var onCompletion : CompletionBlock?
     
     private let logo = StartLogo()
     private let beginButton = UIButton()
@@ -26,13 +27,21 @@ final class StartViewController: UIViewController {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(presenter: StartPresenter) {
+    init(
+        presenter: StartPresenter,
+        router: UnownedRouter<AuthorizationRoute>
+    ) {
         self.presenter = presenter
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewDidLoad() {
@@ -57,18 +66,19 @@ final class StartViewController: UIViewController {
         createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
         createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
-        guard let coordinator = coordinator else { return }
-        
         beginButton.tapPublisher.sink { _ in
-            coordinator.main()
+            self.router.trigger(.begin)
+//            coordinator.main()
         }.store(in: &cancellableSet)
         
         iAmHaveAccountButton.tapPublisher.sink { _ in
-            coordinator.login()
+            self.router.trigger(.login)
+//            coordinator.login()
         }.store(in: &cancellableSet)
         
         createAccountButton.tapPublisher.sink { _ in
-            coordinator.createAccount()
+            self.router.trigger(.registrate)
+//            coordinator.createAccount()
         }.store(in: &cancellableSet)
     }
     
@@ -107,17 +117,17 @@ final class StartViewController: UIViewController {
 }
 
 
-extension StartViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-        return StartViewController(presenter: StartPresenter()).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
+//extension StartViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+//        return StartViewController(presenter: StartPresenter(), router: "teetetete").view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
 
-struct StartViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        StartViewController(presenter: StartPresenter())
-    }
-}
+//struct StartViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        StartViewController(presenter: StartPresenter())
+//    }
+//}

@@ -6,6 +6,6 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
-final class MainPresenter: PresenterType {
+final class HomePresenter: PresenterType {
     
 }

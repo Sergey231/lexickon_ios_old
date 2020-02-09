@@ -16,12 +16,11 @@ final class LoginAssembler: Assembly {
             LoginPresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(LoginViewController.self) { resolver in
-            LoginViewController(presenter: resolver.resolve(LoginPresenter.self)!)
-        }.inObjectScope(ObjectScope.appObjectScope)
-        
-        container.register(LoginCoordinator.self) { resolver, nc in
-            LoginCoordinator(navigationController: nc)
+        container.register(LoginViewController.self) { resolver, router in
+            LoginViewController(
+                presenter: resolver.resolve(LoginPresenter.self)!,
+                router: router
+            )
         }.inObjectScope(ObjectScope.appObjectScope)
     }
     

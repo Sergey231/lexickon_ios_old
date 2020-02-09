@@ -13,7 +13,7 @@ import Swinject
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var appCoordinator: AppCoordinator?
+    let router = AppCoordinator().strongRouter
 
     func scene(
         _ scene: UIScene,
@@ -21,16 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
-        let navigationController = UINavigationController()
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navigationController
-        window?.rootViewController?.view.backgroundColor = .white
-        window?.makeKeyAndVisible()
-        
-        appCoordinator = AppCoordinator(
-            navigationController: window?.rootViewController as! UINavigationController
-        )
-        appCoordinator?.startFlow()
+        router.setRoot(for: window!)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -11,16 +11,21 @@ import SwiftUI
 import Swinject
 import Combine
 import PinLayout
+import XCoordinator
 
 final class LoginViewController: UIViewController {
 
-    var onCompletion : CompletionBlock?
-    weak var coordinator: LoginCoordinator?
+    private let router: UnownedRouter<AuthorizationRoute>
+    
     private let presenter: LoginPresenter
     private let testLabel = UILabel()
     
-    init(presenter: LoginPresenter) {
+    init(
+        presenter: LoginPresenter,
+        router: UnownedRouter<AuthorizationRoute>
+    ) {
         self.presenter = presenter
+        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,7 +47,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        coordinator?.finishFlow(for: self)
+//        coordinator?.finishFlow(for: self)
     }
     
     private func configureUI() {
@@ -65,17 +70,17 @@ final class LoginViewController: UIViewController {
 }
 
 
-extension LoginViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
-        return LoginViewController(presenter: LoginPresenter()).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct LoginViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        LoginViewController(presenter: LoginPresenter())
-    }
-}
+//extension LoginViewController: UIViewRepresentable {
+//    
+//    func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
+//        return LoginViewController(presenter: LoginPresenter()).view
+//    }
+//    
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct LoginViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        LoginViewController(presenter: LoginPresenter())
+//    }
+//}

@@ -13,8 +13,6 @@ import PinLayout
 
 final class IntroPageViewController: UIPageViewController {
     
-    var onCompletion: CompletionBlock?
-    
     fileprivate var numberOfViewControllers: Int {
         return images.count
     }
@@ -43,7 +41,6 @@ final class IntroPageViewController: UIPageViewController {
         viewController.index = index
         viewController.image = images[index]
         viewController.isLast = index == 2
-        viewController.onGoMarvel = onCompletion
         
         return viewController
     }

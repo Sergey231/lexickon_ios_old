@@ -16,12 +16,8 @@ final class IntroAssembler: Assembly {
             IntroPageViewController()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(IntroViewController.self) { _ in
-            IntroViewController()
-        }.inObjectScope(ObjectScope.appObjectScope)
-        
-        container.register(IntroCoordinator.self) { resolver, nc in
-            IntroCoordinator(navigationController: nc)
+        container.register(IntroViewController.self) { _, router in
+            IntroViewController(router: router)
         }.inObjectScope(ObjectScope.appObjectScope)
     }
 }

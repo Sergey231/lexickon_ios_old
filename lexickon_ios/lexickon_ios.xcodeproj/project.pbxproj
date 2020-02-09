@@ -14,8 +14,10 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
-		EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */; };
+		EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
+		EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */; };
+		EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FC23EDAF7F003AAB76 /* XCoordinator */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
 		EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginViewController.swift */; };
@@ -32,24 +34,20 @@
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
-		EC873D6723DC785C00787E51 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6623DC785C00787E51 /* RegistrationCoordinator.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssembler.swift */; };
 		EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */; };
-		EC873D7023DD5B3200787E51 /* IntroCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6F23DD5B3200787E51 /* IntroCoordinator.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC873D7423DD6EC400787E51 /* CombineCocoa */; };
-		EC873D7A23DD754D00787E51 /* MainAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* MainAssembler.swift */; };
-		EC873D7C23DD755E00787E51 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* MainPresenter.swift */; };
-		EC873D7E23DD756F00787E51 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* MainViewController.swift */; };
+		EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* HomeAssembler.swift */; };
+		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
+		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
 		EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7F23DD759000787E51 /* MainCoordinator.swift */; };
-		EC873D8423DDAEE400787E51 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* StartCoordinator.swift */; };
 		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
-		ECA66A2D23D47BDC00B39E68 /* RgictrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */; };
+		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
 		ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */; };
-		ECA66A3623D9E80E00B39E68 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3523D9E80E00B39E68 /* Coordinator.swift */; };
 		ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
@@ -74,7 +72,6 @@
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLogo.swift; sourceTree = "<group>"; };
-		EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,23 +90,20 @@
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		EC873D6623DC785C00787E51 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAssembler.swift; sourceTree = "<group>"; };
 		EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
-		EC873D6F23DD5B3200787E51 /* IntroCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroCoordinator.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
-		EC873D7923DD754D00787E51 /* MainAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembler.swift; sourceTree = "<group>"; };
-		EC873D7B23DD755E00787E51 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
-		EC873D7D23DD756F00787E51 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EC873D7923DD754D00787E51 /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
+		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		EC873D7D23DD756F00787E51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EC873D7F23DD759000787E51 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		EC873D8323DDAEE400787E51 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgictrationAssembler.swift; sourceTree = "<group>"; };
+		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
 		ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayerAssemblers.swift; sourceTree = "<group>"; };
-		ECA66A3523D9E80E00B39E68 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,10 +119,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F322D4C9A4007E2B3B /* Alamofire in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
+				EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */,
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 			);
@@ -151,6 +147,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EC291AF623F034860082E45C /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */,
+				EC6CDEEC22D08EC100012079 /* Start */,
+				EC7D6F5622EDC13100DE4B18 /* Registration */,
+				EC47964E23923E2400C9BDD3 /* Login */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		EC291AF823F0556D0082E45C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EC873D7923DD754D00787E51 /* HomeAssembler.swift */,
+				EC873D7B23DD755E00787E51 /* HomePresenter.swift */,
+				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,16 +177,14 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
-		EC3EAB1022D4DC1C00BFCBFC /* Screens */ = {
+		EC3EAB1022D4DC1C00BFCBFC /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EC6CDEEC22D08EC100012079 /* Start */,
-				EC873D6823DD5AD800787E51 /* Intro */,
-				EC47964E23923E2400C9BDD3 /* Login */,
-				EC7D6F5622EDC13100DE4B18 /* Registration */,
+				EC291AF623F034860082E45C /* Authorization */,
 				EC873D7823DD753400787E51 /* Main */,
+				EC873D6823DD5AD800787E51 /* Intro */,
 			);
-			path = Screens;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		EC4278CC22D070E5001218AB = {
@@ -197,7 +212,7 @@
 				EC4CB12F22D2418800CB826E /* AppAssembler.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
-				ECA66A3723D9EE3100B39E68 /* Coordinator */,
+				ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */,
 				EC4278FA22D0717E001218AB /* DataLayer */,
 				EC4278FB22D0718E001218AB /* DomainLayer */,
 				EC4278FC22D07199001218AB /* PresentationLayer */,
@@ -238,7 +253,7 @@
 				ECA66A3123D47E8900B39E68 /* PresentationLayerAssemblers.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
-				EC3EAB1022D4DC1C00BFCBFC /* Screens */,
+				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -267,7 +282,6 @@
 				EC67163223D2106F003B28E3 /* LoginAssembler.swift */,
 				EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */,
 				EC47965123923E6400C9BDD3 /* LoginViewController.swift */,
-				EC313ADC23DC02A400B1F498 /* LoginCoordinator.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -295,7 +309,6 @@
 				ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */,
 				EC6CDEED22D08EE900012079 /* StartPresenter.swift */,
 				EC6CDEF122D08F3800012079 /* StartViewController.swift */,
-				EC873D8323DDAEE400787E51 /* StartCoordinator.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -303,10 +316,9 @@
 		EC7D6F5622EDC13100DE4B18 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				ECA66A2C23D47BDC00B39E68 /* RgictrationAssembler.swift */,
+				ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */,
 				EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */,
 				EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */,
-				EC873D6623DC785C00787E51 /* RegistrationCoordinator.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -317,7 +329,6 @@
 				EC873D6923DD5AFC00787E51 /* IntroAssembler.swift */,
 				EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */,
 				EC873D7123DD60D100787E51 /* IntroViewController.swift */,
-				EC873D6F23DD5B3200787E51 /* IntroCoordinator.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -325,21 +336,10 @@
 		EC873D7823DD753400787E51 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D7923DD754D00787E51 /* MainAssembler.swift */,
-				EC873D7B23DD755E00787E51 /* MainPresenter.swift */,
-				EC873D7D23DD756F00787E51 /* MainViewController.swift */,
 				EC873D7F23DD759000787E51 /* MainCoordinator.swift */,
+				EC291AF823F0556D0082E45C /* Home */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		ECA66A3723D9EE3100B39E68 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				ECA66A3523D9E80E00B39E68 /* Coordinator.swift */,
-				ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */,
-			);
-			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		ECA97C7322D084D400918828 /* Interacters */ = {
@@ -373,6 +373,8 @@
 				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
 				EC873D7423DD6EC400787E51 /* CombineCocoa */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
+				EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */,
+				EC3B87FC23EDAF7F003AAB76 /* XCoordinator */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -430,6 +432,7 @@
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
 				ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */,
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -472,37 +475,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4CB13222D2419400CB826E /* DataAssembler.swift in Sources */,
-				ECA66A2D23D47BDC00B39E68 /* RgictrationAssembler.swift in Sources */,
+				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
 				EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */,
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
-				EC313ADD23DC02A400B1F498 /* LoginCoordinator.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC4CB13422D241A300CB826E /* DomainAssembler.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
 				ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */,
-				EC873D6723DC785C00787E51 /* RegistrationCoordinator.swift in Sources */,
 				ECA66A3223D47E8A00B39E68 /* PresentationLayerAssemblers.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
-				EC873D7023DD5B3200787E51 /* IntroCoordinator.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
-				EC873D7E23DD756F00787E51 /* MainViewController.swift in Sources */,
-				ECA66A3623D9E80E00B39E68 /* Coordinator.swift in Sources */,
-				EC873D7A23DD754D00787E51 /* MainAssembler.swift in Sources */,
+				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
+				EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
-				EC873D8423DDAEE400787E51 /* StartCoordinator.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
-				EC873D7C23DD755E00787E51 /* MainPresenter.swift in Sources */,
+				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */,
+				EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */,
 				EC6CDEEB22D08E7400012079 /* ProfileInteracter.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
@@ -771,6 +770,14 @@
 				minimumVersion = 2.6.2;
 			};
 		};
+		EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quickbirdstudios/XCoordinator.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.7;
+			};
+		};
 		EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sergey231/Validator.git";
@@ -811,6 +818,16 @@
 		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
+		};
+		EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */;
+			productName = XCoordinatorCombine;
+		};
+		EC3B87FC23EDAF7F003AAB76 /* XCoordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */;
+			productName = XCoordinator;
 		};
 		EC407EDE237C3B8400A3FD42 /* Validator */ = {
 			isa = XCSwiftPackageProductDependency;

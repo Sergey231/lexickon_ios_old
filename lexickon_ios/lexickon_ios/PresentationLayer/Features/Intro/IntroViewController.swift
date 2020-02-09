@@ -12,19 +12,28 @@ import SwiftUI
 import CombineCocoa
 import UIExtensions
 import Combine
+import XCoordinator
 
 final class IntroViewController: UIViewController {
     
     var index = 0
     var image: UIImage!
     var isLast: Bool = false
-    var onGoMarvel: CompletionBlock?
     
     private let imageView = UIImageView()
     private let pageControl = UIPageControl()
     private let goMarvelButton = UIButton()
-    
+    private let router: UnownedRouter<AppRoute>
     private var cancellableSet = Set<AnyCancellable>()
+    
+    init(router: UnownedRouter<AppRoute>) {
+        self.router = router
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +82,7 @@ final class IntroViewController: UIViewController {
         goMarvelButton.setTitle("GO MARVEL", for: .normal)
         // Buttons
         goMarvelButton.tapPublisher.sink { _ in
-            self.onGoMarvel?()
+//            self.onGoMarvel?()
         }.store(in: &cancellableSet)
     }
 }
