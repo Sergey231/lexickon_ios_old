@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HomeViewController.swift
 //  lexickon_ios
 //
 //  Created by Sergey Borovikov on 26.01.2020.
@@ -14,14 +14,14 @@ import Combine
 import CombineCocoa
 import XCoordinator
 
-final class MainViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
-    private let presenter: MainPresenter
-    private let router: UnownedRouter<AppRoute>
+    private let presenter: HomePresenter
+    private let router: UnownedRouter<MainRoute>
     
     init(
-        presenter: MainPresenter,
-        router: UnownedRouter<AppRoute>
+        presenter: HomePresenter,
+        router: UnownedRouter<MainRoute>
     ) {
         self.presenter = presenter
         self.router = router
@@ -38,17 +38,17 @@ final class MainViewController: UIViewController {
     }
 }
 
-//extension MainViewController: UIViewRepresentable {
+//extension HomeViewController: UIViewRepresentable {
 //    
-//    func makeUIView(context: UIViewRepresentableContext<MainViewController>) -> UIView {
-//        return MainViewController(presenter: MainPresenter()).view
+//    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
+//        return HomeViewController(presenter: MainPresenter()).view
 //    }
 //    
 //    func updateUIView(_ uiView: UIView, context: Context) {}
 //}
 //
-//struct MainViewController_Preview: PreviewProvider {
+//struct HomeViewController_Preview: PreviewProvider {
 //    static var previews: some View {
-//        MainViewController(presenter: MainPresenter())
+//        HomeViewController(presenter: MainPresenter())
 //    }
 //}

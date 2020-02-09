@@ -36,11 +36,9 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
                 )!
             return .push(introVC)
         case .main:
-            let mainVC = DI.shr.assembler.resolver.resolve(
-                MainViewController.self,
-                argument: unownedRouter
-                )!
-            return .push(mainVC)
+            let mainCoordinator = MainCoordinator(rootViewController: self.rootViewController)
+            addChild(mainCoordinator)
+            return .none()
         }
     }
     

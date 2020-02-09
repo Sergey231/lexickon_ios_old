@@ -1,5 +1,5 @@
 //
-//  MainAssembler.swift
+//  HomeAssembler.swift
 //  lexickon_ios
 //
 //  Created by Sergey Borovikov on 26.01.2020.
@@ -8,17 +8,17 @@
 
 import Swinject
 
-final class MainAssembler: Assembly {
+final class HomeAssembler: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(MainPresenter.self) { _ in
-            MainPresenter()
+        container.register(HomePresenter.self) { _ in
+            HomePresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(MainViewController.self) { resolver, router in
-            MainViewController(
-                presenter: resolver.resolve(MainPresenter.self)!,
+        container.register(HomeViewController.self) { resolver, router in
+            HomeViewController(
+                presenter: resolver.resolve(HomePresenter.self)!,
                 router: router
             )
         }.inObjectScope(ObjectScope.appObjectScope)

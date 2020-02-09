@@ -15,7 +15,7 @@ struct PresentationLayerAssemblers {
             LoginAssembler(),
             RegistrationAssembler(),
             StartAssembler(),
-            MainAssembler(),
+            HomeAssembler(),
             IntroAssembler()
         ]
     }

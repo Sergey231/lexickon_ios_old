@@ -15,14 +15,14 @@ import XCoordinator
 
 final class RegistrationViewController: UIViewController {
 
-    private let router: UnownedRouter<AppRoute>
+    private let router: UnownedRouter<AuthorizationRoute>
     
     private let presenter: RegistrationPresenter
     private let testLabel = UILabel()
     
     init(
         presenter: RegistrationPresenter,
-        router: UnownedRouter<AppRoute>
+        router: UnownedRouter<AuthorizationRoute>
     ) {
         self.presenter = presenter
         self.router = router

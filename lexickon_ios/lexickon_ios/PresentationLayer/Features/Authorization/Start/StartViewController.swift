@@ -67,14 +67,17 @@ final class StartViewController: UIViewController {
         createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
         beginButton.tapPublisher.sink { _ in
+            self.router.trigger(.begin)
 //            coordinator.main()
         }.store(in: &cancellableSet)
         
         iAmHaveAccountButton.tapPublisher.sink { _ in
+            self.router.trigger(.login)
 //            coordinator.login()
         }.store(in: &cancellableSet)
         
         createAccountButton.tapPublisher.sink { _ in
+            self.router.trigger(.registrate)
 //            coordinator.createAccount()
         }.store(in: &cancellableSet)
     }

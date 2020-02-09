@@ -1,5 +1,5 @@
 //
-//  DomainAssembler.swift
+//  DoHomeAssembler.swift
 //  lexickon_ios
 //
 //  Created by Sergey Borovikov on 5/3/19.

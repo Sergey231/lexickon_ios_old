@@ -7,21 +7,31 @@
 //
 
 import UIKit
+import XCoordinator
 
-final class MainCoordinator: _Coordinator {
+enum MainRoute: Route {
+    case home
+}
+
+final class MainCoordinator: NavigationCoordinator<MainRoute> {
     
-    var completions: RouterCompletions = [:]
-    var childCoordinators: [_Coordinator] = []
-    var finishFlow: CompletionBlock?
-    var navigationController: UINavigationController
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(rootViewController: UINavigationController) {
+        super.init(
+            rootViewController: rootViewController,
+            initialRoute: nil
+        )
+        trigger(.home)
     }
     
-    func startFlow() {
-        let vc = DI.shr.assembler.resolver.resolve(MainViewController.self)!
-//        vc.coordinator = self
-        setRootModule(vc, hideBar: true, animated: true)
+    override func prepareTransition(for route: MainRoute) -> NavigationTransition {
+        
+        switch route {
+        case .home:
+            let mainVC = DI.shr.assembler.resolver.resolve(
+                HomeViewController.self,
+                argument: unownedRouter
+                )!
+            return .push(mainVC)
+        }
     }
 }

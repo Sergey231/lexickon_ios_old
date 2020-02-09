@@ -37,11 +37,9 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
                 )!
             return .push(startViewController)
         case .begin:
-            let mainVC = DI.shr.assembler.resolver.resolve(
-                MainViewController.self,
-                argument: unownedRouter
-                )!
-            return .push(mainVC)
+            let mainCoordinator = MainCoordinator(rootViewController: self.rootViewController)
+            addChild(mainCoordinator)
+            return .none()
         case .login:
             let loginVC = DI.shr.assembler.resolver.resolve(
                 LoginViewController.self,
