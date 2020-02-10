@@ -18,7 +18,7 @@ final class RegistrationViewController: UIViewController {
     fileprivate let router: UnownedRouter<AuthorizationRoute>
     
     private let presenter: RegistrationPresenter
-    private let testLabel = UILabel()
+    private let logo = Logo()
     
     init(
         presenter: RegistrationPresenter,
@@ -53,19 +53,17 @@ final class RegistrationViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        testLabel.pin
-            .vCenter()
-            .horizontally(16)
-            .height(44)
+        logo.pin
+            .size(100)
+            .center()
     }
     
     private func configureUI() {
-        testLabel.text = "Registration"
-        testLabel.textAlignment = .center
+        
     }
     
     private func createUI() {
-        view.addSubview(testLabel)
+        view.addSubview(logo)
     }
 }
 

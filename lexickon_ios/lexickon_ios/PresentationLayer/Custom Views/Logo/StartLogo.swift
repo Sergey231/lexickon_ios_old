@@ -99,11 +99,8 @@ final class StartLogo: UIView {
     
     func startAnimation() {
         animationState = .end
-        leftEyeView.round()
-        rightEyeView.round()
+        
         UIView.animate(withDuration: 1, animations: {
-            self.leftEyeView.round()
-            self.rightEyeView.round()
             self.layout()
         }, completion: { _ in
             
@@ -141,6 +138,9 @@ final class StartLogo: UIView {
             .size(animationState.eyesSize)
             .hCenter(animationState.rightEyeHCenter)
             .vCenter(animationState.eyesVCenter)
+        
+        leftEyeView.round()
+        rightEyeView.round()
     }
     
     private func configureView() {

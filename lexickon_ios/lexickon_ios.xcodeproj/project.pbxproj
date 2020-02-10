@@ -34,6 +34,7 @@
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
+		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssembler.swift */; };
 		EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
@@ -90,6 +91,7 @@
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAssembler.swift; sourceTree = "<group>"; };
 		EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +173,7 @@
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */,
+				EC835EF523F1B15600E3288B /* Logo */,
 				EC4850F92331ECCF00F3B71F /* Graphics and Animations */,
 			);
 			path = "Custom Views";
@@ -321,6 +323,15 @@
 				EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		EC835EF523F1B15600E3288B /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */,
+				EC835EF623F1B17700E3288B /* Logo.swift */,
+			);
+			path = Logo;
 			sourceTree = "<group>";
 		};
 		EC873D6823DD5AD800787E51 /* Intro */ = {
@@ -496,6 +507,7 @@
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
+				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
