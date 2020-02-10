@@ -15,7 +15,7 @@ import XCoordinator
 
 final class RegistrationViewController: UIViewController {
 
-    private let router: UnownedRouter<AuthorizationRoute>
+    fileprivate let router: UnownedRouter<AuthorizationRoute>
     
     private let presenter: RegistrationPresenter
     private let testLabel = UILabel()
@@ -70,17 +70,23 @@ final class RegistrationViewController: UIViewController {
 }
 
 
-//extension RegistrationViewController: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
-//        return RegistrationViewController(presenter: RegistrationPresenter()).view
-//    }
-//
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
-//
-//struct RegistrationView_Preview: PreviewProvider {
-//    static var previews: some View {
-//        RegistrationViewController(presenter: RegistrationPresenter())
-//    }
-//}
+extension RegistrationViewController: UIViewRepresentable {
+
+    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
+        return RegistrationViewController(
+            presenter: RegistrationPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        ).view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct RegistrationView_Preview: PreviewProvider {
+    static var previews: some View {
+        RegistrationViewController(
+            presenter: RegistrationPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        )
+    }
+}

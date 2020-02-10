@@ -117,17 +117,23 @@ final class StartViewController: UIViewController {
 }
 
 
-//extension StartViewController: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-//        return StartViewController(presenter: StartPresenter(), router: "teetetete").view
-//    }
-//
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
+extension StartViewController: UIViewRepresentable {
 
-//struct StartViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        StartViewController(presenter: StartPresenter())
-//    }
-//}
+    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+        return StartViewController(
+            presenter: StartPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        ).view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct StartViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        StartViewController(
+            presenter: StartPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        )
+    }
+}
