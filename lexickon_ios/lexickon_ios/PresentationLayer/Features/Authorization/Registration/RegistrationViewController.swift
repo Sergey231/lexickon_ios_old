@@ -21,6 +21,9 @@ final class RegistrationViewController: UIViewController {
     
     private var cancellableSet = Set<AnyCancellable>()
     
+    private var _bottom: CGFloat = 0
+    
+    private let contentView = UIView()
     private let logo = Logo()
     private let nameTextField = TextField()
     
@@ -54,8 +57,22 @@ final class RegistrationViewController: UIViewController {
         logo.stopAnimation()
     }
     
+    private func createUI() {
+        view.addSubview(contentView)
+        contentView.addSubviews(logo, nameTextField)
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        layout()
+    }
+    
+    private func layout() {
+        
+        contentView.pin
+            .top()
+            .horizontally()
+            .bottom(_bottom)
         
         logo.pin
             .size(100)
@@ -81,12 +98,9 @@ final class RegistrationViewController: UIViewController {
         ))
         
         presenter.$keyboardHeight.sink {
-            print($0)
+            self._bottom = $0
+            self.layout()
         }.store(in: &cancellableSet)
-    }
-    
-    private func createUI() {
-        view.addSubviews(logo, nameTextField)
     }
 }
 
