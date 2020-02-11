@@ -19,6 +19,8 @@ final class RegistrationViewController: UIViewController {
     
     private let presenter: RegistrationPresenter
     
+    private var cancellableSet = Set<AnyCancellable>()
+    
     private let logo = Logo()
     private let nameTextField = TextField()
     
@@ -70,11 +72,17 @@ final class RegistrationViewController: UIViewController {
         
         view.layoutIfNeeded()
         
+        configureHidingKeyboardByTap()
+        
         nameTextField.configure(input: TextField.Input(
             placeholder: "test",
             leftIcon: Asset.Images.backArrow.image,
             rightIcon: Asset.Images.accountIcon.image
         ))
+        
+        presenter.$keyboardHeight.sink {
+            print($0)
+        }.store(in: &cancellableSet)
     }
     
     private func createUI() {

@@ -46,6 +46,8 @@ final class TextField: UIView {
     private let rightIconView = UIImageView()
     private let lineView = UIView()
     
+    private var _input: Input?
+    
     //MARK: init programmatically
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,8 +61,9 @@ final class TextField: UIView {
     }
     
     private func configureView() {
-        backgroundColor = .gray
+//        backgroundColor = .gray
         createUI()
+        configureUI()
     }
        
     private func createUI() {
@@ -74,24 +77,38 @@ final class TextField: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configure(input: Input())
+        layout()
+    }
+    
+    private func configureUI() {
+        textField.textAlignment = .center
+        leftIconView.contentMode = .scaleAspectFit
+        rightIconView.contentMode = .scaleAspectFit
+        leftIconView.tintColor = .white
+        rightIconView.tintColor = .white
+        lineView.backgroundColor = .white
     }
     
     func configure(input: Input) {
         
+        _input = input
+        layout()
+        textField.placeholder = input.placeholder
         leftIconView.image = input.leftIcon
         rightIconView.image = input.rightIcon
-        leftIconView.tintColor = .white
-        lineView.backgroundColor = .white
+        lineView.round()
+    }
+    
+    private func layout() {
         
         leftIconView.pin
             .vCenter()
-            .size(input.leftIconWidth)
+            .size(_input?.leftIconWidth ?? 0)
             .left()
         
         rightIconView.pin
             .vCenter()
-            .size(input.rightIconWidth)
+            .size(_input?.rightIconWidth ?? 0)
             .right()
         
         textField.pin
@@ -106,8 +123,6 @@ final class TextField: UIView {
             .below(of: [leftIconView, rightIconView, textField])
             .height(Sizes.line.height)
             .horizontally()
-        
-        lineView.round()
     }
 }
 
