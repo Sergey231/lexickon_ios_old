@@ -11,6 +11,9 @@ import UIKit
     
 enum Sizes {
     static let button: CGSize = .init(width: 280, height: 56)
+    static let icon: CGSize = .init(width: 24, height: 24)
+    static let textField: CGSize = .init(width: 260, height: 44)
+    static let line: CGSize = .init(width: 260, height: 2)
 }
 
 enum Margin {

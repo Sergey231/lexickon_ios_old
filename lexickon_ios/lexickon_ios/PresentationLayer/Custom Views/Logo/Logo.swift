@@ -36,6 +36,10 @@ final class Logo: UIView {
         configureView()
     }
     
+    func stopAnimation() {
+        logoImageView.stopFlayingAnimation()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         layout()

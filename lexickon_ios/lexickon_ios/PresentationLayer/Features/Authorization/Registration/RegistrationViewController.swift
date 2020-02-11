@@ -18,7 +18,9 @@ final class RegistrationViewController: UIViewController {
     fileprivate let router: UnownedRouter<AuthorizationRoute>
     
     private let presenter: RegistrationPresenter
+    
     private let logo = Logo()
+    private let nameTextField = TextField()
     
     init(
         presenter: RegistrationPresenter,
@@ -47,7 +49,7 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
+        logo.stopAnimation()
     }
     
     override func viewWillLayoutSubviews() {
@@ -56,14 +58,27 @@ final class RegistrationViewController: UIViewController {
         logo.pin
             .size(100)
             .center()
+        
+        nameTextField.pin
+            .height(56)
+            .horizontally(Margin.mid)
+            .below(of: logo)
+            .marginTop(Margin.regular)
     }
     
     private func configureUI() {
         
+        view.layoutIfNeeded()
+        
+        nameTextField.configure(input: TextField.Input(
+            placeholder: "test",
+            leftIcon: Asset.Images.backArrow.image,
+            rightIcon: Asset.Images.accountIcon.image
+        ))
     }
     
     private func createUI() {
-        view.addSubview(logo)
+        view.addSubviews(logo, nameTextField)
     }
 }
 

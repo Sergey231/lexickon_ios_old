@@ -57,6 +57,11 @@ final class StartViewController: UIViewController {
         logo.startAnimation()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        logo.stopAnimation()
+    }
+    
     private func configureUI() {
         
         beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
@@ -68,17 +73,14 @@ final class StartViewController: UIViewController {
         
         beginButton.tapPublisher.sink { _ in
             self.router.trigger(.begin)
-//            coordinator.main()
         }.store(in: &cancellableSet)
         
         iAmHaveAccountButton.tapPublisher.sink { _ in
             self.router.trigger(.login)
-//            coordinator.login()
         }.store(in: &cancellableSet)
         
         createAccountButton.tapPublisher.sink { _ in
             self.router.trigger(.registrate)
-//            coordinator.createAccount()
         }.store(in: &cancellableSet)
     }
     

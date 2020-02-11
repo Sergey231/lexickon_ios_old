@@ -112,6 +112,11 @@ final class StartLogo: UIView {
         })
     }
     
+    func stopAnimation() {
+        animationState = .start
+        logoImageView.stopFlayingAnimation()
+    }
+    
     private func eyesFlipAnimate() {
         leftEyeView.performVCollapseAnimation()
         rightEyeView.performVCollapseAnimation()
