@@ -26,6 +26,8 @@ final class RegistrationViewController: UIViewController {
     private let contentView = UIView()
     private let logo = Logo()
     private let nameTextField = TextField()
+    private let emailTextField = TextField()
+    private let passwordTextField = TextField()
     
     init(
         presenter: RegistrationPresenter,
@@ -59,7 +61,12 @@ final class RegistrationViewController: UIViewController {
     
     private func createUI() {
         view.addSubview(contentView)
-        contentView.addSubviews(logo, nameTextField)
+        contentView.addSubviews(
+            logo,
+            nameTextField,
+            emailTextField,
+            passwordTextField
+        )
     }
     
     override func viewWillLayoutSubviews() {
@@ -76,12 +83,27 @@ final class RegistrationViewController: UIViewController {
         
         logo.pin
             .size(100)
-            .center()
+            .above(of: nameTextField)
+            .hCenter()
         
         nameTextField.pin
             .height(56)
             .horizontally(Margin.mid)
-            .below(of: logo)
+            .vCenter()
+            .marginTop(Margin.regular)
+        
+        emailTextField.pin
+            .height(56)
+            .horizontally(Margin.mid)
+            .hCenter()
+            .below(of: nameTextField)
+            .marginTop(Margin.regular)
+        
+        passwordTextField.pin
+            .height(56)
+            .horizontally(Margin.mid)
+            .hCenter()
+            .below(of: emailTextField)
             .marginTop(Margin.regular)
     }
     
@@ -92,9 +114,19 @@ final class RegistrationViewController: UIViewController {
         configureHidingKeyboardByTap()
         
         nameTextField.configure(input: TextField.Input(
-            placeholder: "test",
-            leftIcon: Asset.Images.backArrow.image,
-            rightIcon: Asset.Images.accountIcon.image
+            placeholder: Localized.registrationNameTextfield,
+            leftIcon: Asset.Images.accountIcon.image
+        ))
+        
+        emailTextField.configure(input: TextField.Input(
+            placeholder: Localized.registrationEmailTextfield,
+            leftIcon: Asset.Images.emailIcon.image
+        ))
+        
+        passwordTextField.configure(input: TextField.Input(
+            placeholder: Localized.registrationPasswordTextfield,
+            leftIcon: Asset.Images.lockIcon.image,
+            rightIcon: Asset.Images.eyeShowIcon.image
         ))
         
         presenter.$keyboardHeight.sink {

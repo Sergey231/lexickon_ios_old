@@ -39,6 +39,12 @@ final class TextField: UIView {
                 ? Sizes.icon.width
                 : 0
         }
+        
+        var hTextFieldMargin: CGFloat {
+            return rightIcon != nil && leftIcon != nil
+                ? Sizes.icon.width
+                : 0
+        }
     }
     
     private let textField = UITextField()
@@ -82,6 +88,7 @@ final class TextField: UIView {
     
     private func configureUI() {
         textField.textAlignment = .center
+        textField.textColor = .white
         leftIconView.contentMode = .scaleAspectFit
         rightIconView.contentMode = .scaleAspectFit
         leftIconView.tintColor = .white
@@ -93,7 +100,10 @@ final class TextField: UIView {
         
         _input = input
         layout()
-        textField.placeholder = input.placeholder
+        textField.attributedPlaceholder = NSAttributedString(
+            string: input.placeholder,
+            attributes: [.foregroundColor: Asset.Colors.whiteAlpha07.color]
+        )
         leftIconView.image = input.leftIcon
         rightIconView.image = input.rightIcon
         lineView.round()
@@ -114,10 +124,8 @@ final class TextField: UIView {
         textField.pin
             .vCenter()
             .height(Sizes.textField.height)
-            .after(of: leftIconView)
-            .margin(Margin.small)
-            .before(of: rightIconView)
-            .margin(Margin.small)
+            .horizontally(_input?.hTextFieldMargin ?? 0)
+            .marginHorizontal(Margin.small)
         
         lineView.pin
             .below(of: [leftIconView, rightIconView, textField])
