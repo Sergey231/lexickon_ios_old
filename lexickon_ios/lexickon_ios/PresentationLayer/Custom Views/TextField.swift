@@ -100,6 +100,7 @@ final class TextField: UIView {
         
         _input = input
         layout()
+        textField.tintColor = .white
         textField.attributedPlaceholder = NSAttributedString(
             string: input.placeholder,
             attributes: [.foregroundColor: Asset.Colors.whiteAlpha07.color]
@@ -123,7 +124,7 @@ final class TextField: UIView {
         
         textField.pin
             .vCenter()
-            .height(Sizes.textField.height)
+            .height(Sizes.uiTextField.height)
             .horizontally(_input?.hTextFieldMargin ?? 0)
             .marginHorizontal(Margin.small)
         

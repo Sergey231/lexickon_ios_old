@@ -13,6 +13,12 @@ import Combine
 import PinLayout
 import XCoordinator
 
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+}
+
 final class RegistrationViewController: UIViewController {
 
     fileprivate let router: UnownedRouter<AuthorizationRoute>
@@ -24,7 +30,7 @@ final class RegistrationViewController: UIViewController {
     private var _bottom: CGFloat = 0
     
     private let contentView = UIView()
-    private let logo = Logo()
+    private let logo = UIImageView(image: Asset.Images.textLogo.image)
     private let nameTextField = TextField()
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
@@ -49,6 +55,10 @@ final class RegistrationViewController: UIViewController {
         configureUI()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -56,7 +66,6 @@ final class RegistrationViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        logo.stopAnimation()
     }
     
     private func createUI() {
@@ -82,27 +91,25 @@ final class RegistrationViewController: UIViewController {
             .bottom(_bottom)
         
         logo.pin
-            .size(100)
-            .above(of: nameTextField)
+            .size(contentView.frame.height/3)
             .hCenter()
+            .vCenter(-12%)
         
         nameTextField.pin
-            .height(56)
+            .height(Sizes.textField.height)
             .horizontally(Margin.mid)
             .vCenter()
-            .marginTop(Margin.regular)
+            .marginTop(Margin.mid)
         
         emailTextField.pin
-            .height(56)
+            .height(Sizes.textField.height)
             .horizontally(Margin.mid)
-            .hCenter()
             .below(of: nameTextField)
             .marginTop(Margin.regular)
         
         passwordTextField.pin
-            .height(56)
+            .height(Sizes.textField.height)
             .horizontally(Margin.mid)
-            .hCenter()
             .below(of: emailTextField)
             .marginTop(Margin.regular)
     }
@@ -112,6 +119,11 @@ final class RegistrationViewController: UIViewController {
         view.layoutIfNeeded()
         
         configureHidingKeyboardByTap()
+        navigationController?.setupLargeMainThemeNavBar()
+        title = Localized.registrationCreateAccountTitle
+        
+        logo.contentMode = .scaleAspectFit
+        logo.setShadow()
         
         nameTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationNameTextfield,
@@ -136,13 +148,14 @@ final class RegistrationViewController: UIViewController {
     }
 }
 
-
 extension RegistrationViewController: UIViewRepresentable {
 
     func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
         return RegistrationViewController(
             presenter: RegistrationPresenter(),
-            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+            router: AuthorizationCoordinator(
+                rootViewController: UINavigationController()
+            ).unownedRouter
         ).view
     }
 
@@ -153,7 +166,9 @@ struct RegistrationView_Preview: PreviewProvider {
     static var previews: some View {
         RegistrationViewController(
             presenter: RegistrationPresenter(),
-            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+            router: AuthorizationCoordinator(
+                rootViewController: UINavigationController()
+            ).unownedRouter
         )
     }
 }

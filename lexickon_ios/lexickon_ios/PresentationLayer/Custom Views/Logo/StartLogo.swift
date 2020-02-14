@@ -41,7 +41,7 @@ final class StartLogo: UIView {
         var eyesSize: CGFloat {
             switch self {
             case .start: return 14
-            case .end: return 11
+            case .end: return 10
             }
         }
         
