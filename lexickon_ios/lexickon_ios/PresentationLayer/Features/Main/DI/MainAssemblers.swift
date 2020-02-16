@@ -8,7 +8,7 @@
 
 import Swinject
 
-struct MainAssembler {
+struct MainAssemblers {
     
     static var assemblers: [Assembly] {
         return [
