@@ -53,6 +53,7 @@
 		ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
+		ECCB193323F834010069C5A7 /* RxCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECCB193223F834010069C5A7 /* RxCombine */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
@@ -124,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */,
+				ECCB193323F834010069C5A7 /* RxCombine in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F322D4C9A4007E2B3B /* Alamofire in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
@@ -389,6 +391,7 @@
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
 				EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */,
 				EC3B87FC23EDAF7F003AAB76 /* XCoordinator */,
+				ECCB193223F834010069C5A7 /* RxCombine */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -447,6 +450,7 @@
 				ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */,
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */,
+				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -818,6 +822,14 @@
 				minimumVersion = 1.8.13;
 			};
 		};
+		ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/RxCombine.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -859,6 +871,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		ECCB193223F834010069C5A7 /* RxCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */;
+			productName = RxCombine;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

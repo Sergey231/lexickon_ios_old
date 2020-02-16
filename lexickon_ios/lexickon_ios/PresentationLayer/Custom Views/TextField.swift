@@ -17,15 +17,21 @@ final class TextField: UIView {
         let placeholder: String
         let leftIcon: UIImage?
         let rightIcon: UIImage?
+        let keyboardType: UIKeyboardType
+        let returnKeyType: UIReturnKeyType
         
         init(
             placeholder: String = "",
             leftIcon: UIImage? = nil,
-            rightIcon: UIImage? = nil
+            rightIcon: UIImage? = nil,
+            keyboardType: UIKeyboardType = .asciiCapable,
+            returnKeyType: UIReturnKeyType = .join
         ) {
             self.placeholder = placeholder
             self.leftIcon = leftIcon
             self.rightIcon = rightIcon
+            self.keyboardType = keyboardType
+            self.returnKeyType = returnKeyType
         }
         
         var leftIconWidth: CGFloat {
@@ -47,7 +53,7 @@ final class TextField: UIView {
         }
     }
     
-    private let textField = UITextField()
+    internal let textField = UITextField()
     private let leftIconView = UIImageView()
     private let rightIconView = UIImageView()
     private let lineView = UIView()
@@ -67,7 +73,7 @@ final class TextField: UIView {
     }
     
     private func configureView() {
-//        backgroundColor = .gray
+        backgroundColor = .gray
         createUI()
         configureUI()
     }
@@ -98,13 +104,15 @@ final class TextField: UIView {
     
     func configure(input: Input) {
         
-        _input = input
+        _input = input 
         layout()
         textField.tintColor = .white
         textField.attributedPlaceholder = NSAttributedString(
             string: input.placeholder,
             attributes: [.foregroundColor: Asset.Colors.whiteAlpha07.color]
         )
+        textField.keyboardType = input.keyboardType
+        textField.returnKeyType = input.returnKeyType
         leftIconView.image = input.leftIcon
         rightIconView.image = input.rightIcon
         lineView.round()
@@ -134,6 +142,8 @@ final class TextField: UIView {
             .horizontally()
     }
 }
+
+extension TextField: EnumerableTextField {}
 
 extension TextField: UIViewRepresentable {
     

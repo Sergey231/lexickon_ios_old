@@ -12,6 +12,7 @@ import Swinject
 import Combine
 import PinLayout
 import XCoordinator
+import RxCombine
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -127,24 +128,34 @@ final class RegistrationViewController: UIViewController {
         
         nameTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationNameTextfield,
-            leftIcon: Asset.Images.accountIcon.image
+            leftIcon: Asset.Images.accountIcon.image,
+            returnKeyType: .next
         ))
         
         emailTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationEmailTextfield,
-            leftIcon: Asset.Images.emailIcon.image
+            leftIcon: Asset.Images.emailIcon.image,
+            keyboardType: .emailAddress,
+            returnKeyType: .next
         ))
         
         passwordTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
-            rightIcon: Asset.Images.eyeShowIcon.image
+            returnKeyType: .join
         ))
         
         presenter.$keyboardHeight.sink {
             self._bottom = $0
             self.layout()
         }.store(in: &cancellableSet)
+        
+        EnumerableTextFieldCoordinator().configureEnumerable(textFields: [
+            nameTextField,
+            emailTextField,
+            passwordTextField
+        ])
+        .forEach { cancellableSet.insert($0)}
     }
 }
 
