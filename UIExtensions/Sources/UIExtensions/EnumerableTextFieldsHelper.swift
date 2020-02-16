@@ -11,14 +11,9 @@ import UIKit
 
 public protocol EnumerableTextField {
     var textField: UITextField { get }
-    var tag: Int { get }
 }
 
-public extension EnumerableTextField {
-    var tag: Int { textField.tag }
-}
-
-public class EnumerableTextFieldCoordinator {
+public class EnumerableTextFieldHelper {
     
     public enum EnumerableTextFieldEvent {
         case nextTextFieldIndex(Int)
@@ -26,10 +21,14 @@ public class EnumerableTextFieldCoordinator {
         case none
     }
     
+    public init(cancellableSet: Set<AnyCancellable>) {
+        self.cancellableSet = cancellableSet
+    }
+    
     private var cancellableSet = Set<AnyCancellable>()
     @Published private var enumerableTextFieldEvents: EnumerableTextFieldEvent = .none
     
-    public func configureEnumerable(textFields: [EnumerableTextField]) -> Set<AnyCancellable> {
+    public func configureEnumerable(textFields: [EnumerableTextField]) {
         
         textFields.enumerated().forEach {
             
@@ -65,7 +64,5 @@ public class EnumerableTextFieldCoordinator {
                 }
             }
             .store(in: &cancellableSet)
-        
-        return cancellableSet
     }
 }

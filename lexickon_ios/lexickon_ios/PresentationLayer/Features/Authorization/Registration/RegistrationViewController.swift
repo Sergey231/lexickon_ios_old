@@ -13,6 +13,7 @@ import Combine
 import PinLayout
 import XCoordinator
 import RxCombine
+import UIExtensions
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -150,12 +151,12 @@ final class RegistrationViewController: UIViewController {
             self.layout()
         }.store(in: &cancellableSet)
         
-        EnumerableTextFieldCoordinator().configureEnumerable(textFields: [
-            nameTextField,
-            emailTextField,
-            passwordTextField
-        ])
-        .forEach { cancellableSet.insert($0)}
+        EnumerableTextFieldHelper(cancellableSet: cancellableSet)
+            .configureEnumerable(textFields: [
+                nameTextField,
+                emailTextField,
+                passwordTextField
+            ])
     }
 }
 

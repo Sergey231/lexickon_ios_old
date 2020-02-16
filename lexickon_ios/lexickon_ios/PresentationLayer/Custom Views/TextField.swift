@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import Combine
 import CombineCocoa
+import UIExtensions
 
 final class TextField: UIView {
     
@@ -73,7 +74,6 @@ final class TextField: UIView {
     }
     
     private func configureView() {
-        backgroundColor = .gray
         createUI()
         configureUI()
     }
