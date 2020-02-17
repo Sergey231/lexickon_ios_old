@@ -70,17 +70,23 @@ final class LoginViewController: UIViewController {
 }
 
 
-//extension LoginViewController: UIViewRepresentable {
-//    
-//    func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
-//        return LoginViewController(presenter: LoginPresenter()).view
-//    }
-//    
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
-//
-//struct LoginViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        LoginViewController(presenter: LoginPresenter())
-//    }
-//}
+extension LoginViewController: UIViewRepresentable {
+    
+    func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
+        return LoginViewController(
+            presenter: LoginPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        ).view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct LoginViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        LoginViewController(
+            presenter: LoginPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        )
+    }
+}

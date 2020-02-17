@@ -57,6 +57,11 @@ final class StartViewController: UIViewController {
         logo.startAnimation()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        logo.stopAnimation()
+    }
+    
     private func configureUI() {
         
         beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
@@ -68,17 +73,14 @@ final class StartViewController: UIViewController {
         
         beginButton.tapPublisher.sink { _ in
             self.router.trigger(.begin)
-//            coordinator.main()
         }.store(in: &cancellableSet)
         
         iAmHaveAccountButton.tapPublisher.sink { _ in
             self.router.trigger(.login)
-//            coordinator.login()
         }.store(in: &cancellableSet)
         
         createAccountButton.tapPublisher.sink { _ in
             self.router.trigger(.registrate)
-//            coordinator.createAccount()
         }.store(in: &cancellableSet)
     }
     
@@ -117,17 +119,23 @@ final class StartViewController: UIViewController {
 }
 
 
-//extension StartViewController: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-//        return StartViewController(presenter: StartPresenter(), router: "teetetete").view
-//    }
-//
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
+extension StartViewController: UIViewRepresentable {
 
-//struct StartViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        StartViewController(presenter: StartPresenter())
-//    }
-//}
+    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+        return StartViewController(
+            presenter: StartPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        ).view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct StartViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        StartViewController(
+            presenter: StartPresenter(),
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+        )
+    }
+}

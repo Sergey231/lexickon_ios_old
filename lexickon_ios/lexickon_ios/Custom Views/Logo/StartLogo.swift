@@ -41,7 +41,7 @@ final class StartLogo: UIView {
         var eyesSize: CGFloat {
             switch self {
             case .start: return 14
-            case .end: return 11
+            case .end: return 10
             }
         }
         
@@ -99,11 +99,8 @@ final class StartLogo: UIView {
     
     func startAnimation() {
         animationState = .end
-        leftEyeView.round()
-        rightEyeView.round()
+        
         UIView.animate(withDuration: 1, animations: {
-            self.leftEyeView.round()
-            self.rightEyeView.round()
             self.layout()
         }, completion: { _ in
             
@@ -113,6 +110,11 @@ final class StartLogo: UIView {
                 self.textLogoImageView.alpha = self.animationState.textLogoAlpha
             }
         })
+    }
+    
+    func stopAnimation() {
+        animationState = .start
+        logoImageView.stopFlayingAnimation()
     }
     
     private func eyesFlipAnimate() {
@@ -141,6 +143,9 @@ final class StartLogo: UIView {
             .size(animationState.eyesSize)
             .hCenter(animationState.rightEyeHCenter)
             .vCenter(animationState.eyesVCenter)
+        
+        leftEyeView.round()
+        rightEyeView.round()
     }
     
     private func configureView() {

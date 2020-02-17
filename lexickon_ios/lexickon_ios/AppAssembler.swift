@@ -30,9 +30,9 @@ final class DI {
     
     init() {
         assembler = Assembler(
-            PresentationLayerAssemblers.assemblers
-            + DataLayerAssemblers.assemblers
-            + DomainLayerAssemblers.assemblers
+            AuthorizationAssemblers.assemblers
+            + MainAssemblers.assemblers
+            + IntroAssemblers.assemblers
         )
     }
     

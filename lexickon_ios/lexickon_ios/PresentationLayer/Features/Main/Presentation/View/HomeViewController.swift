@@ -38,17 +38,23 @@ final class HomeViewController: UIViewController {
     }
 }
 
-//extension HomeViewController: UIViewRepresentable {
-//    
-//    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
-//        return HomeViewController(presenter: MainPresenter()).view
-//    }
-//    
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
-//
-//struct HomeViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        HomeViewController(presenter: MainPresenter())
-//    }
-//}
+extension HomeViewController: UIViewRepresentable {
+    
+    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
+        return HomeViewController(
+            presenter: HomePresenter(),
+            router: MainCoordinator(rootViewController: UINavigationController()).unownedRouter
+        ).view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct HomeViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        HomeViewController(
+            presenter: HomePresenter(),
+            router: MainCoordinator(rootViewController: UINavigationController()).unownedRouter
+        )
+    }
+}
