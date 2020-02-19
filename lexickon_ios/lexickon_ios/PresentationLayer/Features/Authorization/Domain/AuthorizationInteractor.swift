@@ -8,6 +8,9 @@
 
 protocol AuthorizationInteractorProtocol {
     
+    func registrate(name: String, email: String, password: String)
+    func login(login: String, password: String)
+    func restorePassword(login: String)
 }
 
 final class AuthorizationInteractor {
