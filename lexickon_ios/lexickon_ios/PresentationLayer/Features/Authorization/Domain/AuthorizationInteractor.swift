@@ -18,14 +18,14 @@ final class AuthorizationInteractor {
 extension AuthorizationInteractor: AuthorizationInteractorProtocol {
     
     func registrate(name: String, email: String, password: String) {
-        <#code#>
+        
     }
     
     func login(login: String, password: String) {
-        <#code#>
+        
     }
     
     func restorePassword(login: String) {
-        <#code#>
+        
     }
 }
