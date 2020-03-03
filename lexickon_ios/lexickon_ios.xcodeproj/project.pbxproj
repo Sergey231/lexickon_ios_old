@@ -59,6 +59,7 @@
 		ECCB195123FD904D0069C5A7 /* LoginRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */; };
 		ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */; };
 		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
+		ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECD6DBE8240E6659004B8CDA /* TimelaneCombine */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
@@ -143,6 +144,7 @@
 				EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */,
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
+				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +497,7 @@
 				EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */,
 				EC3B87FC23EDAF7F003AAB76 /* XCoordinator */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
+				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -554,6 +557,7 @@
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
+				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -938,6 +942,14 @@
 				minimumVersion = 1.3.1;
 			};
 		};
+		ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/icanzilb/TimelaneCombine";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -984,6 +996,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */;
 			productName = RxCombine;
+		};
+		ECD6DBE8240E6659004B8CDA /* TimelaneCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */;
+			productName = TimelaneCombine;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

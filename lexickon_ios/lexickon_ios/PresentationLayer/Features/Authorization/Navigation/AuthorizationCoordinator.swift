@@ -47,10 +47,11 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
             )!
             return .push(loginVC)
         case .registrate:
-            let registratioinVC = DI.shr.assembler.resolver.resolve(
-                RegistrationViewController.self,
-                argument: unownedRouter
-            )!
+//            let registratioinVC = DI.shr.assembler.resolver.resolve(
+//                RegistrationViewController.self,
+//                argument: unownedRouter
+//            )!
+            let registratioinVC = RegistrationViewController(presenter: RegistrationPresenter(), router: unownedRouter)
             return .push(registratioinVC)
         }
     }

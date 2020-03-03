@@ -89,11 +89,12 @@ final class LoginViewController: UIViewController {
             self.layout()
         }.store(in: &cancellableSet)
         
-        EnumerableTextFieldHelper(cancellableSet: cancellableSet)
+        EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 emailTextField,
                 passwordTextField
             ])
+            .forEach { $0.store(in: &cancellableSet) }
     }
     
     private func createUI() {

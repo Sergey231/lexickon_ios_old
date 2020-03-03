@@ -8,6 +8,7 @@
 import Combine
 import CombineCocoa
 import UIKit
+import TimelaneCombine
 
 public protocol EnumerableTextField {
     var textField: UITextField { get }
@@ -21,14 +22,13 @@ public class EnumerableTextFieldHelper {
         case none
     }
     
-    public init(cancellableSet: Set<AnyCancellable>) {
-        self.cancellableSet = cancellableSet
-    }
+    public init(){}
     
-    private var cancellableSet = Set<AnyCancellable>()
     @Published private var enumerableTextFieldEvents: EnumerableTextFieldEvent = .none
     
-    public func configureEnumerable(textFields: [EnumerableTextField]) {
+    public func configureEnumerable(textFields: [EnumerableTextField]) -> Set<AnyCancellable> {
+        
+        var cancellableSet = Set<AnyCancellable>()
         
         textFields.enumerated().forEach {
             
@@ -47,7 +47,7 @@ public class EnumerableTextFieldHelper {
                         return .isLastTextFieldIndex(currentIndex)
                     }
                     return .none
-                }
+                }.lane("⚽️")
                 .assign(to: \.enumerableTextFieldEvents, on: self)
                 .store(in: &cancellableSet)
         }
@@ -64,5 +64,7 @@ public class EnumerableTextFieldHelper {
                 }
             }
             .store(in: &cancellableSet)
+        
+        return cancellableSet
     }
 }

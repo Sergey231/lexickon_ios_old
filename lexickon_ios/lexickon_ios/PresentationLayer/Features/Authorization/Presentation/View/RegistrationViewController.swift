@@ -14,6 +14,7 @@ import PinLayout
 import XCoordinator
 import RxCombine
 import UIExtensions
+import TimelaneCombine
 
 final class RegistrationViewController: UIViewController {
 
@@ -37,6 +38,7 @@ final class RegistrationViewController: UIViewController {
     ) {
         self.presenter = presenter
         self.router = router
+        print("🎲: \(cancellableSet.count)")
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -141,17 +143,20 @@ final class RegistrationViewController: UIViewController {
             returnKeyType: .join
         ))
         
-        presenter.$keyboardHeight.sink {
-            self._bottom = $0
-            self.layout()
-        }.store(in: &cancellableSet)
+        presenter.$keyboardHeight
+            .lane("🎲")
+            .sink { [weak self] in
+                self?._bottom = $0
+                self?.layout()
+            }.store(in: &cancellableSet)
         
-        EnumerableTextFieldHelper(cancellableSet: cancellableSet)
+        EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 nameTextField,
                 emailTextField,
                 passwordTextField
             ])
+            .forEach { $0.store(in: &cancellableSet) }
     }
 }
 
