@@ -14,6 +14,12 @@ import PinLayout
 import CombineCocoa
 import XCoordinator
 
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+}
+
 final class StartViewController: UIViewController {
     
     private let router: UnownedRouter<AuthorizationRoute>
@@ -63,6 +69,8 @@ final class StartViewController: UIViewController {
     }
     
     private func configureUI() {
+        
+        navigationController?.setupLargeMainThemeNavBar()
         
         beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
         beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)

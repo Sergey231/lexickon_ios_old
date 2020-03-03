@@ -53,6 +53,12 @@
 		ECCB193723F962C20069C5A7 /* AuthorizationAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193623F962C20069C5A7 /* AuthorizationAssemblers.swift */; };
 		ECCB193A23F9633C0069C5A7 /* MainAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193923F9633C0069C5A7 /* MainAssemblers.swift */; };
 		ECCB193E23F963A80069C5A7 /* IntroAssemblers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193D23F963A80069C5A7 /* IntroAssemblers.swift */; };
+		ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */; };
+		ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */; };
+		ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */; };
+		ECCB195123FD904D0069C5A7 /* LoginRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */; };
+		ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */; };
+		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
 		ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF20D5D236951D700DA8715 /* SFIcons.swift */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
@@ -111,6 +117,12 @@
 		ECCB193623F962C20069C5A7 /* AuthorizationAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssemblers.swift; sourceTree = "<group>"; };
 		ECCB193923F9633C0069C5A7 /* MainAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssemblers.swift; sourceTree = "<group>"; };
 		ECCB193D23F963A80069C5A7 /* IntroAssemblers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAssemblers.swift; sourceTree = "<group>"; };
+		ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
+		ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
+		ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryProtocol.swift; sourceTree = "<group>"; };
+		ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		ECF20D5D236951D700DA8715 /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
@@ -155,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				ECCB193523F962A00069C5A7 /* DI */,
+				ECCB194A23FAF45F0069C5A7 /* Data */,
+				ECCB194723FAF4110069C5A7 /* Domain */,
 				ECCB194123F964760069C5A7 /* Navigation */,
 				ECCB193423F9614A0069C5A7 /* Presentation */,
 			);
@@ -411,6 +425,50 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		ECCB194723FAF4110069C5A7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */,
+				ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		ECCB194A23FAF45F0069C5A7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				ECCB194B23FAF49D0069C5A7 /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		ECCB194B23FAF49D0069C5A7 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				ECCB195323FD92560069C5A7 /* UserRepository */,
+				ECCB195223FD92300069C5A7 /* LoginRepository */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		ECCB195223FD92300069C5A7 /* LoginRepository */ = {
+			isa = PBXGroup;
+			children = (
+				ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */,
+				ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */,
+			);
+			path = LoginRepository;
+			sourceTree = "<group>";
+		};
+		ECCB195323FD92560069C5A7 /* UserRepository */ = {
+			isa = PBXGroup;
+			children = (
+				ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */,
+				ECCB195623FD940A0069C5A7 /* UserRepository.swift */,
+			);
+			path = UserRepository;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -539,9 +597,11 @@
 			files = (
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
+				ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */,
 				EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */,
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
+				ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
@@ -550,6 +610,7 @@
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
+				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
 				EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */,
@@ -558,16 +619,19 @@
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
+				ECCB195123FD904D0069C5A7 /* LoginRepositoryProtocol.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
+				ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */,
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssembler.swift in Sources */,
 				EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */,
 				ECCB193723F962C20069C5A7 /* AuthorizationAssemblers.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
+				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

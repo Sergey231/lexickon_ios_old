@@ -15,12 +15,6 @@ import XCoordinator
 import RxCombine
 import UIExtensions
 
-extension UINavigationController {
-    open override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-}
-
 final class RegistrationViewController: UIViewController {
 
     fileprivate let router: UnownedRouter<AuthorizationRoute>
@@ -121,11 +115,12 @@ final class RegistrationViewController: UIViewController {
         view.layoutIfNeeded()
         
         configureHidingKeyboardByTap()
-        navigationController?.setupLargeMainThemeNavBar()
         title = Localized.registrationCreateAccountTitle
         
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
+        
+        nameTextField.textField.enablesReturnKeyAutomatically = true
         
         nameTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationNameTextfield,
