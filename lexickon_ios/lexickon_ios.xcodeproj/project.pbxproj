@@ -12,7 +12,6 @@
 		EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E442352E68C00C82DFF /* Assets.swift */; };
 		EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E462352E95E00C82DFF /* Strings.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
-		EC1F534D24092E9D00C9EBAC /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F534C24092E9D00C9EBAC /* RxKeyboard */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
 		EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */; };
@@ -144,7 +143,6 @@
 				EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */,
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
-				EC1F534D24092E9D00C9EBAC /* RxKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,8 +454,8 @@
 		ECCB195223FD92300069C5A7 /* LoginRepository */ = {
 			isa = PBXGroup;
 			children = (
-				ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */,
 				ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */,
+				ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */,
 			);
 			path = LoginRepository;
 			sourceTree = "<group>";
@@ -497,7 +495,6 @@
 				EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */,
 				EC3B87FC23EDAF7F003AAB76 /* XCoordinator */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
-				EC1F534C24092E9D00C9EBAC /* RxKeyboard */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -557,7 +554,6 @@
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
-				EC1F534B24092E9D00C9EBAC /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -902,14 +898,6 @@
 				minimumVersion = 2.6.2;
 			};
 		};
-		EC1F534B24092E9D00C9EBAC /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quickbirdstudios/XCoordinator.git";
@@ -962,11 +950,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
-		};
-		EC1F534C24092E9D00C9EBAC /* RxKeyboard */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC1F534B24092E9D00C9EBAC /* XCRemoteSwiftPackageReference "RxKeyboard" */;
-			productName = RxKeyboard;
 		};
 		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;

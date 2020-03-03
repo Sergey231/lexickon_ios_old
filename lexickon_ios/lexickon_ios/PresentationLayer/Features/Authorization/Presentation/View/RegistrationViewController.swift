@@ -120,6 +120,8 @@ final class RegistrationViewController: UIViewController {
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
         
+        nameTextField.textField.enablesReturnKeyAutomatically = true
+        
         nameTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationNameTextfield,
             leftIcon: Asset.Images.accountIcon.image,
