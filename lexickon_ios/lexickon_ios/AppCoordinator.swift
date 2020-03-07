@@ -30,7 +30,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
             return .none()
             
         case .intro:
-            let introVC = DI.shr.assembler.resolver.resolve(
+            let introVC = DI.shr.appAssembler.resolver.resolve(
                 IntroViewController.self,
                 argument: unownedRouter
                 )!

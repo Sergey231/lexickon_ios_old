@@ -37,7 +37,7 @@ final class IntroPageViewController: UIPageViewController {
     
     func showViewController(at index: Int) -> IntroViewController? {
         guard index != NSNotFound, index >= 0, index < numberOfViewControllers else { return nil }
-        let viewController = DI.shr.assembler.resolver.resolve(IntroViewController.self)!
+        let viewController = DI.shr.appAssembler.resolver.resolve(IntroViewController.self)!
         viewController.index = index
         viewController.image = images[index]
         viewController.isLast = index == 2

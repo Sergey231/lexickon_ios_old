@@ -9,18 +9,28 @@
 import Swinject
 
 final class StartAssembler: Assembly {
-    
+
     func assemble(container: Container) {
         
         container.register(StartPresenter.self) { _ in
             StartPresenter()
-        }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.startObjectScope)
         
         container.register(StartViewController.self) { resolver, router in
             StartViewController(
                 presenter: resolver.resolve(StartPresenter.self)!,
-                router: router
+                router: router,
+                container: container
             )
-        }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.startObjectScope)
     }
+}
+
+extension ObjectScope {
+    
+    static let startObjectScope = ObjectScope(
+        storageFactory: PermanentStorage.init,
+        description: "startObjectScope",
+        parent: ObjectScope.appObjectScope
+    )
 }

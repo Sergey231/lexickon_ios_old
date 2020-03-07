@@ -16,9 +16,9 @@ extension ObjectScope {
         description: "appObjectScope"
     )
     
-    static let loginObjectScope = ObjectScope(
+    static let mainObjectScope = ObjectScope(
         storageFactory: PermanentStorage.init,
-        description: "loginObjectScope",
+        description: "mainObjectScope",
         parent: ObjectScope.appObjectScope
     )
 }
@@ -26,14 +26,12 @@ extension ObjectScope {
 final class DI {
     
     static let shr = DI()
-    let assembler: Assembler
+    
+    let appAssembler: Assembler
+    let appContainer: Container
     
     init() {
-        assembler = Assembler(
-            AuthorizationAssemblers.assemblers
-            + MainAssemblers.assemblers
-            + IntroAssemblers.assemblers
-        )
+        appContainer = Container()
+        appAssembler = Assembler(container: appContainer)
     }
-    
 }

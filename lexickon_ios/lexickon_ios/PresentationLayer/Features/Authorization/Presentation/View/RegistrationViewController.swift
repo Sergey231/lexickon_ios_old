@@ -15,12 +15,13 @@ import XCoordinator
 import RxCombine
 import UIExtensions
 import TimelaneCombine
+import CombineCocoa
 
 final class RegistrationViewController: UIViewController {
-
-    fileprivate let router: UnownedRouter<AuthorizationRoute>
     
     private let presenter: RegistrationPresenter
+    
+//    private let diContainer: Swinject.Container
     
     private var cancellableSet = Set<AnyCancellable>()
     
@@ -35,10 +36,11 @@ final class RegistrationViewController: UIViewController {
     init(
         presenter: RegistrationPresenter,
         router: UnownedRouter<AuthorizationRoute>
+//        contaner: Swinject.Container
     ) {
+        presenter.setRouter(router: router)
         self.presenter = presenter
-        self.router = router
-        print("🎲: \(cancellableSet.count)")
+//        self.diContainer = contaner
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -143,7 +145,17 @@ final class RegistrationViewController: UIViewController {
             returnKeyType: .join
         ))
         
-        presenter.$keyboardHeight
+        let input = RegistrationPresenter.Input(
+            name: nameTextField.textField.textPublisher,
+            email: emailTextField.textField.textPublisher,
+            password: passwordTextField.textField.textPublisher,
+            passwordAgain: passwordTextField.textField.textPublisher,
+            submit: passwordTextField.textField.returnPublisher
+        )
+        
+        let presenterOutput = presenter.configure(input: input)
+        
+        presenterOutput.keyboardHeight
             .lane("🎲")
             .sink { [weak self] in
                 self?._bottom = $0
@@ -157,6 +169,15 @@ final class RegistrationViewController: UIViewController {
                 passwordTextField
             ])
             .forEach { $0.store(in: &cancellableSet) }
+    }
+}
+
+// MARK: - Reset DI Container
+extension RegistrationViewController {
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        DI.shr.appContainer.resetObjectScope(ObjectScope.registrationObjectScope)
     }
 }
 

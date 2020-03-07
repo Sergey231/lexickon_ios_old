@@ -9,133 +9,145 @@
 import Combine
 import SwiftUI
 import Validator
+import XCoordinator
 
 final class RegistrationPresenter: PresenterType {
     
-    // MARK: Input
-    @Published var name = ""
-    @Published var email = ""
-    @Published var password = ""
-    @Published var passwordAgain = ""
-    @Published var submit: Void = ()
+    struct Input {
+        let name: AnyPublisher<String?, Never>
+        let email: AnyPublisher<String?, Never>
+        let password: AnyPublisher<String?, Never>
+        let passwordAgain: AnyPublisher<String?, Never>
+        let submit: AnyPublisher<Void, Never>
+    }
     
-    // MARK: Output
-    @Published var keyboardHeight: CGFloat = 0
-    @Published var nameValidation: ValidationResult = ValidationResult.valid
-    @Published var emailValidation: ValidationResult = ValidationResult.valid
-    @Published var passwordValidation: ValidationResult = ValidationResult.valid
-    @Published var canSubmit: Bool = false
+    struct Output {
+        let keyboardHeight: AnyPublisher<CGFloat, Never>
+        let nameValidation: AnyPublisher<ValidationResult, Never>
+        let emailValidation: AnyPublisher<ValidationResult, Never>
+        let passwordValidation: AnyPublisher<ValidationResult, Never>
+        let canSubmit: AnyPublisher<Bool, Never>
+    }
+    
+    private var router: UnownedRouter<AuthorizationRoute>?
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init() {
+    func setRouter(router: UnownedRouter<AuthorizationRoute>) {
+        self.router = router
+    }
+    
+    func configure(input: Input) -> Output {
         
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.publisher(for: UIWindow.keyboardWillShowNotification)
-            .map {
+        let usernameValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+            
+            let nameMinRule = ValidationRuleLength(
+                min: 2,
+                error: LXError.incorrectName
+            )
+            
+            return input.name.removeDuplicates()
+                .map { input in
+                    input?.validate(rule: nameMinRule) ?? .invalid([LXError.incorrectName])
+                }
+                .eraseToAnyPublisher()
+        }()
+        
+        let emailValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+            
+            let emailRule = ValidationRulePattern(
+                pattern: EmailValidationPattern.standard,
+                error: LXError.incorrectEmail)
+            
+            return input.email.removeDuplicates()
+                .map { input in
+                    input?.validate(rule: emailRule) ?? .invalid([LXError.incorrectEmail])
+            }
+            .eraseToAnyPublisher()
+        }()
+        
+        let passwordValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+            
+            let minLengthRule = ValidationRuleLength(
+                min: 5,
+                error: LXError.Password.tooShort
+            )
+            
+            let maxLengthRule = ValidationRuleLength(
+                max: 18,
+                error: LXError.Password.tooLong
+            )
+            
+            let digitRule = ValidationRulePattern(
+                pattern: ContainsNumberValidationPattern(),
+                error: LXError.Password.needDigital
+            )
+            
+            let lowcaseRule = ValidationRulePattern(
+                pattern: CaseValidationPattern.lowercase,
+                error: LXError.Password.needLowcase
+            )
+            
+            let upcaseRule = ValidationRulePattern(
+                pattern: CaseValidationPattern.uppercase,
+                error: LXError.Password.needUpcase
+            )
+            
+            var passwordValidationRules = ValidationRuleSet<String>()
+            passwordValidationRules.add(rule: digitRule)
+            passwordValidationRules.add(rule: minLengthRule)
+            passwordValidationRules.add(rule: maxLengthRule)
+            passwordValidationRules.add(rule: lowcaseRule)
+            passwordValidationRules.add(rule: upcaseRule)
+            
+            return input.password.removeDuplicates()
+                .map { password in
+                    password?.validate(rules: passwordValidationRules)
+                        ?? .invalid([LXError.Password.tooShort])
+            }
+            .eraseToAnyPublisher()
+        }()
+        
+        let keyboardShowPublisher = notificationCenter
+            .publisher(for: UIWindow.keyboardWillShowNotification)
+            .map { notification -> CGFloat in
                 guard
-                    let info = $0.userInfo,
+                    let info = notification.userInfo,
                     let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
                     else { return 0 }
 
                 return keyboardFrame.height
             }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &cancellableSet)
+            .eraseToAnyPublisher()
         
-        notificationCenter.publisher(for: UIWindow.keyboardWillHideNotification)
-            .map { _ in 0 }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &cancellableSet)
+        let keyboardHidePublisher = notificationCenter
+            .publisher(for: UIWindow.keyboardWillHideNotification)
+            .map { _ -> CGFloat in 0 }
         
-        isUsernameValidPublisher
-            .assign(to: \.nameValidation, on: self)
-            .store(in: &cancellableSet)
+        let keyboardHeight = Publishers.Merge(
+            keyboardHidePublisher,
+            keyboardShowPublisher
+        )
+            .eraseToAnyPublisher()
         
-        isEmailValidPublisher
-            .assign(to: \.emailValidation, on: self)
-            .store(in: &cancellableSet)
-        
-        isPasswordValidPublisher
-            .assign(to: \.passwordValidation, on: self)
-            .store(in: &cancellableSet)
-        
-        Publishers.CombineLatest3(
-            isUsernameValidPublisher,
-            isEmailValidPublisher,
-            isPasswordValidPublisher)
+        let canSubmict = Publishers.CombineLatest3(
+            usernameValidationPublisher,
+            emailValidationPublisher,
+            passwordValidationPublisher
+        )
             .map { $0.isValid && $1.isValid && $2.isValid }
-            .assign(to: \.canSubmit, on: self)
-            .store(in: &cancellableSet)
+            .eraseToAnyPublisher()
+        
+        return Output(
+            keyboardHeight: keyboardHeight,
+            nameValidation: usernameValidationPublisher,
+            emailValidation: emailValidationPublisher,
+            passwordValidation: passwordValidationPublisher,
+            canSubmit: canSubmict
+        )
     }
-    
-    private lazy var isUsernameValidPublisher: AnyPublisher<ValidationResult, Never> = {
-        
-        let nameMinRule = ValidationRuleLength(
-            min: 2,
-            error: LXError.incorrectName
-        )
-        
-        return $name.removeDuplicates()
-            .map { input in
-                input.validate(rule: nameMinRule)
-        }
-        .eraseToAnyPublisher()
-    }()
-    
-    private lazy var isEmailValidPublisher: AnyPublisher<ValidationResult, Never> = {
-        
-        let emailRule = ValidationRulePattern(
-            pattern: EmailValidationPattern.standard,
-            error: LXError.incorrectEmail)
-        
-        return $email.removeDuplicates()
-            .map { input in
-                input.validate(rule: emailRule)
-        }
-        .eraseToAnyPublisher()
-    }()
-    
-    private lazy var isPasswordValidPublisher: AnyPublisher<ValidationResult, Never> = {
-        
-        let minLengthRule = ValidationRuleLength(
-            min: 5,
-            error: LXError.Password.tooShort
-        )
-        
-        let maxLengthRule = ValidationRuleLength(
-            max: 18,
-            error: LXError.Password.tooLong
-        )
-        
-        let digitRule = ValidationRulePattern(
-            pattern: ContainsNumberValidationPattern(),
-            error: LXError.Password.needDigital
-        )
-        
-        let lowcaseRule = ValidationRulePattern(
-            pattern: CaseValidationPattern.lowercase,
-            error: LXError.Password.needLowcase
-        )
-        
-        let upcaseRule = ValidationRulePattern(
-            pattern: CaseValidationPattern.uppercase,
-            error: LXError.Password.needUpcase
-        )
-        
-        var passwordValidationRules = ValidationRuleSet<String>()
-        passwordValidationRules.add(rule: digitRule)
-        passwordValidationRules.add(rule: minLengthRule)
-        passwordValidationRules.add(rule: lowcaseRule)
-        passwordValidationRules.add(rule: upcaseRule)
-        
-        return $password.removeDuplicates()
-            .map { password in
-                password.validate(rules: passwordValidationRules)
-        }
-        .eraseToAnyPublisher()
-    }()
 }
 
 // MARK: - Extract in future

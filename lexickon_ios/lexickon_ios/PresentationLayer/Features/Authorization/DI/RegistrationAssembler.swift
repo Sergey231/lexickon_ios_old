@@ -14,13 +14,23 @@ final class RegistrationAssembler: Assembly {
         
         container.register(RegistrationPresenter.self) { _ in
             RegistrationPresenter()
-        }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.registrationObjectScope)
         
         container.register(RegistrationViewController.self) { resolver, router in
             RegistrationViewController(
                 presenter: resolver.resolve(RegistrationPresenter.self)!,
                 router: router
             )
-        }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.registrationObjectScope)
     }
 }
+
+extension ObjectScope {
+    
+    static let registrationObjectScope = ObjectScope(
+        storageFactory: PermanentStorage.init,
+        description: "registrationObjectScope",
+        parent: ObjectScope.appObjectScope
+    )
+}
+

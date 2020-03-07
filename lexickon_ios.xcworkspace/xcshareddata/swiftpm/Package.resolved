@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
-        "state": {
-          "branch": null,
-          "revision": "747c8db8d57b68d5e35275f10c92d55f982adbd4",
-          "version": "4.9.1"
-        }
-      },
-      {
         "package": "CombineCocoa",
         "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa.git",
         "state": {
@@ -42,8 +33,8 @@
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
-          "revision": "b3e888b4972d9bc76495dd74d30a8c7fad4b9395",
-          "version": "5.0.1"
+          "revision": "c1bd31b397d87a54467af4161dde9d6b27720c19",
+          "version": "5.1.0"
         }
       },
       {
@@ -60,8 +51,8 @@
         "repositoryURL": "https://github.com/icanzilb/TimelaneCombine",
         "state": {
           "branch": null,
-          "revision": "7988d68eb189831c19c17d1e9b103e27ed3851f0",
-          "version": "1.0.0"
+          "revision": "7366c0243860b8dbf265b5a5674e6c4797c44a8f",
+          "version": "1.0.2"
         }
       },
       {
@@ -69,8 +60,8 @@
         "repositoryURL": "https://github.com/icanzilb/TimelaneCore",
         "state": {
           "branch": null,
-          "revision": "38db58e5242e0d9f15e874989a6cdb11770c16fa",
-          "version": "1.0.0"
+          "revision": "7317572859017ecb1a0e7252d865b659e2647e20",
+          "version": "1.0.1"
         }
       },
       {

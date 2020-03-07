@@ -14,14 +14,23 @@ final class LoginAssembler: Assembly {
         
         container.register(LoginPresenter.self) { _ in
             LoginPresenter()
-        }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.loginObjectScope)
         
         container.register(LoginViewController.self) { resolver, router in
             LoginViewController(
                 presenter: resolver.resolve(LoginPresenter.self)!,
                 router: router
             )
-        }.inObjectScope(ObjectScope.appObjectScope)
+        }.inObjectScope(ObjectScope.loginObjectScope)
     }
     
+}
+
+extension ObjectScope {
+    
+    static let loginObjectScope = ObjectScope(
+        storageFactory: PermanentStorage.init,
+        description: "loginObjectScope",
+        parent: ObjectScope.appObjectScope
+    )
 }

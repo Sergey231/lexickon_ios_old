@@ -8,7 +8,7 @@
 
 import Swinject
 
-final class IntroAssembler: Assembly {
+final class IntroAssemly: Assembly {
     
     func assemble(container: Container) {
         
