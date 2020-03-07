@@ -30,7 +30,7 @@ extension ObjectScope {
     static let registrationObjectScope = ObjectScope(
         storageFactory: PermanentStorage.init,
         description: "registrationObjectScope",
-        parent: ObjectScope.appObjectScope
+        parent: ObjectScope.authorizationObjectScope
     )
 }
 

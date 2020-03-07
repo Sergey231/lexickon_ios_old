@@ -38,7 +38,8 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
             return .push(startViewController)
         case .begin:
             let mainCoordinator = MainCoordinator(rootViewController: self.rootViewController)
-            return .route(.home, on: mainCoordinator)
+            addChild(mainCoordinator)
+            return .none()
         case .login:
             let loginVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
                 LoginViewController.self,

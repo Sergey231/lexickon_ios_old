@@ -31,6 +31,6 @@ extension ObjectScope {
     static let loginObjectScope = ObjectScope(
         storageFactory: PermanentStorage.init,
         description: "loginObjectScope",
-        parent: ObjectScope.appObjectScope
+        parent: ObjectScope.authorizationObjectScope
     )
 }

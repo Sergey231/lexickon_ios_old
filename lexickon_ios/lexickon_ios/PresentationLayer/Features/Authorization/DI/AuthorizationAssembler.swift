@@ -23,3 +23,12 @@ struct AuthorizationAssembler {
         ])
     }
 }
+
+extension ObjectScope {
+    
+    static let authorizationObjectScope = ObjectScope(
+        storageFactory: PermanentStorage.init,
+        description: "authorizationObjectScope",
+        parent: ObjectScope.appObjectScope
+    )
+}

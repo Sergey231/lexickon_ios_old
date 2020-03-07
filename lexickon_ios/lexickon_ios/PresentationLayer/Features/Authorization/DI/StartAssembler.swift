@@ -14,7 +14,7 @@ final class StartAssembler: Assembly {
         
         container.register(StartPresenter.self) { _ in
             StartPresenter()
-        }.inObjectScope(ObjectScope.startObjectScope)
+        }.inObjectScope(ObjectScope.authorizationObjectScope)
         
         container.register(StartViewController.self) { resolver, router in
             StartViewController(
@@ -22,15 +22,6 @@ final class StartAssembler: Assembly {
                 router: router,
                 container: container
             )
-        }.inObjectScope(ObjectScope.startObjectScope)
+        }.inObjectScope(ObjectScope.authorizationObjectScope)
     }
-}
-
-extension ObjectScope {
-    
-    static let startObjectScope = ObjectScope(
-        storageFactory: PermanentStorage.init,
-        description: "startObjectScope",
-        parent: ObjectScope.appObjectScope
-    )
 }
