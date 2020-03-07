@@ -27,7 +27,7 @@ final class MainCoordinator: NavigationCoordinator<MainRoute> {
         
         switch route {
         case .home:
-            let mainVC = DI.shr.assembler.resolver.resolve(
+            let mainVC = DI.shr.appAssembler.resolver.resolve(
                 HomeViewController.self,
                 argument: unownedRouter
                 )!

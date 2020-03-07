@@ -9,40 +9,106 @@
 import Combine
 import SwiftUI
 import Validator
+import XCoordinator
 
 final class LoginPresenter: PresenterType {
     
-    // MARK: Input
-    @Published var email = ""
-    @Published var password = ""
-    @Published var submit: Void = ()
+    struct Input {
+        let email: AnyPublisher<String?, Never>
+        let password: AnyPublisher<String?, Never>
+        let submit: AnyPublisher<Void, Never>
+    }
     
-    // MARK: Output
-    @Published var keyboardHeight: CGFloat = 0
-    @Published var emailValidation: ValidationResult = ValidationResult.valid
-    @Published var canSubmit: Bool = false
+    struct Output {
+        let keyboardHeight: AnyPublisher<CGFloat, Never>
+        let emailValidation: AnyPublisher<ValidationResult, Never>
+        let passwordValidation: AnyPublisher<ValidationResult, Never>
+        let canSubmit: AnyPublisher<Bool, Never>
+    }
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init() {
+    private var router: UnownedRouter<AuthorizationRoute>?
+    
+    func setRouter( _ router: UnownedRouter<AuthorizationRoute>) {
+        self.router = router
+    }
+    
+    func configure(input: Input) -> Output {
         
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.publisher(for: UIWindow.keyboardWillShowNotification)
-            .map {
+        let keyboardShowPublisher = notificationCenter
+            .publisher(for: UIWindow.keyboardWillShowNotification)
+            .map { notification -> CGFloat in
                 guard
-                    let info = $0.userInfo,
+                    let info = notification.userInfo,
                     let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
                     else { return 0 }
 
                 return keyboardFrame.height
             }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &cancellableSet)
         
-        notificationCenter.publisher(for: UIWindow.keyboardWillHideNotification)
-            .map { _ in 0 }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &cancellableSet)
+        let keyboardHidePublisher = notificationCenter
+            .publisher(for: UIWindow.keyboardWillHideNotification)
+            .map { _ -> CGFloat in 0 }
+        
+        let keyboardPublisher = Publishers.Merge(
+            keyboardHidePublisher,
+            keyboardShowPublisher
+        )
+            .eraseToAnyPublisher()
+        
+        let emailValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+            
+            let nameMinRule = ValidationRuleLength(
+                min: 2,
+                error: LXError.incorrectName
+            )
+            
+            return input.email.removeDuplicates()
+                .map { input in
+                    input?.validate(rule: nameMinRule) ?? .invalid([LXError.incorrectEmail])
+                }
+                .eraseToAnyPublisher()
+        }()
+        
+        let passwordValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+            
+            let minLengthRule = ValidationRuleLength(
+                min: 5,
+                error: LXError.Password.tooShort
+            )
+            
+            let maxLengthRule = ValidationRuleLength(
+                max: 18,
+                error: LXError.Password.tooLong
+            )
+            
+            var passwordValidationRules = ValidationRuleSet<String>()
+            passwordValidationRules.add(rule: minLengthRule)
+            passwordValidationRules.add(rule: maxLengthRule)
+            
+            return input.password.removeDuplicates()
+                .map { password in
+                    password?.validate(rules: passwordValidationRules)
+                        ?? .invalid([LXError.Password.tooShort])
+            }
+            .eraseToAnyPublisher()
+        }()
+        
+        let canSubmict = Publishers.CombineLatest(
+            emailValidationPublisher,
+            passwordValidationPublisher
+        )
+            .map { $0.isValid && $1.isValid }
+            .eraseToAnyPublisher()
+        
+        return Output(
+            keyboardHeight: keyboardPublisher,
+            emailValidation: emailValidationPublisher,
+            passwordValidation: passwordValidationPublisher,
+            canSubmit: canSubmict
+        )
     }
 }

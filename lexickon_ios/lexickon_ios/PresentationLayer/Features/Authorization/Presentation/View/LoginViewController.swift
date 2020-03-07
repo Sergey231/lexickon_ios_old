@@ -13,10 +13,9 @@ import Combine
 import PinLayout
 import XCoordinator
 import UIExtensions
+import CombineCocoa
 
 final class LoginViewController: UIViewController {
-
-    private let router: UnownedRouter<AuthorizationRoute>
     
     private let presenter: LoginPresenter
     
@@ -33,8 +32,8 @@ final class LoginViewController: UIViewController {
         presenter: LoginPresenter,
         router: UnownedRouter<AuthorizationRoute>
     ) {
+        presenter.setRouter(router)
         self.presenter = presenter
-        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -84,7 +83,15 @@ final class LoginViewController: UIViewController {
             returnKeyType: .join
         ))
         
-        presenter.$keyboardHeight.sink {
+        let input = LoginPresenter.Input(
+            email: emailTextField.textField.textPublisher,
+            password: passwordTextField.textField.textPublisher,
+            submit: passwordTextField.textField.returnPublisher
+        )
+        
+        let presenterOutput = presenter.configure(input: input)
+        
+        presenterOutput.keyboardHeight.sink {
             self._bottom = $0
             self.layout()
         }.store(in: &cancellableSet)
@@ -135,6 +142,15 @@ final class LoginViewController: UIViewController {
             .horizontally(Margin.mid)
             .below(of: emailTextField)
             .marginTop(Margin.regular)
+    }
+}
+
+// MARK: - Reset DI Container
+extension LoginViewController {
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        DI.shr.appContainer.resetObjectScope(ObjectScope.loginObjectScope)
     }
 }
 

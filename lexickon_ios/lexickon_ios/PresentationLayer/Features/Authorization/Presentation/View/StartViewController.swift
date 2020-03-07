@@ -22,9 +22,9 @@ extension UINavigationController {
 
 final class StartViewController: UIViewController {
     
-    private let router: UnownedRouter<AuthorizationRoute>
-    
     private let presenter: StartPresenter
+    
+    private let diContainer: Swinject.Container
     
     private let logo = StartLogo()
     private let beginButton = UIButton()
@@ -35,10 +35,12 @@ final class StartViewController: UIViewController {
     
     init(
         presenter: StartPresenter,
-        router: UnownedRouter<AuthorizationRoute>
+        router: UnownedRouter<AuthorizationRoute>,
+        container: Swinject.Container
     ) {
+        presenter.setRouter(router: router)
         self.presenter = presenter
-        self.router = router
+        self.diContainer = container
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -79,17 +81,13 @@ final class StartViewController: UIViewController {
         createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
         createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
-        beginButton.tapPublisher.sink { _ in
-            self.router.trigger(.begin)
-        }.store(in: &cancellableSet)
+        let presenterInput = StartPresenter.Input(
+            beginButtonTapped: beginButton.tapPublisher,
+            iAmHaveAccountButtonTapped: iAmHaveAccountButton.tapPublisher,
+            createAccountButtonTapped: createAccountButton.tapPublisher
+        )
         
-        iAmHaveAccountButton.tapPublisher.sink { _ in
-            self.router.trigger(.login)
-        }.store(in: &cancellableSet)
-        
-        createAccountButton.tapPublisher.sink { _ in
-            self.router.trigger(.registrate)
-        }.store(in: &cancellableSet)
+        presenter.configure(input: presenterInput)
     }
     
     private func createUI() {
@@ -132,7 +130,8 @@ extension StartViewController: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
         return StartViewController(
             presenter: StartPresenter(),
-            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter,
+            container: Swinject.Container()
         ).view
     }
 
@@ -143,7 +142,8 @@ struct StartViewController_Preview: PreviewProvider {
     static var previews: some View {
         StartViewController(
             presenter: StartPresenter(),
-            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter
+            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter,
+            container: Swinject.Container()
         )
     }
 }

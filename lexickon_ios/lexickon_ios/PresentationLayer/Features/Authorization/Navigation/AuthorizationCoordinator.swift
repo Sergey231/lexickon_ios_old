@@ -31,27 +31,25 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
         switch route {
             
         case .start:
-            let startViewController = DI.shr.assembler.resolver.resolve(
+            let startViewController = AuthorizationAssembler.shr.assembler.resolver.resolve(
                 StartViewController.self,
                 argument: unownedRouter
-                )!
+            )!
             return .push(startViewController)
         case .begin:
             let mainCoordinator = MainCoordinator(rootViewController: self.rootViewController)
-            addChild(mainCoordinator)
-            return .none()
+            return .route(.home, on: mainCoordinator)
         case .login:
-            let loginVC = DI.shr.assembler.resolver.resolve(
+            let loginVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
                 LoginViewController.self,
                 argument: unownedRouter
             )!
             return .push(loginVC)
         case .registrate:
-//            let registratioinVC = DI.shr.assembler.resolver.resolve(
-//                RegistrationViewController.self,
-//                argument: unownedRouter
-//            )!
-            let registratioinVC = RegistrationViewController(presenter: RegistrationPresenter(), router: unownedRouter)
+            let registratioinVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
+                RegistrationViewController.self,
+                argument: unownedRouter
+            )!
             return .push(registratioinVC)
         }
     }
