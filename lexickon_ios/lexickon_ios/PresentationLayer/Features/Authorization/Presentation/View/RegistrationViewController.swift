@@ -21,8 +21,6 @@ final class RegistrationViewController: UIViewController {
     
     private let presenter: RegistrationPresenter
     
-//    private let diContainer: Swinject.Container
-    
     private var cancellableSet = Set<AnyCancellable>()
     
     private var _bottom: CGFloat = 0
@@ -36,11 +34,9 @@ final class RegistrationViewController: UIViewController {
     init(
         presenter: RegistrationPresenter,
         router: UnownedRouter<AuthorizationRoute>
-//        contaner: Swinject.Container
     ) {
         presenter.setRouter(router: router)
         self.presenter = presenter
-//        self.diContainer = contaner
         super.init(nibName: nil, bundle: nil)
     }
     
