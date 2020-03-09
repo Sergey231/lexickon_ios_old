@@ -5,6 +5,9 @@
       location = "group:lexickon_ios/lexickon_ios.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Utils">
+   </FileRef>
+   <FileRef
       location = "group:UIExtensions">
    </FileRef>
 </Workspace>
