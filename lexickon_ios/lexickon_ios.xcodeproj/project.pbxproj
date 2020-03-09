@@ -167,10 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				ECCB193523F962A00069C5A7 /* DI */,
-				ECCB194A23FAF45F0069C5A7 /* Data */,
-				ECCB194723FAF4110069C5A7 /* Domain */,
 				ECCB194123F964760069C5A7 /* Navigation */,
 				ECCB193423F9614A0069C5A7 /* Presentation */,
+				ECCB194723FAF4110069C5A7 /* Domain */,
+				ECCB194A23FAF45F0069C5A7 /* Data */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";

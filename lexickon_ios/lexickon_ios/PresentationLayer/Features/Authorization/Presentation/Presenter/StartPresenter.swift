@@ -18,26 +18,26 @@ final class StartPresenter: PresenterType {
         let createAccountButtonTapped: AnyPublisher<Void, Never>
     }
     
-    private var router: UnownedRouter<AuthorizationRoute>?
+    private var authorizationRouter: UnownedRouter<AuthorizationRoute>?
     
     private var cancellableSet = Set<AnyCancellable>()
     
-    func setRouter(router: UnownedRouter<AuthorizationRoute>) {
-        self.router = router
+    func setRouter(router: UnownedRouter<AuthorizationRoute>?) {
+        self.authorizationRouter = router
     }
     
     func configure(input: Input) {
         
         input.beginButtonTapped.sink { [weak self] _ in
-            self?.router?.trigger(.begin)
+            self?.authorizationRouter?.trigger(.begin)
         }.store(in: &cancellableSet)
         
         input.iAmHaveAccountButtonTapped.sink { _ in
-            self.router?.trigger(.login)
+            self.authorizationRouter?.trigger(.login)
         }.store(in: &cancellableSet)
         
         input.createAccountButtonTapped.sink { _ in
-            self.router?.trigger(.registrate)
+            self.authorizationRouter?.trigger(.registrate)
         }.store(in: &cancellableSet)
     }
 }

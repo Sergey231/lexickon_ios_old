@@ -19,8 +19,7 @@ final class StartAssembler: Assembly {
         container.register(StartViewController.self) { resolver, router in
             StartViewController(
                 presenter: resolver.resolve(StartPresenter.self)!,
-                router: router,
-                container: container
+                router: router
             )
         }.inObjectScope(ObjectScope.authorizationObjectScope)
     }

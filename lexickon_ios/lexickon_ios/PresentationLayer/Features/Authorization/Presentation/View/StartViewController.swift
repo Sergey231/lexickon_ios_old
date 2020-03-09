@@ -24,8 +24,6 @@ final class StartViewController: UIViewController {
     
     private let presenter: StartPresenter
     
-    private let diContainer: Swinject.Container
-    
     private let logo = StartLogo()
     private let beginButton = UIButton()
     private let iAmHaveAccountButton = UIButton()
@@ -35,12 +33,10 @@ final class StartViewController: UIViewController {
     
     init(
         presenter: StartPresenter,
-        router: UnownedRouter<AuthorizationRoute>,
-        container: Swinject.Container
+        router: UnownedRouter<AuthorizationRoute>
     ) {
         presenter.setRouter(router: router)
         self.presenter = presenter
-        self.diContainer = container
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -130,8 +126,7 @@ extension StartViewController: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
         return StartViewController(
             presenter: StartPresenter(),
-            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter,
-            container: Swinject.Container()
+            router: AuthorizationCoordinator.empty()
         ).view
     }
 
@@ -142,8 +137,7 @@ struct StartViewController_Preview: PreviewProvider {
     static var previews: some View {
         StartViewController(
             presenter: StartPresenter(),
-            router: AuthorizationCoordinator(rootViewController: UINavigationController()).unownedRouter,
-            container: Swinject.Container()
+            router: AuthorizationCoordinator.empty()
         )
     }
 }

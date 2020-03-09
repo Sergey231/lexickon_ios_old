@@ -25,7 +25,10 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .authorization:
-            let authorizationCoordinator = AuthorizationCoordinator(rootViewController: self.rootViewController)
+            let authorizationCoordinator = AuthorizationCoordinator(
+                rootViewController: self.rootViewController,
+                appRouter: unownedRouter
+            )
             addChild(authorizationCoordinator)
             return .none()
             

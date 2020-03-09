@@ -11,19 +11,33 @@ import XCoordinator
 
 enum AuthorizationRoute: Route {
     case start
-    case begin
     case login
     case registrate
+    case begin
 }
 
 final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> {
     
-    init(rootViewController: UINavigationController) {
+    private let appRouter: UnownedRouter<AppRoute>
+    
+    init(
+        rootViewController: UINavigationController,
+        appRouter: UnownedRouter<AppRoute>
+    ) {
+        self.appRouter = appRouter
         super.init(
             rootViewController: rootViewController,
             initialRoute: nil
         )
         trigger(.start)
+    }
+    
+    // MARK: - for SwiftUI/Preview
+    static func empty() -> UnownedRouter<AuthorizationRoute> {
+        return AuthorizationCoordinator(
+            rootViewController: UINavigationController(),
+            appRouter: AppCoordinator().unownedRouter
+        ).unownedRouter
     }
     
     override func prepareTransition(for route: AuthorizationRoute) -> NavigationTransition {
@@ -36,10 +50,6 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
                 argument: unownedRouter
             )!
             return .push(startViewController)
-        case .begin:
-            let mainCoordinator = MainCoordinator(rootViewController: self.rootViewController)
-            addChild(mainCoordinator)
-            return .none()
         case .login:
             let loginVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
                 LoginViewController.self,
@@ -52,6 +62,9 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
                 argument: unownedRouter
             )!
             return .push(registratioinVC)
+        case .begin:
+            appRouter.trigger(.main)
+            return .none()
         }
     }
 }

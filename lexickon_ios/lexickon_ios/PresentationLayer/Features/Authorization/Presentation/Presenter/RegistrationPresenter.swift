@@ -33,7 +33,7 @@ final class RegistrationPresenter: PresenterType {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    func setRouter(router: UnownedRouter<AuthorizationRoute>) {
+    func setRouter(router: UnownedRouter<AuthorizationRoute>?) {
         self.router = router
     }
     
