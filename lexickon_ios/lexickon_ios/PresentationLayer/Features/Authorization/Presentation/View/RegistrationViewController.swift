@@ -33,7 +33,7 @@ final class RegistrationViewController: UIViewController {
     
     init(
         presenter: RegistrationPresenter,
-        router: UnownedRouter<AuthorizationRoute>? = nil
+        router: UnownedRouter<AuthorizationRoute>
     ) {
         presenter.setRouter(router: router)
         self.presenter = presenter
@@ -180,7 +180,10 @@ extension RegistrationViewController {
 extension RegistrationViewController: UIViewRepresentable {
 
     func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
-        return RegistrationViewController(presenter: RegistrationPresenter()).view
+        return RegistrationViewController(
+            presenter: RegistrationPresenter(),
+            router: AuthorizationCoordinator.empty()
+            ).view
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {}
@@ -188,6 +191,9 @@ extension RegistrationViewController: UIViewRepresentable {
 
 struct RegistrationView_Preview: PreviewProvider {
     static var previews: some View {
-        RegistrationViewController(presenter: RegistrationPresenter())
+        RegistrationViewController(
+            presenter: RegistrationPresenter(),
+            router: AuthorizationCoordinator.empty()
+        )
     }
 }
