@@ -30,7 +30,7 @@ final class LoginPresenter: PresenterType {
     
     private var router: UnownedRouter<AuthorizationRoute>?
     
-    func setRouter( _ router: UnownedRouter<AuthorizationRoute>?) {
+    func setRouter( _ router: UnownedRouter<AuthorizationRoute>) {
         self.router = router
     }
     

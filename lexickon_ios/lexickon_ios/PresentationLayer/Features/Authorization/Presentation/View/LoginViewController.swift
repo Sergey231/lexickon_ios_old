@@ -30,7 +30,7 @@ final class LoginViewController: UIViewController {
     
     init(
         presenter: LoginPresenter,
-        router: UnownedRouter<AuthorizationRoute>? = nil
+        router: UnownedRouter<AuthorizationRoute>
     ) {
         presenter.setRouter(router)
         self.presenter = presenter
@@ -158,7 +158,10 @@ extension LoginViewController {
 extension LoginViewController: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
-        return LoginViewController(presenter: LoginPresenter()).view
+        return LoginViewController(
+            presenter: LoginPresenter(),
+            router: AuthorizationCoordinator.empty()
+        ).view
     }
     
     func updateUIView(_ uiView: UIView, context: Context) {}
@@ -166,6 +169,9 @@ extension LoginViewController: UIViewRepresentable {
 
 struct LoginViewController_Preview: PreviewProvider {
     static var previews: some View {
-        LoginViewController(presenter: LoginPresenter())
+        LoginViewController(
+            presenter: LoginPresenter(),
+            router: AuthorizationCoordinator.empty()
+        )
     }
 }
