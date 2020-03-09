@@ -65,8 +65,6 @@ final class LoginViewController: UIViewController {
         
         configureHidingKeyboardByTap()
         
-        view.addSubview(contentView)
-        
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
         
@@ -88,14 +86,14 @@ final class LoginViewController: UIViewController {
             password: passwordTextField.textField.textPublisher,
             submit: passwordTextField.textField.returnPublisher
         )
-        
+
         let presenterOutput = presenter.configure(input: input)
-        
-        presenterOutput.keyboardHeight.sink {
-            self._bottom = $0
-            self.layout()
+
+        presenterOutput.keyboardHeight.sink { [weak self] in
+            self?._bottom = $0
+            self?.layout()
         }.store(in: &cancellableSet)
-        
+
         EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 emailTextField,
@@ -105,6 +103,8 @@ final class LoginViewController: UIViewController {
     }
     
     private func createUI() {
+        
+        view.addSubview(contentView)
         
         contentView.addSubviews(
             logo,
@@ -150,20 +150,21 @@ extension LoginViewController {
     
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
+        print(CFGetRetainCount(self))
         DI.shr.appContainer.resetObjectScope(ObjectScope.loginObjectScope)
     }
 }
 
 
 extension LoginViewController: UIViewRepresentable {
-    
+
     func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
         return LoginViewController(
             presenter: LoginPresenter(),
             router: AuthorizationCoordinator.empty()
         ).view
     }
-    
+
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
