@@ -150,7 +150,6 @@ extension LoginViewController {
     
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
-        print(CFGetRetainCount(self))
         DI.shr.appContainer.resetObjectScope(ObjectScope.loginObjectScope)
     }
 }

@@ -51,6 +51,7 @@ final class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.mainBG.color
+        
         createUI()
         configureUI()
     }
@@ -83,7 +84,10 @@ final class StartViewController: UIViewController {
             createAccountButtonTapped: createAccountButton.tapPublisher
         )
         
-        presenter.configure(input: presenterInput)
+        let presenterOutput = presenter.configure(input: presenterInput)
+        
+        presenterOutput.cancellableSet
+            .forEach { $0.store(in: &cancellableSet) }
     }
     
     private func createUI() {
@@ -117,6 +121,10 @@ final class StartViewController: UIViewController {
             .size(Sizes.button)
             .above(of: iAmHaveAccountButton)
             .marginBottom(Margin.mid)
+    }
+    
+    deinit {
+        print("💀")
     }
 }
 

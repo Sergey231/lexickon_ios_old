@@ -64,6 +64,7 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
             return .push(registratioinVC)
         case .begin:
             appRouter.trigger(.main)
+            DI.shr.appContainer.resetObjectScope(.authorizationObjectScope)
             return .none()
         }
     }
