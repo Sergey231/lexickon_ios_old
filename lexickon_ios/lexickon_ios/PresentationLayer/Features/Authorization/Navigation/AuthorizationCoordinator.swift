@@ -27,9 +27,8 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
         self.appRouter = appRouter
         super.init(
             rootViewController: rootViewController,
-            initialRoute: nil
+            initialRoute: .start
         )
-        trigger(.start)
     }
     
     // MARK: - for SwiftUI/Preview
@@ -63,9 +62,9 @@ final class AuthorizationCoordinator: NavigationCoordinator<AuthorizationRoute> 
             )!
             return .push(registratioinVC)
         case .begin:
-            appRouter.trigger(.main)
             DI.shr.appContainer.resetObjectScope(.authorizationObjectScope)
-            return .none()
+            (viewController as! UINavigationController).viewControllers.removeAll()
+            return .trigger(.main, on: appRouter)
         }
     }
 }

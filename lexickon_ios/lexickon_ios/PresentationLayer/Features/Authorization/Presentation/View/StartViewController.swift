@@ -65,6 +65,7 @@ final class StartViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         logo.stopAnimation()
+        print("⚽️⚽️ \(CFGetRetainCount(self))")
     }
     
     private func configureUI() {
@@ -128,24 +129,33 @@ final class StartViewController: UIViewController {
     }
 }
 
-
-extension StartViewController: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-        return StartViewController(
-            presenter: StartPresenter(),
-            router: AuthorizationCoordinator.empty()
-        ).view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct StartViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        StartViewController(
-            presenter: StartPresenter(),
-            router: AuthorizationCoordinator.empty()
-        )
+extension StartViewController {
+    
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+        print("⚽️   \(CFGetRetainCount(self))")
     }
 }
+
+
+
+//extension StartViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+//        return StartViewController(
+//            presenter: StartPresenter(),
+//            router: AuthorizationCoordinator.empty()
+//        ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct StartViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        StartViewController(
+//            presenter: StartPresenter(),
+//            router: AuthorizationCoordinator.empty()
+//        )
+//    }
+//}

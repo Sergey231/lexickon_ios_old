@@ -39,8 +39,7 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
                 )!
             return .push(introVC)
         case .main:
-            let mainCoordinator = MainCoordinator(rootViewController: self.rootViewController)
-            addChild(mainCoordinator)
+            addChild(MainCoordinator(rootViewController: self.rootViewController))
             return .none()
         }
     }
