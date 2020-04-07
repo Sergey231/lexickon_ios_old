@@ -9,7 +9,6 @@
 import Combine
 import SwiftUI
 import Validator
-import XCoordinator
 
 final class LoginPresenter: PresenterType {
     
@@ -27,12 +26,6 @@ final class LoginPresenter: PresenterType {
     }
     
     private var cancellableSet: Set<AnyCancellable> = []
-    
-    private var router: UnownedRouter<AuthorizationRoute>?
-    
-    func setRouter( _ router: UnownedRouter<AuthorizationRoute>) {
-        self.router = router
-    }
     
     func configure(input: Input) -> Output {
         

@@ -12,19 +12,15 @@ import Swinject
 import PinLayout
 import Combine
 import CombineCocoa
-import XCoordinator
 
 final class HomeViewController: UIViewController {
     
     private let presenter: HomePresenter
-    private let router: UnownedRouter<MainRoute>
     
     init(
-        presenter: HomePresenter,
-        router: UnownedRouter<MainRoute>
+        presenter: HomePresenter
     ) {
         self.presenter = presenter
-        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,8 +38,7 @@ extension HomeViewController: UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
         return HomeViewController(
-            presenter: HomePresenter(),
-            router: MainCoordinator(rootViewController: UINavigationController()).unownedRouter
+            presenter: HomePresenter()
         ).view
     }
     
@@ -53,8 +48,7 @@ extension HomeViewController: UIViewRepresentable {
 struct HomeViewController_Preview: PreviewProvider {
     static var previews: some View {
         HomeViewController(
-            presenter: HomePresenter(),
-            router: MainCoordinator(rootViewController: UINavigationController()).unownedRouter
+            presenter: HomePresenter()
         )
     }
 }

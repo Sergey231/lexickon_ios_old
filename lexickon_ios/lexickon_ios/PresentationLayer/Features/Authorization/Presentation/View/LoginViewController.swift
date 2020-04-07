@@ -7,15 +7,18 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 import Swinject
 import Combine
 import PinLayout
-import XCoordinator
 import UIExtensions
 import CombineCocoa
+import RxFlow
+import RxRelay
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController, Stepper {
+    
+    let steps = PublishRelay<Step>()
     
     private let presenter: LoginPresenter
     
@@ -28,11 +31,7 @@ final class LoginViewController: UIViewController {
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
     
-    init(
-        presenter: LoginPresenter,
-        router: UnownedRouter<AuthorizationRoute>
-    ) {
-        presenter.setRouter(router)
+    init(presenter: LoginPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -155,23 +154,21 @@ extension LoginViewController {
 }
 
 
-extension LoginViewController: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
-        return LoginViewController(
-            presenter: LoginPresenter(),
-            router: AuthorizationCoordinator.empty()
-        ).view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct LoginViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        LoginViewController(
-            presenter: LoginPresenter(),
-            router: AuthorizationCoordinator.empty()
-        )
-    }
-}
+//extension LoginViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<LoginViewController>) -> UIView {
+//        return LoginViewController(
+//            presenter: LoginPresenter()
+//        ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct LoginViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        LoginViewController(
+//            presenter: LoginPresenter()
+//        )
+//    }
+//}

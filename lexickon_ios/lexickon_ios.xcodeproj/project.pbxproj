@@ -15,8 +15,6 @@
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
 		EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
-		EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */; };
-		EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FC23EDAF7F003AAB76 /* XCoordinator */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
 		EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginViewController.swift */; };
@@ -48,6 +46,9 @@
 		ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
+		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
+		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
+		ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */; };
 		ECC15EEC2416220F00149AC9 /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECC15EEB2416220F00149AC9 /* Utils */; };
 		ECCB193323F834010069C5A7 /* RxCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECCB193223F834010069C5A7 /* RxCombine */; };
 		ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193623F962C20069C5A7 /* AuthorizationAssembler.swift */; };
@@ -115,6 +116,8 @@
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
+		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
+		ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
 		ECCB193623F962C20069C5A7 /* AuthorizationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembler.swift; sourceTree = "<group>"; };
 		ECCB193923F9633C0069C5A7 /* MainAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembler.swift; sourceTree = "<group>"; };
 		ECCB193D23F963A80069C5A7 /* IntroAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAssembler.swift; sourceTree = "<group>"; };
@@ -135,13 +138,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */,
+				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				ECCB193323F834010069C5A7 /* RxCombine in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* Utils in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
-				EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */,
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
@@ -223,6 +225,7 @@
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
 				ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */,
+				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC4278FC22D07199001218AB /* PresentationLayer */,
 				EC4278FF22D071F4001218AB /* Resources */,
@@ -381,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */,
+				ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -493,11 +497,10 @@
 				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
 				EC873D7423DD6EC400787E51 /* CombineCocoa */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
-				EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */,
-				EC3B87FC23EDAF7F003AAB76 /* XCoordinator */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
 				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
 				ECC15EEB2416220F00149AC9 /* Utils */,
+				ECBEB5062439C0DE0017855E /* RxFlow */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -554,9 +557,9 @@
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
 				ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */,
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
-				EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
 				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
+				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -611,6 +614,7 @@
 				ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
+				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
@@ -632,6 +636,7 @@
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */,
 				EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */,
+				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
 				ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
@@ -893,14 +898,6 @@
 				minimumVersion = 2.6.2;
 			};
 		};
-		EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/quickbirdstudios/XCoordinator.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.7;
-			};
-		};
 		EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sergey231/Validator.git";
@@ -923,6 +920,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.8.13;
+			};
+		};
+		ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
 			};
 		};
 		ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */ = {
@@ -953,16 +958,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
 		};
-		EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */;
-			productName = XCoordinatorCombine;
-		};
-		EC3B87FC23EDAF7F003AAB76 /* XCoordinator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */;
-			productName = XCoordinator;
-		};
 		EC407EDE237C3B8400A3FD42 /* Validator */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */;
@@ -977,6 +972,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		ECBEB5062439C0DE0017855E /* RxFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */;
+			productName = RxFlow;
 		};
 		ECC15EEB2416220F00149AC9 /* Utils */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -16,10 +16,9 @@ final class LoginAssembler: Assembly {
             LoginPresenter()
         }.inObjectScope(ObjectScope.loginObjectScope)
         
-        container.register(LoginViewController.self) { resolver, router in
+        container.register(LoginViewController.self) { resolver in
             LoginViewController(
-                presenter: resolver.resolve(LoginPresenter.self)!,
-                router: router
+                presenter: resolver.resolve(LoginPresenter.self)!
             )
         }.inObjectScope(ObjectScope.loginObjectScope)
     }

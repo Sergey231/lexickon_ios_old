@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 import Swinject
 import Combine
 import PinLayout
 import CombineCocoa
-import XCoordinator
+import RxFlow
+import RxRelay
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -20,7 +21,9 @@ extension UINavigationController {
     }
 }
 
-final class StartViewController: UIViewController {
+class StartViewController: UIViewController, Stepper {
+    
+    let steps = PublishRelay<Step>()
     
     private let presenter: StartPresenter
     
@@ -31,11 +34,7 @@ final class StartViewController: UIViewController {
     
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(
-        presenter: StartPresenter,
-        router: UnownedRouter<AuthorizationRoute>
-    ) {
-        presenter.setRouter(router: router)
+    init(presenter: StartPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -124,23 +123,21 @@ final class StartViewController: UIViewController {
     }
 }
 
-extension StartViewController: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-        return StartViewController(
-            presenter: StartPresenter(),
-            router: AuthorizationCoordinator.empty()
-        ).view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct StartViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        StartViewController(
-            presenter: StartPresenter(),
-            router: AuthorizationCoordinator.empty()
-        )
-    }
-}
+//extension StartViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+//        return StartViewController(
+//            presenter: StartPresenter()
+//        ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct StartViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        StartViewController(
+//            presenter: StartPresenter()
+//        )
+//    }
+//}

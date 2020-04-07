@@ -7,17 +7,20 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 import Swinject
 import Combine
 import PinLayout
-import XCoordinator
 import RxCombine
 import UIExtensions
 import TimelaneCombine
 import CombineCocoa
+import RxFlow
+import RxRelay
 
-final class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController, Stepper {
+    
+    let steps = PublishRelay<Step>()
     
     private let presenter: RegistrationPresenter
     
@@ -31,11 +34,7 @@ final class RegistrationViewController: UIViewController {
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
     
-    init(
-        presenter: RegistrationPresenter,
-        router: UnownedRouter<AuthorizationRoute>
-    ) {
-        presenter.setRouter(router: router)
+    init(presenter: RegistrationPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -177,23 +176,21 @@ extension RegistrationViewController {
     }
 }
 
-extension RegistrationViewController: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
-        return RegistrationViewController(
-            presenter: RegistrationPresenter(),
-            router: AuthorizationCoordinator.empty()
-            ).view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct RegistrationView_Preview: PreviewProvider {
-    static var previews: some View {
-        RegistrationViewController(
-            presenter: RegistrationPresenter(),
-            router: AuthorizationCoordinator.empty()
-        )
-    }
-}
+//extension RegistrationViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
+//        return RegistrationViewController(
+//            presenter: RegistrationPresenter()
+//            ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct RegistrationView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        RegistrationViewController(
+//            presenter: RegistrationPresenter()
+//        )
+//    }
+//}

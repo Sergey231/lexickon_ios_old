@@ -9,11 +9,14 @@
 import UIKit
 import SwiftUI
 import Swinject
+import RxSwift
+import RxFlow
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    let disposeBag = DisposeBag()
     var window: UIWindow?
-    let router = AppCoordinator().strongRouter
+    var coordinator = FlowCoordinator()
 
     func scene(
         _ scene: UIScene,
@@ -21,8 +24,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
+        
+        coordinator.rx.willNavigate.subscribe(onNext: { (flow, step) in
+            print("🔨 will navigate to flow=\(flow) and step=\(step)")
+        }).disposed(by: self.disposeBag)
+
+        coordinator.rx.didNavigate.subscribe(onNext: { (flow, step) in
+            print("🔨 did navigate to flow=\(flow) and step=\(step)")
+        }).disposed(by: self.disposeBag)
+
         window = UIWindow(windowScene: windowScene)
-        router.setRoot(for: window!)
+        
+        guard let window = self.window else { return }
+        
+        let appFlow = AppFlow()
+        
+        Flows.whenReady(flow1: appFlow) { root in
+            window.rootViewController = root
+            window.makeKeyAndVisible()
+        }
+        
+        coordinator.coordinate(flow: appFlow, with: AppStepper())
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

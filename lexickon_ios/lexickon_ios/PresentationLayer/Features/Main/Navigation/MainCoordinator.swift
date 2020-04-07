@@ -7,31 +7,30 @@
 //
 
 import UIKit
-import XCoordinator
 
-enum MainRoute: Route {
-    case home
-}
-
-final class MainCoordinator: NavigationCoordinator<MainRoute> {
-    
-    init(rootViewController: UINavigationController) {
-        super.init(
-            rootViewController: rootViewController,
-            initialRoute: nil
-        )
-        trigger(.home)
-    }
-    
-    override func prepareTransition(for route: MainRoute) -> NavigationTransition {
-        
-        switch route {
-        case .home:
-            let mainVC = MainAssembler.shr.assembler.resolver.resolve(
-                HomeViewController.self,
-                argument: unownedRouter
-            )!
-            return .push(mainVC)
-        }
-    }
-}
+//enum MainRoute: Route {
+//    case home
+//}
+//
+//final class MainCoordinator: NavigationCoordinator<MainRoute> {
+//
+//    init(rootViewController: UINavigationController) {
+//        super.init(
+//            rootViewController: rootViewController,
+//            initialRoute: nil
+//        )
+//        trigger(.home)
+//    }
+//
+//    override func prepareTransition(for route: MainRoute) -> NavigationTransition {
+//
+//        switch route {
+//        case .home:
+//            let mainVC = MainAssembler.shr.assembler.resolver.resolve(
+//                HomeViewController.self,
+//                argument: unownedRouter
+//            )!
+//            return .push(mainVC)
+//        }
+//    }
+//}
