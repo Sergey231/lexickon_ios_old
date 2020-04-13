@@ -24,7 +24,6 @@ class AuthorizationFlow: Flow {
     
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
-        viewController.navigationBar.topItem?.title = "OnBoarding"
         return viewController
     }()
     
@@ -38,23 +37,37 @@ class AuthorizationFlow: Flow {
         switch step {
             
         case .start:
-            let startViewController = AuthorizationAssembler.shr.assembler.resolver.resolve(
-                StartViewController.self
-            )!
-            self.rootViewController.pushViewController(startViewController, animated: true)
-            return .one(flowContributor: .contribute(withNext: startViewController))
+            return navigateToStart()
         case .login:
-            let loginVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
-                LoginViewController.self
-            )!
-            return .one(flowContributor: .contribute(withNext: loginVC))
+            return navigateToLogin()
         case .registrate:
-            let registratioinVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
-                RegistrationViewController.self
-            )!
-            return .one(flowContributor: .contribute(withNext: registratioinVC))
+            return navigateToRegistration()
         case .begin:
-            return .none
+            return .end(forwardToParentFlowWithStep: AppStep.main)
         }
+    }
+    
+    private func navigateToStart() -> FlowContributors {
+        let startVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
+            StartViewController.self
+        )!
+        (root as! UINavigationController).pushViewController(startVC, animated: true)
+        return .one(flowContributor: .contribute(withNext: startVC))
+    }
+    
+    private func navigateToLogin() -> FlowContributors {
+        let loginVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
+            LoginViewController.self
+        )!
+        (root as! UINavigationController).pushViewController(loginVC, animated: true)
+        return .one(flowContributor: .contribute(withNext: loginVC))
+    }
+    
+    private func navigateToRegistration() -> FlowContributors {
+        let registratioinVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
+            RegistrationViewController.self
+        )!
+        (root as! UINavigationController).pushViewController(registratioinVC, animated: true)
+        return .one(flowContributor: .contribute(withNext: registratioinVC))
     }
 }

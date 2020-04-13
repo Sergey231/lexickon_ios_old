@@ -14,6 +14,7 @@ import PinLayout
 import CombineCocoa
 import RxFlow
 import RxRelay
+import RxSwift
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,6 +33,7 @@ class StartViewController: UIViewController, Stepper {
     private let iAmHaveAccountButton = UIButton()
     private let createAccountButton = UIButton()
     
+    private let disposeBag = DisposeBag()
     private var cancellableSet: Set<AnyCancellable> = []
     
     init(presenter: StartPresenter) {
@@ -82,6 +84,21 @@ class StartViewController: UIViewController, Stepper {
             iAmHaveAccountButtonTapped: iAmHaveAccountButton.tapPublisher,
             createAccountButtonTapped: createAccountButton.tapPublisher
         )
+        
+        beginButton.rx.tap
+            .map { AuthorizationStep.begin }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
+        iAmHaveAccountButton.rx.tap
+            .map { AuthorizationStep.login }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
+        createAccountButton.rx.tap
+            .map { AuthorizationStep.registrate }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
         
         let presenterOutput = presenter.configure(input: presenterInput)
         

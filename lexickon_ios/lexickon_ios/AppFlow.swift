@@ -11,7 +11,7 @@ import RxFlow
 import RxCocoa
 import RxSwift
 
-enum LXStep: Step {
+enum AppStep: Step {
     case intro
     case authorization
     case main
@@ -34,7 +34,7 @@ final class AppFlow: Flow {
     }
     
     func navigate(to step: Step) -> FlowContributors {
-        guard let step = step as? LXStep else { return .none }
+        guard let step = step as? AppStep else { return .none }
 
         switch step {
         case .authorization:
@@ -75,13 +75,13 @@ final class AppStepper: Stepper {
     let steps = PublishRelay<Step>()
     
     var initialStep: Step {
-        return LXStep.authorization
+        return AppStep.authorization
     }
     
     func appRoute(
         isSeenIntro: Bool,
         isAuthorized: Bool
-    ) -> LXStep {
+    ) -> AppStep {
         switch (isSeenIntro, isAuthorized) {
         case (false, false), (true, false):
             return .authorization

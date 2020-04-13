@@ -13,7 +13,6 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
-		EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
@@ -105,7 +104,6 @@
 		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		EC873D7D23DD756F00787E51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EC873D7F23DD759000787E51 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		EC99BD6423F29AAA00A500A9 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -383,7 +381,6 @@
 		ECCB194123F964760069C5A7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */,
 				ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */,
 			);
 			path = Navigation;
@@ -635,7 +632,6 @@
 				ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */,
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */,
-				EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
 				ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
