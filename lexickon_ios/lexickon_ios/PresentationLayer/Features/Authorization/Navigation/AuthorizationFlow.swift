@@ -22,10 +22,11 @@ class AuthorizationFlow: Flow {
         self.rootViewController
     }
     
-    private lazy var rootViewController: UINavigationController = {
-        let viewController = UINavigationController()
-        return viewController
-    }()
+    private let rootViewController: UINavigationController
+    
+    init(with root: UINavigationController) {
+        self.rootViewController = root
+    }
     
     deinit {
         print("\(type(of: self)): \(#function)")

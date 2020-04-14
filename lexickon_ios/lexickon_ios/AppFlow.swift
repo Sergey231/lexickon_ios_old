@@ -48,12 +48,7 @@ final class AppFlow: Flow {
     
     private func navigationToAuthorization() -> FlowContributors {
         
-        let authorizationFlow = AuthorizationFlow()
-        
-        Flows.whenReady(flow1: authorizationFlow) { [unowned self] root in
-            let viewControllers = (root as! UINavigationController).viewControllers
-            self.rootViewController.setViewControllers(viewControllers, animated: true)
-        }
+        let authorizationFlow = AuthorizationFlow(with: rootViewController)
         
         return .one(flowContributor: .contribute(
             withNextPresentable: authorizationFlow,
