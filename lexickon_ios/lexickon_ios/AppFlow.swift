@@ -61,7 +61,13 @@ final class AppFlow: Flow {
     }
     
     private func navigationToMain() -> FlowContributors {
-        return .none
+        
+        let mainFlow = MainFlow(with: rootViewController)
+        
+        return .one(flowContributor: .contribute(
+            withNextPresentable: mainFlow,
+            withNextStepper: OneStepper(withSingleStep: MainStep.home)
+        ))
     }
 }
 

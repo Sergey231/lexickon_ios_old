@@ -7,13 +7,17 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 import Swinject
 import PinLayout
 import Combine
 import CombineCocoa
+import RxFlow
+import RxCocoa
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, Stepper {
+    
+    let steps = PublishRelay<Step>()
     
     private let presenter: HomePresenter
     
@@ -34,21 +38,21 @@ final class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
-        return HomeViewController(
-            presenter: HomePresenter()
-        ).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct HomeViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        HomeViewController(
-            presenter: HomePresenter()
-        )
-    }
-}
+//extension HomeViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
+//        return HomeViewController(
+//            presenter: HomePresenter()
+//        ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct HomeViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        HomeViewController(
+//            presenter: HomePresenter()
+//        )
+//    }
+//}
