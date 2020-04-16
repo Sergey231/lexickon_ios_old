@@ -12,7 +12,6 @@ import RxCocoa
 import RxSwift
 
 enum AppStep: Step {
-    case intro
     case authorization
     case main
 }
@@ -39,8 +38,6 @@ final class AppFlow: Flow {
         switch step {
         case .authorization:
             return navigationToAuthorization()
-        case .intro:
-            return navigationToIntro()
         case .main:
             return navigationToMain()
         }
@@ -49,21 +46,15 @@ final class AppFlow: Flow {
     private func navigationToAuthorization() -> FlowContributors {
         
         let authorizationFlow = AuthorizationFlow(with: rootViewController)
-        
         return .one(flowContributor: .contribute(
             withNextPresentable: authorizationFlow,
             withNextStepper: OneStepper(withSingleStep: AuthorizationStep.start)
         ))
     }
     
-    private func navigationToIntro() -> FlowContributors {
-        return .none
-    }
-    
     private func navigationToMain() -> FlowContributors {
         
         let mainFlow = MainFlow(with: rootViewController)
-        
         return .one(flowContributor: .contribute(
             withNextPresentable: mainFlow,
             withNextStepper: OneStepper(withSingleStep: MainStep.home)
@@ -79,17 +70,5 @@ final class AppStepper: Stepper {
         return AppStep.authorization
     }
     
-    func appRoute(
-        isSeenIntro: Bool,
-        isAuthorized: Bool
-    ) -> AppStep {
-        switch (isSeenIntro, isAuthorized) {
-        case (false, false), (true, false):
-            return .authorization
-        case (false, true):
-            return .intro
-        case (true, true):
-            return .main
-        }
-    }
+    // Auth manager HERE
 }

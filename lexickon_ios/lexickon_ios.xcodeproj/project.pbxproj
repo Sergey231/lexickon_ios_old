@@ -29,7 +29,6 @@
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */; };
-		EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC873D7423DD6EC400787E51 /* CombineCocoa */; };
 		EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* HomeAssembler.swift */; };
@@ -42,10 +41,10 @@
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
-		ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
+		ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6C002448261000D86417 /* IntroFlow.swift */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
 		ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */; };
@@ -99,7 +98,6 @@
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroAssemly.swift; path = ../Presentation/IntroAssemly.swift; sourceTree = "<group>"; };
-		EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		EC873D7923DD754D00787E51 /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
 		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -111,11 +109,11 @@
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
-		ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
 		ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
+		ECAC6C002448261000D86417 /* IntroFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFlow.swift; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
 		ECCB193623F962C20069C5A7 /* AuthorizationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembler.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				EC4CB12F22D2418800CB826E /* AppAssembler.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
-				ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */,
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC4278FC22D07199001218AB /* PresentationLayer */,
@@ -298,6 +295,7 @@
 		EC873D6823DD5AD800787E51 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				ECAC6BFF244825EF00D86417 /* Navigation */,
 				ECCB193C23F963890069C5A7 /* DI */,
 				ECCB193B23F9637B0069C5A7 /* Presentation */,
 			);
@@ -312,6 +310,14 @@
 				ECCB194523F9651B0069C5A7 /* Presentation */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		ECAC6BFF244825EF00D86417 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				ECAC6C002448261000D86417 /* IntroFlow.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		ECCB193423F9614A0069C5A7 /* Presentation */ = {
@@ -425,7 +431,6 @@
 		ECCB194623F965330069C5A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */,
 				EC873D7123DD60D100787E51 /* IntroViewController.swift */,
 			);
 			path = View;
@@ -601,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
 				ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */,
@@ -611,7 +617,6 @@
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
-				ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
@@ -631,7 +636,6 @@
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
-				EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */,
 				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
