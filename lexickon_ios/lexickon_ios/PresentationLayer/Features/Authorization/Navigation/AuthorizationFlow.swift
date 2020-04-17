@@ -44,7 +44,7 @@ class AuthorizationFlow: Flow {
         case .registrate:
             return navigateToRegistration()
         case .begin:
-            return .end(forwardToParentFlowWithStep: AppStep.main)
+            return navigateToMain()
         }
     }
     
@@ -70,5 +70,10 @@ class AuthorizationFlow: Flow {
         )!
         (root as! UINavigationController).pushViewController(registratioinVC, animated: true)
         return .one(flowContributor: .contribute(withNext: registratioinVC))
+    }
+    
+    private func navigateToMain() -> FlowContributors {
+        DI.shr.appContainer.resetObjectScope(.authorizationObjectScope)
+        return .end(forwardToParentFlowWithStep: AppStep.main)
     }
 }

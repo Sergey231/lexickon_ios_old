@@ -39,6 +39,10 @@ final class RegistrationViewController: UIViewController, Stepper {
         super.init(nibName: nil, bundle: nil)
     }
     
+    deinit {
+        print("💀 RegistrationViewController")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -167,9 +171,9 @@ final class RegistrationViewController: UIViewController, Stepper {
     }
 }
 
-// MARK: - Reset DI Container
+//// MARK: - Reset DI Container
 extension RegistrationViewController {
-    
+
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         DI.shr.appContainer.resetObjectScope(ObjectScope.registrationObjectScope)

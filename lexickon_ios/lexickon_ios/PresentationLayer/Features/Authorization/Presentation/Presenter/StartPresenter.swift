@@ -25,18 +25,6 @@ final class StartPresenter: PresenterType {
         
         var cancellableSet = Set<AnyCancellable>()
         
-        input.beginButtonTapped.sink { [weak self] _ in
-//            self?.authorizationRouter?.trigger(.begin)
-        }.store(in: &cancellableSet)
-        
-        input.iAmHaveAccountButtonTapped.sink { [weak self] _ in
-//            self?.authorizationRouter?.trigger(.login)
-        }.store(in: &cancellableSet)
-        
-        input.createAccountButtonTapped.sink { [weak self] _ in
-//            self?.authorizationRouter?.trigger(.registrate)
-        }.store(in: &cancellableSet)
-        
         return Output(cancellableSet: cancellableSet)
     }
 }

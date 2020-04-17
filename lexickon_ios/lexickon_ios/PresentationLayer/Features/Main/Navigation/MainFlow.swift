@@ -42,8 +42,8 @@ class MainFlow: Flow {
     private func navigateToHome() -> FlowContributors {
         let homeVC = MainAssembler.shr.assembler.resolver.resolve(
             HomeViewController.self
-            )!
-        (root as! UINavigationController).pushViewController(homeVC, animated: true)
+        )!
+        (root as! UINavigationController).setViewControllers([homeVC], animated: true)
         return .one(flowContributor: .contribute(withNext: homeVC))
     }
 }

@@ -36,6 +36,10 @@ final class LoginViewController: UIViewController, Stepper {
         super.init(nibName: nil, bundle: nil)
     }
     
+    deinit {
+        print("💀 LoginViewController")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -144,7 +148,7 @@ final class LoginViewController: UIViewController, Stepper {
     }
 }
 
-// MARK: - Reset DI Container
+//// MARK: - Reset DI Container
 extension LoginViewController {
     
     override func didMove(toParent parent: UIViewController?) {
