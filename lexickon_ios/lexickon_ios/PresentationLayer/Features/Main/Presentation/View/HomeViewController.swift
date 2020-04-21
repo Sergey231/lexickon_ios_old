@@ -34,7 +34,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .green
     }
 }
 
