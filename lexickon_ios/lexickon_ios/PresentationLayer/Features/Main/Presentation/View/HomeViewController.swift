@@ -7,24 +7,24 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 import Swinject
 import PinLayout
 import Combine
 import CombineCocoa
-import XCoordinator
+import RxFlow
+import RxCocoa
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, Stepper {
+    
+    let steps = PublishRelay<Step>()
     
     private let presenter: HomePresenter
-    private let router: UnownedRouter<MainRoute>
     
     init(
-        presenter: HomePresenter,
-        router: UnownedRouter<MainRoute>
+        presenter: HomePresenter
     ) {
         self.presenter = presenter
-        self.router = router
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,27 +34,25 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .green
     }
 }
 
-extension HomeViewController: UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
-        return HomeViewController(
-            presenter: HomePresenter(),
-            router: MainCoordinator(rootViewController: UINavigationController()).unownedRouter
-        ).view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct HomeViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        HomeViewController(
-            presenter: HomePresenter(),
-            router: MainCoordinator(rootViewController: UINavigationController()).unownedRouter
-        )
-    }
-}
+//extension HomeViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
+//        return HomeViewController(
+//            presenter: HomePresenter()
+//        ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct HomeViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        HomeViewController(
+//            presenter: HomePresenter()
+//        )
+//    }
+//}

@@ -16,10 +16,9 @@ final class HomeAssembler: Assembly {
             HomePresenter()
         }.inObjectScope(ObjectScope.appObjectScope)
         
-        container.register(HomeViewController.self) { resolver, router in
+        container.register(HomeViewController.self) { resolver in
             HomeViewController(
-                presenter: resolver.resolve(HomePresenter.self)!,
-                router: router
+                presenter: resolver.resolve(HomePresenter.self)!
             )
         }.inObjectScope(ObjectScope.appObjectScope)
     }

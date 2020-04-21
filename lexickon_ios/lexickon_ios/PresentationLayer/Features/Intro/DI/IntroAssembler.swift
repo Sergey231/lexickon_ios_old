@@ -10,7 +10,7 @@ import Swinject
 
 struct IntroAssembler {
     
-    static let assembler = IntroAssembler()
+    static let shr = IntroAssembler()
     
     let assembler: Assembler
     
@@ -18,4 +18,13 @@ struct IntroAssembler {
         self.assembler = Assembler(container: DI.shr.appContainer)
         self.assembler.apply(assemblies: [IntroAssemly()])
     }
+}
+
+extension ObjectScope {
+    
+    static let introObjectScope = ObjectScope(
+        storageFactory: PermanentStorage.init,
+        description: "introObjectScope",
+        parent: ObjectScope.appObjectScope
+    )
 }

@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 import Swinject
 import Combine
 import PinLayout
 import CombineCocoa
-import XCoordinator
+import RxFlow
+import RxRelay
+import RxSwift
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -20,7 +22,9 @@ extension UINavigationController {
     }
 }
 
-final class StartViewController: UIViewController {
+class StartViewController: UIViewController, Stepper {
+    
+    let steps = PublishRelay<Step>()
     
     private let presenter: StartPresenter
     
@@ -29,19 +33,20 @@ final class StartViewController: UIViewController {
     private let iAmHaveAccountButton = UIButton()
     private let createAccountButton = UIButton()
     
+    private let disposeBag = DisposeBag()
     private var cancellableSet: Set<AnyCancellable> = []
     
-    init(
-        presenter: StartPresenter,
-        router: UnownedRouter<AuthorizationRoute>
-    ) {
-        presenter.setRouter(router: router)
+    init(presenter: StartPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("💀")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -84,6 +89,21 @@ final class StartViewController: UIViewController {
             createAccountButtonTapped: createAccountButton.tapPublisher
         )
         
+        beginButton.rx.tap
+            .map { AuthorizationStep.begin }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
+        iAmHaveAccountButton.rx.tap
+            .map { AuthorizationStep.login }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
+        createAccountButton.rx.tap
+            .map { AuthorizationStep.registrate }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
+        
         let presenterOutput = presenter.configure(input: presenterInput)
         
         presenterOutput.cancellableSet
@@ -124,23 +144,21 @@ final class StartViewController: UIViewController {
     }
 }
 
-extension StartViewController: UIViewRepresentable {
-
-    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-        return StartViewController(
-            presenter: StartPresenter(),
-            router: AuthorizationCoordinator.empty()
-        ).view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct StartViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        StartViewController(
-            presenter: StartPresenter(),
-            router: AuthorizationCoordinator.empty()
-        )
-    }
-}
+//extension StartViewController: UIViewRepresentable {
+//
+//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
+//        return StartViewController(
+//            presenter: StartPresenter()
+//        ).view
+//    }
+//
+//    func updateUIView(_ uiView: UIView, context: Context) {}
+//}
+//
+//struct StartViewController_Preview: PreviewProvider {
+//    static var previews: some View {
+//        StartViewController(
+//            presenter: StartPresenter()
+//        )
+//    }
+//}

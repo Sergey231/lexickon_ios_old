@@ -13,10 +13,7 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
-		EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
-		EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */; };
-		EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B87FC23EDAF7F003AAB76 /* XCoordinator */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
 		EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginViewController.swift */; };
@@ -32,22 +29,24 @@
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */; };
-		EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC873D7423DD6EC400787E51 /* CombineCocoa */; };
 		EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* HomeAssembler.swift */; };
 		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
-		EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7F23DD759000787E51 /* MainCoordinator.swift */; };
 		EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* TextField.swift */; };
 		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
-		ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
+		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
+		ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6C002448261000D86417 /* IntroFlow.swift */; };
+		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
+		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
+		ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */; };
 		ECC15EEC2416220F00149AC9 /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECC15EEB2416220F00149AC9 /* Utils */; };
 		ECCB193323F834010069C5A7 /* RxCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECCB193223F834010069C5A7 /* RxCombine */; };
 		ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193623F962C20069C5A7 /* AuthorizationAssembler.swift */; };
@@ -98,23 +97,23 @@
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroAssemly.swift; path = ../Presentation/IntroAssemly.swift; sourceTree = "<group>"; };
-		EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPageViewController.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		EC873D7923DD754D00787E51 /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
 		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		EC873D7D23DD756F00787E51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		EC873D7F23DD759000787E51 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCoordinator.swift; sourceTree = "<group>"; };
 		EC99BD6423F29AAA00A500A9 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
-		ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
+		ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
+		ECAC6C002448261000D86417 /* IntroFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFlow.swift; sourceTree = "<group>"; };
+		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
+		ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
 		ECCB193623F962C20069C5A7 /* AuthorizationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationAssembler.swift; sourceTree = "<group>"; };
 		ECCB193923F9633C0069C5A7 /* MainAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembler.swift; sourceTree = "<group>"; };
 		ECCB193D23F963A80069C5A7 /* IntroAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAssembler.swift; sourceTree = "<group>"; };
@@ -135,13 +134,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC3B87FD23EDAF7F003AAB76 /* XCoordinator in Frameworks */,
+				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				ECCB193323F834010069C5A7 /* RxCombine in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* Utils in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
-				EC3B87FB23EDAF7F003AAB76 /* XCoordinatorCombine in Frameworks */,
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
@@ -222,7 +220,7 @@
 				EC4CB12F22D2418800CB826E /* AppAssembler.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
-				ECA66A3823D9EE4D00B39E68 /* AppCoordinator.swift */,
+				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC4278FC22D07199001218AB /* PresentationLayer */,
 				EC4278FF22D071F4001218AB /* Resources */,
@@ -295,6 +293,7 @@
 		EC873D6823DD5AD800787E51 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
+				ECAC6BFF244825EF00D86417 /* Navigation */,
 				ECCB193C23F963890069C5A7 /* DI */,
 				ECCB193B23F9637B0069C5A7 /* Presentation */,
 			);
@@ -309,6 +308,14 @@
 				ECCB194523F9651B0069C5A7 /* Presentation */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		ECAC6BFF244825EF00D86417 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				ECAC6C002448261000D86417 /* IntroFlow.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		ECCB193423F9614A0069C5A7 /* Presentation */ = {
@@ -380,7 +387,7 @@
 		ECCB194123F964760069C5A7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D8323DDAEE400787E51 /* AuthorizationCoordinator.swift */,
+				ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -388,7 +395,7 @@
 		ECCB194223F964C80069C5A7 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D7F23DD759000787E51 /* MainCoordinator.swift */,
+				ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -421,7 +428,6 @@
 		ECCB194623F965330069C5A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D6D23DD5B2300787E51 /* IntroPageViewController.swift */,
 				EC873D7123DD60D100787E51 /* IntroViewController.swift */,
 			);
 			path = View;
@@ -493,11 +499,10 @@
 				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
 				EC873D7423DD6EC400787E51 /* CombineCocoa */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
-				EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */,
-				EC3B87FC23EDAF7F003AAB76 /* XCoordinator */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
 				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
 				ECC15EEB2416220F00149AC9 /* Utils */,
+				ECBEB5062439C0DE0017855E /* RxFlow */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -554,9 +559,9 @@
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
 				ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */,
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
-				EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */,
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
 				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
+				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -598,6 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
 				ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */,
@@ -608,9 +614,9 @@
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
-				ECA66A3923D9EE4D00B39E68 /* AppCoordinator.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
+				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
@@ -619,6 +625,7 @@
 				EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */,
 				ECCB193E23F963A80069C5A7 /* IntroAssembler.swift in Sources */,
 				ECCB193A23F9633C0069C5A7 /* MainAssembler.swift in Sources */,
+				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
@@ -626,12 +633,10 @@
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
-				EC873D6E23DD5B2300787E51 /* IntroPageViewController.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
 				ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */,
-				EC873D8023DD759000787E51 /* MainCoordinator.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */,
-				EC291AF723F038B70082E45C /* AuthorizationCoordinator.swift in Sources */,
+				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
 				ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
@@ -893,14 +898,6 @@
 				minimumVersion = 2.6.2;
 			};
 		};
-		EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/quickbirdstudios/XCoordinator.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.7;
-			};
-		};
 		EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sergey231/Validator.git";
@@ -923,6 +920,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.8.13;
+			};
+		};
+		ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.0;
 			};
 		};
 		ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */ = {
@@ -953,16 +958,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
 		};
-		EC3B87FA23EDAF7F003AAB76 /* XCoordinatorCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */;
-			productName = XCoordinatorCombine;
-		};
-		EC3B87FC23EDAF7F003AAB76 /* XCoordinator */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC3B87F923EDAF7F003AAB76 /* XCRemoteSwiftPackageReference "XCoordinator" */;
-			productName = XCoordinator;
-		};
 		EC407EDE237C3B8400A3FD42 /* Validator */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */;
@@ -977,6 +972,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		ECBEB5062439C0DE0017855E /* RxFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */;
+			productName = RxFlow;
 		};
 		ECC15EEB2416220F00149AC9 /* Utils */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -11,13 +11,8 @@ import Swinject
 final class IntroAssemly: Assembly {
     
     func assemble(container: Container) {
-        
-        container.register(IntroPageViewController.self) { _ in
-            IntroPageViewController()
-        }.inObjectScope(ObjectScope.appObjectScope)
-        
-        container.register(IntroViewController.self) { _, router in
-            IntroViewController(router: router)
-        }.inObjectScope(ObjectScope.appObjectScope)
+        container.register(IntroViewController.self) { _ in
+            IntroViewController()
+        }.inObjectScope(ObjectScope.introObjectScope)
     }
 }
