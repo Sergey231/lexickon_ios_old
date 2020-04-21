@@ -72,15 +72,6 @@
           "revision": "fa4a53510662aab70b2eb2224dec981887561f4f",
           "version": "0.0.8"
         }
-      },
-      {
-        "package": "XCoordinator",
-        "repositoryURL": "https://github.com/quickbirdstudios/XCoordinator.git",
-        "state": {
-          "branch": null,
-          "revision": "4b6fc6f7359078c322e3b354854ed4ac5c12c5e1",
-          "version": "2.0.7"
-        }
       }
     ]
   },
