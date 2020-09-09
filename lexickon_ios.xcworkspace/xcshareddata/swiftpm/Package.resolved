@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "LexickonApi",
+        "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
+        "state": {
+          "branch": null,
+          "revision": "2bc05d43013300342ce3ebceacd247d43aa98962",
+          "version": "0.1.9"
+        }
+      },
+      {
         "package": "Nimble",
         "repositoryURL": "https://github.com/Quick/Nimble",
         "state": {

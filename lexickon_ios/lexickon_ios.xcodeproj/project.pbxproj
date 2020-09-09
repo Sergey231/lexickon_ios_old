@@ -34,6 +34,7 @@
 		EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* HomeAssembler.swift */; };
 		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
+		EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC955CC22508D8C7002B6DDC /* LexickonApi */; };
 		EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* TextField.swift */; };
 		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
@@ -145,6 +146,7 @@
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
+				EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +508,7 @@
 				ECC15EEB2416220F00149AC9 /* Utils */,
 				ECBEB5062439C0DE0017855E /* RxFlow */,
 				ECB66529247FD2F60052C658 /* JWTDecode */,
+				EC955CC22508D8C7002B6DDC /* LexickonApi */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -566,6 +569,7 @@
 				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
 				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
 				ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
+				EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -918,6 +922,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.9;
+			};
+		};
 		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/layoutBox/PinLayout";
@@ -979,6 +991,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
+		};
+		EC955CC22508D8C7002B6DDC /* LexickonApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */;
+			productName = LexickonApi;
 		};
 		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;
