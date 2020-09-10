@@ -221,8 +221,9 @@
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
+				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
-				EC4278FC22D07199001218AB /* PresentationLayer */,
+				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
 			);
 			path = lexickon_ios;
@@ -235,15 +236,6 @@
 				ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */,
 			);
 			path = lexickon_iosTests;
-			sourceTree = "<group>";
-		};
-		EC4278FC22D07199001218AB /* PresentationLayer */ = {
-			isa = PBXGroup;
-			children = (
-				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
-				EC3EAB1022D4DC1C00BFCBFC /* Features */,
-			);
-			path = PresentationLayer;
 			sourceTree = "<group>";
 		};
 		EC4278FF22D071F4001218AB /* Resources */ = {
