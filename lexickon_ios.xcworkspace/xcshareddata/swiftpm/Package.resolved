@@ -11,12 +11,48 @@
         }
       },
       {
+        "package": "JWTDecode",
+        "repositoryURL": "https://github.com/auth0/JWTDecode.swift.git",
+        "state": {
+          "branch": null,
+          "revision": "7875753f26400a9456e3305ba47255d7629a8a69",
+          "version": "2.4.1"
+        }
+      },
+      {
+        "package": "LexickonApi",
+        "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
+        "state": {
+          "branch": null,
+          "revision": "2bc05d43013300342ce3ebceacd247d43aa98962",
+          "version": "0.1.9"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble",
+        "state": {
+          "branch": null,
+          "revision": "72f5a90d573f7f7d70aa6b8ad84b3e1e02eabb4d",
+          "version": "8.0.9"
+        }
+      },
+      {
         "package": "PinLayout",
         "repositoryURL": "https://github.com/layoutBox/PinLayout",
         "state": {
           "branch": null,
           "revision": "930593a02857d25472a1965ce052e6d716b37c58",
           "version": "1.8.13"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick",
+        "state": {
+          "branch": null,
+          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
+          "version": "2.2.0"
         }
       },
       {
