@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxFlow.git",
         "state": {
           "branch": null,
-          "revision": "16e63a1d10f1e9de2393d4ec984deb5f53a9e8ee",
-          "version": "2.7.0"
+          "revision": "30cf8c65ef28e55bd7c1d9f6e74cbc278ab89d7f",
+          "version": "2.9.1"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
         "state": {
           "branch": null,
-          "revision": "b3e888b4972d9bc76495dd74d30a8c7fad4b9395",
-          "version": "5.0.1"
+          "revision": "002d325b0bdee94e7882e1114af5ff4fe1e96afa",
+          "version": "5.1.1"
         }
       },
       {

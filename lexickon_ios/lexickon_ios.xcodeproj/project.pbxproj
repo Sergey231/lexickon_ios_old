@@ -943,7 +943,7 @@
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.7.0;
+				minimumVersion = 2.9.0;
 			};
 		};
 		ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */ = {

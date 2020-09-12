@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import SwiftUI
 import Swinject
 import Combine
 import PinLayout
@@ -143,22 +142,3 @@ class StartViewController: UIViewController, Stepper {
             .marginBottom(Margin.mid)
     }
 }
-
-//extension StartViewController: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<StartViewController>) -> UIView {
-//        return StartViewController(
-//            presenter: StartPresenter()
-//        ).view
-//    }
-//
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
-//
-//struct StartViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        StartViewController(
-//            presenter: StartPresenter()
-//        )
-//    }
-//}

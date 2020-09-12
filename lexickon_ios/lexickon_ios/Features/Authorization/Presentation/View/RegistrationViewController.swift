@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import SwiftUI
 import Swinject
 import Combine
 import PinLayout
@@ -179,22 +178,3 @@ extension RegistrationViewController {
         DI.shr.appContainer.resetObjectScope(ObjectScope.registrationObjectScope)
     }
 }
-
-//extension RegistrationViewController: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<RegistrationViewController>) -> UIView {
-//        return RegistrationViewController(
-//            presenter: RegistrationPresenter()
-//            ).view
-//    }
-//
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
-//
-//struct RegistrationView_Preview: PreviewProvider {
-//    static var previews: some View {
-//        RegistrationViewController(
-//            presenter: RegistrationPresenter()
-//        )
-//    }
-//}

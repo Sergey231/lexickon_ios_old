@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import SwiftUI
 import Swinject
 import PinLayout
 import Combine
@@ -37,22 +36,3 @@ final class HomeViewController: UIViewController, Stepper {
         view.backgroundColor = .green
     }
 }
-
-//extension HomeViewController: UIViewRepresentable {
-//
-//    func makeUIView(context: UIViewRepresentableContext<HomeViewController>) -> UIView {
-//        return HomeViewController(
-//            presenter: HomePresenter()
-//        ).view
-//    }
-//
-//    func updateUIView(_ uiView: UIView, context: Context) {}
-//}
-//
-//struct HomeViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        HomeViewController(
-//            presenter: HomePresenter()
-//        )
-//    }
-//}

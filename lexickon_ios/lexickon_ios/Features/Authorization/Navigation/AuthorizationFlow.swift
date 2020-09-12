@@ -19,13 +19,13 @@ enum AuthorizationStep: Step {
 class AuthorizationFlow: Flow {
     
     var root: Presentable {
-        self.rootViewController
+        rootViewController
     }
     
     private let rootViewController: UINavigationController
     
     init(with root: UINavigationController) {
-        self.rootViewController = root
+        rootViewController = root
     }
     
     deinit {
