@@ -15,4 +15,5 @@ struct UserRegistrationCredentions {
 protocol UserRepositoryProtocol {
     
     func createUser(with credentions: UserRegistrationCredentions)
+    func getUser()
 }

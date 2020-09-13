@@ -55,9 +55,9 @@
 		ECCB193A23F9633C0069C5A7 /* MainAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193923F9633C0069C5A7 /* MainAssembler.swift */; };
 		ECCB193E23F963A80069C5A7 /* IntroAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB193D23F963A80069C5A7 /* IntroAssembler.swift */; };
 		ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */; };
-		ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */; };
+		ECCB194D23FAF5E30069C5A7 /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194C23FAF5E30069C5A7 /* UserTokenRepository.swift */; };
 		ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */; };
-		ECCB195123FD904D0069C5A7 /* LoginRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */; };
+		ECCB195123FD904D0069C5A7 /* UserTokenRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195023FD904D0069C5A7 /* UserTokenRepositoryProtocol.swift */; };
 		ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */; };
 		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
 		ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECD6DBE8240E6659004B8CDA /* TimelaneCombine */; };
@@ -120,9 +120,9 @@
 		ECCB193923F9633C0069C5A7 /* MainAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembler.swift; sourceTree = "<group>"; };
 		ECCB193D23F963A80069C5A7 /* IntroAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroAssembler.swift; sourceTree = "<group>"; };
 		ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
-		ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		ECCB194C23FAF5E30069C5A7 /* UserTokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenRepository.swift; sourceTree = "<group>"; };
 		ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
-		ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepositoryProtocol.swift; sourceTree = "<group>"; };
+		ECCB195023FD904D0069C5A7 /* UserTokenRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTokenRepositoryProtocol.swift; sourceTree = "<group>"; };
 		ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		ECF20D5D236951D700DA8715 /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
@@ -450,18 +450,18 @@
 			isa = PBXGroup;
 			children = (
 				ECCB195323FD92560069C5A7 /* UserRepository */,
-				ECCB195223FD92300069C5A7 /* LoginRepository */,
+				ECCB195223FD92300069C5A7 /* UserTokenRepository */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		ECCB195223FD92300069C5A7 /* LoginRepository */ = {
+		ECCB195223FD92300069C5A7 /* UserTokenRepository */ = {
 			isa = PBXGroup;
 			children = (
-				ECCB195023FD904D0069C5A7 /* LoginRepositoryProtocol.swift */,
-				ECCB194C23FAF5E30069C5A7 /* LoginRepository.swift */,
+				ECCB195023FD904D0069C5A7 /* UserTokenRepositoryProtocol.swift */,
+				ECCB194C23FAF5E30069C5A7 /* UserTokenRepository.swift */,
 			);
-			path = LoginRepository;
+			path = UserTokenRepository;
 			sourceTree = "<group>";
 		};
 		ECCB195323FD92560069C5A7 /* UserRepository */ = {
@@ -629,12 +629,12 @@
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
-				ECCB195123FD904D0069C5A7 /* LoginRepositoryProtocol.swift in Sources */,
+				ECCB195123FD904D0069C5A7 /* UserTokenRepositoryProtocol.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECF20D5E236951D700DA8715 /* SFIcons.swift in Sources */,
-				ECCB194D23FAF5E30069C5A7 /* LoginRepository.swift in Sources */,
+				ECCB194D23FAF5E30069C5A7 /* UserTokenRepository.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
 				ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */,
@@ -919,7 +919,7 @@
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.9;
+				minimumVersion = 0.2.0;
 			};
 		};
 		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
