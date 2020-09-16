@@ -4,10 +4,14 @@
    <FileRef
       location = "group:lexickon_ios/lexickon_ios.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Utils">
-   </FileRef>
-   <FileRef
-      location = "group:UIExtensions">
-   </FileRef>
+   <Group
+      location = "group:lexickon_ios/../New Group"
+      name = "Packages">
+      <FileRef
+         location = "group:/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/New Group/Utils">
+      </FileRef>
+      <FileRef
+         location = "group:/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/New Group/UIExtensions">
+      </FileRef>
+   </Group>
 </Workspace>

@@ -8,9 +8,9 @@
 
 final class AuthorizationInteractor {
     
-    let authRepository: LoginRepository
+    let authRepository: UserRepository
     
-    init(authRepository: LoginRepository) {
+    init(authRepository: UserRepository) {
         self.authRepository = authRepository
     }
 }

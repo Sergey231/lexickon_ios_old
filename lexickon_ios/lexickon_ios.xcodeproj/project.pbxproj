@@ -202,6 +202,7 @@
 		EC4278CC22D070E5001218AB = {
 			isa = PBXGroup;
 			children = (
+				EC755A0025121E1B00468E37 /* New Group */,
 				EC4278D722D070E5001218AB /* lexickon_ios */,
 				EC4278EE22D070E7001218AB /* lexickon_iosTests */,
 				EC4278D622D070E5001218AB /* Products */,
@@ -275,6 +276,14 @@
 				EC1C3E462352E95E00C82DFF /* Strings.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		EC755A0025121E1B00468E37 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			path = "../New Group";
 			sourceTree = "<group>";
 		};
 		EC835EF523F1B15600E3288B /* Logo */ = {
