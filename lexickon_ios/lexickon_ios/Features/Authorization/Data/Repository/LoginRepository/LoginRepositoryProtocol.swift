@@ -6,7 +6,10 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
+import LexickonApi
+import RxSwift
+
 protocol LoginRepositoryProtocol {
     
-    func login(with tokin: String)
+    func login(with tokin: UserTockenGetObject) -> Single<Void>
 }

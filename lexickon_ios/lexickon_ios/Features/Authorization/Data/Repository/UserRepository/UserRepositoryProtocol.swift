@@ -6,13 +6,10 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
-struct UserRegistrationCredentions {
-    let name: String
-    let email: String
-    let password: String
-}
+import LexickonApi
+import RxSwift
 
 protocol UserRepositoryProtocol {
     
-    func createUser(with credentions: UserRegistrationCredentions)
+    func createUser(with credentions: UserCreateObject) -> Single<UserGetObject>
 }
