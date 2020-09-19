@@ -1,5 +1,5 @@
 //
-//  AuthorizationRepositoryProtocol.swift
+//  UserTokenRepositoryProtocol.swift
 //  lexickon_ios
 //
 //  Created by Sergey Borovikov on 19.02.2020.
@@ -9,7 +9,7 @@
 import LexickonApi
 import RxSwift
 
-protocol LoginRepositoryProtocol {
+protocol UserTokenRepositoryProtocol {
     
-    func login(with tokin: UserTockenGetObject) -> Single<Void>
+    func get(with tokin: UserCreateObject) -> Single<UserTokenGetObject>
 }
