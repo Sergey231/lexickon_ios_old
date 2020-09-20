@@ -1,8 +1,10 @@
 
 import LexickonApi
-import RxSwift
+import Combine
 
 protocol UserRepositoryProtocol {
     
-    func createUser(with credentions: UserCreateObject) -> Single<UserGetObject>
+    func createUser(
+        with credentions: UserCreateObject
+    ) -> AnyPublisher<UserGetObject, HTTPObject.Error>
 }

@@ -1,8 +1,10 @@
 
 import LexickonApi
-import RxSwift
+import Combine
 
 protocol UserTokenRepositoryProtocol {
     
-    func get(with tokin: UserCreateObject) -> Single<UserTokenGetObject>
+    func get(
+        with tokin: UserCreateObject
+    ) -> AnyPublisher<UserTokenGetObject, HTTPObject.Error>
 }
