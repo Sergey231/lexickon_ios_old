@@ -9,8 +9,15 @@
 import Combine
 import SwiftUI
 import Validator
+import LexickonApi
 
 final class LoginPresenter: PresenterType {
+    
+    private let authorisationInteractor: AuthorizationInteractorProtocol
+    
+    init(authorisationInteractor: AuthorizationInteractorProtocol) {
+        self.authorisationInteractor = authorisationInteractor
+    }
     
     struct Input {
         let email: AnyPublisher<String?, Never>
@@ -96,6 +103,12 @@ final class LoginPresenter: PresenterType {
         )
             .map { $0.isValid && $1.isValid }
             .eraseToAnyPublisher()
+        
+        _ = input.submit
+            .setFailureType(to: HTTPObject.Error.self)
+            .flatMap { _ in
+                self.authorisationInteractor.login(login: "login", password: "pass")
+        }
         
         return Output(
             keyboardHeight: keyboardPublisher,
