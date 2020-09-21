@@ -7,7 +7,6 @@ protocol ApiRepository {
 
 extension ApiRepository {
     var baseURL: String {
-        let baseURL = Bundle.main.object(forInfoDictionaryKey: "BaseURL")!
-        return baseURL as! String
+        return Bundle.main.object(forInfoDictionaryKey: "BaseURL") as! String
     }
 }

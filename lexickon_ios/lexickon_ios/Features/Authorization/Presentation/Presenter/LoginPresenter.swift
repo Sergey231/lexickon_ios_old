@@ -15,6 +15,8 @@ final class LoginPresenter: PresenterType {
     
     private let authorisationInteractor: AuthorizationInteractorProtocol
     
+    private var cancellableSet = Set<AnyCancellable>()
+    
     init(authorisationInteractor: AuthorizationInteractorProtocol) {
         self.authorisationInteractor = authorisationInteractor
     }
@@ -30,9 +32,10 @@ final class LoginPresenter: PresenterType {
         let emailValidation: AnyPublisher<ValidationResult, Never>
         let passwordValidation: AnyPublisher<ValidationResult, Never>
         let canSubmit: AnyPublisher<Bool, Never>
+        let showLoading: AnyPublisher<Bool, Never>
+        let errorMsg: AnyPublisher<String, Never>
+        let cancellables: [Cancellable]
     }
-    
-    private var cancellableSet: Set<AnyCancellable> = []
     
     func configure(input: Input) -> Output {
         
@@ -104,17 +107,37 @@ final class LoginPresenter: PresenterType {
             .map { $0.isValid && $1.isValid }
             .eraseToAnyPublisher()
         
-        _ = input.submit
+        let errorMsg = PassthroughSubject<String, Never>()
+        let showLoading = CurrentValueSubject<Bool, Never>(false)
+        
+        let loginCancellable = input.submit
             .setFailureType(to: HTTPObject.Error.self)
-            .flatMap { _ in
+            .flatMap ({ _ in
                 self.authorisationInteractor.login(login: "login", password: "pass")
-        }
+                    .map { _ in () }
+            })
+            .handleEvents(
+                receiveOutput: { _ in showLoading.send(true) },
+                receiveCompletion: { _ in showLoading.send(false) }
+            )
+            .sink(receiveCompletion: { finish in
+                switch finish {
+                case .failure(let error):
+                    errorMsg.send(error.localizedDescription)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { _ in }
+        )
         
         return Output(
             keyboardHeight: keyboardPublisher,
             emailValidation: emailValidationPublisher,
             passwordValidation: passwordValidationPublisher,
-            canSubmit: canSubmict
+            canSubmit: canSubmict,
+            showLoading: showLoading.eraseToAnyPublisher(),
+            errorMsg: errorMsg.eraseToAnyPublisher(),
+            cancellables: [loginCancellable]
         )
     }
 }

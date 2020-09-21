@@ -29,6 +29,7 @@ final class LoginViewController: UIViewController, Stepper {
     private let logo = UIImageView(image: Asset.Images.textLogo.image)
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
+    private let activityIndicator = UIActivityIndicatorView()
     
     init(presenter: LoginPresenter) {
         self.presenter = presenter
@@ -69,6 +70,7 @@ final class LoginViewController: UIViewController, Stepper {
         
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
+        activityIndicator.color = .white
         
         emailTextField.configure(input: TextField.Input(
             placeholder: Localized.registrationEmailTextfield,
@@ -91,10 +93,32 @@ final class LoginViewController: UIViewController, Stepper {
 
         let presenterOutput = presenter.configure(input: input)
 
-        presenterOutput.keyboardHeight.sink { [weak self] in
-            self?._bottom = $0
-            self?.layout()
-        }.store(in: &cancellableSet)
+        presenterOutput.showLoading
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] in
+                if $0 {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            })
+            .store(in: &cancellableSet)
+        
+        presenterOutput.errorMsg
+            .sink(receiveValue: {
+                print($0)
+            })
+            .store(in: &cancellableSet)
+        
+        presenterOutput.cancellables
+            .forEach { $0.store(in: &cancellableSet) }
+        
+        presenterOutput.keyboardHeight
+            .sink (receiveValue: { [weak self] in
+                self?._bottom = $0
+                self?.layout()
+            })
+            .store(in: &cancellableSet)
 
         EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
@@ -111,7 +135,8 @@ final class LoginViewController: UIViewController, Stepper {
         contentView.addSubviews(
             logo,
             emailTextField,
-            passwordTextField
+            passwordTextField,
+            activityIndicator
         )
     }
     
@@ -144,6 +169,12 @@ final class LoginViewController: UIViewController, Stepper {
             .horizontally(Margin.mid)
             .below(of: emailTextField)
             .marginTop(Margin.regular)
+        
+        activityIndicator.pin
+            .size(36)
+            .below(of: passwordTextField)
+            .marginTop(36)
+            .hCenter()
     }
 }
 
