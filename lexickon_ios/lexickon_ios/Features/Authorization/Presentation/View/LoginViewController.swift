@@ -94,7 +94,7 @@ final class LoginViewController: UIViewController, Stepper {
         let presenterOutput = presenter.configure(input: input)
 
         presenterOutput.showLoading
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] in
                 if $0 {
                     self?.activityIndicator.startAnimating()

@@ -14,6 +14,10 @@ final class UserTokenRepository: UserTokenRepositoryProtocol, ApiRepository {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
+        do {
+            sleep(3)
+        }
+        
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { data, reqponse in
                 guard let httpResponse = reqponse as? HTTPURLResponse else {

@@ -111,15 +111,14 @@ final class LoginPresenter: PresenterType {
         let showLoading = CurrentValueSubject<Bool, Never>(false)
         
         let loginCancellable = input.submit
+            .handleEvents(receiveOutput: { _ in showLoading.send(true) })
+            .receive(on: DispatchQueue.global())
             .setFailureType(to: HTTPObject.Error.self)
             .flatMap ({ _ in
                 self.authorisationInteractor.login(login: "login", password: "pass")
                     .map { _ in () }
             })
-            .handleEvents(
-                receiveOutput: { _ in showLoading.send(true) },
-                receiveCompletion: { _ in showLoading.send(false) }
-            )
+            .handleEvents(receiveCompletion: { _ in showLoading.send(false) })
             .sink(receiveCompletion: { finish in
                 switch finish {
                 case .failure(let error):
