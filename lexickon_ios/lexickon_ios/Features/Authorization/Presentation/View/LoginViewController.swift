@@ -73,14 +73,14 @@ final class LoginViewController: UIViewController, Stepper {
         activityIndicator.color = .white
         
         emailTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationEmailTextfield,
+            placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
         passwordTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationPasswordTextfield,
+            placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             returnKeyType: .join
         ))

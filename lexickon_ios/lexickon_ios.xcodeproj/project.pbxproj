@@ -39,7 +39,6 @@
 		EC93A28825174E340058F779 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28725174E340058F779 /* ApiRepository.swift */; };
 		EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC955CC22508D8C7002B6DDC /* LexickonApi */; };
 		EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* TextField.swift */; };
-		ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = ECA5C75022DA0E2D001FC830 /* swiftgen.yml */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
@@ -108,7 +107,6 @@
 		EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepositoryProtocol.swift; sourceTree = "<group>"; };
 		EC93A28725174E340058F779 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
 		EC99BD6423F29AAA00A500A9 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		ECA5C75022DA0E2D001FC830 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 				EC48727622DA0F0A00F20D59 /* Assets.xcassets */,
 				EC48727422DA0ECD00F20D59 /* Images.xcassets */,
 				EC48727822DA0F3D00F20D59 /* Colors.xcassets */,
-				ECA5C75022DA0E2D001FC830 /* swiftgen.yml */,
 				ECF9974422D9E76E002A77D8 /* Constants.swift */,
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
@@ -588,7 +585,6 @@
 				ECF20D62236D942500DA8715 /* logo.png in Resources */,
 				EC48727722DA0F0A00F20D59 /* Assets.xcassets in Resources */,
 				EC48727922DA0F3D00F20D59 /* Colors.xcassets in Resources */,
-				ECA5C75122DA0E2D001FC830 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

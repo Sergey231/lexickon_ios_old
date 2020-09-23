@@ -117,7 +117,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         view.layoutIfNeeded()
         
         configureHidingKeyboardByTap()
-        title = Localized.registrationCreateAccountTitle
+        title = L10n.registrationCreateAccountTitle
         
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
@@ -125,20 +125,20 @@ final class RegistrationViewController: UIViewController, Stepper {
         nameTextField.textField.enablesReturnKeyAutomatically = true
         
         nameTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationNameTextfield,
+            placeholder: L10n.registrationNameTextfield,
             leftIcon: Asset.Images.accountIcon.image,
             returnKeyType: .next
         ))
         
         emailTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationEmailTextfield,
+            placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
         passwordTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationPasswordTextfield,
+            placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             returnKeyType: .join
         ))

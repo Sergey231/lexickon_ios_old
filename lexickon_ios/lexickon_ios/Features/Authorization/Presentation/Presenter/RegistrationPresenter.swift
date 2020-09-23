@@ -157,15 +157,15 @@ enum LXError: ValidationError {
         var message: String {
             switch self {
             case .needDigital:
-                return Localized.registrationPasswordMustContainDigits
+                return L10n.registrationPasswordMustContainDigits
             case .needUpcase:
-                return Localized.registrationPasswordMustContainUpercaseCharacters
+                return L10n.registrationPasswordMustContainUpercaseCharacters
             case .needLowcase:
-                return Localized.registrationPasswordMustContainLowercaseCharacters
+                return L10n.registrationPasswordMustContainLowercaseCharacters
             case .tooShort:
-                return Localized.registrationPasswordTooShort
+                return L10n.registrationPasswordTooShort
             case .tooLong:
-                return Localized.registrationPasswordTooLong
+                return L10n.registrationPasswordTooLong
             }
         }
     }
@@ -176,9 +176,9 @@ enum LXError: ValidationError {
     var message: String {
         switch self {
         case .incorrectEmail:
-            return Localized.registrationIncorrectEmail
+            return L10n.registrationIncorrectEmail
         case .incorrectName:
-            return Localized.registrationIncorrectName
+            return L10n.registrationIncorrectName
         }
     }
 }
