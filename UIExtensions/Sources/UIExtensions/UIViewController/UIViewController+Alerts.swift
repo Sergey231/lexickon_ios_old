@@ -12,6 +12,8 @@ extension UIViewController {
         bottonColor: UIColor = .blue
     ) -> AnyPublisher<Void, Never> {
         
+        let okActionSubject = PassthroughSubject<Void, Never>()
+        
         let alertStyle = isActionSheet
             ? UIAlertController.Style.actionSheet
             : .alert
@@ -25,9 +27,7 @@ extension UIViewController {
         let okAction = UIAlertAction(
             title: "Ok",
             style: .cancel
-        ) { action in
-            print("⚽️ action: \(action)")
-        }
+        ) { _ in okActionSubject.send(()) }
         
         okAction.setValue(
             bottonColor,
@@ -42,6 +42,6 @@ extension UIViewController {
             completion: nil
         )
         
-        return Just(()).eraseToAnyPublisher()
+        return okActionSubject.eraseToAnyPublisher()
     }
 }
