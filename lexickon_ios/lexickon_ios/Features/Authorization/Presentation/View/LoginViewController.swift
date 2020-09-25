@@ -105,8 +105,12 @@ final class LoginViewController: UIViewController, Stepper {
             .store(in: &cancellableSet)
         
         presenterOutput.errorMsg
-            .sink(receiveValue: {
-                print($0)
+            .receive(on: DispatchQueue.main)
+            .flatMap {
+                self.alert(msgText: $0, bottonColor: Asset.Colors.mainBG.color)
+            }
+            .sink(receiveValue: { _ in
+                print("🌈🌈🌈")
             })
             .store(in: &cancellableSet)
         

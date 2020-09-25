@@ -26,11 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         coordinator.rx.willNavigate.subscribe(onNext: { (flow, step) in
-            print("🔨 will navigate to flow=\(flow) and step=\(step)")
+            print("🚀 \(flow) ==> \(step)")
         }).disposed(by: self.disposeBag)
 
         coordinator.rx.didNavigate.subscribe(onNext: { (flow, step) in
-            print("🔨 did navigate to flow=\(flow) and step=\(step)")
+            print("☠️ \(flow) ==> \(step)")
         }).disposed(by: self.disposeBag)
 
         window = UIWindow(windowScene: windowScene)
@@ -39,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let appFlow = AppFlow()
         
-        Flows.whenReady(flow1: appFlow) { root in
+        Flows.use(appFlow, when: .ready) { root in
             window.rootViewController = root
             window.makeKeyAndVisible()
         }
