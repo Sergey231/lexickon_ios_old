@@ -39,6 +39,7 @@
 		EC93A28825174E340058F779 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28725174E340058F779 /* ApiRepository.swift */; };
 		EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC955CC22508D8C7002B6DDC /* LexickonApi */; };
 		EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* TextField.swift */; };
+		EC9A3080251F6DE200E84EE4 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC9A307F251F6DE200E84EE4 /* RxAlamofire */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
@@ -145,6 +146,7 @@
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
+				EC9A3080251F6DE200E84EE4 /* RxAlamofire in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
 				EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */,
 			);
@@ -501,6 +503,7 @@
 				ECBEB5062439C0DE0017855E /* RxFlow */,
 				ECB66529247FD2F60052C658 /* JWTDecode */,
 				EC955CC22508D8C7002B6DDC /* LexickonApi */,
+				EC9A307F251F6DE200E84EE4 /* RxAlamofire */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -562,6 +565,7 @@
 				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
 				ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
 				EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */,
+				EC9A307E251F6DE200E84EE4 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -788,6 +792,7 @@
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = lexickon_ios/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -808,6 +813,7 @@
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = lexickon_ios/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -921,7 +927,15 @@
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.6;
+				minimumVersion = 0.2.7;
+			};
+		};
+		EC9A307E251F6DE200E84EE4 /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
 			};
 		};
 		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
@@ -990,6 +1004,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */;
 			productName = LexickonApi;
+		};
+		EC9A307F251F6DE200E84EE4 /* RxAlamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC9A307E251F6DE200E84EE4 /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
 		};
 		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;

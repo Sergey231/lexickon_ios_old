@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "becd9a729a37bdbef5bc39dc3c702b99f9e3d046",
+          "version": "5.2.2"
+        }
+      },
+      {
         "package": "CombineCocoa",
         "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa.git",
         "state": {
@@ -24,8 +33,8 @@
         "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
         "state": {
           "branch": null,
-          "revision": "03b3b19a1885a05c75b04f7ac475401980b17f01",
-          "version": "0.2.6"
+          "revision": "12b2e976eb8529615e8e48d491b8450e2aa71d17",
+          "version": "0.2.7"
         }
       },
       {
@@ -35,6 +44,15 @@
           "branch": null,
           "revision": "72f5a90d573f7f7d70aa6b8ad84b3e1e02eabb4d",
           "version": "8.0.9"
+        }
+      },
+      {
+        "package": "OHHTTPStubs",
+        "repositoryURL": "https://github.com/AliSoftware/OHHTTPStubs.git",
+        "state": {
+          "branch": null,
+          "revision": "e92b5a5746ef16add2a1424f1fc19529d9a75cde",
+          "version": "9.0.0"
         }
       },
       {
@@ -53,6 +71,15 @@
           "branch": null,
           "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
           "version": "2.2.0"
+        }
+      },
+      {
+        "package": "RxAlamofire",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxAlamofire",
+        "state": {
+          "branch": null,
+          "revision": "725179f104088192bd5eec9d86ff33c6bf3cdbeb",
+          "version": "5.6.1"
         }
       },
       {

@@ -14,6 +14,8 @@ import UIExtensions
 import CombineCocoa
 import RxFlow
 import RxRelay
+import RxSwift
+import RxCocoa
 
 final class LoginViewController: UIViewController, Stepper {
     
@@ -21,7 +23,7 @@ final class LoginViewController: UIViewController, Stepper {
     
     private let presenter: LoginPresenter
     
-    private var cancellableSet = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     private var _bottom: CGFloat = 0
     
@@ -30,6 +32,7 @@ final class LoginViewController: UIViewController, Stepper {
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
     private let activityIndicator = UIActivityIndicatorView()
+    private let loginButton = UIButton()
     
     init(presenter: LoginPresenter) {
         self.presenter = presenter
@@ -52,6 +55,7 @@ final class LoginViewController: UIViewController, Stepper {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.mainBG.color
         createUI()
+        layout()
         configureUI()
     }
     
@@ -85,51 +89,60 @@ final class LoginViewController: UIViewController, Stepper {
             returnKeyType: .join
         ))
         
-        let input = LoginPresenter.Input(
-            email: emailTextField.textField.textPublisher,
-            password: passwordTextField.textField.textPublisher,
-            submit: passwordTextField.textField.returnPublisher
+        let submit = Signal.merge(
+            passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
+            loginButton.rx.tap.asSignal()
+        )
+        
+        let presenterInput = LoginPresenter.Input(
+            email: emailTextField.textField.rx.text.asDriver(),
+            password: passwordTextField.textField.rx.text.asDriver(),
+            submit: submit
         )
 
-        let presenterOutput = presenter.configure(input: input)
+        let presenterOutput = presenter.configure(input: presenterInput)
 
         presenterOutput.showLoading
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] in
+            .drive(onNext: { [weak self] in
                 if $0 {
                     self?.activityIndicator.startAnimating()
                 } else {
                     self?.activityIndicator.stopAnimating()
                 }
             })
-            .store(in: &cancellableSet)
+            .disposed(by: disposeBag)
         
         presenterOutput.errorMsg
-            .receive(on: DispatchQueue.main)
-            .flatMap {
+            .flatMapLatest {
                 self.alert(msgText: $0, bottonColor: Asset.Colors.mainBG.color)
+                    .asSignal(onErrorSignalWith: .just(()) )
             }
-            .sink(receiveValue: { _ in
+            .emit(onNext: { _ in
                 print("🌈🌈🌈")
             })
-            .store(in: &cancellableSet)
+            .disposed(by: disposeBag)
         
-        presenterOutput.cancellables
-            .forEach { $0.store(in: &cancellableSet) }
+        presenterOutput.disposables
+            .disposed(by: disposeBag)
         
         presenterOutput.keyboardHeight
-            .sink (receiveValue: { [weak self] in
+            .drive(onNext: { [weak self] in
                 self?._bottom = $0
                 self?.layout()
             })
-            .store(in: &cancellableSet)
+            .disposed(by: disposeBag)
 
-        EnumerableTextFieldHelper()
+        let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 emailTextField,
                 passwordTextField
             ])
-            .forEach { $0.store(in: &cancellableSet) }
+            
+        CompositeDisposable(disposables: enumerableTextFieldDisposables)
+            .disposed(by: disposeBag)
+        
+        loginButton.setTitle(L10n.loginLoginButtonTitle, for: .normal)
+        loginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
     }
     
     private func createUI() {
@@ -140,7 +153,8 @@ final class LoginViewController: UIViewController, Stepper {
             logo,
             emailTextField,
             passwordTextField,
-            activityIndicator
+            activityIndicator,
+            loginButton
         )
     }
     
@@ -175,10 +189,15 @@ final class LoginViewController: UIViewController, Stepper {
             .marginTop(Margin.regular)
         
         activityIndicator.pin
-            .size(36)
+            .size(Sizes.activityIndicator)
             .below(of: passwordTextField)
-            .marginTop(36)
+            .marginTop(Margin.big)
             .hCenter()
+        
+        loginButton.pin
+            .hCenter()
+            .size(Sizes.button)
+            .bottom(Margin.big)
     }
 }
 

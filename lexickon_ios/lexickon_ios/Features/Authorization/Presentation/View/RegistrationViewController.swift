@@ -16,6 +16,7 @@ import TimelaneCombine
 import CombineCocoa
 import RxFlow
 import RxRelay
+import RxSwift
 
 final class RegistrationViewController: UIViewController, Stepper {
     
@@ -23,7 +24,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     
     private let presenter: RegistrationPresenter
     
-    private var cancellableSet = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     private var _bottom: CGFloat = 0
     
@@ -144,29 +145,31 @@ final class RegistrationViewController: UIViewController, Stepper {
         ))
         
         let input = RegistrationPresenter.Input(
-            name: nameTextField.textField.textPublisher,
-            email: emailTextField.textField.textPublisher,
-            password: passwordTextField.textField.textPublisher,
-            passwordAgain: passwordTextField.textField.textPublisher,
-            submit: passwordTextField.textField.returnPublisher
+            name: nameTextField.textField.rx.text.asDriver(),
+            email: emailTextField.textField.rx.text.asDriver(),
+            password: passwordTextField.textField.rx.text.asDriver(),
+            passwordAgain: passwordTextField.textField.rx.text.asDriver(),
+            submit: passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal()
         )
         
         let presenterOutput = presenter.configure(input: input)
         
         presenterOutput.keyboardHeight
-            .lane("🎲")
-            .sink { [weak self] in
-                self?._bottom = $0
+            .drive(onNext: { [weak self] height in
+                self?._bottom = height
                 self?.layout()
-            }.store(in: &cancellableSet)
+            })
+            .disposed(by: disposeBag)
         
-        EnumerableTextFieldHelper()
+        let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 nameTextField,
                 emailTextField,
                 passwordTextField
             ])
-            .forEach { $0.store(in: &cancellableSet) }
+        
+        CompositeDisposable(disposables: enumerableTextFieldDisposables)
+            .disposed(by: disposeBag)
     }
 }
 

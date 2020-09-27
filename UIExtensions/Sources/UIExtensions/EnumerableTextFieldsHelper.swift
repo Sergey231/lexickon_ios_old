@@ -9,6 +9,8 @@ import Combine
 import CombineCocoa
 import UIKit
 import TimelaneCombine
+import RxCombine
+import RxSwift
 
 public protocol EnumerableTextField {
     var textField: UITextField { get }
@@ -24,11 +26,10 @@ public class EnumerableTextFieldHelper {
     
     public init(){}
     
-    @Published private var enumerableTextFieldEvents: EnumerableTextFieldEvent = .none
+    private let enumerableTextFieldEvents = BehaviorSubject<EnumerableTextFieldEvent>(value: .none)
+    private var disposables = [Disposable]()
     
-    public func configureEnumerable(textFields: [EnumerableTextField]) -> Set<AnyCancellable> {
-        
-        var cancellableSet = Set<AnyCancellable>()
+    public func configureEnumerable(textFields: [EnumerableTextField]) -> [Disposable] {
         
         textFields.enumerated()
             .forEach ({
@@ -36,8 +37,9 @@ public class EnumerableTextFieldHelper {
                 let enumerableTextField = textFields[$0.offset]
                 enumerableTextField.textField.tag = $0.offset
                 
-                enumerableTextField.textField.returnPublisher
-                    .map ({
+                let disposable = enumerableTextField.textField.returnPublisher
+                    .asObservable()
+                    .map {
                         
                         let currentIndex = enumerableTextField.textField.tag
                         let nextIndex = currentIndex + 1
@@ -48,14 +50,15 @@ public class EnumerableTextFieldHelper {
                             return .isLastTextFieldIndex(currentIndex)
                         }
                         return .none
+                    }
+                    .subscribe(onNext: {
+                        self.enumerableTextFieldEvents.onNext($0)
                     })
-                    .lane("⚽️")
-                    .assign(to: \.enumerableTextFieldEvents, on: self)
-                    .store(in: &cancellableSet)
+                self.disposables.append(disposable)
             })
         
-        $enumerableTextFieldEvents
-            .sink { event in
+        let enumerableTextFieldDisposable = enumerableTextFieldEvents.asObservable()
+            .subscribe(onNext: { event in
                 switch event {
                 case .nextTextFieldIndex(let index):
                     textFields[index].textField.becomeFirstResponder()
@@ -64,9 +67,10 @@ public class EnumerableTextFieldHelper {
                 case .none:
                     break
                 }
-            }
-            .store(in: &cancellableSet)
+            })
+            
+        disposables.append(enumerableTextFieldDisposable)
         
-        return cancellableSet
+        return disposables
     }
 }

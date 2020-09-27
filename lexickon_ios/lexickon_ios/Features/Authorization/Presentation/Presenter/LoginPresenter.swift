@@ -6,77 +6,77 @@
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
-import Combine
-import SwiftUI
+import UIKit
 import Validator
 import LexickonApi
+import RxCocoa
+import RxSwift
+import RxCombine
 
 final class LoginPresenter: PresenterType {
     
     private let authorisationInteractor: AuthorizationInteractorProtocol
-    
-    private var cancellableSet = Set<AnyCancellable>()
     
     init(authorisationInteractor: AuthorizationInteractorProtocol) {
         self.authorisationInteractor = authorisationInteractor
     }
     
     struct Input {
-        let email: AnyPublisher<String?, Never>
-        let password: AnyPublisher<String?, Never>
-        let submit: AnyPublisher<Void, Never>
+        let email: Driver<String?>
+        let password: Driver<String?>
+        let submit: Signal<Void>
     }
     
     struct Output {
-        let keyboardHeight: AnyPublisher<CGFloat, Never>
-        let emailValidation: AnyPublisher<ValidationResult, Never>
-        let passwordValidation: AnyPublisher<ValidationResult, Never>
-        let canSubmit: AnyPublisher<Bool, Never>
-        let showLoading: AnyPublisher<Bool, Never>
-        let errorMsg: AnyPublisher<String, Never>
-        let cancellables: [Cancellable]
+        let keyboardHeight: Driver<CGFloat>
+        let emailValidation: Driver<ValidationResult>
+        let passwordValidation: Driver<ValidationResult>
+        let canSubmit: Driver<Bool>
+        let showLoading: Driver<Bool>
+        let errorMsg: Signal<String>
+        let disposables: CompositeDisposable
     }
     
     func configure(input: Input) -> Output {
         
         let notificationCenter = NotificationCenter.default
         
-        let keyboardShowPublisher = notificationCenter
+        let keyboardShow = notificationCenter
             .publisher(for: UIWindow.keyboardWillShowNotification)
-            .map { notification -> CGFloat in
+            .asObservable()
+            .map ({ notification -> CGFloat in
                 guard
                     let info = notification.userInfo,
                     let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
                     else { return 0 }
 
                 return keyboardFrame.height
-            }
+            })
+            .asDriver(onErrorJustReturn: 0)
         
-        let keyboardHidePublisher = notificationCenter
+        let keyboardHide = notificationCenter
             .publisher(for: UIWindow.keyboardWillHideNotification)
             .map { _ -> CGFloat in 0 }
+            .asObservable()
+            .asDriver(onErrorJustReturn: 0)
         
-        let keyboardPublisher = Publishers.Merge(
-            keyboardHidePublisher,
-            keyboardShowPublisher
+        let keyboard = Driver.merge(
+            keyboardHide,
+            keyboardShow
         )
-            .eraseToAnyPublisher()
         
-        let emailValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+        let emailValidation: Driver<ValidationResult> = {
             
             let nameMinRule = ValidationRuleLength(
                 min: 2,
                 error: LXError.incorrectName
             )
             
-            return input.email.removeDuplicates()
-                .map { input in
-                    input?.validate(rule: nameMinRule) ?? .invalid([LXError.incorrectEmail])
-                }
-                .eraseToAnyPublisher()
+            return input.email.distinctUntilChanged()
+                .map { ($0?.validate(rule: nameMinRule) ?? .valid) }
         }()
         
-        let passwordValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+        let passwordValidation: Driver<ValidationResult> = {
             
             let minLengthRule = ValidationRuleLength(
                 min: 5,
@@ -92,51 +92,42 @@ final class LoginPresenter: PresenterType {
             passwordValidationRules.add(rule: minLengthRule)
             passwordValidationRules.add(rule: maxLengthRule)
             
-            return input.password.removeDuplicates()
-                .map { password in
-                    password?.validate(rules: passwordValidationRules)
-                        ?? .invalid([LXError.Password.tooShort])
-            }
-            .eraseToAnyPublisher()
+            return input.password.distinctUntilChanged()
+                .map { $0?.validate(rules: passwordValidationRules) ?? .valid }
         }()
         
-        let canSubmict = Publishers.CombineLatest(
-            emailValidationPublisher,
-            passwordValidationPublisher
+        let canSubmict = Driver.combineLatest(
+            emailValidation,
+            passwordValidation
         )
             .map { $0.isValid && $1.isValid }
-            .eraseToAnyPublisher()
         
-        let errorMsg = PassthroughSubject<String, Never>()
-        let showLoading = CurrentValueSubject<Bool, Never>(false)
+        let errorMsg = PublishRelay<String>()
+        let showLoading = BehaviorRelay<Bool>(value: false)
         
-        let loginCancellable = input.submit
-            .handleEvents(receiveOutput: { _ in showLoading.send(true) })
-            .receive(on: DispatchQueue.global())
-            .setFailureType(to: HTTPObject.Error.self)
-            .flatMap ({ _ in
-                self.authorisationInteractor.login(login: "login", password: "pass")
-                    .map { _ in () }
+        let loginDisposable = input.submit
+            .asObservable()
+            .flatMapLatest ({ _ -> Observable<Void> in
+                showLoading.accept(true)
+                return self.authorisationInteractor.login(login: "login", password: "pass")
+                    .asObservable()
             })
-            .handleEvents(receiveCompletion: { _ in showLoading.send(false) })
-            .sink(receiveCompletion: { finish in
-                switch finish {
-                case .failure(let error):
-                    errorMsg.send(error.localizedDescription)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { _ in }
-        )
+            .subscribe(
+                onNext: { _ in showLoading.accept(false)
+            }, onError: { error in
+                errorMsg.accept(error.localizedDescription)
+                showLoading.accept(false)
+            })
+
         
         return Output(
-            keyboardHeight: keyboardPublisher,
-            emailValidation: emailValidationPublisher,
-            passwordValidation: passwordValidationPublisher,
+            keyboardHeight: keyboard,
+            emailValidation: emailValidation,
+            passwordValidation: passwordValidation,
             canSubmit: canSubmict,
-            showLoading: showLoading.eraseToAnyPublisher(),
-            errorMsg: errorMsg.eraseToAnyPublisher(),
-            cancellables: [loginCancellable]
+            showLoading: showLoading.asDriver(),
+            errorMsg: errorMsg.asSignal(),
+            disposables: CompositeDisposable(disposables: [loginDisposable])
         )
     }
 }

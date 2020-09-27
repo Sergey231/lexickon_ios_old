@@ -1,7 +1,7 @@
 
 import Foundation
 import UIKit
-import Combine
+import RxSwift
 
 extension UIViewController {
     
@@ -10,9 +10,9 @@ extension UIViewController {
         msgTitle: String = "Ошибка",
         msgText: String,
         bottonColor: UIColor = .blue
-    ) -> AnyPublisher<Void, Never> {
+    ) -> Observable<Void> {
         
-        let okActionSubject = PassthroughSubject<Void, Never>()
+        let okActionSubject = PublishSubject<Void>()
         
         let alertStyle = isActionSheet
             ? UIAlertController.Style.actionSheet
@@ -27,7 +27,7 @@ extension UIViewController {
         let okAction = UIAlertAction(
             title: "Ok",
             style: .cancel
-        ) { _ in okActionSubject.send(()) }
+        ) { _ in okActionSubject.onNext(()) }
         
         okAction.setValue(
             bottonColor,
@@ -42,6 +42,6 @@ extension UIViewController {
             completion: nil
         )
         
-        return okActionSubject.eraseToAnyPublisher()
+        return okActionSubject.asObservable()
     }
 }
