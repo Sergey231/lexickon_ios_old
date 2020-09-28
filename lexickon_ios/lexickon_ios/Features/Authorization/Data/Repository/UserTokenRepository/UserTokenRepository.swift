@@ -9,49 +9,35 @@ final class UserTokenRepository: UserTokenRepositoryProtocol, ApiRepository {
     func get(with loginCredentials: UserCreateObject) -> Single<UserTokenGetObject> {
         
         let urlResource = URL(string: "\(baseURL)/api/user/login")!
-        
         let parametrs = ["email": loginCredentials.email, "password": loginCredentials.hashedPassword]
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        return Single<UserTokenGetObject>.create { single -> Disposable in
+            
+            _ = RxAlamofire.requestJSON(
+                .post,
+                urlResource,
+                parameters: parametrs
+            )
+            .asSingle()
+            .subscribe(
+                onSuccess: { response in
+                    switch response.0.statusCode {
+                    case 200..<300:
+                        single(.success(response.1 as! PrimitiveSequence<SingleTrait, UserTokenGetObject>.Element))
+                    case 401:
+                        single(.error(HTTPObject.Error.unauthorized))
+                    default:
+                        single(.error(HTTPObject.Error.unauthorized))
+                    }
+                }, onError: { single(.error($0)) }
+            )
+            
+            return Disposables.create()
+        }
         
-        do { sleep(1) }
+//        let decoder = JSONDecoder()
+//        decoder.dateDecodingStrategy = .iso8601
         
-        _ = RxAlamofire.requestJSON(
-            .post,
-            urlResource,
-            parameters: parametrs
-        )
-        .asSingle()
-        .subscribe(
-            onSuccess: { response in
-                print(response)
-            }, onError: { error in
-                print(error.localizedDescription)
-            }
-        )
-        
-//        return URLSession.shared.dataTaskPublisher(for: request)
-//            .tryMap { data, reqponse in
-//                guard let httpResponse = reqponse as? HTTPURLResponse else {
-//                    throw HTTPObject.Error.invalidResponse
-//                }
-//                guard httpResponse.statusCode == 200 else {
-//                    throw HTTPObject.Error.statusCode(httpResponse.statusCode)
-//                }
-//                return data
-//            }
-//            .decode(type: UserTokenGetObject.self, decoder: decoder)
-//            .mapError { error -> HTTPObject.Error in
-//                if let httpError = error as? HTTPObject.Error {
-//                    return httpError
-//                }
-//                return HTTPObject.Error.unknown(error)
-//            }
-//            .eraseToAnyPublisher()
-//            .asObservable()
-//            .asSingle()
-        
-        return .just(UserTokenGetObject(value: "", userId: ""))
+//        return .just(UserTokenGetObject(value: "", userId: ""))
     }
 }
