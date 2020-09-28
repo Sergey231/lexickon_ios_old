@@ -80,13 +80,16 @@ final class LoginViewController: UIViewController, Stepper {
             placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
-            returnKeyType: .next
+            returnKeyType: .next,
+            initValue: "sergey.borovikov@list.ru"
         ))
         
         passwordTextField.configure(input: TextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
-            returnKeyType: .join
+            isSecure: true,
+            returnKeyType: .join,
+            initValue: "Password"
         ))
         
         let submit = Signal.merge(
