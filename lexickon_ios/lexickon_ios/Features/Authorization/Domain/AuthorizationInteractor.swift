@@ -24,7 +24,7 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
         
         let userCredantions = UserCreateObject(
             email: login,
-            hashedPassword: password
+            password: password
         )
         
         return userTokenRepository.get(with: userCredantions)

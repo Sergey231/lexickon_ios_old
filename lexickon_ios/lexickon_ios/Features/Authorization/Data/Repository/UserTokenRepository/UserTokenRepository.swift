@@ -3,41 +3,41 @@ import Foundation
 import LexickonApi
 import RxSwift
 import RxAlamofire
+import Alamofire
 
 final class UserTokenRepository: UserTokenRepositoryProtocol, ApiRepository {
     
     func get(with loginCredentials: UserCreateObject) -> Single<UserTokenGetObject> {
         
         let urlResource = URL(string: "\(baseURL)/api/user/login")!
-        let parametrs = ["email": loginCredentials.email, "password": loginCredentials.hashedPassword]
+        let parameters = ["email": loginCredentials.email, "password": loginCredentials.password]
         
         return Single<UserTokenGetObject>.create { single -> Disposable in
             
-            _ = RxAlamofire.requestJSON(
-                .post,
-                urlResource,
-                parameters: parametrs
-            )
-            .asSingle()
-            .subscribe(
-                onSuccess: { response in
-                    switch response.0.statusCode {
+            AF.request(urlResource, method: .post, parameters: parameters)
+                .authenticate(username: loginCredentials.email, password: loginCredentials.password)
+                .responseDecodable(of: UserTokenGetObject.self) { res in
+                    
+                    guard let response = res.response else {
+                        single(.error(HTTPObject.Error.invalidResponse))
+                        return
+                    }
+                    
+                    switch response.statusCode {
                     case 200..<300:
-                        single(.success(response.1 as! PrimitiveSequence<SingleTrait, UserTokenGetObject>.Element))
+                        guard let userToken = try? res.result.get() else {
+                            single(.error(HTTPObject.Error.invalidResponse))
+                            return
+                        }
+                        single(.success(userToken))
                     case 401:
                         single(.error(HTTPObject.Error.unauthorized))
                     default:
                         single(.error(HTTPObject.Error.unauthorized))
                     }
-                }, onError: { single(.error($0)) }
-            )
+                }
             
             return Disposables.create()
         }
-        
-//        let decoder = JSONDecoder()
-//        decoder.dateDecodingStrategy = .iso8601
-        
-//        return .just(UserTokenGetObject(value: "", userId: ""))
     }
 }

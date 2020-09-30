@@ -105,11 +105,26 @@ final class LoginPresenter: PresenterType {
         let errorMsg = PublishRelay<String>()
         let showLoading = BehaviorRelay<Bool>(value: false)
         
+        let logintAndPass = Driver.combineLatest(
+            input.email,
+            input.password
+        ) { (login: $0, password: $1) }
+        
         let loginDisposable = input.submit
             .asObservable()
-            .flatMapLatest ({ _ -> Observable<Void> in
+            .withLatestFrom(logintAndPass)
+            .flatMapLatest ({ arg -> Observable<Void> in
                 showLoading.accept(true)
-                return self.authorisationInteractor.login(login: "login", password: "pass")
+                guard
+                    let login = arg.login,
+                    let password = arg.password
+                else {
+                    return .empty()
+                }
+                return self.authorisationInteractor.login(
+                    login: login,
+                    password: password
+                )
                     .asObservable()
             })
             .subscribe(
