@@ -1,5 +1,5 @@
 
-import Combine
+import RxSwift
 import LexickonApi
 
 final class AuthorizationInteractor {
@@ -20,12 +20,15 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
     func login(
         login: String,
         password: String
-    ) -> AnyPublisher<UserTokenGetObject, HTTPObject.Error> {
+    ) -> Single<Void> {
+        
         let userCredantions = UserCreateObject(
             email: login,
             password: password
         )
+        
         return userTokenRepository.get(with: userCredantions)
+            .map { _ in () }
     }
     
     func restorePassword(login: String) {

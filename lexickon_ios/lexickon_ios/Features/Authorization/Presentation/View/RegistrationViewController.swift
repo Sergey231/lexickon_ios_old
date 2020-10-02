@@ -16,6 +16,7 @@ import TimelaneCombine
 import CombineCocoa
 import RxFlow
 import RxRelay
+import RxSwift
 
 final class RegistrationViewController: UIViewController, Stepper {
     
@@ -23,7 +24,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     
     private let presenter: RegistrationPresenter
     
-    private var cancellableSet = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     private var _bottom: CGFloat = 0
     
@@ -117,7 +118,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         view.layoutIfNeeded()
         
         configureHidingKeyboardByTap()
-        title = Localized.registrationCreateAccountTitle
+        title = L10n.registrationCreateAccountTitle
         
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
@@ -125,48 +126,50 @@ final class RegistrationViewController: UIViewController, Stepper {
         nameTextField.textField.enablesReturnKeyAutomatically = true
         
         nameTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationNameTextfield,
+            placeholder: L10n.registrationNameTextfield,
             leftIcon: Asset.Images.accountIcon.image,
             returnKeyType: .next
         ))
         
         emailTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationEmailTextfield,
+            placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
         passwordTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationPasswordTextfield,
+            placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             returnKeyType: .join
         ))
         
         let input = RegistrationPresenter.Input(
-            name: nameTextField.textField.textPublisher,
-            email: emailTextField.textField.textPublisher,
-            password: passwordTextField.textField.textPublisher,
-            passwordAgain: passwordTextField.textField.textPublisher,
-            submit: passwordTextField.textField.returnPublisher
+            name: nameTextField.textField.rx.text.asDriver(),
+            email: emailTextField.textField.rx.text.asDriver(),
+            password: passwordTextField.textField.rx.text.asDriver(),
+            passwordAgain: passwordTextField.textField.rx.text.asDriver(),
+            submit: passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal()
         )
         
         let presenterOutput = presenter.configure(input: input)
         
         presenterOutput.keyboardHeight
-            .lane("🎲")
-            .sink { [weak self] in
-                self?._bottom = $0
+            .drive(onNext: { [weak self] height in
+                self?._bottom = height
                 self?.layout()
-            }.store(in: &cancellableSet)
+            })
+            .disposed(by: disposeBag)
         
-        EnumerableTextFieldHelper()
+        let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 nameTextField,
                 emailTextField,
                 passwordTextField
             ])
-            .forEach { $0.store(in: &cancellableSet) }
+        
+        CompositeDisposable(disposables: enumerableTextFieldDisposables)
+            .disposed(by: disposeBag)
     }
 }
 

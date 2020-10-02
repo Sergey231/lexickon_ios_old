@@ -1,36 +1,43 @@
 
 import Foundation
 import LexickonApi
-import Combine
+import RxSwift
+import RxAlamofire
+import Alamofire
 
 final class UserTokenRepository: UserTokenRepositoryProtocol, ApiRepository {
     
-    func get(with tokin: UserCreateObject) -> AnyPublisher<UserTokenGetObject, HTTPObject.Error> {
+    func get(with loginCredentials: UserCreateObject) -> Single<UserTokenGetObject> {
         
         let urlResource = URL(string: "\(baseURL)/api/user/login")!
-        var request = URLRequest(url: urlResource)
-        request.httpMethod = HTTPObject.Method.get.rawValue.uppercased()
+        let parameters = ["email": loginCredentials.email, "password": loginCredentials.password]
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap { data, reqponse in
-                guard let httpResponse = reqponse as? HTTPURLResponse else {
-                    throw HTTPObject.Error.invalidResponse
+        return Single<UserTokenGetObject>.create { single -> Disposable in
+            
+            AF.request(urlResource, method: .post, parameters: parameters)
+                .authenticate(username: loginCredentials.email, password: loginCredentials.password)
+                .responseDecodable(of: UserTokenGetObject.self) { res in
+                    
+                    guard let response = res.response else {
+                        single(.error(HTTPObject.Error.invalidResponse))
+                        return
+                    }
+                    
+                    switch response.statusCode {
+                    case 200..<300:
+                        guard let userToken = try? res.result.get() else {
+                            single(.error(HTTPObject.Error.invalidResponse))
+                            return
+                        }
+                        single(.success(userToken))
+                    case 401:
+                        single(.error(HTTPObject.Error.unauthorized))
+                    default:
+                        single(.error(HTTPObject.Error.unauthorized))
+                    }
                 }
-                guard httpResponse.statusCode == 200 else {
-                    throw HTTPObject.Error.statusCode(httpResponse.statusCode)
-                }
-                return data
-            }
-            .decode(type: UserTokenGetObject.self, decoder: decoder)
-            .mapError { error -> HTTPObject.Error in
-                if let httpError = error as? HTTPObject.Error {
-                    return httpError
-                }
-                return HTTPObject.Error.unknown(error)
-            }
-            .eraseToAnyPublisher()
+            
+            return Disposables.create()
+        }
     }
 }

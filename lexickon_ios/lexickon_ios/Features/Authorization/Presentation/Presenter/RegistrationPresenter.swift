@@ -6,62 +6,61 @@
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
-import Combine
+import RxSwift
+import RxCocoa
 import SwiftUI
 import Validator
 
 final class RegistrationPresenter: PresenterType {
     
     struct Input {
-        let name: AnyPublisher<String?, Never>
-        let email: AnyPublisher<String?, Never>
-        let password: AnyPublisher<String?, Never>
-        let passwordAgain: AnyPublisher<String?, Never>
-        let submit: AnyPublisher<Void, Never>
+        let name: Driver<String?>
+        let email: Driver<String?>
+        let password: Driver<String?>
+        let passwordAgain: Driver<String?>
+        let submit: Signal<Void>
     }
     
     struct Output {
-        let keyboardHeight: AnyPublisher<CGFloat, Never>
-        let nameValidation: AnyPublisher<ValidationResult, Never>
-        let emailValidation: AnyPublisher<ValidationResult, Never>
-        let passwordValidation: AnyPublisher<ValidationResult, Never>
-        let canSubmit: AnyPublisher<Bool, Never>
+        let keyboardHeight: Driver<CGFloat>
+        let nameValidation: Driver<ValidationResult>
+        let emailValidation: Driver<ValidationResult>
+        let passwordValidation: Driver<ValidationResult>
+        let canSubmit: Driver<Bool>
     }
     
-    private var cancellableSet: Set<AnyCancellable> = []
+    private let disposeBag = DisposeBag()
     
     func configure(input: Input) -> Output {
         
         let notificationCenter = NotificationCenter.default
         
-        let usernameValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+        let usernameValidationPublisher: Driver<ValidationResult> = {
             
             let nameMinRule = ValidationRuleLength(
                 min: 2,
                 error: LXError.incorrectName
             )
             
-            return input.name.removeDuplicates()
+            return input.name.distinctUntilChanged()
                 .map { input in
                     input?.validate(rule: nameMinRule) ?? .invalid([LXError.incorrectName])
                 }
-                .eraseToAnyPublisher()
         }()
         
-        let emailValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+        let emailValidationPublisher: Driver<ValidationResult> = {
             
             let emailRule = ValidationRulePattern(
                 pattern: EmailValidationPattern.standard,
                 error: LXError.incorrectEmail)
             
-            return input.email.removeDuplicates()
+            return input.email.distinctUntilChanged()
                 .map { input in
                     input?.validate(rule: emailRule) ?? .invalid([LXError.incorrectEmail])
             }
-            .eraseToAnyPublisher()
         }()
         
-        let passwordValidationPublisher: AnyPublisher<ValidationResult, Never> = {
+        let passwordValidationPublisher: Driver<ValidationResult> = {
             
             let minLengthRule = ValidationRuleLength(
                 min: 5,
@@ -95,15 +94,15 @@ final class RegistrationPresenter: PresenterType {
             passwordValidationRules.add(rule: lowcaseRule)
             passwordValidationRules.add(rule: upcaseRule)
             
-            return input.password.removeDuplicates()
+            return input.password.distinctUntilChanged()
                 .map { password in
                     password?.validate(rules: passwordValidationRules)
                         ?? .invalid([LXError.Password.tooShort])
             }
-            .eraseToAnyPublisher()
+            
         }()
         
-        let keyboardShowPublisher = notificationCenter
+        let keyboardShow = notificationCenter
             .publisher(for: UIWindow.keyboardWillShowNotification)
             .map { notification -> CGFloat in
                 guard
@@ -113,25 +112,28 @@ final class RegistrationPresenter: PresenterType {
 
                 return keyboardFrame.height
             }
-            .eraseToAnyPublisher()
+            .asObservable()
+            .asDriver(onErrorJustReturn: 0)
         
-        let keyboardHidePublisher = notificationCenter
+        let keyboardHideDriver = notificationCenter
             .publisher(for: UIWindow.keyboardWillHideNotification)
             .map { _ -> CGFloat in 0 }
+            .asObservable()
+            .asDriver(onErrorJustReturn: 0)
         
-        let keyboardHeight = Publishers.Merge(
-            keyboardHidePublisher,
-            keyboardShowPublisher
+        let keyboardHeight = Driver.merge(
+            keyboardHideDriver,
+            keyboardShow
         )
-            .eraseToAnyPublisher()
+            
         
-        let canSubmict = Publishers.CombineLatest3(
+        let canSubmict = Driver.combineLatest(
             usernameValidationPublisher,
             emailValidationPublisher,
             passwordValidationPublisher
         )
             .map { $0.isValid && $1.isValid && $2.isValid }
-            .eraseToAnyPublisher()
+            
         
         return Output(
             keyboardHeight: keyboardHeight,
@@ -157,15 +159,15 @@ enum LXError: ValidationError {
         var message: String {
             switch self {
             case .needDigital:
-                return Localized.registrationPasswordMustContainDigits
+                return L10n.registrationPasswordMustContainDigits
             case .needUpcase:
-                return Localized.registrationPasswordMustContainUpercaseCharacters
+                return L10n.registrationPasswordMustContainUpercaseCharacters
             case .needLowcase:
-                return Localized.registrationPasswordMustContainLowercaseCharacters
+                return L10n.registrationPasswordMustContainLowercaseCharacters
             case .tooShort:
-                return Localized.registrationPasswordTooShort
+                return L10n.registrationPasswordTooShort
             case .tooLong:
-                return Localized.registrationPasswordTooLong
+                return L10n.registrationPasswordTooLong
             }
         }
     }
@@ -176,9 +178,9 @@ enum LXError: ValidationError {
     var message: String {
         switch self {
         case .incorrectEmail:
-            return Localized.registrationIncorrectEmail
+            return L10n.registrationIncorrectEmail
         case .incorrectName:
-            return Localized.registrationIncorrectName
+            return L10n.registrationIncorrectName
         }
     }
 }

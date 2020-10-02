@@ -1,5 +1,5 @@
 
-import Combine
+import RxSwift
 import LexickonApi
 
 protocol AuthorizationInteractorProtocol {
@@ -13,7 +13,7 @@ protocol AuthorizationInteractorProtocol {
     func login(
         login: String,
         password: String
-    ) -> AnyPublisher<UserTokenGetObject, HTTPObject.Error>
+    ) -> Single<Void>
     
     func restorePassword(login: String)
 }
