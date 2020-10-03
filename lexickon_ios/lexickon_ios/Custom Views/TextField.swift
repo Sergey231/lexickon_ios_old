@@ -18,21 +18,27 @@ final class TextField: UIView {
         let placeholder: String
         let leftIcon: UIImage?
         let rightIcon: UIImage?
+        let isSecure: Bool
         let keyboardType: UIKeyboardType
         let returnKeyType: UIReturnKeyType
+        let initValue: String
         
         init(
             placeholder: String = "",
             leftIcon: UIImage? = nil,
             rightIcon: UIImage? = nil,
+            isSecure: Bool = false,
             keyboardType: UIKeyboardType = .asciiCapable,
-            returnKeyType: UIReturnKeyType = .join
+            returnKeyType: UIReturnKeyType = .join,
+            initValue: String = ""
         ) {
             self.placeholder = placeholder
             self.leftIcon = leftIcon
             self.rightIcon = rightIcon
+            self.isSecure = isSecure
             self.keyboardType = keyboardType
             self.returnKeyType = returnKeyType
+            self.initValue = initValue
         }
         
         var leftIconWidth: CGFloat {
@@ -113,6 +119,8 @@ final class TextField: UIView {
         )
         textField.keyboardType = input.keyboardType
         textField.returnKeyType = input.returnKeyType
+        textField.text = input.initValue
+        textField.isSecureTextEntry = input.isSecure
         leftIconView.image = input.leftIcon
         rightIconView.image = input.rightIcon
         lineView.round()

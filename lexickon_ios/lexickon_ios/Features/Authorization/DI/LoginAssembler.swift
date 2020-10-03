@@ -12,8 +12,24 @@ final class LoginAssembler: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(LoginPresenter.self) { _ in
-            LoginPresenter()
+        container.register(UserRepositoryProtocol.self) { _ in
+            UserRepository()
+        }
+        
+        container.register(UserTokenRepositoryProtocol.self) { _ in
+            UserTokenRepository()
+        }
+        
+        container.register(AuthorizationInteractorProtocol.self) { resolver in
+            AuthorizationInteractor(
+                userTokenRepository: resolver.resolve(UserTokenRepositoryProtocol.self)!
+            )
+        }
+        
+        container.register(LoginPresenter.self) { resolver in
+            LoginPresenter(
+                authorisationInteractor: resolver.resolve(AuthorizationInteractorProtocol.self)!
+            )
         }.inObjectScope(ObjectScope.loginObjectScope)
         
         container.register(LoginViewController.self) { resolver in

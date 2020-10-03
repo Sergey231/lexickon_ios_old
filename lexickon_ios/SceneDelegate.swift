@@ -26,11 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         coordinator.rx.willNavigate.subscribe(onNext: { (flow, step) in
-            print("🔨🚀 \(flow) ==> \(step)")
+            print("🚀 \(flow) ==> \(step)")
         }).disposed(by: self.disposeBag)
 
         coordinator.rx.didNavigate.subscribe(onNext: { (flow, step) in
-            print("🔨☠️ \(flow) ==> \(step)")
+            print("☠️ \(flow) ==> \(step)")
         }).disposed(by: self.disposeBag)
 
         window = UIWindow(windowScene: windowScene)

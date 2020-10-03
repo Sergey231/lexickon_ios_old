@@ -2,120 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "CombineCocoa",
-        "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa.git",
-        "state": {
-          "branch": null,
-          "revision": "c31c85b6f8494247b69997324312dce8bf55b34b",
-          "version": "0.1.0"
-        }
-      },
-      {
-        "package": "JWTDecode",
-        "repositoryURL": "https://github.com/auth0/JWTDecode.swift.git",
-        "state": {
-          "branch": null,
-          "revision": "7875753f26400a9456e3305ba47255d7629a8a69",
-          "version": "2.4.1"
-        }
-      },
-      {
-        "package": "LexickonApi",
-        "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
-        "state": {
-          "branch": null,
-          "revision": "7e0ade1361cb542ae163dbf1d272569406764960",
-          "version": "0.2.0"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble",
-        "state": {
-          "branch": null,
-          "revision": "72f5a90d573f7f7d70aa6b8ad84b3e1e02eabb4d",
-          "version": "8.0.9"
-        }
-      },
-      {
-        "package": "PinLayout",
-        "repositoryURL": "https://github.com/layoutBox/PinLayout",
-        "state": {
-          "branch": null,
-          "revision": "930593a02857d25472a1965ce052e6d716b37c58",
-          "version": "1.8.13"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick",
-        "state": {
-          "branch": null,
-          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
-          "version": "2.2.0"
-        }
-      },
-      {
-        "package": "RxCombine",
-        "repositoryURL": "https://github.com/CombineCommunity/RxCombine.git",
-        "state": {
-          "branch": null,
-          "revision": "0fa296bee4383a383f081570d089053868f4fb96",
-          "version": "1.3.1"
-        }
-      },
-      {
-        "package": "RxFlow",
-        "repositoryURL": "https://github.com/RxSwiftCommunity/RxFlow.git",
-        "state": {
-          "branch": null,
-          "revision": "30cf8c65ef28e55bd7c1d9f6e74cbc278ab89d7f",
-          "version": "2.9.1"
-        }
-      },
-      {
         "package": "RxSwift",
-        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
         "state": {
           "branch": null,
           "revision": "002d325b0bdee94e7882e1114af5ff4fe1e96afa",
           "version": "5.1.1"
-        }
-      },
-      {
-        "package": "Swinject",
-        "repositoryURL": "https://github.com/Swinject/Swinject.git",
-        "state": {
-          "branch": null,
-          "revision": "8a76d2c74bafbb455763487cc6a08e91bad1f78b",
-          "version": "2.7.1"
-        }
-      },
-      {
-        "package": "TimelaneCombine",
-        "repositoryURL": "https://github.com/icanzilb/TimelaneCombine",
-        "state": {
-          "branch": null,
-          "revision": "7988d68eb189831c19c17d1e9b103e27ed3851f0",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "TimelaneCore",
-        "repositoryURL": "https://github.com/icanzilb/TimelaneCore",
-        "state": {
-          "branch": null,
-          "revision": "38db58e5242e0d9f15e874989a6cdb11770c16fa",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "Validator",
-        "repositoryURL": "https://github.com/Sergey231/Validator.git",
-        "state": {
-          "branch": null,
-          "revision": "fa4a53510662aab70b2eb2224dec981887561f4f",
-          "version": "0.0.8"
         }
       }
     ]

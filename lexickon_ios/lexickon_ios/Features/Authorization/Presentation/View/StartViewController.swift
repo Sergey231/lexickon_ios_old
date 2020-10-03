@@ -63,6 +63,7 @@ class StartViewController: UIViewController, Stepper {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.barStyle = .black
         logo.startAnimation()
     }
     
@@ -75,11 +76,11 @@ class StartViewController: UIViewController, Stepper {
         
         navigationController?.setupLargeMainThemeNavBar()
         
-        beginButton.setTitle(Localized.startBeginButtonTitle, for: .normal)
+        beginButton.setTitle(L10n.startBeginButtonTitle, for: .normal)
         beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
-        iAmHaveAccountButton.setTitle(Localized.startIHaveAccountButtonTitle, for: .normal)
+        iAmHaveAccountButton.setTitle(L10n.startIHaveAccountButtonTitle, for: .normal)
         iAmHaveAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
-        createAccountButton.setTitle(Localized.startCreateAccountButtonTitle, for: .normal)
+        createAccountButton.setTitle(L10n.startCreateAccountButtonTitle, for: .normal)
         createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
         let presenterInput = StartPresenter.Input(
