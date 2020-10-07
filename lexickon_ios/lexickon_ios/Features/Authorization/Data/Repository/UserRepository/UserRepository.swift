@@ -30,7 +30,7 @@ final class UserRepository: UserRepositoryProtocol, ApiRepository {
                 if let httpError = error as? HTTPObject.Error {
                     return httpError
                 }
-                return HTTPObject.Error.unknown(error)
+                return HTTPObject.Error.unknown
             })
             .eraseToAnyPublisher()
     }

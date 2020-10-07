@@ -116,11 +116,11 @@ final class LoginViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         presenterOutput.errorMsg
+            .asObservable()
             .flatMapLatest {
-                self.alert(msgText: $0, bottonColor: Asset.Colors.mainBG.color)
-                    .asSignal(onErrorSignalWith: .just(()) )
+                self.showMsg(msg: $0)
             }
-            .emit(onNext: { _ in
+            .subscribe(onNext: { _ in
                 print("🌈🌈🌈")
             })
             .disposed(by: disposeBag)
