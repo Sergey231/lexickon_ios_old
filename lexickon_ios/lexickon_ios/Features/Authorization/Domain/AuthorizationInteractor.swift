@@ -1,17 +1,13 @@
-//
-//  AuthorizationInteractor.swift
-//  lexickon_ios
-//
-//  Created by Sergey Borovikov on 17.02.2020.
-//  Copyright © 2020 Sergey Borovikov. All rights reserved.
-//
+
+import RxSwift
+import LexickonApi
 
 final class AuthorizationInteractor {
     
-    let authRepository: LoginRepository
+    let userTokenRepository: UserTokenRepositoryProtocol
     
-    init(authRepository: LoginRepository) {
-        self.authRepository = authRepository
+    init(userTokenRepository: UserTokenRepositoryProtocol) {
+        self.userTokenRepository = userTokenRepository
     }
 }
 
@@ -21,8 +17,18 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
         
     }
     
-    func login(login: String, password: String) {
+    func login(
+        login: String,
+        password: String
+    ) -> Single<Void> {
         
+        let userCredantions = UserCreateObject(
+            email: login,
+            password: password
+        )
+        
+        return userTokenRepository.get(with: userCredantions)
+            .map { _ in () }
     }
     
     func restorePassword(login: String) {

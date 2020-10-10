@@ -14,6 +14,8 @@ import UIExtensions
 import CombineCocoa
 import RxFlow
 import RxRelay
+import RxSwift
+import RxCocoa
 
 final class LoginViewController: UIViewController, Stepper {
     
@@ -21,7 +23,7 @@ final class LoginViewController: UIViewController, Stepper {
     
     private let presenter: LoginPresenter
     
-    private var cancellableSet = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     private var _bottom: CGFloat = 0
     
@@ -29,6 +31,8 @@ final class LoginViewController: UIViewController, Stepper {
     private let logo = UIImageView(image: Asset.Images.textLogo.image)
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let loginButton = UIButton()
     
     init(presenter: LoginPresenter) {
         self.presenter = presenter
@@ -51,6 +55,7 @@ final class LoginViewController: UIViewController, Stepper {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.mainBG.color
         createUI()
+        layout()
         configureUI()
     }
     
@@ -69,39 +74,78 @@ final class LoginViewController: UIViewController, Stepper {
         
         logo.contentMode = .scaleAspectFit
         logo.setShadow()
+        activityIndicator.color = .white
         
         emailTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationEmailTextfield,
+            placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
-            returnKeyType: .next
+            returnKeyType: .next,
+            initValue: "sergey.borovikov@list.ru"
         ))
         
         passwordTextField.configure(input: TextField.Input(
-            placeholder: Localized.registrationPasswordTextfield,
+            placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
-            returnKeyType: .join
+            isSecure: true,
+            returnKeyType: .join,
+            initValue: "Password"
         ))
         
-        let input = LoginPresenter.Input(
-            email: emailTextField.textField.textPublisher,
-            password: passwordTextField.textField.textPublisher,
-            submit: passwordTextField.textField.returnPublisher
+        let submit = Signal.merge(
+            passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
+            loginButton.rx.tap.asSignal()
+        )
+        
+        let presenterInput = LoginPresenter.Input(
+            email: emailTextField.textField.rx.text.asDriver(),
+            password: passwordTextField.textField.rx.text.asDriver(),
+            submit: submit
         )
 
-        let presenterOutput = presenter.configure(input: input)
+        let presenterOutput = presenter.configure(input: presenterInput)
 
-        presenterOutput.keyboardHeight.sink { [weak self] in
-            self?._bottom = $0
-            self?.layout()
-        }.store(in: &cancellableSet)
+        presenterOutput.showLoading
+            .drive(onNext: { [weak self] in
+                if $0 {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        presenterOutput.errorMsg
+            .flatMapLatest {
+                self.alert(msgText: $0, bottonColor: Asset.Colors.mainBG.color)
+                    .asSignal(onErrorSignalWith: .just(()) )
+            }
+            .emit(onNext: { _ in
+                print("🌈🌈🌈")
+            })
+            .disposed(by: disposeBag)
+        
+        presenterOutput.disposables
+            .disposed(by: disposeBag)
+        
+        presenterOutput.keyboardHeight
+            .drive(onNext: { [weak self] in
+                self?._bottom = $0
+                self?.layout()
+            })
+            .disposed(by: disposeBag)
 
-        EnumerableTextFieldHelper()
+        let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 emailTextField,
                 passwordTextField
             ])
-            .forEach { $0.store(in: &cancellableSet) }
+            
+        CompositeDisposable(disposables: enumerableTextFieldDisposables)
+            .disposed(by: disposeBag)
+        
+        loginButton.setTitle(L10n.loginLoginButtonTitle, for: .normal)
+        loginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
     }
     
     private func createUI() {
@@ -111,7 +155,9 @@ final class LoginViewController: UIViewController, Stepper {
         contentView.addSubviews(
             logo,
             emailTextField,
-            passwordTextField
+            passwordTextField,
+            activityIndicator,
+            loginButton
         )
     }
     
@@ -144,6 +190,17 @@ final class LoginViewController: UIViewController, Stepper {
             .horizontally(Margin.mid)
             .below(of: emailTextField)
             .marginTop(Margin.regular)
+        
+        activityIndicator.pin
+            .size(Sizes.activityIndicator)
+            .below(of: passwordTextField)
+            .marginTop(Margin.big)
+            .hCenter()
+        
+        loginButton.pin
+            .hCenter()
+            .size(Sizes.button)
+            .bottom(Margin.big)
     }
 }
 

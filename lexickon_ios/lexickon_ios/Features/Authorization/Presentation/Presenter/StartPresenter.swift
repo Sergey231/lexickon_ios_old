@@ -23,7 +23,7 @@ final class StartPresenter: PresenterType {
     
     func configure(input: Input) -> Output {
         
-        var cancellableSet = Set<AnyCancellable>()
+        let cancellableSet = Set<AnyCancellable>()
         
         return Output(cancellableSet: cancellableSet)
     }

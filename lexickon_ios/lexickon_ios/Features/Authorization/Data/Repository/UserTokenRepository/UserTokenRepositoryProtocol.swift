@@ -6,7 +6,9 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
-protocol LoginRepositoryProtocol {
+import LexickonApi
+
+protocol UserTokenRepositoryProtocol {
     
-    func login(with tokin: String)
+    func getUserToken(with credentiols: UserCreateObject) -> UserTockenGetObject
 }
