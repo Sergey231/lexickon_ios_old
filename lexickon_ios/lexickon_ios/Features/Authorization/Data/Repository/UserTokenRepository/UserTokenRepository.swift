@@ -8,8 +8,8 @@ final class UserTokenRepository: UserTokenRepositoryProtocol {
     
     func get(with credentiols: UserCreateObject) -> Single<UserTokenGetObject> {
         
-        let url = "http://lonalhost:8080/api/users/login"
-        let parameters = ["login": credentiols.email, "password": credentiols.password]
+        let url = "http://localhost:8080/api/user/login"
+        let parameters = ["email": credentiols.email, "password": credentiols.password]
         
         return Single.create { single -> Disposable in
             
@@ -19,7 +19,13 @@ final class UserTokenRepository: UserTokenRepositoryProtocol {
                     password: credentiols.password
                 )
                 .responseDecodable(of: UserTokenGetObject.self) { res in
-                    print(res)
+                    
+                    switch res.result {
+                    case .success(let model):
+                        single(.success(model))
+                    case .failure(_):
+                        single(.error(HTTPObject.Error.handleError(res.response?.statusCode)))
+                    }
                 }
             
             return Disposables.create()

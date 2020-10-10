@@ -1,5 +1,6 @@
 
 import Foundation
+import LexickonApi
 
 protocol ApiRepository {
     var baseURL: String { get }
