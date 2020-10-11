@@ -8,7 +8,8 @@ public extension UIViewController {
         title: String = "Ошибка!",
         msg: String,
         style: UIAlertController.Style = .actionSheet,
-        button: String = "ok"
+        buttonTitle: String = "Ok",
+        buttonColor: UIColor = .blue
     ) -> Observable<Void> {
         let buttonTap = PublishSubject<Void>()
         
@@ -19,11 +20,13 @@ public extension UIViewController {
         )
         
         let button = UIAlertAction(
-            title: button,
+            title: buttonTitle,
             style: .cancel
         ) { _ in
             buttonTap.onNext(())
         }
+        
+        button.setValue(buttonColor, forKey: "titleTextColor")
         
         alert.addAction(button)
         present(alert, animated: true, completion: nil)

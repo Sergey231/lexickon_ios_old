@@ -117,10 +117,16 @@ final class LoginViewController: UIViewController, Stepper {
         
         presenterOutput.errorMsg
             .asObservable()
+            .do(onNext: { _ in self.loginButton.hide() })
             .flatMapLatest {
-                self.showMsg(msg: $0)
+                return self.showMsg(
+                    msg: $0,
+                    buttonTitle: L10n.errorAlertButtonTitle,
+                    buttonColor: Asset.Colors.mainBG.color
+                )
             }
             .subscribe(onNext: { _ in
+                self.loginButton.show()
                 print("🌈🌈🌈")
             })
             .disposed(by: disposeBag)

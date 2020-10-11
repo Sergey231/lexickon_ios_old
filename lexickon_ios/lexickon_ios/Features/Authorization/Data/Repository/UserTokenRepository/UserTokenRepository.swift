@@ -4,12 +4,15 @@ import RxCocoa
 import RxSwift
 import Alamofire
 
-final class UserTokenRepository: UserTokenRepositoryProtocol {
+final class UserTokenRepository: UserTokenRepositoryProtocol, ApiRepository {
     
     func get(with credentiols: UserCreateObject) -> Single<UserTokenGetObject> {
         
-        let url = "http://localhost:8080/api/user/login"
-        let parameters = ["email": credentiols.email, "password": credentiols.password]
+        let url = baseURL + "/api/user/login"
+        let parameters = [
+            "email": credentiols.email,
+            "password": credentiols.password
+        ]
         
         return Single.create { single -> Disposable in
             
@@ -23,8 +26,8 @@ final class UserTokenRepository: UserTokenRepositoryProtocol {
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
-                    case .failure(_):
-                        single(.error(HTTPObject.Error.handleError(res.response?.statusCode)))
+                    case .failure:
+                        single(.error(HTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
             
