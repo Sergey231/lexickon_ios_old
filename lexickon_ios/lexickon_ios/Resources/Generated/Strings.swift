@@ -9,6 +9,8 @@ import Foundation
 
 // swiftlint:disable function_parameter_count identifier_name line_length type_body_length
 internal enum L10n {
+  /// Оокей
+  internal static let errorAlertButtonTitle = L10n.tr("Localizable", "Error_alert_button_title")
   /// Ошибка
   internal static let errorAlertTitle = L10n.tr("Localizable", "Error_alert_title")
   /// Войти

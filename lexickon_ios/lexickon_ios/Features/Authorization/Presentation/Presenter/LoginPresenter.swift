@@ -39,6 +39,9 @@ final class LoginPresenter: PresenterType {
     
     func configure(input: Input) -> Output {
         
+        let errorMsg = PublishRelay<String>()
+        let showLoading = BehaviorRelay<Bool>(value: false)
+        
         let notificationCenter = NotificationCenter.default
         
         let keyboardShow = notificationCenter
@@ -101,9 +104,6 @@ final class LoginPresenter: PresenterType {
             passwordValidation
         )
             .map { $0.isValid && $1.isValid }
-        
-        let errorMsg = PublishRelay<String>()
-        let showLoading = BehaviorRelay<Bool>(value: false)
         
         let logintAndPass = Driver.combineLatest(
             input.email,
