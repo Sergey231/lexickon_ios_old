@@ -1,10 +1,3 @@
-//
-//  RgistrationPresenterView.swift
-//  lexickon_ios
-//
-//  Created by Sergey Borovikov on 7/28/19.
-//  Copyright © 2019 Sergey Borovikov. All rights reserved.
-//
 
 import UIKit
 import Swinject
@@ -17,6 +10,7 @@ import CombineCocoa
 import RxFlow
 import RxRelay
 import RxSwift
+import RxCocoa
 
 final class RegistrationViewController: UIViewController, Stepper {
     
@@ -33,6 +27,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     private let nameTextField = TextField()
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
+    private let submitButton = UIButton()
     
     init(presenter: RegistrationPresenter) {
         self.presenter = presenter
@@ -73,7 +68,8 @@ final class RegistrationViewController: UIViewController, Stepper {
             logo,
             nameTextField,
             emailTextField,
-            passwordTextField
+            passwordTextField,
+            submitButton
         )
     }
     
@@ -111,6 +107,11 @@ final class RegistrationViewController: UIViewController, Stepper {
             .horizontally(Margin.mid)
             .below(of: emailTextField)
             .marginTop(Margin.regular)
+        
+        submitButton.pin
+            .hCenter()
+            .size(Sizes.button)
+            .bottom(Margin.big)
     }
     
     private func configureUI() {
@@ -144,12 +145,17 @@ final class RegistrationViewController: UIViewController, Stepper {
             returnKeyType: .join
         ))
         
+        let submit = Signal.merge(
+            passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
+            submitButton.rx.tap.asSignal()
+        )
+        
         let input = RegistrationPresenter.Input(
             name: nameTextField.textField.rx.text.asDriver(),
             email: emailTextField.textField.rx.text.asDriver(),
             password: passwordTextField.textField.rx.text.asDriver(),
             passwordAgain: passwordTextField.textField.rx.text.asDriver(),
-            submit: passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal()
+            submit: submit
         )
         
         let presenterOutput = presenter.configure(input: input)
