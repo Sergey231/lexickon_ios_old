@@ -12,11 +12,12 @@
 "Start_create_account_button_title" = "СОЗДАТЬ АККАУНТ";
 
 // MARK: Registration Screen
-"Registration_create_account_title" = "Создать аккаут";
+"Registration_create_account_title" = "Создание аккаута";
 "Registration_name_textfield" = "Имя";
 "Registration_email_textfield" = "Email";
 "Registration_password_textfield" = "Пароль";
 "Registration_confirm_password_textfield" = "Повторите пароль";
+"Registration_submit_button_title" = "СОЗДАТЬ АККАУНТ";
 
 // MARK: Login Screen
 

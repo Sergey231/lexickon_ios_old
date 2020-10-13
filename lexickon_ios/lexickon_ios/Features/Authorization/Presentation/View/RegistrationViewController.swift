@@ -63,13 +63,16 @@ final class RegistrationViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubview(contentView)
+        view.addSubviews(
+            contentView,
+            submitButton
+        )
+        
         contentView.addSubviews(
             logo,
             nameTextField,
             emailTextField,
-            passwordTextField,
-            submitButton
+            passwordTextField
         )
     }
     
@@ -176,10 +179,13 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
             .disposed(by: disposeBag)
+        
+        submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
+        submitButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
     }
 }
 
-//// MARK: - Reset DI Container
+// MARK: - Reset DI Container
 extension RegistrationViewController {
 
     override func didMove(toParent parent: UIViewController?) {

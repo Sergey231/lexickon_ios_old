@@ -19,7 +19,7 @@ internal enum L10n {
   internal static let loginScreenTitle = L10n.tr("Localizable", "Login_screen_title")
   /// Повторите пароль
   internal static let registrationConfirmPasswordTextfield = L10n.tr("Localizable", "Registration_confirm_password_textfield")
-  /// Создать аккаут
+  /// Создание аккаута
   internal static let registrationCreateAccountTitle = L10n.tr("Localizable", "Registration_create_account_title")
   /// Email
   internal static let registrationEmailTextfield = L10n.tr("Localizable", "Registration_email_textfield")
@@ -41,6 +41,8 @@ internal enum L10n {
   internal static let registrationPasswordTooLong = L10n.tr("Localizable", "Registration_password_too_long")
   /// Пароль слишком короткий
   internal static let registrationPasswordTooShort = L10n.tr("Localizable", "Registration_password_too_short")
+  /// СОЗДАТЬ АККАУНТ
+  internal static let registrationSubmitButtonTitle = L10n.tr("Localizable", "Registration_submit_button_title")
   /// НАЧАТЬ
   internal static let startBeginButtonTitle = L10n.tr("Localizable", "Start_begin_button_title")
   /// СОЗДАТЬ АККАУНТ
