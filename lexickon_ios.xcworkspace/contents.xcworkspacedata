@@ -13,5 +13,8 @@
       <FileRef
          location = "group:/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/Packages/UIExtensions">
       </FileRef>
+      <FileRef
+         location = "group:/Users/sergeyborovikov/Documents/Repositories/lexickon_ios/Packages/RxExtensions">
+      </FileRef>
    </Group>
 </Workspace>
