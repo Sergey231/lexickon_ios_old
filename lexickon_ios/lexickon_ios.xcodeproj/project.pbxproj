@@ -193,12 +193,12 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		EC3138A82536E95B007FFCB0 /* RxExtensions */ = {
+		EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */ = {
 			isa = PBXGroup;
 			children = (
 				EC3138A92536E969007FFCB0 /* UIButton */,
 			);
-			path = RxExtensions;
+			path = "RxExtensions (Pachage candidate)";
 			sourceTree = "<group>";
 		};
 		EC3138A92536E969007FFCB0 /* UIButton */ = {
@@ -257,6 +257,7 @@
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC93A28725174E340058F779 /* ApiRepository.swift */,
+				EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
@@ -276,7 +277,6 @@
 		EC4278FF22D071F4001218AB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EC3138A82536E95B007FFCB0 /* RxExtensions */,
 				ECA97C6922D0808500918828 /* Info.plist */,
 				EC548B2922D9D4C50086BA83 /* Generated */,
 				EC52C75A22DA0C1F000C88C5 /* Localizable.strings */,
