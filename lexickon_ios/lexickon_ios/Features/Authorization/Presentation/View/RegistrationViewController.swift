@@ -11,6 +11,7 @@ import RxFlow
 import RxRelay
 import RxSwift
 import RxCocoa
+import RxExtensions
 
 final class RegistrationViewController: UIViewController, Stepper {
     
@@ -168,6 +169,11 @@ final class RegistrationViewController: UIViewController, Stepper {
                 self?._bottom = height
                 self?.layout()
             })
+            .disposed(by: disposeBag)
+        
+        presenterOutput.canSubmit
+            .asDriver()
+            .drive(submitButton.rx.valid)
             .disposed(by: disposeBag)
         
         let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
