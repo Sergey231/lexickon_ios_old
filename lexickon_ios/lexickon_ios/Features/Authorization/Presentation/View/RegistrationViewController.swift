@@ -199,9 +199,10 @@ final class RegistrationViewController: UIViewController, Stepper {
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
             .disposed(by: disposeBag)
         
-        
-        presenterOutput.msg
-            .emit(to: msgLabel.rx.text)
+        rx.viewDidAppear
+            .asSignal()
+            .flatMap { _ in presenterOutput.msg }
+            .emit(to: msgLabel.rx.textWithAnimaiton)
             .disposed(by: disposeBag)
         
         submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
