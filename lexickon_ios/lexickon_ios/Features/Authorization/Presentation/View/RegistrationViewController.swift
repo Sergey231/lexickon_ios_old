@@ -200,9 +200,9 @@ final class RegistrationViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         rx.viewDidAppear
-            .asSignal()
+            .asDriver()
             .flatMap { _ in presenterOutput.msg }
-            .emit(to: msgLabel.rx.textWithAnimaiton)
+            .drive(msgLabel.rx.textWithAnimaiton)
             .disposed(by: disposeBag)
         
         submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)

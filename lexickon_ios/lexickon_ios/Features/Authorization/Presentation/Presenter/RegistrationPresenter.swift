@@ -26,7 +26,7 @@ final class RegistrationPresenter: PresenterType {
         let nameValidation: Driver<ValidationResult>
         let emailValidation: Driver<ValidationResult>
         let passwordValidation: Driver<ValidationResult>
-        let msg: Signal<String>
+        let msg: Driver<String>
         let canSubmit: Driver<Bool>
     }
     
@@ -43,8 +43,8 @@ final class RegistrationPresenter: PresenterType {
                 error: TextFieldError.Name.tooShort
             )
             
-            return input.name.distinctUntilChanged()
-                .compactMap { name -> ValidationResult in
+            return input.name.debounce(.seconds(1))
+                .map { name -> ValidationResult in
                     
                     guard let username = name else {
                         return .invalid([TextFieldError.Name.empty])
@@ -52,9 +52,8 @@ final class RegistrationPresenter: PresenterType {
                     
                     if username.isEmpty {
                         return .invalid([TextFieldError.Name.empty])
-                    } else {
-                        return username.validate(rule: nameMinRule)
                     }
+                        return username.validate(rule: nameMinRule)
                 }
         }()
         
@@ -64,9 +63,18 @@ final class RegistrationPresenter: PresenterType {
                 pattern: EmailValidationPattern.standard,
                 error: TextFieldError.Email.incorrectEmail)
             
-            return input.email.distinctUntilChanged()
-                .map { input in
-                    input?.validate(rule: emailRule) ?? .invalid([TextFieldError.Email.incorrectEmail])
+            return input.email.debounce(.seconds(1))
+                .map { email in
+                    
+                    guard let email = email else {
+                        return .invalid([TextFieldError.Name.empty])
+                    }
+                    
+                    if email.isEmpty {
+                        return .invalid([TextFieldError.Email.empty])
+                    }
+                    
+                    return email.validate(rule: emailRule)
             }
         }()
         
@@ -104,10 +112,18 @@ final class RegistrationPresenter: PresenterType {
             passwordValidationRules.add(rule: lowcaseRule)
             passwordValidationRules.add(rule: upcaseRule)
             
-            return input.password.distinctUntilChanged()
+            return input.password.debounce(.seconds(1))
                 .map { password in
-                    password?.validate(rules: passwordValidationRules)
-                        ?? .invalid([TextFieldError.Password.tooShort])
+                    
+                    guard let password = password else {
+                        return .invalid([TextFieldError.Password.empty])
+                    }
+                    
+                    if password.isEmpty {
+                        return .invalid([TextFieldError.Password.empty])
+                    }
+                    
+                    return password.validate(rules: passwordValidationRules)
             }
             
         }()
@@ -136,18 +152,20 @@ final class RegistrationPresenter: PresenterType {
             keyboardShow
         )
         
-        let usernameValidationMsg = usernameValidation
-            .map { valid -> String in
-                switch valid {
-                case .valid:
-                    return ""
-                case .invalid(let validationErrors):
-                    return validationErrors.first?.message ?? ""
-                }
+        let msg = Driver.combineLatest(
+            usernameValidation,
+            emailValidation,
+            passwordValidation
+        ) { usernameValidation, emailValidation, passwordValidation -> String in
+            if case let ValidationResult.invalid(validationErrors) = usernameValidation {
+                return validationErrors.first?.message ?? ""
+            } else if case let ValidationResult.invalid(validationErrors) = emailValidation {
+                return validationErrors.first?.message ?? ""
+            } else if case let ValidationResult.invalid(validationErrors) = passwordValidation {
+                return validationErrors.first?.message ?? ""
             }
-            .asSignal(onErrorJustReturn: "")
-        
-        let msg = Signal.merge(usernameValidationMsg)
+            return ""
+        }
         
         let canSubmict = Driver.combineLatest(
             usernameValidation,
@@ -155,7 +173,6 @@ final class RegistrationPresenter: PresenterType {
             passwordValidation
         )
             .map { $0.isValid && $1.isValid && $2.isValid }
-            
         
         return Output(
             keyboardHeight: keyboardHeight,
@@ -173,6 +190,7 @@ enum TextFieldError {
     
     enum Password: ValidationError {
         
+        case empty
         case needDigital
         case needUpcase
         case needLowcase
@@ -181,6 +199,8 @@ enum TextFieldError {
         
         var message: String {
             switch self {
+            case .empty:
+                return L10n.registrationEnterPassword
             case .needDigital:
                 return L10n.registrationPasswordMustContainDigits
             case .needUpcase:
@@ -203,19 +223,22 @@ enum TextFieldError {
         var message: String {
             switch self {
             case .empty:
-                return L10n.registraitonEnterName
+                return L10n.registrationEnterName
             case .tooShort:
-                return L10n.registraitonNameTooShort
+                return L10n.registrationNameTooShort
             }
         }
     }
     
     enum Email: ValidationError {
         
+        case empty
         case incorrectEmail
         
         var message: String {
             switch self {
+            case .empty:
+                return L10n.registrationEnterEmail
             case .incorrectEmail:
                 return L10n.registrationIncorrectEmail
             }

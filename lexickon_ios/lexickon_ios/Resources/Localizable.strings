@@ -27,14 +27,16 @@
 // Validation Error Messages
 
 "Registration_incorrect_email" = "Не корректный email";
+"Registration_enter_email" = "Введите Email";
 "Registration_incorrect_name" = "Не корректный имя пользователя";
+"Registration_enter_password" = "Придумайте и запомните пароль";
 "Registration_password_must_contain_digits" = "Пароль должен содержать цифры";
 "Registration_password_must_contain_upercase_characters" = "Пароль должен содержать заглавные символы";
 "Registration_password_must_contain_lowercase characters" = "Пароль должен содержать строчные символы";
 "Registration_password_too_short" = "Пароль слишком короткий";
 "Registration_password_too_long" = "Пароль слишком длинный";
-"Registraiton_enter_name" = "Ввидите имя";
-"Registraiton_name_too_short" = "Имя слишком кородкое";
+"Registration_enter_name" = "Ввидите имя";
+"Registration_name_too_short" = "Имя слишком кородкое";
 
 // Alerts
 

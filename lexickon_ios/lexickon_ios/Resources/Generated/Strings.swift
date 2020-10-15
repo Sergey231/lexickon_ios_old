@@ -17,22 +17,26 @@ internal enum L10n {
   internal static let loginLoginButtonTitle = L10n.tr("Localizable", "Login_login_button_title")
   /// У меня есть аккаунт
   internal static let loginScreenTitle = L10n.tr("Localizable", "Login_screen_title")
-  /// Ввидите имя
-  internal static let registraitonEnterName = L10n.tr("Localizable", "Registraiton_enter_name")
-  /// Имя слишком кородкое
-  internal static let registraitonNameTooShort = L10n.tr("Localizable", "Registraiton_name_too_short")
   /// Повторите пароль
   internal static let registrationConfirmPasswordTextfield = L10n.tr("Localizable", "Registration_confirm_password_textfield")
   /// Создание аккаута
   internal static let registrationCreateAccountTitle = L10n.tr("Localizable", "Registration_create_account_title")
   /// Email
   internal static let registrationEmailTextfield = L10n.tr("Localizable", "Registration_email_textfield")
+  /// Введите Email
+  internal static let registrationEnterEmail = L10n.tr("Localizable", "Registration_enter_email")
+  /// Ввидите имя
+  internal static let registrationEnterName = L10n.tr("Localizable", "Registration_enter_name")
+  /// Придумайте и запомните пароль
+  internal static let registrationEnterPassword = L10n.tr("Localizable", "Registration_enter_password")
   /// Не корректный email
   internal static let registrationIncorrectEmail = L10n.tr("Localizable", "Registration_incorrect_email")
   /// Не корректный имя пользователя
   internal static let registrationIncorrectName = L10n.tr("Localizable", "Registration_incorrect_name")
   /// Имя
   internal static let registrationNameTextfield = L10n.tr("Localizable", "Registration_name_textfield")
+  /// Имя слишком кородкое
+  internal static let registrationNameTooShort = L10n.tr("Localizable", "Registration_name_too_short")
   /// Пароль должен содержать цифры
   internal static let registrationPasswordMustContainDigits = L10n.tr("Localizable", "Registration_password_must_contain_digits")
   /// Пароль должен содержать строчные символы
