@@ -33,6 +33,8 @@
 "Registration_password_must_contain_lowercase characters" = "Пароль должен содержать строчные символы";
 "Registration_password_too_short" = "Пароль слишком короткий";
 "Registration_password_too_long" = "Пароль слишком длинный";
+"Registraiton_enter_name" = "Ввидите имя";
+"Registraiton_name_too_short" = "Имя слишком кородкое";
 
 // Alerts
 

@@ -28,6 +28,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     private let nameTextField = TextField()
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
+    private let msgLabel = UILabel()
     private let submitButton = UIButton()
     
     init(presenter: RegistrationPresenter) {
@@ -73,7 +74,8 @@ final class RegistrationViewController: UIViewController, Stepper {
             logo,
             nameTextField,
             emailTextField,
-            passwordTextField
+            passwordTextField,
+            msgLabel
         )
     }
     
@@ -112,6 +114,12 @@ final class RegistrationViewController: UIViewController, Stepper {
             .below(of: emailTextField)
             .marginTop(Margin.regular)
         
+        msgLabel.pin
+            .height(Sizes.textField.height)
+            .horizontally(Margin.mid)
+            .below(of: passwordTextField)
+            .marginTop(Margin.regular)
+        
         submitButton.pin
             .hCenter()
             .size(Sizes.button)
@@ -129,6 +137,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         logo.setShadow()
         
         nameTextField.textField.enablesReturnKeyAutomatically = true
+        nameTextField.textField.becomeFirstResponder()
         
         nameTextField.configure(input: TextField.Input(
             placeholder: L10n.registrationNameTextfield,
@@ -146,8 +155,12 @@ final class RegistrationViewController: UIViewController, Stepper {
         passwordTextField.configure(input: TextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
+            isSecure: true,
             returnKeyType: .join
         ))
+        
+        msgLabel.textAlignment = .center
+        msgLabel.textColor = .white
         
         let submit = Signal.merge(
             passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
@@ -184,6 +197,11 @@ final class RegistrationViewController: UIViewController, Stepper {
             ])
         
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
+            .disposed(by: disposeBag)
+        
+        
+        presenterOutput.msg
+            .emit(to: msgLabel.rx.text)
             .disposed(by: disposeBag)
         
         submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)

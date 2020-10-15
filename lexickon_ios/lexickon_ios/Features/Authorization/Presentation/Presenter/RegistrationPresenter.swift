@@ -26,6 +26,7 @@ final class RegistrationPresenter: PresenterType {
         let nameValidation: Driver<ValidationResult>
         let emailValidation: Driver<ValidationResult>
         let passwordValidation: Driver<ValidationResult>
+        let msg: Signal<String>
         let canSubmit: Driver<Bool>
     }
     
@@ -35,56 +36,65 @@ final class RegistrationPresenter: PresenterType {
         
         let notificationCenter = NotificationCenter.default
         
-        let usernameValidationPublisher: Driver<ValidationResult> = {
+        let usernameValidation: Driver<ValidationResult> = {
             
             let nameMinRule = ValidationRuleLength(
                 min: 2,
-                error: LXError.incorrectName
+                error: TextFieldError.Name.tooShort
             )
             
             return input.name.distinctUntilChanged()
-                .map { input in
-                    input?.validate(rule: nameMinRule) ?? .invalid([LXError.incorrectName])
+                .compactMap { name -> ValidationResult in
+                    
+                    guard let username = name else {
+                        return .invalid([TextFieldError.Name.empty])
+                    }
+                    
+                    if username.isEmpty {
+                        return .invalid([TextFieldError.Name.empty])
+                    } else {
+                        return username.validate(rule: nameMinRule)
+                    }
                 }
         }()
         
-        let emailValidationPublisher: Driver<ValidationResult> = {
+        let emailValidation: Driver<ValidationResult> = {
             
             let emailRule = ValidationRulePattern(
                 pattern: EmailValidationPattern.standard,
-                error: LXError.incorrectEmail)
+                error: TextFieldError.Email.incorrectEmail)
             
             return input.email.distinctUntilChanged()
                 .map { input in
-                    input?.validate(rule: emailRule) ?? .invalid([LXError.incorrectEmail])
+                    input?.validate(rule: emailRule) ?? .invalid([TextFieldError.Email.incorrectEmail])
             }
         }()
         
-        let passwordValidationPublisher: Driver<ValidationResult> = {
+        let passwordValidation: Driver<ValidationResult> = {
             
             let minLengthRule = ValidationRuleLength(
                 min: 5,
-                error: LXError.Password.tooShort
+                error: TextFieldError.Password.tooShort
             )
             
             let maxLengthRule = ValidationRuleLength(
                 max: 18,
-                error: LXError.Password.tooLong
+                error: TextFieldError.Password.tooLong
             )
             
             let digitRule = ValidationRulePattern(
                 pattern: ContainsNumberValidationPattern(),
-                error: LXError.Password.needDigital
+                error: TextFieldError.Password.needDigital
             )
             
             let lowcaseRule = ValidationRulePattern(
                 pattern: CaseValidationPattern.lowercase,
-                error: LXError.Password.needLowcase
+                error: TextFieldError.Password.needLowcase
             )
             
             let upcaseRule = ValidationRulePattern(
                 pattern: CaseValidationPattern.uppercase,
-                error: LXError.Password.needUpcase
+                error: TextFieldError.Password.needUpcase
             )
             
             var passwordValidationRules = ValidationRuleSet<String>()
@@ -97,7 +107,7 @@ final class RegistrationPresenter: PresenterType {
             return input.password.distinctUntilChanged()
                 .map { password in
                     password?.validate(rules: passwordValidationRules)
-                        ?? .invalid([LXError.Password.tooShort])
+                        ?? .invalid([TextFieldError.Password.tooShort])
             }
             
         }()
@@ -125,28 +135,41 @@ final class RegistrationPresenter: PresenterType {
             keyboardHideDriver,
             keyboardShow
         )
-            
+        
+        let usernameValidationMsg = usernameValidation
+            .map { valid -> String in
+                switch valid {
+                case .valid:
+                    return ""
+                case .invalid(let validationErrors):
+                    return validationErrors.first?.message ?? ""
+                }
+            }
+            .asSignal(onErrorJustReturn: "")
+        
+        let msg = Signal.merge(usernameValidationMsg)
         
         let canSubmict = Driver.combineLatest(
-            usernameValidationPublisher,
-            emailValidationPublisher,
-            passwordValidationPublisher
+            usernameValidation,
+            emailValidation,
+            passwordValidation
         )
             .map { $0.isValid && $1.isValid && $2.isValid }
             
         
         return Output(
             keyboardHeight: keyboardHeight,
-            nameValidation: usernameValidationPublisher,
-            emailValidation: emailValidationPublisher,
-            passwordValidation: passwordValidationPublisher,
+            nameValidation: usernameValidation,
+            emailValidation: emailValidation,
+            passwordValidation: passwordValidation,
+            msg: msg,
             canSubmit: canSubmict
         )
     }
 }
 
 // MARK: - Extract in future
-enum LXError: ValidationError {
+enum TextFieldError {
     
     enum Password: ValidationError {
         
@@ -172,15 +195,30 @@ enum LXError: ValidationError {
         }
     }
     
-    case incorrectEmail
-    case incorrectName
+    enum Name: ValidationError {
+        
+        case empty
+        case tooShort
+        
+        var message: String {
+            switch self {
+            case .empty:
+                return L10n.registraitonEnterName
+            case .tooShort:
+                return L10n.registraitonNameTooShort
+            }
+        }
+    }
     
-    var message: String {
-        switch self {
-        case .incorrectEmail:
-            return L10n.registrationIncorrectEmail
-        case .incorrectName:
-            return L10n.registrationIncorrectName
+    enum Email: ValidationError {
+        
+        case incorrectEmail
+        
+        var message: String {
+            switch self {
+            case .incorrectEmail:
+                return L10n.registrationIncorrectEmail
+            }
         }
     }
 }
