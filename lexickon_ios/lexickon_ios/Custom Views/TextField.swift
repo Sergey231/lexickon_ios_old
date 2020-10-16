@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwiftUI
-import Combine
-import CombineCocoa
+import RxCocoa
+import RxSwift
 import UIExtensions
 
 final class TextField: UIView {
@@ -153,17 +152,12 @@ final class TextField: UIView {
 
 extension TextField: EnumerableTextField {}
 
-extension TextField: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> UIView {
-        return TextField()
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct TextField_Previews: PreviewProvider {
-    static var previews: some View {
-        TextField()
+extension Reactive where Base: TextField {
+    var sbmitText: Driver<String> {
+        return Driver.merge(
+            base.textField.rx.controlEvent(.editingChanged).asDriver(),
+            base.textField.rx.controlEvent(.editingDidEnd).asDriver()
+        )
+            .map { _ in base.textField.text ?? "" }
     }
 }

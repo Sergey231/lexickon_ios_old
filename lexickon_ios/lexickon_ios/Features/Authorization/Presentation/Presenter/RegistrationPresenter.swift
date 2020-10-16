@@ -14,18 +14,18 @@ import Validator
 final class RegistrationPresenter: PresenterType {
     
     struct Input {
-        let name: Driver<String?>
-        let email: Driver<String?>
-        let password: Driver<String?>
-        let passwordAgain: Driver<String?>
+        let name: Driver<String>
+        let email: Driver<String>
+        let password: Driver<String>
+        let passwordAgain: Driver<String>
         let submit: Signal<Void>
     }
     
     struct Output {
         let keyboardHeight: Driver<CGFloat>
-        let nameValidation: Driver<ValidationResult>
-        let emailValidation: Driver<ValidationResult>
-        let passwordValidation: Driver<ValidationResult>
+        let nameIsNotValid: Signal<Void>
+        let emailIsNotValid: Signal<Void>
+        let passwordIsNotValid: Signal<Void>
         let msg: Driver<String>
         let canSubmit: Driver<Bool>
     }
@@ -43,13 +43,10 @@ final class RegistrationPresenter: PresenterType {
                 error: TextFieldError.Name.tooShort
             )
             
-            return input.name.debounce(.seconds(1))
-                .map { name -> ValidationResult in
-                    
-                    guard let username = name else {
-                        return .invalid([TextFieldError.Name.empty])
-                    }
-                    
+            return input.name
+                .debounce(.seconds(1))
+                .map { username -> ValidationResult in
+
                     if username.isEmpty {
                         return .invalid([TextFieldError.Name.empty])
                     }
@@ -63,13 +60,10 @@ final class RegistrationPresenter: PresenterType {
                 pattern: EmailValidationPattern.standard,
                 error: TextFieldError.Email.incorrectEmail)
             
-            return input.email.debounce(.seconds(1))
+            return input.email
+                .debounce(.seconds(1))
                 .map { email in
-                    
-                    guard let email = email else {
-                        return .invalid([TextFieldError.Name.empty])
-                    }
-                    
+
                     if email.isEmpty {
                         return .invalid([TextFieldError.Email.empty])
                     }
@@ -112,12 +106,9 @@ final class RegistrationPresenter: PresenterType {
             passwordValidationRules.add(rule: lowcaseRule)
             passwordValidationRules.add(rule: upcaseRule)
             
-            return input.password.debounce(.seconds(1))
+            return input.password
+                .debounce(.seconds(2))
                 .map { password in
-                    
-                    guard let password = password else {
-                        return .invalid([TextFieldError.Password.empty])
-                    }
                     
                     if password.isEmpty {
                         return .invalid([TextFieldError.Password.empty])
@@ -125,7 +116,6 @@ final class RegistrationPresenter: PresenterType {
                     
                     return password.validate(rules: passwordValidationRules)
             }
-            
         }()
         
         let keyboardShow = notificationCenter
@@ -153,10 +143,11 @@ final class RegistrationPresenter: PresenterType {
         )
         
         let msg = Driver.combineLatest(
-            usernameValidation,
-            emailValidation,
-            passwordValidation
+            usernameValidation.startWith(.invalid([TextFieldError.Name.empty])),
+            emailValidation.startWith(.invalid([TextFieldError.Email.empty])),
+            passwordValidation.startWith(.invalid([TextFieldError.Password.empty]))
         ) { usernameValidation, emailValidation, passwordValidation -> String in
+            
             if case let ValidationResult.invalid(validationErrors) = usernameValidation {
                 return validationErrors.first?.message ?? ""
             } else if case let ValidationResult.invalid(validationErrors) = emailValidation {
@@ -167,6 +158,21 @@ final class RegistrationPresenter: PresenterType {
             return ""
         }
         
+        let nameIsNotValid = usernameValidation
+            .filter { !$0.isValid }
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+
+        let emialIsNotValid = emailValidation
+            .filter { !$0.isValid }
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+
+        let passwordIsNotValid = passwordValidation
+            .filter { !$0.isValid }
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+        
         let canSubmict = Driver.combineLatest(
             usernameValidation,
             emailValidation,
@@ -176,9 +182,9 @@ final class RegistrationPresenter: PresenterType {
         
         return Output(
             keyboardHeight: keyboardHeight,
-            nameValidation: usernameValidation,
-            emailValidation: emailValidation,
-            passwordValidation: passwordValidation,
+            nameIsNotValid: nameIsNotValid,
+            emailIsNotValid: emialIsNotValid,
+            passwordIsNotValid: passwordIsNotValid,
             msg: msg,
             canSubmit: canSubmict
         )

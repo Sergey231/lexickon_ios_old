@@ -168,10 +168,10 @@ final class RegistrationViewController: UIViewController, Stepper {
         )
         
         let input = RegistrationPresenter.Input(
-            name: nameTextField.textField.rx.text.asDriver(),
-            email: emailTextField.textField.rx.text.asDriver(),
-            password: passwordTextField.textField.rx.text.asDriver(),
-            passwordAgain: passwordTextField.textField.rx.text.asDriver(),
+            name: nameTextField.rx.sbmitText,
+            email: emailTextField.rx.sbmitText,
+            password: passwordTextField.rx.sbmitText,
+            passwordAgain: passwordTextField.rx.sbmitText,
             submit: submit
         )
         
@@ -182,6 +182,19 @@ final class RegistrationViewController: UIViewController, Stepper {
                 self?._bottom = height
                 self?.layout()
             })
+            .disposed(by: disposeBag)
+        
+        presenterOutput.nameIsNotValid
+            .skip(1)
+            .emit(to: nameTextField.rx.shake)
+            .disposed(by: disposeBag)
+
+        presenterOutput.emailIsNotValid
+            .emit(to: emailTextField.rx.shake)
+            .disposed(by: disposeBag)
+
+        presenterOutput.passwordIsNotValid
+            .emit(to: passwordTextField.rx.shake)
             .disposed(by: disposeBag)
         
         presenterOutput.canSubmit

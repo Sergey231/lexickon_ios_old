@@ -13,7 +13,7 @@ import UIKit
 extension Reactive where Base: UILabel {
     
     var textWithAnimaiton: Binder<String> {
-        return Binder(self.base) { label, newText in
+        return Binder(base) { label, newText in
             
             if let labelText = base.text,
                !labelText.isEmpty {
