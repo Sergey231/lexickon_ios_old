@@ -228,6 +228,8 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
         submitButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        submitButton.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
     }
 }
 

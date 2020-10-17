@@ -18,6 +18,7 @@
 		EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */; };
 		EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */; };
 		EC3138D025385E50007FFCB0 /* Rx+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */; };
+		EC3139D6253B305B007FFCB0 /* UIButton+TapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44492520B510004706DC /* RxAlamofire */; };
 		EC3F44532520BF26004706DC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44522520BF26004706DC /* RxSwift */; };
@@ -96,6 +97,7 @@
 		EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
 		EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UILabel.swift"; sourceTree = "<group>"; };
 		EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIView.swift"; sourceTree = "<group>"; };
+		EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TapAnimation.swift"; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +215,7 @@
 		EC3138A92536E969007FFCB0 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */,
 				EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */,
 			);
 			path = UIButton;
@@ -674,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3139D6253B305B007FFCB0 /* UIButton+TapAnimation.swift in Sources */,
 				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
