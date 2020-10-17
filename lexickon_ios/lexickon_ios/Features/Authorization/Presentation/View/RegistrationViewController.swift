@@ -161,6 +161,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         msgLabel.textAlignment = .center
         msgLabel.textColor = .white
+        msgLabel.numberOfLines = 2
         
         let submit = Signal.merge(
             passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
@@ -179,8 +180,10 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         presenterOutput.keyboardHeight
             .drive(onNext: { [weak self] height in
-                self?._bottom = height
-                self?.layout()
+                UIView.animate(withDuration: 0.2) {
+                    self?._bottom = height
+                    self?.layout()
+                }
             })
             .disposed(by: disposeBag)
         
@@ -202,12 +205,17 @@ final class RegistrationViewController: UIViewController, Stepper {
             .drive(submitButton.rx.valid)
             .disposed(by: disposeBag)
         
+        let textFields = [
+            nameTextField,
+            emailTextField,
+            passwordTextField
+        ]
+        
         let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
-            .configureEnumerable(textFields: [
-                nameTextField,
-                emailTextField,
-                passwordTextField
-            ])
+            .configureEnumerable(
+                textFields: textFields,
+                canSubmit: presenterOutput.canSubmit.asObservable()
+            )
         
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
             .disposed(by: disposeBag)
@@ -229,5 +237,14 @@ extension RegistrationViewController {
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         DI.shr.appContainer.resetObjectScope(ObjectScope.registrationObjectScope)
+    }
+}
+
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 2 {
+            return false
+        }
+        return true
     }
 }

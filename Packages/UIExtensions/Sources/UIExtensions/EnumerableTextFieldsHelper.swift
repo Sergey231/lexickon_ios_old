@@ -16,7 +16,7 @@ public protocol EnumerableTextField {
     var textField: UITextField { get }
 }
 
-public class EnumerableTextFieldHelper {
+public class EnumerableTextFieldHelper: NSObject {
     
     public enum EnumerableTextFieldEvent {
         case nextTextFieldIndex(Int)
@@ -24,12 +24,16 @@ public class EnumerableTextFieldHelper {
         case none
     }
     
-    public init(){}
+    public override init(){}
     
     private let enumerableTextFieldEvents = BehaviorSubject<EnumerableTextFieldEvent>(value: .none)
     private var disposables = [Disposable]()
     
-    public func configureEnumerable(textFields: [EnumerableTextField]) -> [Disposable] {
+    public func configureEnumerable(
+        textFields: [EnumerableTextField],
+        canSubmit: Observable<Bool> = .just(true),
+        returnKeyForSubmit: UIReturnKeyType = .join
+    ) -> [Disposable] {
         
         textFields.enumerated()
             .forEach ({
@@ -57,19 +61,44 @@ public class EnumerableTextFieldHelper {
                 self.disposables.append(disposable)
             })
         
-        let enumerableTextFieldDisposable = enumerableTextFieldEvents.asObservable()
-            .subscribe(onNext: { event in
-                switch event {
-                case .nextTextFieldIndex(let index):
-                    textFields[index].textField.becomeFirstResponder()
-                case .isLastTextFieldIndex(let index):
-                    textFields[index].textField.resignFirstResponder()
-                case .none:
-                    break
+        let enumerableTextFieldDisposable = Observable.combineLatest(
+            enumerableTextFieldEvents.asObservable(),
+            canSubmit.startWith(false).asObservable()
+        ) { (event: $0, canSubmit: $1) }
+            .subscribe(onNext: {
+                
+                if !$0.canSubmit {
+                    switch $0.event {
+                    case .nextTextFieldIndex(let index):
+                        textFields[index].textField.becomeFirstResponder()
+                    case .isLastTextFieldIndex(let index):
+                        textFields[index].textField.resignFirstResponder()
+                    case .none:
+                        break
+                    }
                 }
             })
-            
-        disposables.append(enumerableTextFieldDisposable)
+        
+        let setEnableReturnKeyDisposable = canSubmit
+            .subscribe(onNext: {
+                if $0 {
+                    textFields.forEach { textField in
+                        textField.textField.returnKeyType = returnKeyForSubmit
+                    }
+                } else {
+                    textFields.forEach { textField in
+                        let isLastTf = textField.textField.tag == (textFields.count - 1)
+                        textField.textField.returnKeyType = isLastTf
+                            ? returnKeyForSubmit
+                            : .next
+                    }
+                }
+            })
+        
+        disposables.append(contentsOf: [
+            enumerableTextFieldDisposable,
+            setEnableReturnKeyDisposable
+        ])
         
         return disposables
     }
