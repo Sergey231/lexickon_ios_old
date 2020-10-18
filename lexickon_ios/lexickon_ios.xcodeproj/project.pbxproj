@@ -19,6 +19,8 @@
 		EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */; };
 		EC3138D025385E50007FFCB0 /* Rx+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */; };
 		EC3139D6253B305B007FFCB0 /* UIButton+TapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */; };
+		EC3139DA253C2E95007FFCB0 /* SwitchIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */; };
+		EC3139DF253C328B007FFCB0 /* Rx+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44492520B510004706DC /* RxAlamofire */; };
 		EC3F44532520BF26004706DC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44522520BF26004706DC /* RxSwift */; };
@@ -98,6 +100,8 @@
 		EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UILabel.swift"; sourceTree = "<group>"; };
 		EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIView.swift"; sourceTree = "<group>"; };
 		EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TapAnimation.swift"; sourceTree = "<group>"; };
+		EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchIconButton.swift; sourceTree = "<group>"; };
+		EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIImageView.swift"; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +208,7 @@
 		EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */ = {
 			isa = PBXGroup;
 			children = (
+				EC3139DD253C3273007FFCB0 /* UIImageView */,
 				EC3138CE25385E10007FFCB0 /* UIView */,
 				EC3138C525382B04007FFCB0 /* UILabel */,
 				EC3138B825382576007FFCB0 /* UIViewController */,
@@ -245,12 +250,21 @@
 			path = UIView;
 			sourceTree = "<group>";
 		};
+		EC3139DD253C3273007FFCB0 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				EC835EF523F1B15600E3288B /* Logo */,
 				EC4850F92331ECCF00F3B71F /* Graphics and Animations */,
 				EC99BD6423F29AAA00A500A9 /* TextField.swift */,
+				EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -677,6 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3139DF253C328B007FFCB0 /* Rx+UIImageView.swift in Sources */,
 				EC3139D6253B305B007FFCB0 /* UIButton+TapAnimation.swift in Sources */,
 				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
@@ -695,6 +710,7 @@
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
+				EC3139DA253C2E95007FFCB0 /* SwitchIconButton.swift in Sources */,
 				EC93A28425164A860058F779 /* UserTokenRepositoryProtocol.swift in Sources */,
 				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC3138AB2536E985007FFCB0 /* Rx+UIButton.swift in Sources */,

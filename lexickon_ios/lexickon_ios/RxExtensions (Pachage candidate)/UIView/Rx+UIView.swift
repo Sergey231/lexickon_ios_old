@@ -17,4 +17,11 @@ extension Reactive where Base: UIView {
             base.shake()
         }
     }
+    
+    var layoutSubviews: ControlEvent<Void> {
+        ControlEvent(
+            events: base.rx.methodInvoked(#selector(UIView.layoutSubviews))
+                .map { _ in () }
+        )
+    }
 }

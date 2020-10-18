@@ -57,14 +57,24 @@ final class TextField: UIView {
                 ? Sizes.icon.width
                 : 0
         }
+        
+        var eyeIconWidth: CGFloat {
+            return isSecure
+                ? Sizes.icon.width
+                : 0
+        }
     }
     
     internal let textField = UITextField()
     private let leftIconView = UIImageView()
     private let rightIconView = UIImageView()
+    private let eyeIconButton = SwitchIconButton()
     private let lineView = UIView()
     
     private var _input: Input?
+    private let disposeBag = DisposeBag()
+    
+    private let eyeIcon = BehaviorRelay<UIImage>(value: Asset.Images.eyeHideIcon.image)
     
     //MARK: init programmatically
     override init(frame: CGRect) {
@@ -88,6 +98,7 @@ final class TextField: UIView {
             textField,
             leftIconView,
             rightIconView,
+            eyeIconButton,
             lineView
         )
     }
@@ -122,6 +133,16 @@ final class TextField: UIView {
         textField.isSecureTextEntry = input.isSecure
         leftIconView.image = input.leftIcon
         rightIconView.image = input.rightIcon
+        
+        eyeIconButton.configure(input: .init(
+            onIcon: Asset.Images.eyeHideIcon.image,
+            offIcon: Asset.Images.eyeShowIcon.image
+        ))
+        
+        eyeIconButton.on
+            .drive(textField.rx.isSecureTextEntry)
+            .disposed(by: disposeBag)
+        
         lineView.round()
     }
     
@@ -132,10 +153,15 @@ final class TextField: UIView {
             .size(_input?.leftIconWidth ?? 0)
             .left()
         
+        eyeIconButton.pin
+            .vCenter()
+            .size(_input?.eyeIconWidth ?? 0)
+            .right()
+        
         rightIconView.pin
             .vCenter()
             .size(_input?.rightIconWidth ?? 0)
-            .right()
+            .before(of: eyeIconButton)
         
         textField.pin
             .vCenter()
