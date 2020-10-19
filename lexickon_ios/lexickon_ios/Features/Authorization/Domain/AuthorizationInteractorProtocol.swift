@@ -8,7 +8,7 @@ protocol AuthorizationInteractorProtocol {
         name: String,
         email: String,
         password: String
-    )
+    ) -> Single<Void>
     
     func login(
         login: String,

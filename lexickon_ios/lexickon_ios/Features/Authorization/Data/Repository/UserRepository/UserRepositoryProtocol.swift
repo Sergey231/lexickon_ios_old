@@ -1,10 +1,11 @@
 
 import LexickonApi
-import Combine
+import RxCocoa
+import RxSwift
 
 protocol UserRepositoryProtocol {
     
     func createUser(
-        with credentions: UserCreateObject
-    ) -> AnyPublisher<UserGetObject, HTTPObject.Error>
+        with credentials: UserCreateObject
+    ) -> Single<UserGetObject>
 }

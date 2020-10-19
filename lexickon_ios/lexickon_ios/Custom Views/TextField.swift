@@ -140,6 +140,7 @@ final class TextField: UIView {
         ))
         
         eyeIconButton.on
+            .map { input.isSecure ? $0 : false }
             .drive(textField.rx.isSecureTextEntry)
             .disposed(by: disposeBag)
         

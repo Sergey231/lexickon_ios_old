@@ -12,8 +12,10 @@ final class RegistrationAssembler: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(RegistrationPresenter.self) { _ in
-            RegistrationPresenter()
+        container.register(RegistrationPresenter.self) { resolver in
+            RegistrationPresenter(
+                authorisationInteractor: resolver.resolve(AuthorizationInteractorProtocol.self)!
+            )
         }.inObjectScope(ObjectScope.registrationObjectScope)
         
         container.register(RegistrationViewController.self) { resolver in

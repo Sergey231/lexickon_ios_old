@@ -13,6 +13,12 @@ import Validator
 
 final class RegistrationPresenter: PresenterType {
     
+    private let authorisationInteractor: AuthorizationInteractorProtocol
+    
+    init(authorisationInteractor: AuthorizationInteractorProtocol) {
+        self.authorisationInteractor = authorisationInteractor
+    }
+    
     struct Input {
         let name: Driver<String>
         let email: Driver<String>
@@ -28,12 +34,20 @@ final class RegistrationPresenter: PresenterType {
         let passwordIsNotValid: Signal<Void>
         let msg: Driver<String>
         let canSubmit: Driver<Bool>
+        let showLoading: Driver<Bool>
+        let errorMsg: Signal<String>
+        let disposables: CompositeDisposable
     }
     
     private let disposeBag = DisposeBag()
     
     func configure(input: Input) -> Output {
         
+        let errorMsg = PublishRelay<String>()
+        let showLoading = BehaviorRelay<Bool>(value: false)
+        let nameIsNotValid = PublishRelay<Void>()
+        let emailIsNotValid = PublishRelay<Void>()
+        let passwordIsNotValid = PublishRelay<Void>()
         let notificationCenter = NotificationCenter.default
         
         let usernameValidation: Driver<ValidationResult> = {
@@ -149,29 +163,17 @@ final class RegistrationPresenter: PresenterType {
         ) { usernameValidation, emailValidation, passwordValidation -> String in
             
             if case let ValidationResult.invalid(validationErrors) = usernameValidation {
+                nameIsNotValid.accept(())
                 return validationErrors.first?.message ?? ""
             } else if case let ValidationResult.invalid(validationErrors) = emailValidation {
+                emailIsNotValid.accept(())
                 return validationErrors.first?.message ?? ""
             } else if case let ValidationResult.invalid(validationErrors) = passwordValidation {
+                passwordIsNotValid.accept(())
                 return validationErrors.first?.message ?? ""
             }
             return ""
         }
-        
-        let nameIsNotValid = usernameValidation
-            .filter { !$0.isValid }
-            .map { _ in () }
-            .asSignal(onErrorSignalWith: .empty())
-
-        let emialIsNotValid = emailValidation
-            .filter { !$0.isValid }
-            .map { _ in () }
-            .asSignal(onErrorSignalWith: .empty())
-
-        let passwordIsNotValid = passwordValidation
-            .filter { !$0.isValid }
-            .map { _ in () }
-            .asSignal(onErrorSignalWith: .empty())
         
         let canSubmict = Driver.combineLatest(
             usernameValidation,
@@ -180,13 +182,41 @@ final class RegistrationPresenter: PresenterType {
         )
             .map { $0.isValid && $1.isValid && $2.isValid }
         
+        let userCreateInfo = Driver.combineLatest(
+            input.name,
+            input.email,
+            input.password
+        ) { (name: $0, email: $1, password: $2) }
+        
+        let submitDisposable = input.submit
+            .asObservable()
+            .withLatestFrom(userCreateInfo)
+            .flatMapLatest ({ arg -> Observable<Void> in
+                showLoading.accept(true)
+                return self.authorisationInteractor.registrate(
+                    name: arg.name,
+                    email: arg.email,
+                    password: arg.password
+                )
+                    .asObservable()
+            })
+            .subscribe(
+                onNext: { _ in showLoading.accept(false)
+            }, onError: { error in
+                errorMsg.accept(error.localizedDescription)
+                showLoading.accept(false)
+            })
+        
         return Output(
             keyboardHeight: keyboardHeight,
-            nameIsNotValid: nameIsNotValid,
-            emailIsNotValid: emialIsNotValid,
-            passwordIsNotValid: passwordIsNotValid,
+            nameIsNotValid: nameIsNotValid.asSignal(),
+            emailIsNotValid: emailIsNotValid.asSignal(),
+            passwordIsNotValid: passwordIsNotValid.asSignal(),
             msg: msg,
-            canSubmit: canSubmict
+            canSubmit: canSubmict,
+            showLoading: showLoading.asDriver(),
+            errorMsg: errorMsg.asSignal(),
+            disposables: CompositeDisposable(disposables: [submitDisposable])
         )
     }
 }
