@@ -13,6 +13,14 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
+		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
+		EC3138AB2536E985007FFCB0 /* Rx+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */; };
+		EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */; };
+		EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */; };
+		EC3138D025385E50007FFCB0 /* Rx+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */; };
+		EC3139D6253B305B007FFCB0 /* UIButton+TapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */; };
+		EC3139DA253C2E95007FFCB0 /* SwitchIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */; };
+		EC3139DF253C328B007FFCB0 /* Rx+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44492520B510004706DC /* RxAlamofire */; };
 		EC3F44532520BF26004706DC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44522520BF26004706DC /* RxSwift */; };
@@ -87,6 +95,13 @@
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLogo.swift; sourceTree = "<group>"; };
+		EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIButton.swift"; sourceTree = "<group>"; };
+		EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
+		EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UILabel.swift"; sourceTree = "<group>"; };
+		EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIView.swift"; sourceTree = "<group>"; };
+		EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TapAnimation.swift"; sourceTree = "<group>"; };
+		EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchIconButton.swift; sourceTree = "<group>"; };
+		EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIImageView.swift"; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +168,7 @@
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
 				EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */,
+				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
 				EC3F44592520BF26004706DC /* RxBlocking in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
@@ -189,12 +205,66 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
+		EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */ = {
+			isa = PBXGroup;
+			children = (
+				EC3139DD253C3273007FFCB0 /* UIImageView */,
+				EC3138CE25385E10007FFCB0 /* UIView */,
+				EC3138C525382B04007FFCB0 /* UILabel */,
+				EC3138B825382576007FFCB0 /* UIViewController */,
+				EC3138A92536E969007FFCB0 /* UIButton */,
+			);
+			path = "RxExtensions (Pachage candidate)";
+			sourceTree = "<group>";
+		};
+		EC3138A92536E969007FFCB0 /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				EC3139D5253B305B007FFCB0 /* UIButton+TapAnimation.swift */,
+				EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		EC3138B825382576007FFCB0 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		EC3138C525382B04007FFCB0 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		EC3138CE25385E10007FFCB0 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				EC3138CF25385E50007FFCB0 /* Rx+UIView.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		EC3139DD253C3273007FFCB0 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
 				EC835EF523F1B15600E3288B /* Logo */,
 				EC4850F92331ECCF00F3B71F /* Graphics and Animations */,
 				EC99BD6423F29AAA00A500A9 /* TextField.swift */,
+				EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -237,6 +307,7 @@
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC93A28725174E340058F779 /* ApiRepository.swift */,
+				EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
@@ -516,6 +587,7 @@
 				EC3F44542520BF26004706DC /* RxRelay */,
 				EC3F44562520BF26004706DC /* RxCocoa */,
 				EC3F44582520BF26004706DC /* RxBlocking */,
+				EC31385A2535D4D4007FFCB0 /* RxExtensions */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -619,6 +691,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3139DF253C328B007FFCB0 /* Rx+UIImageView.swift in Sources */,
+				EC3139D6253B305B007FFCB0 /* UIButton+TapAnimation.swift in Sources */,
 				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
@@ -636,15 +710,20 @@
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
+				EC3139DA253C2E95007FFCB0 /* SwitchIconButton.swift in Sources */,
 				EC93A28425164A860058F779 /* UserTokenRepositoryProtocol.swift in Sources */,
 				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
+				EC3138AB2536E985007FFCB0 /* Rx+UIButton.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
 				EC93A28825174E340058F779 /* ApiRepository.swift in Sources */,
+				EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
 				EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */,
 				ECCB193E23F963A80069C5A7 /* IntroAssembler.swift in Sources */,
 				ECCB193A23F9633C0069C5A7 /* MainAssembler.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
+				EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */,
+				EC3138D025385E50007FFCB0 /* Rx+UIView.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
@@ -1010,6 +1089,10 @@
 		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
+		};
+		EC31385A2535D4D4007FFCB0 /* RxExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RxExtensions;
 		};
 		EC3F44492520B510004706DC /* RxAlamofire */ = {
 			isa = XCSwiftPackageProductDependency;

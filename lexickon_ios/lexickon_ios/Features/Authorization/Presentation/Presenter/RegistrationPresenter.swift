@@ -13,78 +13,104 @@ import Validator
 
 final class RegistrationPresenter: PresenterType {
     
+    private let authorisationInteractor: AuthorizationInteractorProtocol
+    
+    init(authorisationInteractor: AuthorizationInteractorProtocol) {
+        self.authorisationInteractor = authorisationInteractor
+    }
+    
     struct Input {
-        let name: Driver<String?>
-        let email: Driver<String?>
-        let password: Driver<String?>
-        let passwordAgain: Driver<String?>
+        let name: Driver<String>
+        let email: Driver<String>
+        let password: Driver<String>
+        let passwordAgain: Driver<String>
         let submit: Signal<Void>
     }
     
     struct Output {
         let keyboardHeight: Driver<CGFloat>
-        let nameValidation: Driver<ValidationResult>
-        let emailValidation: Driver<ValidationResult>
-        let passwordValidation: Driver<ValidationResult>
+        let nameIsNotValid: Signal<Void>
+        let emailIsNotValid: Signal<Void>
+        let passwordIsNotValid: Signal<Void>
+        let msg: Driver<String>
         let canSubmit: Driver<Bool>
+        let showLoading: Driver<Bool>
+        let errorMsg: Signal<String>
+        let disposables: CompositeDisposable
     }
     
     private let disposeBag = DisposeBag()
     
     func configure(input: Input) -> Output {
         
+        let errorMsg = PublishRelay<String>()
+        let showLoading = BehaviorRelay<Bool>(value: false)
+        let nameIsNotValid = PublishRelay<Void>()
+        let emailIsNotValid = PublishRelay<Void>()
+        let passwordIsNotValid = PublishRelay<Void>()
         let notificationCenter = NotificationCenter.default
         
-        let usernameValidationPublisher: Driver<ValidationResult> = {
+        let usernameValidation: Driver<ValidationResult> = {
             
             let nameMinRule = ValidationRuleLength(
                 min: 2,
-                error: LXError.incorrectName
+                error: TextFieldError.Name.tooShort
             )
             
-            return input.name.distinctUntilChanged()
-                .map { input in
-                    input?.validate(rule: nameMinRule) ?? .invalid([LXError.incorrectName])
+            return input.name
+                .debounce(.seconds(1))
+                .map { username -> ValidationResult in
+
+                    if username.isEmpty {
+                        return .invalid([TextFieldError.Name.empty])
+                    }
+                        return username.validate(rule: nameMinRule)
                 }
         }()
         
-        let emailValidationPublisher: Driver<ValidationResult> = {
+        let emailValidation: Driver<ValidationResult> = {
             
             let emailRule = ValidationRulePattern(
                 pattern: EmailValidationPattern.standard,
-                error: LXError.incorrectEmail)
+                error: TextFieldError.Email.incorrectEmail)
             
-            return input.email.distinctUntilChanged()
-                .map { input in
-                    input?.validate(rule: emailRule) ?? .invalid([LXError.incorrectEmail])
+            return input.email
+                .debounce(.seconds(1))
+                .map { email in
+
+                    if email.isEmpty {
+                        return .invalid([TextFieldError.Email.empty])
+                    }
+                    
+                    return email.validate(rule: emailRule)
             }
         }()
         
-        let passwordValidationPublisher: Driver<ValidationResult> = {
+        let passwordValidation: Driver<ValidationResult> = {
             
             let minLengthRule = ValidationRuleLength(
                 min: 5,
-                error: LXError.Password.tooShort
+                error: TextFieldError.Password.tooShort
             )
             
             let maxLengthRule = ValidationRuleLength(
                 max: 18,
-                error: LXError.Password.tooLong
+                error: TextFieldError.Password.tooLong
             )
             
             let digitRule = ValidationRulePattern(
                 pattern: ContainsNumberValidationPattern(),
-                error: LXError.Password.needDigital
+                error: TextFieldError.Password.needDigital
             )
             
             let lowcaseRule = ValidationRulePattern(
                 pattern: CaseValidationPattern.lowercase,
-                error: LXError.Password.needLowcase
+                error: TextFieldError.Password.needLowcase
             )
             
             let upcaseRule = ValidationRulePattern(
                 pattern: CaseValidationPattern.uppercase,
-                error: LXError.Password.needUpcase
+                error: TextFieldError.Password.needUpcase
             )
             
             var passwordValidationRules = ValidationRuleSet<String>()
@@ -94,12 +120,16 @@ final class RegistrationPresenter: PresenterType {
             passwordValidationRules.add(rule: lowcaseRule)
             passwordValidationRules.add(rule: upcaseRule)
             
-            return input.password.distinctUntilChanged()
+            return input.password
+                .debounce(.seconds(2))
                 .map { password in
-                    password?.validate(rules: passwordValidationRules)
-                        ?? .invalid([LXError.Password.tooShort])
+                    
+                    if password.isEmpty {
+                        return .invalid([TextFieldError.Password.empty])
+                    }
+                    
+                    return password.validate(rules: passwordValidationRules)
             }
-            
         }()
         
         let keyboardShow = notificationCenter
@@ -125,31 +155,78 @@ final class RegistrationPresenter: PresenterType {
             keyboardHideDriver,
             keyboardShow
         )
+        
+        let msg = Driver.combineLatest(
+            usernameValidation.startWith(.invalid([TextFieldError.Name.empty])),
+            emailValidation.startWith(.invalid([TextFieldError.Email.empty])),
+            passwordValidation.startWith(.invalid([TextFieldError.Password.empty]))
+        ) { usernameValidation, emailValidation, passwordValidation -> String in
             
+            if case let ValidationResult.invalid(validationErrors) = usernameValidation {
+                nameIsNotValid.accept(())
+                return validationErrors.first?.message ?? ""
+            } else if case let ValidationResult.invalid(validationErrors) = emailValidation {
+                emailIsNotValid.accept(())
+                return validationErrors.first?.message ?? ""
+            } else if case let ValidationResult.invalid(validationErrors) = passwordValidation {
+                passwordIsNotValid.accept(())
+                return validationErrors.first?.message ?? ""
+            }
+            return ""
+        }
         
         let canSubmict = Driver.combineLatest(
-            usernameValidationPublisher,
-            emailValidationPublisher,
-            passwordValidationPublisher
+            usernameValidation,
+            emailValidation,
+            passwordValidation
         )
             .map { $0.isValid && $1.isValid && $2.isValid }
-            
+        
+        let userCreateInfo = Driver.combineLatest(
+            input.name,
+            input.email,
+            input.password
+        ) { (name: $0, email: $1, password: $2) }
+        
+        let submitDisposable = input.submit
+            .asObservable()
+            .withLatestFrom(userCreateInfo)
+            .flatMapLatest ({ arg -> Observable<Void> in
+                showLoading.accept(true)
+                return self.authorisationInteractor.registrate(
+                    name: arg.name,
+                    email: arg.email,
+                    password: arg.password
+                )
+                    .asObservable()
+            })
+            .subscribe(
+                onNext: { _ in showLoading.accept(false)
+            }, onError: { error in
+                errorMsg.accept(error.localizedDescription)
+                showLoading.accept(false)
+            })
         
         return Output(
             keyboardHeight: keyboardHeight,
-            nameValidation: usernameValidationPublisher,
-            emailValidation: emailValidationPublisher,
-            passwordValidation: passwordValidationPublisher,
-            canSubmit: canSubmict
+            nameIsNotValid: nameIsNotValid.asSignal(),
+            emailIsNotValid: emailIsNotValid.asSignal(),
+            passwordIsNotValid: passwordIsNotValid.asSignal(),
+            msg: msg,
+            canSubmit: canSubmict,
+            showLoading: showLoading.asDriver(),
+            errorMsg: errorMsg.asSignal(),
+            disposables: CompositeDisposable(disposables: [submitDisposable])
         )
     }
 }
 
 // MARK: - Extract in future
-enum LXError: ValidationError {
+enum TextFieldError {
     
     enum Password: ValidationError {
         
+        case empty
         case needDigital
         case needUpcase
         case needLowcase
@@ -158,6 +235,8 @@ enum LXError: ValidationError {
         
         var message: String {
             switch self {
+            case .empty:
+                return L10n.registrationEnterPassword
             case .needDigital:
                 return L10n.registrationPasswordMustContainDigits
             case .needUpcase:
@@ -172,15 +251,33 @@ enum LXError: ValidationError {
         }
     }
     
-    case incorrectEmail
-    case incorrectName
+    enum Name: ValidationError {
+        
+        case empty
+        case tooShort
+        
+        var message: String {
+            switch self {
+            case .empty:
+                return L10n.registrationEnterName
+            case .tooShort:
+                return L10n.registrationNameTooShort
+            }
+        }
+    }
     
-    var message: String {
-        switch self {
-        case .incorrectEmail:
-            return L10n.registrationIncorrectEmail
-        case .incorrectName:
-            return L10n.registrationIncorrectName
+    enum Email: ValidationError {
+        
+        case empty
+        case incorrectEmail
+        
+        var message: String {
+            switch self {
+            case .empty:
+                return L10n.registrationEnterEmail
+            case .incorrectEmail:
+                return L10n.registrationIncorrectEmail
+            }
         }
     }
 }

@@ -22,7 +22,8 @@ final class LoginAssembler: Assembly {
         
         container.register(AuthorizationInteractorProtocol.self) { resolver in
             AuthorizationInteractor(
-                userTokenRepository: resolver.resolve(UserTokenRepositoryProtocol.self)!
+                userTokenRepository: resolver.resolve(UserTokenRepositoryProtocol.self)!,
+                userRepository: resolver.resolve(UserRepositoryProtocol.self)!
             )
         }
         

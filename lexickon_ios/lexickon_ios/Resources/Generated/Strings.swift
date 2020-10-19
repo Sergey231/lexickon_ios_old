@@ -19,16 +19,24 @@ internal enum L10n {
   internal static let loginScreenTitle = L10n.tr("Localizable", "Login_screen_title")
   /// Повторите пароль
   internal static let registrationConfirmPasswordTextfield = L10n.tr("Localizable", "Registration_confirm_password_textfield")
-  /// Создать аккаут
+  /// Создание аккаута
   internal static let registrationCreateAccountTitle = L10n.tr("Localizable", "Registration_create_account_title")
   /// Email
   internal static let registrationEmailTextfield = L10n.tr("Localizable", "Registration_email_textfield")
+  /// Введите Email
+  internal static let registrationEnterEmail = L10n.tr("Localizable", "Registration_enter_email")
+  /// Ввидите имя
+  internal static let registrationEnterName = L10n.tr("Localizable", "Registration_enter_name")
+  /// Придумайте и запомните пароль
+  internal static let registrationEnterPassword = L10n.tr("Localizable", "Registration_enter_password")
   /// Не корректный email
   internal static let registrationIncorrectEmail = L10n.tr("Localizable", "Registration_incorrect_email")
   /// Не корректный имя пользователя
   internal static let registrationIncorrectName = L10n.tr("Localizable", "Registration_incorrect_name")
   /// Имя
   internal static let registrationNameTextfield = L10n.tr("Localizable", "Registration_name_textfield")
+  /// Имя слишком кородкое
+  internal static let registrationNameTooShort = L10n.tr("Localizable", "Registration_name_too_short")
   /// Пароль должен содержать цифры
   internal static let registrationPasswordMustContainDigits = L10n.tr("Localizable", "Registration_password_must_contain_digits")
   /// Пароль должен содержать строчные символы
@@ -41,6 +49,8 @@ internal enum L10n {
   internal static let registrationPasswordTooLong = L10n.tr("Localizable", "Registration_password_too_long")
   /// Пароль слишком короткий
   internal static let registrationPasswordTooShort = L10n.tr("Localizable", "Registration_password_too_short")
+  /// СОЗДАТЬ АККАУНТ
+  internal static let registrationSubmitButtonTitle = L10n.tr("Localizable", "Registration_submit_button_title")
   /// НАЧАТЬ
   internal static let startBeginButtonTitle = L10n.tr("Localizable", "Start_begin_button_title")
   /// СОЗДАТЬ АККАУНТ

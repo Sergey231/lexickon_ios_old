@@ -72,7 +72,7 @@ final class LoginPresenter: PresenterType {
             
             let nameMinRule = ValidationRuleLength(
                 min: 2,
-                error: LXError.incorrectName
+                error: TextFieldError.Email.incorrectEmail
             )
             
             return input.email.distinctUntilChanged()
@@ -83,12 +83,12 @@ final class LoginPresenter: PresenterType {
             
             let minLengthRule = ValidationRuleLength(
                 min: 5,
-                error: LXError.Password.tooShort
+                error: TextFieldError.Password.tooShort
             )
             
             let maxLengthRule = ValidationRuleLength(
                 max: 18,
-                error: LXError.Password.tooLong
+                error: TextFieldError.Password.tooLong
             )
             
             var passwordValidationRules = ValidationRuleSet<String>()

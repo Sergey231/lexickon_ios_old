@@ -5,16 +5,32 @@ import LexickonApi
 final class AuthorizationInteractor {
     
     let userTokenRepository: UserTokenRepositoryProtocol
+    let userRepository: UserRepositoryProtocol
     
-    init(userTokenRepository: UserTokenRepositoryProtocol) {
+    init(
+        userTokenRepository: UserTokenRepositoryProtocol,
+        userRepository: UserRepositoryProtocol
+    ) {
         self.userTokenRepository = userTokenRepository
+        self.userRepository = userRepository
     }
 }
 
 extension AuthorizationInteractor: AuthorizationInteractorProtocol {
     
-    func registrate(name: String, email: String, password: String) {
+    func registrate(
+        name: String,
+        email: String,
+        password: String
+    ) -> Single<Void> {
         
+        let userCreateObject = UserCreateObject(
+            email: email,
+            password: password
+        )
+        
+        return userRepository.createUser(with: userCreateObject)
+            .map { _ in () }
     }
     
     func login(

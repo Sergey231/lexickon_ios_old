@@ -104,6 +104,15 @@ class StartViewController: UIViewController, Stepper {
             .bind(to: steps)
             .disposed(by: disposeBag)
         
+        beginButton.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
+        
+        iAmHaveAccountButton.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
+        
+        createAccountButton.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
+        
         let presenterOutput = presenter.configure(input: presenterInput)
         
         presenterOutput.cancellableSet

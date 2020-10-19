@@ -1,10 +1,3 @@
-//
-//  RgistrationPresenterView.swift
-//  lexickon_ios
-//
-//  Created by Sergey Borovikov on 7/28/19.
-//  Copyright © 2019 Sergey Borovikov. All rights reserved.
-//
 
 import UIKit
 import Swinject
@@ -17,6 +10,8 @@ import CombineCocoa
 import RxFlow
 import RxRelay
 import RxSwift
+import RxCocoa
+import RxExtensions
 
 final class RegistrationViewController: UIViewController, Stepper {
     
@@ -33,6 +28,8 @@ final class RegistrationViewController: UIViewController, Stepper {
     private let nameTextField = TextField()
     private let emailTextField = TextField()
     private let passwordTextField = TextField()
+    private let msgLabel = UILabel()
+    private let submitButton = UIButton()
     
     init(presenter: RegistrationPresenter) {
         self.presenter = presenter
@@ -68,12 +65,17 @@ final class RegistrationViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubview(contentView)
+        view.addSubviews(
+            contentView,
+            submitButton
+        )
+        
         contentView.addSubviews(
             logo,
             nameTextField,
             emailTextField,
-            passwordTextField
+            passwordTextField,
+            msgLabel
         )
     }
     
@@ -111,6 +113,17 @@ final class RegistrationViewController: UIViewController, Stepper {
             .horizontally(Margin.mid)
             .below(of: emailTextField)
             .marginTop(Margin.regular)
+        
+        msgLabel.pin
+            .height(Sizes.textField.height)
+            .horizontally(Margin.mid)
+            .below(of: passwordTextField)
+            .marginTop(Margin.regular)
+        
+        submitButton.pin
+            .hCenter()
+            .size(Sizes.button)
+            .bottom(Margin.big)
     }
     
     private func configureUI() {
@@ -124,6 +137,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         logo.setShadow()
         
         nameTextField.textField.enablesReturnKeyAutomatically = true
+        nameTextField.textField.becomeFirstResponder()
         
         nameTextField.configure(input: TextField.Input(
             placeholder: L10n.registrationNameTextfield,
@@ -141,43 +155,98 @@ final class RegistrationViewController: UIViewController, Stepper {
         passwordTextField.configure(input: TextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
+            isSecure: true,
             returnKeyType: .join
         ))
         
+        msgLabel.textAlignment = .center
+        msgLabel.textColor = .white
+        msgLabel.numberOfLines = 2
+        
+        let submit = Signal.merge(
+            passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
+            submitButton.rx.tap.asSignal()
+        )
+        
         let input = RegistrationPresenter.Input(
-            name: nameTextField.textField.rx.text.asDriver(),
-            email: emailTextField.textField.rx.text.asDriver(),
-            password: passwordTextField.textField.rx.text.asDriver(),
-            passwordAgain: passwordTextField.textField.rx.text.asDriver(),
-            submit: passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal()
+            name: nameTextField.rx.sbmitText,
+            email: emailTextField.rx.sbmitText,
+            password: passwordTextField.rx.sbmitText,
+            passwordAgain: passwordTextField.rx.sbmitText,
+            submit: submit
         )
         
         let presenterOutput = presenter.configure(input: input)
         
         presenterOutput.keyboardHeight
             .drive(onNext: { [weak self] height in
-                self?._bottom = height
-                self?.layout()
+                UIView.animate(withDuration: 0.2) {
+                    self?._bottom = height
+                    self?.layout()
+                }
             })
             .disposed(by: disposeBag)
         
+        presenterOutput.nameIsNotValid
+            .skip(1)
+            .emit(to: nameTextField.rx.shake)
+            .disposed(by: disposeBag)
+
+        presenterOutput.emailIsNotValid
+            .emit(to: emailTextField.rx.shake)
+            .disposed(by: disposeBag)
+
+        presenterOutput.passwordIsNotValid
+            .emit(to: passwordTextField.rx.shake)
+            .disposed(by: disposeBag)
+        
+        presenterOutput.canSubmit
+            .asDriver()
+            .drive(submitButton.rx.valid)
+            .disposed(by: disposeBag)
+        
+        let textFields = [
+            nameTextField,
+            emailTextField,
+            passwordTextField
+        ]
+        
         let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
-            .configureEnumerable(textFields: [
-                nameTextField,
-                emailTextField,
-                passwordTextField
-            ])
+            .configureEnumerable(
+                textFields: textFields,
+                canSubmit: presenterOutput.canSubmit.asObservable()
+            )
         
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
+            .disposed(by: disposeBag)
+        
+        rx.viewDidAppear
+            .asDriver()
+            .flatMap { _ in presenterOutput.msg }
+            .drive(msgLabel.rx.textWithAnimaiton)
+            .disposed(by: disposeBag)
+        
+        submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
+        submitButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        submitButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
     }
 }
 
-//// MARK: - Reset DI Container
+// MARK: - Reset DI Container
 extension RegistrationViewController {
 
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
         DI.shr.appContainer.resetObjectScope(ObjectScope.registrationObjectScope)
+    }
+}
+
+extension RegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 2 {
+            return false
+        }
+        return true
     }
 }

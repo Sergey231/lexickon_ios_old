@@ -152,6 +152,9 @@ final class LoginViewController: UIViewController, Stepper {
         
         loginButton.setTitle(L10n.loginLoginButtonTitle, for: .normal)
         loginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        
+        loginButton.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
     }
     
     private func createUI() {
