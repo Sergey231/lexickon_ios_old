@@ -36,7 +36,7 @@ final class RegistrationPresenter: PresenterType {
         let canSubmit: Driver<Bool>
         let showLoading: Driver<Bool>
         let errorMsg: Signal<String>
-        let disposables: CompositeDisposable
+        let registrated: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
@@ -188,7 +188,7 @@ final class RegistrationPresenter: PresenterType {
             input.password
         ) { (name: $0, email: $1, password: $2) }
         
-        let submitDisposable = input.submit
+        let registrated = input.submit
             .asObservable()
             .withLatestFrom(userCreateInfo)
             .flatMapLatest ({ arg -> Observable<Void> in
@@ -200,12 +200,13 @@ final class RegistrationPresenter: PresenterType {
                 )
                     .asObservable()
             })
-            .subscribe(
+            .do(
                 onNext: { _ in showLoading.accept(false)
             }, onError: { error in
                 errorMsg.accept(error.localizedDescription)
                 showLoading.accept(false)
             })
+            .asSignal(onErrorSignalWith: .empty())
         
         return Output(
             keyboardHeight: keyboardHeight,
@@ -216,7 +217,7 @@ final class RegistrationPresenter: PresenterType {
             canSubmit: canSubmict,
             showLoading: showLoading.asDriver(),
             errorMsg: errorMsg.asSignal(),
-            disposables: CompositeDisposable(disposables: [submitDisposable])
+            registrated: registrated
         )
     }
 }

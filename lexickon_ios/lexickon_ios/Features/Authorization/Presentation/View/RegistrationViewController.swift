@@ -230,6 +230,12 @@ final class RegistrationViewController: UIViewController, Stepper {
         submitButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
         submitButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
+        
+        presenterOutput.registrated
+            .asObservable()
+            .map { _ in AuthorizationStep.login }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
     }
 }
 
