@@ -131,9 +131,6 @@ final class LoginViewController: UIViewController, Stepper {
             })
             .disposed(by: disposeBag)
         
-        presenterOutput.disposables
-            .disposed(by: disposeBag)
-        
         presenterOutput.keyboardHeight
             .drive(onNext: { [weak self] in
                 self?._bottom = $0
@@ -141,6 +138,11 @@ final class LoginViewController: UIViewController, Stepper {
             })
             .disposed(by: disposeBag)
 
+        presenterOutput.logined
+            .map { _ in AuthorizationStep.begin }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
         let enumerableTextFieldDisposables = EnumerableTextFieldHelper()
             .configureEnumerable(textFields: [
                 emailTextField,

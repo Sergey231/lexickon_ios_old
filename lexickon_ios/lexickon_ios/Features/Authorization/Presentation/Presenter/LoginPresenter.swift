@@ -34,7 +34,7 @@ final class LoginPresenter: PresenterType {
         let canSubmit: Driver<Bool>
         let showLoading: Driver<Bool>
         let errorMsg: Signal<String>
-        let disposables: CompositeDisposable
+        let logined: Signal<Void>
     }
     
     func configure(input: Input) -> Output {
@@ -110,7 +110,7 @@ final class LoginPresenter: PresenterType {
             input.password
         ) { (login: $0, password: $1) }
         
-        let loginDisposable = input.submit
+        let logined = input.submit
             .asObservable()
             .withLatestFrom(logintAndPass)
             .flatMapLatest ({ arg -> Observable<Void> in
@@ -127,12 +127,13 @@ final class LoginPresenter: PresenterType {
                 )
                     .asObservable()
             })
-            .subscribe(
+            .do(
                 onNext: { _ in showLoading.accept(false)
             }, onError: { error in
                 errorMsg.accept(error.localizedDescription)
                 showLoading.accept(false)
             })
+            .asSignal(onErrorSignalWith: .empty())
 
         
         return Output(
@@ -142,7 +143,7 @@ final class LoginPresenter: PresenterType {
             canSubmit: canSubmict,
             showLoading: showLoading.asDriver(),
             errorMsg: errorMsg.asSignal(),
-            disposables: CompositeDisposable(disposables: [loginDisposable])
+            logined: logined
         )
     }
 }
