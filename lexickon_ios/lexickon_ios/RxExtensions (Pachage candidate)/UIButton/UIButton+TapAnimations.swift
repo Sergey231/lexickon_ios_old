@@ -37,7 +37,7 @@ extension UIButton {
         )
     }
     
-    public func configureTapScaleAnimation(withScale: CGFloat = 0.9) -> CompositeDisposable {
+    public func configureTapScaleAnimation(withScale: CGFloat = 0.95) -> CompositeDisposable {
         let tapOnDisposable = rx.controlEvent(.touchDown)
             .subscribe(onNext: { _ in
                 UIView.animate(withDuration: 0.1) {
