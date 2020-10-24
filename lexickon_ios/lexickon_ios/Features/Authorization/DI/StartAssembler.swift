@@ -12,8 +12,10 @@ final class StartAssembler: Assembly {
 
     func assemble(container: Container) {
         
-        container.register(StartPresenter.self) { _ in
-            StartPresenter()
+        container.register(StartPresenter.self) { resolver in
+            StartPresenter(
+                authorisationInteractor: resolver.resolve(AuthorizationInteractorProtocol.self)!
+            )
         }.inObjectScope(ObjectScope.authorizationObjectScope)
         
         container.register(StartViewController.self) { resolver in

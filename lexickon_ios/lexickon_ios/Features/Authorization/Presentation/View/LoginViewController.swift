@@ -139,7 +139,7 @@ final class LoginViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
 
         presenterOutput.logined
-            .map { _ in AuthorizationStep.begin }
+            .map { _ in AuthorizationStep.begin(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
         

@@ -87,4 +87,17 @@ extension Reactive where Base: UIViewController {
         
         return ControlEvent(events: source)
     }
+    
+    var didShow: ControlEvent<Void> {
+        
+        guard let nv = base.navigationController else {
+            return ControlEvent(events: Observable.empty())
+        }
+        
+        let source = nv.rx.willShow
+            .filter { base == $0.viewController }
+            .map { _ in () }
+        
+        return ControlEvent(events: source)
+    }
 }

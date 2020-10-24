@@ -7,24 +7,32 @@
 //
 
 import Foundation
-import Combine
+import RxCocoa
+import RxSwift
 
 final class StartPresenter: PresenterType {
     
+    private let authorisationInteractor: AuthorizationInteractorProtocol
+    
+    init(authorisationInteractor: AuthorizationInteractorProtocol) {
+        self.authorisationInteractor = authorisationInteractor
+    }
+    
     struct Input {
-        let beginButtonTapped: AnyPublisher<Void, Never>
-        let iAmHaveAccountButtonTapped: AnyPublisher<Void, Never>
-        let createAccountButtonTapped: AnyPublisher<Void, Never>
+        let beginButtonTapped: Signal<Void>
+        let iAmHaveAccountButtonTapped: Signal<Void>
+        let createAccountButtonTapped: Signal<Void>
     }
     
     struct Output {
-        let cancellableSet: Set<AnyCancellable>
+        let isAuthorized: Driver<Bool>
     }
     
     func configure(input: Input) -> Output {
         
-        let cancellableSet = Set<AnyCancellable>()
+        let isAuthorized = authorisationInteractor.hasAuthToken
+            .asDriver(onErrorJustReturn: false)
         
-        return Output(cancellableSet: cancellableSet)
+        return Output(isAuthorized: isAuthorized)
     }
 }

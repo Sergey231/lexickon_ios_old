@@ -13,7 +13,7 @@ import RxSwift
 
 enum AppStep: Step {
     case authorization
-    case main
+    case main(animated: Bool)
 }
 
 final class AppFlow: Flow {
@@ -38,8 +38,8 @@ final class AppFlow: Flow {
         switch step {
         case .authorization:
             return navigationToAuthorization()
-        case .main:
-            return navigationToMain()
+        case .main(let animated):
+            return navigationToMain(animated: animated)
         }
     }
     
@@ -52,23 +52,22 @@ final class AppFlow: Flow {
         ))
     }
     
-    private func navigationToMain() -> FlowContributors {
+    private func navigationToMain(animated: Bool) -> FlowContributors {
         
         let mainFlow = MainFlow(with: rootViewController)
         return .one(flowContributor: .contribute(
             withNextPresentable: mainFlow,
-            withNextStepper: OneStepper(withSingleStep: MainStep.home)
+            withNextStepper: OneStepper(withSingleStep: MainStep.home(animated: animated))
         ))
     }
 }
 
 final class AppStepper: Stepper {
     
+    let authRepository = UserTokenRepository()
     let steps = PublishRelay<Step>()
     
     var initialStep: Step {
         return AppStep.authorization
     }
-    
-    // Auth manager HERE
 }

@@ -38,6 +38,7 @@
 		EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67163223D2106F003B28E3 /* LoginAssembler.swift */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
+		EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
@@ -164,6 +165,7 @@
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
+				EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */,
 				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
@@ -588,6 +590,7 @@
 				EC3F44562520BF26004706DC /* RxCocoa */,
 				EC3F44582520BF26004706DC /* RxBlocking */,
 				EC31385A2535D4D4007FFCB0 /* RxExtensions */,
+				EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -651,6 +654,7 @@
 				EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 				EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */,
+				EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -1022,6 +1026,14 @@
 				minimumVersion = 0.0.9;
 			};
 		};
+		EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
@@ -1123,6 +1135,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */;
 			productName = Validator;
+		};
+		EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 		EC873D7423DD6EC400787E51 /* CombineCocoa */ = {
 			isa = XCSwiftPackageProductDependency;

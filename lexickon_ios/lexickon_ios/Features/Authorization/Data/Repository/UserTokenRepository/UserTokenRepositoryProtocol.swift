@@ -5,4 +5,5 @@ import RxSwift
 protocol UserTokenRepositoryProtocol {
     
     func get(with credentiols: UserCreateObject) -> Single<UserTokenGetObject>
+    var cach: Single<UserTokenGetObject> { get }
 }

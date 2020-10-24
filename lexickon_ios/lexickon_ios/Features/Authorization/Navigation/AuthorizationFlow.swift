@@ -13,7 +13,7 @@ enum AuthorizationStep: Step {
     case start
     case login
     case registrate
-    case begin
+    case begin(animated: Bool)
 }
 
 class AuthorizationFlow: Flow {
@@ -43,8 +43,8 @@ class AuthorizationFlow: Flow {
             return navigateToLogin()
         case .registrate:
             return navigateToRegistration()
-        case .begin:
-            return navigateToMain()
+        case .begin(let animated):
+            return navigateToMain(animated: animated)
         }
     }
     
@@ -72,8 +72,8 @@ class AuthorizationFlow: Flow {
         return .one(flowContributor: .contribute(withNext: registratioinVC))
     }
     
-    private func navigateToMain() -> FlowContributors {
+    private func navigateToMain(animated: Bool) -> FlowContributors {
         DI.shr.appContainer.resetObjectScope(.authorizationObjectScope)
-        return .end(forwardToParentFlowWithStep: AppStep.main)
+        return .end(forwardToParentFlowWithStep: AppStep.main(animated: animated))
     }
 }

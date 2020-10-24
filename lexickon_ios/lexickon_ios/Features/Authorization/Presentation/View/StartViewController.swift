@@ -8,11 +8,10 @@
 
 import UIKit
 import Swinject
-import Combine
 import PinLayout
 import CombineCocoa
 import RxFlow
-import RxRelay
+import RxCocoa
 import RxSwift
 
 extension UINavigationController {
@@ -27,13 +26,12 @@ class StartViewController: UIViewController, Stepper {
     
     private let presenter: StartPresenter
     
-    private let logo = StartLogo()
-    private let beginButton = UIButton()
-    private let iAmHaveAccountButton = UIButton()
-    private let createAccountButton = UIButton()
+    fileprivate let logo = StartLogo()
+    fileprivate let beginButton = UIButton()
+    fileprivate let iAmHaveAccountButton = UIButton()
+    fileprivate let createAccountButton = UIButton()
     
     private let disposeBag = DisposeBag()
-    private var cancellableSet: Set<AnyCancellable> = []
     
     init(presenter: StartPresenter) {
         self.presenter = presenter
@@ -64,7 +62,6 @@ class StartViewController: UIViewController, Stepper {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.barStyle = .black
-        logo.startAnimation()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -76,6 +73,8 @@ class StartViewController: UIViewController, Stepper {
         
         navigationController?.setupLargeMainThemeNavBar()
         
+        resetAnimations()
+        
         beginButton.setTitle(L10n.startBeginButtonTitle, for: .normal)
         beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
         iAmHaveAccountButton.setTitle(L10n.startIHaveAccountButtonTitle, for: .normal)
@@ -84,13 +83,13 @@ class StartViewController: UIViewController, Stepper {
         createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
         
         let presenterInput = StartPresenter.Input(
-            beginButtonTapped: beginButton.tapPublisher,
-            iAmHaveAccountButtonTapped: iAmHaveAccountButton.tapPublisher,
-            createAccountButtonTapped: createAccountButton.tapPublisher
+            beginButtonTapped: beginButton.rx.tap.asSignal(),
+            iAmHaveAccountButtonTapped: iAmHaveAccountButton.rx.tap.asSignal(),
+            createAccountButtonTapped: createAccountButton.rx.tap.asSignal()
         )
         
         beginButton.rx.tap
-            .map { AuthorizationStep.begin }
+            .map { AuthorizationStep.begin(animated: true) }
             .bind(to: steps)
             .disposed(by: disposeBag)
         
@@ -115,8 +114,20 @@ class StartViewController: UIViewController, Stepper {
         
         let presenterOutput = presenter.configure(input: presenterInput)
         
-        presenterOutput.cancellableSet
-            .forEach { $0.store(in: &cancellableSet) }
+        rx.didShow.asDriver()
+            .withLatestFrom(presenterOutput.isAuthorized)
+            .filter(!)
+            .map { _ in () }
+            .drive(rx.startAnimations)
+            .disposed(by: disposeBag)
+        
+        rx.viewDidAppear.asDriver()
+            .withLatestFrom(presenterOutput.isAuthorized)
+            .asObservable()
+            .filter { $0 }
+            .map { _ -> Step in AuthorizationStep.begin(animated: false) }
+            .bind(to: steps)
+            .disposed(by: disposeBag)
     }
     
     private func createUI() {
@@ -126,6 +137,12 @@ class StartViewController: UIViewController, Stepper {
             iAmHaveAccountButton,
             createAccountButton
         )
+    }
+    
+    fileprivate func resetAnimations() {
+        beginButton.alpha = 0
+        createAccountButton.alpha = 0
+        iAmHaveAccountButton.alpha = 0
     }
     
     override func viewWillLayoutSubviews() {
@@ -150,5 +167,21 @@ class StartViewController: UIViewController, Stepper {
             .size(Sizes.button)
             .above(of: iAmHaveAccountButton)
             .marginBottom(Margin.mid)
+    }
+}
+
+private extension Reactive where Base: StartViewController {
+    
+    var startAnimations: Binder<Void> {
+        return Binder(base) { base, _ in
+            base.resetAnimations()
+            base.logo.startAnimation {
+                UIView.animate(withDuration: 0.3) {
+                    base.beginButton.alpha = 1
+                    base.createAccountButton.alpha = 1
+                    base.iAmHaveAccountButton.alpha = 1
+                }
+            }
+        }
     }
 }

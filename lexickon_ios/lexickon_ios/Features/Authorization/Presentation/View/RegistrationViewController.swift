@@ -233,7 +233,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         presenterOutput.registrated
             .asObservable()
-            .map { _ in AuthorizationStep.begin }
+            .map { _ in AuthorizationStep.begin(animated: true) }
             .bind(to: steps)
             .disposed(by: disposeBag)
     }

@@ -10,7 +10,7 @@ import UIKit
 import RxFlow
 
 enum MainStep: Step {
-    case home
+    case home(animated: Bool)
 }
 
 class MainFlow: Flow {
@@ -34,16 +34,16 @@ class MainFlow: Flow {
         
         switch step {
             
-        case .home:
-            return navigateToHome()
+        case .home(let animated):
+            return navigateToHome(animated: animated)
         }
     }
     
-    private func navigateToHome() -> FlowContributors {
+    private func navigateToHome(animated: Bool) -> FlowContributors {
         let homeVC = MainAssembler.shr.assembler.resolver.resolve(
             HomeViewController.self
         )!
-        (root as! UINavigationController).setViewControllers([homeVC], animated: true)
+        (root as! UINavigationController).setViewControllers([homeVC], animated: animated)
         return .one(flowContributor: .contribute(withNext: homeVC))
     }
 }

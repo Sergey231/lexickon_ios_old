@@ -97,7 +97,7 @@ final class StartLogo: UIView {
         layout()
     }
     
-    func startAnimation() {
+    func startAnimation(complete: (() -> ())? = nil) {
         animationState = .end
         
         UIView.animate(withDuration: 1, animations: {
@@ -106,9 +106,13 @@ final class StartLogo: UIView {
             
             self.logoImageView.startFlayingAnimation()
             
-            UIView.animate(withDuration: 1) {
+            UIView.animate(withDuration: 1, animations: {
                 self.textLogoImageView.alpha = self.animationState.textLogoAlpha
-            }
+            }, completion: { _ in
+                if let _complete = complete {
+                    _complete()
+                }
+            })
         })
     }
     

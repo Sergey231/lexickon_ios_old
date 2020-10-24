@@ -15,5 +15,6 @@ protocol AuthorizationInteractorProtocol {
         password: String
     ) -> Single<Void>
     
+    var hasAuthToken: Single<Bool> { get }
     func restorePassword(login: String)
 }

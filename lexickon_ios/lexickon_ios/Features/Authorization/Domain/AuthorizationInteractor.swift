@@ -47,6 +47,12 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
             .map { _ in () }
     }
     
+    var hasAuthToken: Single<Bool> {
+        userTokenRepository.cach
+            .map { _ -> Bool in true }
+            .catchErrorJustReturn(false)
+    }
+    
     func restorePassword(login: String) {
         
     }
