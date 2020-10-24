@@ -17,10 +17,13 @@ extension UIButton {
         backgroundColor = bgColor
     }
     
-    public func setRoundedBorderedStyle(bgColor: UIColor = .gray) {
+    public func setRoundedBorderedStyle(
+        bgColor: UIColor = .gray,
+        borderColor: UIColor = .white
+    ) {
         setRoundedStyle(bgColor: bgColor)
         layer.borderWidth = 2
-        layer.borderColor = UIColor.white.cgColor
+        layer.borderColor = borderColor.cgColor
     }
     
     public func setRoundedFilledStyle(

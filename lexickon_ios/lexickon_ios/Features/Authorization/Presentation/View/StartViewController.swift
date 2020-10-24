@@ -30,6 +30,7 @@ class StartViewController: UIViewController, Stepper {
     fileprivate let beginButton = UIButton()
     fileprivate let iAmHaveAccountButton = UIButton()
     fileprivate let createAccountButton = UIButton()
+    fileprivate let bgImageView = UIImageView(image: Asset.Images.bgStart.image)
     
     private let disposeBag = DisposeBag()
     
@@ -75,12 +76,21 @@ class StartViewController: UIViewController, Stepper {
         
         resetAnimations()
         
+        bgImageView.contentMode = .scaleAspectFill
+        bgImageView.alpha = 0
+        
         beginButton.setTitle(L10n.startBeginButtonTitle, for: .normal)
         beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
         iAmHaveAccountButton.setTitle(L10n.startIHaveAccountButtonTitle, for: .normal)
-        iAmHaveAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
+        iAmHaveAccountButton.setRoundedBorderedStyle(
+            bgColor: Asset.Colors.mainBG.color,
+            borderColor: Asset.Colors.mainBG.color
+        )
         createAccountButton.setTitle(L10n.startCreateAccountButtonTitle, for: .normal)
-        createAccountButton.setRoundedBorderedStyle(bgColor: Asset.Colors.mainBG.color)
+        createAccountButton.setRoundedBorderedStyle(
+            bgColor: Asset.Colors.mainBG.color,
+            borderColor: Asset.Colors.mainBG.color
+        )
         
         let presenterInput = StartPresenter.Input(
             beginButtonTapped: beginButton.rx.tap.asSignal(),
@@ -132,6 +142,7 @@ class StartViewController: UIViewController, Stepper {
     
     private func createUI() {
         view.addSubviews(
+            bgImageView,
             logo,
             beginButton,
             iAmHaveAccountButton,
@@ -168,12 +179,43 @@ class StartViewController: UIViewController, Stepper {
             .above(of: iAmHaveAccountButton)
             .marginBottom(Margin.mid)
     }
+    
+    fileprivate func animateBG() {
+        
+        let bgImageHeight = view.frame.size.height
+        let bgImageWidth = (Asset.Images.bgStart.image as UIImage).width(withHeight: bgImageHeight)
+        
+        bgImageView.pin
+            .height(bgImageHeight)
+            .width(bgImageWidth)
+            .left()
+            .vertically()
+        
+        UIView.animate(withDuration: 10) {
+            self.bgImageView.alpha = 0.2
+        }
+        
+        UIView.animate(withDuration: 100) {
+            let newLeft = (bgImageWidth - self.view.frame.size.width) * -1
+            self.bgImageView.pin
+                .height(bgImageHeight)
+                .width(bgImageWidth)
+                .left(newLeft)
+                .vertically()
+            
+        } completion: { _ in
+            UIView.animate(withDuration: 2) {
+                self.bgImageView.alpha = 0
+            }
+        }
+    }
 }
 
 private extension Reactive where Base: StartViewController {
     
     var startAnimations: Binder<Void> {
         return Binder(base) { base, _ in
+            base.animateBG()
             base.resetAnimations()
             base.logo.startAnimation {
                 UIView.animate(withDuration: 0.3) {

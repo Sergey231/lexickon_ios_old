@@ -41,6 +41,7 @@ internal enum Asset {
     internal static let eyeHideIcon = ImageAsset(name: "eye_hide_icon")
     internal static let eyeShowIcon = ImageAsset(name: "eye_show_icon")
     internal static let lockIcon = ImageAsset(name: "lock_icon")
+    internal static let bgStart = ImageAsset(name: "bgStart")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
