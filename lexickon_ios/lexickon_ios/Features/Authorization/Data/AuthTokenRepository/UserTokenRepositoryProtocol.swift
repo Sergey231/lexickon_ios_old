@@ -2,7 +2,7 @@
 import LexickonApi
 import RxSwift
 
-protocol UserTokenRepositoryProtocol {
+protocol AuthTokenRepositoryProtocol {
     
     func get(with credentiols: UserCreateObject) -> Single<UserTokenGetObject>
     var cach: Single<UserTokenGetObject> { get }

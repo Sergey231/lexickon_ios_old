@@ -16,13 +16,13 @@ final class LoginAssembler: Assembly {
             UserRepository()
         }
         
-        container.register(UserTokenRepositoryProtocol.self) { _ in
-            UserTokenRepository()
+        container.register(AuthTokenRepositoryProtocol.self) { _ in
+            AuthTokenRepository()
         }
         
         container.register(AuthorizationInteractorProtocol.self) { resolver in
             AuthorizationInteractor(
-                userTokenRepository: resolver.resolve(UserTokenRepositoryProtocol.self)!,
+                userTokenRepository: resolver.resolve(AuthTokenRepositoryProtocol.self)!,
                 userRepository: resolver.resolve(UserRepositoryProtocol.self)!
             )
         }

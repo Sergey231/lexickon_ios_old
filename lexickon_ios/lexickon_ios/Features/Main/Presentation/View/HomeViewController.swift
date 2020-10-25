@@ -13,10 +13,15 @@ import Combine
 import CombineCocoa
 import RxFlow
 import RxCocoa
+import RxSwift
 
 final class HomeViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
+    
+    private let profileIconView = ProfileIconView()
+    
+    private let disposeBag = DisposeBag()
     
     private let presenter: HomePresenter
     
@@ -34,5 +39,30 @@ final class HomeViewController: UIViewController, Stepper {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+        
+        createUI()
+        configureUI()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        profileIconView.pin
+            .size(44)
+            .right(16)
+            .top(view.pin.safeArea.top)
+    }
+    
+    private func configureUI() {
+        profileIconView.backgroundColor = .gray
+        profileIconView.configure(input: ProfileIconView.Input())
+            .didTap
+            .map { _ in MainStep.profile }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+    }
+    
+    private func createUI() {
+        view.addSubview(profileIconView)
     }
 }

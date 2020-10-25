@@ -4,11 +4,11 @@ import LexickonApi
 
 final class AuthorizationInteractor {
     
-    let userTokenRepository: UserTokenRepositoryProtocol
+    let userTokenRepository: AuthTokenRepositoryProtocol
     let userRepository: UserRepositoryProtocol
     
     init(
-        userTokenRepository: UserTokenRepositoryProtocol,
+        userTokenRepository: AuthTokenRepositoryProtocol,
         userRepository: UserRepositoryProtocol
     ) {
         self.userTokenRepository = userTokenRepository

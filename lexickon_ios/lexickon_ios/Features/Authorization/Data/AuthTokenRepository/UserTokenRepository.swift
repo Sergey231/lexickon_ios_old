@@ -5,7 +5,7 @@ import RxSwift
 import Alamofire
 import SwiftKeychainWrapper
 
-final class UserTokenRepository: UserTokenRepositoryProtocol, ApiRepository {
+final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
     
     private let keychain = KeychainWrapper.standard
     

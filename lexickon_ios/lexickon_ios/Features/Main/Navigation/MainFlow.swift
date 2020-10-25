@@ -11,6 +11,7 @@ import RxFlow
 
 enum MainStep: Step {
     case home(animated: Bool)
+    case profile
 }
 
 class MainFlow: Flow {
@@ -36,6 +37,8 @@ class MainFlow: Flow {
             
         case .home(let animated):
             return navigateToHome(animated: animated)
+        case .profile:
+            return navigateToProfile()
         }
     }
     
@@ -45,5 +48,13 @@ class MainFlow: Flow {
         )!
         (root as! UINavigationController).setViewControllers([homeVC], animated: animated)
         return .one(flowContributor: .contribute(withNext: homeVC))
+    }
+    
+    private func navigateToProfile() -> FlowContributors {
+        let profileMainScreenVC = ProfileAssembler.shr.assembler.resolver.resolve(
+            ProfileMainScreenViewController.self
+        )!
+        (root as! UINavigationController).pushViewController(profileMainScreenVC, animated: true)
+        return .one(flowContributor: .contribute(withNext: profileMainScreenVC))
     }
 }

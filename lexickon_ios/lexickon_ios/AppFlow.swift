@@ -64,7 +64,6 @@ final class AppFlow: Flow {
 
 final class AppStepper: Stepper {
     
-    let authRepository = UserTokenRepository()
     let steps = PublishRelay<Step>()
     
     var initialStep: Step {
