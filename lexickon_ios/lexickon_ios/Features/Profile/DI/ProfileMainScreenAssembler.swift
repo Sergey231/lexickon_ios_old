@@ -12,8 +12,16 @@ struct ProfileMainScreenAssembler: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(ProfileMainScreenPresenter.self) { _ in
-            ProfileMainScreenPresenter()
+        container.register(ProfileInteractorProtocol.self) { resolver in
+            ProfileInteractor(
+                authTokenRepository: resolver.resolve(AuthTokenRepositoryProtocol.self)!
+            )
+        }
+        
+        container.register(ProfileMainScreenPresenter.self) { resolver in
+            ProfileMainScreenPresenter(
+                interactor: resolver.resolve(ProfileInteractorProtocol.self)!
+            )
         }.inObjectScope(.profileScopeObject)
         
         container.register(ProfileMainScreenViewController.self) { resolver in

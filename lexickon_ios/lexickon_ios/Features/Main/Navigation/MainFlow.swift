@@ -12,6 +12,7 @@ import RxFlow
 enum MainStep: Step {
     case home(animated: Bool)
     case profile
+    case authorization
 }
 
 class MainFlow: Flow {
@@ -39,6 +40,8 @@ class MainFlow: Flow {
             return navigateToHome(animated: animated)
         case .profile:
             return navigateToProfile()
+        case .authorization:
+            return navigateToAuthorization()
         }
     }
     
@@ -51,10 +54,15 @@ class MainFlow: Flow {
     }
     
     private func navigateToProfile() -> FlowContributors {
-        let profileMainScreenVC = ProfileAssembler.shr.assembler.resolver.resolve(
-            ProfileMainScreenViewController.self
-        )!
-        (root as! UINavigationController).pushViewController(profileMainScreenVC, animated: true)
-        return .one(flowContributor: .contribute(withNext: profileMainScreenVC))
+        let profileFlow = ProfileFlow(with: rootViewController)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: profileFlow,
+            withNextStepper: OneStepper(withSingleStep: ProfileStep.profileMainScreen)
+        ))
+    }
+    
+    private func navigateToAuthorization() -> FlowContributors {
+        DI.shr.appContainer.resetObjectScope(.mainObjectScope)
+        return .end(forwardToParentFlowWithStep: AppStep.authorization)
     }
 }

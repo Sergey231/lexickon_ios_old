@@ -41,6 +41,8 @@
 		EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
+		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
+		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
@@ -124,6 +126,8 @@
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroAssemly.swift; path = ../Presentation/IntroAssemly.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -461,6 +465,8 @@
 		ECC48E7C25455D29006503C2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */,
+				EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -797,6 +803,7 @@
 				EC3138AB2536E985007FFCB0 /* Rx+UIButton.swift in Sources */,
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
 				EC93A28825174E340058F779 /* ApiRepository.swift in Sources */,
+				EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */,
 				EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
 				EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */,
@@ -805,6 +812,7 @@
 				ECCB193A23F9633C0069C5A7 /* MainAssembler.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
 				EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */,
+				EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */,
 				EC3138D025385E50007FFCB0 /* Rx+UIView.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,

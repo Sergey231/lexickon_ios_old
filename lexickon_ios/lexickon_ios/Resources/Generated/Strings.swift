@@ -17,6 +17,8 @@ internal enum L10n {
   internal static let loginLoginButtonTitle = L10n.tr("Localizable", "Login_login_button_title")
   /// У меня есть аккаунт
   internal static let loginScreenTitle = L10n.tr("Localizable", "Login_screen_title")
+  /// Выйти
+  internal static let profileMainLogoutButtonTitle = L10n.tr("Localizable", "Profile_main_logout_button_title")
   /// Повторите пароль
   internal static let registrationConfirmPasswordTextfield = L10n.tr("Localizable", "Registration_confirm_password_textfield")
   /// Создание аккаута

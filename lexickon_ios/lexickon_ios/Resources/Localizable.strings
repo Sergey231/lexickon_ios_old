@@ -24,7 +24,7 @@
 "Login_login_button_title" = "Войти";
 "Login_screen_title" = "У меня есть аккаунт";
 
-// Validation Error Messages
+// MARK: Validation Error Messages
 
 "Registration_incorrect_email" = "Не корректный email";
 "Registration_enter_email" = "Введите Email";
@@ -38,7 +38,13 @@
 "Registration_enter_name" = "Ввидите имя";
 "Registration_name_too_short" = "Имя слишком кородкое";
 
-// Alerts
+// MARK:
+
+"Profile_main_logout_button_title" = "Выйти";
+
+// MARK: Alerts
 
 "Error_alert_title" = "Ошибка";
 "Error_alert_button_title" = "Оокей";
+
+

@@ -41,6 +41,16 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
         }
     }
     
+    func erasе() -> Single<Void> {
+        let keychain = self.keychain
+        return Single.create { single -> Disposable in
+            keychain.remove(forKey: .authToken)
+            keychain.remove(forKey: .authTokenId)
+            single(.success(()))
+            return Disposables.create()
+        }
+    }
+    
     var cach: Single<UserTokenGetObject> {
         let keychain = self.keychain
         return Single.create { single -> Disposable in
