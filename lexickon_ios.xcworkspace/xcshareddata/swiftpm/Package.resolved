@@ -96,8 +96,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxFlow.git",
         "state": {
           "branch": null,
-          "revision": "30cf8c65ef28e55bd7c1d9f6e74cbc278ab89d7f",
-          "version": "2.9.1"
+          "revision": "ccf32fd783f948a575fe89749f43e81ddc59e11f",
+          "version": "2.11.0"
         }
       },
       {
