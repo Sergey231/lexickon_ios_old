@@ -195,7 +195,11 @@ class StartViewController: UIViewController, Stepper {
             self.bgImageView.alpha = 0.2
         }
         
-        UIView.animate(withDuration: 100) {
+        UIView.animate(
+            withDuration: 100,
+            delay: 0,
+            options: [.curveEaseOut]
+        ) {
             let newLeft = (bgImageWidth - self.view.frame.size.width) * -1
             self.bgImageView.pin
                 .height(bgImageHeight)
