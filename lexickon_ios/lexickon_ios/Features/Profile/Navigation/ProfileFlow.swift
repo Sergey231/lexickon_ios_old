@@ -10,7 +10,7 @@ import UIKit
 import RxFlow
 
 enum ProfileStep: Step {
-    case profileMainScreen
+    case profileMainScreen(UIViewControllerTransitioningDelegate?)
     case logout
 }
 
@@ -35,17 +35,20 @@ class ProfileFlow: Flow {
         
         switch step {
         
-        case .profileMainScreen:
-            return navigateToProfileMainScreen()
+        case .profileMainScreen(let transitioningDelegate):
+            return navigateToProfileMainScreen(transitioningDelegate: transitioningDelegate)
         case .logout:
             return navigateToAuthorization()
         }
     }
     
-    private func navigateToProfileMainScreen() -> FlowContributors {
+    private func navigateToProfileMainScreen(
+        transitioningDelegate: UIViewControllerTransitioningDelegate?
+    ) -> FlowContributors {
         let profileMainScreenVC = ProfileAssembler.shr.assembler.resolver.resolve(
             ProfileMainScreenViewController.self
         )!
+        profileMainScreenVC.transitioningDelegate = transitioningDelegate
         (root as! UINavigationController).pushViewController(profileMainScreenVC, animated: true)
         return .one(flowContributor: .contribute(withNext: profileMainScreenVC))
     }

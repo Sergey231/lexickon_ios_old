@@ -19,11 +19,13 @@ final class HomeViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    private let profileIconView = ProfileIconView()
+    fileprivate let profileIconView = ProfileIconView()
     
     private let disposeBag = DisposeBag()
     
     private let presenter: HomePresenter
+    
+    var animator: Animator?
     
     init(
         presenter: HomePresenter
@@ -57,12 +59,42 @@ final class HomeViewController: UIViewController, Stepper {
         profileIconView.backgroundColor = .gray
         profileIconView.configure(input: ProfileIconView.Input())
             .didTap
-            .map { _ in MainStep.profile }
+            .map { _ in MainStep.profile(transitioningDelegate: self) }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }
     
     private func createUI() {
         view.addSubview(profileIconView)
+    }
+}
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        guard
+            let firstViewController = presenting as? HomeViewController,
+            let secondViewController = presented as? ProfileMainScreenViewController
+        else {
+            return nil
+        }
+        
+        animator = Animator(
+            type: .present,
+            firstViewController: firstViewController,
+            secondViewController: secondViewController,
+            selectedViewSnapshot: profileIconView
+        )
+        return animator
+    }
+    
+    func animationController(
+        forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        return nil
     }
 }
