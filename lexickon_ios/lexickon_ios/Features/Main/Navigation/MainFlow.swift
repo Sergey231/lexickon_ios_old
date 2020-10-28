@@ -49,7 +49,9 @@ class MainFlow: Flow {
         let homeVC = MainAssembler.shr.assembler.resolver.resolve(
             HomeViewController.self
         )!
-        (root as! UINavigationController).setViewControllers([homeVC], animated: animated)
+        let navigationController = (root as! UINavigationController)
+        navigationController.navigationBar.isHidden = true
+        navigationController.setViewControllers([homeVC], animated: animated)
         return .one(flowContributor: .contribute(withNext: homeVC))
     }
     
