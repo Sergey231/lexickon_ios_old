@@ -15,6 +15,10 @@ import PinLayout
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     
+    struct UIConstants {
+        static let profileIconSize: CGFloat = 100
+    }
+    
     let steps = PublishRelay<Step>()
     
     private let presenter: ProfileMainScreenPresenter
@@ -45,7 +49,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         super.viewWillLayoutSubviews()
         
         profileIconView.pin
-            .size(150)
+            .size(UIConstants.profileIconSize)
             .left(16)
             .top(view.pin.safeArea.top)
         
@@ -82,7 +86,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             )
         )
         
-        presentOutput.didLogout.debug("⚽️")
+        presentOutput.didLogout
             .map { _ in ProfileStep.logout }
             .emit(to: steps )
             .disposed(by: disposeBag)

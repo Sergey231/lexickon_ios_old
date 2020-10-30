@@ -67,7 +67,7 @@ final class ToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             withDuration: Self.duration,
             animations: {
                 
-                let profileIconViewHeight = CGFloat(150)
+                let profileIconViewHeight = ProfileMainScreenViewController.UIConstants.profileIconSize
                 
                 tmpProfileIconView.layer.cornerRadius = profileIconViewHeight / 2
                 tmpProfileIconView.pin
