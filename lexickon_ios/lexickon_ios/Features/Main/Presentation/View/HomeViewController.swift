@@ -25,8 +25,6 @@ final class HomeViewController: UIViewController, Stepper {
     
     private let presenter: HomePresenter
     
-    var animator: Animator?
-    
     init(
         presenter: HomePresenter
     ) {
@@ -59,7 +57,7 @@ final class HomeViewController: UIViewController, Stepper {
         profileIconView.backgroundColor = .gray
         profileIconView.configure(input: ProfileIconView.Input())
             .didTap
-            .map { _ in MainStep.profile(transitioningDelegate: self) }
+            .map { _ in MainStep.profile }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }
@@ -69,32 +67,32 @@ final class HomeViewController: UIViewController, Stepper {
     }
 }
 
-extension HomeViewController: UIViewControllerTransitioningDelegate {
+extension HomeViewController: UINavigationControllerDelegate {
     
-    func animationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController,
-        source: UIViewController
-    ) -> UIViewControllerAnimatedTransitioning? {
-        guard
-            let firstViewController = presenting as? HomeViewController,
-            let secondViewController = presented as? ProfileMainScreenViewController
-        else {
-            return nil
-        }
-        
-        animator = Animator(
-            type: .present,
-            firstViewController: firstViewController,
-            secondViewController: secondViewController,
-            selectedViewSnapshot: profileIconView
-        )
-        return animator
+    func navigationController(
+        _ navigationController: UINavigationController,
+        interactionControllerFor animationController: UIViewControllerAnimatedTransitioning
+    ) -> UIViewControllerInteractiveTransitioning? {
+        return nil
     }
     
-    func animationController(
-        forDismissed dismissed: UIViewController
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        return nil
+        
+        switch operation {
+        case .push:
+            return ToProfileAnimator(
+                isPresenting: true,
+                firstViewController: fromVC as! HomeViewController,
+                secondViewController: toVC as! ProfileMainScreenViewController,
+                profileIconView: profileIconView
+            )
+        default:
+            return nil
+        }
     }
 }

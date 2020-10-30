@@ -21,6 +21,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
+    let profileIconView = ProfileIconView()
     private let logoutButton = UIButton()
     
     init(presenter: ProfileMainScreenPresenter) {
@@ -42,6 +43,12 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
+        profileIconView.pin
+            .size(150)
+            .left(16)
+            .top(view.pin.safeArea.top)
+        
         logoutButton.pin
             .hCenter()
             .size(Sizes.button)
@@ -50,13 +57,16 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .green
         
         createUI()
         configureUI()
     }
     
     private func configureUI() {
+        
+        profileIconView.backgroundColor = .gray
+        profileIconView.isHidden = true
         
         logoutButton.setTitle(
             L10n.loginLoginButtonTitle,
@@ -79,6 +89,9 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubview(logoutButton)
+        view.addSubviews(
+            logoutButton,
+            profileIconView
+        )
     }
 }
