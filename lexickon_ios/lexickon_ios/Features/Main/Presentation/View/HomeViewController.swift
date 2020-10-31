@@ -17,11 +17,16 @@ import RxSwift
 
 final class HomeViewController: UIViewController, Stepper {
     
+    struct UIConstants {
+        static let profileIconSize: CGFloat = 44
+        static let profileIconRightMargin: CGFloat = 16
+    }
+    
     let steps = PublishRelay<Step>()
     
-    fileprivate let profileIconView = ProfileIconView()
+    let profileIconView = ProfileIconView()
     
-    private let disposeBag = DisposeBag()
+    fileprivate var disposeBag = DisposeBag()
     
     private let presenter: HomePresenter
     
@@ -30,6 +35,10 @@ final class HomeViewController: UIViewController, Stepper {
     ) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    deinit {
+        print("💀 Home")
     }
     
     required init?(coder: NSCoder) {
@@ -83,16 +92,10 @@ extension HomeViewController: UINavigationControllerDelegate {
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
         
-        switch operation {
-        case .push:
-            return ToProfileAnimator(
-                isPresenting: true,
-                firstViewController: fromVC as! HomeViewController,
-                secondViewController: toVC as! ProfileMainScreenViewController,
-                profileIconView: profileIconView
-            )
-        default:
-            return nil
-        }
+        return FromHomeToProfileAnimator(
+            navigationControllerOperation: operation,
+            fromViewController: fromVC,
+            toViewController: toVC
+        )
     }
 }

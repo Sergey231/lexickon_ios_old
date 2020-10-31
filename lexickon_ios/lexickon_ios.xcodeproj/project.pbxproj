@@ -43,7 +43,7 @@
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
 		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
-		EC82BE1B25485E8400037DA0 /* ToProfileAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */; };
+		EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
@@ -129,7 +129,7 @@
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToProfileAnimator.swift; sourceTree = "<group>"; };
+		EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromHomeToProfileAnimator.swift; sourceTree = "<group>"; };
 		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroAssemly.swift; path = ../Presentation/IntroAssemly.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -460,7 +460,7 @@
 			children = (
 				ECC48E8C25456FFD006503C2 /* Presenter */,
 				ECC48E8D25457020006503C2 /* View */,
-				EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */,
+				EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -798,7 +798,7 @@
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
-				EC82BE1B25485E8400037DA0 /* ToProfileAnimator.swift in Sources */,
+				EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */,
 				EC3139DA253C2E95007FFCB0 /* SwitchIconButton.swift in Sources */,

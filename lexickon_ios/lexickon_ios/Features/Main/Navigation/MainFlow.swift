@@ -57,6 +57,7 @@ class MainFlow: Flow {
     }
     
     private func navigateToProfile() -> FlowContributors {
+        DI.shr.appContainer.resetObjectScope(.mainObjectScope)
         let profileFlow = ProfileFlow(with: rootViewController)
         return .one(flowContributor: .contribute(
             withNextPresentable: profileFlow,
@@ -67,6 +68,7 @@ class MainFlow: Flow {
     }
     
     private func navigateToAuthorization() -> FlowContributors {
+        (root as! UINavigationController).delegate = nil
         DI.shr.appContainer.resetObjectScope(.mainObjectScope)
         return .end(forwardToParentFlowWithStep: AppStep.authorization)
     }

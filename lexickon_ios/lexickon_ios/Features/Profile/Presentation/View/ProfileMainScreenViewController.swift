@@ -17,6 +17,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     struct UIConstants {
         static let profileIconSize: CGFloat = 100
+        static let profileIconTopMargin: CGFloat = 16
     }
     
     let steps = PublishRelay<Step>()
@@ -26,6 +27,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     let profileIconView = ProfileIconView()
+    let backButton = UIButton()
     private let logoutButton = UIButton()
     
     init(presenter: ProfileMainScreenPresenter) {
@@ -48,10 +50,15 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        backButton.pin
+            .top(view.pin.safeArea.top)
+            .left()
+            .size(56)
+        
         profileIconView.pin
             .size(UIConstants.profileIconSize)
-            .left(16)
-            .top(view.pin.safeArea.top)
+            .hCenter()
+            .top(view.pin.safeArea.top + UIConstants.profileIconTopMargin)
         
         logoutButton.pin
             .hCenter()
@@ -61,7 +68,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = .red
         
         createUI()
         configureUI()
@@ -70,7 +77,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private func configureUI() {
         
         profileIconView.backgroundColor = .gray
-        profileIconView.isHidden = true
+        
+        backButton.setImage(Asset.Images.backArrow.image, for: .normal)
         
         logoutButton.setTitle(
             L10n.loginLoginButtonTitle,
@@ -86,6 +94,12 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             )
         )
         
+        backButton.rx.tap
+            .asSignal()
+            .map { ProfileStep.toHome }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
         presentOutput.didLogout
             .map { _ in ProfileStep.logout }
             .emit(to: steps )
@@ -94,6 +108,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private func createUI() {
         view.addSubviews(
+            backButton,
             logoutButton,
             profileIconView
         )
