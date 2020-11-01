@@ -17,21 +17,28 @@ import RxSwift
 
 final class HomeViewController: UIViewController, Stepper {
     
+    struct UIConstants {
+        static let profileIconSize: CGFloat = 44
+        static let profileIconRightMargin: CGFloat = 16
+    }
+    
     let steps = PublishRelay<Step>()
     
-    fileprivate let profileIconView = ProfileIconView()
+    let profileIconView = ProfileIconView()
     
-    private let disposeBag = DisposeBag()
+    fileprivate var disposeBag = DisposeBag()
     
     private let presenter: HomePresenter
-    
-    var animator: Animator?
     
     init(
         presenter: HomePresenter
     ) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    deinit {
+        print("💀 Home")
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +48,7 @@ final class HomeViewController: UIViewController, Stepper {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
         createUI()
         configureUI()
     }
@@ -59,7 +66,7 @@ final class HomeViewController: UIViewController, Stepper {
         profileIconView.backgroundColor = .gray
         profileIconView.configure(input: ProfileIconView.Input())
             .didTap
-            .map { _ in MainStep.profile(transitioningDelegate: self) }
+            .map { _ in MainStep.profile }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }
@@ -69,32 +76,37 @@ final class HomeViewController: UIViewController, Stepper {
     }
 }
 
-extension HomeViewController: UIViewControllerTransitioningDelegate {
+extension HomeViewController: UINavigationControllerDelegate {
     
-    func animationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController,
-        source: UIViewController
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        guard
-            let firstViewController = presenting as? HomeViewController,
-            let secondViewController = presented as? ProfileMainScreenViewController
-        else {
-            return nil
+       
+        if
+            operation == .push,
+            let homeVC = fromVC as? HomeViewController,
+            let profileVC = toVC as? ProfileMainScreenViewController
+        {
+            return ToProfileAnimator(
+                homeVC: homeVC,
+                profileVC: profileVC
+            )
         }
         
-        animator = Animator(
-            type: .present,
-            firstViewController: firstViewController,
-            secondViewController: secondViewController,
-            selectedViewSnapshot: profileIconView
-        )
-        return animator
-    }
-    
-    func animationController(
-        forDismissed dismissed: UIViewController
-    ) -> UIViewControllerAnimatedTransitioning? {
+        if
+            operation == .pop,
+            let homeVC = toVC as? HomeViewController,
+            let profileVC = fromVC as? ProfileMainScreenViewController
+        {
+            return ToHomeAnimator(
+                homeVC: homeVC,
+                profileVC: profileVC
+            )
+        }
+        
         return nil
     }
 }

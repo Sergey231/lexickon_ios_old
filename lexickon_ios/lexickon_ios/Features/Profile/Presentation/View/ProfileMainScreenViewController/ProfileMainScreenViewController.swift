@@ -15,12 +15,19 @@ import PinLayout
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     
+    struct UIConstants {
+        static let profileIconSize: CGFloat = 100
+        static let profileIconTopMargin: CGFloat = 16
+    }
+    
     let steps = PublishRelay<Step>()
     
     private let presenter: ProfileMainScreenPresenter
     
     private let disposeBag = DisposeBag()
     
+    let profileIconView = ProfileIconView()
+    let backButton = UIButton()
     private let logoutButton = UIButton()
     
     init(presenter: ProfileMainScreenPresenter) {
@@ -42,6 +49,17 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
+        backButton.pin
+            .top(view.pin.safeArea.top)
+            .left()
+            .size(56)
+        
+        profileIconView.pin
+            .size(UIConstants.profileIconSize)
+            .hCenter()
+            .top(view.pin.safeArea.top + UIConstants.profileIconTopMargin)
+        
         logoutButton.pin
             .hCenter()
             .size(Sizes.button)
@@ -58,6 +76,10 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
+        profileIconView.backgroundColor = .gray
+        
+        backButton.setImage(Asset.Images.backArrow.image, for: .normal)
+        
         logoutButton.setTitle(
             L10n.loginLoginButtonTitle,
             for: .normal
@@ -72,13 +94,23 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             )
         )
         
-        presentOutput.didLogout.debug("⚽️")
+        backButton.rx.tap
+            .asSignal()
+            .map { ProfileStep.toHome }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
+        presentOutput.didLogout
             .map { _ in ProfileStep.logout }
             .emit(to: steps )
             .disposed(by: disposeBag)
     }
     
     private func createUI() {
-        view.addSubview(logoutButton)
+        view.addSubviews(
+            backButton,
+            logoutButton,
+            profileIconView
+        )
     }
 }
