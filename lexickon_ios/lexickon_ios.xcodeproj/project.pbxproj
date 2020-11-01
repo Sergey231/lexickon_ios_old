@@ -43,8 +43,9 @@
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
 		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
-		EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */; };
+		EC82BE1B25485E8400037DA0 /* ToProfileAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
+		EC870953254E8F4800553B87 /* ToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC870952254E8F4800553B87 /* ToHomeAnimator.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC873D7423DD6EC400787E51 /* CombineCocoa */; };
@@ -129,8 +130,9 @@
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromHomeToProfileAnimator.swift; sourceTree = "<group>"; };
+		EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToProfileAnimator.swift; sourceTree = "<group>"; };
 		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		EC870952254E8F4800553B87 /* ToHomeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToHomeAnimator.swift; sourceTree = "<group>"; };
 		EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroAssemly.swift; path = ../Presentation/IntroAssemly.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		EC873D7923DD754D00787E51 /* HomeAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembler.swift; sourceTree = "<group>"; };
@@ -389,6 +391,24 @@
 			path = Logo;
 			sourceTree = "<group>";
 		};
+		EC87094C254E8EDA00553B87 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
+				EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		EC87094F254E8EF800553B87 /* ProfileMainScreenViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
+				EC870952254E8F4800553B87 /* ToHomeAnimator.swift */,
+			);
+			path = ProfileMainScreenViewController;
+			sourceTree = "<group>";
+		};
 		EC873D6823DD5AD800787E51 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,7 +480,6 @@
 			children = (
 				ECC48E8C25456FFD006503C2 /* Presenter */,
 				ECC48E8D25457020006503C2 /* View */,
-				EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -492,7 +511,7 @@
 		ECC48E8D25457020006503C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
+				EC87094F254E8EF800553B87 /* ProfileMainScreenViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,7 +609,7 @@
 		ECCB194423F964FC0069C5A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
+				EC87094C254E8EDA00553B87 /* HomeViewController */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -798,7 +817,7 @@
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
-				EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */,
+				EC82BE1B25485E8400037DA0 /* ToProfileAnimator.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */,
 				EC3139DA253C2E95007FFCB0 /* SwitchIconButton.swift in Sources */,
@@ -808,6 +827,7 @@
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
 				EC93A28825174E340058F779 /* ApiRepository.swift in Sources */,
 				EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */,
+				EC870953254E8F4800553B87 /* ToHomeAnimator.swift in Sources */,
 				EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
 				EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */,

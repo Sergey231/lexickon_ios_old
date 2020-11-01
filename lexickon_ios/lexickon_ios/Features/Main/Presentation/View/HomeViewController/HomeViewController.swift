@@ -48,7 +48,7 @@ final class HomeViewController: UIViewController, Stepper {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
         createUI()
         configureUI()
     }
@@ -80,22 +80,33 @@ extension HomeViewController: UINavigationControllerDelegate {
     
     func navigationController(
         _ navigationController: UINavigationController,
-        interactionControllerFor animationController: UIViewControllerAnimatedTransitioning
-    ) -> UIViewControllerInteractiveTransitioning? {
-        return nil
-    }
-    
-    func navigationController(
-        _ navigationController: UINavigationController,
         animationControllerFor operation: UINavigationController.Operation,
         from fromVC: UIViewController,
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
+       
+        if
+            operation == .push,
+            let homeVC = fromVC as? HomeViewController,
+            let profileVC = toVC as? ProfileMainScreenViewController
+        {
+            return ToProfileAnimator(
+                homeVC: homeVC,
+                profileVC: profileVC
+            )
+        }
         
-        return FromHomeToProfileAnimator(
-            navigationControllerOperation: operation,
-            fromViewController: fromVC,
-            toViewController: toVC
-        )
+        if
+            operation == .pop,
+            let homeVC = toVC as? HomeViewController,
+            let profileVC = fromVC as? ProfileMainScreenViewController
+        {
+            return ToHomeAnimator(
+                homeVC: homeVC,
+                profileVC: profileVC
+            )
+        }
+        
+        return nil
     }
 }

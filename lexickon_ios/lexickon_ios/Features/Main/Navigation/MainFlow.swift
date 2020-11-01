@@ -57,7 +57,6 @@ class MainFlow: Flow {
     }
     
     private func navigateToProfile() -> FlowContributors {
-        DI.shr.appContainer.resetObjectScope(.mainObjectScope)
         let profileFlow = ProfileFlow(with: rootViewController)
         return .one(flowContributor: .contribute(
             withNextPresentable: profileFlow,
