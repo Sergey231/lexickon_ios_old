@@ -11,7 +11,7 @@ import PinLayout
 
 final class ToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    static let duration: TimeInterval = 0.6
+    static let duration: TimeInterval = 0.8
     
     private let homeVC: HomeViewController
     private let profileVC: ProfileMainScreenViewController
@@ -66,8 +66,8 @@ final class ToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(
             withDuration: Self.duration,
             delay: 0,
-            usingSpringWithDamping: 0.4,
-            initialSpringVelocity: 1,
+            usingSpringWithDamping: 0.3,
+            initialSpringVelocity: 0.5,
             options: .curveEaseInOut,
             animations: {
 

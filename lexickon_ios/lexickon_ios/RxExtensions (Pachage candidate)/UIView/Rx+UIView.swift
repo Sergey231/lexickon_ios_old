@@ -24,4 +24,13 @@ extension Reactive where Base: UIView {
                 .map { _ in () }
         )
     }
+        
+    var height: Binder<CGFloat> {
+        return Binder(base) { base, height in
+            base.pin
+                .top()
+                .horizontally()
+                .height(height)
+        }
+    }
 }
