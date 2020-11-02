@@ -24,16 +24,13 @@ final class Logo: UIView {
         mode: .default
     )
     
-    //MARK: init programmatically
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
     }
     
-    //MAEK: init from XIB
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureView()
+        fatalError("init(coder:) has not been implemented")
     }
     
     func stopAnimation() {

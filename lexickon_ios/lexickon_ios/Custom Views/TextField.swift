@@ -76,16 +76,13 @@ final class TextField: UIView {
     
     private let eyeIcon = BehaviorRelay<UIImage>(value: Asset.Images.eyeHideIcon.image)
     
-    //MARK: init programmatically
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
     }
     
-    //MAEK: init from XIB
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configureView()
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func configureView() {
