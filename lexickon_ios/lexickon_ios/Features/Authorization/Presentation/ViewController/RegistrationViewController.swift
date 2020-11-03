@@ -205,6 +205,22 @@ final class RegistrationViewController: UIViewController, Stepper {
             .drive(submitButton.rx.valid)
             .disposed(by: disposeBag)
         
+        presenterOutput.errorMsg
+            .asObservable()
+            .do(onNext: { _ in self.submitButton.hide() })
+            .flatMapLatest {
+                return self.showMsg(
+                    msg: $0,
+                    buttonTitle: L10n.errorAlertButtonTitle,
+                    buttonColor: Asset.Colors.mainBG.color
+                )
+            }
+            .subscribe(onNext: { _ in
+                self.submitButton.show()
+                print("🌈🌈🌈")
+            })
+            .disposed(by: disposeBag)
+        
         let textFields = [
             nameTextField,
             emailTextField,
@@ -231,7 +247,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         submitButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
-        presenterOutput.registrated
+        presenterOutput.registrateds
             .asObservable()
             .map { _ in AuthorizationStep.begin(animated: true) }
             .bind(to: steps)

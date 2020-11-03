@@ -191,21 +191,20 @@ final class RegistrationPresenter: PresenterType {
         let registrated = input.submit
             .asObservable()
             .withLatestFrom(userCreateInfo)
-            .flatMapLatest ({ arg -> Observable<Void> in
+            .flatMapLatest ({ arg -> Signal<Void> in
                 showLoading.accept(true)
                 return self.authorisationInteractor.registrate(
                     name: arg.name,
                     email: arg.email,
                     password: arg.password
                 )
-                    .asObservable()
+                .asSignal { error -> Signal<()> in
+                    errorMsg.accept(error.localizedDescription)
+                    showLoading.accept(false)
+                    return .empty()
+                }
             })
-            .do(
-                onNext: { _ in showLoading.accept(false)
-            }, onError: { error in
-                errorMsg.accept(error.localizedDescription)
-                showLoading.accept(false)
-            })
+            .do(onNext: { _ in showLoading.accept(false) })
             .asSignal(onErrorSignalWith: .empty())
         
         return Output(
