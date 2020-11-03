@@ -204,6 +204,18 @@ final class RegistrationPresenter: PresenterType {
                     return .empty()
                 }
             })
+            .withLatestFrom(userCreateInfo)
+            .flatMapLatest ({ arg -> Signal<Void> in
+                self.authorisationInteractor.login(
+                    login: arg.email,
+                    password: arg.password
+                )
+                .asSignal { error -> Signal<()> in
+                    errorMsg.accept(error.localizedDescription)
+                    showLoading.accept(false)
+                    return .empty()
+                }
+            })
             .do(onNext: { _ in showLoading.accept(false) })
             .asSignal(onErrorSignalWith: .empty())
         

@@ -247,7 +247,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         submitButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
-        presenterOutput.registrateds
+        presenterOutput.registrated
             .asObservable()
             .map { _ in AuthorizationStep.begin(animated: true) }
             .bind(to: steps)
