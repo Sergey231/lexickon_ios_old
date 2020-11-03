@@ -302,9 +302,9 @@
 		EC3EAB1022D4DC1C00BFCBFC /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				ECC48E7825455CE7006503C2 /* Profile */,
 				EC291AF623F034860082E45C /* Authorization */,
 				EC873D7823DD753400787E51 /* Main */,
+				ECC48E7825455CE7006503C2 /* Profile */,
 				EC873D6823DD5AD800787E51 /* Intro */,
 			);
 			path = Features;

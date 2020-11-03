@@ -25,7 +25,6 @@ final class HomeHeaderView: UIView {
     
     private let button = UIButton()
     
-    //MARK: init programmatically
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()

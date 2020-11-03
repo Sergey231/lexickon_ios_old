@@ -113,7 +113,7 @@ final class LoginPresenter: PresenterType {
         let logined = input.submit
             .asObservable()
             .withLatestFrom(logintAndPass)
-            .flatMapLatest ({ arg -> Observable<Void> in
+            .flatMapLatest ({ arg -> Signal<Void> in
                 showLoading.accept(true)
                 guard
                     let login = arg.login,
@@ -125,14 +125,13 @@ final class LoginPresenter: PresenterType {
                     login: login,
                     password: password
                 )
-                    .asObservable()
+                .asSignal { error -> Signal<()> in
+                    errorMsg.accept(error.localizedDescription)
+                    showLoading.accept(false)
+                    return .just(())
+                }
             })
-            .do(
-                onNext: { _ in showLoading.accept(false)
-            }, onError: { error in
-                errorMsg.accept(error.localizedDescription)
-                showLoading.accept(false)
-            })
+            .do(onNext: { _ in showLoading.accept(false) })
             .asSignal(onErrorSignalWith: .empty())
 
         
