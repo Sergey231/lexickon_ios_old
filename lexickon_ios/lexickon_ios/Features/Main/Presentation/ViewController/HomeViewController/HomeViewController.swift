@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     let profileIconView = ProfileIconView()
     let headerView = HomeHeaderView()
-    let tableView = UITableView()
+    let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
     fileprivate var disposeBag = DisposeBag()
     
@@ -81,14 +81,6 @@ final class HomeViewController: UIViewController, Stepper {
         tableView.pin.all()
     }
     
-    private var configureCell: RxDataSource.ConfigureCell {
-        return { _, tableView, indexPath, model in
-            let cell: HomeWordCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configurate(with: model)
-            return cell
-        }
-    }
-    
     private func configureUI() {
         
         let presenterOutput = presenter.configurate()
@@ -106,7 +98,6 @@ final class HomeViewController: UIViewController, Stepper {
         tableView.rx.didScroll.asDriver()
             .map { _ in self.tableView.contentOffset.y * -1 }
             .map { $0 < 120 ? 120 : $0 }
-            .map { $0 - Margin.regular/2 }
             .drive(headerView.rx.height)
             .disposed(by: disposeBag)
     }
@@ -121,6 +112,14 @@ final class HomeViewController: UIViewController, Stepper {
     
     private func configureTableView(with models: Driver<[HomeWordViewModel]>) {
         
+        var configureCell: RxDataSource.ConfigureCell {
+            return { _, tableView, indexPath, model in
+                let cell: HomeWordCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.configurate(with: model)
+                return cell
+            }
+        }
+        
         dataSource = RxDataSource(
             animationConfiguration: AnimationConfiguration(),
             configureCell: configureCell
@@ -130,6 +129,7 @@ final class HomeViewController: UIViewController, Stepper {
         tableView.register(cellType: HomeWordCell.self)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.delegate = self
         tableView.contentInset = UIEdgeInsets(
             top: UIConstants.headerHeight - 50,
             left: 0,
@@ -141,6 +141,19 @@ final class HomeViewController: UIViewController, Stepper {
             .map { [HomeWordSectionModel(model: "Section 1", items: $0)] }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        40
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .lightGray
+        return headerView
     }
 }
 
