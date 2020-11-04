@@ -25,6 +25,7 @@
 		EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C3859254FED4D008D1D3C /* RxDataSources */; };
 		EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C385B254FED4D008D1D3C /* Differentiator */; };
 		EC3C3882255032F5008D1D3C /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3C3881255032F5008D1D3C /* HomeHeaderView.swift */; };
+		EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3C394825519FA4008D1D3C /* HomeWordCell.swift */; };
 		EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44492520B510004706DC /* RxAlamofire */; };
 		EC3F44532520BF26004706DC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44522520BF26004706DC /* RxSwift */; };
 		EC3F44552520BF26004706DC /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44542520BF26004706DC /* RxRelay */; };
@@ -118,6 +119,7 @@
 		EC3139DE253C328B007FFCB0 /* Rx+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIImageView.swift"; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3C3881255032F5008D1D3C /* HomeHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderView.swift; sourceTree = "<group>"; };
+		EC3C394825519FA4008D1D3C /* HomeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWordCell.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 			children = (
 				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
 				EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */,
+				EC3C394825519FA4008D1D3C /* HomeWordCell.swift */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */,
 				EC3139DF253C328B007FFCB0 /* Rx+UIImageView.swift in Sources */,
 				EC3139D6253B305B007FFCB0 /* UIButton+TapAnimations.swift in Sources */,
 				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
