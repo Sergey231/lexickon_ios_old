@@ -63,11 +63,11 @@ final class HomeViewController: UIViewController, Stepper {
         view.backgroundColor = .white
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         createUI()
+        configureUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureUI()
     }
     
     override func viewWillLayoutSubviews() {
