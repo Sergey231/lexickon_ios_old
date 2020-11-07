@@ -1,6 +1,5 @@
 
 import LexickonApi
-import RxCocoa
 import RxSwift
 
 protocol UserRepositoryProtocol {

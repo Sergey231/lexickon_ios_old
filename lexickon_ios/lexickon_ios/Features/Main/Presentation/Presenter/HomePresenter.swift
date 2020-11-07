@@ -11,11 +11,22 @@ import RxCocoa
 
 final class HomePresenter: PresenterType {
     
+    private let mainInteractor: MainInteractorProtocol
+    
+    init(mainInteractor: MainInteractorProtocol) {
+        self.mainInteractor = mainInteractor
+    }
+    
     struct Output {
         let models: Driver<[HomeWordViewModel]>
     }
     
     func configurate() -> Output {
+        
+        _ = mainInteractor.words(per: 2, page: 1)
+            .debug("😀")
+            .subscribe()
+        
         return Output(
             models: .just(
                         [

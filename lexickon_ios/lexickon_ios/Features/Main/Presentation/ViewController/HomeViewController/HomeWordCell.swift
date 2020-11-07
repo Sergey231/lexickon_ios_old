@@ -37,6 +37,8 @@ extension HomeWordViewModel: IdentifiableType {
 
 class HomeWordCell: DisposableTableViewCell {
 
+    private let wordLable = UILabel()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         createUI()
@@ -48,24 +50,28 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     private func createUI() {
-        
+        contentView.addSubview(wordLable)
     }
     
     private func configureUI() {
         backgroundColor = .clear
         contentView.backgroundColor = .green
-        contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 16
     }
     
     func configurate(with model: HomeWordViewModel) {
         
+        wordLable.text = model.word
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         contentView.pin
             .horizontally(Margin.regular)
             .vertically(Margin.regular/2)
+        
+        wordLable.pin.all()
     }
 }
 

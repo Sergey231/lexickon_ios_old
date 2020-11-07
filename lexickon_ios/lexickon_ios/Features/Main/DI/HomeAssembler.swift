@@ -12,8 +12,20 @@ final class HomeAssembler: Assembly {
     
     func assemble(container: Container) {
         
-        container.register(HomePresenter.self) { _ in
-            HomePresenter()
+        container.register(WordRepositoryProtocol.self) { _ in
+            WordRepository()
+        }.inObjectScope(ObjectScope.appObjectScope)
+        
+        container.register(MainInteractorProtocol.self) { resolver in
+            MainInteractor(
+                wordRepository: resolver.resolve(WordRepositoryProtocol.self)!
+            )
+        }.inObjectScope(ObjectScope.appObjectScope)
+        
+        container.register(HomePresenter.self) { resolver in
+            HomePresenter(
+                mainInteractor: resolver.resolve(MainInteractorProtocol.self)!
+            )
         }.inObjectScope(ObjectScope.appObjectScope)
         
         container.register(HomeViewController.self) { resolver in
