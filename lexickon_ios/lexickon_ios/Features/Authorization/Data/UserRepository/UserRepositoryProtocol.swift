@@ -5,6 +5,6 @@ import RxSwift
 protocol UserRepositoryProtocol {
     
     func createUser(
-        with credentials: UserCreateObject
-    ) -> Single<UserGetObject>
+        with credentials: LxUserCreate
+    ) -> Single<LxUserGet>
 }

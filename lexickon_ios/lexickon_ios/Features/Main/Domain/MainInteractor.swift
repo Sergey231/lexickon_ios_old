@@ -17,7 +17,15 @@ final class MainInteractor: MainInteractorProtocol {
         self.wordRepository = wordRepository
     }
     
-    func words(per: Int, page: Int) -> Single<PageObject<WordListObject>> {
-        return wordRepository.words(per: per, page: page)
+    func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
+        wordRepository.words(per: per, page: page)
+    }
+    
+    func word(by id: String) -> Single<LxWordGet> {
+        wordRepository.word(by: id)
+    }
+    
+    func words() -> Single<[LxWordList]> {
+        wordRepository.words()
     }
 }

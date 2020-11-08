@@ -7,8 +7,8 @@ import Alamofire
 final class UserRepository: UserRepositoryProtocol, ApiRepository {
 
     func createUser(
-        with credentials: UserCreateObject
-    ) -> Single<UserGetObject> {
+        with credentials: LxUserCreate
+    ) -> Single<LxUserGet> {
         
         let url = baseURL + "/api/user/register"
         let parameters = [
@@ -19,12 +19,12 @@ final class UserRepository: UserRepositoryProtocol, ApiRepository {
         return Single.create { single -> Disposable in
             
             AF.request(url, method: .post, parameters: parameters)
-                .responseDecodable(of: UserGetObject.self) { res in
+                .responseDecodable(of: LxUserGet.self) { res in
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
                     case .failure:
-                        single(.error(HTTPObject.Error(with: res.response?.statusCode)))
+                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
             

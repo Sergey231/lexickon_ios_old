@@ -24,7 +24,7 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
         password: String
     ) -> Single<Void> {
         
-        let userCreateObject = UserCreateObject(
+        let userCreateObject = LxUserCreate(
             email: email,
             password: password
         )
@@ -38,7 +38,7 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
         password: String
     ) -> Single<Void> {
         
-        let userCredantions = UserCreateObject(
+        let userCredantions = LxUserCreate(
             email: login,
             password: password
         )

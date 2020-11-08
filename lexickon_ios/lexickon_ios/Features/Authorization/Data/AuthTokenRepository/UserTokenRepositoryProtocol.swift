@@ -4,7 +4,7 @@ import RxSwift
 
 protocol AuthTokenRepositoryProtocol {
     
-    func get(with credentiols: UserCreateObject) -> Single<UserTokenGetObject>
+    func get(with credentiols: LxUserCreate) -> Single<LxUserTokenGet>
     func erasе() -> Single<Void>
-    var cach: Single<UserTokenGetObject> { get }
+    var cach: Single<LxUserTokenGet> { get }
 }

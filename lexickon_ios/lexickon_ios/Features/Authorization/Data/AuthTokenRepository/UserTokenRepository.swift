@@ -9,7 +9,7 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
     
     private let keychain = KeychainWrapper.standard
     
-    func get(with credentiols: UserCreateObject) -> Single<UserTokenGetObject> {
+    func get(with credentiols: LxUserCreate) -> Single<LxUserTokenGet> {
         
         let keychain = self.keychain
         let url = baseURL + "/api/user/login"
@@ -25,15 +25,15 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
                     username: credentiols.email,
                     password: credentiols.password
                 )
-                .responseDecodable(of: UserTokenGetObject.self) { res in
-                    
+                .responseDecodable(of: LxUserTokenGet.self) { res in
+                    print("😀")
                     switch res.result {
                     case .success(let model):
                         keychain[.authTokenId] = model.id
                         keychain[.authToken] = model.value
                         single(.success(model))
                     case .failure:
-                        single(.error(HTTPObject.Error(with: res.response?.statusCode)))
+                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
             
@@ -51,7 +51,7 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
         }
     }
     
-    var cach: Single<UserTokenGetObject> {
+    var cach: Single<LxUserTokenGet> {
         let keychain = self.keychain
         return Single.create { single -> Disposable in
             
@@ -62,11 +62,11 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
                 let strongAuthTokenId = authTokenId,
                 let strongAuthToken = authToken
             else {
-                single(.error(HTTPObject.Error.unknown))
+                single(.error(LxHTTPObject.Error.unknown))
                 return Disposables.create()
             }
             
-            let authTokenObject = UserTokenGetObject(
+            let authTokenObject = LxUserTokenGet(
                 value: strongAuthToken,
                 id: strongAuthTokenId
             )

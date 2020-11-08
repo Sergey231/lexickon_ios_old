@@ -23,8 +23,8 @@ final class HomePresenter: PresenterType {
     
     func configurate() -> Output {
         
-        _ = mainInteractor.words(per: 2, page: 1)
-            .debug("😀")
+        _ = mainInteractor.words()
+            .debug("📚")
             .subscribe()
         
         return Output(

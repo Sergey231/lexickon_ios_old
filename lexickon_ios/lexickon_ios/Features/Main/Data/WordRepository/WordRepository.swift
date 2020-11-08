@@ -10,29 +10,86 @@ import LexickonApi
 import RxSwift
 import Alamofire
 import SwiftKeychainWrapper
+import Foundation
 
 final class WordRepository: WordRepositoryProtocol, ApiRepository {
     
-    func words(per: Int, page: Int) -> Single<PageObject<WordListObject>> {
+    func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
         
-        let authToken: String? = KeychainWrapper.standard[.authToken]
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "Basic \(String(describing: authToken))",
-            "Accept": "application/json"
-        ]
+        guard let headers = headersWithAuthToken else {
+            return .error(LxHTTPObject.Error.unauthorized)
+        }
         
         let url = baseURL + "/api/words?per=\(per)&page=\(page)"
         
         return Single.create { single -> Disposable in
             
             AF.request(url, headers: headers)
-                .responseDecodable(of: PageObject<WordListObject>.self) { res in
+                .responseDecodable(
+                    of: LxPage<LxWordList>.self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
                     case .failure:
-                        single(.error(HTTPObject.Error(with: res.response?.statusCode)))
+                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
+                }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func word(by id: String) -> Single<LxWordGet> {
+        
+        guard let headers = headersWithAuthToken else {
+            return .error(LxHTTPObject.Error.unauthorized)
+        }
+        
+        let url = baseURL + "/api/words/\(id)"
+        
+        return Single.create { single -> Disposable in
+            
+            AF.request(url, headers: headers)
+                .responseDecodable(
+                    of: LxWordGet.self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    
+                    switch res.result {
+                    case .success(let model):
+                        single(.success(model))
+                    case .failure:
+                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    func words() -> Single<[LxWordList]> {
+        
+        guard let headers = headersWithAuthToken else {
+            return .error(LxHTTPObject.Error.unauthorized)
+        }
+        
+        let url = baseURL + "/api/words"
+        
+        return Single.create { single -> Disposable in
+            
+            AF.request(url, headers: headers)
+                .responseDecodable(
+                    of: [LxWordList].self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    
+                    switch res.result {
+                    case .success(let model):
+                        single(.success(model))
+                    case .failure:
+                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
             
