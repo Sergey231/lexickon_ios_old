@@ -24,8 +24,4 @@ final class MainInteractor: MainInteractorProtocol {
     func word(by id: String) -> Single<LxWordGet> {
         wordRepository.word(by: id)
     }
-    
-    func words() -> Single<[LxWordList]> {
-        wordRepository.words()
-    }
 }

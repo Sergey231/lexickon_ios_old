@@ -13,5 +13,4 @@ protocol MainInteractorProtocol {
     
     func words(per: Int, page: Int) -> Single<LxPage<LxWordList>>
     func word(by id: String) -> Single<LxWordGet>
-    func words() -> Single<[LxWordList]>
 }

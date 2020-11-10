@@ -59,7 +59,6 @@
 		EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28125164A860058F779 /* UserTokenRepository.swift */; };
 		EC93A28425164A860058F779 /* UserTokenRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */; };
 		EC93A28825174E340058F779 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28725174E340058F779 /* ApiRepository.swift */; };
-		EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC955CC22508D8C7002B6DDC /* LexickonApi */; };
 		EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* TextField.swift */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
@@ -67,6 +66,7 @@
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
+		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
 		ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6C002448261000D86417 /* IntroFlow.swift */; };
 		ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = ECB66529247FD2F60052C658 /* JWTDecode */; };
@@ -205,12 +205,12 @@
 				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
 				EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
+				ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */,
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
 				EC3F44592520BF26004706DC /* RxBlocking in Frameworks */,
 				EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
 				EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */,
-				EC955CC32508D8C7002B6DDC /* LexickonApi in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +731,6 @@
 				ECC15EEB2416220F00149AC9 /* Utils */,
 				ECBEB5062439C0DE0017855E /* RxFlow */,
 				ECB66529247FD2F60052C658 /* JWTDecode */,
-				EC955CC22508D8C7002B6DDC /* LexickonApi */,
 				EC3F44492520B510004706DC /* RxAlamofire */,
 				EC3F44522520BF26004706DC /* RxSwift */,
 				EC3F44542520BF26004706DC /* RxRelay */,
@@ -741,6 +740,7 @@
 				EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */,
 				EC3C3859254FED4D008D1D3C /* RxDataSources */,
 				EC3C385B254FED4D008D1D3C /* Differentiator */,
+				ECAC1D60255A848D008B0ECC /* LexickonApi */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -801,11 +801,11 @@
 				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
 				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
 				ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
-				EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 				EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */,
 				EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -1217,20 +1217,20 @@
 				minimumVersion = 0.1.0;
 			};
 		};
-		EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.1;
-			};
-		};
 		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/layoutBox/PinLayout";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.8.13;
+			};
+		};
+		ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.4;
 			};
 		};
 		ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
@@ -1331,15 +1331,15 @@
 			package = EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
 		};
-		EC955CC22508D8C7002B6DDC /* LexickonApi */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC955CC12508D8C7002B6DDC /* XCRemoteSwiftPackageReference "LexickonApi" */;
-			productName = LexickonApi;
-		};
 		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
 			productName = PinLayout;
+		};
+		ECAC1D60255A848D008B0ECC /* LexickonApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */;
+			productName = LexickonApi;
 		};
 		ECB66529247FD2F60052C658 /* JWTDecode */ = {
 			isa = XCSwiftPackageProductDependency;

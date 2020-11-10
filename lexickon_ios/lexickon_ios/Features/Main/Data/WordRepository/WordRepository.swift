@@ -33,7 +33,8 @@ final class WordRepository: WordRepositoryProtocol, ApiRepository {
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
-                    case .failure:
+                    case .failure(let failure):
+                        print(failure)
                         single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
@@ -61,38 +62,11 @@ final class WordRepository: WordRepositoryProtocol, ApiRepository {
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
-                    case .failure:
+                    case .failure(let failure):
+                        print(failure)
                         single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
-            return Disposables.create()
-        }
-    }
-    
-    func words() -> Single<[LxWordList]> {
-        
-        guard let headers = headersWithAuthToken else {
-            return .error(LxHTTPObject.Error.unauthorized)
-        }
-        
-        let url = baseURL + "/api/words"
-        
-        return Single.create { single -> Disposable in
-            
-            AF.request(url, headers: headers)
-                .responseDecodable(
-                    of: [LxWordList].self,
-                    decoder: self.jsonDecoder
-                ) { res in
-                    
-                    switch res.result {
-                    case .success(let model):
-                        single(.success(model))
-                    case .failure:
-                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
-                    }
-                }
-            
             return Disposables.create()
         }
     }
