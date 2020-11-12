@@ -33,6 +33,7 @@ final class HomeViewController: UIViewController, Stepper {
     let profileIconView = ProfileIconView()
     let headerView = HomeHeaderView()
     let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    let needToRefrash = PublishRelay<Void>()
     
     fileprivate var disposeBag = DisposeBag()
     
@@ -83,9 +84,11 @@ final class HomeViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let presenterOutput = presenter.configurate()
+        let presenterOutput = presenter.configurate(
+            input: .init(needLoadNextWordsPage: needToRefrash.asSignal())
+        )
         
-        configureTableView(with: presenterOutput.models)
+        configureTableView(with: presenterOutput.sections)
         
         profileIconView.backgroundColor = .gray
         profileIconView.configure(input: ProfileIconView.Input())
@@ -110,7 +113,7 @@ final class HomeViewController: UIViewController, Stepper {
         )
     }
     
-    private func configureTableView(with models: Driver<[HomeWordViewModel]>) {
+    private func configureTableView(with models: Driver<[HomeWordSectionModel]>) {
         
         var configureCell: RxDataSource.ConfigureCell {
             return { _, tableView, indexPath, model in
@@ -138,7 +141,6 @@ final class HomeViewController: UIViewController, Stepper {
         )
         
         models
-            .map { [HomeWordSectionModel(model: "Section 1", items: $0)] }
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
