@@ -51,7 +51,7 @@ final class LoginPresenter: PresenterType {
                 guard
                     let info = notification.userInfo,
                     let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-                else { return 0 }
+                 else { return 0 }
 
                 return keyboardFrame.height
             })

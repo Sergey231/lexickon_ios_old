@@ -15,7 +15,16 @@ import RxDataSources
 import UIExtensions
 
 struct HomeWordViewModel {
+    
+    enum StudyType {
+        case fire
+        case ready
+        case new
+        case waiting
+    }
+    
     let word: String
+    let studyType: StudyType
 }
 
 extension HomeWordViewModel: Hashable {
@@ -54,14 +63,28 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     private func configureUI() {
+        wordLable.font = .systemRegular24
+        wordLable.alpha = 0.3
         backgroundColor = .clear
-        contentView.backgroundColor = .green
+        contentView.backgroundColor = .gray
         contentView.layer.cornerRadius = 16
     }
     
     func configurate(with model: HomeWordViewModel) {
         
         wordLable.text = model.word
+        
+        switch model.studyType {
+            
+        case .fire:
+            contentView.backgroundColor = .red
+        case .ready:
+            contentView.backgroundColor = .green
+        case .new:
+            contentView.backgroundColor = .yellow
+        case .waiting:
+            contentView.backgroundColor = .gray
+        }
     }
     
     override func layoutSubviews() {
@@ -71,7 +94,10 @@ class HomeWordCell: DisposableTableViewCell {
             .horizontally(Margin.regular)
             .vertically(Margin.regular/2)
         
-        wordLable.pin.all()
+        wordLable.pin
+            .horizontally(Margin.regular)
+            .sizeToFit(.heightFlexible)
+            .vCenter()
     }
 }
 
