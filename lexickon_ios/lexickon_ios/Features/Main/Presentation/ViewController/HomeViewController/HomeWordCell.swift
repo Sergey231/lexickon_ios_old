@@ -47,6 +47,8 @@ extension HomeWordViewModel: IdentifiableType {
 class HomeWordCell: DisposableTableViewCell {
 
     private let wordLable = UILabel()
+    private let bgView = UIView()
+    private let progressView = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,15 +61,45 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     private func createUI() {
-        contentView.addSubview(wordLable)
+        contentView.addSubviews(
+            bgView,
+            progressView,
+            wordLable
+        )
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
+        contentView.pin
+            .horizontally(Margin.regular)
+            .vertically(Margin.regular/2)
+        
+        bgView.pin.all()
+        
+        progressView.pin
+            .all(Margin.small)
+        
+        wordLable.pin
+            .horizontally(Margin.regular)
+            .sizeToFit(.heightFlexible)
+            .vCenter()
     }
     
     private func configureUI() {
+        
+        progressView.alpha = 0.4
+        progressView.layer.cornerRadius = 12
+        
+        bgView.alpha = 0.4
+        
         wordLable.font = .systemRegular24
         wordLable.alpha = 0.3
         backgroundColor = .clear
-        contentView.backgroundColor = .gray
+        contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
     }
     
     func configurate(with model: HomeWordViewModel) {
@@ -77,28 +109,20 @@ class HomeWordCell: DisposableTableViewCell {
         switch model.studyType {
             
         case .fire:
-            contentView.backgroundColor = .red
+            bgView.backgroundColor = .red
+            progressView.backgroundColor = .red
         case .ready:
-            contentView.backgroundColor = .green
+            bgView.backgroundColor = .green
+            progressView.backgroundColor = .green
         case .new:
-            contentView.backgroundColor = .yellow
+            bgView.backgroundColor = .yellow
+            progressView.backgroundColor = .yellow
         case .waiting:
-            contentView.backgroundColor = .gray
+            bgView.backgroundColor = .gray
+            progressView.backgroundColor = .gray
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        contentView.pin
-            .horizontally(Margin.regular)
-            .vertically(Margin.regular/2)
-        
-        wordLable.pin
-            .horizontally(Margin.regular)
-            .sizeToFit(.heightFlexible)
-            .vCenter()
-    }
 }
 
 extension HomeWordCell: ClassIdentifiable {}
