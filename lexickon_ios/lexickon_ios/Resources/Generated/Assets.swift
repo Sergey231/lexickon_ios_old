@@ -22,7 +22,14 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
+    internal static let fireWordProgress = ColorAsset(name: "fireWordProgress")
+    internal static let fireWordProgressBG = ColorAsset(name: "fireWordProgressBG")
     internal static let mainBG = ColorAsset(name: "mainBG")
+    internal static let newWordProgress = ColorAsset(name: "newWordProgress")
+    internal static let readyWordProgress = ColorAsset(name: "readyWordProgress")
+    internal static let readyWordProgressBG = ColorAsset(name: "readyWordProgressBG")
+    internal static let waitingWordProgress = ColorAsset(name: "waitingWordProgress")
+    internal static let waitingWordProgressBG = ColorAsset(name: "waitingWordProgressBG")
     internal static let whiteAlpha07 = ColorAsset(name: "whiteAlpha_07")
   }
   internal enum Images {
@@ -128,7 +135,11 @@ internal extension ImageAsset.Image {
 // swiftlint:disable convenience_type
 private final class BundleToken {
   static let bundle: Bundle = {
-    Bundle(for: BundleToken.self)
+    #if SWIFT_PACKAGE
+    return Bundle.module
+    #else
+    return Bundle(for: BundleToken.self)
+    #endif
   }()
 }
 // swiftlint:enable convenience_type
