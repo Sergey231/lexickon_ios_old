@@ -22,6 +22,7 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal enum Colors {
+    internal static let fireWord = ColorAsset(name: "fireWord")
     internal static let fireWordProgress = ColorAsset(name: "fireWordProgress")
     internal static let fireWordProgressBG = ColorAsset(name: "fireWordProgressBG")
     internal static let mainBG = ColorAsset(name: "mainBG")

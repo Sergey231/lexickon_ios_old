@@ -41,8 +41,8 @@ final class HomePresenter: PresenterType {
                     per: self.loadedWordsCount,
                     page: self.pagesCount
                 )
-                    .map { $0.items }
-                    .asDriver(onErrorJustReturn: [])
+                .map { $0.items }.debug("🧦")
+                .asDriver(onErrorJustReturn: [])
                 .do(onNext: {
                     self.loadedWordsCount += $0.count
                     self.pagesCount += 1

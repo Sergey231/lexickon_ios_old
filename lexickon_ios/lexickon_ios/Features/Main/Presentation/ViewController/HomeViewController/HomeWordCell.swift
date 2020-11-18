@@ -88,14 +88,8 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     private func configureUI() {
-        
-        progressView.alpha = 0.4
-        progressView.layer.cornerRadius = 12
-        
-        bgView.alpha = 0.4
-        
+        progressView.layer.cornerRadius = 13
         wordLable.font = .systemRegular24
-        wordLable.alpha = 0.3
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 16
@@ -111,12 +105,13 @@ class HomeWordCell: DisposableTableViewCell {
         case .fire:
             bgView.backgroundColor = Asset.Colors.fireWordProgressBG.color
             progressView.backgroundColor = Asset.Colors.fireWordProgress.color
+            wordLable.textColor = Asset.Colors.fireWord.color
         case .ready:
             bgView.backgroundColor = Asset.Colors.readyWordProgressBG.color
             progressView.backgroundColor = Asset.Colors.readyWordProgress.color
         case .new:
-            bgView.backgroundColor = Asset.Colors.waitingWordProgressBG.color
-            progressView.backgroundColor = Asset.Colors.waitingWordProgress.color
+            bgView.backgroundColor = Asset.Colors.newWordProgress.color
+            progressView.backgroundColor = Asset.Colors.newWordProgress.color
         case .waiting:
             bgView.backgroundColor = Asset.Colors.waitingWordProgressBG.color
             progressView.backgroundColor = Asset.Colors.waitingWordProgress.color
