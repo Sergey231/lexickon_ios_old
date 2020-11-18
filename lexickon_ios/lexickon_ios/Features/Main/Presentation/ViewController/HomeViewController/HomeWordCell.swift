@@ -109,17 +109,17 @@ class HomeWordCell: DisposableTableViewCell {
         switch model.studyType {
             
         case .fire:
-            bgView.backgroundColor = .red
-            progressView.backgroundColor = .red
+            bgView.backgroundColor = Asset.Colors.fireWordProgressBG.color
+            progressView.backgroundColor = Asset.Colors.fireWordProgress.color
         case .ready:
-            bgView.backgroundColor = .green
-            progressView.backgroundColor = .green
+            bgView.backgroundColor = Asset.Colors.readyWordProgressBG.color
+            progressView.backgroundColor = Asset.Colors.readyWordProgress.color
         case .new:
-            bgView.backgroundColor = .yellow
-            progressView.backgroundColor = .yellow
+            bgView.backgroundColor = Asset.Colors.waitingWordProgressBG.color
+            progressView.backgroundColor = Asset.Colors.waitingWordProgress.color
         case .waiting:
-            bgView.backgroundColor = .gray
-            progressView.backgroundColor = .gray
+            bgView.backgroundColor = Asset.Colors.waitingWordProgressBG.color
+            progressView.backgroundColor = Asset.Colors.waitingWordProgress.color
         }
     }
     
