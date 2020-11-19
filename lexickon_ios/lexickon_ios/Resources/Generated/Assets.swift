@@ -23,14 +23,17 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 internal enum Asset {
   internal enum Colors {
     internal static let fireWord = ColorAsset(name: "fireWord")
-    internal static let fireWordProgress = ColorAsset(name: "fireWordProgress")
-    internal static let fireWordProgressBG = ColorAsset(name: "fireWordProgressBG")
+    internal static let fireWordBright = ColorAsset(name: "fireWordBright")
+    internal static let fireWordPale = ColorAsset(name: "fireWordPale")
+    internal static let newWord = ColorAsset(name: "newWord")
+    internal static let newWordBright = ColorAsset(name: "newWordBright")
+    internal static let readyWord = ColorAsset(name: "readyWord")
+    internal static let readyWordBright = ColorAsset(name: "readyWordBright")
+    internal static let readyWordPale = ColorAsset(name: "readyWordPale")
+    internal static let waitingWord = ColorAsset(name: "waitingWord")
+    internal static let waitingWordBright = ColorAsset(name: "waitingWordBright")
+    internal static let waitingWordPale = ColorAsset(name: "waitingWordPale")
     internal static let mainBG = ColorAsset(name: "mainBG")
-    internal static let newWordProgress = ColorAsset(name: "newWordProgress")
-    internal static let readyWordProgress = ColorAsset(name: "readyWordProgress")
-    internal static let readyWordProgressBG = ColorAsset(name: "readyWordProgressBG")
-    internal static let waitingWordProgress = ColorAsset(name: "waitingWordProgress")
-    internal static let waitingWordProgressBG = ColorAsset(name: "waitingWordProgressBG")
     internal static let whiteAlpha07 = ColorAsset(name: "whiteAlpha_07")
   }
   internal enum Images {
