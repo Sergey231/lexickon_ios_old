@@ -120,7 +120,6 @@ class HomeWordCell: DisposableTableViewCell {
             wordLable.textColor = Asset.Colors.waitingWordBright.color
         }
     }
-    
 }
 
 extension HomeWordCell: ClassIdentifiable {}
