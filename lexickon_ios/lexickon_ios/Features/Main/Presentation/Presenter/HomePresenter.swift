@@ -41,8 +41,8 @@ final class HomePresenter: PresenterType {
                     per: self.loadedWordsCount,
                     page: self.pagesCount
                 )
-                    .map { $0.items }
-                    .asDriver(onErrorJustReturn: [])
+                .map { $0.items }.debug("🧦")
+                .asDriver(onErrorJustReturn: [])
                 .do(onNext: {
                     self.loadedWordsCount += $0.count
                     self.pagesCount += 1
@@ -58,13 +58,13 @@ final class HomePresenter: PresenterType {
                 words.forEach {
                     switch $0.studyType {
                     case .fire:
-                        fireWords.append(HomeWordViewModel(word: $0.studyWord))
+                        fireWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .fire))
                     case .ready:
-                        readyWords.append(HomeWordViewModel(word: $0.studyWord))
+                        readyWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .ready))
                     case .new:
-                        newWords.append(HomeWordViewModel(word: $0.studyWord))
+                        newWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .new))
                     case .waiting:
-                        waitingWords.append(HomeWordViewModel(word: $0.studyWord))
+                        waitingWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .waiting))
                     }
                 }
                 

@@ -15,7 +15,16 @@ import RxDataSources
 import UIExtensions
 
 struct HomeWordViewModel {
+    
+    enum StudyType {
+        case fire
+        case ready
+        case new
+        case waiting
+    }
+    
     let word: String
+    let studyType: StudyType
 }
 
 extension HomeWordViewModel: Hashable {
@@ -38,6 +47,8 @@ extension HomeWordViewModel: IdentifiableType {
 class HomeWordCell: DisposableTableViewCell {
 
     private let wordLable = UILabel()
+    private let bgView = UIView()
+    private let progressView = UIView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,27 +61,63 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     private func createUI() {
-        contentView.addSubview(wordLable)
-    }
-    
-    private func configureUI() {
-        backgroundColor = .clear
-        contentView.backgroundColor = .green
-        contentView.layer.cornerRadius = 16
-    }
-    
-    func configurate(with model: HomeWordViewModel) {
-        wordLable.text = model.word
+        contentView.addSubviews(
+            bgView,
+            progressView,
+            wordLable
+        )
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        
         contentView.pin
             .horizontally(Margin.regular)
             .vertically(Margin.regular/2)
         
-        wordLable.pin.all()
+        bgView.pin.all()
+        
+        progressView.pin
+            .all(Margin.small)
+        
+        wordLable.pin
+            .horizontally(Margin.regular)
+            .sizeToFit(.heightFlexible)
+            .vCenter()
+    }
+    
+    private func configureUI() {
+        progressView.layer.cornerRadius = 13
+        wordLable.font = .systemRegular24
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
+    }
+    
+    func configurate(with model: HomeWordViewModel) {
+        wordLable.text = model.word
+        
+        switch model.studyType {
+            
+        case .fire:
+            bgView.backgroundColor = Asset.Colors.fireWordPale.color
+            progressView.backgroundColor = Asset.Colors.fireWord.color
+            wordLable.textColor = Asset.Colors.fireWordBright.color
+        case .ready:
+            bgView.backgroundColor = Asset.Colors.readyWordPale.color
+            progressView.backgroundColor = Asset.Colors.readyWord.color
+            wordLable.textColor = Asset.Colors.readyWordBright.color
+        case .new:
+            bgView.backgroundColor = Asset.Colors.newWord.color
+            progressView.backgroundColor = Asset.Colors.newWord.color
+            wordLable.textColor = Asset.Colors.newWordBright.color
+        case .waiting:
+            bgView.backgroundColor = Asset.Colors.waitingWordPale.color
+            progressView.backgroundColor = Asset.Colors.waitingWord.color
+            wordLable.textColor = Asset.Colors.waitingWordBright.color
+        }
     }
 }
 
