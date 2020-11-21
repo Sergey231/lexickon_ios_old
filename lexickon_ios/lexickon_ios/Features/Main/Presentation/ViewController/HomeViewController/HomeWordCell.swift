@@ -60,7 +60,6 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     func configurate(with model: HomeWordViewModel) {
-        
         wordLable.text = model.word
     }
     
