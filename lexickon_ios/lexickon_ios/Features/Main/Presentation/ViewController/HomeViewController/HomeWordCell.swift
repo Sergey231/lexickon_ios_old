@@ -47,8 +47,7 @@ extension HomeWordViewModel: IdentifiableType {
 class HomeWordCell: DisposableTableViewCell {
 
     private let wordLable = UILabel()
-    private let bgView = UIView()
-    private let progressView = UIView()
+    private let progressView = WideWordProgressView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,7 +61,6 @@ class HomeWordCell: DisposableTableViewCell {
     
     private func createUI() {
         contentView.addSubviews(
-            bgView,
             progressView,
             wordLable
         )
@@ -76,10 +74,7 @@ class HomeWordCell: DisposableTableViewCell {
             .horizontally(Margin.regular)
             .vertically(Margin.regular/2)
         
-        bgView.pin.all()
-        
-        progressView.pin
-            .all(Margin.small)
+        progressView.pin.all()
         
         wordLable.pin
             .horizontally(Margin.regular)
@@ -102,21 +97,41 @@ class HomeWordCell: DisposableTableViewCell {
         switch model.studyType {
             
         case .fire:
-            bgView.backgroundColor = Asset.Colors.fireWordPale.color
-            progressView.backgroundColor = Asset.Colors.fireWord.color
             wordLable.textColor = Asset.Colors.fireWordBright.color
+            progressView.configure(
+                input: WideWordProgressView.Input(
+                    bgColor: Asset.Colors.fireWordPale.color,
+                    progressColor: Asset.Colors.fireWord.color,
+                    progress: 0.5
+                )
+            )
         case .ready:
-            bgView.backgroundColor = Asset.Colors.readyWordPale.color
-            progressView.backgroundColor = Asset.Colors.readyWord.color
             wordLable.textColor = Asset.Colors.readyWordBright.color
+            progressView.configure(
+                input: WideWordProgressView.Input(
+                    bgColor: Asset.Colors.readyWordPale.color,
+                    progressColor: Asset.Colors.readyWord.color,
+                    progress: 0.5
+                )
+            )
         case .new:
-            bgView.backgroundColor = Asset.Colors.newWord.color
-            progressView.backgroundColor = Asset.Colors.newWord.color
             wordLable.textColor = Asset.Colors.newWordBright.color
+            progressView.configure(
+                input: WideWordProgressView.Input(
+                    bgColor: Asset.Colors.newWord.color,
+                    progressColor: Asset.Colors.newWord.color,
+                    progress: 0.5
+                )
+            )
         case .waiting:
-            bgView.backgroundColor = Asset.Colors.waitingWordPale.color
-            progressView.backgroundColor = Asset.Colors.waitingWord.color
             wordLable.textColor = Asset.Colors.waitingWordBright.color
+            progressView.configure(
+                input: WideWordProgressView.Input(
+                    bgColor: Asset.Colors.waitingWordPale.color,
+                    progressColor: Asset.Colors.waitingWord.color,
+                    progress: 0.5
+                )
+            )
         }
     }
 }
