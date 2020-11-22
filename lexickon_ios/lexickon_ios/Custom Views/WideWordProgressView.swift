@@ -20,6 +20,7 @@ final class WideWordProgressView: UIView {
     }
     
     private let progressView = UIView()
+    private let overlapView = UIView()
     
     private let disposeBag = DisposeBag()
     
@@ -43,7 +44,10 @@ final class WideWordProgressView: UIView {
     }
        
     private func createUI() {
-        addSubview(progressView)
+        addSubviews(
+            progressView,
+            overlapView
+        )
     }
     
     private func configureUI() {
@@ -52,7 +56,17 @@ final class WideWordProgressView: UIView {
     
     func configure(input: Input) {
         backgroundColor = input.bgColor
+        overlapView.backgroundColor = input.bgColor
         progressView.backgroundColor = input.progressColor
+        
+        rx.layoutSubviews.take(1)
+            .subscribe(onNext: {
+                self.overlapView.pin
+                    .vertically(Margin.small)
+                    .right(Margin.small)
+                    .left((self.progressView.frame.maxX - 10) * input.progress)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
