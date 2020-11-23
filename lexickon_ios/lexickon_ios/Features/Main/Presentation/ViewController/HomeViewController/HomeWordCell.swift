@@ -48,6 +48,7 @@ class HomeWordCell: DisposableTableViewCell {
 
     private let wordLable = UILabel()
     private let progressView = WideWordProgressView()
+    private let iconView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,13 +63,13 @@ class HomeWordCell: DisposableTableViewCell {
     private func createUI() {
         contentView.addSubviews(
             progressView,
-            wordLable
+            wordLable,
+            iconView
         )
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         
         contentView.pin
             .horizontally(Margin.regular)
@@ -76,8 +77,14 @@ class HomeWordCell: DisposableTableViewCell {
         
         progressView.pin.all()
         
+        iconView.pin
+            .left(Margin.regular)
+            .size(45)
+            .vCenter()
+        
         wordLable.pin
-            .horizontally(Margin.regular)
+            .after(of: iconView)
+            .marginLeft(Margin.small)
             .sizeToFit(.heightFlexible)
             .vCenter()
     }
@@ -98,6 +105,7 @@ class HomeWordCell: DisposableTableViewCell {
             
         case .fire:
             wordLable.textColor = Asset.Colors.fireWordBright.color
+            iconView.image = Asset.Images.wordMustReapetIcon.image
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.fireWordPale.color,
@@ -116,6 +124,7 @@ class HomeWordCell: DisposableTableViewCell {
             )
         case .new:
             wordLable.textColor = Asset.Colors.newWordBright.color
+            iconView.image = Asset.Images.newWordIcon.image
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.newWord.color,
@@ -125,6 +134,7 @@ class HomeWordCell: DisposableTableViewCell {
             )
         case .waiting:
             wordLable.textColor = Asset.Colors.waitingWordBright.color
+            iconView.image = Asset.Images.waitingWordIcon.image
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.waitingWordPale.color,
