@@ -47,12 +47,15 @@ internal enum Asset {
     internal static let background = ImageAsset(name: "background")
     internal static let enter = ImageAsset(name: "enter")
     internal static let splash = ImageAsset(name: "splash")
+    internal static let newWordIcon = ImageAsset(name: "NewWordIcon")
     internal static let accountIcon = ImageAsset(name: "account_icon")
     internal static let emailIcon = ImageAsset(name: "email_icon")
     internal static let eyeHideIcon = ImageAsset(name: "eye_hide_icon")
     internal static let eyeShowIcon = ImageAsset(name: "eye_show_icon")
     internal static let lockIcon = ImageAsset(name: "lock_icon")
+    internal static let wordMustReapetIcon = ImageAsset(name: "WordMustReapetIcon")
     internal static let bgStart = ImageAsset(name: "bgStart")
+    internal static let waitingWordIcon = ImageAsset(name: "waitingWordIcon")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
