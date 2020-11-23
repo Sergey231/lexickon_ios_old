@@ -106,6 +106,7 @@ class HomeWordCell: DisposableTableViewCell {
         case .fire:
             wordLable.textColor = Asset.Colors.fireWordBright.color
             iconView.image = Asset.Images.wordMustReapetIcon.image
+            iconView.tintColor = Asset.Colors.fireWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.fireWordPale.color,
@@ -125,6 +126,7 @@ class HomeWordCell: DisposableTableViewCell {
         case .new:
             wordLable.textColor = Asset.Colors.newWordBright.color
             iconView.image = Asset.Images.newWordIcon.image
+            iconView.tintColor = Asset.Colors.newWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.newWord.color,
@@ -135,6 +137,7 @@ class HomeWordCell: DisposableTableViewCell {
         case .waiting:
             wordLable.textColor = Asset.Colors.waitingWordBright.color
             iconView.image = Asset.Images.waitingWordIcon.image
+            iconView.tintColor = Asset.Colors.fireWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.waitingWordPale.color,
