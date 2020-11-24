@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftUI
 import PinLayout
 import Combine
 
@@ -31,10 +30,6 @@ final class Logo: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func stopAnimation() {
-        logoImageView.stopFlayingAnimation()
     }
     
     override func layoutSubviews() {
@@ -64,14 +59,13 @@ final class Logo: UIView {
     
     private func configureUI() {
         
-        setShadow()
-        
         logoImageView.image = Asset.Images.logoWithoutEyes.image
         logoImageView.contentMode = .scaleAspectFit
+        logoImageView.tintColor = Asset.Colors.readyWordBright.color
         
         // Eyes
-        leftEyeView.backgroundColor = .white
-        rightEyeView.backgroundColor = .white
+        leftEyeView.backgroundColor = Asset.Colors.readyWordBright.color
+        rightEyeView.backgroundColor = Asset.Colors.readyWordBright.color
         
         timePublisher
             .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 4))) }
@@ -82,41 +76,23 @@ final class Logo: UIView {
         timePublisher
             .connect()
             .store(in: &cancellableSet)
-        
-        logoImageView.startFlayingAnimation()
     }
     
     private func layout() {
         
         logoImageView.pin
-            .size(100)
+            .size(45)
             .hCenter()
             .vCenter()
         
         leftEyeView.pin
-            .size(11)
-            .hCenter(-7)
-            .vCenter(26)
+            .size(5)
+            .hCenter(-3)
+            .vCenter(12)
         
         rightEyeView.pin
-            .size(11)
-            .hCenter(9)
-            .vCenter(26)
-    }
-}
-
-
-extension Logo: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> UIView {
-        return Logo()
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct Logo_Previews: PreviewProvider {
-    static var previews: some View {
-        Logo()
+            .size(5)
+            .hCenter(4)
+            .vCenter(12)
     }
 }

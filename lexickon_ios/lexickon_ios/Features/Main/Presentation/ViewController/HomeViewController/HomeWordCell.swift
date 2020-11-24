@@ -23,6 +23,8 @@ struct HomeWordViewModel {
         case waiting
     }
     
+    var isReady: Bool { self.studyType == .ready }
+    
     let word: String
     let studyType: StudyType
 }
@@ -48,45 +50,64 @@ class HomeWordCell: DisposableTableViewCell {
 
     private let wordLable = UILabel()
     private let progressView = WideWordProgressView()
-    private let iconView = UIImageView()
+    private lazy var iconImageView = UIImageView()
+    private lazy var logo = Logo()
+    
+    private var disposeBag = DisposeBag()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        createUI()
-        configureUI()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createUI() {
+    private func createUI(with input: HomeWordViewModel) {
         contentView.addSubviews(
             progressView,
-            wordLable,
-            iconView
+            wordLable
         )
+        contentView.addSubview(input.isReady ? logo : iconImageView)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+    }
+    
+    private func layout(with input: HomeWordViewModel) {
         contentView.pin
             .horizontally(Margin.regular)
             .vertically(Margin.regular/2)
         
         progressView.pin.all()
         
-        iconView.pin
+        if input.isReady {
+            logo.pin
+                .left(Margin.regular)
+                .size(45)
+                .vCenter()
+            
+            wordLable.pin
+                .after(of: logo)
+                .marginLeft(Margin.small)
+                .sizeToFit(.heightFlexible)
+                .vCenter()
+        } else {
+        
+        iconImageView.pin
             .left(Margin.regular)
             .size(45)
             .vCenter()
         
         wordLable.pin
-            .after(of: iconView)
+            .after(of: iconImageView)
             .marginLeft(Margin.small)
             .sizeToFit(.heightFlexible)
             .vCenter()
+        }
     }
     
     private func configureUI() {
@@ -99,14 +120,18 @@ class HomeWordCell: DisposableTableViewCell {
     }
     
     func configurate(with model: HomeWordViewModel) {
+        
+        createUI(with: model)
+        configureUI()
+        
         wordLable.text = model.word
         
         switch model.studyType {
             
         case .fire:
             wordLable.textColor = Asset.Colors.fireWordBright.color
-            iconView.image = Asset.Images.wordMustReapetIcon.image
-            iconView.tintColor = Asset.Colors.fireWordBright.color
+            iconImageView.image = Asset.Images.wordMustReapetIcon.image
+            iconImageView.tintColor = Asset.Colors.fireWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.fireWordPale.color,
@@ -125,8 +150,8 @@ class HomeWordCell: DisposableTableViewCell {
             )
         case .new:
             wordLable.textColor = Asset.Colors.newWordBright.color
-            iconView.image = Asset.Images.newWordIcon.image
-            iconView.tintColor = Asset.Colors.newWordBright.color
+            iconImageView.image = Asset.Images.newWordIcon.image
+            iconImageView.tintColor = Asset.Colors.newWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.newWord.color,
@@ -136,8 +161,8 @@ class HomeWordCell: DisposableTableViewCell {
             )
         case .waiting:
             wordLable.textColor = Asset.Colors.waitingWordBright.color
-            iconView.image = Asset.Images.waitingWordIcon.image
-            iconView.tintColor = Asset.Colors.fireWordBright.color
+            iconImageView.image = Asset.Images.waitingWordIcon.image
+            iconImageView.tintColor = Asset.Colors.fireWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.waitingWordPale.color,
@@ -146,6 +171,12 @@ class HomeWordCell: DisposableTableViewCell {
                 )
             )
         }
+        
+        rx.layoutSubviews
+            .subscribe(onNext: { _ in
+                self.layout(with: model)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
