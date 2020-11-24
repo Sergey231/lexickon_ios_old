@@ -73,10 +73,6 @@ class HomeWordCell: DisposableTableViewCell {
         contentView.addSubview(input.isReady ? logo : iconImageView)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     private func layout(with input: HomeWordViewModel) {
         contentView.pin
             .horizontally(Margin.regular)
@@ -96,17 +92,17 @@ class HomeWordCell: DisposableTableViewCell {
                 .sizeToFit(.heightFlexible)
                 .vCenter()
         } else {
-        
-        iconImageView.pin
-            .left(Margin.regular)
-            .size(45)
-            .vCenter()
-        
-        wordLable.pin
-            .after(of: iconImageView)
-            .marginLeft(Margin.small)
-            .sizeToFit(.heightFlexible)
-            .vCenter()
+            
+            iconImageView.pin
+                .left(Margin.regular)
+                .size(45)
+                .vCenter()
+            
+            wordLable.pin
+                .after(of: iconImageView)
+                .marginLeft(Margin.small)
+                .sizeToFit(.heightFlexible)
+                .vCenter()
         }
     }
     
@@ -162,7 +158,7 @@ class HomeWordCell: DisposableTableViewCell {
         case .waiting:
             wordLable.textColor = Asset.Colors.waitingWordBright.color
             iconImageView.image = Asset.Images.waitingWordIcon.image
-            iconImageView.tintColor = Asset.Colors.fireWordBright.color
+            iconImageView.tintColor = Asset.Colors.waitingWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
                     bgColor: Asset.Colors.waitingWordPale.color,
