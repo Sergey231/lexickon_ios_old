@@ -66,6 +66,7 @@
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
+		ECA95B7A256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
@@ -157,6 +158,7 @@
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
+		ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWordsSectionHeaderView.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
@@ -382,6 +384,8 @@
 		EC4850F92331ECCF00F3B71F /* TransitionAnimations */ = {
 			isa = PBXGroup;
 			children = (
+				EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */,
+				EC870952254E8F4800553B87 /* ToHomeAnimator.swift */,
 			);
 			path = TransitionAnimations;
 			sourceTree = "<group>";
@@ -402,24 +406,6 @@
 				EC835EF623F1B17700E3288B /* Logo.swift */,
 			);
 			path = Logo;
-			sourceTree = "<group>";
-		};
-		EC87094C254E8EDA00553B87 /* HomeViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
-				EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */,
-			);
-			path = HomeViewController;
-			sourceTree = "<group>";
-		};
-		EC87094F254E8EF800553B87 /* ProfileMainScreenViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
-				EC870952254E8F4800553B87 /* ToHomeAnimator.swift */,
-			);
-			path = ProfileMainScreenViewController;
 			sourceTree = "<group>";
 		};
 		EC873D6823DD5AD800787E51 /* Intro */ = {
@@ -464,6 +450,7 @@
 		ECA95B74256E8A40006332A5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */,
 				EC835EF523F1B15600E3288B /* Logo */,
 				EC99BD6423F29AAA00A500A9 /* TextField.swift */,
 				EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */,
@@ -547,7 +534,7 @@
 		ECC48E8D25457020006503C2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EC87094F254E8EF800553B87 /* ProfileMainScreenViewController */,
+				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -671,7 +658,7 @@
 		ECCB194423F964FC0069C5A7 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EC87094C254E8EDA00553B87 /* HomeViewController */,
+				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -905,6 +892,7 @@
 				ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */,
 				ECCB193E23F963A80069C5A7 /* IntroAssembler.swift in Sources */,
 				ECCB193A23F9633C0069C5A7 /* MainAssembler.swift in Sources */,
+				ECA95B7A256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
 				EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */,
 				EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */,

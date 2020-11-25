@@ -17,4 +17,8 @@ extension UIFont {
     public static var systemRegular24: UIFont {
         return .systemRegular(of: 24)
     }
+    
+    public static var systemRegular12: UIFont {
+        return .systemRegular(of: 12)
+    }
 }

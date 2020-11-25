@@ -33,6 +33,7 @@ internal enum Asset {
     internal static let waitingWord = ColorAsset(name: "waitingWord")
     internal static let waitingWordBright = ColorAsset(name: "waitingWordBright")
     internal static let waitingWordPale = ColorAsset(name: "waitingWordPale")
+    internal static let homeWordSectionHeaderBG = ColorAsset(name: "homeWordSectionHeaderBG")
     internal static let mainBG = ColorAsset(name: "mainBG")
     internal static let whiteAlpha07 = ColorAsset(name: "whiteAlpha_07")
   }

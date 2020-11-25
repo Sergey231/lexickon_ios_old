@@ -149,12 +149,12 @@ final class HomeViewController: UIViewController, Stepper {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        36
+        44
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .lightGray
+        let headerView = HomeWordsSectionHeaderView()
+        headerView.configure(input: HomeWordsSectionHeaderView.Input(title: "Хули ждать, давай ебурить!"))
         return headerView
     }
 }
