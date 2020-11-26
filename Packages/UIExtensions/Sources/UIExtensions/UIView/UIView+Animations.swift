@@ -62,15 +62,14 @@ extension UIView {
     }
     
     public func startFlayingAnimation() {
-        UIView.flayingAnimate = true
+        tag = 1
         flayingAnimate()
     }
     
     public func stopFlayingAnimation() {
-        UIView.flayingAnimate = false
+        tag = 0
     }
     
-    private static var flayingAnimate: Bool = false
     private func flayingAnimate() {
         let startY = layer.frame.origin.y
         UIView.animate(withDuration: 3, animations: {
@@ -80,7 +79,7 @@ extension UIView {
             UIView.animate(withDuration: 3, animations: {
                 self.layer.frame.origin.y = startY - 10
             }) { _ in
-                if UIView.flayingAnimate {
+                if self.tag == 1 {
                     self.flayingAnimate()
                 }
             }

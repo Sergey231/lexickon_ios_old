@@ -67,6 +67,7 @@
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
 		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA95B7A256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */; };
+		ECA95B84256F8908006332A5 /* AddWordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA95B83256F8908006332A5 /* AddWordButtonView.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
@@ -159,6 +160,7 @@
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
 		ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartAssembler.swift; sourceTree = "<group>"; };
 		ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWordsSectionHeaderView.swift; sourceTree = "<group>"; };
+		ECA95B83256F8908006332A5 /* AddWordButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordButtonView.swift; sourceTree = "<group>"; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				ECC48E9B25459679006503C2 /* ProfileIconView.swift */,
 				EC3C3881255032F5008D1D3C /* HomeHeaderView.swift */,
 				EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */,
+				ECA95B83256F8908006332A5 /* AddWordButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -895,6 +898,7 @@
 				ECA95B7A256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
 				EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */,
+				ECA95B84256F8908006332A5 /* AddWordButtonView.swift in Sources */,
 				EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */,
 				EC3138D025385E50007FFCB0 /* Rx+UIView.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,

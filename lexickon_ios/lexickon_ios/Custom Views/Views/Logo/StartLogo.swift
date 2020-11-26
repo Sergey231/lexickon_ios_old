@@ -175,6 +175,7 @@ final class StartLogo: UIView {
         backgroundColor = .gray
         logoImageView.image = Asset.Images.logoWithoutEyes.image
         logoImageView.contentMode = .scaleAspectFit
+        logoImageView.tintColor = .white
         textLogoImageView.image = Asset.Images.textLogo.image
         textLogoImageView.contentMode = .scaleAspectFit
         textLogoImageView.alpha = animationState.textLogoAlpha

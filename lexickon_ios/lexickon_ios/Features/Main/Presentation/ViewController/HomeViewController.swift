@@ -33,6 +33,8 @@ final class HomeViewController: UIViewController, Stepper {
     let profileIconView = ProfileIconView()
     let headerView = HomeHeaderView()
     let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    let addWordButton = AddWordButton()
+    
     let needToRefrash = PublishRelay<Void>()
     
     fileprivate var disposeBag = DisposeBag()
@@ -80,6 +82,11 @@ final class HomeViewController: UIViewController, Stepper {
             .top(view.pin.safeArea.top)
         
         tableView.pin.all()
+        
+        addWordButton.pin
+            .size(100)
+            .bottom(Margin.mid)
+            .right()
     }
     
     private func configureUI() {
@@ -109,7 +116,8 @@ final class HomeViewController: UIViewController, Stepper {
         view.addSubviews(
             tableView,
             headerView,
-            profileIconView
+            profileIconView,
+            addWordButton
         )
     }
     

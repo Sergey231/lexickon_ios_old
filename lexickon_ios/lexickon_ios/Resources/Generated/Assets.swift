@@ -55,7 +55,9 @@ internal enum Asset {
     internal static let eyeShowIcon = ImageAsset(name: "eye_show_icon")
     internal static let lockIcon = ImageAsset(name: "lock_icon")
     internal static let wordMustReapetIcon = ImageAsset(name: "WordMustReapetIcon")
+    internal static let addIcon = ImageAsset(name: "addIcon")
     internal static let bgStart = ImageAsset(name: "bgStart")
+    internal static let searchIcon = ImageAsset(name: "searchIcon")
     internal static let waitingWordIcon = ImageAsset(name: "waitingWordIcon")
   }
 }
