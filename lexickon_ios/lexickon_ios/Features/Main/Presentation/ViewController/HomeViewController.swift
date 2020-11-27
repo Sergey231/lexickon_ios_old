@@ -197,7 +197,6 @@ extension HomeViewController: UINavigationControllerDelegate {
                 profileVC: profileVC
             )
         }
-        
         return nil
     }
 }
