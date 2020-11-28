@@ -12,6 +12,13 @@ struct AddSearchWordAssembler: Assembly {
     
     func assemble(container: Container) {
         
+        container.register(AddSearchWordPresenter.self) { _ in
+            AddSearchWordPresenter()
+        }.inObjectScope(ObjectScope.newWordScopeObject)
+        
+        container.register(AddSearchWordViewController.self) { resolver in
+            AddSearchWordViewController(presenter: resolver.resolve(AddSearchWordPresenter.self)!)
+        }
     }
 }
 

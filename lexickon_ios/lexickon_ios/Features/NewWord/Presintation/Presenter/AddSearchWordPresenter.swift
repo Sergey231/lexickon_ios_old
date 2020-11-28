@@ -6,4 +6,8 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
-import Foundation
+final class AddSearchWordPresenter: PresenterType {
+    
+    
+}
+

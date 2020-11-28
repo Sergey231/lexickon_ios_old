@@ -29,18 +29,16 @@ final class HomeViewController: UIViewController, Stepper {
     }
     
     let steps = PublishRelay<Step>()
+    fileprivate let presenter: HomePresenter
+    fileprivate var disposeBag = DisposeBag()
+    private var dataSource: RxDataSource!
+    private let needToRefrash = PublishRelay<Void>()
+    
+    private let headerView = HomeHeaderView()
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
     let profileIconView = ProfileIconView()
-    let headerView = HomeHeaderView()
-    let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     let addWordButton = AddWordButton()
-    
-    let needToRefrash = PublishRelay<Void>()
-    
-    fileprivate var disposeBag = DisposeBag()
-    
-    fileprivate let presenter: HomePresenter
-    private var dataSource: RxDataSource!
     
     init(
         presenter: HomePresenter

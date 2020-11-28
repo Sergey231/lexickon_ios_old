@@ -64,6 +64,7 @@
 		ECA1448A257288BD00352868 /* NewWordAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA14489257288BD00352868 /* NewWordAssembler.swift */; };
 		ECA1448E2572890A00352868 /* AddSearchWordAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1448D2572890A00352868 /* AddSearchWordAssembler.swift */; };
 		ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */; };
+		ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1450025728DB500352868 /* AddSearchWordViewController.swift */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
@@ -161,6 +162,7 @@
 		ECA14489257288BD00352868 /* NewWordAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordAssembler.swift; sourceTree = "<group>"; };
 		ECA1448D2572890A00352868 /* AddSearchWordAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordAssembler.swift; sourceTree = "<group>"; };
 		ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordPresenter.swift; sourceTree = "<group>"; };
+		ECA1450025728DB500352868 /* AddSearchWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordViewController.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 		ECA1449225728A0800352868 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				ECA1450025728DB500352868 /* AddSearchWordViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -983,6 +986,7 @@
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
+				ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */,
 				EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
 				ECCB193723F962C20069C5A7 /* AuthorizationAssembler.swift in Sources */,
