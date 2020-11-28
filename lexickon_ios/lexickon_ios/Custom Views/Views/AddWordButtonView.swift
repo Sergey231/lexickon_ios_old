@@ -73,5 +73,11 @@ final class AddWordButton: UIView {
         searchIconImageView.tintColor = .white
         addIconImageView.tintColor = .white
     }
+    
+    var didTap: Signal<Void> {
+        button.rx.tap
+            .map {()}
+            .asSignal(onErrorSignalWith: .empty())
+    }
 }
 

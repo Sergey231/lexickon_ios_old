@@ -16,7 +16,7 @@ struct NewWordAssembler {
     
     init() {
         self.assembler = Assembler(container: DI.shr.appContainer)
-        self.assembler.apply(assemblies: [HomeAssembler()])
+        self.assembler.apply(assemblies: [AddSearchWordAssembler()])
     }
 }
 

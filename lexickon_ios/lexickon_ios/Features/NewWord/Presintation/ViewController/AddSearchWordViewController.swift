@@ -51,7 +51,7 @@ final class AddSearchWordViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        
+        view.backgroundColor = .brown
     }
     
     private func configureUI() {

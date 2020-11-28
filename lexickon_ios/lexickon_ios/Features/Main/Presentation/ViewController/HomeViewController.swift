@@ -146,6 +146,11 @@ final class HomeViewController: UIViewController, Stepper {
             right: 0
         )
         
+        addWordButton.didTap
+            .map { MainStep.addWord }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
         models
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
