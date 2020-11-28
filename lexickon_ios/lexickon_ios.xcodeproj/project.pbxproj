@@ -313,6 +313,7 @@
 		EC3EAB1022D4DC1C00BFCBFC /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				ECA14483257286A900352868 /* NewWord */,
 				EC291AF623F034860082E45C /* Authorization */,
 				EC873D7823DD753400787E51 /* Main */,
 				ECC48E7825455CE7006503C2 /* Profile */,
@@ -439,6 +440,53 @@
 				EC93A28125164A860058F779 /* UserTokenRepository.swift */,
 			);
 			path = AuthTokenRepository;
+			sourceTree = "<group>";
+		};
+		ECA14483257286A900352868 /* NewWord */ = {
+			isa = PBXGroup;
+			children = (
+				ECA144882572878E00352868 /* Data */,
+				ECA14484257286C200352868 /* DI */,
+				ECA14485257286CC00352868 /* Navigation */,
+				ECA14486257286D400352868 /* Presintation */,
+				ECA144872572876D00352868 /* Domain */,
+			);
+			path = NewWord;
+			sourceTree = "<group>";
+		};
+		ECA14484257286C200352868 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		ECA14485257286CC00352868 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		ECA14486257286D400352868 /* Presintation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presintation;
+			sourceTree = "<group>";
+		};
+		ECA144872572876D00352868 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		ECA144882572878E00352868 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		ECA95B73256E8A1C006332A5 /* Cells */ = {
