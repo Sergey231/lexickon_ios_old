@@ -23,6 +23,8 @@ final class AddSearchWordViewController: UIViewController, Stepper {
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     
+    private let headerView = AddWordHeaderView()
+    
     init(
         presenter: AddSearchWordPresenter
     ) {
@@ -50,8 +52,17 @@ final class AddSearchWordViewController: UIViewController, Stepper {
         configureUI()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        headerView.pin
+            .horizontally()
+            .height(140)
+            .top()
+    }
+    
     private func createUI() {
-        view.backgroundColor = .brown
+        view.addSubview(headerView)
     }
     
     private func configureUI() {
