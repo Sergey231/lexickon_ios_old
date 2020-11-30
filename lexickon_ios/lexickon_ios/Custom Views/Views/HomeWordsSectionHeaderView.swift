@@ -11,8 +11,29 @@ import UIExtensions
 
 final class HomeWordsSectionHeaderView: UIView {
     
+    enum StudyWordsType: Int {
+        case fire
+        case ready
+        case new
+        case waiting
+        
+        var title: String {
+            switch self {
+            
+            case .fire:
+                return L10n.homeFireSectionTitle
+            case .ready:
+                return L10n.homeReadySectionTitle
+            case .new:
+                return L10n.homeNewSectionTitle
+            case .waiting:
+                return L10n.homeWaitingSectionTitle
+            }
+        }
+    }
+    
     struct Input {
-        let title: String
+        let studyWordsType: StudyWordsType
     }
     
     private let titleLabel = UILabel()
@@ -64,6 +85,6 @@ final class HomeWordsSectionHeaderView: UIView {
     }
     
     func configure(input: Input) {
-        titleLabel.text = input.title
+        titleLabel.text = input.studyWordsType.title
     }
 }

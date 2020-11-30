@@ -47,4 +47,9 @@
 "Error_alert_title" = "Ошибка";
 "Error_alert_button_title" = "Оокей";
 
+// MARK: Home Screen
 
+"Home_fire_section_title" = "Необходимо срочно повторить";
+"Home_ready_section_title" = "Готовы к испытаниям";
+"Home_new_section_title" = "Новые слова";
+"Home_waiting_section_title" = "Созревают...";

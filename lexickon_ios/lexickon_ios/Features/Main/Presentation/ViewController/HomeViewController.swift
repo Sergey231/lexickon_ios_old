@@ -164,9 +164,13 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = HomeWordsSectionHeaderView()
-        headerView.configure(input: HomeWordsSectionHeaderView.Input(title: "Хули ждать, давай ебурить!"))
-        return headerView
+        if tableView.numberOfRows(inSection: section) > 0 {
+            let headerView = HomeWordsSectionHeaderView()
+            let sectionType = HomeWordsSectionHeaderView.StudyWordsType(rawValue: section) ?? .waiting
+            headerView.configure(input: HomeWordsSectionHeaderView.Input(studyWordsType: sectionType))
+            return headerView
+        }
+        return nil
     }
 }
 
