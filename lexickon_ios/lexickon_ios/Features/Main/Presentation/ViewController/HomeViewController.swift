@@ -37,6 +37,7 @@ final class HomeViewController: UIViewController, Stepper {
     private let headerView = HomeHeaderView()
     private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
+    // public for Animator
     let profileIconView = ProfileIconView()
     let addWordButton = AddWordButton()
     
@@ -183,8 +184,20 @@ extension HomeViewController: UINavigationControllerDelegate {
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
        
+        if operation == .push {
+            return handlePushTransitioning(from: fromVC, to: toVC)
+        } else if operation == .pop {
+            return handlePopTransitioning(from: fromVC, to: toVC)
+        }
+        return nil
+    }
+    
+    private func handlePushTransitioning(
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        
         if
-            operation == .push,
             let homeVC = fromVC as? HomeViewController,
             let profileVC = toVC as? ProfileMainScreenViewController
         {
@@ -195,7 +208,23 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
         
         if
-            operation == .pop,
+            let homeVC = fromVC as? HomeViewController,
+            let addSearchWordVC = toVC as? AddSearchWordViewController
+        {
+            return ToNewWordAnimator(
+                homeVC: homeVC,
+                addSearchWordVC: addSearchWordVC
+            )
+        }
+        
+        return nil
+    }
+    
+    private func handlePopTransitioning(
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        if
             let homeVC = toVC as? HomeViewController,
             let profileVC = fromVC as? ProfileMainScreenViewController
         {

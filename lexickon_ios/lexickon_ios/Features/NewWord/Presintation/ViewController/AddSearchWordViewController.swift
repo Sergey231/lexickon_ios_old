@@ -47,7 +47,6 @@ final class AddSearchWordViewController: UIViewController, Stepper {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
         createUI()
         configureUI()
     }

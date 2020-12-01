@@ -16,9 +16,11 @@ final class AddWordButton: UIView {
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let circleView = UIView()
     private let searchIconImageView = UIImageView(image: Asset.Images.searchIcon.image)
     private let addIconImageView = UIImageView(image: Asset.Images.addIcon.image)
+    
+    // public for Animator
+    let circleView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
