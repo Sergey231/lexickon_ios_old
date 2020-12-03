@@ -9,7 +9,7 @@
 import UIKit
 import PinLayout
 
-final class ToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     static let duration: TimeInterval = 0.4
     

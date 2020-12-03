@@ -12,7 +12,7 @@ import UIExtensions
 
 final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    static let duration: TimeInterval = 4
+    static let duration: TimeInterval = 0.6
     
     private let homeVC: HomeViewController
     private let addSearchWordVC: AddSearchWordViewController
@@ -42,16 +42,25 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         tmpView.frame = circleViewFrame
-        tmpView.backgroundColor = homeVC.addWordButton.circleView.backgroundColor
-        tmpView.layer.cornerRadius = tmpView.frame.size.height / 2
+        tmpView.backgroundColor = .white
+        tmpView.layer.cornerRadius = circleViewFrame.size.height / 2
+        tmpView.clipsToBounds = true
         
         addSearchWordVC.view.isHidden = true
+        
         let tmpAddSearchWordHeaderView = UIView()
-        tmpAddSearchWordHeaderView.frame = circleViewFrame
+        tmpAddSearchWordHeaderView.backgroundColor = homeVC.addWordButton.circleView.backgroundColor
+        tmpAddSearchWordHeaderView.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: circleViewFrame.width,
+            height: circleViewFrame.height
+        )
+        tmpAddSearchWordHeaderView.layer.cornerRadius = circleViewFrame.size.height / 2
         
         container.addSubview(addSearchWordVC.view)
+        tmpView.addSubview(tmpAddSearchWordHeaderView)
         container.addSubview(tmpView)
-        container.addSubview(tmpAddSearchWordHeaderView)
         
         // 1
         UIView.animate(
@@ -64,6 +73,13 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                     .horizontally()
                     .bottom()
                     .height(addSearchWordVC.view.frame.width)
+                
+                tmpAddSearchWordHeaderView.pin
+                    .horizontally()
+                    .top()
+                    .height(140)
+                
+                tmpAddSearchWordHeaderView.layer.cornerRadius = 0
 
             }, completion: { _ in
                 // 2

@@ -211,6 +211,7 @@ extension HomeViewController: UINavigationControllerDelegate {
             let homeVC = fromVC as? HomeViewController,
             let addSearchWordVC = toVC as? AddSearchWordViewController
         {
+//            return nil
             return ToNewWordAnimator(
                 homeVC: homeVC,
                 addSearchWordVC: addSearchWordVC
@@ -228,7 +229,7 @@ extension HomeViewController: UINavigationControllerDelegate {
             let homeVC = toVC as? HomeViewController,
             let profileVC = fromVC as? ProfileMainScreenViewController
         {
-            return ToHomeAnimator(
+            return FromProfileToHomeAnimator(
                 homeVC: homeVC,
                 profileVC: profileVC
             )

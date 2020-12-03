@@ -17,13 +17,14 @@ import RxSwift
 import UIExtensions
 import RxDataSources
 
-final class AddSearchWordViewController: UIViewController, Stepper {
+final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRecognizerDelegate {
     
     let steps = PublishRelay<Step>()
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     
     private let headerView = AddWordHeaderView()
+    let backButton = UIButton()
     
     init(
         presenter: AddSearchWordPresenter
@@ -54,6 +55,11 @@ final class AddSearchWordViewController: UIViewController, Stepper {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        backButton.pin
+            .top(view.pin.safeArea.top)
+            .left()
+            .size(56)
+        
         headerView.pin
             .horizontally()
             .height(140)
@@ -61,10 +67,19 @@ final class AddSearchWordViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubview(headerView)
+        view.addSubviews(
+            headerView,
+            backButton
+        )
     }
     
     private func configureUI() {
+        backButton.setImage(Asset.Images.backArrow.image, for: .normal)
+        backButton.rx.tap
+            .asSignal()
+            .map { NewWordStep.toHome }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
         
     }
 }
