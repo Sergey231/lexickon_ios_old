@@ -26,21 +26,21 @@ final class HomeViewController: UIViewController, Stepper {
         static let profileIconSize: CGFloat = 44
         static let profileIconRightMargin: CGFloat = 16
         static let headerHeight: CGFloat = 260
+        static let addButtonSize: CGFloat = 100
     }
     
     let steps = PublishRelay<Step>()
-    
-    let profileIconView = ProfileIconView()
-    let headerView = HomeHeaderView()
-    let tableView = UITableView(frame: CGRect.zero, style: .grouped)
-    let addWordButton = AddWordButton()
-    
-    let needToRefrash = PublishRelay<Void>()
-    
-    fileprivate var disposeBag = DisposeBag()
-    
     fileprivate let presenter: HomePresenter
+    fileprivate var disposeBag = DisposeBag()
     private var dataSource: RxDataSource!
+    private let needToRefrash = PublishRelay<Void>()
+    
+    private let headerView = HomeHeaderView()
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    
+    // public for Animator
+    let profileIconView = ProfileIconView()
+    let addWordButton = AddWordButton()
     
     init(
         presenter: HomePresenter
@@ -84,7 +84,7 @@ final class HomeViewController: UIViewController, Stepper {
         tableView.pin.all()
         
         addWordButton.pin
-            .size(100)
+            .size(UIConstants.addButtonSize)
             .bottom(Margin.mid)
             .right()
     }
@@ -148,6 +148,11 @@ final class HomeViewController: UIViewController, Stepper {
             right: 0
         )
         
+        addWordButton.didTap
+            .map { MainStep.addWord }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
         models
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -161,9 +166,13 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = HomeWordsSectionHeaderView()
-        headerView.configure(input: HomeWordsSectionHeaderView.Input(title: "Хули ждать, давай ебурить!"))
-        return headerView
+        if tableView.numberOfRows(inSection: section) > 0 {
+            let headerView = HomeWordsSectionHeaderView()
+            let sectionType = HomeWordsSectionHeaderView.StudyWordsType(rawValue: section) ?? .waiting
+            headerView.configure(input: HomeWordsSectionHeaderView.Input(studyWordsType: sectionType))
+            return headerView
+        }
+        return nil
     }
 }
 
@@ -176,8 +185,20 @@ extension HomeViewController: UINavigationControllerDelegate {
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
        
+        if operation == .push {
+            return handlePushTransitioning(from: fromVC, to: toVC)
+        } else if operation == .pop {
+            return handlePopTransitioning(from: fromVC, to: toVC)
+        }
+        return nil
+    }
+    
+    private func handlePushTransitioning(
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        
         if
-            operation == .push,
             let homeVC = fromVC as? HomeViewController,
             let profileVC = toVC as? ProfileMainScreenViewController
         {
@@ -188,15 +209,35 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
         
         if
-            operation == .pop,
+            fromVC is HomeViewController,
+            let addSearchWordVC = toVC as? AddSearchWordViewController
+        {
+            return ToNewWordAnimator(
+                addSearchWordVC: addSearchWordVC
+            )
+        }
+        
+        return nil
+    }
+    
+    private func handlePopTransitioning(
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        if
             let homeVC = toVC as? HomeViewController,
             let profileVC = fromVC as? ProfileMainScreenViewController
         {
-            return ToHomeAnimator(
+            return FromProfileToHomeAnimator(
                 homeVC: homeVC,
                 profileVC: profileVC
             )
         }
+        
+        if fromVC is AddSearchWordViewController && toVC is HomeViewController {
+            return FromNewWordToHomeAnimator()
+        }
+        
         return nil
     }
 }

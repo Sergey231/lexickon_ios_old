@@ -16,9 +16,11 @@ final class AddWordButton: UIView {
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let circleView = UIView()
     private let searchIconImageView = UIImageView(image: Asset.Images.searchIcon.image)
     private let addIconImageView = UIImageView(image: Asset.Images.addIcon.image)
+    
+    // public for Animator
+    let circleView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,11 +69,17 @@ final class AddWordButton: UIView {
         circleView.layer.cornerRadius = 28
         circleView.backgroundColor = Asset.Colors.mainBG.color
         circleView.setShadow()
-        circleView.startFlayingAnimation()
+//        circleView.startFlayingAnimation()
         
         searchIconImageView.alpha = 0
         searchIconImageView.tintColor = .white
         addIconImageView.tintColor = .white
+    }
+    
+    var didTap: Signal<Void> {
+        button.rx.tap
+            .map {()}
+            .asSignal(onErrorSignalWith: .empty())
     }
 }
 

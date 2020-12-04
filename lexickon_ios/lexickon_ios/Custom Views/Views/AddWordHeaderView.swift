@@ -1,8 +1,8 @@
 //
-//  HomeHeaderView.swift
+//  AddWordHeaderView.swift
 //  lexickon_ios
 //
-//  Created by Sergey Borovikov on 02.11.2020.
+//  Created by Sergey Borovikov on 29.11.2020.
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
@@ -11,19 +11,9 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 
-final class HomeHeaderView: UIView {
-    
-    struct Input {
-        var icon: UIImage?
-    }
-    
-    struct Output {
-        let didTap: Signal<Void>
-    }
+final class AddWordHeaderView: UIView {
     
     private let disposeBag = DisposeBag()
-    
-    private let button = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +26,7 @@ final class HomeHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        button.pin.all()
+        
     }
     
     private func configureView() {
@@ -45,16 +35,12 @@ final class HomeHeaderView: UIView {
     }
        
     private func createUI() {
-        addSubview(
-            button
+        addSubviews(
+            
         )
     }
     
     private func configureUI() {
         backgroundColor = Asset.Colors.mainBG.color
-    }
-    
-    func configure(input: Input) -> Output {
-        return Output(didTap: button.rx.tap.asSignal())
     }
 }

@@ -36,28 +36,22 @@ final class ToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let container = transitionContext.containerView
         
-        guard
-            let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
-        else {
-            return
-        }
-        
         let homeVC = self.homeVC
         let profileVC = self.profileVC
         
         container.frame = homeVC.view.frame
         let tmpView = UIView()
         tmpView.frame = homeVC.profileIconView.frame
-        tmpView.backgroundColor = toView.backgroundColor
+        tmpView.backgroundColor = profileVC.view.backgroundColor
         tmpView.layer.cornerRadius = tmpView.frame.size.height / 2
         
-        toView.isHidden = true
+        profileVC.view.isHidden = true
         let tmpProfileIconView = UIView()
         tmpProfileIconView.frame = homeVC.profileIconView.frame
         tmpProfileIconView.backgroundColor = .gray
         tmpProfileIconView.layer.cornerRadius = homeVC.profileIconView.layer.cornerRadius
         
-        container.addSubview(toView)
+        container.addSubview(profileVC.view)
         container.addSubview(tmpView)
         container.addSubview(tmpProfileIconView)
         

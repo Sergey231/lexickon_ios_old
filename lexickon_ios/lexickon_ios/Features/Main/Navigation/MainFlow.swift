@@ -12,6 +12,7 @@ import RxFlow
 enum MainStep: Step {
     case home(animated: Bool)
     case profile
+    case addWord
     case authorization
 }
 
@@ -40,6 +41,8 @@ class MainFlow: Flow {
             return navigateToHome(animated: animated)
         case .profile:
             return navigateToProfile()
+        case .addWord:
+            return navigateToNewWord()
         case .authorization:
             return navigateToAuthorization()
         }
@@ -54,6 +57,16 @@ class MainFlow: Flow {
         navigationController.navigationBar.isHidden = true
         navigationController.delegate = homeVC
         return .one(flowContributor: .contribute(withNext: homeVC))
+    }
+    
+    private func navigateToNewWord() -> FlowContributors {
+        let newWordFlow = NewWordFlow(with: rootViewController)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: newWordFlow,
+            withNextStepper: OneStepper(
+                withSingleStep: NewWordStep.addSearch
+            )
+        ))
     }
     
     private func navigateToProfile() -> FlowContributors {

@@ -13,6 +13,14 @@ internal enum L10n {
   internal static let errorAlertButtonTitle = L10n.tr("Localizable", "Error_alert_button_title")
   /// Ошибка
   internal static let errorAlertTitle = L10n.tr("Localizable", "Error_alert_title")
+  /// Необходимо срочно повторить
+  internal static let homeFireSectionTitle = L10n.tr("Localizable", "Home_fire_section_title")
+  /// Новые слова
+  internal static let homeNewSectionTitle = L10n.tr("Localizable", "Home_new_section_title")
+  /// Готовы к испытаниям
+  internal static let homeReadySectionTitle = L10n.tr("Localizable", "Home_ready_section_title")
+  /// Созревают...
+  internal static let homeWaitingSectionTitle = L10n.tr("Localizable", "Home_waiting_section_title")
   /// Войти
   internal static let loginLoginButtonTitle = L10n.tr("Localizable", "Login_login_button_title")
   /// У меня есть аккаунт

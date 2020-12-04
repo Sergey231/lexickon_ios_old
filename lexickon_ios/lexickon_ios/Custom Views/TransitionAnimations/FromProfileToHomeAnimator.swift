@@ -9,7 +9,7 @@
 import UIKit
 import PinLayout
 
-final class ToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     static let duration: TimeInterval = 0.4
     
@@ -34,12 +34,6 @@ final class ToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         let container = transitionContext.containerView
-        
-        guard
-            let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)
-        else {
-            return
-        }
         
         container.frame = profileVC.view.frame
         
@@ -115,7 +109,7 @@ final class ToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                             animations: {
                                 
                                 tmpView.pin
-                                    .top(toView.pin.safeArea.top)
+                                    .top(homeVC.view.pin.safeArea.top)
                                     .right(HomeViewController.UIConstants.profileIconRightMargin)
                                     .size(HomeViewController.UIConstants.profileIconSize)
                                 
