@@ -23,7 +23,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     
-    private let headerView = AddWordHeaderView()
+    // Public for Custom transitioning animator
+    let headerView = AddWordHeaderView()
     let backButton = UIButton()
     
     init(

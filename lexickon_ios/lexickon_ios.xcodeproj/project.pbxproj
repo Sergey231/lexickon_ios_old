@@ -68,6 +68,7 @@
 		ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1454A257296F600352868 /* NewWordFlow.swift */; };
 		ECA1454F25739BC700352868 /* AddWordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1454E25739BC700352868 /* AddWordHeaderView.swift */; };
 		ECA145FD257506F000352868 /* ToNewWordAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA145FC257506F000352868 /* ToNewWordAnimator.swift */; };
+		ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA14795257A474C00352868 /* FromNewWordToHomeAnimator.swift */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
@@ -169,6 +170,7 @@
 		ECA1454A257296F600352868 /* NewWordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordFlow.swift; sourceTree = "<group>"; };
 		ECA1454E25739BC700352868 /* AddWordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordHeaderView.swift; sourceTree = "<group>"; };
 		ECA145FC257506F000352868 /* ToNewWordAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNewWordAnimator.swift; sourceTree = "<group>"; };
+		ECA14795257A474C00352868 /* FromNewWordToHomeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromNewWordToHomeAnimator.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembler.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				EC82BE1A25485E8400037DA0 /* ToProfileAnimator.swift */,
 				EC870952254E8F4800553B87 /* FromProfileToHomeAnimator.swift */,
 				ECA145FC257506F000352868 /* ToNewWordAnimator.swift */,
+				ECA14795257A474C00352868 /* FromNewWordToHomeAnimator.swift */,
 			);
 			path = TransitionAnimations;
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
+				ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC67163323D2106F003B28E3 /* LoginAssembler.swift in Sources */,
 				EC82BE1B25485E8400037DA0 /* ToProfileAnimator.swift in Sources */,

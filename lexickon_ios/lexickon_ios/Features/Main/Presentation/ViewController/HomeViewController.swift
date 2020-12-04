@@ -26,6 +26,7 @@ final class HomeViewController: UIViewController, Stepper {
         static let profileIconSize: CGFloat = 44
         static let profileIconRightMargin: CGFloat = 16
         static let headerHeight: CGFloat = 260
+        static let addButtonSize: CGFloat = 100
     }
     
     let steps = PublishRelay<Step>()
@@ -83,7 +84,7 @@ final class HomeViewController: UIViewController, Stepper {
         tableView.pin.all()
         
         addWordButton.pin
-            .size(100)
+            .size(UIConstants.addButtonSize)
             .bottom(Margin.mid)
             .right()
     }
@@ -211,7 +212,6 @@ extension HomeViewController: UINavigationControllerDelegate {
             fromVC is HomeViewController,
             let addSearchWordVC = toVC as? AddSearchWordViewController
         {
-//            return nil
             return ToNewWordAnimator(
                 addSearchWordVC: addSearchWordVC
             )
@@ -233,6 +233,11 @@ extension HomeViewController: UINavigationControllerDelegate {
                 profileVC: profileVC
             )
         }
+        
+        if fromVC is AddSearchWordViewController && toVC is HomeViewController {
+            return FromNewWordToHomeAnimator()
+        }
+        
         return nil
     }
 }
