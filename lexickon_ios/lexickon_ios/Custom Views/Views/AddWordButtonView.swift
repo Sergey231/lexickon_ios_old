@@ -69,7 +69,7 @@ final class AddWordButton: UIView {
         circleView.layer.cornerRadius = 28
         circleView.backgroundColor = Asset.Colors.mainBG.color
         circleView.setShadow()
-        circleView.startFlayingAnimation()
+//        circleView.startFlayingAnimation()
         
         searchIconImageView.alpha = 0
         searchIconImageView.tintColor = .white

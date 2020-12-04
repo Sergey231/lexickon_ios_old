@@ -14,29 +14,30 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     static let duration: TimeInterval = 0.6
     
-    private let homeVC: HomeViewController
     private let addSearchWordVC: AddSearchWordViewController
     
     init(
-        homeVC: HomeViewController,
         addSearchWordVC: AddSearchWordViewController
     ) {
-        self.homeVC = homeVC
         self.addSearchWordVC = addSearchWordVC
     }
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(
+        using transitionContext: UIViewControllerContextTransitioning?
+    ) -> TimeInterval {
         Self.duration
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(
+        using transitionContext: UIViewControllerContextTransitioning
+    ) {
         
         let container = transitionContext.containerView
         
-        let homeVC = self.homeVC
+        let homeVC = transitionContext.viewController(forKey: .from) as! HomeViewController
         let addSearchWordVC = self.addSearchWordVC
         
-        container.frame = homeVC.view.frame
+        container.frame = addSearchWordVC.view.frame
         let tmpView = UIView()
         guard let circleViewFrame = homeVC.addWordButton.circleView.globalFrame else {
             return
@@ -73,13 +74,14 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                     .horizontally()
                     .bottom()
                     .height(addSearchWordVC.view.frame.width)
-                
+
                 tmpAddSearchWordHeaderView.pin
                     .horizontally()
                     .top()
                     .height(140)
-                
+
                 tmpAddSearchWordHeaderView.layer.cornerRadius = 0
+                homeVC.view.alpha = 0.7
 
             }, completion: { _ in
                 // 2
@@ -96,7 +98,10 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                             withDuration: Self.duration/3,
                             animations: { tmpView.alpha = 0 },
                             completion: { _ in
+                                homeVC.view.alpha = 1
+                                tmpAddSearchWordHeaderView.removeFromSuperview()
                                 tmpView.removeFromSuperview()
+                                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
                         })
                 })
         })

@@ -208,12 +208,11 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
         
         if
-            let homeVC = fromVC as? HomeViewController,
+            fromVC is HomeViewController,
             let addSearchWordVC = toVC as? AddSearchWordViewController
         {
 //            return nil
             return ToNewWordAnimator(
-                homeVC: homeVC,
                 addSearchWordVC: addSearchWordVC
             )
         }

@@ -52,8 +52,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         configureUI()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
         backButton.pin
             .top(view.pin.safeArea.top)
