@@ -120,6 +120,8 @@ class HomeWordCell: DisposableTableViewCell {
         createUI(with: model)
         configureUI()
         
+        logo.configure(with: .init(tintColor: Asset.Colors.readyWordBright.color))
+        
         wordLable.text = model.word
         
         switch model.studyType {

@@ -15,6 +15,8 @@ final class AddSearchPlaceholderView: UIView {
     
     private let disposeBag = DisposeBag()
     
+    private let logoView = Logo()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -26,7 +28,10 @@ final class AddSearchPlaceholderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        logoView.pin
+            .size(72)
+            .hCenter()
+            .top()
     }
     
     private func configureView() {
@@ -36,12 +41,18 @@ final class AddSearchPlaceholderView: UIView {
        
     private func createUI() {
         addSubviews(
-            
+            logoView
         )
     }
     
     private func configureUI() {
         backgroundColor = .lightGray
+        logoView.configure(with: .init(tintColor: .gray))
+        logoView.startFlayingAnimation()
+    }
+    
+    func stopFlaying() {
+        logoView.stopFlayingAnimation()
     }
 }
 

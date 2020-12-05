@@ -12,6 +12,10 @@ import Combine
 
 final class Logo: UIView {
     
+    struct Input {
+        let tintColor: UIColor
+    }
+    
     private let logoImageView = UIImageView()
     private let leftEyeView = UIView()
     private let rightEyeView = UIView()
@@ -61,11 +65,6 @@ final class Logo: UIView {
         
         logoImageView.image = Asset.Images.logoWithoutEyes.image
         logoImageView.contentMode = .scaleAspectFit
-        logoImageView.tintColor = Asset.Colors.readyWordBright.color
-        
-        // Eyes
-        leftEyeView.backgroundColor = Asset.Colors.readyWordBright.color
-        rightEyeView.backgroundColor = Asset.Colors.readyWordBright.color
         
         timePublisher
             .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 4))) }
@@ -94,5 +93,11 @@ final class Logo: UIView {
             .size(5)
             .hCenter(4)
             .vCenter(12)
+    }
+    
+    func configure(with input: Input) {
+        logoImageView.tintColor = input.tintColor
+        leftEyeView.backgroundColor = input.tintColor
+        rightEyeView.backgroundColor = input.tintColor
     }
 }

@@ -47,6 +47,11 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         return .lightContent
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.addSearchWordView.stopFlaying()
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
