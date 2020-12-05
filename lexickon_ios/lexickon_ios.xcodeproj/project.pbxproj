@@ -13,6 +13,7 @@
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
+		EC236620257BAB620085D6B0 /* AddSearchWordPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC3138AB2536E985007FFCB0 /* Rx+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */; };
 		EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */; };
@@ -124,6 +125,7 @@
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLogo.swift; sourceTree = "<group>"; };
+		EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordPlaceholderView.swift; sourceTree = "<group>"; };
 		EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIButton.swift"; sourceTree = "<group>"; };
 		EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
 		EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UILabel.swift"; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */,
 				ECA95B83256F8908006332A5 /* AddWordButtonView.swift */,
 				ECA1454E25739BC700352868 /* AddWordHeaderView.swift */,
+				EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA1454F25739BC700352868 /* AddWordHeaderView.swift in Sources */,
 				ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */,
+				EC236620257BAB620085D6B0 /* AddSearchWordPlaceholderView.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
 				ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */,
 				ECA145FD257506F000352868 /* ToNewWordAnimator.swift in Sources */,

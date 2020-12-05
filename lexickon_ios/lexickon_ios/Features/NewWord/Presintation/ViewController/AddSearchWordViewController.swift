@@ -26,6 +26,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     // Public for Custom transitioning animator
     let headerView = AddWordHeaderView()
     let backButton = UIButton()
+    let addSearchWordView = AddSearchPlaceholderView()
     
     init(
         presenter: AddSearchWordPresenter
@@ -65,12 +66,17 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .horizontally()
             .height(140)
             .top()
+        
+        addSearchWordView.pin
+            .size(200)
+            .center()
     }
     
     private func createUI() {
         view.addSubviews(
             headerView,
-            backButton
+            backButton,
+            addSearchWordView
         )
     }
     
