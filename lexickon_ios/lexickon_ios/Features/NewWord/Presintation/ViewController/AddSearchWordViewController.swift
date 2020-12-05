@@ -73,7 +73,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .top()
         
         addSearchWordView.pin
-            .size(200)
+            .width(200)
+            .height(140)
             .center()
     }
     
