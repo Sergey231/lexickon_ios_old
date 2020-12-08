@@ -78,7 +78,7 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 tmpAddSearchWordHeaderView.pin
                     .horizontally()
                     .top()
-                    .height(140)
+                    .height(AddSearchWordViewController.UIConstants.headerViewHeight)
 
                 tmpAddSearchWordHeaderView.layer.cornerRadius = 0
                 homeVC.view.alpha = 0.7

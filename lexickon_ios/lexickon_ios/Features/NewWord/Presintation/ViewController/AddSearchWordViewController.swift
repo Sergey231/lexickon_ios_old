@@ -19,6 +19,10 @@ import RxDataSources
 
 final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRecognizerDelegate {
     
+    struct UIConstants {
+        static let headerViewHeight: CGFloat = 156
+    }
+    
     let steps = PublishRelay<Step>()
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
@@ -63,7 +67,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         
         headerView.pin
             .horizontally()
-            .height(156)
+            .height(UIConstants.headerViewHeight)
             .top()
         
         addSearchWordView.pin
