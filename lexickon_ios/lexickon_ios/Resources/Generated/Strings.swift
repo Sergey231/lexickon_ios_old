@@ -25,6 +25,8 @@ internal enum L10n {
   internal static let loginLoginButtonTitle = L10n.tr("Localizable", "Login_login_button_title")
   /// У меня есть аккаунт
   internal static let loginScreenTitle = L10n.tr("Localizable", "Login_screen_title")
+  /// Здесь, Вы можете добавить любое, новое слово в ваш Lexickon
+  internal static let newWrodPlaceholder = L10n.tr("Localizable", "NewWrod_placeholder")
   /// Выйти
   internal static let profileMainLogoutButtonTitle = L10n.tr("Localizable", "Profile_main_logout_button_title")
   /// Повторите пароль

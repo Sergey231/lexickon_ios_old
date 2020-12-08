@@ -6,7 +6,6 @@
 //
 
 import Combine
-import CombineCocoa
 import UIKit
 import TimelaneCombine
 import RxCombine
@@ -41,7 +40,7 @@ public class EnumerableTextFieldHelper: NSObject {
                 let enumerableTextField = textFields[$0.offset]
                 enumerableTextField.textField.tag = $0.offset
                 
-                let disposable = enumerableTextField.textField.returnPublisher
+                let disposable = enumerableTextField.textField.rx.returnDidTap
                     .asObservable()
                     .map {
                         

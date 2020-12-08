@@ -14,6 +14,7 @@
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC1F9E2723E5C54F0044EF9D /* StartLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */; };
 		EC236620257BAB620085D6B0 /* AddSearchWordPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */; };
+		EC236627257CEA950085D6B0 /* AddSerachWordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC236626257CEA950085D6B0 /* AddSerachWordTextField.swift */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC3138AB2536E985007FFCB0 /* Rx+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */; };
 		EC3138BA25382595007FFCB0 /* Rx+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */; };
@@ -54,7 +55,6 @@
 		EC870953254E8F4800553B87 /* FromProfileToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC870952254E8F4800553B87 /* FromProfileToHomeAnimator.swift */; };
 		EC873D6A23DD5AFC00787E51 /* IntroAssemly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D6923DD5AFC00787E51 /* IntroAssemly.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
-		EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC873D7423DD6EC400787E51 /* CombineCocoa */; };
 		EC873D7A23DD754D00787E51 /* HomeAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7923DD754D00787E51 /* HomeAssembler.swift */; };
 		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
@@ -81,11 +81,15 @@
 		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
 		ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6C002448261000D86417 /* IntroFlow.swift */; };
+		ECAF5063257E663300F021EA /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF5062257E663300F021EA /* Utils */; };
+		ECAF506B257F53BD00F021EA /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF506A257F53BD00F021EA /* CombineCocoa */; };
+		ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50C9257F610700F021EA /* Rx+UITextField.swift */; };
+		ECAF50CE257F632300F021EA /* EnumerableTextFieldsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */; };
 		ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = ECB66529247FD2F60052C658 /* JWTDecode */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
 		ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */; };
-		ECC15EEC2416220F00149AC9 /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECC15EEB2416220F00149AC9 /* Utils */; };
+		ECC15EEC2416220F00149AC9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		ECC48E7F254564A3006503C2 /* ProfileAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E7E254564A3006503C2 /* ProfileAssembler.swift */; };
 		ECC48E8325456932006503C2 /* ProfileMainScreenAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E8225456932006503C2 /* ProfileMainScreenAssembler.swift */; };
 		ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E8825456D26006503C2 /* ProfileFlow.swift */; };
@@ -126,6 +130,7 @@
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC1F9E2623E5C54E0044EF9D /* StartLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLogo.swift; sourceTree = "<group>"; };
 		EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordPlaceholderView.swift; sourceTree = "<group>"; };
+		EC236626257CEA950085D6B0 /* AddSerachWordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSerachWordTextField.swift; sourceTree = "<group>"; };
 		EC3138AA2536E985007FFCB0 /* Rx+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIButton.swift"; sourceTree = "<group>"; };
 		EC3138B925382595007FFCB0 /* Rx+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UIViewController.swift"; sourceTree = "<group>"; };
 		EC3138C625382B25007FFCB0 /* Rx+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UILabel.swift"; sourceTree = "<group>"; };
@@ -184,6 +189,8 @@
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
 		ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		ECAC6C002448261000D86417 /* IntroFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFlow.swift; sourceTree = "<group>"; };
+		ECAF50C9257F610700F021EA /* Rx+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UITextField.swift"; sourceTree = "<group>"; };
+		ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumerableTextFieldsHelper.swift; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
 		ECC48E7E254564A3006503C2 /* ProfileAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembler.swift; sourceTree = "<group>"; };
@@ -216,15 +223,15 @@
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				ECCB193323F834010069C5A7 /* RxCombine in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
-				ECC15EEC2416220F00149AC9 /* Utils in Frameworks */,
+				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */,
-				EC873D7523DD6EC400787E51 /* CombineCocoa in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
+				ECAF5063257E663300F021EA /* Utils in Frameworks */,
 				EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
 				ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */,
@@ -232,6 +239,7 @@
 				EC3F44592520BF26004706DC /* RxBlocking in Frameworks */,
 				EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */,
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
+				ECAF506B257F53BD00F021EA /* CombineCocoa in Frameworks */,
 				EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +261,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EC236623257CEA6A0085D6B0 /* AddWrod */ = {
+			isa = PBXGroup;
+			children = (
+				ECA95B83256F8908006332A5 /* AddWordButtonView.swift */,
+				ECA1454E25739BC700352868 /* AddWordHeaderView.swift */,
+				EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */,
+				EC236626257CEA950085D6B0 /* AddSerachWordTextField.swift */,
+			);
+			path = AddWrod;
+			sourceTree = "<group>";
+		};
 		EC291AF623F034860082E45C /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +287,8 @@
 		EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */ = {
 			isa = PBXGroup;
 			children = (
+				ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */,
+				ECAF50C8257F60E800F021EA /* UITextField */,
 				EC3139DD253C3273007FFCB0 /* UIImageView */,
 				EC3138CE25385E10007FFCB0 /* UIView */,
 				EC3138C525382B04007FFCB0 /* UILabel */,
@@ -548,9 +569,7 @@
 				ECC48E9B25459679006503C2 /* ProfileIconView.swift */,
 				EC3C3881255032F5008D1D3C /* HomeHeaderView.swift */,
 				EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */,
-				ECA95B83256F8908006332A5 /* AddWordButtonView.swift */,
-				ECA1454E25739BC700352868 /* AddWordHeaderView.swift */,
-				EC23661F257BAB610085D6B0 /* AddSearchWordPlaceholderView.swift */,
+				EC236623257CEA6A0085D6B0 /* AddWrod */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -561,6 +580,14 @@
 				ECAC6C002448261000D86417 /* IntroFlow.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		ECAF50C8257F60E800F021EA /* UITextField */ = {
+			isa = PBXGroup;
+			children = (
+				ECAF50C9257F610700F021EA /* Rx+UITextField.swift */,
+			);
+			path = UITextField;
 			sourceTree = "<group>";
 		};
 		ECC48E7825455CE7006503C2 /* Profile */ = {
@@ -821,11 +848,9 @@
 				EC1505F522D4C9D6007E2B3B /* Swinject */,
 				EC407EDE237C3B8400A3FD42 /* Validator */,
 				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
-				EC873D7423DD6EC400787E51 /* CombineCocoa */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
 				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
-				ECC15EEB2416220F00149AC9 /* Utils */,
 				ECBEB5062439C0DE0017855E /* RxFlow */,
 				ECB66529247FD2F60052C658 /* JWTDecode */,
 				EC3F44492520B510004706DC /* RxAlamofire */,
@@ -838,6 +863,8 @@
 				EC3C3859254FED4D008D1D3C /* RxDataSources */,
 				EC3C385B254FED4D008D1D3C /* Differentiator */,
 				ECAC1D60255A848D008B0ECC /* LexickonApi */,
+				ECAF5062257E663300F021EA /* Utils */,
+				ECAF506A257F53BD00F021EA /* CombineCocoa */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -949,6 +976,7 @@
 				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */,
 				ECA1454F25739BC700352868 /* AddWordHeaderView.swift in Sources */,
+				ECAF50CE257F632300F021EA /* EnumerableTextFieldsHelper.swift in Sources */,
 				ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */,
 				EC236620257BAB620085D6B0 /* AddSearchWordPlaceholderView.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
@@ -969,6 +997,7 @@
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
+				ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */,
@@ -1016,6 +1045,7 @@
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,
 				EC7AD82B256A656B00BBD059 /* WideWordProgressView.swift in Sources */,
+				EC236627257CEA950085D6B0 /* AddSerachWordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,7 +1352,7 @@
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 0.2.2;
 			};
 		};
 		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
@@ -1434,11 +1464,6 @@
 			package = EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
 		};
-		EC873D7423DD6EC400787E51 /* CombineCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
-			productName = CombineCocoa;
-		};
 		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
@@ -1449,6 +1474,15 @@
 			package = ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */;
 			productName = LexickonApi;
 		};
+		ECAF5062257E663300F021EA /* Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Utils;
+		};
+		ECAF506A257F53BD00F021EA /* CombineCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			productName = CombineCocoa;
+		};
 		ECB66529247FD2F60052C658 /* JWTDecode */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
@@ -1458,10 +1492,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */;
 			productName = RxFlow;
-		};
-		ECC15EEB2416220F00149AC9 /* Utils */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Utils;
 		};
 		ECCB193223F834010069C5A7 /* RxCombine */ = {
 			isa = XCSwiftPackageProductDependency;

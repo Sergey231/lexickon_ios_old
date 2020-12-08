@@ -55,7 +55,7 @@ final class AddSearchPlaceholderView: UIView {
         logoView.configure(with: .init(tintColor: .lightGray))
         logoView.startFlayingAnimation()
         label.textAlignment = .center
-        label.text = "Здесь, Вы можете добавить любое, новое слово в ваш Lexickon"
+        label.text = L10n.newWrodPlaceholder
         label.numberOfLines = 0
         label.textColor = .lightGray
     }

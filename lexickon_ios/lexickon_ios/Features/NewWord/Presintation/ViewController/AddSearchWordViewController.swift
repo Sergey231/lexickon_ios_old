@@ -25,7 +25,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     
     // Public for Custom transitioning animator
     let headerView = AddWordHeaderView()
-    let backButton = UIButton()
     let addSearchWordView = AddSearchPlaceholderView()
     
     init(
@@ -62,14 +61,9 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        backButton.pin
-            .top(view.pin.safeArea.top)
-            .left()
-            .size(56)
-        
         headerView.pin
             .horizontally()
-            .height(140)
+            .height(156)
             .top()
         
         addSearchWordView.pin
@@ -81,18 +75,14 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     private func createUI() {
         view.addSubviews(
             headerView,
-            backButton,
             addSearchWordView
         )
     }
     
     private func configureUI() {
-        backButton.setImage(Asset.Images.backArrow.image, for: .normal)
-        backButton.rx.tap
-            .asSignal()
+        headerView.configure().backButtonDidTap
             .map { NewWordStep.toHome }
             .emit(to: steps)
             .disposed(by: disposeBag)
-        
     }
 }
