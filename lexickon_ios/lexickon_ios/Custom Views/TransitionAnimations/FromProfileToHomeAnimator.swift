@@ -13,17 +13,6 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
     
     static let duration: TimeInterval = 0.4
     
-    private let homeVC: HomeViewController
-    private let profileVC: ProfileMainScreenViewController
-    
-    init(
-        homeVC: HomeViewController,
-        profileVC: ProfileMainScreenViewController
-    ) {
-        self.homeVC = homeVC
-        self.profileVC = profileVC
-    }
-    
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
@@ -35,10 +24,10 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
     ) {
         let container = transitionContext.containerView
         
-        container.frame = profileVC.view.frame
+        let homeVC = transitionContext.viewController(forKey: .to) as! HomeViewController
+        let profileVC = transitionContext.viewController(forKey: .from) as! ProfileMainScreenViewController
         
-        let homeVC = self.homeVC
-        let profileVC = self.profileVC
+        container.frame = profileVC.view.frame
         
         let tmpView = UIView()
         tmpView.frame = profileVC.view.frame
