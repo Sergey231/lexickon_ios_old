@@ -68,7 +68,7 @@
 		ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1450025728DB500352868 /* AddSearchWordViewController.swift */; };
 		ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1454A257296F600352868 /* NewWordFlow.swift */; };
 		ECA1454F25739BC700352868 /* AddWordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1454E25739BC700352868 /* AddWordHeaderView.swift */; };
-		ECA145FD257506F000352868 /* ToNewWordAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA145FC257506F000352868 /* ToNewWordAnimator.swift */; };
+		ECA145FD257506F000352868 /* FromHomeToNewWordAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA145FC257506F000352868 /* FromHomeToNewWordAnimator.swift */; };
 		ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA14795257A474C00352868 /* FromNewWordToHomeAnimator.swift */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
@@ -176,7 +176,7 @@
 		ECA1450025728DB500352868 /* AddSearchWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordViewController.swift; sourceTree = "<group>"; };
 		ECA1454A257296F600352868 /* NewWordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordFlow.swift; sourceTree = "<group>"; };
 		ECA1454E25739BC700352868 /* AddWordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordHeaderView.swift; sourceTree = "<group>"; };
-		ECA145FC257506F000352868 /* ToNewWordAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToNewWordAnimator.swift; sourceTree = "<group>"; };
+		ECA145FC257506F000352868 /* FromHomeToNewWordAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromHomeToNewWordAnimator.swift; sourceTree = "<group>"; };
 		ECA14795257A474C00352868 /* FromNewWordToHomeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromNewWordToHomeAnimator.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -428,7 +428,7 @@
 			children = (
 				EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */,
 				EC870952254E8F4800553B87 /* FromProfileToHomeAnimator.swift */,
-				ECA145FC257506F000352868 /* ToNewWordAnimator.swift */,
+				ECA145FC257506F000352868 /* FromHomeToNewWordAnimator.swift */,
 				ECA14795257A474C00352868 /* FromNewWordToHomeAnimator.swift */,
 			);
 			path = TransitionAnimations;
@@ -981,7 +981,7 @@
 				EC236620257BAB620085D6B0 /* AddSearchWordPlaceholderView.swift in Sources */,
 				ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */,
 				ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */,
-				ECA145FD257506F000352868 /* ToNewWordAnimator.swift in Sources */,
+				ECA145FD257506F000352868 /* FromHomeToNewWordAnimator.swift in Sources */,
 				EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */,
 				ECC932A925544B2C007D61B4 /* WordRepository.swift in Sources */,
 				ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */,

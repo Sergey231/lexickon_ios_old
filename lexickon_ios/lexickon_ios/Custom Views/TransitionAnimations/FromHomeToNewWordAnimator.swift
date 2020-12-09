@@ -10,17 +10,9 @@ import UIKit
 import PinLayout
 import UIExtensions
 
-final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     static let duration: TimeInterval = 0.6
-    
-    private let addSearchWordVC: AddSearchWordViewController
-    
-    init(
-        addSearchWordVC: AddSearchWordViewController
-    ) {
-        self.addSearchWordVC = addSearchWordVC
-    }
     
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
@@ -35,7 +27,7 @@ final class ToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         let container = transitionContext.containerView
         
         let homeVC = transitionContext.viewController(forKey: .from) as! HomeViewController
-        let addSearchWordVC = self.addSearchWordVC
+        let addSearchWordVC = transitionContext.viewController(forKey: .to) as! AddSearchWordViewController
         
         container.frame = addSearchWordVC.view.frame
         let tmpView = UIView()
