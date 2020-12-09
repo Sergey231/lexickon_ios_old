@@ -9,20 +9,9 @@
 import UIKit
 import PinLayout
 
-final class ToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     static let duration: TimeInterval = 0.8
-    
-    private let homeVC: HomeViewController
-    private let profileVC: ProfileMainScreenViewController
-    
-    init?(
-        homeVC: HomeViewController,
-        profileVC: ProfileMainScreenViewController
-    ) {
-        self.homeVC = homeVC
-        self.profileVC = profileVC
-    }
     
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
@@ -36,8 +25,8 @@ final class ToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let container = transitionContext.containerView
         
-        let homeVC = self.homeVC
-        let profileVC = self.profileVC
+        let homeVC = transitionContext.viewController(forKey: .from) as! HomeViewController
+        let profileVC = transitionContext.viewController(forKey: .to) as! ProfileMainScreenViewController
         
         container.frame = homeVC.view.frame
         let tmpView = UIView()

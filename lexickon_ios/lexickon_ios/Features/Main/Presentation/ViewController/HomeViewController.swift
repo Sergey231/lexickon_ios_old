@@ -198,14 +198,8 @@ extension HomeViewController: UINavigationControllerDelegate {
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
         
-        if
-            let homeVC = fromVC as? HomeViewController,
-            let profileVC = toVC as? ProfileMainScreenViewController
-        {
-            return ToProfileAnimator(
-                homeVC: homeVC,
-                profileVC: profileVC
-            )
+        if fromVC is HomeViewController && toVC is ProfileMainScreenViewController {
+            return FromHomeToProfileAnimator	    ()
         }
         
         if
