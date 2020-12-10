@@ -64,6 +64,7 @@ final class AddWordHeaderView: UIView {
     }
     
     func configure() -> Output {
+        textView.configure()
         return Output(backButtonDidTap: backButton.rx.tap.asSignal())
     }
 }
