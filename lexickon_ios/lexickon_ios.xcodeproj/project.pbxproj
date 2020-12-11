@@ -46,6 +46,7 @@
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */; };
 		EC7AD82B256A656B00BBD059 /* WideWordProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */; };
+		EC7B6F9F2583ABF200EB1D28 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B6F9E2583ABF200EB1D28 /* TextView.swift */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
@@ -154,6 +155,7 @@
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideWordProgressView.swift; sourceTree = "<group>"; };
+		EC7B6F9E2583ABF200EB1D28 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */,
 				EC835EF523F1B15600E3288B /* Logo */,
 				EC99BD6423F29AAA00A500A9 /* TextField.swift */,
+				EC7B6F9E2583ABF200EB1D28 /* TextView.swift */,
 				EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */,
 				ECC48E9B25459679006503C2 /* ProfileIconView.swift */,
 				EC3C3881255032F5008D1D3C /* HomeHeaderView.swift */,
@@ -1015,6 +1018,7 @@
 				EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */,
 				EC93A28825174E340058F779 /* ApiRepository.swift in Sources */,
 				EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */,
+				EC7B6F9F2583ABF200EB1D28 /* TextView.swift in Sources */,
 				EC870953254E8F4800553B87 /* FromProfileToHomeAnimator.swift in Sources */,
 				EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,

@@ -15,7 +15,7 @@ final class AddSearchWordTextField: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let textView = UITextView()
+    private let textView = TextView()
     private let searchIconImageView = UIImageView(image: Asset.Images.searchIcon.image)
     
     override init(frame: CGRect) {
@@ -62,28 +62,12 @@ final class AddSearchWordTextField: UIView {
         backgroundColor = .white
         searchIconImageView.tintColor = .gray
         searchIconImageView.contentMode = .scaleAspectFit
-        textView.isScrollEnabled = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configure() {
-        textView.rx.text
-            .subscribe(onNext: { [weak self] _ in
-                let textFieldWidth = self!.frame.size.width
-                    - (Margin.regular
-                    + Sizes.icon.width
-                    + Margin.regular
-                    + Margin.regular)
-                let size = CGSize(width: textFieldWidth, height: .infinity)
-                let estimatedSize = self?.textView.sizeThatFits(size)
-                print("😀: \(textFieldWidth)")
-                print("😀😀: \(estimatedSize?.height)")
-                self?.textView.pin
-                    .after(of: self!.searchIconImageView)
-                    .marginLeft(Margin.regular)
-                    .height(estimatedSize!.height)
-                    .right(Margin.regular)
-            })
-            .disposed(by: disposeBag)
+        textView.configure(input: .init())
+            .height
+            .debug("😀")
+            .drive()
     }
 }
