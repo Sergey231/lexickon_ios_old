@@ -24,6 +24,14 @@ extension Reactive where Base: UIView {
                 .map { _ in () }
         )
     }
+    
+    var size: ControlEvent<CGSize> {
+        ControlEvent(
+            events: base.rx.layoutSubviews
+                .filter { base.frame.height > 0 && base.frame.width > 0 }
+                .map { base.frame.size }
+        )
+    }
         
     var height: Binder<CGFloat> {
         return Binder(base) { base, height in
