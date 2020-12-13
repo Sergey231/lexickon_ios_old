@@ -47,6 +47,7 @@
 		EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */; };
 		EC7AD82B256A656B00BBD059 /* WideWordProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */; };
 		EC7B6F9F2583ABF200EB1D28 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B6F9E2583ABF200EB1D28 /* TextView.swift */; };
+		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
@@ -243,6 +244,7 @@
 				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
 				ECAF506B257F53BD00F021EA /* CombineCocoa in Frameworks */,
 				EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */,
+				EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +870,7 @@
 				ECAC1D60255A848D008B0ECC /* LexickonApi */,
 				ECAF5062257E663300F021EA /* Utils */,
 				ECAF506A257F53BD00F021EA /* CombineCocoa */,
+				EC7B6FA325861A1500EB1D28 /* SnapKit */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -933,6 +936,7 @@
 				EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */,
+				EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -1351,6 +1355,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
@@ -1467,6 +1479,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
 			productName = SwiftKeychainWrapper;
+		};
+		EC7B6FA325861A1500EB1D28 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
 			isa = XCSwiftPackageProductDependency;

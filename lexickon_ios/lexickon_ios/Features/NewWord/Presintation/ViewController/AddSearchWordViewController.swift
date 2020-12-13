@@ -84,9 +84,15 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     private func configureUI() {
-        headerView.configure().backButtonDidTap
+        let headerViewOutput = headerView.configure()
+            
+        headerViewOutput.backButtonDidTap
             .map { NewWordStep.toHome }
             .emit(to: steps)
             .disposed(by: disposeBag)
+        
+//        headerViewOutput.height
+//            .drive(headerView.rx.height)
+//            .disposed(by: disposeBag)
     }
 }

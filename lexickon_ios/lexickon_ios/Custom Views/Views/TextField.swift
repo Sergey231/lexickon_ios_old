@@ -122,7 +122,7 @@ final class TextField: UIView {
         textField.tintColor = .white
         textField.attributedPlaceholder = NSAttributedString(
             string: input.placeholder,
-            attributes: [.foregroundColor: Asset.Colors.whiteAlpha07.color]
+            attributes: [.foregroundColor: Asset.Colors.paleText.color]
         )
         textField.keyboardType = input.keyboardType
         textField.returnKeyType = input.returnKeyType

@@ -11,20 +11,22 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import Utils
+import SnapKit
 
 final class TextView: UIView {
     
     struct Input {
-        
+        var font: UIFont = .systemRegular17
+        var textColor: UIColor = Asset.Colors.baseText.color
     }
     
     struct Output {
-        let height: Driver<CGFloat>
+        let size: Driver<CGSize>
     }
     
     private let disposeBag = DisposeBag()
     
-    private let textView = UITextView()
+    let textView = UITextView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,26 +53,40 @@ final class TextView: UIView {
     
     func configure(input: Input) -> Output {
         
-        let textFieldHeight = Driver.merge(
+        textView.font = input.font
+        textView.textColor = input.textColor
+        
+        let size = rx.size
+            .take(1)
+            .asDriver(onErrorDriveWith: .empty())
+        
+        let textFieldSize = Driver.merge(
             textView.rx.text.asDriver(onErrorDriveWith: .empty()).map { _ in () },
-            rx.layoutSubviews.take(1).asDriver(onErrorDriveWith: .empty()).map { _ in () }
-        ) .map { [weak self] _ -> CGFloat in
+            size.asDriver(onErrorDriveWith: .empty()).map { _ in () }
+        ) .map { [weak self] _ -> CGSize in
             let textFieldWidth = self!.frame.size.width
             let size = CGSize(width: textFieldWidth, height: .infinity)
             let estimatedSize = self?.textView.sizeThatFits(size)
-            print("😀: \(textFieldWidth)")
-            print("😀😀: \(String(describing: estimatedSize?.height))")
-            return estimatedSize?.height ?? 10
+            return CGSize(width: textFieldWidth, height: estimatedSize?.height ?? 0)
         }
         
-        textFieldHeight
-            .drive(onNext: {
-                self.textView.pin
-                    .horizontally()
-                    .height($0)
-            })
+        textFieldSize
+            .drive(rx.size)
             .disposed(by: disposeBag)
         
-        return Output(height: textFieldHeight)
+        return Output(size: textFieldSize)
+    }
+}
+
+extension Reactive where Base: TextView {
+    var size: Binder<CGSize> {
+        return Binder(base) { base, size in
+            base.snp.makeConstraints {
+                $0.size.equalTo(size)
+            }
+            base.textView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
     }
 }
