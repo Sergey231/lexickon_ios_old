@@ -14,6 +14,10 @@ import SnapKit
 
 final class AddWordHeaderView: UIView {
     
+    private enum UIConstants {
+        static let minTextFieldHeight = AddSearchWordTextField.UIConstants.minHeight
+    }
+    
     struct Output {
         let backButtonDidTap: Signal<Void>
         let height: Driver<CGFloat>
@@ -21,8 +25,14 @@ final class AddWordHeaderView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    let backButton = UIButton()
+    var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Asset.Images.backArrow.image, for: .normal)
+        return button
+    }()
+    
     private let addSearchWordTextField = AddSearchWordTextField()
+    private var textViewHeight: Constraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,15 +41,6 @@ final class AddWordHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        backButton.pin
-            .top(pin.safeArea.top)
-            .left()
-            .size(56)
     }
     
     private func configureView() {
@@ -56,8 +57,22 @@ final class AddWordHeaderView: UIView {
     
     private func configureUI() {
         backgroundColor = Asset.Colors.mainBG.color
-        backButton.setImage(Asset.Images.backArrow.image, for: .normal)
         
+        backButton.snp
+            .makeConstraints {
+                $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+                $0.size.equalTo(56)
+                $0.left.equalToSuperview()
+            }
+        
+        addSearchWordTextField.snp
+            .makeConstraints {
+                $0.top.equalTo(self.backButton.snp.bottom)
+                $0.left.equalTo(Margin.regular)
+                $0.right.equalTo(-Margin.regular)
+                self.textViewHeight = $0.height.greaterThanOrEqualTo(UIConstants.minTextFieldHeight)
+                    .constraint
+            }
     }
     
     func configure() -> Output {
@@ -65,19 +80,20 @@ final class AddWordHeaderView: UIView {
         let addSearchWordHeight = addSearchWordTextField.configure()
             .height
         
-        rx.layoutSubviews
-            .withLatestFrom(addSearchWordHeight)
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(onNext: {
-                self.addSearchWordTextField.pin
-                    .below(of: self.backButton)
-                    .horizontally(Margin.mid)
-                    .height($0)
-            })
-            .disposed(by: disposeBag)
+        addSearchWordHeight.drive(onNext: {
+            self.textViewHeight?.update(priority: $0)
+        })
+        .disposed(by: disposeBag )
         
-        let height = addSearchWordHeight
-            .map { self.frame.size.height - ($0 + Margin.regular) }
+        let height = Driver.combineLatest(
+            rx.size.take(1).asDriver(onErrorJustReturn: CGSize.zero),
+            addSearchWordHeight
+        )
+            .map { size, addSearchWordHeight in
+                size.height + (addSearchWordHeight - UIConstants.minTextFieldHeight)
+            }
+        
+        height.debug("🧦").drive()
         
         return Output(
             backButtonDidTap: backButton.rx.tap.asSignal(),

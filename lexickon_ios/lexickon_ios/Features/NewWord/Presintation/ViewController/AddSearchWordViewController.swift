@@ -8,7 +8,7 @@
 
 import UIKit
 import Swinject
-import PinLayout
+import SnapKit
 import Combine
 import CombineCocoa
 import RxFlow
@@ -24,12 +24,13 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     let steps = PublishRelay<Step>()
+    private var headerHeightConstraint: Constraint?
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     
     // Public for Custom transitioning animator
     let headerView = AddWordHeaderView()
-    let addSearchWordView = AddSearchPlaceholderView()
+    let placeholderView = AddSearchPlaceholderView()
     
     init(
         presenter: AddSearchWordPresenter
@@ -51,7 +52,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.addSearchWordView.stopFlaying()
+        self.placeholderView.stopFlaying()
         super.viewWillDisappear(animated)
     }
     
@@ -62,28 +63,31 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         configureUI()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        headerView.pin
-            .horizontally()
-            .height(UIConstants.headerViewHeight)
-            .top()
-        
-        addSearchWordView.pin
-            .width(200)
-            .height(140)
-            .center()
     }
     
     private func createUI() {
         view.addSubviews(
             headerView,
-            addSearchWordView
+            placeholderView
         )
+        
+        headerView.snp.makeConstraints {
+            $0.left.right.top.equalToSuperview()
+            self.headerHeightConstraint = $0.height.greaterThanOrEqualTo(UIConstants.headerViewHeight).constraint
+        }
+        
+        placeholderView.snp.makeConstraints {
+            $0.width.equalTo(200)
+            $0.height.equalTo(140)
+            $0.center.equalToSuperview()
+        }
     }
     
     private func configureUI() {
+        
         let headerViewOutput = headerView.configure()
             
         headerViewOutput.backButtonDidTap
@@ -91,8 +95,14 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-//        headerViewOutput.height
-//            .drive(headerView.rx.height)
-//            .disposed(by: disposeBag)
+        headerViewOutput.height.debug("😀")
+            .drive(onNext: {
+                self.view.layoutIfNeeded()
+                if let height = self.headerHeightConstraint {
+                    height.update(priority: $0)
+                }
+                self.view.layoutIfNeeded()
+            })
+            .disposed(by: disposeBag)
     }
 }

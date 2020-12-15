@@ -13,7 +13,7 @@ import UIExtensions
 import Utils
 import SnapKit
 
-final class TextView: UIView {
+final class TextView: UITextView {
     
     struct Input {
         var font: UIFont = .systemRegular17
@@ -21,72 +21,54 @@ final class TextView: UIView {
     }
     
     struct Output {
-        let size: Driver<CGSize>
+        let estimatedHeight: Driver<CGFloat>
     }
     
     private let disposeBag = DisposeBag()
     
-    let textView = UITextView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureView()
-    }
+    lazy var placeholderLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(white: 0.5, alpha: 0.85)
+        label.backgroundColor = .clear
+        return label
+    }()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureView() {
-        createUI()
-        configureUI()
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        configureView()
     }
-       
-    private func createUI() {
-        addSubview(textView)
+
+    private func configureView() {
+        configureUI()
     }
     
     private func configureUI() {
-        textView.isScrollEnabled = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
+        isScrollEnabled = false
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configure(input: Input) -> Output {
         
-        textView.font = input.font
-        textView.textColor = input.textColor
+        font = input.font
+        textColor = input.textColor
         
         let size = rx.size
             .take(1)
             .asDriver(onErrorDriveWith: .empty())
         
-        let textFieldSize = Driver.merge(
-            textView.rx.text.asDriver(onErrorDriveWith: .empty()).map { _ in () },
-            size.asDriver(onErrorDriveWith: .empty()).map { _ in () }
-        ) .map { [weak self] _ -> CGSize in
-            let textFieldWidth = self!.frame.size.width
-            let size = CGSize(width: textFieldWidth, height: .infinity)
-            let estimatedSize = self?.textView.sizeThatFits(size)
-            return CGSize(width: textFieldWidth, height: estimatedSize?.height ?? 0)
-        }
+        let textWasUpdated = rx.text.asDriver(onErrorDriveWith: .empty()).map { _ in () }
         
-        textFieldSize
-            .drive(rx.size)
-            .disposed(by: disposeBag)
+        let estimatedHeight = textWasUpdated
+            .withLatestFrom(size) { [weak self] _, _size -> CGFloat in
+                let size = CGSize(width: _size.width, height: .infinity)
+                let estimatedSize = self?.sizeThatFits(size)
+                return estimatedSize?.height ?? 0
+            }
         
-        return Output(size: textFieldSize)
-    }
-}
-
-extension Reactive where Base: TextView {
-    var size: Binder<CGSize> {
-        return Binder(base) { base, size in
-            base.snp.makeConstraints {
-                $0.size.equalTo(size)
-            }
-            base.textView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-        }
+        return Output(estimatedHeight: estimatedHeight)
     }
 }

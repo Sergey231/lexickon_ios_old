@@ -14,6 +14,10 @@ import SnapKit
 
 final class AddSearchWordTextField: UIView {
     
+    enum UIConstants {
+        static let minHeight: CGFloat = 40
+    }
+    
     struct Output {
         let height: Driver<CGFloat>
     }
@@ -21,12 +25,20 @@ final class AddSearchWordTextField: UIView {
     private let disposeBag = DisposeBag()
     
     private let textView = TextView()
+    private var textViewHeight: CGFloat = 0
     
     private var searchIconImageView: UIImageView = {
         let imageView = UIImageView(image: Asset.Images.searchIcon.image)
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
         return imageView
+    }()
+    
+    //MARK: Text
+    private var testView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -56,19 +68,24 @@ final class AddSearchWordTextField: UIView {
         backgroundColor = .white
         
         searchIconImageView.snp.makeConstraints {
-            $0.left.equalTo(Margin.regular)
-            $0.top.equalTo(Margin.small)
+            $0.leading.equalToSuperview().offset(Margin.regular)
+            $0.top.equalToSuperview().offset(Margin.small)
             $0.size.equalTo(Sizes.icon)
+        }
+        
+        textView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.right.equalToSuperview().offset(-Margin.regular)
+            $0.left.equalTo(searchIconImageView.snp.right).offset(Margin.small)
         }
     }
     
     func configure() -> Output {
         
-        let textViewSize = textView.configure(input: .init())
-            .size
+        let textViewHeight = textView.configure(input: .init())
+            .estimatedHeight
+            .map { $0 < UIConstants.minHeight ? UIConstants.minHeight : $0 }
         
-        textViewSize.debug("🧦").drive()
-        
-        return Output(height: textViewSize.map { $0.height } )
+        return Output(height: textViewHeight)
     }
 }

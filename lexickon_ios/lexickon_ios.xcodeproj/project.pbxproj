@@ -288,7 +288,7 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */ = {
+		EC3138A82536E95B007FFCB0 /* RxExtensions (Package candidate) */ = {
 			isa = PBXGroup;
 			children = (
 				ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */,
@@ -299,7 +299,7 @@
 				EC3138B825382576007FFCB0 /* UIViewController */,
 				EC3138A92536E969007FFCB0 /* UIButton */,
 			);
-			path = "RxExtensions (Pachage candidate)";
+			path = "RxExtensions (Package candidate)";
 			sourceTree = "<group>";
 		};
 		EC3138A92536E969007FFCB0 /* UIButton */ = {
@@ -393,7 +393,7 @@
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC93A28725174E340058F779 /* ApiRepository.swift */,
-				EC3138A82536E95B007FFCB0 /* RxExtensions (Pachage candidate) */,
+				EC3138A82536E95B007FFCB0 /* RxExtensions (Package candidate) */,
 				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
