@@ -25,9 +25,9 @@ final class RegistrationViewController: UIViewController, Stepper {
     
     private let contentView = UIView()
     private let logo = UIImageView(image: Asset.Images.textLogo.image)
-    private let nameTextField = TextField()
-    private let emailTextField = TextField()
-    private let passwordTextField = TextField()
+    private let nameTextField = LXTextField()
+    private let emailTextField = LXTextField()
+    private let passwordTextField = LXTextField()
     private let msgLabel = UILabel()
     private let submitButton = UIButton()
     
@@ -139,20 +139,20 @@ final class RegistrationViewController: UIViewController, Stepper {
         nameTextField.textField.enablesReturnKeyAutomatically = true
         nameTextField.textField.becomeFirstResponder()
         
-        nameTextField.configure(input: TextField.Input(
+        nameTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationNameTextfield,
             leftIcon: Asset.Images.accountIcon.image,
             returnKeyType: .next
         ))
         
-        emailTextField.configure(input: TextField.Input(
+        emailTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
-        passwordTextField.configure(input: TextField.Input(
+        passwordTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             isSecure: true,

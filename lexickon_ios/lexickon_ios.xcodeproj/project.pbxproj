@@ -63,7 +63,7 @@
 		EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28125164A860058F779 /* UserTokenRepository.swift */; };
 		EC93A28425164A860058F779 /* UserTokenRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */; };
 		EC93A28825174E340058F779 /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28725174E340058F779 /* ApiRepository.swift */; };
-		EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* TextField.swift */; };
+		EC99BD6523F29AAA00A500A9 /* LXTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC99BD6423F29AAA00A500A9 /* LXTextField.swift */; };
 		ECA1448A257288BD00352868 /* NewWordAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA14489257288BD00352868 /* NewWordAssembler.swift */; };
 		ECA1448E2572890A00352868 /* AddSearchWordAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1448D2572890A00352868 /* AddSearchWordAssembler.swift */; };
 		ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */; };
@@ -172,7 +172,7 @@
 		EC93A28125164A860058F779 /* UserTokenRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepository.swift; sourceTree = "<group>"; };
 		EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepositoryProtocol.swift; sourceTree = "<group>"; };
 		EC93A28725174E340058F779 /* ApiRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
-		EC99BD6423F29AAA00A500A9 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		EC99BD6423F29AAA00A500A9 /* LXTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LXTextField.swift; sourceTree = "<group>"; };
 		ECA14489257288BD00352868 /* NewWordAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordAssembler.swift; sourceTree = "<group>"; };
 		ECA1448D2572890A00352868 /* AddSearchWordAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordAssembler.swift; sourceTree = "<group>"; };
 		ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordPresenter.swift; sourceTree = "<group>"; };
@@ -568,7 +568,7 @@
 			children = (
 				ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */,
 				EC835EF523F1B15600E3288B /* Logo */,
-				EC99BD6423F29AAA00A500A9 /* TextField.swift */,
+				EC99BD6423F29AAA00A500A9 /* LXTextField.swift */,
 				EC7B6F9E2583ABF200EB1D28 /* TextView.swift */,
 				EC3139D9253C2E95007FFCB0 /* SwitchIconButton.swift */,
 				ECC48E9B25459679006503C2 /* ProfileIconView.swift */,
@@ -1005,7 +1005,7 @@
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
 				ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */,
-				EC99BD6523F29AAA00A500A9 /* TextField.swift in Sources */,
+				EC99BD6523F29AAA00A500A9 /* LXTextField.swift in Sources */,
 				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,

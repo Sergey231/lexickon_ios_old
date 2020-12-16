@@ -29,8 +29,8 @@ final class LoginViewController: UIViewController, Stepper {
     
     private let contentView = UIView()
     private let logo = UIImageView(image: Asset.Images.textLogo.image)
-    private let emailTextField = TextField()
-    private let passwordTextField = TextField()
+    private let emailTextField = LXTextField()
+    private let passwordTextField = LXTextField()
     private let activityIndicator = UIActivityIndicatorView()
     private let loginButton = UIButton()
     
@@ -76,7 +76,7 @@ final class LoginViewController: UIViewController, Stepper {
         logo.setShadow()
         activityIndicator.color = .white
         
-        emailTextField.configure(input: TextField.Input(
+        emailTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
@@ -84,7 +84,7 @@ final class LoginViewController: UIViewController, Stepper {
             initValue: "sergey.borovikov@list.ru"
         ))
         
-        passwordTextField.configure(input: TextField.Input(
+        passwordTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             isSecure: true,

@@ -37,6 +37,7 @@ internal enum Asset {
     internal static let homeWordSectionHeaderBG = ColorAsset(name: "homeWordSectionHeaderBG")
     internal static let mainBG = ColorAsset(name: "mainBG")
     internal static let paleText = ColorAsset(name: "paleText")
+    internal static let placeholder = ColorAsset(name: "placeholder")
   }
   internal enum Images {
     internal static let backArrow = ImageAsset(name: "BackArrow")

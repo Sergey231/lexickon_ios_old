@@ -10,8 +10,9 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
+import SnapKit
 
-final class TextField: UIView {
+final class LXTextField: UIView {
     
     struct Input {
         let placeholder: String
@@ -53,7 +54,7 @@ final class TextField: UIView {
         }
         
         var hTextFieldMargin: CGFloat {
-            return rightIcon != nil && leftIcon != nil
+            return rightIcon != nil || leftIcon != nil
                 ? Sizes.icon.width
                 : 0
         }
@@ -65,7 +66,13 @@ final class TextField: UIView {
         }
     }
     
-    internal let textField = UITextField()
+    internal let textField: UITextField = {
+        let textField = UITextField()
+        textField.textAlignment = .center
+        textField.textColor = .white
+        textField.tintColor = .white
+        return textField
+    }()
     private let leftIconView = UIImageView()
     private let rightIconView = UIImageView()
     private let eyeIconButton = SwitchIconButton()
@@ -100,14 +107,7 @@ final class TextField: UIView {
         )
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layout()
-    }
-    
     private func configureUI() {
-        textField.textAlignment = .center
-        textField.textColor = .white
         leftIconView.contentMode = .scaleAspectFit
         rightIconView.contentMode = .scaleAspectFit
         leftIconView.tintColor = .white
@@ -118,11 +118,11 @@ final class TextField: UIView {
     func configure(input: Input) {
         
         _input = input 
-        layout()
-        textField.tintColor = .white
+        setupConstraints(input)
+        
         textField.attributedPlaceholder = NSAttributedString(
             string: input.placeholder,
-            attributes: [.foregroundColor: Asset.Colors.paleText.color]
+            attributes: [.foregroundColor: Asset.Colors.placeholder.color]
         )
         textField.keyboardType = input.keyboardType
         textField.returnKeyType = input.returnKeyType
@@ -144,39 +144,44 @@ final class TextField: UIView {
         lineView.round()
     }
     
-    private func layout() {
+    private func setupConstraints(_ input: Input) {
         
-        leftIconView.pin
-            .vCenter()
-            .size(_input?.leftIconWidth ?? 0)
-            .left()
+        leftIconView.snp.makeConstraints {
+            $0.size.equalTo(input.leftIconWidth)
+            $0.left.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
         
-        eyeIconButton.pin
-            .vCenter()
-            .size(_input?.eyeIconWidth ?? 0)
-            .right()
+        eyeIconButton.snp.makeConstraints {
+            $0.size.equalTo(input.eyeIconWidth)
+            $0.right.equalToSuperview()
+            $0.centerY.equalToSuperview()
+        }
         
-        rightIconView.pin
-            .vCenter()
-            .size(_input?.rightIconWidth ?? 0)
-            .before(of: eyeIconButton)
+        rightIconView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(input.rightIconWidth)
+            $0.right.equalTo(eyeIconButton.snp.left)
+        }
+
+        textField.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(Sizes.uiTextField.height)
+            $0.right.equalTo(-input.hTextFieldMargin)
+            $0.left.equalTo(input.hTextFieldMargin)
+        }
         
-        textField.pin
-            .vCenter()
-            .height(Sizes.uiTextField.height)
-            .horizontally(_input?.hTextFieldMargin ?? 0)
-            .marginHorizontal(Margin.small)
-        
-        lineView.pin
-            .below(of: [leftIconView, rightIconView, textField])
-            .height(Sizes.line.height)
-            .horizontally()
+        lineView.snp.makeConstraints {
+            $0.top.equalTo(textField.snp.bottom)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(Sizes.line.height)
+        }
     }
 }
 
-extension TextField: EnumerableTextField {}
+extension LXTextField: EnumerableTextField {}
 
-extension Reactive where Base: TextField {
+extension Reactive where Base: LXTextField {
     var sbmitText: Driver<String> {
         return Driver.merge(
             base.textField.rx.controlEvent(.editingChanged).asDriver(),
