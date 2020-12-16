@@ -93,8 +93,6 @@ final class AddWordHeaderView: UIView {
                 size.height + (addSearchWordHeight - UIConstants.minTextFieldHeight)
             }
         
-        height.debug("🧦").drive()
-        
         return Output(
             backButtonDidTap: backButton.rx.tap.asSignal(),
             height: height

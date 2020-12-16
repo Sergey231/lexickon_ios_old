@@ -24,7 +24,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     let steps = PublishRelay<Step>()
-    private var headerHeightConstraint: Constraint?
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     
@@ -63,11 +62,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         configureUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
     private func createUI() {
         view.addSubviews(
             headerView,
@@ -76,7 +70,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         
         headerView.snp.makeConstraints {
             $0.left.right.top.equalToSuperview()
-            self.headerHeightConstraint = $0.height.greaterThanOrEqualTo(UIConstants.headerViewHeight).constraint
+            $0.height.equalTo(UIConstants.headerViewHeight)
         }
         
         placeholderView.snp.makeConstraints {
@@ -95,14 +89,21 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        headerViewOutput.height.debug("😀")
-            .drive(onNext: {
-                self.view.layoutIfNeeded()
-                if let height = self.headerHeightConstraint {
-                    height.update(priority: $0)
-                }
-                self.view.layoutIfNeeded()
-            })
+        headerViewOutput.height
+            .drive(headerView.rx.height)
             .disposed(by: disposeBag)
+    }
+}
+
+private extension Reactive where Base: AddWordHeaderView {
+    var height: Binder<CGFloat> {
+        return Binder(base) { base, height in
+            UIView.animate(withDuration: 0.2) {
+                base.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                }
+                base.superview?.layoutIfNeeded()
+            }
+        }
     }
 }
