@@ -25,13 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
-        coordinator.rx.willNavigate.subscribe(onNext: { (flow, step) in
-            print("🚀 \(flow) ==> \(step)")
-        }).disposed(by: self.disposeBag)
-
-        coordinator.rx.didNavigate.subscribe(onNext: { (flow, step) in
-            print("☠️ \(flow) ==> \(step)")
-        }).disposed(by: self.disposeBag)
+        coordinator.debug().disposed(by: disposeBag)
 
         window = UIWindow(windowScene: windowScene)
         
@@ -73,5 +67,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+}
+
+private extension FlowCoordinator {
+    func debug() -> CompositeDisposable {
+        let willNavigateDisposable = rx.willNavigate.subscribe(onNext: { flow, step in
+            print("🚀 \(flow) ==> \(step)")
+        })
+
+        let didNavigateDisposable = rx.didNavigate.subscribe(onNext: { flow, step in
+            print("👋 \(flow) ==> \(step)")
+        })
+        
+        return CompositeDisposable(
+            disposables: [
+                willNavigateDisposable,
+                didNavigateDisposable
+            ]
+        )
     }
 }
