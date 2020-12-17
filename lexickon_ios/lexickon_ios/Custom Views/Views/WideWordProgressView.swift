@@ -69,4 +69,3 @@ final class WideWordProgressView: UIView {
             .disposed(by: disposeBag)
     }
 }
-

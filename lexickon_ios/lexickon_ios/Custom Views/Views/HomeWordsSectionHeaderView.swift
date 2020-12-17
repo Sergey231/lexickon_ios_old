@@ -8,6 +8,7 @@
 
 import UIKit
 import UIExtensions
+import SnapKit
 
 final class HomeWordsSectionHeaderView: UIView {
     
@@ -36,52 +37,44 @@ final class HomeWordsSectionHeaderView: UIView {
         let studyWordsType: StudyWordsType
     }
     
-    private let titleLabel = UILabel()
-    private let bgTitleView = UIView()
-    private let bottomGapView = UIView()
+    private let titleLabel: UILabel = {
+        let title = UILabel()
+        title.font = .systemRegular12
+        title.textColor = .lightGray
+        return title
+    }()
+    
+    private let bgTitleView: UIView = {
+        let bg = UIView()
+        bg.backgroundColor = Asset.Colors.homeWordSectionHeaderBG.color
+        return bg
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        bgTitleView.pin
-            .horizontally()
-            .top()
-            .bottom(Margin.regular/2)
-        
-        bottomGapView.pin
-            .horizontally()
-            .below(of: bgTitleView)
-            .bottom()
-        
-        titleLabel.pin
-            .horizontally(Margin.mid)
-            .vertically()
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
-    }
-       
     private func createUI() {
-        addSubviews(bgTitleView, bottomGapView)
+        addSubview(bgTitleView)
         bgTitleView.addSubview(titleLabel)
-    }
-    
-    private func configureUI() {
-        bgTitleView.backgroundColor = Asset.Colors.homeWordSectionHeaderBG.color
-        titleLabel.font = .systemRegular12
-        titleLabel.textColor = .lightGray
         
-        bottomGapView.backgroundColor = .clear
+        bgTitleView.snp.makeConstraints {
+            $0.left.right.top.equalToSuperview()
+            $0.bottom.equalTo(-Margin.regular/2)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(Margin.mid)
+            $0.right.equalToSuperview().offset(-Margin.mid)
+            $0.top.bottom.equalToSuperview()
+        }
+        
+        layoutIfNeeded()
     }
     
     func configure(input: Input) {
