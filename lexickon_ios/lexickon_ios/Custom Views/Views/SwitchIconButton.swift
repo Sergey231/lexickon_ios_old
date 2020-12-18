@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
+import SnapKit
 
 final class SwitchIconButton: UIView {
     
@@ -21,7 +22,12 @@ final class SwitchIconButton: UIView {
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let iconImageView = UIImageView()
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     private let onRelay = BehaviorRelay<Bool>(value: true)
     
     var on: Driver<Bool> {
@@ -30,22 +36,11 @@ final class SwitchIconButton: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        iconImageView.pin.all()
-        button.pin.all()
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
     }
        
     private func createUI() {
@@ -53,10 +48,12 @@ final class SwitchIconButton: UIView {
             iconImageView,
             button
         )
-    }
-    
-    private func configureUI() {
-        iconImageView.contentMode = .scaleAspectFit
+        iconImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        button.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func configure(input: Input) {
