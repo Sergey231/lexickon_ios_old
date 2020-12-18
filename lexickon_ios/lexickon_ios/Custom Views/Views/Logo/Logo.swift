@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PinLayout
+import SnapKit
 import Combine
 
 final class Logo: UIView {
@@ -16,7 +16,12 @@ final class Logo: UIView {
         let tintColor: UIColor
     }
     
-    private let logoImageView = UIImageView()
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.Images.logoWithoutEyes.image
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     private let leftEyeView = UIView()
     private let rightEyeView = UIView()
     
@@ -36,13 +41,6 @@ final class Logo: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layout()
-        leftEyeView.round()
-        rightEyeView.round()
-    }
-    
     private func configureView() {
         createUI()
         configureUI()
@@ -54,6 +52,23 @@ final class Logo: UIView {
             leftEyeView,
             rightEyeView
         )
+        
+        logoImageView.snp.makeConstraints {
+            $0.size.equalTo(45)
+            $0.center.equalToSuperview()
+        }
+        
+        leftEyeView.snp.makeConstraints {
+            $0.size.equalTo(5)
+            $0.centerX.equalToSuperview().offset(-3)
+            $0.centerY.equalToSuperview().offset(12)
+        }
+
+        rightEyeView.snp.makeConstraints {
+            $0.size.equalTo(5)
+            $0.centerX.equalToSuperview().offset(4)
+            $0.centerY.equalToSuperview().offset(12)
+        }
     }
     
     private func eyesFlipAnimate() {
@@ -62,10 +77,7 @@ final class Logo: UIView {
     }
     
     private func configureUI() {
-        
-        logoImageView.image = Asset.Images.logoWithoutEyes.image
-        logoImageView.contentMode = .scaleAspectFit
-        
+    
         timePublisher
             .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 4))) }
             .filter { $0 == 0 }
@@ -77,27 +89,11 @@ final class Logo: UIView {
             .store(in: &cancellableSet)
     }
     
-    private func layout() {
-        
-        logoImageView.pin
-            .size(45)
-            .hCenter()
-            .vCenter()
-        
-        leftEyeView.pin
-            .size(5)
-            .hCenter(-3)
-            .vCenter(12)
-        
-        rightEyeView.pin
-            .size(5)
-            .hCenter(4)
-            .vCenter(12)
-    }
-    
     func configure(with input: Input) {
         logoImageView.tintColor = input.tintColor
         leftEyeView.backgroundColor = input.tintColor
         rightEyeView.backgroundColor = input.tintColor
+        leftEyeView.round()
+        rightEyeView.round()
     }
 }
