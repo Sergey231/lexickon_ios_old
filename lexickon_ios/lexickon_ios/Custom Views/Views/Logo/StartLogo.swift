@@ -12,6 +12,7 @@ import PinLayout
 import RxSwift
 import RxCocoa
 import Combine
+import SnapKit
 
 final class StartLogo: UIView {
     
@@ -54,14 +55,14 @@ final class StartLogo: UIView {
             }
         }
         
-        var leftEyeHCenter: CGFloat {
+        var leftEyeCenterX: CGFloat {
             switch self {
             case .start: return -9
             case .end: return -7
             }
         }
         
-        var rightEyeHCenter: CGFloat {
+        var rightEyeCenterX: CGFloat {
             switch self {
             case .start: return 13
             case .end: return 9
@@ -69,11 +70,33 @@ final class StartLogo: UIView {
         }
     }
     
-    private let logoImageView = UIImageView()
-    private let textLogoImageView = UIImageView()
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.Images.logoWithoutEyes.image
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        return imageView
+    }()
+    
+    private let textLogoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.Images.textLogo.image
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private let leftEyeView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    private let rightEyeView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private var animationState: AnimationState = .start
-    private let leftEyeView = UIView()
-    private let rightEyeView = UIView()
 
     private var cancellableSet = Set<AnyCancellable>()
     private let timePublisher = Timer.TimerPublisher(
@@ -91,16 +114,12 @@ final class StartLogo: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layout()
-    }
-    
     func startAnimation(complete: (() -> ())? = nil) {
+        setupContstraiots()
         animationState = .end
-        
         UIView.animate(withDuration: 1, animations: {
-            self.layout()
+            self._updateConstraints()
+            self.layoutIfNeeded()
         }, completion: { _ in
             
             self.logoImageView.startFlayingAnimation()
@@ -125,27 +144,53 @@ final class StartLogo: UIView {
         rightEyeView.performVCollapseAnimation()
     }
 
-    private func layout() {
+    private func setupContstraiots() {
         
-        logoImageView.pin
-            .size(animationState.logoSize)
-            .hCenter()
-            .vCenter(animationState.logoPosition)
+        logoImageView.snp.makeConstraints {
+            $0.height.width.equalTo(animationState.logoSize)
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(animationState.logoPosition)
+        }
         
-        textLogoImageView.pin
-            .center()
-            .height(80)
-            .width(200)
+        textLogoImageView.snp.makeConstraints {
+            $0.size.equalTo(CGSize(width: 200, height: 80))
+            $0.center.equalToSuperview()
+        }
         
-        leftEyeView.pin
-            .size(animationState.eyesSize)
-            .hCenter(animationState.leftEyeHCenter)
-            .vCenter(animationState.eyesVCenter)
+        leftEyeView.snp.makeConstraints {
+            $0.height.width.equalTo(animationState.eyesSize)
+            $0.centerX.equalToSuperview().offset(animationState.leftEyeCenterX)
+            $0.centerY.equalToSuperview().offset(animationState.eyesVCenter)
+        }
         
-        rightEyeView.pin
-            .size(animationState.eyesSize)
-            .hCenter(animationState.rightEyeHCenter)
-            .vCenter(animationState.eyesVCenter)
+        rightEyeView.snp.makeConstraints {
+            $0.height.width.equalTo(animationState.eyesSize)
+            $0.centerX.equalToSuperview().offset(animationState.rightEyeCenterX)
+            $0.centerY.equalToSuperview().offset(animationState.eyesVCenter)
+        }
+        
+        leftEyeView.round()
+        rightEyeView.round()
+    }
+    
+    internal func _updateConstraints() {
+        logoImageView.snp.updateConstraints {
+            $0.height.width.equalTo(animationState.logoSize)
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(animationState.logoPosition)
+        }
+        
+        leftEyeView.snp.updateConstraints {
+            $0.height.width.equalTo(animationState.eyesSize)
+            $0.centerX.equalToSuperview().offset(animationState.leftEyeCenterX)
+            $0.centerY.equalToSuperview().offset(animationState.eyesVCenter)
+        }
+        
+        rightEyeView.snp.updateConstraints {
+            $0.height.width.equalTo(animationState.eyesSize)
+            $0.centerX.equalToSuperview().offset(animationState.rightEyeCenterX)
+            $0.centerY.equalToSuperview().offset(animationState.eyesVCenter)
+        }
         
         leftEyeView.round()
         rightEyeView.round()
@@ -173,16 +218,7 @@ final class StartLogo: UIView {
         setShadow()
         
         backgroundColor = .gray
-        logoImageView.image = Asset.Images.logoWithoutEyes.image
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.tintColor = .white
-        textLogoImageView.image = Asset.Images.textLogo.image
-        textLogoImageView.contentMode = .scaleAspectFit
         textLogoImageView.alpha = animationState.textLogoAlpha
-        
-        // Eyes
-        leftEyeView.backgroundColor = .white
-        rightEyeView.backgroundColor = .white
         
         timePublisher
             .map { _ in Int.random(in: Range<Int>(uncheckedBounds: (lower: 0, upper: 4))) }
