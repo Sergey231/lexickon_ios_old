@@ -40,7 +40,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     // public for Animator
     let profileIconView = ProfileIconView()
-    let addWordButton = AddWordButton()
+    let addWordButton = AddWordButtonView()
     
     init(
         presenter: HomePresenter

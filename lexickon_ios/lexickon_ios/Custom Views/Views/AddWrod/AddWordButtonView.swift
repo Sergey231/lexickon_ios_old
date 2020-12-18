@@ -11,46 +11,40 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 
-final class AddWordButton: UIView {
+final class AddWordButtonView: UIView {
     
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let searchIconImageView = UIImageView(image: Asset.Images.searchIcon.image)
-    private let addIconImageView = UIImageView(image: Asset.Images.addIcon.image)
+    private let searchIconImageView: UIImageView = {
+        let imageView = UIImageView(image: Asset.Images.searchIcon.image)
+        imageView.alpha = 0
+        imageView.tintColor = .white
+        return imageView
+    }()
+    private let addIconImageView: UIImageView = {
+        let imageView = UIImageView(image: Asset.Images.addIcon.image)
+        imageView.tintColor = .white
+        return imageView
+    }()
     
     // public for Animator
-    let circleView = UIView()
+    let circleView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 28
+        view.backgroundColor = Asset.Colors.mainBG.color
+        view.setShadow()
+//        view.startFlayingAnimation()
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        button.pin.all()
-        
-        circleView.pin
-            .size(56)
-            .center()
-        
-        searchIconImageView.pin
-            .size(24)
-            .center()
-        
-        addIconImageView.pin
-            .size(24)
-            .center()
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
     }
        
     private func createUI() {
@@ -62,18 +56,25 @@ final class AddWordButton: UIView {
             searchIconImageView,
             addIconImageView
         )
-    }
-    
-    private func configureUI() {
         
-        circleView.layer.cornerRadius = 28
-        circleView.backgroundColor = Asset.Colors.mainBG.color
-        circleView.setShadow()
-//        circleView.startFlayingAnimation()
+        button.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
         
-        searchIconImageView.alpha = 0
-        searchIconImageView.tintColor = .white
-        addIconImageView.tintColor = .white
+        circleView.snp.makeConstraints {
+            $0.size.equalTo(56)
+            $0.center.equalToSuperview()
+        }
+        
+        searchIconImageView.snp.makeConstraints {
+            $0.size.equalTo(Sizes.icon)
+            $0.center.equalToSuperview()
+        }
+        
+        addIconImageView.snp.makeConstraints {
+            $0.size.equalTo(Sizes.icon)
+            $0.center.equalToSuperview()
+        }
     }
     
     var didTap: Signal<Void> {
