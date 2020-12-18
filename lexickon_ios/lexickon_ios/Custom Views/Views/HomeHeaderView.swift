@@ -27,31 +27,22 @@ final class HomeHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        button.pin.all()
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
-    }
        
     private func createUI() {
-        addSubview(
-            button
-        )
-    }
-    
-    private func configureUI() {
+        
         backgroundColor = Asset.Colors.mainBG.color
+        
+        addSubview(button)
+        
+        button.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     func configure(input: Input) -> Output {
