@@ -24,36 +24,19 @@ final class ProfileIconView: UIView {
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let iconImageView = UIImageView()
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        iconImageView.pin.all()
-        
-        let buttonSize = frame.size.height < 50
-            ? 50
-            : frame.size.height
-        
-        button.pin
-            .center()
-            .size(buttonSize)
-        
-        layer.cornerRadius = frame.size.height/2
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
     }
        
     private func createUI() {
@@ -61,10 +44,21 @@ final class ProfileIconView: UIView {
             iconImageView,
             button
         )
-    }
-    
-    private func configureUI() {
-        iconImageView.contentMode = .scaleAspectFit
+        
+        iconImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        button.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        rx.size.take(1)
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(onNext: { _ in
+                self.layer.cornerRadius = self.frame.size.height/2
+            })
+            .disposed(by: disposeBag)
     }
     
     func configure(input: Input) -> Output {
