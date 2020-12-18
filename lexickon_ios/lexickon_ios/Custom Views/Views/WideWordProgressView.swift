@@ -26,21 +26,11 @@ final class WideWordProgressView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        progressView.pin.all(Margin.small)
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
     }
        
     private func createUI() {
@@ -48,23 +38,33 @@ final class WideWordProgressView: UIView {
             progressView,
             overlapView
         )
-    }
-    
-    private func configureUI() {
-        progressView.layer.cornerRadius = 12
+        
+        progressView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Margin.small)
+            $0.bottom.equalToSuperview().offset(-Margin.small)
+            $0.right.equalToSuperview().offset(-Margin.small)
+            $0.left.equalToSuperview().offset(Margin.small)
+        }
+        
+        overlapView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(Margin.small)
+            $0.bottom.equalToSuperview().offset(-Margin.small)
+            $0.right.equalToSuperview().offset(-Margin.small)
+            $0.left.equalToSuperview().offset(Margin.small)
+        }
     }
     
     func configure(input: Input) {
         backgroundColor = input.bgColor
         overlapView.backgroundColor = input.bgColor
         progressView.backgroundColor = input.progressColor
+        progressView.layer.cornerRadius = 12
         
         rx.layoutSubviews.take(1)
             .subscribe(onNext: {
-                self.overlapView.pin
-                    .vertically(Margin.small)
-                    .right(Margin.small)
-                    .left((self.progressView.frame.maxX - 10) * input.progress)
+                self.overlapView.snp.updateConstraints {
+                    $0.left.equalToSuperview().offset((self.progressView.frame.maxX - 10) * input.progress)
+                }
             })
             .disposed(by: disposeBag)
     }
