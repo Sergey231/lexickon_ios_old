@@ -22,25 +22,37 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
     func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
-        let container = transitionContext.containerView
         
-        let homeVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! HomeViewController
-        let addSearchWordVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! AddSearchWordViewController
+        let homeVC = transitionContext.viewController(
+            forKey: UITransitionContextViewControllerKey.to
+        ) as! HomeViewController
+        
+        let addSearchWordVC = transitionContext.viewController(
+            forKey: UITransitionContextViewControllerKey.from
+        ) as! AddSearchWordViewController
         
         homeVC.view.alpha = 0.6
         
-        let tmpView = UIView()
-        tmpView.frame = addSearchWordVC.view.frame
-        tmpView.backgroundColor = addSearchWordVC.view.backgroundColor
-        tmpView.alpha = 0
+        let tmpView: UIView = {
+            let tmpView = UIView()
+            tmpView.frame = addSearchWordVC.view.frame
+            tmpView.backgroundColor = addSearchWordVC.view.backgroundColor
+            tmpView.alpha = 0
+            return tmpView
+        }()
         
-        let tmpHeaderView = UIView()
-        tmpHeaderView.frame = addSearchWordVC.headerView.frame
-        tmpHeaderView.backgroundColor = addSearchWordVC.headerView.backgroundColor
+        let tmpHeaderView: UIView = {
+            let tmpHeaderView = UIView()
+            tmpHeaderView.frame = addSearchWordVC.headerView.frame
+            tmpHeaderView.backgroundColor = addSearchWordVC.headerView.backgroundColor
+            return tmpHeaderView
+        }()
         
+        tmpView.addSubview(tmpHeaderView)
+        
+        let container = transitionContext.containerView
         container.addSubview(homeVC.view)
         container.addSubview(addSearchWordVC.view)
-        tmpView.addSubview(tmpHeaderView)
         container.addSubview(tmpView)
         
         // 1
@@ -55,11 +67,13 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                     delay: 0,
                     options: .curveLinear,
                     animations: {
-                        
-                        tmpView.pin
-                            .size(homeVC.view.frame.width)
-                            .bottom()
-                            .horizontally()
+                    
+                        tmpView.snp.makeConstraints {
+                            $0.size.equalTo(homeVC.view.frame.width)
+                            $0.bottom.equalToSuperview()
+                            $0.width.equalToSuperview()
+                        }
+                        tmpView.superview?.layoutIfNeeded()
 
                         tmpView.layer.cornerRadius = homeVC.addWordButton.circleView.frame.size.height / 2
                         tmpHeaderView.layer.cornerRadius = homeVC.addWordButton.circleView.frame.size.height / 2
@@ -74,13 +88,21 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                             options: .curveEaseOut,
                             animations: {
                                 
-                                tmpView.frame = homeVC.addWordButton.circleView.globalFrame!
-                                tmpHeaderView.frame = CGRect(
-                                    x: 0,
-                                    y: 0,
-                                    width: tmpView.frame.size.width,
-                                    height: tmpView.frame.size.height
-                                )
+                                let rightMargin = (homeVC.addWordButton.frame.size.width - homeVC.addWordButton.circleView.frame.size.width)/2
+                                let bottomMargin = (homeVC.addWordButton.frame.size.height - homeVC.addWordButton.circleView.frame.size.height)/2
+                                    + Margin.mid
+                                
+                                tmpView.snp.remakeConstraints {
+                                    $0.size.equalTo(homeVC.addWordButton.circleView.frame.size)
+                                    $0.right.equalToSuperview().offset(-rightMargin)
+                                    $0.bottom.equalToSuperview().offset(-bottomMargin)
+                                }
+                                tmpHeaderView.snp.remakeConstraints {
+                                    $0.edges.equalToSuperview()
+                                }
+                                tmpView.superview?.layoutIfNeeded()
+                                tmpHeaderView.superview?.layoutIfNeeded()
+                                
                                 homeVC.view.alpha = 1
                                 
                             }, completion: { _ in

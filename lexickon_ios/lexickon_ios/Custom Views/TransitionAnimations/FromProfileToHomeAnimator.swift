@@ -22,29 +22,33 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
     func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
-        let container = transitionContext.containerView
         
         let homeVC = transitionContext.viewController(forKey: .to) as! HomeViewController
         let profileVC = transitionContext.viewController(forKey: .from) as! ProfileMainScreenViewController
+        profileVC.profileIconView.isHidden = true
         
+        let tmpView: UIView = {
+            let tmpView = UIView()
+            tmpView.frame = profileVC.view.frame
+            tmpView.backgroundColor = profileVC.view.backgroundColor
+            tmpView.alpha = 0
+            return tmpView
+        }()
+        
+        let tmpProfileIconView: UIView = {
+            let tmpProfileIconView = UIView()
+            tmpProfileIconView.frame = profileVC.profileIconView.frame
+            tmpProfileIconView.backgroundColor = profileVC.profileIconView.backgroundColor
+            tmpProfileIconView.layer.cornerRadius = tmpProfileIconView.frame.size.height / 2
+            return tmpProfileIconView
+        }()
+        
+        let container = transitionContext.containerView
         container.frame = profileVC.view.frame
-        
-        let tmpView = UIView()
-        tmpView.frame = profileVC.view.frame
-        tmpView.backgroundColor = profileVC.view.backgroundColor
-        tmpView.alpha = 0
-        
-        let tmpProfileIconView = UIView()
-        tmpProfileIconView.frame = profileVC.profileIconView.frame
-        tmpProfileIconView.backgroundColor = profileVC.profileIconView.backgroundColor
-        tmpProfileIconView.layer.cornerRadius = tmpProfileIconView.frame.size.height / 2
-        
         container.addSubview(homeVC.view)
         container.addSubview(profileVC.view)
         container.addSubview(tmpView)
         container.addSubview(tmpProfileIconView)
-        
-        profileVC.profileIconView.isHidden = true
         
         // Profile Icon View animation
         UIView.animate(
@@ -55,11 +59,12 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                 let profileIconRightMargin = HomeViewController.UIConstants.profileIconRightMargin
                 
                 tmpProfileIconView.layer.cornerRadius = profileIconViewSize / 2
-                
-                tmpProfileIconView.pin
-                    .size(profileIconViewSize)
-                    .right(profileIconRightMargin)
-                    .top(tmpView.pin.safeArea.top)
+                tmpProfileIconView.snp.makeConstraints {
+                    $0.size.equalTo(profileIconViewSize)
+                    $0.right.equalToSuperview().offset(-profileIconRightMargin)
+                    $0.top.equalTo(homeVC.view.safeAreaInsets.top)
+                }
+                tmpProfileIconView.superview?.layoutIfNeeded()
                 
             }, completion: { _ in
                 homeVC.profileIconView.isHidden = false
@@ -81,11 +86,12 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                     options: .curveLinear,
                     animations: {
                         
-                        tmpView.pin
-                            .size(homeVC.view.frame.width)
-                            .top()
-                            .horizontally()
-
+                        tmpView.snp.makeConstraints {
+                            $0.size.equalTo(homeVC.view.frame.width)
+                            $0.top.equalToSuperview()
+                            $0.width.equalToSuperview()
+                        }
+                        tmpView.superview?.layoutIfNeeded()
                         tmpView.layer.cornerRadius = homeVC.profileIconView.frame.size.height / 2
                         
                     }, completion: { _ in
@@ -97,10 +103,12 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                             options: .curveEaseOut,
                             animations: {
                                 
-                                tmpView.pin
-                                    .top(homeVC.view.pin.safeArea.top)
-                                    .right(HomeViewController.UIConstants.profileIconRightMargin)
-                                    .size(HomeViewController.UIConstants.profileIconSize)
+                                tmpView.snp.remakeConstraints {
+                                    $0.top.equalTo(homeVC.view.safeAreaInsets.top)
+                                    $0.right.equalToSuperview().offset(-HomeViewController.UIConstants.profileIconRightMargin)
+                                    $0.size.equalTo(HomeViewController.UIConstants.profileIconSize)
+                                }
+                                tmpView.superview?.layoutIfNeeded()
                                 
                             }, completion: { _ in
                                 tmpView.removeFromSuperview()

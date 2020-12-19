@@ -15,49 +15,48 @@ final class AddSearchPlaceholderView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let logoView = Logo()
-    private let label = UILabel()
+    private let logoView: Logo = {
+        let view = Logo()
+        view.startFlayingAnimation()
+        return view
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = L10n.newWrodPlaceholder
+        label.numberOfLines = 0
+        label.textColor = .lightGray
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        logoView.pin
-            .hCenter()
-            .top()
-        
-        label.pin
-            .below(of: logoView)
-            .horizontally()
-            .bottom()
-    }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
-    }
-       
     private func createUI() {
         addSubviews(
             logoView,
             label
         )
-    }
-    
-    private func configureUI() {
+        
         logoView.configure(with: .init(tintColor: .lightGray))
-        logoView.startFlayingAnimation()
-        label.textAlignment = .center
-        label.text = L10n.newWrodPlaceholder
-        label.numberOfLines = 0
-        label.textColor = .lightGray
+        
+        logoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview()
+        }
+        
+        label.snp.makeConstraints {
+            $0.top.equalTo(logoView.snp.bottom)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
     }
     
     func stopFlaying() {

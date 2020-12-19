@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PinLayout
+import SnapKit
 import UIExtensions
 
 final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
@@ -24,35 +24,40 @@ final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransit
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         
-        let container = transitionContext.containerView
-        
         let homeVC = transitionContext.viewController(forKey: .from) as! HomeViewController
         let addSearchWordVC = transitionContext.viewController(forKey: .to) as! AddSearchWordViewController
+        addSearchWordVC.view.isHidden = true
         
-        container.frame = addSearchWordVC.view.frame
-        let tmpView = UIView()
         guard let circleViewFrame = homeVC.addWordButton.circleView.globalFrame else {
             return
         }
-        tmpView.frame = circleViewFrame
-        tmpView.backgroundColor = .white
-        tmpView.layer.cornerRadius = circleViewFrame.size.height / 2
-        tmpView.clipsToBounds = true
+        let tmpView: UIView = {
+            let tmpView = UIView()
+            tmpView.frame = circleViewFrame
+            tmpView.backgroundColor = .white
+            tmpView.layer.cornerRadius = circleViewFrame.size.height / 2
+            tmpView.clipsToBounds = true
+            return tmpView
+        }()
         
-        addSearchWordVC.view.isHidden = true
+        let tmpAddSearchWordHeaderView: UIView = {
+            let tmpAddSearchWordHeaderView = UIView()
+            tmpAddSearchWordHeaderView.backgroundColor = homeVC.addWordButton.circleView.backgroundColor
+            tmpAddSearchWordHeaderView.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: circleViewFrame.width,
+                height: circleViewFrame.height
+            )
+            tmpAddSearchWordHeaderView.layer.cornerRadius = circleViewFrame.size.height / 2
+            return tmpAddSearchWordHeaderView
+        }()
         
-        let tmpAddSearchWordHeaderView = UIView()
-        tmpAddSearchWordHeaderView.backgroundColor = homeVC.addWordButton.circleView.backgroundColor
-        tmpAddSearchWordHeaderView.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: circleViewFrame.width,
-            height: circleViewFrame.height
-        )
-        tmpAddSearchWordHeaderView.layer.cornerRadius = circleViewFrame.size.height / 2
-        
-        container.addSubview(addSearchWordVC.view)
         tmpView.addSubview(tmpAddSearchWordHeaderView)
+        
+        let container = transitionContext.containerView
+        container.frame = addSearchWordVC.view.frame
+        container.addSubview(addSearchWordVC.view)
         container.addSubview(tmpView)
         
         // 1
@@ -61,17 +66,21 @@ final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransit
             delay: 0,
             options: .curveEaseIn,
             animations: {
-
-                tmpView.pin
-                    .horizontally()
-                    .bottom()
-                    .height(addSearchWordVC.view.frame.width)
-
-                tmpAddSearchWordHeaderView.pin
-                    .horizontally()
-                    .top()
-                    .height(AddSearchWordViewController.UIConstants.headerViewHeight)
-
+                
+                tmpView.snp.makeConstraints {
+                    $0.width.equalToSuperview()
+                    $0.bottom.equalToSuperview()
+                    $0.height.equalTo(addSearchWordVC.view.frame.width)
+                }
+                
+                tmpAddSearchWordHeaderView.snp.makeConstraints {
+                    $0.width.equalToSuperview()
+                    $0.top.equalToSuperview()
+                    $0.height.equalTo(AddSearchWordViewController.UIConstants.headerViewHeight)
+                }
+                
+                tmpView.superview?.layoutIfNeeded()
+                tmpAddSearchWordHeaderView.superview?.layoutIfNeeded()
                 tmpAddSearchWordHeaderView.layer.cornerRadius = 0
                 homeVC.view.alpha = 0.7
 
@@ -81,7 +90,12 @@ final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransit
                     withDuration: Self.duration/3,
                     delay: 0,
                     options: .curveEaseOut,
-                    animations: { tmpView.pin.all() },
+                    animations: {
+                        tmpView.snp.remakeConstraints {
+                            $0.edges.equalToSuperview()
+                        }
+                        tmpView.superview?.layoutIfNeeded()
+                    },
                     completion: { _ in
 
                         addSearchWordVC.view.isHidden = false
