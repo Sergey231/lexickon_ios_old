@@ -9,7 +9,7 @@
 import UIKit
 import Swinject
 import Combine
-import PinLayout
+import SnapKit
 import UIExtensions
 import CombineCocoa
 import RxFlow
@@ -28,10 +28,19 @@ final class LoginViewController: UIViewController, Stepper {
     private var _bottom: CGFloat = 0
     
     private let contentView = UIView()
-    private let logo = UIImageView(image: Asset.Images.textLogo.image)
+    private let logo: UIImageView = {
+        let imageView = UIImageView(image: Asset.Images.textLogo.image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.setShadow()
+        return imageView
+    }()
     private let emailTextField = LXTextField()
     private let passwordTextField = LXTextField()
-    private let activityIndicator = UIActivityIndicatorView()
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = .white
+        return indicator
+    }()
     private let loginButton = UIButton()
     
     init(presenter: LoginPresenter) {
@@ -55,7 +64,6 @@ final class LoginViewController: UIViewController, Stepper {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.mainBG.color
         createUI()
-        layout()
         configureUI()
     }
     
@@ -71,10 +79,6 @@ final class LoginViewController: UIViewController, Stepper {
     private func configureUI() {
         
         configureHidingKeyboardByTap()
-        
-        logo.contentMode = .scaleAspectFit
-        logo.setShadow()
-        activityIndicator.color = .white
         
         emailTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationEmailTextfield,
@@ -133,8 +137,7 @@ final class LoginViewController: UIViewController, Stepper {
         
         presenterOutput.keyboardHeight
             .drive(onNext: { [weak self] in
-                self?._bottom = $0
-                self?.layout()
+                self?.layout(bottom: $0)
             })
             .disposed(by: disposeBag)
 
@@ -170,48 +173,55 @@ final class LoginViewController: UIViewController, Stepper {
             activityIndicator,
             loginButton
         )
+        
+        contentView.snp.makeConstraints {
+            $0.top.right.left.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        logo.snp.makeConstraints {
+            $0.size.equalTo(UIScreen.main.bounds.height/3)
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(view.frame.size.height * -0.12)
+        }
+        
+        emailTextField.snp.makeConstraints {
+            $0.size.equalTo(Sizes.textField)
+            $0.left.equalToSuperview().offset(Margin.mid)
+            $0.right.equalToSuperview().offset(-Margin.mid)
+            $0.centerY.equalToSuperview().offset(Margin.mid)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.height.equalTo(Sizes.textField.height)
+            $0.left.equalToSuperview().offset(Margin.mid)
+            $0.right.equalToSuperview().offset(-Margin.mid)
+            $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
+        }
+        
+        activityIndicator.snp.makeConstraints {
+            $0.height.equalTo(Sizes.textField.height)
+            $0.width.equalToSuperview()
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(Margin.regular)
+        }
+        
+        loginButton.snp.makeConstraints {
+            $0.size.equalTo(Sizes.button)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(activityIndicator.snp.bottom).offset(Margin.regular)
+        }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        layout()
-    }
-    
-    fileprivate func layout() {
-        
-        contentView.pin
-            .top()
-            .horizontally()
-            .bottom(_bottom)
-        
-        logo.pin
-            .size(contentView.frame.height/3)
-            .hCenter()
-            .vCenter(-12%)
-        
-        emailTextField.pin
-            .height(Sizes.textField.height)
-            .horizontally(Margin.mid)
-            .vCenter()
-            .marginTop(Margin.mid)
-        
-        passwordTextField.pin
-            .height(Sizes.textField.height)
-            .horizontally(Margin.mid)
-            .below(of: emailTextField)
-            .marginTop(Margin.regular)
-        
-        activityIndicator.pin
-            .size(Sizes.activityIndicator)
-            .below(of: passwordTextField)
-            .marginTop(Margin.big)
-            .hCenter()
-        
-        loginButton.pin
-            .hCenter()
-            .size(Sizes.button)
-            .bottom(Margin.big)
+    fileprivate func layout(bottom: CGFloat) {
+        contentView.snp.updateConstraints {
+            $0.bottom.equalToSuperview().offset(-bottom)
+        }
+        let logoSize = UIScreen.main.bounds.height - bottom
+        logo.snp.updateConstraints {
+            $0.size.equalTo(logoSize/3)
+        }
+        logo.superview?.layoutIfNeeded()
+        contentView.superview?.layoutIfNeeded()
     }
 }
 
