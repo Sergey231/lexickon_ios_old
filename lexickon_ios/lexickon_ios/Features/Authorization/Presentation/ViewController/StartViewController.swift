@@ -8,7 +8,7 @@
 
 import UIKit
 import Swinject
-import PinLayout
+import SnapKit
 import CombineCocoa
 import RxFlow
 import RxCocoa
@@ -27,10 +27,31 @@ class StartViewController: UIViewController, Stepper {
     private let presenter: StartPresenter
     
     fileprivate let logo = StartLogo()
-    fileprivate let beginButton = UIButton()
-    fileprivate let iAmHaveAccountButton = UIButton()
-    fileprivate let createAccountButton = UIButton()
-    fileprivate let bgImageView = UIImageView(image: Asset.Images.bgStart.image)
+    
+    fileprivate let beginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(L10n.startBeginButtonTitle, for: .normal)
+        return button
+    }()
+    
+    fileprivate let iAmHaveAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(L10n.startIHaveAccountButtonTitle, for: .normal)
+        return button
+    }()
+    
+    fileprivate let createAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(L10n.startCreateAccountButtonTitle, for: .normal)
+        return button
+    }()
+    
+    fileprivate let bgImageView: UIImageView = {
+        let imageView = UIImageView(image: Asset.Images.bgStart.image)
+        imageView.contentMode = .scaleAspectFill
+        imageView.alpha = 0
+        return imageView
+    }()
     
     private let disposeBag = DisposeBag()
     
@@ -54,7 +75,6 @@ class StartViewController: UIViewController, Stepper {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Asset.Colors.mainBG.color
-        
         createUI()
         configureUI()
     }
@@ -75,27 +95,21 @@ class StartViewController: UIViewController, Stepper {
         navigationController?.setupLargeMainThemeNavBar()
         
         resetAnimations()
-        
-        bgImageView.contentMode = .scaleAspectFill
-        bgImageView.alpha = 0
-        
-        beginButton.setTitle(L10n.startBeginButtonTitle, for: .normal)
-        beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
-        iAmHaveAccountButton.setTitle(L10n.startIHaveAccountButtonTitle, for: .normal)
-        iAmHaveAccountButton.setRoundedBorderedStyle(
-            bgColor: Asset.Colors.mainBG.color,
-            borderColor: Asset.Colors.mainBG.color
-        )
-        createAccountButton.setTitle(L10n.startCreateAccountButtonTitle, for: .normal)
-        createAccountButton.setRoundedBorderedStyle(
-            bgColor: Asset.Colors.mainBG.color,
-            borderColor: Asset.Colors.mainBG.color
-        )
-        
+
         let presenterInput = StartPresenter.Input(
             beginButtonTapped: beginButton.rx.tap.asSignal(),
             iAmHaveAccountButtonTapped: iAmHaveAccountButton.rx.tap.asSignal(),
             createAccountButtonTapped: createAccountButton.rx.tap.asSignal()
+        )
+        
+        beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        iAmHaveAccountButton.setRoundedBorderedStyle(
+            bgColor: Asset.Colors.mainBG.color,
+            borderColor: Asset.Colors.mainBG.color
+        )
+        createAccountButton.setRoundedBorderedStyle(
+            bgColor: Asset.Colors.mainBG.color,
+            borderColor: Asset.Colors.mainBG.color
         )
         
         beginButton.rx.tap
@@ -148,36 +162,34 @@ class StartViewController: UIViewController, Stepper {
             iAmHaveAccountButton,
             createAccountButton
         )
+        
+        logo.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        createAccountButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(Sizes.button)
+            $0.bottom.equalToSuperview().offset(-Margin.huge)
+        }
+        
+        iAmHaveAccountButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(Sizes.button)
+            $0.bottom.equalTo(createAccountButton.snp.top).offset(-Margin.mid)
+        }
+        
+        beginButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(Sizes.button)
+            $0.bottom.equalTo(iAmHaveAccountButton.snp.top).offset(-Margin.mid)
+        }
     }
     
     fileprivate func resetAnimations() {
         beginButton.alpha = 0
         createAccountButton.alpha = 0
         iAmHaveAccountButton.alpha = 0
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        logo.pin
-            .center()
-        
-        createAccountButton.pin
-            .hCenter()
-            .size(Sizes.button)
-            .bottom(Margin.huge)
-        
-        iAmHaveAccountButton.pin
-            .hCenter()
-            .size(Sizes.button)
-            .above(of: createAccountButton)
-            .marginBottom(Margin.mid)
-        
-        beginButton.pin
-            .hCenter()
-            .size(Sizes.button)
-            .above(of: iAmHaveAccountButton)
-            .marginBottom(Margin.mid)
     }
     
     fileprivate func animateBG() {
