@@ -25,8 +25,6 @@ final class LoginViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    private var _bottom: CGFloat = 0
-    
     private let contentView = UIView()
     private let logo: UIImageView = {
         let imageView = UIImageView(image: Asset.Images.textLogo.image)
@@ -41,7 +39,12 @@ final class LoginViewController: UIViewController, Stepper {
         indicator.color = .white
         return indicator
     }()
-    private let loginButton = UIButton()
+    
+    private let loginButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(L10n.loginLoginButtonTitle, for: .normal)
+        return button
+    }()
     
     init(presenter: LoginPresenter) {
         self.presenter = presenter
@@ -78,6 +81,7 @@ final class LoginViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
+        title = L10n.loginScreenTitle
         configureHidingKeyboardByTap()
         
         emailTextField.configure(input: LXTextField.Input(
@@ -155,7 +159,6 @@ final class LoginViewController: UIViewController, Stepper {
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
             .disposed(by: disposeBag)
         
-        loginButton.setTitle(L10n.loginLoginButtonTitle, for: .normal)
         loginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
         
         loginButton.configureTapScaleAnimation()

@@ -24,6 +24,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     let steps = PublishRelay<Step>()
+    
     fileprivate let presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     

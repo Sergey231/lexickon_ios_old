@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PinLayout
+import SnapKit
 
 final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     

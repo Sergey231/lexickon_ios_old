@@ -76,7 +76,6 @@
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA66A2D23D47BDC00B39E68 /* RegistrationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2C23D47BDC00B39E68 /* RegistrationAssembler.swift */; };
 		ECA66A3023D47CD600B39E68 /* StartAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA66A2F23D47CD600B39E68 /* StartAssembler.swift */; };
-		ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = ECA66A3B23DA01BF00B39E68 /* PinLayout */; };
 		ECA95B7A256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA95B79256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift */; };
 		ECA95B84256F8908006332A5 /* AddWordButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA95B83256F8908006332A5 /* AddWordButtonView.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
@@ -229,7 +228,6 @@
 				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
-				ECA66A3C23DA01BF00B39E68 /* PinLayout in Frameworks */,
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
@@ -852,7 +850,6 @@
 			packageProductDependencies = (
 				EC1505F522D4C9D6007E2B3B /* Swinject */,
 				EC407EDE237C3B8400A3FD42 /* Validator */,
-				ECA66A3B23DA01BF00B39E68 /* PinLayout */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
 				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
@@ -925,7 +922,6 @@
 			packageReferences = (
 				EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */,
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
-				ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */,
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
 				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
@@ -1371,14 +1367,6 @@
 				minimumVersion = 0.2.2;
 			};
 		};
-		ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/layoutBox/PinLayout";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.13;
-			};
-		};
 		ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
@@ -1484,11 +1472,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		ECA66A3B23DA01BF00B39E68 /* PinLayout */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ECA66A3A23DA01BF00B39E68 /* XCRemoteSwiftPackageReference "PinLayout" */;
-			productName = PinLayout;
 		};
 		ECAC1D60255A848D008B0ECC /* LexickonApi */ = {
 			isa = XCSwiftPackageProductDependency;

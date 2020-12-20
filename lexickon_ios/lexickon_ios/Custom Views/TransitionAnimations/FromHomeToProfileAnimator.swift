@@ -62,7 +62,7 @@ final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransit
 
                 let profileIconViewSize = ProfileMainScreenViewController.UIConstants.profileIconSize
                 let profileIconTopMargin = ProfileMainScreenViewController.UIConstants.profileIconTopMargin
-                    + profileVC.view.pin.safeArea.top
+                    + profileVC.view.safeAreaInsets.top
 
                 tmpProfileIconView.layer.cornerRadius = profileIconViewSize / 2
                 tmpProfileIconView.snp.makeConstraints{

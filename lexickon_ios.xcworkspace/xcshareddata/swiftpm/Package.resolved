@@ -74,15 +74,6 @@
         }
       },
       {
-        "package": "PinLayout",
-        "repositoryURL": "https://github.com/layoutBox/PinLayout",
-        "state": {
-          "branch": null,
-          "revision": "1a7614c3167cd8699c6096a8bfae77502d63cb40",
-          "version": "1.9.3"
-        }
-      },
-      {
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {

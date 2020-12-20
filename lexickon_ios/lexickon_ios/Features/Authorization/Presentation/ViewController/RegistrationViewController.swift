@@ -2,7 +2,7 @@
 import UIKit
 import Swinject
 import Combine
-import PinLayout
+import SnapKit
 import RxCombine
 import UIExtensions
 import TimelaneCombine
@@ -21,15 +21,38 @@ final class RegistrationViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    private var _bottom: CGFloat = 0
-    
     private let contentView = UIView()
-    private let logo = UIImageView(image: Asset.Images.textLogo.image)
-    private let nameTextField = LXTextField()
+    
+    private let logo: UIImageView = {
+        let imageView = UIImageView(image: Asset.Images.textLogo.image)
+        imageView.contentMode = .scaleAspectFit
+        imageView.setShadow()
+        return imageView
+    }()
+    
+    private let nameTextField: LXTextField = {
+        let textField = LXTextField()
+        textField.textField.enablesReturnKeyAutomatically = true
+        textField.textField.becomeFirstResponder()
+        return textField
+    }()
+    
     private let emailTextField = LXTextField()
     private let passwordTextField = LXTextField()
-    private let msgLabel = UILabel()
-    private let submitButton = UIButton()
+    
+    private let msgLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    private let registrateButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
+        return button
+    }()
     
     init(presenter: RegistrationPresenter) {
         self.presenter = presenter
@@ -67,7 +90,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     private func createUI() {
         view.addSubviews(
             contentView,
-            submitButton
+            registrateButton
         )
         
         contentView.addSubviews(
@@ -77,53 +100,56 @@ final class RegistrationViewController: UIViewController, Stepper {
             passwordTextField,
             msgLabel
         )
+        
+        contentView.snp.makeConstraints {
+            $0.top.right.left.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        logo.snp.makeConstraints {
+            $0.size.equalTo(UIScreen.main.bounds.height/3)
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(view.frame.size.height * -0.1)
+        }
+        
+        nameTextField.snp.makeConstraints {
+            $0.size.equalTo(Sizes.textField)
+            $0.left.equalToSuperview().offset(Margin.mid)
+            $0.right.equalToSuperview().offset(-Margin.mid)
+            $0.centerY.equalToSuperview()
+        }
+        
+        emailTextField.snp.makeConstraints {
+            $0.size.equalTo(Sizes.textField)
+            $0.left.equalToSuperview().offset(Margin.mid)
+            $0.right.equalToSuperview().offset(-Margin.mid)
+            $0.top.equalTo(nameTextField.snp.bottom).offset(Margin.regular)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.height.equalTo(Sizes.textField.height)
+            $0.left.equalToSuperview().offset(Margin.mid)
+            $0.right.equalToSuperview().offset(-Margin.mid)
+            $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
+        }
+        
+        registrateButton.snp.makeConstraints {
+            $0.size.equalTo(Sizes.button)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(Margin.regular)
+        }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        layout()
-    }
-    
-    private func layout() {
-        
-        contentView.pin
-            .top()
-            .horizontally()
-            .bottom(_bottom)
-        
-        logo.pin
-            .size(contentView.frame.height/3)
-            .hCenter()
-            .vCenter(-12%)
-        
-        nameTextField.pin
-            .height(Sizes.textField.height)
-            .horizontally(Margin.mid)
-            .vCenter()
-            .marginTop(Margin.mid)
-        
-        emailTextField.pin
-            .height(Sizes.textField.height)
-            .horizontally(Margin.mid)
-            .below(of: nameTextField)
-            .marginTop(Margin.regular)
-        
-        passwordTextField.pin
-            .height(Sizes.textField.height)
-            .horizontally(Margin.mid)
-            .below(of: emailTextField)
-            .marginTop(Margin.regular)
-        
-        msgLabel.pin
-            .height(Sizes.textField.height)
-            .horizontally(Margin.mid)
-            .below(of: passwordTextField)
-            .marginTop(Margin.regular)
-        
-        submitButton.pin
-            .hCenter()
-            .size(Sizes.button)
-            .bottom(Margin.big)
+    private func layout(bottom: CGFloat) {
+        contentView.snp.updateConstraints {
+            $0.bottom.equalToSuperview().offset(-bottom)
+        }
+        let logoSize = UIScreen.main.bounds.height - bottom
+        logo.snp.updateConstraints {
+            $0.size.equalTo(logoSize/3)
+        }
+        logo.superview?.layoutIfNeeded()
+        contentView.superview?.layoutIfNeeded()
     }
     
     private func configureUI() {
@@ -132,12 +158,6 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         configureHidingKeyboardByTap()
         title = L10n.registrationCreateAccountTitle
-        
-        logo.contentMode = .scaleAspectFit
-        logo.setShadow()
-        
-        nameTextField.textField.enablesReturnKeyAutomatically = true
-        nameTextField.textField.becomeFirstResponder()
         
         nameTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationNameTextfield,
@@ -159,13 +179,9 @@ final class RegistrationViewController: UIViewController, Stepper {
             returnKeyType: .join
         ))
         
-        msgLabel.textAlignment = .center
-        msgLabel.textColor = .white
-        msgLabel.numberOfLines = 2
-        
         let submit = Signal.merge(
             passwordTextField.textField.rx.controlEvent(.editingDidEndOnExit).asSignal(),
-            submitButton.rx.tap.asSignal()
+            registrateButton.rx.tap.asSignal()
         )
         
         let input = RegistrationPresenter.Input(
@@ -180,10 +196,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         presenterOutput.keyboardHeight
             .drive(onNext: { [weak self] height in
-                UIView.animate(withDuration: 0.2) {
-                    self?._bottom = height
-                    self?.layout()
-                }
+                self?.layout(bottom: height)
             })
             .disposed(by: disposeBag)
         
@@ -202,12 +215,12 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         presenterOutput.canSubmit
             .asDriver()
-            .drive(submitButton.rx.valid)
+            .drive(registrateButton.rx.valid)
             .disposed(by: disposeBag)
         
         presenterOutput.errorMsg
             .asObservable()
-            .do(onNext: { _ in self.submitButton.hide() })
+            .do(onNext: { _ in self.registrateButton.hide() })
             .flatMapLatest {
                 return self.showMsg(
                     msg: $0,
@@ -216,7 +229,7 @@ final class RegistrationViewController: UIViewController, Stepper {
                 )
             }
             .subscribe(onNext: { _ in
-                self.submitButton.show()
+                self.registrateButton.show()
                 print("🌈🌈🌈")
             })
             .disposed(by: disposeBag)
@@ -242,9 +255,8 @@ final class RegistrationViewController: UIViewController, Stepper {
             .drive(msgLabel.rx.textWithAnimaiton)
             .disposed(by: disposeBag)
         
-        submitButton.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
-        submitButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
-        submitButton.configureTapScaleAnimation()
+        registrateButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        registrateButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
         presenterOutput.registrated

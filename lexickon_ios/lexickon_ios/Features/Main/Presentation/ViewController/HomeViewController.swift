@@ -8,7 +8,7 @@
 
 import UIKit
 import Swinject
-import PinLayout
+import SnapKit
 import Combine
 import CombineCocoa
 import RxFlow
@@ -30,16 +30,35 @@ final class HomeViewController: UIViewController, Stepper {
     }
     
     let steps = PublishRelay<Step>()
+    
     fileprivate let presenter: HomePresenter
     fileprivate var disposeBag = DisposeBag()
     private var dataSource: RxDataSource!
     private let needToRefrash = PublishRelay<Void>()
     
     private let headerView = HomeHeaderView()
-    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        tableView.rowHeight = 100
+        tableView.register(cellType: HomeWordCell.self)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(
+            top: UIConstants.headerHeight - 50,
+            left: 0,
+            bottom: 0,
+            right: 0
+        )
+        return tableView
+    }()
     
     // public for Animator
-    let profileIconView = ProfileIconView()
+    let profileIconView: ProfileIconView = {
+        let iconView = ProfileIconView()
+        iconView.backgroundColor = .gray
+        return iconView
+    }()
+    
     let addWordButton = AddWordButtonView()
     
     init(
@@ -68,28 +87,10 @@ final class HomeViewController: UIViewController, Stepper {
         createUI()
         configureUI()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        profileIconView.pin
-            .size(UIConstants.profileIconSize)
-            .right(Margin.regular)
-            .top(view.pin.safeArea.top)
-        
-        tableView.pin.all()
-        
-        addWordButton.pin
-            .size(UIConstants.addButtonSize)
-            .bottom(Margin.mid)
-            .right()
-    }
-    
+
     private func configureUI() {
+        
+        tableView.delegate = self
         
         let presenterOutput = presenter.configurate(
             input: .init(needLoadNextWordsPage: needToRefrash.asSignal())
@@ -97,13 +98,11 @@ final class HomeViewController: UIViewController, Stepper {
         
         configureTableView(with: presenterOutput.sections)
         
-        profileIconView.backgroundColor = .gray
         profileIconView.configure(input: ProfileIconView.Input())
             .didTap
             .map { _ in MainStep.profile }
             .emit(to: steps)
             .disposed(by: disposeBag)
-        
         
         tableView.rx.didScroll.asDriver()
             .map { _ in self.tableView.contentOffset.y * -1 }
@@ -119,6 +118,22 @@ final class HomeViewController: UIViewController, Stepper {
             profileIconView,
             addWordButton
         )
+        
+        profileIconView.snp.makeConstraints {
+            $0.size.equalTo(UIConstants.profileIconSize)
+            $0.right.equalToSuperview().offset(-Margin.regular)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        addWordButton.snp.makeConstraints {
+            $0.size.equalTo(UIConstants.addButtonSize)
+            $0.bottom.equalToSuperview().offset(-Margin.mid)
+            $0.right.equalToSuperview()
+        }
     }
     
     private func configureTableView(with models: Driver<[HomeWordSectionModel]>) {
@@ -134,18 +149,6 @@ final class HomeViewController: UIViewController, Stepper {
         dataSource = RxDataSource(
             animationConfiguration: AnimationConfiguration(),
             configureCell: configureCell
-        )
-        
-        tableView.rowHeight = 100
-        tableView.register(cellType: HomeWordCell.self)
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        tableView.contentInset = UIEdgeInsets(
-            top: UIConstants.headerHeight - 50,
-            left: 0,
-            bottom: 0,
-            right: 0
         )
         
         addWordButton.didTap

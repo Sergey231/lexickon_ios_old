@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Swinject
 import RxFlow
-import PinLayout
+import SnapKit
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     
@@ -26,8 +26,18 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    let profileIconView = ProfileIconView()
-    let backButton = UIButton()
+    let profileIconView: ProfileIconView = {
+        let iconView = ProfileIconView()
+        iconView.backgroundColor = .gray
+        return iconView
+    }()
+    
+    let backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Asset.Images.backArrow.image, for: .normal)
+        return button
+    }()
+    
     private let logoutButton = UIButton()
     
     init(presenter: ProfileMainScreenPresenter) {
@@ -47,25 +57,6 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         return .lightContent
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        backButton.pin
-            .top(view.pin.safeArea.top)
-            .left()
-            .size(56)
-        
-        profileIconView.pin
-            .size(UIConstants.profileIconSize)
-            .hCenter()
-            .top(view.pin.safeArea.top + UIConstants.profileIconTopMargin)
-        
-        logoutButton.pin
-            .hCenter()
-            .size(Sizes.button)
-            .bottom(Margin.big)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
@@ -74,11 +65,33 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         configureUI()
     }
     
+    private func createUI() {
+        view.addSubviews(
+            backButton,
+            logoutButton,
+            profileIconView
+        )
+        
+        backButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.size.equalTo(56)
+            $0.left.equalToSuperview()
+        }
+        
+        profileIconView.snp.makeConstraints {
+            $0.size.equalTo(UIConstants.profileIconSize)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIConstants.profileIconTopMargin)
+        }
+        
+        logoutButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(Sizes.button)
+            $0.bottom.equalToSuperview().offset(-Margin.big)
+        }
+    }
+    
     private func configureUI() {
-        
-        profileIconView.backgroundColor = .gray
-        
-        backButton.setImage(Asset.Images.backArrow.image, for: .normal)
         
         logoutButton.setTitle(
             L10n.loginLoginButtonTitle,
@@ -104,13 +117,5 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             .map { _ in ProfileStep.logout }
             .emit(to: steps )
             .disposed(by: disposeBag)
-    }
-    
-    private func createUI() {
-        view.addSubviews(
-            backButton,
-            logoutButton,
-            profileIconView
-        )
     }
 }

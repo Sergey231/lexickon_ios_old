@@ -197,11 +197,12 @@ class StartViewController: UIViewController, Stepper {
         let bgImageHeight = view.frame.size.height
         let bgImageWidth = (Asset.Images.bgStart.image as UIImage).width(withHeight: bgImageHeight)
         
-        bgImageView.pin
-            .height(bgImageHeight)
-            .width(bgImageWidth)
-            .left()
-            .vertically()
+        bgImageView.snp.makeConstraints {
+            $0.height.equalTo(bgImageHeight)
+            $0.width.equalTo(bgImageWidth)
+            $0.left.equalToSuperview()
+            $0.top.equalToSuperview()
+        }
         
         UIView.animate(withDuration: 10) {
             self.bgImageView.alpha = 0.2
@@ -213,11 +214,11 @@ class StartViewController: UIViewController, Stepper {
             options: [.curveEaseOut]
         ) {
             let newLeft = (bgImageWidth - self.view.frame.size.width) * -1
-            self.bgImageView.pin
-                .height(bgImageHeight)
-                .width(bgImageWidth)
-                .left(newLeft)
-                .vertically()
+            
+            self.bgImageView.snp.updateConstraints {
+                $0.left.equalToSuperview().offset(newLeft)
+            }
+            self.bgImageView.superview?.layoutIfNeeded()
             
         } completion: { _ in
             UIView.animate(withDuration: 2) {

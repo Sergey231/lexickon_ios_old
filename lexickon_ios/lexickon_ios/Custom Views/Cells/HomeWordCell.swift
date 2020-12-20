@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import PinLayout
+import SnapKit
 import RxSwift
 import RxCocoa
 import Utils
@@ -48,17 +48,25 @@ extension HomeWordViewModel: IdentifiableType {
 
 class HomeWordCell: DisposableTableViewCell {
 
-    private let wordLable = UILabel()
-    private let progressView = WideWordProgressView()
+    private var disposeBag = DisposeBag()
+    
+    private let wordLable: UILabel = {
+        let label = UILabel()
+        label.font = .systemRegular24
+        return label
+    }()
+    
+    private let progressView: WideWordProgressView = {
+        let view = WideWordProgressView()
+        view.layer.cornerRadius = 13
+        return view
+    }()
+    
     private lazy var iconImageView = UIImageView()
     private lazy var logo = Logo()
     
-    private var disposeBag = DisposeBag()
-    
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -71,44 +79,52 @@ class HomeWordCell: DisposableTableViewCell {
             wordLable
         )
         contentView.addSubview(input.isReady ? logo : iconImageView)
+        
+        contentView.snp.makeConstraints {
+            $0.right.equalToSuperview().offset(-Margin.regular)
+            $0.left.equalToSuperview().offset(Margin.regular)
+            $0.top.equalToSuperview().offset(Margin.regular)
+            $0.bottom.equalToSuperview().offset(-Margin.regular/2)
+        }
+        
+        progressView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
     
     private func layout(with input: HomeWordViewModel) {
-        contentView.pin
-            .horizontally(Margin.regular)
-            .vertically(Margin.regular/2)
-        
-        progressView.pin.all()
         
         if input.isReady {
-            logo.pin
-                .left(Margin.regular)
-                .size(45)
-                .vCenter()
             
-            wordLable.pin
-                .after(of: logo)
-                .marginLeft(Margin.small)
-                .sizeToFit(.heightFlexible)
-                .vCenter()
+            logo.snp.remakeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.size.equalTo(45)
+                $0.centerY.equalToSuperview()
+            }
+            
+            wordLable.snp.makeConstraints {
+                $0.left.equalTo(logo.snp.right).offset(Margin.small)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.centerY.equalToSuperview()
+            }
+            
         } else {
             
-            iconImageView.pin
-                .left(Margin.regular)
-                .size(45)
-                .vCenter()
-            
-            wordLable.pin
-                .after(of: iconImageView)
-                .marginLeft(Margin.small)
-                .sizeToFit(.heightFlexible)
-                .vCenter()
+            iconImageView.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.size.equalTo(45)
+                $0.centerY.equalToSuperview()
+            }
+
+            wordLable.snp.makeConstraints {
+                $0.left.equalTo(iconImageView.snp.right).offset(Margin.small)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.centerY.equalToSuperview()
+            }
         }
     }
     
     private func configureUI() {
-        progressView.layer.cornerRadius = 13
-        wordLable.font = .systemRegular24
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 16
