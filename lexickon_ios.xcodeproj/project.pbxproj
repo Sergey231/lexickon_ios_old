@@ -193,6 +193,9 @@
 		ECAC6C002448261000D86417 /* IntroFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFlow.swift; sourceTree = "<group>"; };
 		ECAF50C9257F610700F021EA /* Rx+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+UITextField.swift"; sourceTree = "<group>"; };
 		ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumerableTextFieldsHelper.swift; sourceTree = "<group>"; };
+		ECB50D2D258F45FB003B9A68 /* Utils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils; sourceTree = "<group>"; };
+		ECB50D2E258F4608003B9A68 /* UIExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIExtensions; sourceTree = "<group>"; };
+		ECB50D2F258F460B003B9A68 /* RxExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RxExtensions; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
 		ECC48E7E254564A3006503C2 /* ProfileAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembler.swift; sourceTree = "<group>"; };
@@ -368,6 +371,7 @@
 			children = (
 				EC4278D722D070E5001218AB /* lexickon_ios */,
 				EC4278EE22D070E7001218AB /* lexickon_iosTests */,
+				ECB50CB6258F45E3003B9A68 /* Packages */,
 				EC4278D622D070E5001218AB /* Products */,
 				EC1F9E2123E3478B0044EF9D /* Frameworks */,
 			);
@@ -591,6 +595,16 @@
 				ECAF50C9257F610700F021EA /* Rx+UITextField.swift */,
 			);
 			path = UITextField;
+			sourceTree = "<group>";
+		};
+		ECB50CB6258F45E3003B9A68 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				ECB50D2F258F460B003B9A68 /* RxExtensions */,
+				ECB50D2E258F4608003B9A68 /* UIExtensions */,
+				ECB50D2D258F45FB003B9A68 /* Utils */,
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 		ECC48E7825455CE7006503C2 /* Profile */ = {

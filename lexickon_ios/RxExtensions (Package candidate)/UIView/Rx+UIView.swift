@@ -35,10 +35,10 @@ extension Reactive where Base: UIView {
         
     var height: Binder<CGFloat> {
         return Binder(base) { base, height in
-            base.pin
-                .top()
-                .horizontally()
-                .height(height)
+            base.snp.remakeConstraints {
+                $0.height.equalTo(height)
+                $0.width.equalToSuperview()
+            }
         }
     }
 }
