@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "9e0328127dfb801cefe8ac53a13c0c90a7770448",
-          "version": "5.4.0"
+          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
+          "version": "5.4.1"
         }
       },
       {
@@ -80,6 +80,15 @@
           "branch": null,
           "revision": "0038bcbab4292f3b028632556507c124e5ba69f3",
           "version": "3.0.0"
+        }
+      },
+      {
+        "package": "Resolver",
+        "repositoryURL": "https://github.com/hmlongco/Resolver.git",
+        "state": {
+          "branch": null,
+          "revision": "c15dcb6a826fd8ce2a36930e676ff9e888232fc9",
+          "version": "1.2.1"
         }
       },
       {

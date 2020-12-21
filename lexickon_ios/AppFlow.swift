@@ -10,6 +10,7 @@ import UIKit
 import RxFlow
 import RxCocoa
 import RxSwift
+import Resolver
 
 enum AppStep: Step {
     case authorization

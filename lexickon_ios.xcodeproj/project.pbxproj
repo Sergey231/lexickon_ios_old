@@ -86,6 +86,7 @@
 		ECAF506B257F53BD00F021EA /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF506A257F53BD00F021EA /* CombineCocoa */; };
 		ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50C9257F610700F021EA /* Rx+UITextField.swift */; };
 		ECAF50CE257F632300F021EA /* EnumerableTextFieldsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */; };
+		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
 		ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = ECB66529247FD2F60052C658 /* JWTDecode */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
@@ -227,6 +228,7 @@
 			files = (
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				ECCB193323F834010069C5A7 /* RxCombine in Frameworks */,
+				ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
@@ -882,6 +884,7 @@
 				ECAF5062257E663300F021EA /* Utils */,
 				ECAF506A257F53BD00F021EA /* CombineCocoa */,
 				EC7B6FA325861A1500EB1D28 /* SnapKit */,
+				ECB50D3A259075B9003B9A68 /* Resolver */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -947,6 +950,7 @@
 				EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 				EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -1389,6 +1393,14 @@
 				minimumVersion = 0.5.7;
 			};
 		};
+		ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Resolver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
 		ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/auth0/JWTDecode.swift.git";
@@ -1500,6 +1512,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
 			productName = CombineCocoa;
+		};
+		ECB50D3A259075B9003B9A68 /* Resolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */;
+			productName = Resolver;
 		};
 		ECB66529247FD2F60052C658 /* JWTDecode */ = {
 			isa = XCSwiftPackageProductDependency;
