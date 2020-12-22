@@ -26,7 +26,6 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
                     password: credentiols.password
                 )
                 .responseDecodable(of: LxUserTokenGet.self) { res in
-                    print("😀")
                     switch res.result {
                     case .success(let model):
                         keychain[.authTokenId] = model.id

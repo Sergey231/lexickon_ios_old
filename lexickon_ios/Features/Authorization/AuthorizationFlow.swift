@@ -8,6 +8,7 @@
 
 import UIKit
 import RxFlow
+import Resolver
 
 enum AuthorizationStep: Step {
     case start
@@ -49,31 +50,49 @@ class AuthorizationFlow: Flow {
     }
     
     private func navigateToStart() -> FlowContributors {
-        let startVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
-            StartViewController.self
-        )!
+        let startVC: StartViewController = Resolver.resolve()
         (root as! UINavigationController).pushViewController(startVC, animated: true)
         return .one(flowContributor: .contribute(withNext: startVC))
     }
     
     private func navigateToLogin() -> FlowContributors {
-        let loginVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
-            LoginViewController.self
-        )!
+        let loginVC: LoginViewController = Resolver.resolve()
         (root as! UINavigationController).pushViewController(loginVC, animated: true)
         return .one(flowContributor: .contribute(withNext: loginVC))
     }
     
     private func navigateToRegistration() -> FlowContributors {
-        let registratioinVC = AuthorizationAssembler.shr.assembler.resolver.resolve(
-            RegistrationViewController.self
-        )!
-        (root as! UINavigationController).pushViewController(registratioinVC, animated: true)
-        return .one(flowContributor: .contribute(withNext: registratioinVC))
+        let registrationVC: RegistrationViewController = Resolver.resolve()
+        (root as! UINavigationController).pushViewController(registrationVC, animated: true)
+        return .one(flowContributor: .contribute(withNext: registrationVC))
     }
     
     private func navigateToMain(animated: Bool) -> FlowContributors {
-        DI.shr.appContainer.resetObjectScope(.authorizationObjectScope)
         return .end(forwardToParentFlowWithStep: AppStep.main(animated: animated))
+    }
+}
+
+extension Resolver {
+    public static func registerAuthorisationObjects() {
+        
+        register { StartViewController(presenter: resolve()) }
+        register { StartPresenter(authorisationInteractor: resolve()) }
+       
+        register { LoginViewController(presenter: resolve()) }
+        register { LoginPresenter(authorisationInteractor: resolve()) }
+        
+        register { RegistrationViewController(presenter: resolve()) }
+        register { RegistrationPresenter(authorisationInteractor: resolve()) }
+        
+        register {
+            AuthorizationInteractor(
+                userTokenRepository: resolve(),
+                userRepository: resolve()
+            )
+        }
+            .implements(AuthorizationInteractorProtocol.self)
+        
+        register { UserRepository() }.implements(UserRepositoryProtocol.self)
+        register { AuthTokenRepository() }.implements(AuthTokenRepositoryProtocol.self)
     }
 }

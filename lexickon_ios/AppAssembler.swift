@@ -8,7 +8,6 @@
 
 import Swinject
 
-
 extension ObjectScope {
     
     static let appObjectScope = ObjectScope(
