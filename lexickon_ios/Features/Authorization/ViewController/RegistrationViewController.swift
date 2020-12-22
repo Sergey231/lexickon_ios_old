@@ -267,15 +267,6 @@ final class RegistrationViewController: UIViewController, Stepper {
     }
 }
 
-// MARK: - Reset DI Container
-extension RegistrationViewController {
-
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        DI.shr.appContainer.resetObjectScope(ObjectScope.registrationObjectScope)
-    }
-}
-
 extension RegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.tag == 2 {

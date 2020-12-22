@@ -227,12 +227,3 @@ final class LoginViewController: UIViewController, Stepper {
         contentView.superview?.layoutIfNeeded()
     }
 }
-
-//// MARK: - Reset DI Container
-extension LoginViewController {
-    
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-        DI.shr.appContainer.resetObjectScope(ObjectScope.loginObjectScope)
-    }
-}
