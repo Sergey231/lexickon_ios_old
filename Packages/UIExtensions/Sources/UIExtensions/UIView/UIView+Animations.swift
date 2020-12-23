@@ -61,26 +61,26 @@ extension UIView {
         CATransaction.commit()
     }
     
-    public func startFlayingAnimation() {
+    public func startFlayingAnimation(withDuration: TimeInterval = 3) {
         tag = 1
-        flayingAnimate()
+        flayingAnimate(withDuration: withDuration)
     }
     
     public func stopFlayingAnimation() {
         tag = 0
     }
     
-    private func flayingAnimate() {
+    private func flayingAnimate(withDuration: TimeInterval) {
         let startY = layer.frame.origin.y
-        UIView.animate(withDuration: 3, animations: {
+        UIView.animate(withDuration: withDuration, animations: {
             self.layer.frame.origin.y = startY + 10
         }) { _ in
             let startY = self.layer.frame.origin.y
-            UIView.animate(withDuration: 3, animations: {
+            UIView.animate(withDuration: withDuration, animations: {
                 self.layer.frame.origin.y = startY - 10
             }) { _ in
                 if self.tag == 1 {
-                    self.flayingAnimate()
+                    self.flayingAnimate(withDuration: withDuration)
                 }
             }
         }
