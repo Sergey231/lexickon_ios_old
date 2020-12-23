@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EC1505F522D4C9D6007E2B3B /* Swinject */; };
 		EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E442352E68C00C82DFF /* Assets.swift */; };
 		EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E462352E95E00C82DFF /* Strings.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
@@ -208,7 +207,6 @@
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
-				EC1505F622D4C9D6007E2B3B /* Swinject in Frameworks */,
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
@@ -708,7 +706,6 @@
 			);
 			name = lexickon_ios;
 			packageProductDependencies = (
-				EC1505F522D4C9D6007E2B3B /* Swinject */,
 				EC407EDE237C3B8400A3FD42 /* Validator */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
 				ECCB193223F834010069C5A7 /* RxCombine */,
@@ -781,7 +778,6 @@
 			);
 			mainGroup = EC4278CC22D070E5001218AB;
 			packageReferences = (
-				EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */,
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
 				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
@@ -1153,14 +1149,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.2;
-			};
-		};
 		EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
@@ -1268,11 +1256,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EC1505F522D4C9D6007E2B3B /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC1505F422D4C9D6007E2B3B /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
 		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
