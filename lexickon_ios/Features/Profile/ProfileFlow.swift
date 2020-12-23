@@ -8,6 +8,7 @@
 
 import UIKit
 import RxFlow
+import Resolver
 
 enum ProfileStep: Step {
     case profileMainScreen
@@ -46,21 +47,26 @@ class ProfileFlow: Flow {
     }
     
     private func navigateToProfileMainScreen() -> FlowContributors {
-        let profileMainScreenVC = ProfileAssembler.shr.assembler.resolver.resolve(
-            ProfileMainScreenViewController.self
-        )!
-        rootViewController.pushViewController(profileMainScreenVC, animated: true)
-        return .one(flowContributor: .contribute(withNext: profileMainScreenVC))
+        let vc: ProfileMainScreenViewController = Resolver.resolve()
+        rootViewController.pushViewController(vc, animated: true)
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToHome() -> FlowContributors {
-        DI.shr.appContainer.resetObjectScope(.profileScopeObject)
         rootViewController.popToRootViewController(animated: true)
         return .none
     }
     
     private func navigateToAuthorization() -> FlowContributors {
-        DI.shr.appContainer.resetObjectScope(.profileScopeObject)
         return .end(forwardToParentFlowWithStep: MainStep.authorization)
+    }
+}
+
+extension Resolver {
+    public static func registerProfileObjects() {
+        register { ProfileMainScreenViewController(presenter: resolve()) }
+        register { ProfileMainScreenPresenter(interactor: resolve()) }
+        register { ProfileInteractor(authTokenRepository: resolve()) }.implements(ProfileInteractorProtocol.self)
+        register { AuthTokenRepository() }.implements(AuthTokenRepositoryProtocol.self)
     }
 }

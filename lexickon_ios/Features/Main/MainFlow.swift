@@ -8,6 +8,7 @@
 
 import UIKit
 import RxFlow
+import Resolver
 
 enum MainStep: Step {
     case home(animated: Bool)
@@ -49,14 +50,15 @@ class MainFlow: Flow {
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
-        let homeVC = MainAssembler.shr.assembler.resolver.resolve(
-            HomeViewController.self
-        )!
+//        let homeVC = MainAssembler.shr.assembler.resolver.resolve(
+//            HomeViewController.self
+//        )!
+        let vc: HomeViewController = Resolver.resolve()
         let navigationController = (root as! UINavigationController)
-        navigationController.setViewControllers([homeVC], animated: animated)
+        navigationController.setViewControllers([vc], animated: animated)
         navigationController.navigationBar.isHidden = true
-        navigationController.delegate = homeVC
-        return .one(flowContributor: .contribute(withNext: homeVC))
+        navigationController.delegate = vc
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToNewWord() -> FlowContributors {
@@ -81,7 +83,15 @@ class MainFlow: Flow {
     
     private func navigateToAuthorization() -> FlowContributors {
         (root as! UINavigationController).delegate = nil
-        DI.shr.appContainer.resetObjectScope(.mainObjectScope)
         return .end(forwardToParentFlowWithStep: AppStep.authorization)
+    }
+}
+
+extension Resolver {
+    public static func registerMainObjects() {
+        register { HomeViewController(presenter: resolve()) }
+        register { HomePresenter(mainInteractor: resolve()) }
+        register { MainInteractor(wordRepository: resolve()) }.implements(MainInteractorProtocol.self)
+        register { WordRepository() }.implements(WordRepositoryProtocol.self)
     }
 }

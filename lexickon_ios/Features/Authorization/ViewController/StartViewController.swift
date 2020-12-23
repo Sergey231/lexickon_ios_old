@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Swinject
 import SnapKit
 import CombineCocoa
 import RxFlow

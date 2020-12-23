@@ -8,6 +8,7 @@
 
 import UIKit
 import RxFlow
+import Resolver
 
 enum IntroStep: Step {
     case firstPage
@@ -28,7 +29,6 @@ final class IntroFlow: Flow {
     deinit {
         print("\(type(of: self)): \(#function)")
     }
-
     
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? IntroStep else { return .none }
@@ -41,9 +41,13 @@ final class IntroFlow: Flow {
     }
         
     private func navigateToFirst() -> FlowContributors {
-        let introVC = IntroAssembler.shr.assembler.resolver.resolve(
-            IntroViewController.self
-        )!
-        return .one(flowContributor: .contribute(withNext: introVC))
+        let vc: IntroViewController = Resolver.resolve()
+        return .one(flowContributor: .contribute(withNext: vc))
+    }
+}
+
+extension Resolver {
+    public static func registerIntroObjects() {
+        register { IntroViewController() }
     }
 }

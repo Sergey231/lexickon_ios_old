@@ -8,6 +8,7 @@
 
 import UIKit
 import RxFlow
+import Resolver
 
 enum NewWordStep: Step {
     case addSearch
@@ -45,11 +46,9 @@ final class NewWordFlow: Flow {
     }
     
     private func navigateToAddSearchWord() -> FlowContributors {
-        let addSerchWordVC = NewWordAssembler.shr.assembler.resolver.resolve(
-            AddSearchWordViewController.self
-        )!
-        rootViewController.pushViewController(addSerchWordVC, animated: true)
-        return .one(flowContributor: .contribute(withNext: addSerchWordVC))
+        let vc: AddSearchWordViewController = Resolver.resolve()
+        rootViewController.pushViewController(vc, animated: true)
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToWordCard() -> FlowContributors {
@@ -57,8 +56,14 @@ final class NewWordFlow: Flow {
     }
     
     private func navigateToHome() -> FlowContributors {
-        DI.shr.appContainer.resetObjectScope(.newWordScopeObject)
         rootViewController.popToRootViewController(animated: true)
         return .none
+    }
+}
+
+extension Resolver {
+    public static func registerNewWordObjects() {
+        register { AddSearchWordViewController(presenter: resolve()) }
+        register { AddSearchWordPresenter() }
     }
 }

@@ -6,31 +6,13 @@
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
-import Swinject
+import Resolver
 
-extension ObjectScope {
-    
-    static let appObjectScope = ObjectScope(
-        storageFactory: PermanentStorage.init,
-        description: "appObjectScope"
-    )
-    
-    static let mainObjectScope = ObjectScope(
-        storageFactory: PermanentStorage.init,
-        description: "mainObjectScope",
-        parent: ObjectScope.appObjectScope
-    )
-}
-
-final class DI {
-    
-    static let shr = DI()
-    
-    let appAssembler: Assembler
-    let appContainer: Container
-    
-    init() {
-        appContainer = Container()
-        appAssembler = Assembler(container: appContainer)
+extension Resolver: ResolverRegistering {
+    public static func registerAllServices() {
+        registerAuthorisationObjects()
+        registerMainObjects()
+        registerProfileObjects()
+        registerNewWordObjects()
     }
 }

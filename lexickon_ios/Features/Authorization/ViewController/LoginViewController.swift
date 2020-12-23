@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Swinject
 import Combine
 import SnapKit
 import UIExtensions

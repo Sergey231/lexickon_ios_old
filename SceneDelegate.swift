@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftUI
-import Swinject
 import RxSwift
 import RxFlow
 
