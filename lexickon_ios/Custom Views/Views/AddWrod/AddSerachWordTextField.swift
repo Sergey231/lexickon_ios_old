@@ -70,7 +70,7 @@ final class AddSearchWordTextField: UIView {
         searchIconImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(Margin.regular)
             $0.top.equalToSuperview().offset(Margin.small)
-            $0.size.equalTo(Sizes.icon)
+            $0.size.equalTo(Size.icon)
         }
         
         textView.snp.makeConstraints {

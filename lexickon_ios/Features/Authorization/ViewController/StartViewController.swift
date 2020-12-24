@@ -12,6 +12,7 @@ import CombineCocoa
 import RxFlow
 import RxCocoa
 import RxSwift
+import UIExtensions
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -91,7 +92,7 @@ class StartViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        navigationController?.setupLargeMainThemeNavBar()
+        navigationController?.setupLargeTitleNavBar()
         
         resetAnimations()
 
@@ -168,19 +169,19 @@ class StartViewController: UIViewController, Stepper {
         
         createAccountButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(Sizes.button)
+            $0.size.equalTo(Size.button)
             $0.bottom.equalToSuperview().offset(-Margin.huge)
         }
         
         iAmHaveAccountButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(Sizes.button)
+            $0.size.equalTo(Size.button)
             $0.bottom.equalTo(createAccountButton.snp.top).offset(-Margin.mid)
         }
         
         beginButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(Sizes.button)
+            $0.size.equalTo(Size.button)
             $0.bottom.equalTo(iAmHaveAccountButton.snp.top).offset(-Margin.mid)
         }
     }

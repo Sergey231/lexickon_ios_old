@@ -100,7 +100,6 @@
 		ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECD6DBE8240E6659004B8CDA /* TimelaneCombine */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
-		ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF9974422D9E76E002A77D8 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,7 +192,6 @@
 		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
-		ECF9974422D9E76E002A77D8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,7 +397,6 @@
 				EC48727622DA0F0A00F20D59 /* Assets.xcassets */,
 				EC48727422DA0ECD00F20D59 /* Images.xcassets */,
 				EC48727822DA0F3D00F20D59 /* Colors.xcassets */,
-				ECF9974422D9E76E002A77D8 /* Constants.swift */,
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -856,7 +853,6 @@
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
 				ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* LXTextField.swift in Sources */,
-				ECF9974522D9E76E002A77D8 /* Constants.swift in Sources */,
 				ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */,

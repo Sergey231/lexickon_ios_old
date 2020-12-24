@@ -70,7 +70,7 @@ extension UIView {
         tag = 0
     }
     
-    private func flayingAnimate(withDuration: TimeInterval) {
+    private func flayingAnimate(withDuration: TimeInterval = 3) {
         let startY = layer.frame.origin.y
         UIView.animate(withDuration: withDuration, animations: {
             self.layer.frame.origin.y = startY + 10

@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import UIExtensions
 
 final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     

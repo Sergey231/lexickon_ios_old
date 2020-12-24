@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import RxFlow
 import SnapKit
+import UIExtensions
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     
@@ -85,7 +86,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         
         logoutButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.size.equalTo(Sizes.button)
+            $0.size.equalTo(Size.button)
             $0.bottom.equalToSuperview().offset(-Margin.big)
         }
     }

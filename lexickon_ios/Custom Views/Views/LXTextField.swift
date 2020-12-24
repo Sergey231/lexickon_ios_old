@@ -43,25 +43,25 @@ final class LXTextField: UIView {
         
         var leftIconWidth: CGFloat {
             return leftIcon != nil
-                ? Sizes.icon.width
+                ? Size.icon.width
                 : 0
         }
         
         var rightIconWidth: CGFloat {
             return rightIcon != nil
-                ? Sizes.icon.width
+                ? Size.icon.width
                 : 0
         }
         
         var hTextFieldMargin: CGFloat {
             return rightIcon != nil || leftIcon != nil
-                ? Sizes.icon.width
+                ? Size.icon.width
                 : 0
         }
         
         var eyeIconWidth: CGFloat {
             return isSecure
-                ? Sizes.icon.width
+                ? Size.icon.width
                 : 0
         }
     }
@@ -166,7 +166,7 @@ final class LXTextField: UIView {
 
         textField.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(Sizes.uiTextField.height)
+            $0.height.equalTo(Size.textField.height)
             $0.right.equalTo(-input.hTextFieldMargin)
             $0.left.equalTo(input.hTextFieldMargin)
         }
@@ -174,7 +174,7 @@ final class LXTextField: UIView {
         lineView.snp.makeConstraints {
             $0.top.equalTo(textField.snp.bottom)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(Sizes.line.height)
+            $0.height.equalTo(Size.line.height)
         }
     }
 }

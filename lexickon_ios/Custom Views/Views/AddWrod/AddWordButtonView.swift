@@ -67,12 +67,12 @@ final class AddWordButtonView: UIView {
         }
         
         searchIconImageView.snp.makeConstraints {
-            $0.size.equalTo(Sizes.icon)
+            $0.size.equalTo(Size.icon)
             $0.center.equalToSuperview()
         }
         
         addIconImageView.snp.makeConstraints {
-            $0.size.equalTo(Sizes.icon)
+            $0.size.equalTo(Size.icon)
             $0.center.equalToSuperview()
         }
     }

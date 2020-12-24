@@ -190,27 +190,27 @@ final class LoginViewController: UIViewController, Stepper {
         }
         
         emailTextField.snp.makeConstraints {
-            $0.height.equalTo(Sizes.textField.height)
+            $0.height.equalTo(Size.textField.height)
             $0.left.equalToSuperview().offset(Margin.mid)
             $0.right.equalToSuperview().offset(-Margin.mid)
             $0.centerY.equalToSuperview().offset(Margin.mid)
         }
         
         passwordTextField.snp.makeConstraints {
-            $0.height.equalTo(Sizes.textField.height)
+            $0.height.equalTo(Size.textField.height)
             $0.left.equalToSuperview().offset(Margin.mid)
             $0.right.equalToSuperview().offset(-Margin.mid)
             $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
         }
         
         activityIndicator.snp.makeConstraints {
-            $0.height.equalTo(Sizes.textField.height)
+            $0.height.equalTo(Size.textField.height)
             $0.width.equalToSuperview()
             $0.top.equalTo(passwordTextField.snp.bottom).offset(Margin.regular)
         }
         
         loginButton.snp.makeConstraints {
-            $0.size.equalTo(Sizes.button)
+            $0.size.equalTo(Size.button)
             $0.centerX.equalToSuperview()
             $0.top.equalTo(activityIndicator.snp.bottom).offset(Margin.regular)
         }
