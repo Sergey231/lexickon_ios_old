@@ -196,7 +196,7 @@ class StartViewController: UIViewController, Stepper {
         let bgImageHeight = view.frame.size.height
         let bgImageWidth = (Asset.Images.bgStart.image as UIImage).width(withHeight: bgImageHeight)
         
-        bgImageView.snp.makeConstraints {
+        bgImageView.snp.remakeConstraints {
             $0.height.equalTo(bgImageHeight)
             $0.width.equalTo(bgImageWidth)
             $0.left.equalToSuperview()

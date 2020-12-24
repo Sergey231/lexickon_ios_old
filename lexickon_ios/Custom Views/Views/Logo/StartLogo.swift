@@ -145,24 +145,24 @@ final class StartLogo: UIView {
 
     private func setupContstraiots() {
         
-        logoImageView.snp.makeConstraints {
+        logoImageView.snp.remakeConstraints {
             $0.height.width.equalTo(animationState.logoSize)
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(animationState.logoPosition)
         }
         
-        textLogoImageView.snp.makeConstraints {
+        textLogoImageView.snp.remakeConstraints {
             $0.size.equalTo(CGSize(width: 200, height: 80))
             $0.center.equalToSuperview()
         }
         
-        leftEyeView.snp.makeConstraints {
+        leftEyeView.snp.remakeConstraints {
             $0.height.width.equalTo(animationState.eyesSize)
             $0.centerX.equalToSuperview().offset(animationState.leftEyeCenterX)
             $0.centerY.equalToSuperview().offset(animationState.eyesVCenter)
         }
         
-        rightEyeView.snp.makeConstraints {
+        rightEyeView.snp.remakeConstraints {
             $0.height.width.equalTo(animationState.eyesSize)
             $0.centerX.equalToSuperview().offset(animationState.rightEyeCenterX)
             $0.centerY.equalToSuperview().offset(animationState.eyesVCenter)
