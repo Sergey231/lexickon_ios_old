@@ -112,14 +112,14 @@ final class RegistrationViewController: UIViewController, Stepper {
         }
         
         nameTextField.snp.makeConstraints {
-            $0.size.equalTo(Sizes.textField)
+            $0.height.equalTo(Sizes.textField.height)
             $0.left.equalToSuperview().offset(Margin.mid)
             $0.right.equalToSuperview().offset(-Margin.mid)
             $0.centerY.equalToSuperview()
         }
         
         emailTextField.snp.makeConstraints {
-            $0.size.equalTo(Sizes.textField)
+            $0.height.equalTo(Sizes.textField.height)
             $0.left.equalToSuperview().offset(Margin.mid)
             $0.right.equalToSuperview().offset(-Margin.mid)
             $0.top.equalTo(nameTextField.snp.bottom).offset(Margin.regular)
