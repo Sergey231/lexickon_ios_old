@@ -177,7 +177,9 @@ final class LoginViewController: UIViewController, Stepper {
         )
         
         contentView.snp.makeConstraints {
-            $0.top.right.left.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview().offset(0)
+            $0.right.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
         
@@ -188,7 +190,7 @@ final class LoginViewController: UIViewController, Stepper {
         }
         
         emailTextField.snp.makeConstraints {
-            $0.size.equalTo(Sizes.textField)
+            $0.height.equalTo(Sizes.textField.height)
             $0.left.equalToSuperview().offset(Margin.mid)
             $0.right.equalToSuperview().offset(-Margin.mid)
             $0.centerY.equalToSuperview().offset(Margin.mid)
