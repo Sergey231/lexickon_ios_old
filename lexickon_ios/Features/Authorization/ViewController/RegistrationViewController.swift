@@ -11,12 +11,13 @@ import RxRelay
 import RxSwift
 import RxCocoa
 import RxExtensions
+import Resolver
 
 final class RegistrationViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    private let presenter: RegistrationPresenter
+    @Injected var presenter: RegistrationPresenter
     
     private let disposeBag = DisposeBag()
     
@@ -53,8 +54,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         return button
     }()
     
-    init(presenter: RegistrationPresenter) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

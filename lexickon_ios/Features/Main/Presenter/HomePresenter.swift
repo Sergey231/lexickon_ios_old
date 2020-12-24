@@ -10,16 +10,13 @@ import RxDataSources
 import RxCocoa
 import LexickonApi
 import RxDataSources
+import Resolver
 
 final class HomePresenter: PresenterType {
     
-    private let mainInteractor: MainInteractorProtocol
+    @Injected var mainInteractor: MainInteractorProtocol
     
     typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
-    
-    init(mainInteractor: MainInteractorProtocol) {
-        self.mainInteractor = mainInteractor
-    }
     
     struct Input {
         let needLoadNextWordsPage: Signal<Void>

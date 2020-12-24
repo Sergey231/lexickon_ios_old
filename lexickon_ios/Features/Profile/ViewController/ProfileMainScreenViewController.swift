@@ -12,6 +12,7 @@ import RxSwift
 import RxFlow
 import SnapKit
 import UIExtensions
+import Resolver
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     
@@ -22,7 +23,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    private let presenter: ProfileMainScreenPresenter
+    @Injected var presenter: ProfileMainScreenPresenter
     
     private let disposeBag = DisposeBag()
     
@@ -40,8 +41,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private let logoutButton = UIButton()
     
-    init(presenter: ProfileMainScreenPresenter) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

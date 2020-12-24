@@ -10,15 +10,12 @@ import RxSwift
 import RxCocoa
 import SwiftUI
 import Validator
+import Resolver
 
 final class RegistrationPresenter: PresenterType {
     
-    private let authorisationInteractor: AuthorizationInteractorProtocol
-    
-    init(authorisationInteractor: AuthorizationInteractorProtocol) {
-        self.authorisationInteractor = authorisationInteractor
-    }
-    
+    @Injected var authorisationInteractor: AuthorizationInteractorProtocol
+
     struct Input {
         let name: Driver<String>
         let email: Driver<String>

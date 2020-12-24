@@ -9,14 +9,11 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Resolver
 
 final class ProfileMainScreenPresenter: PresenterType {
     
-    private let interactor: ProfileInteractorProtocol
-    
-    init(interactor: ProfileInteractorProtocol) {
-        self.interactor = interactor
-    }
+    @Injected var interactor: ProfileInteractorProtocol
     
     struct Input {
         let didTapLogOut: Signal<Void>

@@ -15,12 +15,13 @@ import RxFlow
 import RxRelay
 import RxSwift
 import RxCocoa
+import Resolver
 
 final class LoginViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    private let presenter: LoginPresenter
+    @Injected var presenter: LoginPresenter
     
     private let disposeBag = DisposeBag()
     
@@ -45,8 +46,7 @@ final class LoginViewController: UIViewController, Stepper {
         return button
     }()
     
-    init(presenter: LoginPresenter) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

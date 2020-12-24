@@ -15,6 +15,7 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import RxDataSources
+import Resolver
 
 final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRecognizerDelegate {
     
@@ -24,17 +25,14 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     
     let steps = PublishRelay<Step>()
     
-    fileprivate let presenter: AddSearchWordPresenter
+    @Injected var presenter: AddSearchWordPresenter
     fileprivate var disposeBag = DisposeBag()
     
     // Public for Custom transitioning animator
     let headerView = AddWordHeaderView()
     let placeholderView = AddSearchPlaceholderView()
     
-    init(
-        presenter: AddSearchWordPresenter
-    ) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

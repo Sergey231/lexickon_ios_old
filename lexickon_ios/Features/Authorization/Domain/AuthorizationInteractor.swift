@@ -1,19 +1,11 @@
 
 import RxSwift
 import LexickonApi
+import Resolver
 
 final class AuthorizationInteractor {
-    
-    let userTokenRepository: AuthTokenRepositoryProtocol
-    let userRepository: UserRepositoryProtocol
-    
-    init(
-        userTokenRepository: AuthTokenRepositoryProtocol,
-        userRepository: UserRepositoryProtocol
-    ) {
-        self.userTokenRepository = userTokenRepository
-        self.userRepository = userRepository
-    }
+    @Injected var userTokenRepository: AuthTokenRepositoryProtocol
+    @Injected var userRepository: UserRepositoryProtocol
 }
 
 extension AuthorizationInteractor: AuthorizationInteractorProtocol {

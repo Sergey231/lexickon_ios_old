@@ -15,6 +15,7 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import RxDataSources
+import Resolver
 
 final class HomeViewController: UIViewController, Stepper {
     
@@ -30,7 +31,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    fileprivate let presenter: HomePresenter
+    @Injected var presenter: HomePresenter
     fileprivate var disposeBag = DisposeBag()
     private var dataSource: RxDataSource!
     private let needToRefrash = PublishRelay<Void>()
@@ -60,10 +61,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     let addWordButton = AddWordButtonView()
     
-    init(
-        presenter: HomePresenter
-    ) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

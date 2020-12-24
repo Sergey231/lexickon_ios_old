@@ -13,6 +13,7 @@ import RxFlow
 import RxCocoa
 import RxSwift
 import UIExtensions
+import Resolver
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -24,7 +25,7 @@ class StartViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    private let presenter: StartPresenter
+    @Injected var presenter: StartPresenter
     
     fileprivate let logo = StartLogo()
     
@@ -55,8 +56,7 @@ class StartViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    init(presenter: StartPresenter) {
-        self.presenter = presenter
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     

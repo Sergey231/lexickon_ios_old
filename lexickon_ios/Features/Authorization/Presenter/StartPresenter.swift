@@ -9,14 +9,11 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Resolver
 
 final class StartPresenter: PresenterType {
     
-    private let authorisationInteractor: AuthorizationInteractorProtocol
-    
-    init(authorisationInteractor: AuthorizationInteractorProtocol) {
-        self.authorisationInteractor = authorisationInteractor
-    }
+    @Injected var authorisationInteractor: AuthorizationInteractorProtocol
     
     struct Input {
         let beginButtonTapped: Signal<Void>

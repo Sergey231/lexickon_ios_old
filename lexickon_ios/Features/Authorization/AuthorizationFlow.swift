@@ -75,24 +75,14 @@ class AuthorizationFlow: Flow {
 extension Resolver {
     public static func registerAuthorisationObjects() {
         
-        register { StartViewController(presenter: resolve()) }
-        register { StartPresenter(authorisationInteractor: resolve()) }
-       
-        register { LoginViewController(presenter: resolve()) }
-        register { LoginPresenter(authorisationInteractor: resolve()) }
-        
-        register { RegistrationViewController(presenter: resolve()) }
-        register { RegistrationPresenter(authorisationInteractor: resolve()) }
-        
-        register {
-            AuthorizationInteractor(
-                userTokenRepository: resolve(),
-                userRepository: resolve()
-            )
-        }
-            .implements(AuthorizationInteractorProtocol.self)
-        
-        register { UserRepository() }.implements(UserRepositoryProtocol.self)
-        register { AuthTokenRepository() }.implements(AuthTokenRepositoryProtocol.self)
+        register { StartViewController() }
+        register { StartPresenter() }
+        register { LoginViewController() }
+        register { LoginPresenter() }
+        register { RegistrationViewController() }
+        register { RegistrationPresenter() }
+        register { AuthorizationInteractor() as AuthorizationInteractorProtocol }
+        register { UserRepository() as UserRepositoryProtocol }
+        register { AuthTokenRepository() as AuthTokenRepositoryProtocol }
     }
 }

@@ -50,9 +50,6 @@ class MainFlow: Flow {
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
-//        let homeVC = MainAssembler.shr.assembler.resolver.resolve(
-//            HomeViewController.self
-//        )!
         let vc: HomeViewController = Resolver.resolve()
         let navigationController = (root as! UINavigationController)
         navigationController.setViewControllers([vc], animated: animated)
@@ -89,9 +86,9 @@ class MainFlow: Flow {
 
 extension Resolver {
     public static func registerMainObjects() {
-        register { HomeViewController(presenter: resolve()) }
-        register { HomePresenter(mainInteractor: resolve()) }
-        register { MainInteractor(wordRepository: resolve()) }.implements(MainInteractorProtocol.self)
-        register { WordRepository() }.implements(WordRepositoryProtocol.self)
+        register { HomeViewController() }
+        register { HomePresenter() }
+        register { MainInteractor() as MainInteractorProtocol }
+        register { WordRepository() as WordRepositoryProtocol }
     }
 }

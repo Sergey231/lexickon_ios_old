@@ -8,14 +8,11 @@
 
 import LexickonApi
 import RxSwift
+import Resolver
 
 final class MainInteractor: MainInteractorProtocol {
     
-    let wordRepository: WordRepositoryProtocol
-    
-    init(wordRepository: WordRepositoryProtocol) {
-        self.wordRepository = wordRepository
-    }
+    @Injected var wordRepository: WordRepositoryProtocol
     
     func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
         wordRepository.words(per: per, page: page)

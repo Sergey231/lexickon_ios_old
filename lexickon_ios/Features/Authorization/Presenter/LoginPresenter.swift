@@ -12,15 +12,12 @@ import LexickonApi
 import RxCocoa
 import RxSwift
 import RxCombine
+import Resolver
 
 final class LoginPresenter: PresenterType {
     
-    private let authorisationInteractor: AuthorizationInteractorProtocol
-    
-    init(authorisationInteractor: AuthorizationInteractorProtocol) {
-        self.authorisationInteractor = authorisationInteractor
-    }
-    
+    @Injected var authorisationInteractor: AuthorizationInteractorProtocol
+
     struct Input {
         let email: Driver<String?>
         let password: Driver<String?>

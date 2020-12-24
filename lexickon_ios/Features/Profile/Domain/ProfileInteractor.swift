@@ -7,14 +7,11 @@
 //
 
 import RxSwift
+import Resolver
 
 struct ProfileInteractor: ProfileInteractorProtocol {
     
-    let authTokenRepository: AuthTokenRepositoryProtocol
-    
-    init(authTokenRepository: AuthTokenRepositoryProtocol) {
-        self.authTokenRepository = authTokenRepository
-    }
+    @Injected var authTokenRepository: AuthTokenRepositoryProtocol
     
     func logout() -> Single<Void> {
         return authTokenRepository.erasе()

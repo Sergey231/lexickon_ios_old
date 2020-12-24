@@ -64,9 +64,9 @@ class ProfileFlow: Flow {
 
 extension Resolver {
     public static func registerProfileObjects() {
-        register { ProfileMainScreenViewController(presenter: resolve()) }
-        register { ProfileMainScreenPresenter(interactor: resolve()) }
-        register { ProfileInteractor(authTokenRepository: resolve()) }.implements(ProfileInteractorProtocol.self)
-        register { AuthTokenRepository() }.implements(AuthTokenRepositoryProtocol.self)
+        register { ProfileMainScreenViewController() }
+        register { ProfileMainScreenPresenter() }
+        register { ProfileInteractor() as ProfileInteractorProtocol }
+        register { AuthTokenRepository() as AuthTokenRepositoryProtocol }
     }
 }
