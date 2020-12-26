@@ -4,7 +4,7 @@ import LexickonApi
 import Resolver
 
 final class AuthorizationInteractor {
-    @Injected var userTokenRepository: AuthTokenRepositoryProtocol
+    @Injected var authTokenRepository: AuthTokenRepositoryProtocol
     @Injected var userRepository: UserRepositoryProtocol
 }
 
@@ -35,12 +35,12 @@ extension AuthorizationInteractor: AuthorizationInteractorProtocol {
             password: password
         )
         
-        return userTokenRepository.get(with: userCredantions)
+        return authTokenRepository.get(with: userCredantions)
             .map { _ in () }
     }
     
     var hasAuthToken: Single<Bool> {
-        userTokenRepository.cach
+        authTokenRepository.cach
             .map { _ -> Bool in true }
             .catchErrorJustReturn(false)
     }
