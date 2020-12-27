@@ -52,6 +52,8 @@
 		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
 		EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */; };
 		EC835EF723F1B17700E3288B /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC835EF623F1B17700E3288B /* Logo.swift */; };
+		EC86901D259759410005636A /* TranslationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC86901C259759410005636A /* TranslationRepository.swift */; };
+		EC869021259759970005636A /* TranslationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC869020259759970005636A /* TranslationRepositoryProtocol.swift */; };
 		EC870953254E8F4800553B87 /* FromProfileToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC870952254E8F4800553B87 /* FromProfileToHomeAnimator.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
@@ -148,6 +150,8 @@
 		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC82BE1A25485E8400037DA0 /* FromHomeToProfileAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromHomeToProfileAnimator.swift; sourceTree = "<group>"; };
 		EC835EF623F1B17700E3288B /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		EC86901C259759410005636A /* TranslationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRepository.swift; sourceTree = "<group>"; };
+		EC869020259759970005636A /* TranslationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		EC870952254E8F4800553B87 /* FromProfileToHomeAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromProfileToHomeAnimator.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -431,6 +435,15 @@
 			path = Logo;
 			sourceTree = "<group>";
 		};
+		EC86901B2597591C0005636A /* TranslationRepository */ = {
+			isa = PBXGroup;
+			children = (
+				EC86901C259759410005636A /* TranslationRepository.swift */,
+				EC869020259759970005636A /* TranslationRepositoryProtocol.swift */,
+			);
+			path = TranslationRepository;
+			sourceTree = "<group>";
+		};
 		EC873D6823DD5AD800787E51 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +496,7 @@
 		ECA144882572878E00352868 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				EC86901B2597591C0005636A /* TranslationRepository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -849,6 +863,7 @@
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
 				ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
+				EC869021259759970005636A /* TranslationRepositoryProtocol.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
 				EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */,
 				ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */,
@@ -890,6 +905,7 @@
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,
+				EC86901D259759410005636A /* TranslationRepository.swift in Sources */,
 				EC7AD82B256A656B00BBD059 /* WideWordProgressView.swift in Sources */,
 				EC236627257CEA950085D6B0 /* AddSerachWordTextField.swift in Sources */,
 			);
