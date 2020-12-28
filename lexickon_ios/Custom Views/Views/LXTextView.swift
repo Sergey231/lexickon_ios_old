@@ -12,7 +12,7 @@ import RxSwift
 import UIExtensions
 import SnapKit
 
-final class LXTextField: UIView {
+final class LXTextView: UIView {
     
     struct Input {
         let placeholder: String
@@ -179,9 +179,9 @@ final class LXTextField: UIView {
     }
 }
 
-extension LXTextField: EnumerableTextField {}
+extension LXTextView: EnumerableTextField {}
 
-extension Reactive where Base: LXTextField {
+extension Reactive where Base: LXTextView {
     var sbmitText: Driver<String> {
         return Driver.merge(
             base.textField.rx.controlEvent(.editingChanged).asDriver(),
