@@ -30,15 +30,15 @@ final class RegistrationViewController: UIViewController, Stepper {
         return imageView
     }()
     
-    private let nameTextField: LXTextView = {
-        let textField = LXTextView()
+    private let nameTextField: LXTextField = {
+        let textField = LXTextField()
         textField.textField.enablesReturnKeyAutomatically = true
         textField.textField.becomeFirstResponder()
         return textField
     }()
     
-    private let emailTextField = LXTextView()
-    private let passwordTextField = LXTextView()
+    private let emailTextField = LXTextField()
+    private let passwordTextField = LXTextField()
     
     private let msgLabel: UILabel = {
         let label = UILabel()
@@ -158,20 +158,20 @@ final class RegistrationViewController: UIViewController, Stepper {
         configureHidingKeyboardByTap()
         title = L10n.registrationCreateAccountTitle
         
-        nameTextField.configure(input: LXTextView.Input(
+        nameTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationNameTextfield,
             leftIcon: Asset.Images.accountIcon.image,
             returnKeyType: .next
         ))
         
-        emailTextField.configure(input: LXTextView.Input(
+        emailTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
-        passwordTextField.configure(input: LXTextView.Input(
+        passwordTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             isSecure: true,

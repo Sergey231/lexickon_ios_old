@@ -32,8 +32,8 @@ final class LoginViewController: UIViewController, Stepper {
         imageView.setShadow()
         return imageView
     }()
-    private let emailTextField = LXTextView()
-    private let passwordTextField = LXTextView()
+    private let emailTextField = LXTextField()
+    private let passwordTextField = LXTextField()
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.color = .white
@@ -83,7 +83,7 @@ final class LoginViewController: UIViewController, Stepper {
         title = L10n.loginScreenTitle
         configureHidingKeyboardByTap()
         
-        emailTextField.configure(input: LXTextView.Input(
+        emailTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
@@ -91,7 +91,7 @@ final class LoginViewController: UIViewController, Stepper {
             initValue: "sergey.borovikov@list.ru"
         ))
         
-        passwordTextField.configure(input: LXTextView.Input(
+        passwordTextField.configure(input: LXTextField.Input(
             placeholder: L10n.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             isSecure: true,
