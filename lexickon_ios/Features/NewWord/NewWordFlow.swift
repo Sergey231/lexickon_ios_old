@@ -63,7 +63,7 @@ final class NewWordFlow: Flow {
 
 extension Resolver {
     public static func registerNewWordObjects() {
-        register { AddSearchWordViewController(presenter: resolve()) }
+        register { AddSearchWordViewController() }
         register { AddSearchWordPresenter() }
     }
 }

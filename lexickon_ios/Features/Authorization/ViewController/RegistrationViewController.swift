@@ -10,7 +10,6 @@ import RxFlow
 import RxRelay
 import RxSwift
 import RxCocoa
-import RxExtensions
 import Resolver
 
 final class RegistrationViewController: UIViewController, Stepper {

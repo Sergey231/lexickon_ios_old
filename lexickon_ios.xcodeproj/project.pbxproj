@@ -42,6 +42,8 @@
 		EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC52C75A22DA0C1F000C88C5 /* Localizable.strings */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
+		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
+		EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */; };
 		EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */; };
 		EC7AD82B256A656B00BBD059 /* WideWordProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */; };
 		EC7B6F9F2583ABF200EB1D28 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B6F9E2583ABF200EB1D28 /* TextView.swift */; };
@@ -142,6 +144,8 @@
 		EC52C75A22DA0C1F000C88C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
+		EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideWordProgressView.swift; sourceTree = "<group>"; };
 		EC7B6F9E2583ABF200EB1D28 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
@@ -426,6 +430,15 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		EC6F3A62259B6A6A00D35BE3 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */,
+				EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		EC835EF523F1B15600E3288B /* Logo */ = {
 			isa = PBXGroup;
 			children = (
@@ -438,8 +451,8 @@
 		EC86901B2597591C0005636A /* TranslationRepository */ = {
 			isa = PBXGroup;
 			children = (
-				EC86901C259759410005636A /* TranslationRepository.swift */,
 				EC869020259759970005636A /* TranslationRepositoryProtocol.swift */,
+				EC86901C259759410005636A /* TranslationRepository.swift */,
 			);
 			path = TranslationRepository;
 			sourceTree = "<group>";
@@ -480,17 +493,10 @@
 				ECA1454A257296F600352868 /* NewWordFlow.swift */,
 				ECA14491257289F800352868 /* Presenter */,
 				ECA1449225728A0800352868 /* ViewController */,
-				ECA144872572876D00352868 /* Domain */,
+				EC6F3A62259B6A6A00D35BE3 /* Domain */,
 				ECA144882572878E00352868 /* Data */,
 			);
 			path = NewWord;
-			sourceTree = "<group>";
-		};
-		ECA144872572876D00352868 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		ECA144882572878E00352868 /* Data */ = {
@@ -842,6 +848,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */,
 				EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */,
 				EC3139DF253C328B007FFCB0 /* Rx+UIImageView.swift in Sources */,
 				EC3139D6253B305B007FFCB0 /* UIButton+TapAnimations.swift in Sources */,
@@ -862,6 +869,7 @@
 				ECC48E9625457403006503C2 /* ProfileMainScreenViewController.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
 				ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */,
+				EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC869021259759970005636A /* TranslationRepositoryProtocol.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
