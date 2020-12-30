@@ -10,5 +10,5 @@ import RxSwift
 import LexickonApi
 
 protocol NewWordInteractorProtocol {
-    func translate(_ word: String) -> Single<LxWordGet>
+    func translate(_ word: String) -> Single<String>
 }
