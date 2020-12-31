@@ -65,5 +65,6 @@ extension Resolver {
     public static func registerNewWordObjects() {
         register { AddSearchWordViewController() }
         register { AddSearchWordPresenter() }
+        register { NewWordInteractor() as NewWordInteractorProtocol }
     }
 }
