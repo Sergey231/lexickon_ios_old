@@ -20,6 +20,7 @@ final class AddSearchWordTextField: UIView {
     
     struct Output {
         let height: Driver<CGFloat>
+        let text: ControlProperty<String?>
     }
     
     private let disposeBag = DisposeBag()
@@ -86,6 +87,9 @@ final class AddSearchWordTextField: UIView {
             .estimatedHeight
             .map { $0 < UIConstants.minHeight ? UIConstants.minHeight : $0 }
         
-        return Output(height: textViewHeight)
+        return Output(
+            height: textViewHeight,
+            text: textView.rx.text
+        )
     }
 }

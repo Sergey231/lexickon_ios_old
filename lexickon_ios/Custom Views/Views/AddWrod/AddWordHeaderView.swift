@@ -21,6 +21,7 @@ final class AddWordHeaderView: UIView {
     struct Output {
         let backButtonDidTap: Signal<Void>
         let height: Driver<CGFloat>
+        let text: Driver<String>
     }
     
     private let disposeBag = DisposeBag()
@@ -77,25 +78,30 @@ final class AddWordHeaderView: UIView {
     
     func configure() -> Output {
         
-        let addSearchWordHeight = addSearchWordTextField.configure()
-            .height
+        let addSearchWordOutput = addSearchWordTextField.configure()
         
-        addSearchWordHeight.drive(onNext: {
-            self.textViewHeight?.update(priority: $0)
-        })
-        .disposed(by: disposeBag )
+        addSearchWordOutput.height
+            .drive(onNext: {
+                self.textViewHeight?.update(priority: $0)
+            })
+            .disposed(by: disposeBag )
         
         let height = Driver.combineLatest(
             rx.size.take(1).asDriver(onErrorJustReturn: CGSize.zero),
-            addSearchWordHeight
+            addSearchWordOutput.height
         )
             .map { size, addSearchWordHeight in
                 size.height + (addSearchWordHeight - UIConstants.minTextFieldHeight)
             }
         
+        let text = addSearchWordOutput.text
+            .map { $0 ?? "" }
+            .asDriver(onErrorJustReturn: "")
+        
         return Output(
             backButtonDidTap: backButton.rx.tap.asSignal(),
-            height: height
+            height: height,
+            text: text
         )
     }
 }
