@@ -25,7 +25,7 @@ final class HomeViewController: UIViewController, Stepper {
     struct UIConstants {
         static let profileIconSize: CGFloat = 44
         static let profileIconRightMargin: CGFloat = 16
-        static let headerHeight: CGFloat = 260
+        static let headerHeight: CGFloat = 210
         static let addButtonSize: CGFloat = 100
     }
     
@@ -38,13 +38,13 @@ final class HomeViewController: UIViewController, Stepper {
     
     private let headerView = HomeHeaderView()
     private let tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.rowHeight = 100
         tableView.register(cellType: HomeWordCell.self)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(
-            top: UIConstants.headerHeight - 50,
+            top: UIConstants.headerHeight,
             left: 0,
             bottom: 0,
             right: 0
@@ -122,14 +122,22 @@ final class HomeViewController: UIViewController, Stepper {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
         
-        tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        headerView.snp.makeConstraints {
+            $0.right.left.top.equalToSuperview()
+            $0.height.equalTo(UIConstants.headerHeight)
         }
         
         addWordButton.snp.makeConstraints {
             $0.size.equalTo(UIConstants.addButtonSize)
             $0.bottom.equalToSuperview().offset(-Margin.mid)
             $0.right.equalToSuperview()
+        }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tableView.snp.remakeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
