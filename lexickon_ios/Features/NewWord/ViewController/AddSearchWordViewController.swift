@@ -80,6 +80,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     
     private func configureUI() {
         
+        let presenterOutput = presenter.configurate(input: .init(translate: .just("Hi")))
+        
         let headerViewOutput = headerView.configure()
             
         headerViewOutput.backButtonDidTap
@@ -90,6 +92,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         headerViewOutput.height
             .drive(headerView.rx.height)
             .disposed(by: disposeBag)
+        
+        presenterOutput.translation.debug("🎲").emit()
     }
 }
 

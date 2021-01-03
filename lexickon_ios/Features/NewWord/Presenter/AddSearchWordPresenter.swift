@@ -27,10 +27,14 @@ final class AddSearchWordPresenter: PresenterType {
             .asSignal()
             .flatMap { text -> Signal<String> in
                 return self.interacor.translate(text)
+                    .map { $0.rapidApiGoogleTranslate.data.translation }
+                    .asSignal { error -> Signal<String> in
+                        .just("")
+                    }
             }
             .asSignal()
         
-        Output(translation: translation)
+        return Output(translation: translation)
     }
 }
 

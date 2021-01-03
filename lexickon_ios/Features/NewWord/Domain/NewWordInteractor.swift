@@ -14,7 +14,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     @Injected var translationRepository: TranslationRepositoryProtocol
     
-    func translate(_ word: String) -> Single<String> {
-        return translationRepository.translate(word)
+    func translate(_ word: String) -> Single<TranslationResultsDTO> {
+        return translationRepository.translate(word, tl: "ru", sl: "en")
     }
 }
