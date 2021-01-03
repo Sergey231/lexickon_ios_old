@@ -73,8 +73,6 @@ final class HomeWordsSectionHeaderView: UIView {
             $0.right.equalToSuperview().offset(-Margin.mid)
             $0.top.bottom.equalToSuperview()
         }
-        
-        layoutIfNeeded()
     }
     
     func configure(input: Input) {
