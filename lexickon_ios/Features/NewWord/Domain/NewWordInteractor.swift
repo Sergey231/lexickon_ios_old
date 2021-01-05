@@ -15,6 +15,15 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     @Injected var translationRepository: TranslationRepositoryProtocol
     
     func translate(_ word: String) -> Single<TranslationResultsDTO> {
-        return translationRepository.translate(word, tl: "ru", sl: "en")
+        
+        let input = RapidApiGoogleTranslateInputDTO(
+            text: word,
+            rapidApiKey: "bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74",
+            rapidApiHost: "google-translate20.p.rapidapi.com",
+            targetLanguage: "ru",
+            sourceLanguage: "en"
+        )
+        
+        return translationRepository.translate(input)
     }
 }

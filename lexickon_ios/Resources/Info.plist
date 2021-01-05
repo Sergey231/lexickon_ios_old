@@ -28,23 +28,20 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>google-translate20.p.rapidapi.com</key>
-            <dict>
-                <key>NSExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSExceptionRequiresForwardSecrecy</key>
-                <false/>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-            </dict>
-        </dict>
-        <key>NSAllowsLocalNetworking</key>
-        <true/>
-    </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>google-translate20.p.rapidapi.com</key>
+			<string>https://google-translate20.p.rapidapi.com</string>
+		</dict>
+	</dict>
+	<key>RapidApiGoogleTranslateHost</key>
+	<string>google-translate20.p.rapidapi.com</string>
+	<key>RapidApiGoogleTranslateKey</key>
+	<string>bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

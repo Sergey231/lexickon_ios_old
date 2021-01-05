@@ -22,13 +22,13 @@ enum LocalStorageKeys {
     }
     
     enum Configs {
-        case rapidApiKey
-        case rapidApiHost
+        case rapidApiGoogleTranslateKey
+        case rapidApiGoogleTranslateHost
         
         var key: String {
             switch self {
-            case .rapidApiKey: return "rapidApiKey"
-            case .rapidApiHost: return "rapidApiHost"
+            case .rapidApiGoogleTranslateKey: return "RapidApiGoogleTranslateKey"
+            case .rapidApiGoogleTranslateHost: return "RapidApiGoogleTranslateHost"
             }
         }
     }

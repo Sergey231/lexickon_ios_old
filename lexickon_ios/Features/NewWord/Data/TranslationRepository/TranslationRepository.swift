@@ -13,17 +13,20 @@ import LexickonApi
 
 final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository {
 
-    func translate(
-        _ text: String,
-        tl: String = "ru",
-        sl: String = "en"
-    ) -> Single<TranslationResultsDTO> {
+    func translate(_ input: RapidApiGoogleTranslateInputDTO) -> Single<TranslationResultsDTO> {
         
-        let url = "https://google-translate20.p.rapidapi.com/translate?text=\(text)&tl=\(tl)&sl=\(sl)"
+        let url = "https://"
+        + input.rapidApiHost
+        + "translate?text="
+        + input.text
+        + "&tl="
+        + input.targetLanguage
+        + "&sl="
+        + input.sourceLanguage
         
         let headers: HTTPHeaders = [
-            "x-rapidapi-key": "bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74",
-            "x-rapidapi-host" : "google-translate20.p.rapidapi.com"
+            "x-rapidapi-key": input.rapidApiKey,
+            "x-rapidapi-host" : input.rapidApiHost
         ]
         
         return Single.create { single -> Disposable in
@@ -31,7 +34,7 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
                 print(req)
             }
             .responseDecodable(
-                of: RapidaApiGoogleTranslateDTO.self,
+                of: RapidApiGoogleTranslateResultDTO.self,
                 decoder: self.jsonDecoder
             ) { res in
                 switch res.result {
