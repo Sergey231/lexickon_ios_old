@@ -38,10 +38,6 @@
 			<string>https://google-translate20.p.rapidapi.com</string>
 		</dict>
 	</dict>
-	<key>RapidApiGoogleTranslateHost</key>
-	<string>google-translate20.p.rapidapi.com</string>
-	<key>RapidApiGoogleTranslateKey</key>
-	<string>bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -82,5 +78,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>rapidApiGoogleTranslateHost</key>
+	<string>google-translate20.p.rapidapi.com</string>
+	<key>rapidApiGoogleTranslateKey</key>
+	<string>bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74</string>
 </dict>
 </plist>

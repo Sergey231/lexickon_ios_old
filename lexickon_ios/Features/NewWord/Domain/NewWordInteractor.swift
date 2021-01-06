@@ -12,14 +12,18 @@ import Resolver
 
 final class NewWordInteractor: NewWordInteractorProtocol {
     
-    @Injected var translationRepository: TranslationRepositoryProtocol
+    @Injected private var translationRepository: TranslationRepositoryProtocol
+    @Injected private var keyValueRepository: KeyValueRepositoryProtocol
     
     func translate(_ word: String) -> Single<TranslationResultsDTO> {
         
+        let rapidApiKey = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateKey) ?? ""
+        let rapidApiHost = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateHost) ?? ""
+        
         let input = RapidApiGoogleTranslateInputDTO(
             text: word,
-            rapidApiKey: "bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74",
-            rapidApiHost: "google-translate20.p.rapidapi.com",
+            rapidApiKey: rapidApiKey,
+            rapidApiHost: rapidApiHost,
             targetLanguage: "ru",
             sourceLanguage: "en"
         )

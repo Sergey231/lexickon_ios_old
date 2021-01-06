@@ -17,7 +17,7 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
         
         let url = "https://"
         + input.rapidApiHost
-        + "translate?text="
+        + "/translate?text="
         + input.text
         + "&tl="
         + input.targetLanguage

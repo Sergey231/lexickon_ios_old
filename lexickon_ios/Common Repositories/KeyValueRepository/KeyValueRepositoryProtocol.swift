@@ -11,4 +11,5 @@ import Foundation
 protocol KeyValueRepositoryProtocol {
     func setObject(_ object: Any, forKey: LocalStorageKeys)
     func object(forKey: LocalStorageKeys) -> String?
+    func objectFromConfigs(forKey: LocalStorageKeys.Configs) -> String?
 }

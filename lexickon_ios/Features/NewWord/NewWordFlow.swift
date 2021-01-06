@@ -67,5 +67,6 @@ extension Resolver {
         register { AddSearchWordPresenter() }
         register { NewWordInteractor() as NewWordInteractorProtocol }
         register { TranslationRepository() as TranslationRepositoryProtocol }
+        register { KeyValueRepository() as KeyValueRepositoryProtocol }
     }
 }
