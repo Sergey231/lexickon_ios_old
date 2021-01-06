@@ -14,7 +14,10 @@ import LexickonApi
 final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository {
 
     func translate(_ input: RapidApiGoogleTranslateInputDTO) -> Single<TranslationResultsDTO> {
-        
+        return translateByRapidGoogleTranslationAPI(input)
+    }
+    
+    private func translateByRapidGoogleTranslationAPI(_ input: RapidApiGoogleTranslateInputDTO) -> Single<TranslationResultsDTO> {
         let url = "https://"
         + input.rapidApiHost
         + "/translate?text="
