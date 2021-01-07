@@ -45,6 +45,7 @@
 		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
 		EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */; };
 		EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = EC7330DE2541D9AC000B1EDD /* SwiftKeychainWrapper */; };
+		EC77E87825A7066E00BF89E4 /* TranslationResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC77E87725A7066E00BF89E4 /* TranslationResultCell.swift */; };
 		EC7AD82B256A656B00BBD059 /* WideWordProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */; };
 		EC7B6F9F2583ABF200EB1D28 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7B6F9E2583ABF200EB1D28 /* TextView.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
@@ -151,6 +152,7 @@
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
 		EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
+		EC77E87725A7066E00BF89E4 /* TranslationResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResultCell.swift; sourceTree = "<group>"; };
 		EC7AD82A256A656B00BBD059 /* WideWordProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideWordProgressView.swift; sourceTree = "<group>"; };
 		EC7B6F9E2583ABF200EB1D28 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				EC3C394825519FA4008D1D3C /* HomeWordCell.swift */,
+				EC77E87725A7066E00BF89E4 /* TranslationResultCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				EC835EF723F1B17700E3288B /* Logo.swift in Sources */,
+				EC77E87825A7066E00BF89E4 /* TranslationResultCell.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */,
 				ECC8564525A30E0800DD764F /* KeyValueRepositoryProtocol.swift in Sources */,

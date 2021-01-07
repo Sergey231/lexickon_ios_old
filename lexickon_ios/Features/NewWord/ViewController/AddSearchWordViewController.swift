@@ -26,11 +26,17 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     let steps = PublishRelay<Step>()
     
     @Injected var presenter: AddSearchWordPresenter
+    private var dataSource: TranslationReulstRxDataSource!
     fileprivate var disposeBag = DisposeBag()
     
     // Public for Custom transitioning animator
     let headerView = AddWordHeaderView()
     let placeholderView = AddSearchPlaceholderView()
+    
+    private var tableView: UITableView = {
+        let tv = UITableView()
+        return tv
+    }()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -63,7 +69,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     private func createUI() {
         view.addSubviews(
             headerView,
-            placeholderView
+            placeholderView,
+            tableView
         )
         
         headerView.snp.makeConstraints {
@@ -75,6 +82,11 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             $0.width.equalTo(200)
             $0.height.equalTo(140)
             $0.center.equalToSuperview()
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.left.right.bottom.equalToSuperview()
+            $0.top.equalTo(headerView.snp.bottom)
         }
     }
     
@@ -92,8 +104,26 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         headerViewOutput.height
             .drive(headerView.rx.height)
             .disposed(by: disposeBag)
+    }
+    
+    private func configureTableView(with models: Driver<[TranslationReulstSectionModel]>) {
         
-        presenterOutput.translation.debug("🎲").emit()
+        var configureCell: TranslationReulstRxDataSource.ConfigureCell {
+            return { _, tableView, indexPath, model in
+                let cell: TranslationResultCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.configurate(with: model)
+                return cell
+            }
+        }
+        
+        dataSource = TranslationReulstRxDataSource(
+            animationConfiguration: AnimationConfiguration(),
+            configureCell: configureCell
+        )
+        
+        models
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
     }
 }
 

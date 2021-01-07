@@ -19,8 +19,8 @@ import Resolver
 
 final class HomeViewController: UIViewController, Stepper {
     
-    typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
-    typealias RxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
+//    typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
+//    typealias RxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
     
     struct UIConstants {
         static let profileIconSize: CGFloat = 44
@@ -33,7 +33,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     @Injected var presenter: HomePresenter
     fileprivate var disposeBag = DisposeBag()
-    private var dataSource: RxDataSource!
+    private var dataSource: HomeWordRxDataSource!
     private let needToRefrash = PublishRelay<Void>()
     
     private let headerView = HomeHeaderView()
@@ -143,7 +143,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     private func configureTableView(with models: Driver<[HomeWordSectionModel]>) {
         
-        var configureCell: RxDataSource.ConfigureCell {
+        var configureCell: HomeWordRxDataSource.ConfigureCell {
             return { _, tableView, indexPath, model in
                 let cell: HomeWordCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configurate(with: model)
@@ -151,7 +151,7 @@ final class HomeViewController: UIViewController, Stepper {
             }
         }
         
-        dataSource = RxDataSource(
+        dataSource = HomeWordRxDataSource(
             animationConfiguration: AnimationConfiguration(),
             configureCell: configureCell
         )

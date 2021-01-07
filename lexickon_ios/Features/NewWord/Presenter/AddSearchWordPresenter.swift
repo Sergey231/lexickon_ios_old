@@ -9,6 +9,10 @@
 import RxSwift
 import RxCocoa
 import Resolver
+import RxDataSources
+
+typealias TranslationReulstSectionModel = AnimatableSectionModel<String, TranslationResultViewModel>
+typealias TranslationReulstRxDataSource = RxTableViewSectionedAnimatedDataSource<TranslationReulstSectionModel>
 
 final class AddSearchWordPresenter: PresenterType {
     
@@ -18,23 +22,25 @@ final class AddSearchWordPresenter: PresenterType {
     }
     
     struct Output {
-        let translation: Signal<String>
+        let sections: Driver<[TranslationReulstSectionModel]>
     }
     
     func configurate(input: Input) -> Output {
         
-        let translation = input.translate
+        let translationSections = input.translate
             .asSignal()
-            .flatMap { text -> Signal<String> in
+            .flatMap { text -> Driver<String> in
                 return self.interacor.translate(text)
                     .map { $0.rapidApiGoogleTranslate.data.translation }
-                    .asSignal { error -> Signal<String> in
+                    .asDriver { error -> Driver<String> in
                         .just("")
                     }
             }
-            .asSignal()
+            .map { TranslationResultViewModel(translation: $0) }
+            .map { [TranslationReulstSectionModel(model: "TranslationResultSection", items: [$0])] }
+            .asDriver()
         
-        return Output(translation: translation)
+        return Output(sections: translationSections)
     }
 }
 

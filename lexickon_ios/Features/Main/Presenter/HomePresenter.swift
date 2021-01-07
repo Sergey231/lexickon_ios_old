@@ -12,11 +12,12 @@ import LexickonApi
 import RxDataSources
 import Resolver
 
+typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
+typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
+
 final class HomePresenter: PresenterType {
     
     @Injected var mainInteractor: MainInteractorProtocol
-    
-    typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
     
     struct Input {
         let needLoadNextWordsPage: Signal<Void>
