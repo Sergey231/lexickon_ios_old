@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC04899425A9BD3200945F88 /* TranslationResultsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */; };
 		EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E442352E68C00C82DFF /* Assets.swift */; };
 		EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E462352E95E00C82DFF /* Strings.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
@@ -123,6 +124,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResultsDTO.swift; sourceTree = "<group>"; };
 		EC1C3E442352E68C00C82DFF /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
@@ -253,6 +255,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC04898E25A9BD1A00945F88 /* RapidApiGoogleTranslation */ = {
+			isa = PBXGroup;
+			children = (
+				ECC8563525A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift */,
+				ECC8563C25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift */,
+			);
+			path = RapidApiGoogleTranslation;
+			sourceTree = "<group>";
+		};
 		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,8 +637,8 @@
 		ECC8563925A30A6700DD764F /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				ECC8563525A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift */,
-				ECC8563C25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift */,
+				EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */,
+				EC04898E25A9BD1A00945F88 /* RapidApiGoogleTranslation */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -957,6 +968,7 @@
 				ECC8564D25A3155A00DD764F /* KeyValueRepository.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
 				ECC48E9C25459679006503C2 /* ProfileIconView.swift in Sources */,
+				EC04899425A9BD3200945F88 /* TranslationResultsDTO.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,

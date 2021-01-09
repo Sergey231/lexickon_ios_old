@@ -10,7 +10,7 @@ import RxSwift
 import UIKit
 
 open class DisposableTableViewCell: UITableViewCell {
-    var disposeBag = DisposeBag()
+    public var disposeBag = DisposeBag()
 
     public override func prepareForReuse() {
         super.prepareForReuse()

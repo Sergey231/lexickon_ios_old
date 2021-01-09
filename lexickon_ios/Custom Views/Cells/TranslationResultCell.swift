@@ -36,8 +36,6 @@ extension TranslationResultViewModel: IdentifiableType {
 }
 
 class TranslationResultCell: DisposableTableViewCell {
-
-    private var disposeBag = DisposeBag()
     
     private let translationLable: UILabel = {
         let label = UILabel()
@@ -63,18 +61,12 @@ class TranslationResultCell: DisposableTableViewCell {
             $0.right.equalToSuperview().offset(-Margin.regular)
             $0.bottom.top.equalToSuperview()
         }
-    }
-    
-    private func configureUI() {
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        contentView.layer.cornerRadius = 16
-        contentView.clipsToBounds = true
+        
+        translationLable.text = input.translation
     }
     
     func configurate(with model: TranslationResultViewModel) {
         createUI(with: model)
-        configureUI()
     }
 }
 

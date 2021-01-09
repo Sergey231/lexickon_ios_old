@@ -47,8 +47,6 @@ extension HomeWordViewModel: IdentifiableType {
 }
 
 class HomeWordCell: DisposableTableViewCell {
-
-    private var disposeBag = DisposeBag()
     
     private let wordLable: UILabel = {
         let label = UILabel()

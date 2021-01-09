@@ -13,11 +13,11 @@ import LexickonApi
 
 final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository {
 
-    func translate(_ input: RapidApiGoogleTranslateInputDTO) -> Single<TranslationResultsDTO> {
+    func translate(_ input: RapidApiGoogleTranslateRequestDTO) -> Single<TranslationResultsDTO> {
         return translateByRapidGoogleTranslationAPI(input)
     }
     
-    private func translateByRapidGoogleTranslationAPI(_ input: RapidApiGoogleTranslateInputDTO) -> Single<TranslationResultsDTO> {
+    private func translateByRapidGoogleTranslationAPI(_ input: RapidApiGoogleTranslateRequestDTO) -> Single<TranslationResultsDTO> {
         let url = "https://"
         + input.rapidApiHost
         + "/translate?text="
@@ -42,7 +42,14 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
             ) { res in
                 switch res.result {
                 case .success(let model):
-                    let translation = TranslationResultsDTO(rapidApiGoogleTranslate: model)
+                    let translation = TranslationResultsDTO(
+                        textForTranslate: input.text,
+                        translations: [TranslationResultsDTO.TranslationItem(
+                            translation: model.data.translation,
+                            pos: .unknown,
+                            gender: .unknown
+                        )]
+                    )
                     single(.success(translation))
                 case .failure(let failure):
                     print(failure)

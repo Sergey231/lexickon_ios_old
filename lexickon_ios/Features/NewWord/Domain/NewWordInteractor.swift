@@ -20,7 +20,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         let rapidApiKey = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateKey) ?? ""
         let rapidApiHost = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateHost) ?? ""
         
-        let input = RapidApiGoogleTranslateInputDTO(
+        let input = RapidApiGoogleTranslateRequestDTO(
             text: word,
             rapidApiKey: rapidApiKey,
             rapidApiHost: rapidApiHost,

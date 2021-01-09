@@ -34,8 +34,12 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     let placeholderView = AddSearchPlaceholderView()
     
     private var tableView: UITableView = {
-        let tv = UITableView()
-        return tv
+        let tableView = UITableView()
+        tableView.rowHeight = 100
+        tableView.register(cellType: TranslationResultCell.self)
+//        tableView.backgroundColor = .clear
+//        tableView.separatorStyle = .none
+        return tableView
     }()
     
     init() {
@@ -92,8 +96,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     
     private func configureUI() {
         
-        let presenterOutput = presenter.configurate(input: .init(translate: .just("Hi")))
-        
         let headerViewOutput = headerView.configure()
             
         headerViewOutput.backButtonDidTap
@@ -104,6 +106,14 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         headerViewOutput.height
             .drive(headerView.rx.height)
             .disposed(by: disposeBag)
+        
+        let textForTranslate = headerViewOutput.text
+            .debounce(.seconds(1))
+            .asSignal(onErrorJustReturn: "")
+        
+        let presenterOutput = presenter.configurate(input: .init(textForTranslate: textForTranslate))
+        
+        configureTableView(with: presenterOutput.sections)
     }
     
     private func configureTableView(with models: Driver<[TranslationReulstSectionModel]>) {

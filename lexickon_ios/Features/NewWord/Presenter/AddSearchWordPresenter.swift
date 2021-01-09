@@ -18,7 +18,7 @@ final class AddSearchWordPresenter: PresenterType {
     
     @Injected var interacor: NewWordInteractorProtocol
     struct Input {
-        let translate: Signal<String>
+        let textForTranslate: Signal<String>
     }
     
     struct Output {
@@ -27,17 +27,14 @@ final class AddSearchWordPresenter: PresenterType {
     
     func configurate(input: Input) -> Output {
         
-        let translationSections = input.translate
-            .asSignal()
-            .flatMap { text -> Driver<String> in
-                return self.interacor.translate(text)
-                    .map { $0.rapidApiGoogleTranslate.data.translation }
-                    .asDriver { error -> Driver<String> in
-                        .just("")
-                    }
+        let translationSections = input.textForTranslate
+            .flatMap { text -> Driver<[TranslationResultsDTO.TranslationItem]> in
+                self.interacor.translate(text)
+                    .map { $0.translations }
+                    .asDriver(onErrorJustReturn: [])
             }
-            .map { TranslationResultViewModel(translation: $0) }
-            .map { [TranslationReulstSectionModel(model: "TranslationResultSection", items: [$0])] }
+            .map { translations in translations.map { TranslationResultViewModel(translation: $0.translation) } }
+            .map { [TranslationReulstSectionModel(model: "TranslationResultSection", items: $0)] }
             .asDriver()
         
         return Output(sections: translationSections)

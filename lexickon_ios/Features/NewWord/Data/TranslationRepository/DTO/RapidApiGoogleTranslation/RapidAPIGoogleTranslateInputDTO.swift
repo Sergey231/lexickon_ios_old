@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct RapidApiGoogleTranslateInputDTO {
+struct RapidApiGoogleTranslateRequestDTO {
     let text: String
     let rapidApiKey: String
     let rapidApiHost: String
