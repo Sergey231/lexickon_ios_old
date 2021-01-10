@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
         "state": {
           "branch": null,
-          "revision": "20f39da29e65c54f3fec41816fd31113270e8a7e",
-          "version": "0.5.7"
+          "revision": "26436a18db4ebd3e83a0d5b98fe826086dc33f8c",
+          "version": "0.5.8"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver.git",
         "state": {
           "branch": null,
-          "revision": "c15dcb6a826fd8ce2a36930e676ff9e888232fc9",
-          "version": "1.2.1"
+          "revision": "f1f7c1040b3fb0029324a7b2bcc3d64b435840ac",
+          "version": "1.3.0"
         }
       },
       {

@@ -13,7 +13,7 @@ struct TranslationResultsDTO {
     let textForTranslate: String
     let translations: [TranslationItem]
     
-    enum Pos: String {
+    enum Pos: String, Codable {
         case noun
         case verb
         case adjective
@@ -24,7 +24,7 @@ struct TranslationResultsDTO {
         case unknown
     }
     
-    enum Gender: String {
+    enum Gender: String, Codable {
         case man
         case woman
         case neuter

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EC04899425A9BD3200945F88 /* TranslationResultsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */; };
+		EC04899C25AAE66600945F88 /* TranslationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04899B25AAE66600945F88 /* TranslationRequestDTO.swift */; };
+		EC0489AB25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0489AA25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift */; };
+		EC0489AF25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */; };
 		EC1C3E452352E68D00C82DFF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E442352E68C00C82DFF /* Assets.swift */; };
 		EC1C3E472352E95E00C82DFF /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E462352E95E00C82DFF /* Strings.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
@@ -125,6 +128,9 @@
 
 /* Begin PBXFileReference section */
 		EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResultsDTO.swift; sourceTree = "<group>"; };
+		EC04899B25AAE66600945F88 /* TranslationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRequestDTO.swift; sourceTree = "<group>"; };
+		EC0489AA25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDictionaryApiRequestDTO.swift; sourceTree = "<group>"; };
+		EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDictionaryApiResultDTO.swift; sourceTree = "<group>"; };
 		EC1C3E442352E68C00C82DFF /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		EC1C3E462352E95E00C82DFF /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
@@ -262,6 +268,15 @@
 				ECC8563C25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift */,
 			);
 			path = RapidApiGoogleTranslation;
+			sourceTree = "<group>";
+		};
+		EC0489A925AAEC2D00945F88 /* YandexDictionaryApiTranslation */ = {
+			isa = PBXGroup;
+			children = (
+				EC0489AA25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift */,
+				EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */,
+			);
+			path = YandexDictionaryApiTranslation;
 			sourceTree = "<group>";
 		};
 		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
@@ -637,7 +652,9 @@
 		ECC8563925A30A6700DD764F /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				EC04899B25AAE66600945F88 /* TranslationRequestDTO.swift */,
 				EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */,
+				EC0489A925AAEC2D00945F88 /* YandexDictionaryApiTranslation */,
 				EC04898E25A9BD1A00945F88 /* RapidApiGoogleTranslation */,
 			);
 			path = DTO;
@@ -932,6 +949,7 @@
 				ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */,
 				EC99BD6523F29AAA00A500A9 /* LXTextField.swift in Sources */,
 				ECA14796257A474C00352868 /* FromNewWordToHomeAnimator.swift in Sources */,
+				EC0489AB25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC82BE1B25485E8400037DA0 /* FromHomeToProfileAnimator.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
@@ -948,6 +966,7 @@
 				EC870953254E8F4800553B87 /* FromProfileToHomeAnimator.swift in Sources */,
 				EC3138C725382B25007FFCB0 /* Rx+UILabel.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
+				EC0489AF25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift in Sources */,
 				ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */,
 				ECA95B7A256E8B1B006332A5 /* HomeWordsSectionHeaderView.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
@@ -970,6 +989,7 @@
 				ECC48E9C25459679006503C2 /* ProfileIconView.swift in Sources */,
 				EC04899425A9BD3200945F88 /* TranslationResultsDTO.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
+				EC04899C25AAE66600945F88 /* TranslationRequestDTO.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,
@@ -1290,7 +1310,7 @@
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.7;
+				minimumVersion = 0.5.8;
 			};
 		};
 		ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */ = {

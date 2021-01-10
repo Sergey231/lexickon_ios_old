@@ -16,18 +16,56 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     @Injected private var keyValueRepository: KeyValueRepositoryProtocol
     
     func translate(_ word: String) -> Single<TranslationResultsDTO> {
+        translateByYandexDictionary(word)
+    }
+    
+    private func translateByYandexDictionary(_ text: String) -> Single<TranslationResultsDTO> {
         
+        let yandexDictionaryKey = ""
+        
+        return translationRepository.translateByYandexDictionary(YandexDictionaryApiRequestDTO(
+            key: yandexDictionaryKey,
+            lang: (.en,.ru),
+            text: text
+        ))
+        .map {
+            let translations = $0.def.map { $0.tr }
+            return TranslationResultsDTO(
+            textForTranslate: text,
+                translations: translations.map { tr in
+                    print(tr)
+                    return TranslationResultsDTO.TranslationItem(
+                        translation: "dict.1.1.20210109T085821Z.0973a0ee9ceeb5aa.350f617168f4b67d8695b278e6efb78cb2b3c296",
+                        pos: .unknown,
+                        gender: .unknown
+                    )
+                }
+        )}
+    }
+    
+    private func translateByRapidApiGoogleTranslate(_ text: String) -> Single<TranslationResultsDTO> {
+       
         let rapidApiKey = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateKey) ?? ""
         let rapidApiHost = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateHost) ?? ""
         
         let input = RapidApiGoogleTranslateRequestDTO(
-            text: word,
+            text: text,
             rapidApiKey: rapidApiKey,
             rapidApiHost: rapidApiHost,
             targetLanguage: "ru",
             sourceLanguage: "en"
         )
         
-        return translationRepository.translate(input)
+        return translationRepository.translateByRapidApiGoogleTranslate(input)
+            .map {
+                TranslationResultsDTO(
+                    textForTranslate: text,
+                    translations: [TranslationResultsDTO.TranslationItem(
+                        translation: $0.data.translation,
+                        pos: .unknown,
+                        gender: .unknown
+                    )]
+                )
+            }
     }
 }

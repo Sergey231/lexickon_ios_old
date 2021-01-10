@@ -12,12 +12,11 @@ import Alamofire
 import LexickonApi
 
 final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository {
-
-    func translate(_ input: RapidApiGoogleTranslateRequestDTO) -> Single<TranslationResultsDTO> {
-        return translateByRapidGoogleTranslationAPI(input)
-    }
     
-    private func translateByRapidGoogleTranslationAPI(_ input: RapidApiGoogleTranslateRequestDTO) -> Single<TranslationResultsDTO> {
+    func translateByRapidApiGoogleTranslate(
+        _ input: RapidApiGoogleTranslateRequestDTO
+    ) -> Single<RapidApiGoogleTranslateResultDTO> {
+        
         let url = "https://"
         + input.rapidApiHost
         + "/translate?text="
@@ -42,15 +41,34 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
             ) { res in
                 switch res.result {
                 case .success(let model):
-                    let translation = TranslationResultsDTO(
-                        textForTranslate: input.text,
-                        translations: [TranslationResultsDTO.TranslationItem(
-                            translation: model.data.translation,
-                            pos: .unknown,
-                            gender: .unknown
-                        )]
-                    )
-                    single(.success(translation))
+                    single(.success(model))
+                case .failure(let failure):
+                    print(failure)
+                    single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func translateByYandexDictionary(
+        _ input: YandexDictionaryApiRequestDTO
+    ) -> Single<YandexDictionaryApiResultDTO> {
+        let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup?"
+            + "key=\(input.key)"
+            + "&lang\(input.lang.sourceLanguage)-\(input.lang.targetLanguage)"
+            + "&text=\(input.text)"
+        return Single.create { single -> Disposable in
+            AF.request(url) { req in
+                print(req)
+            }
+            .responseDecodable(
+                of: YandexDictionaryApiResultDTO.self,
+                decoder: self.jsonDecoder
+            ) { res in
+                switch res.result {
+                case .success(let model):
+                    single(.success(model))
                 case .failure(let failure):
                     print(failure)
                     single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))

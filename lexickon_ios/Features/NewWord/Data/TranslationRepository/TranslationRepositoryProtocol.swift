@@ -9,5 +9,12 @@
 import RxSwift
 
 protocol TranslationRepositoryProtocol {
-    func translate(_ input: RapidApiGoogleTranslateRequestDTO) -> Single<TranslationResultsDTO>
+    
+    func translateByRapidApiGoogleTranslate(
+        _ input: RapidApiGoogleTranslateRequestDTO
+    ) -> Single<RapidApiGoogleTranslateResultDTO>
+    
+    func translateByYandexDictionary(
+        _ input: YandexDictionaryApiRequestDTO
+    ) -> Single<YandexDictionaryApiResultDTO>
 }
