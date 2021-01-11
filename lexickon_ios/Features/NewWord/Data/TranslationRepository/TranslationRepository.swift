@@ -56,7 +56,7 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
     ) -> Single<YandexDictionaryApiResultDTO> {
         let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup?"
             + "key=\(input.key)"
-            + "&lang\(input.lang.sourceLanguage)-\(input.lang.targetLanguage)"
+            + "&lang=\(input.lang.sourceLanguage)-\(input.lang.targetLanguage)"
             + "&text=\(input.text)"
         return Single.create { single -> Disposable in
             AF.request(url) { req in

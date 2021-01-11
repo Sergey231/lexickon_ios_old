@@ -34,6 +34,8 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>dictionary.yandex.net</key>
+			<string></string>
 			<key>google-translate20.p.rapidapi.com</key>
 			<string>https://google-translate20.p.rapidapi.com</string>
 		</dict>

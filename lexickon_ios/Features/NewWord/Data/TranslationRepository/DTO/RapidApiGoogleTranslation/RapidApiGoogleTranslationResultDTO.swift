@@ -75,6 +75,7 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
                 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
+                    
                     didYouMean = try container.decode(Bool.self, forKey: .didYouMean)
                     iso = try container.decode(String.self, forKey: .iso)
                 }
@@ -93,6 +94,7 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
                 
                 public init(from decoder: Decoder) throws {
                     let container = try decoder.container(keyedBy: CodingKeys.self)
+                    
                     autoCorrected = try container.decode(Bool.self, forKey: .autoCorrected)
                     value = try container.decode(String.self, forKey: .value)
                     didYouMean = try container.decode(Bool.self, forKey: .didYouMean)

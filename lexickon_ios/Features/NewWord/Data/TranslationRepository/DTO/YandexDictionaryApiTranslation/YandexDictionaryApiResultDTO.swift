@@ -13,6 +13,7 @@ struct YandexDictionaryApiResultDTO: Codable {
     let def: [Def]
     
     private enum CodingKays: String, CodingKey {
+        case head
         case def
     }
     
