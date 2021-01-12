@@ -84,7 +84,6 @@
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
 		ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6C002448261000D86417 /* IntroFlow.swift */; };
 		ECAF5063257E663300F021EA /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF5062257E663300F021EA /* Utils */; };
-		ECAF506B257F53BD00F021EA /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF506A257F53BD00F021EA /* CombineCocoa */; };
 		ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50C9257F610700F021EA /* Rx+UITextField.swift */; };
 		ECAF50CE257F632300F021EA /* EnumerableTextFieldsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */; };
 		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
@@ -105,12 +104,11 @@
 		ECC932A925544B2C007D61B4 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932A825544B2C007D61B4 /* WordRepository.swift */; };
 		ECC932B2255547D5007D61B4 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932B1255547D5007D61B4 /* MainInteractor.swift */; };
 		ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932B5255547F3007D61B4 /* MainInteractorProtocol.swift */; };
-		ECCB193323F834010069C5A7 /* RxCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECCB193223F834010069C5A7 /* RxCombine */; };
 		ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */; };
 		ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */; };
 		ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */; };
 		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
-		ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */ = {isa = PBXBuildFile; productRef = ECD6DBE8240E6659004B8CDA /* TimelaneCombine */; };
+		ECEF166025AD76D800A7ABC9 /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEF165F25AD76D800A7ABC9 /* RxKeyboard.swift */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
 /* End PBXBuildFile section */
@@ -217,6 +215,7 @@
 		ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
 		ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		ECEF165F25AD76D800A7ABC9 /* RxKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -227,7 +226,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
-				ECCB193323F834010069C5A7 /* RxCombine in Frameworks */,
 				ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
@@ -242,8 +240,6 @@
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
 				EC3F44592520BF26004706DC /* RxBlocking in Frameworks */,
 				EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */,
-				ECD6DBE9240E6659004B8CDA /* TimelaneCombine in Frameworks */,
-				ECAF506B257F53BD00F021EA /* CombineCocoa in Frameworks */,
 				EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */,
 				EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */,
 			);
@@ -310,6 +306,7 @@
 		EC3138A82536E95B007FFCB0 /* RxExtensions (Package candidate) */ = {
 			isa = PBXGroup;
 			children = (
+				ECEF165F25AD76D800A7ABC9 /* RxKeyboard.swift */,
 				ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */,
 				ECAF50C8257F60E800F021EA /* UITextField */,
 				EC3139DD253C3273007FFCB0 /* UIImageView */,
@@ -793,8 +790,6 @@
 			packageProductDependencies = (
 				EC407EDE237C3B8400A3FD42 /* Validator */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
-				ECCB193223F834010069C5A7 /* RxCombine */,
-				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
 				ECBEB5062439C0DE0017855E /* RxFlow */,
 				EC3F44492520B510004706DC /* RxAlamofire */,
 				EC3F44522520BF26004706DC /* RxSwift */,
@@ -807,7 +802,6 @@
 				EC3C385B254FED4D008D1D3C /* Differentiator */,
 				ECAC1D60255A848D008B0ECC /* LexickonApi */,
 				ECAF5062257E663300F021EA /* Utils */,
-				ECAF506A257F53BD00F021EA /* CombineCocoa */,
 				EC7B6FA325861A1500EB1D28 /* SnapKit */,
 				ECB50D3A259075B9003B9A68 /* Resolver */,
 			);
@@ -863,9 +857,6 @@
 			mainGroup = EC4278CC22D070E5001218AB;
 			packageReferences = (
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
-				EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
-				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
-				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
 				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
 				EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */,
@@ -933,6 +924,7 @@
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
 				ECC8563625A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift in Sources */,
 				ECC932A525544B1F007D61B4 /* WordRepositoryProtocol.swift in Sources */,
+				ECEF166025AD76D800A7ABC9 /* RxKeyboard.swift in Sources */,
 				ECC932B2255547D5007D61B4 /* MainInteractor.swift in Sources */,
 				ECC48E9625457403006503C2 /* ProfileMainScreenViewController.swift in Sources */,
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
@@ -1250,23 +1242,23 @@
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
+				minimumVersion = 5.0.0;
 			};
 		};
 		EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.6.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.1.1;
+				branch = main;
+				kind = branch;
 			};
 		};
 		EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */ = {
@@ -1293,14 +1285,6 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.2.2;
-			};
-		};
 		ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
@@ -1322,23 +1306,7 @@
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.11.0;
-			};
-		};
-		ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CombineCommunity/RxCombine.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.6.0;
-			};
-		};
-		ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/icanzilb/TimelaneCombine";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 2.12.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1411,11 +1379,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Utils;
 		};
-		ECAF506A257F53BD00F021EA /* CombineCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC873D7323DD6EC400787E51 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
-			productName = CombineCocoa;
-		};
 		ECB50D3A259075B9003B9A68 /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */;
@@ -1425,16 +1388,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */;
 			productName = RxFlow;
-		};
-		ECCB193223F834010069C5A7 /* RxCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */;
-			productName = RxCombine;
-		};
-		ECD6DBE8240E6659004B8CDA /* TimelaneCombine */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */;
-			productName = TimelaneCombine;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

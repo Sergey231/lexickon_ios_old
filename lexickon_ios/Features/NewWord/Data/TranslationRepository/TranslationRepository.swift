@@ -44,7 +44,7 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
                     single(.success(model))
                 case .failure(let failure):
                     print(failure)
-                    single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                 }
             }
             return Disposables.create()
@@ -71,7 +71,7 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
                     single(.success(model))
                 case .failure(let failure):
                     print(failure)
-                    single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                 }
             }
             return Disposables.create()

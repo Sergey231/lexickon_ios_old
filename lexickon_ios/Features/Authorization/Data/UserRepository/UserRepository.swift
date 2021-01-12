@@ -24,7 +24,7 @@ final class UserRepository: UserRepositoryProtocol, ApiRepository {
                     case .success(let model):
                         single(.success(model))
                     case .failure:
-                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
             

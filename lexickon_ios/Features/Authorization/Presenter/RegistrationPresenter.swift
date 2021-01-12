@@ -25,7 +25,6 @@ final class RegistrationPresenter: PresenterType {
     }
     
     struct Output {
-        let keyboardHeight: Driver<CGFloat>
         let nameIsNotValid: Signal<Void>
         let emailIsNotValid: Signal<Void>
         let passwordIsNotValid: Signal<Void>
@@ -45,7 +44,6 @@ final class RegistrationPresenter: PresenterType {
         let nameIsNotValid = PublishRelay<Void>()
         let emailIsNotValid = PublishRelay<Void>()
         let passwordIsNotValid = PublishRelay<Void>()
-        let notificationCenter = NotificationCenter.default
         
         let usernameValidation: Driver<ValidationResult> = {
             
@@ -129,30 +127,6 @@ final class RegistrationPresenter: PresenterType {
             }
         }()
         
-        let keyboardShow = notificationCenter
-            .publisher(for: UIWindow.keyboardWillShowNotification)
-            .map { notification -> CGFloat in
-                guard
-                    let info = notification.userInfo,
-                    let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-                    else { return 0 }
-
-                return keyboardFrame.height
-            }
-            .asObservable()
-            .asDriver(onErrorJustReturn: 0)
-        
-        let keyboardHideDriver = notificationCenter
-            .publisher(for: UIWindow.keyboardWillHideNotification)
-            .map { _ -> CGFloat in 0 }
-            .asObservable()
-            .asDriver(onErrorJustReturn: 0)
-        
-        let keyboardHeight = Driver.merge(
-            keyboardHideDriver,
-            keyboardShow
-        )
-        
         let msg = Driver.combineLatest(
             usernameValidation.startWith(.invalid([TextFieldError.Name.empty])),
             emailValidation.startWith(.invalid([TextFieldError.Email.empty])),
@@ -217,7 +191,6 @@ final class RegistrationPresenter: PresenterType {
             .asSignal(onErrorSignalWith: .empty())
         
         return Output(
-            keyboardHeight: keyboardHeight,
             nameIsNotValid: nameIsNotValid.asSignal(),
             emailIsNotValid: emailIsNotValid.asSignal(),
             passwordIsNotValid: passwordIsNotValid.asSignal(),

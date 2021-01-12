@@ -32,7 +32,7 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
                         keychain[.authToken] = model.value
                         single(.success(model))
                     case .failure:
-                        single(.error(LxHTTPObject.Error(with: res.response?.statusCode)))
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
             
@@ -61,7 +61,7 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
                 let strongAuthTokenId = authTokenId,
                 let strongAuthToken = authToken
             else {
-                single(.error(LxHTTPObject.Error.unknown))
+                single(.failure(LxHTTPObject.Error.unknown))
                 return Disposables.create()
             }
             

@@ -187,7 +187,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         let presenterOutput = presenter.configure(input: input)
         
-        presenterOutput.keyboardHeight
+        RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] height in
                 self?.layout(bottom: height)
             })

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIView {
+extension UIView {
     public func dequeueError<T>(
         withIdentifier reuseIdentifier: String,
         type _: T

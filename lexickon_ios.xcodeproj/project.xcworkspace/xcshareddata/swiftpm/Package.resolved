@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "CombineCocoa",
-        "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa.git",
-        "state": {
-          "branch": null,
-          "revision": "749c16693b3a6fa1af2b95256fda734e7ec2258b",
-          "version": "0.2.2"
-        }
-      },
-      {
         "package": "LexickonApi",
         "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
         "state": {
@@ -50,18 +41,9 @@
         "package": "RxAlamofire",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxAlamofire",
         "state": {
-          "branch": null,
-          "revision": "16858a7955ff8bc3caa51212fd7624f168586773",
-          "version": "5.7.1"
-        }
-      },
-      {
-        "package": "RxCombine",
-        "repositoryURL": "https://github.com/CombineCommunity/RxCombine.git",
-        "state": {
-          "branch": null,
-          "revision": "8002f797042cf3330a4f5a21328310b08cb90e4d",
-          "version": "1.6.1"
+          "branch": "main",
+          "revision": "200b0856a695c8ad3a5ad6bc6398db1c5c1b563a",
+          "version": null
         }
       },
       {
@@ -69,8 +51,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources.git",
         "state": {
           "branch": null,
-          "revision": "a18cee01c9ee55f04d0c7eb15c77a96c3648c88e",
-          "version": "4.0.1"
+          "revision": "241c62e7b578b2346c8b60efdf31b4eb2eab2966",
+          "version": "5.0.0"
         }
       },
       {
@@ -78,17 +60,17 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxFlow.git",
         "state": {
           "branch": null,
-          "revision": "ccf32fd783f948a575fe89749f43e81ddc59e11f",
-          "version": "2.11.0"
+          "revision": "b0883bcaa504b37d6b94bd13c4f2e9a90f7777fc",
+          "version": "2.12.0"
         }
       },
       {
         "package": "RxSwift",
         "repositoryURL": "https://github.com/ReactiveX/RxSwift",
         "state": {
-          "branch": null,
-          "revision": "002d325b0bdee94e7882e1114af5ff4fe1e96afa",
-          "version": "5.1.1"
+          "branch": "main",
+          "revision": "502c905ddbbba144ecca48ad4081a88aa95306a6",
+          "version": null
         }
       },
       {
@@ -107,24 +89,6 @@
           "branch": null,
           "revision": "185a3165346a03767101c4f62e9a545a0fe0530f",
           "version": "4.0.1"
-        }
-      },
-      {
-        "package": "TimelaneCombine",
-        "repositoryURL": "https://github.com/icanzilb/TimelaneCombine",
-        "state": {
-          "branch": null,
-          "revision": "d97f27b600de3b5a2ad20f610d67c6eeac380300",
-          "version": "1.0.10"
-        }
-      },
-      {
-        "package": "TimelaneCore",
-        "repositoryURL": "https://github.com/icanzilb/TimelaneCore",
-        "state": {
-          "branch": null,
-          "revision": "27df4c10e762d206164dce47b42816a452cab283",
-          "version": "1.0.13"
         }
       },
       {

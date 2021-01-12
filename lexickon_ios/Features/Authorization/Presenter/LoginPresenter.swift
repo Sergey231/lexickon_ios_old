@@ -24,7 +24,6 @@ final class LoginPresenter: PresenterType {
     }
     
     struct Output {
-        let keyboardHeight: Driver<CGFloat>
         let emailValidation: Driver<ValidationResult>
         let passwordValidation: Driver<ValidationResult>
         let canSubmit: Driver<Bool>
@@ -37,32 +36,6 @@ final class LoginPresenter: PresenterType {
         
         let errorMsg = PublishRelay<String>()
         let showLoading = BehaviorRelay<Bool>(value: false)
-        
-        let notificationCenter = NotificationCenter.default
-        
-        let keyboardShow = notificationCenter
-            .publisher(for: UIWindow.keyboardWillShowNotification)
-            .asObservable()
-            .map ({ notification -> CGFloat in
-                guard
-                    let info = notification.userInfo,
-                    let keyboardFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-                 else { return 0 }
-
-                return keyboardFrame.height
-            })
-            .asDriver(onErrorJustReturn: 0)
-        
-        let keyboardHide = notificationCenter
-            .publisher(for: UIWindow.keyboardWillHideNotification)
-            .map { _ -> CGFloat in 0 }
-            .asObservable()
-            .asDriver(onErrorJustReturn: 0)
-        
-        let keyboard = Driver.merge(
-            keyboardHide,
-            keyboardShow
-        )
         
         let emailValidation: Driver<ValidationResult> = {
             
@@ -132,7 +105,6 @@ final class LoginPresenter: PresenterType {
 
         
         return Output(
-            keyboardHeight: keyboard,
             emailValidation: emailValidation,
             passwordValidation: passwordValidation,
             canSubmit: canSubmict,

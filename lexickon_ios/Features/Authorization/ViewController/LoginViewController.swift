@@ -7,12 +7,9 @@
 //
 
 import UIKit
-import Combine
 import SnapKit
 import UIExtensions
-import CombineCocoa
 import RxFlow
-import RxRelay
 import RxSwift
 import RxCocoa
 import Resolver
@@ -138,7 +135,7 @@ final class LoginViewController: UIViewController, Stepper {
             })
             .disposed(by: disposeBag)
         
-        presenterOutput.keyboardHeight
+        RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] in
                 self?.layout(bottom: $0)
             })
