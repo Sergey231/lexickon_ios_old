@@ -88,7 +88,6 @@
 		ECAF50CA257F610700F021EA /* Rx+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50C9257F610700F021EA /* Rx+UITextField.swift */; };
 		ECAF50CE257F632300F021EA /* EnumerableTextFieldsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAF50CD257F632300F021EA /* EnumerableTextFieldsHelper.swift */; };
 		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
-		ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = ECB66529247FD2F60052C658 /* JWTDecode */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
 		ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */; };
@@ -236,7 +235,6 @@
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC7330DF2541D9AC000B1EDD /* SwiftKeychainWrapper in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
-				ECB6652A247FD2F60052C658 /* JWTDecode in Frameworks */,
 				ECAF5063257E663300F021EA /* Utils in Frameworks */,
 				EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
@@ -798,7 +796,6 @@
 				ECCB193223F834010069C5A7 /* RxCombine */,
 				ECD6DBE8240E6659004B8CDA /* TimelaneCombine */,
 				ECBEB5062439C0DE0017855E /* RxFlow */,
-				ECB66529247FD2F60052C658 /* JWTDecode */,
 				EC3F44492520B510004706DC /* RxAlamofire */,
 				EC3F44522520BF26004706DC /* RxSwift */,
 				EC3F44542520BF26004706DC /* RxRelay */,
@@ -870,7 +867,6 @@
 				ECCB193123F834010069C5A7 /* XCRemoteSwiftPackageReference "RxCombine" */,
 				ECD6DBE7240E6659004B8CDA /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
 				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
-				ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */,
 				EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */,
 				EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
@@ -1321,14 +1317,6 @@
 				minimumVersion = 1.2.1;
 			};
 		};
-		ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/auth0/JWTDecode.swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.4.1;
-			};
-		};
 		ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
@@ -1432,11 +1420,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
-		};
-		ECB66529247FD2F60052C658 /* JWTDecode */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ECB66528247FD2F60052C658 /* XCRemoteSwiftPackageReference "JWTDecode.swift" */;
-			productName = JWTDecode;
 		};
 		ECBEB5062439C0DE0017855E /* RxFlow */ = {
 			isa = XCSwiftPackageProductDependency;

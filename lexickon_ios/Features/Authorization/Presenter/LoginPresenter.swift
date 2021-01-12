@@ -11,7 +11,6 @@ import Validator
 import LexickonApi
 import RxCocoa
 import RxSwift
-import RxCombine
 import Resolver
 
 final class LoginPresenter: PresenterType {
