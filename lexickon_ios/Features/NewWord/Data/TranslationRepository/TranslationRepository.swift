@@ -54,6 +54,14 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
     func translateByYandexDictionary(
         _ input: YandexDictionaryApiRequestDTO
     ) -> Single<YandexDictionaryApiResultDTO> {
+        
+        guard
+            !input.text.isEmpty,
+            !input.key.isEmpty
+        else {
+            return Single.error(LxHTTPObject.Error.invalidRepositoryRequest)
+        }
+        
         let url = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup?"
             + "key=\(input.key)"
             + "&lang=\(input.lang.sourceLanguage)-\(input.lang.targetLanguage)"
@@ -62,6 +70,10 @@ final class TranslationRepository: TranslationRepositoryProtocol, ApiRepository 
             AF.request(url) { req in
                 print(req)
             }
+//            .response { res in
+//
+//                print(String(decoding: res.data!, as: UTF8.self))
+//            }
             .responseDecodable(
                 of: YandexDictionaryApiResultDTO.self,
                 decoder: self.jsonDecoder

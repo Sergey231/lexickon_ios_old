@@ -21,7 +21,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     private func translateByYandexDictionary(_ text: String) -> Single<TranslationResultsDTO> {
         
-        let yandexDictionaryKey = ""
+        let yandexDictionaryKey = "dict.1.1.20210109T085821Z.0973a0ee9ceeb5aa.350f617168f4b67d8695b278e6efb78cb2b3c296"
         
         return translationRepository.translateByYandexDictionary(YandexDictionaryApiRequestDTO(
             key: yandexDictionaryKey,
@@ -35,7 +35,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
                 translations: translations.map { tr in
                     print(tr)
                     return TranslationResultsDTO.TranslationItem(
-                        translation: "dict.1.1.20210109T085821Z.0973a0ee9ceeb5aa.350f617168f4b67d8695b278e6efb78cb2b3c296",
+                        translation: "fffff",
                         pos: .unknown,
                         gender: .unknown
                     )
