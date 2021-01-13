@@ -29,13 +29,13 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             text: text
         ))
         .map {
-            let translations = $0.def.map { $0.tr }
+            let translations = $0.def.first?.tr ?? []
             return TranslationResultsDTO(
             textForTranslate: text,
                 translations: translations.map { tr in
                     print(tr)
                     return TranslationResultsDTO.TranslationItem(
-                        translation: "fffff",
+                        translation: tr.text,
                         pos: .unknown,
                         gender: .unknown
                     )
