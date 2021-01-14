@@ -3,15 +3,16 @@ import LexickonApi
 import RxCocoa
 import RxSwift
 import Alamofire
-import SwiftKeychainWrapper
+import KeychainRepository
+import Resolver
 
 final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
     
-    private let keychain = KeychainWrapper.standard
+    @Injected private var KeychainRepository: KeychainRepositoryProtocol
     
     func get(with credentiols: LxUserCreate) -> Single<LxUserTokenGet> {
         
-        let keychain = self.keychain
+        let KeychainRepository = self.KeychainRepository
         let url = baseURL + "/api/user/login"
         let parameters = [
             "email": credentiols.email,
@@ -28,8 +29,8 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
                 .responseDecodable(of: LxUserTokenGet.self) { res in
                     switch res.result {
                     case .success(let model):
-                        keychain[.authTokenId] = model.id
-                        keychain[.authToken] = model.value
+                        KeychainRepository.setObject(model.id, forKey: .authTokenId)
+                        KeychainRepository.setObject(model.value, forKey: .authToken)
                         single(.success(model))
                     case .failure:
                         single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
@@ -41,21 +42,21 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
     }
     
     func erasе() -> Single<Void> {
-        let keychain = self.keychain
+        let KeychainRepository = self.KeychainRepository
         return Single.create { single -> Disposable in
-            keychain.remove(forKey: .authToken)
-            keychain.remove(forKey: .authTokenId)
+            KeychainRepository.removeObject(forKey: .authToken)
+            KeychainRepository.removeObject(forKey: .authTokenId)
             single(.success(()))
             return Disposables.create()
         }
     }
     
     var cach: Single<LxUserTokenGet> {
-        let keychain = self.keychain
+        let KeychainRepository = self.KeychainRepository
         return Single.create { single -> Disposable in
             
-            let authTokenId: String? = keychain[.authTokenId]
-            let authToken: String? = keychain[.authToken]
+            let authTokenId = KeychainRepository.object(forKey: .authTokenId)
+            let authToken = KeychainRepository.object(forKey: .authToken)
             
             guard
                 let strongAuthTokenId = authTokenId,
@@ -75,9 +76,3 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
         }
     }
 }
-
-extension KeychainWrapper.Key {
-    static let authTokenId: KeychainWrapper.Key = "authTokenId"
-    static let authToken: KeychainWrapper.Key = "authToken"
-}
-

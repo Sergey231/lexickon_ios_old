@@ -12,6 +12,7 @@ import RxFlow
 import RxCocoa
 import RxSwift
 import UIExtensions
+import RxExtensions
 import Resolver
 
 extension UINavigationController {

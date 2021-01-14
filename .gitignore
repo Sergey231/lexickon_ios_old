@@ -80,3 +80,7 @@ fastlane/test_output
 # End of https://www.gitignore.io/api/swift
 .DS_Store
 .DS_Store
+*.xcworkspacedata
+lexickon_ios/Repositories/KeychainRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+lexickon_ios/Repositories/ConfigsRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+lexickon_ios/Repositories/KeyValueRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist

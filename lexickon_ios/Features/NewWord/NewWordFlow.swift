@@ -9,6 +9,7 @@
 import UIKit
 import RxFlow
 import Resolver
+import KeyValueRepository
 
 enum NewWordStep: Step {
     case addSearch

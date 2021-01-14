@@ -9,6 +9,7 @@
 import UIKit
 import RxFlow
 import Resolver
+import KeychainRepository
 
 enum AuthorizationStep: Step {
     case start
@@ -84,5 +85,6 @@ extension Resolver {
         register { AuthorizationInteractor() as AuthorizationInteractorProtocol }
         register { UserRepository() as UserRepositoryProtocol }
         register { AuthTokenRepository() as AuthTokenRepositoryProtocol }
+        register { KeychainRepository() as KeychainRepositoryProtocol }
     }
 }

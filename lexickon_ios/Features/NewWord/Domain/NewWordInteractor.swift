@@ -9,11 +9,13 @@
 import RxSwift
 import LexickonApi
 import Resolver
+import ConfigsRepository
+
 
 final class NewWordInteractor: NewWordInteractorProtocol {
     
     @Injected private var translationRepository: TranslationRepositoryProtocol
-    @Injected private var keyValueRepository: KeyValueRepositoryProtocol
+    @Injected private var configsRepository: ConfigsRepositoryProtocol
     
     func translate(_ word: String) -> Single<TranslationResultsDTO> {
         translateByYandexDictionary(word)
@@ -45,8 +47,8 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     private func translateByRapidApiGoogleTranslate(_ text: String) -> Single<TranslationResultsDTO> {
        
-        let rapidApiKey = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateKey) ?? ""
-        let rapidApiHost = keyValueRepository.objectFromConfigs(forKey: .rapidApiGoogleTranslateHost) ?? ""
+        let rapidApiKey = configsRepository.object(forKey: .rapidApiGoogleTranslateKey) ?? ""
+        let rapidApiHost = configsRepository.object(forKey: .rapidApiGoogleTranslateHost) ?? ""
         
         let input = RapidApiGoogleTranslateRequestDTO(
             text: text,
