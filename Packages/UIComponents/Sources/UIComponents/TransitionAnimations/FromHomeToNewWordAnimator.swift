@@ -10,25 +10,36 @@ import UIKit
 import SnapKit
 import UIExtensions
 
-final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    private let headerViewHeight: CGFloat
+    private let addWordButton: AddWordButtonView
+    
+    public init(
+        headerViewHeight: CGFloat,
+        addWordButton: AddWordButtonView
+    ) {
+        self.headerViewHeight = headerViewHeight
+        self.addWordButton = addWordButton
+    }
     
     static let duration: TimeInterval = 0.6
     
-    func transitionDuration(
+    public func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
         Self.duration
     }
     
-    func animateTransition(
+    public func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         
-        let homeVC = transitionContext.viewController(forKey: .from) as! HomeViewController
-        let addSearchWordVC = transitionContext.viewController(forKey: .to) as! AddSearchWordViewController
+        let homeVC = transitionContext.viewController(forKey: .from)!
+        let addSearchWordVC = transitionContext.viewController(forKey: .to)!
         addSearchWordVC.view.isHidden = true
         
-        guard let circleViewFrame = homeVC.addWordButton.circleView.globalFrame else {
+        guard let circleViewFrame = addWordButton.circleView.globalFrame else {
             return
         }
         let tmpView: UIView = {
@@ -42,7 +53,7 @@ final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransit
         
         let tmpAddSearchWordHeaderView: UIView = {
             let tmpAddSearchWordHeaderView = UIView()
-            tmpAddSearchWordHeaderView.backgroundColor = homeVC.addWordButton.circleView.backgroundColor
+            tmpAddSearchWordHeaderView.backgroundColor = addWordButton.circleView.backgroundColor
             tmpAddSearchWordHeaderView.frame = CGRect(
                 x: 0,
                 y: 0,
@@ -76,7 +87,7 @@ final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransit
                 tmpAddSearchWordHeaderView.snp.makeConstraints {
                     $0.width.equalToSuperview()
                     $0.top.equalToSuperview()
-                    $0.height.equalTo(AddSearchWordViewController.UIConstants.headerViewHeight)
+                    $0.height.equalTo(self.headerViewHeight)
                 }
                 
                 tmpView.superview?.layoutIfNeeded()

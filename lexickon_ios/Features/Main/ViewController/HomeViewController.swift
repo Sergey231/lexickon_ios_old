@@ -207,7 +207,10 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
         
         if fromVC is HomeViewController && toVC is AddSearchWordViewController {
-            return FromHomeToNewWordAnimator()
+            return FromHomeToNewWordAnimator(
+                headerViewHeight: UIConstants.headerHeight,
+                addWordButton: addWordButton
+            )
         }
         
         return nil
