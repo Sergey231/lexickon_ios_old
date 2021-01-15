@@ -13,13 +13,18 @@ import UIExtensions
 import SnapKit
 import Assets
 
-final class AddSearchWordTextField: UIView {
+public final class AddSearchWordTextField: UIView {
     
-    enum UIConstants {
+    public init() {
+        super.init(frame: .zero)
+        configureView()
+    }
+    
+    public enum UIConstants {
         static let minHeight: CGFloat = 40
     }
     
-    struct Output {
+    public struct Output {
         let height: Driver<CGFloat>
         let text: ControlProperty<String?>
     }
@@ -82,7 +87,7 @@ final class AddSearchWordTextField: UIView {
         }
     }
     
-    func configure() -> Output {
+    public func configure() -> Output {
         
         let textViewHeight = textView.configure(input: .init())
             .estimatedHeight

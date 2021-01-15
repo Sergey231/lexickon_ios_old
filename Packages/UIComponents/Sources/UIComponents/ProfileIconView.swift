@@ -12,14 +12,17 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 
-final class ProfileIconView: UIView {
+public final class ProfileIconView: UIView {
     
-    struct Input {
-        var icon: UIImage?
+    public struct Input {
+        public init(icon: UIImage? = nil) {
+            self.icon = icon
+        }
+        let icon: UIImage?
     }
     
-    struct Output {
-        let didTap: Signal<Void>
+    public struct Output {
+        public let didTap: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
@@ -62,7 +65,7 @@ final class ProfileIconView: UIView {
             .disposed(by: disposeBag)
     }
     
-    func configure(input: Input) -> Output {
+    public func configure(input: Input) -> Output {
         iconImageView.image = input.icon
         return Output(didTap: button.rx.tap.asSignal())
     }

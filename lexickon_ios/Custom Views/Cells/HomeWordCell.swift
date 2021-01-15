@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import Utils
 import RxDataSources
+import UIComponents
 import UIExtensions
 import RxExtensions
 import Assets

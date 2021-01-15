@@ -12,13 +12,18 @@ import RxSwift
 import UIExtensions
 import Assets
 
-final class HomeHeaderView: UIView {
+public final class HomeHeaderView: UIView {
     
-    struct Input {
+    public init() {
+        super.init(frame: .zero)
+        createUI()
+    }
+    
+    public struct Input {
         var icon: UIImage?
     }
     
-    struct Output {
+    public struct Output {
         let didTap: Signal<Void>
     }
     
@@ -46,7 +51,7 @@ final class HomeHeaderView: UIView {
         }
     }
     
-    func configure(input: Input) -> Output {
+    public func configure(input: Input) -> Output {
         return Output(didTap: button.rx.tap.asSignal())
     }
 }

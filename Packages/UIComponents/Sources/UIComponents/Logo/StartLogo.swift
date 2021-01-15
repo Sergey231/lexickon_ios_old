@@ -7,14 +7,19 @@
 //
 
 import UIKit
-import SwiftUI
 import RxSwift
 import RxCocoa
 import Combine
 import SnapKit
 import Assets
 
-final class StartLogo: UIView {
+public final class StartLogo: UIView {
+    
+    public init() {
+        super.init(frame: .zero)
+        configureView()
+        setupContstraiots()
+    }
     
     private enum AnimationState {
         case start
@@ -108,14 +113,15 @@ final class StartLogo: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
+        setupContstraiots()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func startAnimation(complete: (() -> ())? = nil) {
-        setupContstraiots()
+    public func startAnimation(complete: (() -> ())? = nil) {
+        
         animationState = .end
         UIView.animate(withDuration: 1, animations: {
             self._updateConstraints()
@@ -134,7 +140,7 @@ final class StartLogo: UIView {
         })
     }
     
-    func stopAnimation() {
+    public func stopAnimation() {
         animationState = .start
         logoImageView.stopFlayingAnimation()
     }
@@ -229,20 +235,5 @@ final class StartLogo: UIView {
         timePublisher
             .connect()
             .store(in: &cancellableSet)
-    }
-}
-
-extension StartLogo: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> UIView {
-        return StartLogo()
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
-}
-
-struct StartLogo_Preview: PreviewProvider {
-    static var previews: some View {
-        StartLogo()
     }
 }

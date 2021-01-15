@@ -14,14 +14,14 @@ import Utils
 import SnapKit
 import Assets
 
-final class TextView: UITextView {
+public final class TextView: UITextView {
     
-    struct Input {
+    public struct Input {
         var font: UIFont = .systemRegular17
         var textColor: UIColor = Asset.Colors.baseText.color
     }
     
-    struct Output {
+    public struct Output {
         let estimatedHeight: Driver<CGFloat>
     }
     
@@ -52,7 +52,7 @@ final class TextView: UITextView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configure(input: Input) -> Output {
+    public func configure(input: Input) -> Output {
         
         font = input.font
         textColor = input.textColor

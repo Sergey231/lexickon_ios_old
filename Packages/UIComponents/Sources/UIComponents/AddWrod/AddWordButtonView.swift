@@ -12,7 +12,7 @@ import RxSwift
 import UIExtensions
 import Assets
 
-final class AddWordButtonView: UIView {
+public final class AddWordButtonView: UIView {
     
     private let disposeBag = DisposeBag()
     
@@ -30,12 +30,11 @@ final class AddWordButtonView: UIView {
     }()
     
     // public for Animator
-    let circleView: UIView = {
+    public let circleView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 28
         view.backgroundColor = Asset.Colors.mainBG.color
         view.setShadow()
-//        view.startFlayingAnimation()
         return view
     }()
     
@@ -78,7 +77,7 @@ final class AddWordButtonView: UIView {
         }
     }
     
-    var didTap: Signal<Void> {
+    public var didTap: Signal<Void> {
         button.rx.tap
             .map {()}
             .asSignal(onErrorSignalWith: .empty())

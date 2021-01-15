@@ -12,12 +12,11 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 import SnapKit
-import UIComponents
 import Assets
 
-final class LXTextField: UIView {
+public final class LXTextField: UIView {
     
-    struct Input {
+    public struct Input {
         let placeholder: String
         let leftIcon: UIImage?
         let rightIcon: UIImage?
@@ -26,7 +25,7 @@ final class LXTextField: UIView {
         let returnKeyType: UIReturnKeyType
         let initValue: String
         
-        init(
+        public init(
             placeholder: String = "",
             leftIcon: UIImage? = nil,
             rightIcon: UIImage? = nil,
@@ -69,7 +68,7 @@ final class LXTextField: UIView {
         }
     }
     
-    internal let textField: UITextField = {
+    public let textField: UITextField = {
         let textField = UITextField()
         textField.textAlignment = .center
         textField.textColor = .white
@@ -118,7 +117,7 @@ final class LXTextField: UIView {
         lineView.backgroundColor = .white
     }
     
-    func configure(input: Input) {
+    public func configure(input: Input) {
         
         _input = input 
         setupConstraints(input)
@@ -184,7 +183,7 @@ final class LXTextField: UIView {
 
 extension LXTextField: EnumerableTextField {}
 
-extension Reactive where Base: LXTextField {
+public extension Reactive where Base: LXTextField {
     var sbmitText: Driver<String> {
         return Driver.merge(
             base.textField.rx.controlEvent(.editingChanged).asDriver(),

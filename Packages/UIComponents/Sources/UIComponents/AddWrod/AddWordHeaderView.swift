@@ -14,21 +14,21 @@ import RxExtensions
 import SnapKit
 import Assets
 
-final class AddWordHeaderView: UIView {
+public final class AddWordHeaderView: UIView {
     
     private enum UIConstants {
         static let minTextFieldHeight = AddSearchWordTextField.UIConstants.minHeight
     }
     
-    struct Output {
-        let backButtonDidTap: Signal<Void>
-        let height: Driver<CGFloat>
-        let text: Driver<String>
+    public struct Output {
+        public let backButtonDidTap: Signal<Void>
+        public let height: Driver<CGFloat>
+        public let text: Driver<String>
     }
     
     private let disposeBag = DisposeBag()
     
-    var backButton: UIButton = {
+    public var backButton: UIButton = {
         let button = UIButton()
         button.setImage(Asset.Images.backArrow.image, for: .normal)
         return button
@@ -78,7 +78,7 @@ final class AddWordHeaderView: UIView {
             }
     }
     
-    func configure() -> Output {
+    public func configure() -> Output {
         
         let addSearchWordOutput = addSearchWordTextField.configure()
         

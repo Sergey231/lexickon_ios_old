@@ -12,9 +12,20 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 
-final class WideWordProgressView: UIView {
+public final class WideWordProgressView: UIView {
     
-    struct Input {
+    public struct Input {
+        
+        public init(
+            bgColor: UIColor,
+            progressColor: UIColor,
+            progress: CGFloat
+        ) {
+            self.bgColor = bgColor
+            self.progressColor = progressColor
+            self.progress = progress
+        }
+        
         let bgColor: UIColor
         let progressColor: UIColor
         let progress: CGFloat
@@ -55,7 +66,7 @@ final class WideWordProgressView: UIView {
         }
     }
     
-    func configure(input: Input) {
+    public func configure(input: Input) {
         backgroundColor = input.bgColor
         overlapView.backgroundColor = input.bgColor
         progressView.backgroundColor = input.progressColor

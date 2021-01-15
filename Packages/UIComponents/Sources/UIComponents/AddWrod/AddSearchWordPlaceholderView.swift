@@ -12,7 +12,9 @@ import RxSwift
 import UIExtensions
 import Assets
 
-final class AddSearchPlaceholderView: UIView {
+public final class AddSearchPlaceholderView: UIView {
+    
+    public init() { super.init(frame: .zero) }
     
     private let disposeBag = DisposeBag()
     
@@ -60,7 +62,7 @@ final class AddSearchPlaceholderView: UIView {
         }
     }
     
-    func stopFlaying() {
+    public func stopFlaying() {
         logoView.stopFlayingAnimation()
     }
 }

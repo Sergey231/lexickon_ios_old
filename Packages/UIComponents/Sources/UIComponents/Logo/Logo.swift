@@ -11,9 +11,14 @@ import SnapKit
 import Combine
 import Assets
 
-final class Logo: UIView {
+public final class Logo: UIView {
     
-    struct Input {
+    public init() { super.init(frame: .zero) }
+    
+    public struct Input {
+        public init(tintColor: UIColor) {
+            self.tintColor = tintColor
+        }
         let tintColor: UIColor
     }
     
@@ -90,7 +95,7 @@ final class Logo: UIView {
             .store(in: &cancellableSet)
     }
     
-    func configure(with input: Input) {
+    public func configure(with input: Input) {
         logoImageView.tintColor = input.tintColor
         leftEyeView.backgroundColor = input.tintColor
         rightEyeView.backgroundColor = input.tintColor
