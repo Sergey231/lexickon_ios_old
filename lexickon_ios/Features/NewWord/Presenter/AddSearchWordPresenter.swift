@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Resolver
 import RxDataSources
+import UIComponents
 
 typealias TranslationReulstSectionModel = AnimatableSectionModel<String, TranslationResultViewModel>
 typealias TranslationReulstRxDataSource = RxTableViewSectionedAnimatedDataSource<TranslationReulstSectionModel>

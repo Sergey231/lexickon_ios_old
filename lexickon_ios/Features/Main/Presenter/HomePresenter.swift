@@ -11,6 +11,7 @@ import RxCocoa
 import LexickonApi
 import RxDataSources
 import Resolver
+import UIComponents
 
 typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
 typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>

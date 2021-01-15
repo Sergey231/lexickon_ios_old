@@ -15,13 +15,12 @@
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
-		EC37509925B06BCC0090F95F /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37507725B06BCC0090F95F /* ApiRepository.swift */; };
 		EC3750A725B07B7C0090F95F /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750A625B07B7C0090F95F /* UIComponents */; };
 		EC3750EA25B18E320090F95F /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3750E925B18E320090F95F /* AppIcon.xcassets */; };
 		EC3750F225B195030090F95F /* Assets in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750F125B195030090F95F /* Assets */; };
+		EC37515E25B1DB990090F95F /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37512825B1DB990090F95F /* ApiRepository.swift */; };
 		EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C3859254FED4D008D1D3C /* RxDataSources */; };
 		EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C385B254FED4D008D1D3C /* Differentiator */; };
-		EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3C394825519FA4008D1D3C /* HomeWordCell.swift */; };
 		EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44492520B510004706DC /* RxAlamofire */; };
 		EC3F44532520BF26004706DC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44522520BF26004706DC /* RxSwift */; };
 		EC3F44552520BF26004706DC /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44542520BF26004706DC /* RxRelay */; };
@@ -35,7 +34,6 @@
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
 		EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */; };
-		EC77E87825A7066E00BF89E4 /* TranslationResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC77E87725A7066E00BF89E4 /* TranslationResultCell.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
@@ -100,14 +98,13 @@
 		EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDictionaryApiResultDTO.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC37507725B06BCC0090F95F /* ApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRepository.swift; sourceTree = "<group>"; };
-		EC37509E25B06BE20090F95F /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConfigsRepository; sourceTree = "<group>"; };
-		EC37509F25B06BE20090F95F /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyValueRepository; sourceTree = "<group>"; };
-		EC3750A025B06BE20090F95F /* KeychainRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeychainRepository; sourceTree = "<group>"; };
 		EC3750A325B078180090F95F /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIComponents; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		EC3C394825519FA4008D1D3C /* HomeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWordCell.swift; sourceTree = "<group>"; };
+		EC37512825B1DB990090F95F /* ApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiRepository.swift; path = Packages/Repositories/ApiRepository.swift; sourceTree = SOURCE_ROOT; };
+		EC37517925B1DBAE0090F95F /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = ConfigsRepository; path = Packages/Repositories/ConfigsRepository; sourceTree = SOURCE_ROOT; };
+		EC37517C25B1DBB20090F95F /* KeychainRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = KeychainRepository; path = Packages/Repositories/KeychainRepository; sourceTree = SOURCE_ROOT; };
+		EC37517F25B1DBB60090F95F /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = KeyValueRepository; path = Packages/Repositories/KeyValueRepository; sourceTree = SOURCE_ROOT; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -117,7 +114,6 @@
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
 		EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC77E87725A7066E00BF89E4 /* TranslationResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResultCell.swift; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
@@ -240,20 +236,13 @@
 		EC37503725B06BCB0090F95F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				EC37507725B06BCC0090F95F /* ApiRepository.swift */,
-				EC37509E25B06BE20090F95F /* ConfigsRepository */,
-				EC3750A025B06BE20090F95F /* KeychainRepository */,
-				EC37509F25B06BE20090F95F /* KeyValueRepository */,
+				EC37512825B1DB990090F95F /* ApiRepository.swift */,
+				EC37517F25B1DBB60090F95F /* KeyValueRepository */,
+				EC37517C25B1DBB20090F95F /* KeychainRepository */,
+				EC37517925B1DBAE0090F95F /* ConfigsRepository */,
 			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				ECA95B73256E8A1C006332A5 /* Cells */,
-			);
-			path = "Custom Views";
+			name = Repositories;
+			path = ../lexickon_ios/Repositories;
 			sourceTree = "<group>";
 		};
 		EC3EAB1022D4DC1C00BFCBFC /* Features */ = {
@@ -296,8 +285,6 @@
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
-				EC37503725B06BCB0090F95F /* Repositories */,
-				EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */,
 				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
 			);
@@ -410,18 +397,10 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		ECA95B73256E8A1C006332A5 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				EC3C394825519FA4008D1D3C /* HomeWordCell.swift */,
-				EC77E87725A7066E00BF89E4 /* TranslationResultCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		ECB50CB6258F45E3003B9A68 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				EC37503725B06BCB0090F95F /* Repositories */,
 				EC3750B625B085540090F95F /* Assets */,
 				EC3750A325B078180090F95F /* UIComponents */,
 				ECB50D2F258F460B003B9A68 /* RxExtensions */,
@@ -718,9 +697,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC37509925B06BCC0090F95F /* ApiRepository.swift in Sources */,
 				EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */,
-				EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */,
 				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */,
 				ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */,
@@ -755,7 +732,6 @@
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
-				EC77E87825A7066E00BF89E4 /* TranslationResultCell.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
@@ -764,6 +740,7 @@
 				EC04899C25AAE66600945F88 /* TranslationRequestDTO.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
+				EC37515E25B1DB990090F95F /* ApiRepository.swift in Sources */,
 				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,
 				EC86901D259759410005636A /* TranslationRepository.swift in Sources */,
 			);

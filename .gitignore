@@ -86,3 +86,6 @@ lexickon_ios/Repositories/ConfigsRepository/.swiftpm/xcode/package.xcworkspace/x
 lexickon_ios/Repositories/KeyValueRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 Packages/Assets/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 Packages/GeneratedObjects/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Packages/Repositories/ConfigsRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Packages/Repositories/KeyValueRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Packages/Repositories/KeychainRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
