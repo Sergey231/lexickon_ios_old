@@ -35,7 +35,6 @@
 		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
 		EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginViewController.swift */; };
 		EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppAssembler.swift */; };
-		EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC52C75A22DA0C1F000C88C5 /* Localizable.strings */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
@@ -133,7 +132,6 @@
 		EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EC47965123923E6400C9BDD3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
-		EC52C75A22DA0C1F000C88C5 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				ECA97C6922D0808500918828 /* Info.plist */,
-				EC52C75A22DA0C1F000C88C5 /* Localizable.strings */,
 				ECF20D60236D942500DA8715 /* logo.png */,
 				ECF20D5F236D942500DA8715 /* README.md */,
 				EC3750E925B18E320090F95F /* AppIcon.xcassets */,
@@ -777,7 +774,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC52C75D22DA0C1F000C88C5 /* Localizable.strings in Resources */,
 				EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */,
 				ECF20D61236D942500DA8715 /* README.md in Resources */,
 				ECF20D62236D942500DA8715 /* logo.png in Resources */,
