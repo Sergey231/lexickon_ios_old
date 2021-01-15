@@ -97,7 +97,7 @@ class StartViewController: UIViewController, Stepper {
         navigationController?.setupLargeTitleNavBar()
         
         resetAnimations()
-
+        
         let presenterInput = StartPresenter.Input(
             beginButtonTapped: beginButton.rx.tap.asSignal(),
             iAmHaveAccountButtonTapped: iAmHaveAccountButton.rx.tap.asSignal(),

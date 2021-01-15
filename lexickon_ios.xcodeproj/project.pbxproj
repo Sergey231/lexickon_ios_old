@@ -21,7 +21,6 @@
 		EC3750F225B195030090F95F /* Assets in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750F125B195030090F95F /* Assets */; };
 		EC37510225B1B4E30090F95F /* FromNewWordToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3750FF25B1B4E30090F95F /* FromNewWordToHomeAnimator.swift */; };
 		EC37510325B1B4E30090F95F /* FromProfileToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37510025B1B4E30090F95F /* FromProfileToHomeAnimator.swift */; };
-		EC37510425B1B4E30090F95F /* FromHomeToProfileAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37510125B1B4E30090F95F /* FromHomeToProfileAnimator.swift */; };
 		EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C3859254FED4D008D1D3C /* RxDataSources */; };
 		EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C385B254FED4D008D1D3C /* Differentiator */; };
 		EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3C394825519FA4008D1D3C /* HomeWordCell.swift */; };
@@ -112,7 +111,6 @@
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		EC3750FF25B1B4E30090F95F /* FromNewWordToHomeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromNewWordToHomeAnimator.swift; sourceTree = "<group>"; };
 		EC37510025B1B4E30090F95F /* FromProfileToHomeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromProfileToHomeAnimator.swift; sourceTree = "<group>"; };
-		EC37510125B1B4E30090F95F /* FromHomeToProfileAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromHomeToProfileAnimator.swift; sourceTree = "<group>"; };
 		EC3C394825519FA4008D1D3C /* HomeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWordCell.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -257,7 +255,6 @@
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC37510125B1B4E30090F95F /* FromHomeToProfileAnimator.swift */,
 				EC3750FF25B1B4E30090F95F /* FromNewWordToHomeAnimator.swift */,
 				EC37510025B1B4E30090F95F /* FromProfileToHomeAnimator.swift */,
 				ECA95B73256E8A1C006332A5 /* Cells */,
@@ -756,7 +753,6 @@
 				EC37510325B1B4E30090F95F /* FromProfileToHomeAnimator.swift in Sources */,
 				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */,
-				EC37510425B1B4E30090F95F /* FromHomeToProfileAnimator.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
 				EC0489AF25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift in Sources */,
 				ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */,

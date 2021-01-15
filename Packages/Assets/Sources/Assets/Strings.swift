@@ -69,8 +69,10 @@ public enum Str {
   public static let startCreateAccountButtonTitle = Str.tr("Localizable", "Start_create_account_button_title")
   /// У МЕНЯ ЕСТЬ АККАУНТ
   public static let startIHaveAccountButtonTitle = Str.tr("Localizable", "Start_i_have_account_button_title")
-  /// Тест
-  public static let test = Str.tr("Localizable", "Test")
+  /// Тест %@
+  public static func test(_ p1: Any) -> String {
+    return Str.tr("Localizable", "Test", String(describing: p1))
+  }
 }
 // swiftlint:enable function_parameter_count identifier_name line_length type_body_length
 

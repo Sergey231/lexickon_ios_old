@@ -202,8 +202,16 @@ extension HomeViewController: UINavigationControllerDelegate {
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
         
-        if fromVC is HomeViewController && toVC is ProfileMainScreenViewController {
-            return FromHomeToProfileAnimator	    ()
+        if
+            let profileVC = toVC as? ProfileMainScreenViewController,
+            fromVC is HomeViewController
+        {
+            return FromHomeToProfileAnimator(
+                profileVCProfileIconView: profileVC.profileIconView,
+                profileVCProfileIconViewSize: ProfileMainScreenViewController.UIConstants.profileIconSize,
+                homeVCProfileIconView: profileIconView,
+                profileIconTopMargin: ProfileMainScreenViewController.UIConstants.profileIconTopMargin
+            )
         }
         
         if fromVC is HomeViewController && toVC is AddSearchWordViewController {

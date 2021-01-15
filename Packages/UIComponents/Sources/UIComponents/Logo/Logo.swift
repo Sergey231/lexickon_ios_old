@@ -13,7 +13,10 @@ import Assets
 
 public final class Logo: UIView {
     
-    public init() { super.init(frame: .zero) }
+    public init() {
+        super.init(frame: .zero)
+        configureView()
+    }
     
     public struct Input {
         public init(tintColor: UIColor) {

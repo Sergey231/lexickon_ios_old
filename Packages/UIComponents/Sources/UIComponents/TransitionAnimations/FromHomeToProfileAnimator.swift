@@ -9,29 +9,46 @@
 import UIKit
 import SnapKit
 
-final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    private let profileVCProfileIconView: UIView
+    private let profileVCProfileIconViewSize: CGFloat
+    private let homeVCProfileIconView: UIView
+    private let profileIconTopMargin: CGFloat
+    
+    public init(
+        profileVCProfileIconView: UIView,
+        profileVCProfileIconViewSize: CGFloat,
+        homeVCProfileIconView: UIView,
+        profileIconTopMargin: CGFloat
+    ) {
+        self.profileVCProfileIconView = profileVCProfileIconView
+        self.profileVCProfileIconViewSize = profileVCProfileIconViewSize
+        self.homeVCProfileIconView = homeVCProfileIconView
+        self.profileIconTopMargin = profileIconTopMargin
+    }
     
     static let duration: TimeInterval = 0.8
     
-    func transitionDuration(
+    public func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
         Self.duration
     }
     
-    func animateTransition(
+    public func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         
-        let homeVC = transitionContext.viewController(forKey: .from) as! HomeViewController
-        let profileVC = transitionContext.viewController(forKey: .to) as! ProfileMainScreenViewController
+        let homeVC = transitionContext.viewController(forKey: .from)!
+        let profileVC = transitionContext.viewController(forKey: .to)!
         profileVC.view.isHidden = true
-        profileVC.profileIconView.isHidden = true
+        profileVCProfileIconView.isHidden = true
         
         
         let tmpView: UIView = {
             let tmpView = UIView()
-            tmpView.frame = homeVC.profileIconView.frame
+            tmpView.frame = homeVCProfileIconView.frame
             tmpView.backgroundColor = profileVC.view.backgroundColor
             tmpView.layer.cornerRadius = tmpView.frame.size.height / 2
             return tmpView
@@ -39,9 +56,9 @@ final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransit
         
         let tmpProfileIconView: UIView = {
             let tmpProfileIconView = UIView()
-            tmpProfileIconView.frame = homeVC.profileIconView.frame
+            tmpProfileIconView.frame = homeVCProfileIconView.frame
             tmpProfileIconView.backgroundColor = .gray
-            tmpProfileIconView.layer.cornerRadius = homeVC.profileIconView.layer.cornerRadius
+            tmpProfileIconView.layer.cornerRadius = homeVCProfileIconView.layer.cornerRadius
             return tmpProfileIconView
         }()
         
@@ -58,10 +75,10 @@ final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransit
             usingSpringWithDamping: 0.3,
             initialSpringVelocity: 0.5,
             options: .curveEaseInOut,
-            animations: {
+            animations: { [self] in
 
-                let profileIconViewSize = ProfileMainScreenViewController.UIConstants.profileIconSize
-                let profileIconTopMargin = ProfileMainScreenViewController.UIConstants.profileIconTopMargin
+                let profileIconViewSize = self.profileVCProfileIconViewSize
+                let profileIconTopMargin = self.profileIconTopMargin
                     + profileVC.view.safeAreaInsets.top
 
                 tmpProfileIconView.layer.cornerRadius = profileIconViewSize / 2
@@ -73,7 +90,7 @@ final class FromHomeToProfileAnimator: NSObject, UIViewControllerAnimatedTransit
                 tmpProfileIconView.superview?.layoutIfNeeded()
 
             }, completion: { _ in
-                profileVC.profileIconView.isHidden = false
+                self.profileVCProfileIconView.isHidden = false
                 tmpProfileIconView.removeFromSuperview()
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
