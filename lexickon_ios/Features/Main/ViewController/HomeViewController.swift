@@ -216,7 +216,7 @@ extension HomeViewController: UINavigationControllerDelegate {
         
         if fromVC is HomeViewController && toVC is AddSearchWordViewController {
             return FromHomeToNewWordAnimator(
-                headerViewHeight: UIConstants.headerHeight,
+                headerViewHeight: AddSearchWordViewController.UIConstants.headerViewHeight,
                 addWordButton: addWordButton
             )
         }
@@ -228,8 +228,16 @@ extension HomeViewController: UINavigationControllerDelegate {
         from fromVC: UIViewController,
         to toVC: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        if toVC is HomeViewController && fromVC is ProfileMainScreenViewController {
-            return FromProfileToHomeAnimator()
+        if
+            let profileVC = fromVC as? ProfileMainScreenViewController,
+            toVC is HomeViewController
+        {
+            return FromProfileToHomeAnimator(
+                profileVCProfileIconView: profileVC.profileIconView,
+                homeVCProfileIconView: profileIconView,
+                homeVCProfileIconSize: HomeViewController.UIConstants.profileIconSize,
+                homeVCProfileIconRightMargin: HomeViewController.UIConstants.profileIconRightMargin
+            )
         }
         
         if fromVC is AddSearchWordViewController && toVC is HomeViewController {

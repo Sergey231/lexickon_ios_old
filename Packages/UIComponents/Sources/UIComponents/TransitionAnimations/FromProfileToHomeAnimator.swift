@@ -9,23 +9,40 @@
 import UIKit
 import SnapKit
 
-final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    private let profileVCProfileIconView: UIView
+    private let homeVCProfileIconView: UIView
+    private let homeVCProfileIconSize: CGFloat
+    private let homeVCProfileIconRightMargin: CGFloat
+    
+    public init(
+        profileVCProfileIconView: UIView,
+        homeVCProfileIconView: UIView,
+        homeVCProfileIconSize: CGFloat,
+        homeVCProfileIconRightMargin: CGFloat
+    ) {
+        self.profileVCProfileIconView = profileVCProfileIconView
+        self.homeVCProfileIconView = homeVCProfileIconView
+        self.homeVCProfileIconSize = homeVCProfileIconSize
+        self.homeVCProfileIconRightMargin = homeVCProfileIconRightMargin
+    }
     
     static let duration: TimeInterval = 0.4
     
-    func transitionDuration(
+    public func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
         Self.duration
     }
     
-    func animateTransition(
+    public func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         
-        let homeVC = transitionContext.viewController(forKey: .to) as! HomeViewController
-        let profileVC = transitionContext.viewController(forKey: .from) as! ProfileMainScreenViewController
-        profileVC.profileIconView.isHidden = true
+        let homeVC = transitionContext.viewController(forKey: .to)!
+        let profileVC = transitionContext.viewController(forKey: .from)!
+        profileVCProfileIconView.isHidden = true
         
         let tmpView: UIView = {
             let tmpView = UIView()
@@ -37,8 +54,8 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
         
         let tmpProfileIconView: UIView = {
             let tmpProfileIconView = UIView()
-            tmpProfileIconView.frame = profileVC.profileIconView.frame
-            tmpProfileIconView.backgroundColor = profileVC.profileIconView.backgroundColor
+            tmpProfileIconView.frame = profileVCProfileIconView.frame
+            tmpProfileIconView.backgroundColor = profileVCProfileIconView.backgroundColor
             tmpProfileIconView.layer.cornerRadius = tmpProfileIconView.frame.size.height / 2
             return tmpProfileIconView
         }()
@@ -55,8 +72,8 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
             withDuration: Self.duration,
             animations: {
                 
-                let profileIconViewSize = HomeViewController.UIConstants.profileIconSize
-                let profileIconRightMargin = HomeViewController.UIConstants.profileIconRightMargin
+                let profileIconViewSize = self.homeVCProfileIconSize
+                let profileIconRightMargin = self.homeVCProfileIconRightMargin
                 
                 tmpProfileIconView.layer.cornerRadius = profileIconViewSize / 2
                 tmpProfileIconView.snp.makeConstraints {
@@ -67,7 +84,7 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                 tmpProfileIconView.superview?.layoutIfNeeded()
                 
             }, completion: { _ in
-                homeVC.profileIconView.isHidden = false
+                self.homeVCProfileIconView.isHidden = false
                 tmpProfileIconView.removeFromSuperview()
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
@@ -92,7 +109,7 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                             $0.width.equalToSuperview()
                         }
                         tmpView.superview?.layoutIfNeeded()
-                        tmpView.layer.cornerRadius = homeVC.profileIconView.frame.size.height / 2
+                        tmpView.layer.cornerRadius = self.homeVCProfileIconSize / 2
                         
                     }, completion: { _ in
 
@@ -105,8 +122,8 @@ final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                                 
                                 tmpView.snp.remakeConstraints {
                                     $0.top.equalTo(homeVC.view.safeAreaInsets.top)
-                                    $0.right.equalToSuperview().offset(-HomeViewController.UIConstants.profileIconRightMargin)
-                                    $0.size.equalTo(HomeViewController.UIConstants.profileIconSize)
+                                    $0.right.equalToSuperview().offset(-self.homeVCProfileIconRightMargin)
+                                    $0.size.equalTo(self.homeVCProfileIconSize)
                                 }
                                 tmpView.superview?.layoutIfNeeded()
                                 
