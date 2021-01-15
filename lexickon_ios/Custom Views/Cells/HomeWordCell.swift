@@ -14,6 +14,7 @@ import Utils
 import RxDataSources
 import UIExtensions
 import RxExtensions
+import Assets
 
 struct HomeWordViewModel {
     

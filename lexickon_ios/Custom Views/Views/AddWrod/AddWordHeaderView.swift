@@ -12,6 +12,7 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 import SnapKit
+import Assets
 
 final class AddWordHeaderView: UIView {
     

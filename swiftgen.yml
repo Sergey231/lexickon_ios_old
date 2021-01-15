@@ -3,11 +3,16 @@ strings:
   filter: .+\.strings$
   outputs:
     - templateName: flat-swift5
-      output: lexickon_ios/Resources/Generated/Strings.swift
+      output: Packages/GeneratedObjects/Sources/GeneratedObjects/Strings.swift
+      params: 
+        enumName: Str
+        publicAccess: public
 xcassets:
   inputs:
     - lexickon_ios/Resources/Images.xcassets
     - lexickon_ios/Resources/Colors.xcassets
   outputs:
     - templateName: swift5
-      output: lexickon_ios/Resources/Generated/Assets.swift
+      output: Packages/GeneratedObjects/Sources/GeneratedObjects/Assets.swift
+      params: 
+        publicAccess: public

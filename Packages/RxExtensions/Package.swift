@@ -29,8 +29,7 @@ let package = Package(
             dependencies: [
                 "RxSwift",
                 .product(name: "RxCocoa", package: "RxSwift"),
-                "SnapKit",
-//                .product(name: "UIExtensions", package: "UIExtensions")
+                "SnapKit"
             ]),
         .testTarget(
             name: "RxExtensionsTests",

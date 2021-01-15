@@ -13,6 +13,7 @@ import RxFlow
 import SnapKit
 import UIExtensions
 import Resolver
+import Assets
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     
@@ -94,7 +95,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private func configureUI() {
         
         logoutButton.setTitle(
-            L10n.loginLoginButtonTitle,
+            Str.loginLoginButtonTitle,
             for: .normal
         )
         

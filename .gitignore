@@ -84,3 +84,5 @@ fastlane/test_output
 lexickon_ios/Repositories/KeychainRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 lexickon_ios/Repositories/ConfigsRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 lexickon_ios/Repositories/KeyValueRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Packages/Assets/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Packages/GeneratedObjects/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist

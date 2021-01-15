@@ -10,6 +10,7 @@ import UIKit
 import RxFlow
 import Resolver
 import KeyValueRepository
+import ConfigsRepository
 
 enum NewWordStep: Step {
     case addSearch
@@ -69,5 +70,6 @@ extension Resolver {
         register { NewWordInteractor() as NewWordInteractorProtocol }
         register { TranslationRepository() as TranslationRepositoryProtocol }
         register { KeyValueRepository() as KeyValueRepositoryProtocol }
+        register { ConfigsRepository() as ConfigsRepositoryProtocol }
     }
 }

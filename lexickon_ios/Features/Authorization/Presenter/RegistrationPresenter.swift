@@ -11,6 +11,7 @@ import RxCocoa
 import SwiftUI
 import Validator
 import Resolver
+import Assets
 
 final class RegistrationPresenter: PresenterType {
     
@@ -218,17 +219,17 @@ enum TextFieldError {
         var message: String {
             switch self {
             case .empty:
-                return L10n.registrationEnterPassword
+                return Str.registrationEnterPassword
             case .needDigital:
-                return L10n.registrationPasswordMustContainDigits
+                return Str.registrationPasswordMustContainDigits
             case .needUpcase:
-                return L10n.registrationPasswordMustContainUpercaseCharacters
+                return Str.registrationPasswordMustContainUpercaseCharacters
             case .needLowcase:
-                return L10n.registrationPasswordMustContainLowercaseCharacters
+                return Str.registrationPasswordMustContainLowercaseCharacters
             case .tooShort:
-                return L10n.registrationPasswordTooShort
+                return Str.registrationPasswordTooShort
             case .tooLong:
-                return L10n.registrationPasswordTooLong
+                return Str.registrationPasswordTooLong
             }
         }
     }
@@ -241,9 +242,9 @@ enum TextFieldError {
         var message: String {
             switch self {
             case .empty:
-                return L10n.registrationEnterName
+                return Str.registrationEnterName
             case .tooShort:
-                return L10n.registrationNameTooShort
+                return Str.registrationNameTooShort
             }
         }
     }
@@ -256,9 +257,9 @@ enum TextFieldError {
         var message: String {
             switch self {
             case .empty:
-                return L10n.registrationEnterEmail
+                return Str.registrationEnterEmail
             case .incorrectEmail:
-                return L10n.registrationIncorrectEmail
+                return Str.registrationIncorrectEmail
             }
         }
     }

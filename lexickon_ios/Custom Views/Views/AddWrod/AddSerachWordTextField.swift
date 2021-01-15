@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import SnapKit
+import Assets
 
 final class AddSearchWordTextField: UIView {
     

@@ -14,11 +14,9 @@ import RxSwift
 import UIExtensions
 import RxDataSources
 import Resolver
+import UIComponents
 
 final class HomeViewController: UIViewController, Stepper {
-    
-//    typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
-//    typealias RxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
     
     struct UIConstants {
         static let profileIconSize: CGFloat = 44

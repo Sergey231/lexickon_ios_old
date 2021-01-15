@@ -14,6 +14,7 @@ import RxFlow
 import RxSwift
 import RxCocoa
 import Resolver
+import Assets
 
 final class LoginViewController: UIViewController, Stepper {
     
@@ -40,7 +41,7 @@ final class LoginViewController: UIViewController, Stepper {
     
     private let loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle(L10n.loginLoginButtonTitle, for: .normal)
+        button.setTitle(Str.loginLoginButtonTitle, for: .normal)
         return button
     }()
     
@@ -78,11 +79,11 @@ final class LoginViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        title = L10n.loginScreenTitle
+        title = Str.loginScreenTitle
         configureHidingKeyboardByTap()
         
         emailTextField.configure(input: LXTextField.Input(
-            placeholder: L10n.registrationEmailTextfield,
+            placeholder: Str.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next,
@@ -90,7 +91,7 @@ final class LoginViewController: UIViewController, Stepper {
         ))
         
         passwordTextField.configure(input: LXTextField.Input(
-            placeholder: L10n.registrationPasswordTextfield,
+            placeholder: Str.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             isSecure: true,
             returnKeyType: .join,
@@ -126,7 +127,7 @@ final class LoginViewController: UIViewController, Stepper {
             .flatMapLatest {
                 return self.showMsg(
                     msg: $0,
-                    buttonTitle: L10n.errorAlertButtonTitle,
+                    buttonTitle: Str.errorAlertButtonTitle,
                     buttonColor: Asset.Colors.mainBG.color
                 )
             }

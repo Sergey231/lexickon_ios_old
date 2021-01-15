@@ -12,6 +12,7 @@ import RxSwift
 import UIExtensions
 import Utils
 import SnapKit
+import Assets
 
 final class TextView: UITextView {
     

@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
+import Assets
 
 final class AddWordButtonView: UIView {
     

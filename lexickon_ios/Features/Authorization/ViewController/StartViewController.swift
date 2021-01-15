@@ -14,6 +14,7 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 import Resolver
+import Assets
 
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -31,19 +32,19 @@ class StartViewController: UIViewController, Stepper {
     
     fileprivate let beginButton: UIButton = {
         let button = UIButton()
-        button.setTitle(L10n.startBeginButtonTitle, for: .normal)
+        button.setTitle(Str.startBeginButtonTitle, for: .normal)
         return button
     }()
     
     fileprivate let iAmHaveAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle(L10n.startIHaveAccountButtonTitle, for: .normal)
+        button.setTitle(Str.startIHaveAccountButtonTitle, for: .normal)
         return button
     }()
     
     fileprivate let createAccountButton: UIButton = {
         let button = UIButton()
-        button.setTitle(L10n.startCreateAccountButtonTitle, for: .normal)
+        button.setTitle(Str.startCreateAccountButtonTitle, for: .normal)
         return button
     }()
     

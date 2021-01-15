@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
+import Assets
 
 final class AddSearchPlaceholderView: UIView {
     
@@ -24,7 +25,7 @@ final class AddSearchPlaceholderView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.text = L10n.newWrodPlaceholder
+        label.text = Str.newWrodPlaceholder
         label.numberOfLines = 0
         label.textColor = .lightGray
         return label

@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import Combine
 import SnapKit
+import Assets
 
 final class StartLogo: UIView {
     

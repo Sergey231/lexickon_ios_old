@@ -7,6 +7,7 @@ import RxFlow
 import RxSwift
 import RxCocoa
 import Resolver
+import Assets
 
 final class RegistrationViewController: UIViewController, Stepper {
     
@@ -45,7 +46,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     
     private let registrateButton: UIButton = {
         let button = UIButton()
-        button.setTitle(L10n.registrationSubmitButtonTitle, for: .normal)
+        button.setTitle(Str.registrationSubmitButtonTitle, for: .normal)
         return button
     }()
     
@@ -151,23 +152,23 @@ final class RegistrationViewController: UIViewController, Stepper {
         view.layoutIfNeeded()
         
         configureHidingKeyboardByTap()
-        title = L10n.registrationCreateAccountTitle
+        title = Str.registrationCreateAccountTitle
         
         nameTextField.configure(input: LXTextField.Input(
-            placeholder: L10n.registrationNameTextfield,
+            placeholder: Str.registrationNameTextfield,
             leftIcon: Asset.Images.accountIcon.image,
             returnKeyType: .next
         ))
         
         emailTextField.configure(input: LXTextField.Input(
-            placeholder: L10n.registrationEmailTextfield,
+            placeholder: Str.registrationEmailTextfield,
             leftIcon: Asset.Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
         passwordTextField.configure(input: LXTextField.Input(
-            placeholder: L10n.registrationPasswordTextfield,
+            placeholder: Str.registrationPasswordTextfield,
             leftIcon: Asset.Images.lockIcon.image,
             isSecure: true,
             returnKeyType: .join
@@ -218,7 +219,7 @@ final class RegistrationViewController: UIViewController, Stepper {
             .flatMapLatest {
                 return self.showMsg(
                     msg: $0,
-                    buttonTitle: L10n.errorAlertButtonTitle,
+                    buttonTitle: Str.errorAlertButtonTitle,
                     buttonColor: Asset.Colors.mainBG.color
                 )
             }
