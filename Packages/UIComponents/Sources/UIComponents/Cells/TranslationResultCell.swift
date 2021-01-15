@@ -14,28 +14,31 @@ import Utils
 import RxDataSources
 import UIExtensions
 
-struct TranslationResultViewModel {
-    let translation: String
+public struct TranslationResultViewModel {
+    public init(translation: String) {
+        self.translation = translation
+    }
+    public let translation: String
 }
 
 extension TranslationResultViewModel: Hashable {
-    static func == (lsh: Self, rsh: Self) -> Bool {
+    public static func == (lsh: Self, rsh: Self) -> Bool {
         return lsh.translation == rsh.translation
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(translation)
     }
 }
 
 extension TranslationResultViewModel: IdentifiableType {
-    var identity: String {
+    public var identity: String {
         return self.translation
     }
-    typealias Identity = String
+    public typealias Identity = String
 }
 
-class TranslationResultCell: DisposableTableViewCell {
+public final class TranslationResultCell: DisposableTableViewCell {
     
     private let translationLable: UILabel = {
         let label = UILabel()
@@ -65,7 +68,7 @@ class TranslationResultCell: DisposableTableViewCell {
         translationLable.text = input.translation
     }
     
-    func configurate(with model: TranslationResultViewModel) {
+    public func configurate(with model: TranslationResultViewModel) {
         createUI(with: model)
     }
 }

@@ -12,44 +12,51 @@ import RxSwift
 import RxCocoa
 import Utils
 import RxDataSources
-import UIComponents
-import UIExtensions
 import RxExtensions
+import UIExtensions
 import Assets
 
-struct HomeWordViewModel {
+public struct HomeWordViewModel {
     
-    enum StudyType {
+    public init(
+        word: String,
+        studyType: StudyType
+    ) {
+        self.word = word
+        self.studyType = studyType
+    }
+    
+    public enum StudyType {
         case fire
         case ready
         case new
         case waiting
     }
     
-    var isReady: Bool { self.studyType == .ready }
+    public var isReady: Bool { self.studyType == .ready }
     
-    let word: String
-    let studyType: StudyType
+    public let word: String
+    public let studyType: StudyType
 }
 
 extension HomeWordViewModel: Hashable {
-    static func == (lsh: Self, rsh: Self) -> Bool {
+    public static func == (lsh: Self, rsh: Self) -> Bool {
         return lsh.word == rsh.word
     }
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(word)
     }
 }
 
 extension HomeWordViewModel: IdentifiableType {
-    var identity: String {
+    public var identity: String {
         return self.word
     }
-    typealias Identity = String
+    public typealias Identity = String
 }
 
-class HomeWordCell: DisposableTableViewCell {
+public final class HomeWordCell: DisposableTableViewCell {
     
     private let wordLable: UILabel = {
         let label = UILabel()
@@ -66,7 +73,7 @@ class HomeWordCell: DisposableTableViewCell {
     private lazy var iconImageView = UIImageView()
     private lazy var logo = Logo()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
@@ -132,7 +139,7 @@ class HomeWordCell: DisposableTableViewCell {
         contentView.clipsToBounds = true
     }
     
-    func configurate(with model: HomeWordViewModel) {
+    public func configurate(with model: HomeWordViewModel) {
         
         createUI(with: model)
         configureUI()
