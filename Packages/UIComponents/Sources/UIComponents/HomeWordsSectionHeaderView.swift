@@ -23,13 +23,13 @@ public final class HomeWordsSectionHeaderView: UIView {
             switch self {
             
             case .fire:
-                return "L10n.homeFireSectionTitle"
+                return Str.homeFireSectionTitle
             case .ready:
-                return "L10n.homeReadySectionTitle"
+                return Str.homeReadySectionTitle
             case .new:
-                return "L10n.homeNewSectionTitle"
+                return Str.homeNewSectionTitle
             case .waiting:
-                return "L10n.homeWaitingSectionTitle"
+                return Str.homeWaitingSectionTitle
             }
         }
     }
@@ -50,7 +50,7 @@ public final class HomeWordsSectionHeaderView: UIView {
     
     private let bgTitleView: UIView = {
         let bg = UIView()
-        bg.backgroundColor = UIColor(named: "homeWordSectionHeaderBG") //Asset.Colors.homeWordSectionHeaderBG.color
+        bg.backgroundColor = Asset.Colors.homeWordSectionHeaderBG.color
         return bg
     }()
     
