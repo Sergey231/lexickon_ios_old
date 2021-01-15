@@ -19,7 +19,6 @@
 		EC3750A725B07B7C0090F95F /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750A625B07B7C0090F95F /* UIComponents */; };
 		EC3750EA25B18E320090F95F /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3750E925B18E320090F95F /* AppIcon.xcassets */; };
 		EC3750F225B195030090F95F /* Assets in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750F125B195030090F95F /* Assets */; };
-		EC37510225B1B4E30090F95F /* FromNewWordToHomeAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3750FF25B1B4E30090F95F /* FromNewWordToHomeAnimator.swift */; };
 		EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C3859254FED4D008D1D3C /* RxDataSources */; };
 		EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C385B254FED4D008D1D3C /* Differentiator */; };
 		EC3C394925519FA4008D1D3C /* HomeWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3C394825519FA4008D1D3C /* HomeWordCell.swift */; };
@@ -108,7 +107,6 @@
 		EC3750A325B078180090F95F /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIComponents; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		EC3750FF25B1B4E30090F95F /* FromNewWordToHomeAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromNewWordToHomeAnimator.swift; sourceTree = "<group>"; };
 		EC3C394825519FA4008D1D3C /* HomeWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWordCell.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,7 +251,6 @@
 		EC3EAB0F22D4DBFA00BFCBFC /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC3750FF25B1B4E30090F95F /* FromNewWordToHomeAnimator.swift */,
 				ECA95B73256E8A1C006332A5 /* Cells */,
 			);
 			path = "Custom Views";
@@ -738,7 +735,6 @@
 				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
 				ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */,
 				EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */,
-				EC37510225B1B4E30090F95F /* FromNewWordToHomeAnimator.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
 				EC869021259759970005636A /* TranslationRepositoryProtocol.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,

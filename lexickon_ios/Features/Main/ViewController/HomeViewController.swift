@@ -240,8 +240,15 @@ extension HomeViewController: UINavigationControllerDelegate {
             )
         }
         
-        if fromVC is AddSearchWordViewController && toVC is HomeViewController {
-            return FromNewWordToHomeAnimator()
+        if
+            let addSearchWordVC = fromVC as? AddSearchWordViewController,
+            toVC is HomeViewController
+        {
+            return FromNewWordToHomeAnimator(
+                addSearchWordVCHeaderViewFrame: addSearchWordVC.headerView.frame,
+                homeVCAddWordButton: addWordButton,
+                addSearchWordVCHeaderView: addSearchWordVC.headerView
+            )
         }
         
         return nil

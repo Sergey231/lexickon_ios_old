@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import UIExtensions
+import Assets
 
 public final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
@@ -48,6 +49,7 @@ public final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimated
             tmpView.backgroundColor = .white
             tmpView.layer.cornerRadius = circleViewFrame.size.height / 2
             tmpView.clipsToBounds = true
+            tmpView.backgroundColor = Asset.Colors.mainBG.color
             return tmpView
         }()
         
@@ -106,6 +108,7 @@ public final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimated
                             $0.edges.equalToSuperview()
                         }
                         tmpView.superview?.layoutIfNeeded()
+                        tmpView.backgroundColor = .white
                     },
                     completion: { _ in
 

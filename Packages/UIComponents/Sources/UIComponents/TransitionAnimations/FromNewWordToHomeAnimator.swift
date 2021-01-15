@@ -9,28 +9,38 @@
 import UIKit
 import SnapKit
 import UIExtensions
+import Assets
 
-final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    private let addSearchWordVCHeaderViewFrame: CGRect
+    private let homeVCAddWordButton: AddWordButtonView
+    private let addSearchWordVCHeaderView: UIView
+    
+    public init(
+        addSearchWordVCHeaderViewFrame: CGRect,
+        homeVCAddWordButton: AddWordButtonView,
+        addSearchWordVCHeaderView: UIView
+    ) {
+        self.addSearchWordVCHeaderViewFrame = addSearchWordVCHeaderViewFrame
+        self.homeVCAddWordButton = homeVCAddWordButton
+        self.addSearchWordVCHeaderView = addSearchWordVCHeaderView
+    }
     
     static let duration: TimeInterval = 0.4
     
-    func transitionDuration(
+    public func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?
     ) -> TimeInterval {
         Self.duration
     }
     
-    func animateTransition(
+    public func animateTransition(
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         
-        let homeVC = transitionContext.viewController(
-            forKey: UITransitionContextViewControllerKey.to
-        ) as! HomeViewController
-        
-        let addSearchWordVC = transitionContext.viewController(
-            forKey: UITransitionContextViewControllerKey.from
-        ) as! AddSearchWordViewController
+        let homeVC = transitionContext.viewController(forKey: .to)!
+        let addSearchWordVC = transitionContext.viewController(forKey: .from)!
         
         homeVC.view.alpha = 0.6
         
@@ -44,8 +54,8 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
         
         let tmpHeaderView: UIView = {
             let tmpHeaderView = UIView()
-            tmpHeaderView.frame = addSearchWordVC.headerView.frame
-            tmpHeaderView.backgroundColor = addSearchWordVC.headerView.backgroundColor
+            tmpHeaderView.frame = addSearchWordVCHeaderViewFrame
+            tmpHeaderView.backgroundColor = addSearchWordVCHeaderView.backgroundColor
             return tmpHeaderView
         }()
         
@@ -55,6 +65,8 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
         container.addSubview(homeVC.view)
         container.addSubview(addSearchWordVC.view)
         container.addSubview(tmpView)
+        
+        let homeVCAddWordButton = self.homeVCAddWordButton
         
         // 1
         UIView.animate(
@@ -75,9 +87,9 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                             $0.width.equalToSuperview()
                         }
                         tmpView.superview?.layoutIfNeeded()
-
-                        tmpView.layer.cornerRadius = homeVC.addWordButton.circleView.frame.size.height / 2
-                        tmpHeaderView.layer.cornerRadius = homeVC.addWordButton.circleView.frame.size.height / 2
+                        tmpView.backgroundColor = Asset.Colors.mainBG.color
+                        tmpView.layer.cornerRadius = homeVCAddWordButton.circleView.frame.size.height / 2
+                        tmpHeaderView.layer.cornerRadius = homeVCAddWordButton.circleView.frame.size.height / 2
                         homeVC.view.alpha = 0.8
                         
                     }, completion: { _ in
@@ -89,12 +101,12 @@ final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransit
                             options: .curveEaseOut,
                             animations: {
                                 
-                                let rightMargin = (homeVC.addWordButton.frame.size.width - homeVC.addWordButton.circleView.frame.size.width)/2
-                                let bottomMargin = (homeVC.addWordButton.frame.size.height - homeVC.addWordButton.circleView.frame.size.height)/2
+                                let rightMargin = (homeVCAddWordButton.frame.size.width - homeVCAddWordButton.circleView.frame.size.width)/2
+                                let bottomMargin = (homeVCAddWordButton.frame.size.height - homeVCAddWordButton.circleView.frame.size.height)/2
                                     + Margin.mid
                                 
                                 tmpView.snp.remakeConstraints {
-                                    $0.size.equalTo(homeVC.addWordButton.circleView.frame.size)
+                                    $0.size.equalTo(homeVCAddWordButton.circleView.frame.size)
                                     $0.right.equalToSuperview().offset(-rightMargin)
                                     $0.bottom.equalToSuperview().offset(-bottomMargin)
                                 }
