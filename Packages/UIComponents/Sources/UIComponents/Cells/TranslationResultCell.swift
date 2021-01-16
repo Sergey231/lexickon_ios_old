@@ -40,11 +40,8 @@ extension TranslationResultViewModel: IdentifiableType {
 
 public final class TranslationResultCell: DisposableTableViewCell {
     
-    private let translationLable: UILabel = {
-        let label = UILabel()
-        label.font = .systemRegular17
-        return label
-    }()
+    private let translationLable = UILabel()
+    private let addWordButton = AddWordToLesickonButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -55,17 +52,31 @@ public final class TranslationResultCell: DisposableTableViewCell {
     }
     
     private func createUI(with input: TranslationResultViewModel) {
-        contentView.addSubviews(
-            translationLable
-        )
         
-        translationLable.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(Margin.regular)
-            $0.right.equalToSuperview().offset(-Margin.regular)
-            $0.bottom.top.equalToSuperview()
+        translationLable.setup {
+            $0.font = .systemRegular17
+            $0.text = input.translation
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.height.equalTo(Size.textField.height)
+            }
         }
         
-        translationLable.text = input.translation
+        addWordButton.setup {
+            $0.setTitle("+ в мой Lexickon", for: .normal)
+            $0.configureTapScaleAnimation().disposed(by: disposeBag)
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalTo(translationLable.snp.bottom).offset(Margin.regular)
+                $0.height.equalTo(Size.button.height)
+                $0.bottom.equalToSuperview().offset(-Margin.regular)
+            }
+        }
     }
     
     public func configurate(with model: TranslationResultViewModel) {
