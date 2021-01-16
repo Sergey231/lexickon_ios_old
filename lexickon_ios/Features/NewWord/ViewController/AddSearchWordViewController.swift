@@ -36,8 +36,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         let tableView = UITableView()
         tableView.rowHeight = 100
         tableView.register(cellType: TranslationResultCell.self)
-//        tableView.backgroundColor = .clear
-//        tableView.separatorStyle = .none
         return tableView
     }()
     
