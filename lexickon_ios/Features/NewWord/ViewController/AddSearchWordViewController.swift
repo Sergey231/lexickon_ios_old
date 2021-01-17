@@ -111,6 +111,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         let presenterOutput = presenter.configurate(input: .init(textForTranslate: textForTranslate))
         
         configureTableView(with: presenterOutput.sections)
+        
+        presenterOutput.didTapAddWord.debug("🎲").emit()
     }
     
     private func configureTableView(with models: Driver<[TranslationReulstSectionModel]>) {

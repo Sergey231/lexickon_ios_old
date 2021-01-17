@@ -7,8 +7,8 @@
 //
 
 import RxSwift
-import LexickonApi
+import TranslationRepository
 
 protocol NewWordInteractorProtocol {
-    func translate(_ word: String) -> Single<TranslationResultsDTO>
+    func translate(_ text: String) -> Single<TranslationResultsDTO>
 }

@@ -15,10 +15,21 @@ import RxDataSources
 import UIExtensions
 
 public struct TranslationResultViewModel {
-    public init(translation: String) {
+    
+    fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
+    public var addWordButtonDidTap: Signal<Void> {
+        addWordButtonDidTapRelay.asSignal()
+    }
+    
+    public init(
+        translation: String,
+        text: String
+    ) {
         self.translation = translation
+        self.text = text
     }
     public let translation: String
+    public let text: String
 }
 
 extension TranslationResultViewModel: Hashable {
@@ -80,7 +91,13 @@ public final class TranslationResultCell: DisposableTableViewCell {
     }
     
     public func configurate(with model: TranslationResultViewModel) {
+        
         createUI(with: model)
+        
+        addWordButton.rx.tap
+            .asSignal()
+            .emit(to: model.addWordButtonDidTapRelay)
+            .disposed(by: disposeBag)
     }
 }
 

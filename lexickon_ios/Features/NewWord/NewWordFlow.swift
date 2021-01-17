@@ -11,6 +11,7 @@ import RxFlow
 import Resolver
 import KeyValueRepository
 import ConfigsRepository
+import TranslationRepository
 
 enum NewWordStep: Step {
     case addSearch

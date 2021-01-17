@@ -3,6 +3,7 @@ import LexickonApi
 import RxSwift
 import RxCocoa
 import Alamofire
+import ApiRepository
 
 final class UserRepository: UserRepositoryProtocol, ApiRepository {
 

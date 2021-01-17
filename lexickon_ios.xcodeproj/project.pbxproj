@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC04899425A9BD3200945F88 /* TranslationResultsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */; };
-		EC04899C25AAE66600945F88 /* TranslationRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04899B25AAE66600945F88 /* TranslationRequestDTO.swift */; };
-		EC0489AB25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0489AA25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift */; };
-		EC0489AF25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */; };
 		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
@@ -18,10 +14,8 @@
 		EC3750A725B07B7C0090F95F /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750A625B07B7C0090F95F /* UIComponents */; };
 		EC3750EA25B18E320090F95F /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3750E925B18E320090F95F /* AppIcon.xcassets */; };
 		EC3750F225B195030090F95F /* Assets in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750F125B195030090F95F /* Assets */; };
-		EC37515E25B1DB990090F95F /* ApiRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC37512825B1DB990090F95F /* ApiRepository.swift */; };
 		EC3C385A254FED4D008D1D3C /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C3859254FED4D008D1D3C /* RxDataSources */; };
 		EC3C385C254FED4D008D1D3C /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = EC3C385B254FED4D008D1D3C /* Differentiator */; };
-		EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44492520B510004706DC /* RxAlamofire */; };
 		EC3F44532520BF26004706DC /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44522520BF26004706DC /* RxSwift */; };
 		EC3F44552520BF26004706DC /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44542520BF26004706DC /* RxRelay */; };
 		EC3F44572520BF26004706DC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44562520BF26004706DC /* RxCocoa */; };
@@ -39,8 +33,6 @@
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
 		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
-		EC86901D259759410005636A /* TranslationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC86901C259759410005636A /* TranslationRepository.swift */; };
-		EC869021259759970005636A /* TranslationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC869020259759970005636A /* TranslationRepositoryProtocol.swift */; };
 		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
@@ -65,8 +57,6 @@
 		ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E8825456D26006503C2 /* ProfileFlow.swift */; };
 		ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */; };
 		ECC48E9625457403006503C2 /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */; };
-		ECC8563625A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8563525A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift */; };
-		ECC8563D25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC8563C25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift */; };
 		ECC932A525544B1F007D61B4 /* WordRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932A425544B1F007D61B4 /* WordRepositoryProtocol.swift */; };
 		ECC932A925544B2C007D61B4 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932A825544B2C007D61B4 /* WordRepository.swift */; };
 		ECC932B2255547D5007D61B4 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932B1255547D5007D61B4 /* MainInteractor.swift */; };
@@ -75,6 +65,8 @@
 		ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */; };
 		ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */; };
 		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
+		ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5EA25B323890018110F /* TranslationRepository */; };
+		ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5F725B41BE60018110F /* ApiRepository */; };
 		ECEF16E625B01B6D00A7ABC9 /* ConfigsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E525B01B6D00A7ABC9 /* ConfigsRepository */; };
 		ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E925B01B6D00A7ABC9 /* KeyValueRepository */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
@@ -92,16 +84,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResultsDTO.swift; sourceTree = "<group>"; };
-		EC04899B25AAE66600945F88 /* TranslationRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRequestDTO.swift; sourceTree = "<group>"; };
-		EC0489AA25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDictionaryApiRequestDTO.swift; sourceTree = "<group>"; };
-		EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDictionaryApiResultDTO.swift; sourceTree = "<group>"; };
 		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3750A325B078180090F95F /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIComponents; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		EC37512825B1DB990090F95F /* ApiRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiRepository.swift; path = Packages/Repositories/ApiRepository.swift; sourceTree = SOURCE_ROOT; };
 		EC37517925B1DBAE0090F95F /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = ConfigsRepository; path = Packages/Repositories/ConfigsRepository; sourceTree = SOURCE_ROOT; };
 		EC37517C25B1DBB20090F95F /* KeychainRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = KeychainRepository; path = Packages/Repositories/KeychainRepository; sourceTree = SOURCE_ROOT; };
 		EC37517F25B1DBB60090F95F /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = KeyValueRepository; path = Packages/Repositories/KeyValueRepository; sourceTree = SOURCE_ROOT; };
@@ -118,8 +105,6 @@
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC86901C259759410005636A /* TranslationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRepository.swift; sourceTree = "<group>"; };
-		EC869020259759970005636A /* TranslationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		EC873D7D23DD756F00787E51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -143,8 +128,6 @@
 		ECC48E8825456D26006503C2 /* ProfileFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
 		ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
 		ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
-		ECC8563525A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidApiGoogleTranslationResultDTO.swift; sourceTree = "<group>"; };
-		ECC8563C25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RapidAPIGoogleTranslateInputDTO.swift; sourceTree = "<group>"; };
 		ECC932A425544B1F007D61B4 /* WordRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepositoryProtocol.swift; sourceTree = "<group>"; };
 		ECC932A825544B2C007D61B4 /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		ECC932B1255547D5007D61B4 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
@@ -153,6 +136,8 @@
 		ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
 		ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		ECDCE5E725B322BE0018110F /* TranslationRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TranslationRepository; sourceTree = "<group>"; };
+		ECDCE5F225B41B690018110F /* ApiRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = ApiRepository; path = Packages/Repositories/ApiRepository; sourceTree = SOURCE_ROOT; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -162,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */,
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
@@ -172,7 +158,7 @@
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECAF5063257E663300F021EA /* Utils in Frameworks */,
-				EC3F444A2520B510004706DC /* RxAlamofire in Frameworks */,
+				ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */,
 				ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
 				EC3750F225B195030090F95F /* Assets in Frameworks */,
@@ -196,24 +182,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EC04898E25A9BD1A00945F88 /* RapidApiGoogleTranslation */ = {
-			isa = PBXGroup;
-			children = (
-				ECC8563525A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift */,
-				ECC8563C25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift */,
-			);
-			path = RapidApiGoogleTranslation;
-			sourceTree = "<group>";
-		};
-		EC0489A925AAEC2D00945F88 /* YandexDictionaryApiTranslation */ = {
-			isa = PBXGroup;
-			children = (
-				EC0489AA25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift */,
-				EC0489AE25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift */,
-			);
-			path = YandexDictionaryApiTranslation;
-			sourceTree = "<group>";
-		};
 		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +204,7 @@
 		EC37503725B06BCB0090F95F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				EC37512825B1DB990090F95F /* ApiRepository.swift */,
+				ECDCE5F225B41B690018110F /* ApiRepository */,
 				EC37517F25B1DBB60090F95F /* KeyValueRepository */,
 				EC37517C25B1DBB20090F95F /* KeychainRepository */,
 				EC37517925B1DBAE0090F95F /* ConfigsRepository */,
@@ -321,16 +289,6 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		EC86901B2597591C0005636A /* TranslationRepository */ = {
-			isa = PBXGroup;
-			children = (
-				ECC8563925A30A6700DD764F /* DTO */,
-				EC869020259759970005636A /* TranslationRepositoryProtocol.swift */,
-				EC86901C259759410005636A /* TranslationRepository.swift */,
-			);
-			path = TranslationRepository;
-			sourceTree = "<group>";
-		};
 		EC873D6823DD5AD800787E51 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +334,7 @@
 		ECA144882572878E00352868 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				EC86901B2597591C0005636A /* TranslationRepository */,
+				ECDCE5E725B322BE0018110F /* TranslationRepository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -452,17 +410,6 @@
 				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		ECC8563925A30A6700DD764F /* DTO */ = {
-			isa = PBXGroup;
-			children = (
-				EC04899B25AAE66600945F88 /* TranslationRequestDTO.swift */,
-				EC04899325A9BD3200945F88 /* TranslationResultsDTO.swift */,
-				EC0489A925AAEC2D00945F88 /* YandexDictionaryApiTranslation */,
-				EC04898E25A9BD1A00945F88 /* RapidApiGoogleTranslation */,
-			);
-			path = DTO;
 			sourceTree = "<group>";
 		};
 		ECC932A1255449AF007D61B4 /* Data */ = {
@@ -582,7 +529,6 @@
 				EC407EDE237C3B8400A3FD42 /* Validator */,
 				EC1F9E2223E3478B0044EF9D /* UIExtensions */,
 				ECBEB5062439C0DE0017855E /* RxFlow */,
-				EC3F44492520B510004706DC /* RxAlamofire */,
 				EC3F44522520BF26004706DC /* RxSwift */,
 				EC3F44542520BF26004706DC /* RxRelay */,
 				EC3F44562520BF26004706DC /* RxCocoa */,
@@ -599,6 +545,8 @@
 				ECA1695A25B038F100F2F19B /* KeychainRepository */,
 				EC3750A625B07B7C0090F95F /* UIComponents */,
 				EC3750F125B195030090F95F /* Assets */,
+				ECDCE5EA25B323890018110F /* TranslationRepository */,
+				ECDCE5F725B41BE60018110F /* ApiRepository */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -653,7 +601,6 @@
 			packageReferences = (
 				EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */,
 				ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */,
-				EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */,
 				EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */,
@@ -705,7 +652,6 @@
 				ECC932A925544B2C007D61B4 /* WordRepository.swift in Sources */,
 				ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */,
 				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
-				ECC8563625A3090B00DD764F /* RapidApiGoogleTranslationResultDTO.swift in Sources */,
 				ECC932A525544B1F007D61B4 /* WordRepositoryProtocol.swift in Sources */,
 				ECC932B2255547D5007D61B4 /* MainInteractor.swift in Sources */,
 				ECC48E9625457403006503C2 /* ProfileMainScreenViewController.swift in Sources */,
@@ -713,9 +659,7 @@
 				ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */,
 				EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */,
 				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
-				EC869021259759970005636A /* TranslationRepositoryProtocol.swift in Sources */,
 				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
-				EC0489AB25AAEC6C00945F88 /* YandexDictionaryApiRequestDTO.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
 				ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */,
@@ -723,10 +667,8 @@
 				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */,
 				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
-				EC0489AF25AAEC7F00945F88 /* YandexDictionaryApiResultDTO.swift in Sources */,
 				ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
-				ECC8563D25A30B7800DD764F /* RapidAPIGoogleTranslateInputDTO.swift in Sources */,
 				EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
 				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
@@ -735,14 +677,10 @@
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
-				EC04899425A9BD3200945F88 /* TranslationResultsDTO.swift in Sources */,
 				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
-				EC04899C25AAE66600945F88 /* TranslationRequestDTO.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
-				EC37515E25B1DB990090F95F /* ApiRepository.swift in Sources */,
 				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,
-				EC86901D259759410005636A /* TranslationRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,14 +942,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire";
-			requirement = {
-				kind = revision;
-				revision = 200b0856a695c8ad3a5ad6bc6398db1c5c1b563a;
-			};
-		};
 		EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -1097,11 +1027,6 @@
 			package = EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = Differentiator;
 		};
-		EC3F44492520B510004706DC /* RxAlamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EC3F44482520B510004706DC /* XCRemoteSwiftPackageReference "RxAlamofire" */;
-			productName = RxAlamofire;
-		};
 		EC3F44522520BF26004706DC /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */;
@@ -1154,6 +1079,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECBEB5052439C0DE0017855E /* XCRemoteSwiftPackageReference "RxFlow" */;
 			productName = RxFlow;
+		};
+		ECDCE5EA25B323890018110F /* TranslationRepository */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TranslationRepository;
+		};
+		ECDCE5F725B41BE60018110F /* ApiRepository */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ApiRepository;
 		};
 		ECEF16E525B01B6D00A7ABC9 /* ConfigsRepository */ = {
 			isa = XCSwiftPackageProductDependency;

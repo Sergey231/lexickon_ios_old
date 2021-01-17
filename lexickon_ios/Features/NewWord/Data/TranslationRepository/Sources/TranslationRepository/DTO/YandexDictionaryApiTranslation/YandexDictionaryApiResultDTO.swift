@@ -8,29 +8,33 @@
 
 import Foundation
 
-struct YandexDictionaryApiResultDTO: Codable {
+public struct YandexDictionaryApiResultDTO: Codable {
     
-    let def: [Def]
+    public let def: [Def]
     
-enum CodingKays: String, CodingKey {
+    enum CodingKays: String, CodingKey {
         case def
     }
     
-    typealias Pos = TranslationResultsDTO.Pos
-    typealias Gender = TranslationResultsDTO.Gender
+    public typealias Pos = TranslationResultsDTO.Pos
+    public typealias Gender = TranslationResultsDTO.Gender
+    
+    public init(def: [Def]) {
+        self.def = def
+    }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         def = try container.decode([Def].self, forKey: .def)
     }
     
-    struct Def: Codable {
-        let text: String
-        let pos: Pos
-        let ts: String
-        let tr: [Translation]
-        let mean: [Mean]
-        let ex: [Expration]
+    public struct Def: Codable {
+        public let text: String
+        public let pos: Pos
+        public let ts: String
+        public let tr: [Translation]
+        public let mean: [Mean]
+        public let ex: [Expration]
         
         private enum CodingKeys: String, CodingKey {
             case text
@@ -53,11 +57,11 @@ enum CodingKays: String, CodingKey {
         }
     }
     
-    struct Translation: Codable {
-        let text: String
-        let pos: Pos
-        let gen: TranslationResultsDTO.Gender
-        let syn: [Synonym]
+    public struct Translation: Codable {
+        public let text: String
+        public let pos: Pos
+        public let gen: TranslationResultsDTO.Gender
+        public let syn: [Synonym]
         
         private enum CodingKeys: String, CodingKey {
             case text
@@ -75,10 +79,10 @@ enum CodingKays: String, CodingKey {
         }
     }
     
-    struct Synonym: Codable {
-        let text: String
-        let pos: Pos
-        let gen: Gender
+    public struct Synonym: Codable {
+        public let text: String
+        public let pos: Pos
+        public let gen: Gender
         
         private enum CodingKeys: String, CodingKey {
             case text
@@ -94,13 +98,13 @@ enum CodingKays: String, CodingKey {
         }
     }
     
-    struct Mean: Codable {
-        let text: String
+    public struct Mean: Codable {
+        public let text: String
     }
     
-    struct Expration: Codable {
-        let text: String
-        let tr: [Translation]
+    public struct Expration: Codable {
+        public let text: String
+        public let tr: [Translation]
         
         private enum CodingKeys: String, CodingKey {
             case text

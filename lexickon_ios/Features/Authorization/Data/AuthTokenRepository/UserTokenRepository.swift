@@ -5,6 +5,7 @@ import RxSwift
 import Alamofire
 import KeychainRepository
 import Resolver
+import ApiRepository
 
 final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
     

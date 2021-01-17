@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
         "state": {
           "branch": null,
-          "revision": "eaf6e622dd41b07b251d8f01752eab31bc811493",
-          "version": "5.4.1"
+          "revision": "c244d3275ab5d88c3355c907acd9be687feccb50",
+          "version": null
         }
       },
       {
@@ -20,30 +20,12 @@
         }
       },
       {
-        "package": "OHHTTPStubs",
-        "repositoryURL": "https://github.com/AliSoftware/OHHTTPStubs.git",
-        "state": {
-          "branch": null,
-          "revision": "12f19662426d0434d6c330c6974d53e2eb10ecd9",
-          "version": "9.1.0"
-        }
-      },
-      {
         "package": "Resolver",
         "repositoryURL": "https://github.com/hmlongco/Resolver.git",
         "state": {
           "branch": null,
           "revision": "2d15bf5b33b3c95704e84a5b2a43485606bdd5c4",
           "version": "1.4.0"
-        }
-      },
-      {
-        "package": "RxAlamofire",
-        "repositoryURL": "https://github.com/RxSwiftCommunity/RxAlamofire",
-        "state": {
-          "branch": null,
-          "revision": "200b0856a695c8ad3a5ad6bc6398db1c5c1b563a",
-          "version": null
         }
       },
       {

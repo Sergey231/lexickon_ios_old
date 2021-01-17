@@ -8,11 +8,21 @@
 
 import Foundation
 
-struct RapidApiGoogleTranslateResultDTO: Codable {
+public struct RapidApiGoogleTranslateResultDTO: Codable {
     
-    var code: Int
-    var data: TranslationData
-    var message: String
+    public init(
+        code: Int,
+        data: TranslationData,
+        message: String
+    ) {
+        self.code = code
+        self.data = data
+        self.message = message
+    }
+    
+    public let code: Int
+    public let data: TranslationData
+    public let message: String
     
     private enum CodingKays: String, CodingKey {
         case code
@@ -28,19 +38,34 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
         message = try container.decode(String.self, forKey: .message)
     }
     
-    struct TranslationData: Codable {
+    public struct TranslationData: Codable {
         
-        var translation: String
-        var pronunciation: String = ""
-        var pairs: [Pair] = []
-        var source: Source
-        var message: String = ""
+        public init(
+            translation: String,
+            pronunciation: String = "",
+            pairs: [Pair] = [],
+            source: Source,
+            message: String = ""
+        ) {
+            self.translation = translation
+            self.pronunciation = pronunciation
+            self.pairs = pairs
+            self.source = source
+            self.message = message
+        }
+        
+        public let translation: String
+        public let pronunciation: String
+        public let pairs: [Pair]
+        public let source: Source
+        public let message: String
         
         private enum CodingKeys: String, CodingKey {
             case translation
             case pronunciation
             case pairs
             case source
+            case message
         }
         
         public init(from decoder: Decoder) throws {
@@ -50,11 +75,12 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
             pronunciation = try container.decode(String.self, forKey: .pronunciation)
             pairs = try container.decode([Pair].self, forKey: .pairs)
             source = try container.decode(Source.self, forKey: .source)
+            message = try container.decode(String.self, forKey: .message)
         }
         
-        struct Pair: Codable {
-            var s: String = ""
-            var t: String = ""
+        public struct Pair: Codable {
+            public var s: String = ""
+            public var t: String = ""
             
             private enum CodingKeys: String, CodingKey {
                 case s
@@ -62,11 +88,11 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
             }
         }
         
-        struct Source: Codable {
+        public struct Source: Codable {
             
-            struct Language: Codable {
-                var didYouMean: Bool = false
-                var iso: String = ""
+            public struct Language: Codable {
+                public var didYouMean: Bool = false
+                public var iso: String = ""
                 
                 private enum CodingKeys: String, CodingKey {
                     case didYouMean
@@ -81,10 +107,10 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
                 }
             }
             
-            struct Text: Codable {
-                var autoCorrected: Bool = false
-                var value: String = ""
-                var didYouMean: Bool = false
+            public struct Text: Codable {
+                public var autoCorrected: Bool = false
+                public var value: String = ""
+                public var didYouMean: Bool = false
                 
                 private enum CodingKeys: String, CodingKey {
                     case autoCorrected
@@ -101,8 +127,8 @@ struct RapidApiGoogleTranslateResultDTO: Codable {
                 }
             }
             
-            let language: Language
-            let text: Text
+            public let language: Language
+            public let text: Text
             
             private enum CodingKeys: String, CodingKey {
                 case language

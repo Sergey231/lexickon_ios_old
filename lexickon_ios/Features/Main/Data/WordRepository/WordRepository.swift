@@ -11,6 +11,7 @@ import RxSwift
 import Alamofire
 import SwiftKeychainWrapper
 import Foundation
+import ApiRepository
 
 final class WordRepository: WordRepositoryProtocol, ApiRepository {
     

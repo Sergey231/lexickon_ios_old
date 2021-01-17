@@ -1,17 +1,16 @@
-
 import Foundation
-import Alamofire
 import LexickonApi
+import Alamofire
 import KeychainRepository
 import ConfigsRepository
 
-protocol ApiRepository {
+public protocol ApiRepository {
     var baseURL: String { get }
     var jsonDecoder: JSONDecoder { get }
     var headersWithAuthToken: HTTPHeaders? { get }
 }
 
-extension ApiRepository {
+public extension ApiRepository {
     var baseURL: String {
         ConfigsRepository().object(forKey: .BaseURL)!
     }
