@@ -101,7 +101,7 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
             + "&to=\(request.dto.targetLanguage)"
             + "&from=\(request.dto.sourceLanguage)"
         
-        let parametrs = [["Text": "hi"]]
+        let parametrs = ["Text": "hi"]
         let headers: HTTPHeaders = [
             "Ocp-Apim-Subscription-Region": "northeurope",
             "Ocp-Apim-Subscription-Key": "ff3b39475f4a41b8ae887b03deb093dd",

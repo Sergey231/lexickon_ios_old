@@ -979,7 +979,7 @@
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.9;
+				minimumVersion = 0.6.0;
 			};
 		};
 		ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */ = {
