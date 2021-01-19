@@ -101,7 +101,7 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
             + "&to=\(request.dto.targetLanguage)"
             + "&from=\(request.dto.sourceLanguage)"
         
-        let parametrs = ["Text": "hi"]
+        let parameters : [Parameters] = [["Text": request.dto.text]]
         let headers: HTTPHeaders = [
             "Ocp-Apim-Subscription-Region": "northeurope",
             "Ocp-Apim-Subscription-Key": "ff3b39475f4a41b8ae887b03deb093dd",
@@ -109,28 +109,52 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
         ]
         
         return Single.create { single -> Disposable in
-            AF.request(url, method: .post, parameters: parametrs, headers: headers)
-                .response { res in
-                    let json = String(data: res.data!, encoding: String.Encoding.utf8)
-                    print(json)
+            AF.request(
+                url,
+                method: .post,
+                encoding: JSONArrayEncoding(array: parameters),
+                headers: headers
+            )
+                .responseDecodable(
+                    of: [MicrosoftTranslatorResultsDTO].self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    switch res.result {
+                    case .success(let model):
+                        if model.isEmpty {
+                            single(.failure(LxHTTPObject.Error.invalidResponse))
+                        } else {
+                            single(.success(model.first!))
+                        }
+                    case .failure(let failure):
+                        print(failure)
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
                 }
-//                .responseDecodable(
-//                    of: [MicrosoftTranslatorResultsDTO].self,
-//                    decoder: self.jsonDecoder
-//                ) { res in
-//                    switch res.result {
-//                    case .success(let model):
-//                        if model.isEmpty {
-//                            single(.failure(LxHTTPObject.Error.invalidResponse))
-//                        } else {
-//                            single(.success(model.first!))
-//                        }
-//                    case .failure(let failure):
-//                        print(failure)
-//                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
-//                    }
-//                }
             return Disposables.create()
         }
+    }
+}
+
+struct JSONArrayEncoding: ParameterEncoding {
+    
+    private let array: [Parameters]
+
+    init(array: [Parameters]) {
+        self.array = array
+    }
+
+    func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var urlRequest = try urlRequest.asURLRequest()
+
+        let data = try JSONSerialization.data(withJSONObject: array, options: [])
+
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+
+        urlRequest.httpBody = data
+
+        return urlRequest
     }
 }
