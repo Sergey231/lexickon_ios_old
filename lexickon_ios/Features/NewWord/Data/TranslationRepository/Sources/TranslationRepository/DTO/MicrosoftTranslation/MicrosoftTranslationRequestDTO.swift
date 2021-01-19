@@ -8,7 +8,7 @@
 import Foundation
 import LexickonApi
 
-public struct MicrosoftTranslatorRequestDTO {
+public struct MicrosoftTranslationRequestDTO {
     public let dto: TranslationRequestDTO
     public let subscriptionKey: String
     public let subscriptionRegion: String

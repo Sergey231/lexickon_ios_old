@@ -19,6 +19,10 @@ public protocol TranslationRepositoryProtocol {
     ) -> Single<YandexDictionaryApiResultDTO>
     
     func translateByMicrosoftTranslate(
-        _ request: MicrosoftTranslatorRequestDTO
+        _ request: MicrosoftTranslationRequestDTO
     ) -> Single<MicrosoftTranslatorResultsDTO>
+    
+    func translateByMicrosoftDictionary(
+        _ request: MicrosoftTranslationRequestDTO
+    ) -> Single<MicrosoftDictionaryResultsDTO>
 }

@@ -87,12 +87,13 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
     }
     
     public func translateByMicrosoftTranslate(
-        _ request: MicrosoftTranslatorRequestDTO
+        _ request: MicrosoftTranslationRequestDTO
     ) -> Single<MicrosoftTranslatorResultsDTO> {
         
         guard
             !request.dto.text.isEmpty,
-            !request.subscriptionKey.isEmpty
+            !request.subscriptionKey.isEmpty,
+            !request.subscriptionRegion.isEmpty
         else {
             return Single.error(LxHTTPObject.Error.invalidRepositoryRequest)
         }
@@ -103,8 +104,8 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
         
         let parameters : [Parameters] = [["Text": request.dto.text]]
         let headers: HTTPHeaders = [
-            "Ocp-Apim-Subscription-Region": "northeurope",
-            "Ocp-Apim-Subscription-Key": "ff3b39475f4a41b8ae887b03deb093dd",
+            "Ocp-Apim-Subscription-Region": request.subscriptionRegion,
+            "Ocp-Apim-Subscription-Key": request.subscriptionKey,
             "Content-Type" : "application/json"
         ]
         
@@ -134,7 +135,61 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
             return Disposables.create()
         }
     }
+    
+    public func translateByMicrosoftDictionary(
+        _ request: MicrosoftTranslationRequestDTO
+    ) -> Single<MicrosoftDictionaryResultsDTO> {
+        
+        guard
+            !request.dto.text.isEmpty,
+            !request.subscriptionKey.isEmpty,
+            !request.subscriptionRegion.isEmpty
+        else {
+            return Single.error(LxHTTPObject.Error.invalidRepositoryRequest)
+        }
+        
+        let url = "https://api.cognitive.microsofttranslator.com/Dictionary/Lookup?api-version=3.0"
+            + "&to=\(request.dto.targetLanguage)"
+            + "&from=\(request.dto.sourceLanguage)"
+        
+        let parameters : [Parameters] = [["Text": request.dto.text]]
+        let headers: HTTPHeaders = [
+            "Ocp-Apim-Subscription-Region": request.subscriptionRegion,
+            "Ocp-Apim-Subscription-Key": request.subscriptionKey,
+            "Content-Type": "application/json"
+        ]
+        
+        return Single.create { single -> Disposable in
+            AF.request(
+                url,
+                method: .post,
+                encoding: JSONArrayEncoding(array: parameters),
+                headers: headers
+            )
+//            .responseData { res in
+//                let json = String(data: res.data!, encoding: .utf8)
+//                print(json)
+//            }
+                .responseDecodable(
+                    of: [MicrosoftDictionaryResultsDTO].self,
+                    decoder: self.jsonDecoder
+                ) { res in                    switch res.result {
+                    case .success(let model):
+                        if model.isEmpty {
+                            single(.failure(LxHTTPObject.Error.invalidResponse))
+                        } else {
+                            single(.success(model.first!))
+                        }
+                    case .failure(let failure):
+                        print(failure)
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
 }
+
 
 struct JSONArrayEncoding: ParameterEncoding {
     

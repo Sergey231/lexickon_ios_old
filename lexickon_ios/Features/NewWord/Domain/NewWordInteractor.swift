@@ -23,7 +23,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             targetLanguage: .ru,
             sourceLanguage: .en
         )
-        return translateByMicrosoftTranslate(requestDTO)
+        return translateByMicrosoftDictionary(requestDTO)
     }
     
     private func translateByYandexDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
@@ -78,7 +78,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         
         let key = "ff3b39475f4a41b8ae887b03deb093dd"
         let region = "northeurope"
-        let request = MicrosoftTranslatorRequestDTO(
+        let request = MicrosoftTranslationRequestDTO(
             dto: dto,
             subscriptionKey: key,
             subscriptionRegion: region
@@ -92,6 +92,32 @@ final class NewWordInteractor: NewWordInteractorProtocol {
                         TranslationResultsDTO.TranslationItem(
                             text: request.dto.text,
                             translation: $0.text,
+                            pos: .unknown,
+                            gender: .unknown
+                        )
+                    }
+                )
+            }
+    }
+    
+    private func translateByMicrosoftDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
+        
+        let key = "ff3b39475f4a41b8ae887b03deb093dd"
+        let region = "northeurope"
+        let request = MicrosoftTranslationRequestDTO(
+            dto: dto,
+            subscriptionKey: key,
+            subscriptionRegion: region
+        )
+        
+        return translationRepository.translateByMicrosoftDictionary(request)
+            .map {
+                TranslationResultsDTO(
+                    textForTranslate: request.dto.text,
+                    translations: $0.translations.map {
+                        TranslationResultsDTO.TranslationItem(
+                            text: request.dto.text,
+                            translation: $0.displayTarget,
                             pos: .unknown,
                             gender: .unknown
                         )
