@@ -13,9 +13,9 @@ import SwiftKeychainWrapper
 import Foundation
 import ApiRepository
 
-final class WordRepository: WordRepositoryProtocol, ApiRepository {
+public final class WordRepository: WordRepositoryProtocol, ApiRepository {
     
-    func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
+    public func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
         
         guard let headers = headersWithAuthToken else {
             return .error(LxHTTPObject.Error.unauthorized)
@@ -44,7 +44,7 @@ final class WordRepository: WordRepositoryProtocol, ApiRepository {
         }
     }
     
-    func word(by id: String) -> Single<LxWordGet> {
+    public func word(by id: String) -> Single<LxWordGet> {
         
         guard let headers = headersWithAuthToken else {
             return .error(LxHTTPObject.Error.unauthorized)
@@ -62,6 +62,35 @@ final class WordRepository: WordRepositoryProtocol, ApiRepository {
                     
                     switch res.result {
                     case .success(let model):
+                        single(.success(model))
+                    case .failure(let failure):
+                        print(failure)
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    public func add(_ word: LxWordCreate) -> Single<LxWordGet> {
+        
+        guard let headers = headersWithAuthToken else {
+            return .error(LxHTTPObject.Error.unauthorized)
+        }
+        
+        let url = baseURL + "/api/words/"
+        
+        return Single.create { single -> Disposable in
+            
+            AF.request(url, method: .post, headers: headers)
+                .responseDecodable(
+                    of: LxWordGet.self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    
+                    switch res.result {
+                    case .success(let model):
+                        print(model)
                         single(.success(model))
                     case .failure(let failure):
                         print(failure)

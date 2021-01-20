@@ -11,4 +11,5 @@ import TranslationRepository
 
 protocol NewWordInteractorProtocol {
     func translate(_ text: String) -> Single<TranslationResultsDTO>
+    func addWord(_ word: TranslationResultsDTO.Translation) -> Single<Void>
 }

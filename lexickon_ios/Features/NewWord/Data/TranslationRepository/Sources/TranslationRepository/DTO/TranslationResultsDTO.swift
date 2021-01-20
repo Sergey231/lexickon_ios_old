@@ -12,14 +12,14 @@ public struct TranslationResultsDTO {
     
     public init(
         textForTranslate: String,
-        translations: [TranslationItem]
+        translations: [Translation]
     ) {
         self.textForTranslate = textForTranslate
         self.translations = translations
     }
     
     public let textForTranslate: String
-    public let translations: [TranslationItem]
+    public let translations: [Translation]
     
     public enum Pos: String, Codable {
         case noun
@@ -39,7 +39,7 @@ public struct TranslationResultsDTO {
         case unknown
     }
     
-    public struct TranslationItem {
+    public struct Translation {
         public init(
             text: String,
             translation: String,

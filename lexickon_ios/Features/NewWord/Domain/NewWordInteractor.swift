@@ -16,6 +16,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     @Injected private var translationRepository: TranslationRepositoryProtocol
     @Injected private var configsRepository: ConfigsRepositoryProtocol
+    @Injected private var wordRepository: WordRepositoryProtocol
     
     func translate(_ text: String) -> Single<TranslationResultsDTO> {
         let requestDTO = TranslationRequestDTO(
@@ -24,6 +25,16 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             sourceLanguage: .en
         )
         return translateByMicrosoftDictionary(requestDTO)
+    }
+    
+    public func addWord(_ word: TranslationResultsDTO.Translation) -> Single<Void> {
+        let wordCreateModel = LxWordCreate(
+            studyWord: word.text,
+            translates: [word.translation],
+            image: ""
+        )
+        return wordRepository.add(wordCreateModel)
+            .map { _ in () }
     }
     
     private func translateByYandexDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
@@ -39,7 +50,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             return TranslationResultsDTO(
                 textForTranslate: dto.text,
                 translations: translations.map { tr in
-                    TranslationResultsDTO.TranslationItem(
+                    TranslationResultsDTO.Translation(
                         text: dto.text,
                         translation: tr.text,
                         pos: .unknown,
@@ -64,7 +75,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             .map {
                 TranslationResultsDTO(
                     textForTranslate: request.dto.text,
-                    translations: [TranslationResultsDTO.TranslationItem(
+                    translations: [TranslationResultsDTO.Translation(
                         text: request.dto.text,
                         translation: $0.data.translation,
                         pos: .unknown,
@@ -89,7 +100,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
                 TranslationResultsDTO(
                     textForTranslate: request.dto.text,
                     translations: $0.translations.map {
-                        TranslationResultsDTO.TranslationItem(
+                        TranslationResultsDTO.Translation(
                             text: request.dto.text,
                             translation: $0.text,
                             pos: .unknown,
@@ -115,7 +126,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
                 TranslationResultsDTO(
                     textForTranslate: request.dto.text,
                     translations: $0.translations.map {
-                        TranslationResultsDTO.TranslationItem(
+                        TranslationResultsDTO.Translation(
                             text: request.dto.text,
                             translation: $0.displayTarget,
                             pos: .unknown,

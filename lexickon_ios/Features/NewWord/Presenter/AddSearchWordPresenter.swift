@@ -32,12 +32,13 @@ final class AddSearchWordPresenter: PresenterType {
     struct Output {
         let sections: Driver<[TranslationReulstSectionModel]>
         let didTapAddWord: Signal<WordTranslationPair>
+        let disposables: CompositeDisposable
     }
     
     func configurate(input: Input) -> Output {
         
         let translationCellModels = input.textForTranslate
-            .flatMap { text -> Driver<[TranslationResultsDTO.TranslationItem]> in
+            .flatMap { text -> Driver<[TranslationResultsDTO.Translation]> in
                 self.interacor.translate(text)
                     .map { $0.translations }
                     .asDriver(onErrorJustReturn: [])
@@ -63,13 +64,29 @@ final class AddSearchWordPresenter: PresenterType {
             })
         }
         
+        let didTapAddWordDisposable = didTapAddWord
+            .asObservable()
+            .flatMap { word -> Single<Void> in
+                let wordForAdding = TranslationResultsDTO.Translation(
+                    text: word.word,
+                    translation: word.translation,
+                    pos: .unknown,
+                    gender: .unknown
+                )
+                
+                return self.interacor.addWord(wordForAdding)
+            }
+            .debug("🎲")
+            .subscribe()
+        
         let translationsSections = translationCellModels
             .map { [TranslationReulstSectionModel(model: "TranslationResultSection", items: $0)] }
             .asDriver()
         
         return Output(
             sections: translationsSections,
-            didTapAddWord: didTapAddWord
+            didTapAddWord: didTapAddWord,
+            disposables: CompositeDisposable(disposables: [didTapAddWordDisposable])
         )
     }
 }
