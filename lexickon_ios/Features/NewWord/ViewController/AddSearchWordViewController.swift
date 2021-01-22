@@ -15,6 +15,7 @@ import UIComponents
 import UIExtensions
 import RxDataSources
 import Resolver
+import Assets
 
 final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRecognizerDelegate {
     
