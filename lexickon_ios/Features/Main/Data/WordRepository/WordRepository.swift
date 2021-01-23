@@ -83,31 +83,26 @@ public final class WordRepository: WordRepositoryProtocol, ApiRepository {
         let parametrs: Parameters = [
             "studyWord" : word.studyWord,
             "translates" : word.translates,
-            "image_key" : word.imageKey ?? "",
             "image" : word.image
         ]
         
         return Single.create { single -> Disposable in
             
             AF.request(url, method: .post, parameters: parametrs, headers: headers)
-                .response { res in
-                    let json = String.init(data: res.data!, encoding: .utf8)
-                    print(json ?? "JSON!")
+                .responseDecodable(
+                    of: _LxWordGet.self,
+                    decoder: self.jsonDecoder
+                ) { res in
+
+                    switch res.result {
+                    case .success(let model):
+                        print(model)
+                        single(.success(model))
+                    case .failure(let failure):
+                        print(failure)
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
                 }
-//                .responseDecodable(
-//                    of: _LxWordGet.self,
-//                    decoder: self.jsonDecoder
-//                ) { res in
-//
-//                    switch res.result {
-//                    case .success(let model):
-//                        print(model)
-//                        single(.success(model))
-//                    case .failure(let failure):
-//                        print(failure)
-//                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
-//                    }
-//                }
             return Disposables.create()
         }
     }
