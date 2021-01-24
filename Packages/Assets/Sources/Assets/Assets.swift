@@ -36,9 +36,9 @@ public enum Asset {
     public static let baseText = ColorAsset(name: "baseText")
     public static let homeWordSectionHeaderBG = ColorAsset(name: "homeWordSectionHeaderBG")
     public static let mainBG = ColorAsset(name: "mainBG")
+    public static let myColor = ColorAsset(name: "myColor")
     public static let paleText = ColorAsset(name: "paleText")
     public static let placeholder = ColorAsset(name: "placeholder")
-    public static let qqqqqqqqqqqqq = ColorAsset(name: "qqqqqqqqqqqqq")
   }
   public enum Images {
     public static let backArrow = ImageAsset(name: "BackArrow")

@@ -29,7 +29,7 @@ public final class AddSearchPlaceholderView: UIView {
         label.textAlignment = .center
         label.text = Str.newWrodPlaceholder
         label.numberOfLines = 0
-        label.textColor = .lightGray
+        label.textColor = Asset.Colors.myColor.color
         return label
     }()
     
