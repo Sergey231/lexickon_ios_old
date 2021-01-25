@@ -22,7 +22,8 @@ fi
 
 if [[ $(command -v swiftgen) == "" ]]; then
     echo "Installing Swiftgen"
-    brew install swiftgen 6.4.0
+    brew update
+    brew install swiftgen
 fi
 
 swiftgen
