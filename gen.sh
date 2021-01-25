@@ -27,8 +27,5 @@ if [[ $(command -v swiftgen) == "" ]]; then
 fi
 
 swiftgen
-(xcodebuild build -target lexickon_ios -scheme Assets -quiet) &
-spin $!
+(xcodebuild build -target lexickon_ios -scheme Assets -quiet) & spin $!
 echo "\033[0;32m 🎉 New Assets constants have been generated! ";
-
-
