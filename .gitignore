@@ -89,3 +89,5 @@ Packages/GeneratedObjects/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWor
 Packages/Repositories/ConfigsRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 Packages/Repositories/KeyValueRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 Packages/Repositories/KeychainRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Packages/Assets/Sources/Assets/Assets.swift
+Packages/Assets/Sources/Assets/Strings.swift
