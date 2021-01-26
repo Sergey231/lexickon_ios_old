@@ -67,30 +67,41 @@ final class HomePresenter: PresenterType {
                     }
                 }
                 
-                let fireWordsSection = HomeWordSectionModel(
-                    model: "fire",
-                    items: fireWords
-                )
+                var sections: [HomeWordSectionModel] = []
                 
-                let readyWordsSection = HomeWordSectionModel(
-                    model: "ready",
-                    items: readyWords
-                )
-                let newWordsSection = HomeWordSectionModel(
-                    model: "new",
-                    items: newWords
-                )
-                let waitingWordsSection = HomeWordSectionModel(
-                    model: "waiting",
-                    items: waitingWords
-                )
+                if !fireWords.isEmpty {
+                    let fireWordsSection = HomeWordSectionModel(
+                        model: "fire",
+                        items: fireWords
+                    )
+                    sections.append(fireWordsSection)
+                }
                 
-                return [
-                    fireWordsSection,
-                    readyWordsSection,
-                    newWordsSection,
-                    waitingWordsSection
-                ]
+                if !readyWords.isEmpty {
+                    let readyWordsSection = HomeWordSectionModel(
+                        model: "ready",
+                        items: readyWords
+                    )
+                    sections.append(readyWordsSection)
+                }
+                
+                if !newWords.isEmpty {
+                    let newWordsSection = HomeWordSectionModel(
+                        model: "new",
+                        items: newWords
+                    )
+                    sections.append(newWordsSection)
+                }
+                
+                if !waitingWords.isEmpty {
+                    let waitingWordsSection = HomeWordSectionModel(
+                        model: "waiting",
+                        items: waitingWords
+                    )
+                    sections.append(waitingWordsSection)
+                }
+                
+                return sections
             }
         
         
