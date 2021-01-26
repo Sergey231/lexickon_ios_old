@@ -33,12 +33,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     let headerView = AddWordHeaderView()
     let placeholderView = AddSearchPlaceholderView()
     
-    private var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.rowHeight = 100
-        tableView.register(cellType: TranslationResultCell.self)
-        return tableView
-    }()
+    fileprivate let tableView = UITableView()
+    fileprivate let activityIndicator = UIActivityIndicatorView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -65,34 +61,50 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         super.viewDidLoad()
         view.backgroundColor = .white
         createUI()
-        configureUI()
+        configure()
     }
     
     private func createUI() {
-        view.addSubviews(
-            headerView,
-            placeholderView,
-            tableView
-        )
-        
-        headerView.snp.makeConstraints {
-            $0.left.right.top.equalToSuperview()
-            $0.height.equalTo(UIConstants.headerViewHeight)
+
+        activityIndicator.setup {
+            $0.color = Asset.Colors.baseText.color
+            $0.style = .large
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
         }
         
-        placeholderView.snp.makeConstraints {
-            $0.width.equalTo(200)
-            $0.height.equalTo(140)
-            $0.center.equalToSuperview()
+        placeholderView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.width.equalTo(200)
+                $0.height.equalTo(140)
+                $0.center.equalToSuperview()
+            }
         }
         
-        tableView.snp.makeConstraints {
-            $0.left.right.bottom.equalToSuperview()
-            $0.top.equalTo(headerView.snp.bottom)
+        headerView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.top.equalToSuperview()
+                $0.height.equalTo(UIConstants.headerViewHeight)
+            }
+        }
+        
+        
+        tableView.setup {
+            $0.rowHeight = 100
+            $0.register(cellType: TranslationResultCell.self)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.bottom.equalToSuperview()
+                $0.top.equalTo(headerView.snp.bottom)
+            }
         }
     }
     
-    private func configureUI() {
+    private func configure() {
         
         let headerViewOutput = headerView.configure()
             
@@ -113,7 +125,9 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         
         configureTableView(with: presenterOutput.sections)
         
-        presenterOutput.didTapAddWord.debug("🎲").emit()
+        presenterOutput.isLoading
+            .drive(rx.isLoading)
+            .disposed(by: disposeBag)
     }
     
     private func configureTableView(with models: Driver<[TranslationReulstSectionModel]>) {
@@ -145,6 +159,22 @@ private extension Reactive where Base: AddWordHeaderView {
                     $0.height.equalTo(height)
                 }
                 base.superview?.layoutIfNeeded()
+            }
+        }
+    }
+}
+
+private extension Reactive where Base: AddSearchWordViewController {
+    var isLoading: Binder<Bool> {
+        return Binder(base) { base, isLoading in
+            UIView.animate(withDuration: 0.3) {
+                base.tableView.alpha = isLoading ? 0 : 1
+                base.activityIndicator.alpha = isLoading ? 1 : 0
+                if isLoading {
+                    base.activityIndicator.startAnimating()
+                } else {
+                    base.activityIndicator.stopAnimating()
+                }
             }
         }
     }

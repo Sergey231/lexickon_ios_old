@@ -11,6 +11,7 @@ import RxCocoa
 import Resolver
 import RxDataSources
 import UIComponents
+import RxExtensions
 import TranslationRepository
 
 typealias TranslationReulstSectionModel = AnimatableSectionModel<String, TranslationResultViewModel>
@@ -32,15 +33,19 @@ final class AddSearchWordPresenter: PresenterType {
     struct Output {
         let sections: Driver<[TranslationReulstSectionModel]>
         let didTapAddWord: Signal<WordTranslationPair>
+        let isLoading: Driver<Bool>
         let disposables: CompositeDisposable
     }
     
     func configurate(input: Input) -> Output {
         
+        let activityIndicator = RxActivityIndicator()
+        
         let translationCellModels = input.textForTranslate
             .flatMap { text -> Driver<[TranslationResultsDTO.Translation]> in
                 self.interacor.translate(text)
                     .map { $0.translations }
+                    .trackActivity(activityIndicator)
                     .asDriver(onErrorJustReturn: [])
             }
             .map { translations in
@@ -86,6 +91,7 @@ final class AddSearchWordPresenter: PresenterType {
         return Output(
             sections: translationsSections,
             didTapAddWord: didTapAddWord,
+            isLoading: activityIndicator.asDriver(),
             disposables: CompositeDisposable(disposables: [didTapAddWordDisposable])
         )
     }
