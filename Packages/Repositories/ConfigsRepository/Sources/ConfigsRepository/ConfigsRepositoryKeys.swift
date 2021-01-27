@@ -12,4 +12,8 @@ public enum ConfigsRepositoryKeys: String {
     case BaseURL
     case rapidApiGoogleTranslateKey
     case rapidApiGoogleTranslateHost
+    case microsoftTranslationAPIBaseUrl
+    case microsoftTranslationAPIRegion
+    case microsoftTranslationAPIKey
+    case yandexTranslationAPIKey
 }

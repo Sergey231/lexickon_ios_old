@@ -80,9 +80,17 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>microsoftTranslationAPIBaseUrl</key>
+	<string>https://api.cognitive.microsofttranslator.com</string>
+	<key>microsoftTranslationAPIKey</key>
+	<string>ff3b39475f4a41b8ae887b03deb093dd</string>
+	<key>microsoftTranslationAPIRegion</key>
+	<string>northeurope</string>
 	<key>rapidApiGoogleTranslateHost</key>
 	<string>google-translate20.p.rapidapi.com</string>
 	<key>rapidApiGoogleTranslateKey</key>
 	<string>bd0047b6c1msh466cb1752c5bae5p17fe30jsne60b241dad74</string>
+	<key>yandexTranslationAPIKey</key>
+	<string>dict.1.1.20210109T085821Z.0973a0ee9ceeb5aa.350f617168f4b67d8695b278e6efb78cb2b3c296</string>
 </dict>
 </plist>

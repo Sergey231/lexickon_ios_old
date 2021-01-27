@@ -141,6 +141,7 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
     ) -> Single<MicrosoftDictionaryResultsDTO> {
         
         guard
+            !request.baseUrl.isEmpty,
             !request.dto.text.isEmpty,
             !request.subscriptionKey.isEmpty,
             !request.subscriptionRegion.isEmpty
@@ -148,7 +149,8 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
             return Single.error(LxHTTPObject.Error.invalidRepositoryRequest)
         }
         
-        let url = "https://api.cognitive.microsofttranslator.com/Dictionary/Lookup?api-version=3.0"
+        let url = request.baseUrl
+            + "/Dictionary/Lookup?api-version=3.0"
             + "&to=\(request.dto.targetLanguage)"
             + "&from=\(request.dto.sourceLanguage)"
         
@@ -166,10 +168,6 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
                 encoding: JSONArrayEncoding(array: parameters),
                 headers: headers
             )
-//            .responseData { res in
-//                let json = String(data: res.data!, encoding: .utf8)
-//                print(json)
-//            }
                 .responseDecodable(
                     of: [MicrosoftDictionaryResultsDTO].self,
                     decoder: self.jsonDecoder

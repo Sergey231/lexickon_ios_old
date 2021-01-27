@@ -39,7 +39,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     private func translateByYandexDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
         
-        let yandexDictionaryKey = "dict.1.1.20210109T085821Z.0973a0ee9ceeb5aa.350f617168f4b67d8695b278e6efb78cb2b3c296"
+        let yandexDictionaryKey = configsRepository.object(forKey: .yandexTranslationAPIKey)!
         
         return translationRepository.translateByYandexDictionary(YandexDictionaryApiRequestDTO(
             dto: dto,
@@ -87,9 +87,12 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     private func translateByMicrosoftTranslate(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
         
-        let key = "ff3b39475f4a41b8ae887b03deb093dd"
-        let region = "northeurope"
+        let key = configsRepository.object(forKey: .microsoftTranslationAPIKey)!
+        let region = configsRepository.object(forKey: .microsoftTranslationAPIRegion)!
+        let baseUrl = configsRepository.object(forKey: .microsoftTranslationAPIBaseUrl)!
+        
         let request = MicrosoftTranslationRequestDTO(
+            baseUrl: baseUrl,
             dto: dto,
             subscriptionKey: key,
             subscriptionRegion: region
@@ -113,9 +116,12 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     
     private func translateByMicrosoftDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
         
-        let key = "ff3b39475f4a41b8ae887b03deb093dd"
-        let region = "northeurope"
+        let key = configsRepository.object(forKey: .microsoftTranslationAPIKey)!
+        let region = configsRepository.object(forKey: .microsoftTranslationAPIRegion)!
+        let baseUrl = configsRepository.object(forKey: .microsoftTranslationAPIBaseUrl)!
+        
         let request = MicrosoftTranslationRequestDTO(
+            baseUrl: baseUrl,
             dto: dto,
             subscriptionKey: key,
             subscriptionRegion: region
