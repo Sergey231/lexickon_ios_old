@@ -67,6 +67,8 @@
 		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
 		ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5EA25B323890018110F /* TranslationRepository */; };
 		ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5F725B41BE60018110F /* ApiRepository */; };
+		ECEA376A25C2FF8A00D6C6DC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA376925C2FF8A00D6C6DC /* Lottie */; };
+		ECEA376E25C3000200D6C6DC /* 42327-random-s.json in Resources */ = {isa = PBXBuildFile; fileRef = ECEA376D25C3000200D6C6DC /* 42327-random-s.json */; };
 		ECEF16E625B01B6D00A7ABC9 /* ConfigsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E525B01B6D00A7ABC9 /* ConfigsRepository */; };
 		ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E925B01B6D00A7ABC9 /* KeyValueRepository */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
@@ -138,6 +140,7 @@
 		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		ECDCE5E725B322BE0018110F /* TranslationRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TranslationRepository; sourceTree = "<group>"; };
 		ECDCE5F225B41B690018110F /* ApiRepository */ = {isa = PBXFileReference; lastKnownFileType = text; name = ApiRepository; path = Packages/Repositories/ApiRepository; sourceTree = SOURCE_ROOT; };
+		ECEA376D25C3000200D6C6DC /* 42327-random-s.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "42327-random-s.json"; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -152,6 +155,7 @@
 				ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
+				ECEA376A25C2FF8A00D6C6DC /* Lottie in Frameworks */,
 				EC3750A725B07B7C0090F95F /* UIComponents in Frameworks */,
 				ECEF16E625B01B6D00A7ABC9 /* ConfigsRepository in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
@@ -274,6 +278,7 @@
 				ECA97C6922D0808500918828 /* Info.plist */,
 				ECF20D60236D942500DA8715 /* logo.png */,
 				ECF20D5F236D942500DA8715 /* README.md */,
+				ECEA376D25C3000200D6C6DC /* 42327-random-s.json */,
 				EC3750E925B18E320090F95F /* AppIcon.xcassets */,
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
@@ -547,6 +552,7 @@
 				EC3750F125B195030090F95F /* Assets */,
 				ECDCE5EA25B323890018110F /* TranslationRepository */,
 				ECDCE5F725B41BE60018110F /* ApiRepository */,
+				ECEA376925C2FF8A00D6C6DC /* Lottie */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -607,6 +613,7 @@
 				ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 				EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */,
+				ECEA376825C2FF8A00D6C6DC /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -624,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */,
+				ECEA376E25C3000200D6C6DC /* 42327-random-s.json in Resources */,
 				ECF20D61236D942500DA8715 /* README.md in Resources */,
 				ECF20D62236D942500DA8715 /* logo.png in Resources */,
 				EC3750EA25B18E320090F95F /* AppIcon.xcassets in Resources */,
@@ -998,6 +1006,14 @@
 				minimumVersion = 2.12.0;
 			};
 		};
+		ECEA376825C2FF8A00D6C6DC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.9;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1087,6 +1103,11 @@
 		ECDCE5F725B41BE60018110F /* ApiRepository */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ApiRepository;
+		};
+		ECEA376925C2FF8A00D6C6DC /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECEA376825C2FF8A00D6C6DC /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		ECEF16E525B01B6D00A7ABC9 /* ConfigsRepository */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -16,6 +16,7 @@ import UIExtensions
 import RxDataSources
 import Resolver
 import Assets
+import Lottie
 
 final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRecognizerDelegate {
     
@@ -35,6 +36,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     
     fileprivate let tableView = UITableView()
     fileprivate let activityIndicator = UIActivityIndicatorView()
+    fileprivate let activityView = AnimationView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -65,7 +67,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     private func createUI() {
-
+        
         activityIndicator.setup {
             $0.color = Asset.Colors.baseText.color
             $0.style = .large
@@ -89,6 +91,15 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             $0.snp.makeConstraints {
                 $0.left.right.top.equalToSuperview()
                 $0.height.equalTo(UIConstants.headerViewHeight)
+            }
+        }
+        
+        activityView.setup {
+            $0.animation = Animation.named("42327-random-s")
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.bottom.equalToSuperview()
+                $0.top.equalTo(headerView.snp.bottom)
             }
         }
         
@@ -169,11 +180,16 @@ private extension Reactive where Base: AddSearchWordViewController {
         return Binder(base) { base, isLoading in
             UIView.animate(withDuration: 0.3) {
                 base.tableView.alpha = isLoading ? 0 : 1
-                base.activityIndicator.alpha = isLoading ? 1 : 0
+                base.activityView.alpha = isLoading ? 1 : 0
                 if isLoading {
-                    base.activityIndicator.startAnimating()
+                    base.activityView.play(
+                        fromFrame: nil,
+                        toFrame: .init(30),
+                        loopMode: .loop,
+                        completion: nil
+                    )
                 } else {
-                    base.activityIndicator.stopAnimating()
+                    base.activityView.stop()
                 }
             }
         }
