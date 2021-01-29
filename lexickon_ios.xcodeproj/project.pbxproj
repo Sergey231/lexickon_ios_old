@@ -28,6 +28,7 @@
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
 		EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */; };
+		EC75A1E325C448270053F88E /* 13005-refresh.json in Resources */ = {isa = PBXBuildFile; fileRef = EC75A1E225C448270053F88E /* 13005-refresh.json */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
@@ -103,6 +104,7 @@
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
 		EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
+		EC75A1E225C448270053F88E /* 13005-refresh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "13005-refresh.json"; path = "../../../../../Downloads/13005-refresh.json"; sourceTree = "<group>"; };
 		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				ECF20D60236D942500DA8715 /* logo.png */,
 				ECF20D5F236D942500DA8715 /* README.md */,
 				ECEA376D25C3000200D6C6DC /* 42327-random-s.json */,
+				EC75A1E225C448270053F88E /* 13005-refresh.json */,
 				EC3750E925B18E320090F95F /* AppIcon.xcassets */,
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
@@ -635,6 +638,7 @@
 				ECF20D61236D942500DA8715 /* README.md in Resources */,
 				ECF20D62236D942500DA8715 /* logo.png in Resources */,
 				EC3750EA25B18E320090F95F /* AppIcon.xcassets in Resources */,
+				EC75A1E325C448270053F88E /* 13005-refresh.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
