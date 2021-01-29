@@ -15,6 +15,7 @@ import UIExtensions
 import RxDataSources
 import Resolver
 import UIComponents
+import Lottie
 
 final class HomeViewController: UIViewController, Stepper {
     
@@ -32,29 +33,12 @@ final class HomeViewController: UIViewController, Stepper {
     private var dataSource: HomeWordRxDataSource!
     private let needToRefrash = PublishRelay<Void>()
     
+    fileprivate let refreshView = AnimationView()
     private let headerView = HomeHeaderView()
-    private let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.rowHeight = 100
-        tableView.register(cellType: HomeWordCell.self)
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(
-            top: UIConstants.headerHeight,
-            left: 0,
-            bottom: 0,
-            right: 0
-        )
-        return tableView
-    }()
+    private let tableView = UITableView(frame: .zero, style: .grouped)
     
     // public for Animator
-    let profileIconView: ProfileIconView = {
-        let iconView = ProfileIconView()
-        iconView.backgroundColor = .gray
-        return iconView
-    }()
-    
+    let profileIconView = ProfileIconView()
     let addWordButton = AddWordButtonView()
     
     init() {
@@ -83,8 +67,6 @@ final class HomeViewController: UIViewController, Stepper {
 
     private func configureUI() {
         
-        tableView.delegate = self
-        
         let presenterOutput = presenter.configurate(
             input: .init(needLoadNextWordsPage: needToRefrash.asSignal())
         )
@@ -105,28 +87,55 @@ final class HomeViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubviews(
-            tableView,
-            headerView,
-            profileIconView,
-            addWordButton
-        )
         
-        profileIconView.snp.makeConstraints {
-            $0.size.equalTo(UIConstants.profileIconSize)
-            $0.right.equalToSuperview().offset(-Margin.regular)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        tableView.setup {
+            $0.delegate = self
+            $0.rowHeight = 100
+            $0.register(cellType: HomeWordCell.self)
+            $0.backgroundColor = .clear
+            $0.separatorStyle = .none
+            $0.contentInset = UIEdgeInsets(
+                top: UIConstants.headerHeight,
+                left: 0,
+                bottom: 0,
+                right: 0
+            )
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.right.left.top.equalToSuperview()
+                $0.height.equalTo(UIConstants.headerHeight)
+            }
         }
         
-        headerView.snp.makeConstraints {
-            $0.right.left.top.equalToSuperview()
-            $0.height.equalTo(UIConstants.headerHeight)
+        headerView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+            }
         }
         
-        addWordButton.snp.makeConstraints {
-            $0.size.equalTo(UIConstants.addButtonSize)
-            $0.bottom.equalToSuperview().offset(-Margin.mid)
-            $0.right.equalToSuperview()
+        refreshView.setup {
+            $0.animation = Animation.named("13005-refresh")
+            view.addSubview($0)
+        }
+        
+        profileIconView.setup {
+            $0.backgroundColor = .gray
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(UIConstants.profileIconSize)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            }
+        }
+        
+        addWordButton.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(UIConstants.addButtonSize)
+                $0.bottom.equalToSuperview().offset(-Margin.mid)
+                $0.right.equalToSuperview()
+            }
         }
     }
     

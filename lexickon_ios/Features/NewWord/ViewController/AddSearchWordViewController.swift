@@ -35,7 +35,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     let placeholderView = AddSearchPlaceholderView()
     
     fileprivate let tableView = UITableView()
-    fileprivate let activityIndicator = UIActivityIndicatorView()
     fileprivate let activityView = AnimationView()
     
     init() {
@@ -67,15 +66,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     private func createUI() {
-        
-        activityIndicator.setup {
-            $0.color = Asset.Colors.baseText.color
-            $0.style = .large
-            view.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.center.equalToSuperview()
-            }
-        }
         
         placeholderView.setup {
             view.addSubview($0)
