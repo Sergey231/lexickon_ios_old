@@ -35,7 +35,7 @@ final class HomeViewController: UIViewController, Stepper {
     private var dataSource: HomeWordRxDataSource!
     private let needToRefrash = PublishRelay<Void>()
     
-    fileprivate let refreshView = UIImageView()
+    fileprivate let refreshView = RefreshView()
     private let headerView = HomeHeaderView()
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
@@ -91,11 +91,19 @@ final class HomeViewController: UIViewController, Stepper {
             .drive(headerView.rx.height)
             .disposed(by: disposeBag)
         
-        tableViewContentOffsetY
+        let refreshProgress = tableViewContentOffsetY
             .map { ($0 - 257) / 50 }
             .map { $0 > 1 ? 1 : $0 }
+            
+        refreshProgress
             .drive(rx.refresh)
             .disposed(by: disposeBag)
+        
+        
+           
+        refreshView.configure(
+            input: .init(animateActivity: refreshProgress.map { $0 >= 1 } )
+        )
     }
     
     private func createUI() {
@@ -127,11 +135,6 @@ final class HomeViewController: UIViewController, Stepper {
         }
         
         refreshView.setup {
-            $0.image = Asset.Images.refresh.image
-            $0.contentMode = .scaleAspectFit
-            $0.tintColor = .white
-            $0.setShadow()
-            $0.alpha = 0
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
@@ -289,7 +292,7 @@ private extension Reactive where Base: HomeViewController {
     var refresh: Binder<CGFloat> {
         Binder(base) { base, refreshProgress in
             base.refreshView.alpha = refreshProgress
-            base.refreshView.transform = CGAffineTransform(rotationAngle: refreshProgress * -5)
+            base.refreshView.refreshImageView.transform = CGAffineTransform(rotationAngle: refreshProgress * -5)
             base.refreshView.snp.updateConstraints {
                 let newTopMargin = HomeViewController.UIConstants.refreshTopMargin
                     + (HomeViewController.UIConstants.refreshTopMargin * (refreshProgress/6))

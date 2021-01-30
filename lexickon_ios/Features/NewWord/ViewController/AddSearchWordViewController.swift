@@ -93,7 +93,6 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             }
         }
         
-        
         tableView.setup {
             $0.rowHeight = 100
             $0.register(cellType: TranslationResultCell.self)
