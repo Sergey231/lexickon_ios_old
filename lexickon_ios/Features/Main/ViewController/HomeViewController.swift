@@ -98,8 +98,6 @@ final class HomeViewController: UIViewController, Stepper {
         refreshProgress
             .drive(rx.refresh)
             .disposed(by: disposeBag)
-        
-        
            
         refreshView.configure(
             input: .init(animateActivity: refreshProgress.map { $0 >= 1 } )
@@ -291,7 +289,7 @@ extension HomeViewController: UINavigationControllerDelegate {
 private extension Reactive where Base: HomeViewController {
     var refresh: Binder<CGFloat> {
         Binder(base) { base, refreshProgress in
-            base.refreshView.alpha = refreshProgress
+            base.refreshView.alpha = refreshProgress - 0.2
             base.refreshView.refreshImageView.transform = CGAffineTransform(rotationAngle: refreshProgress * -5)
             base.refreshView.snp.updateConstraints {
                 let newTopMargin = HomeViewController.UIConstants.refreshTopMargin
