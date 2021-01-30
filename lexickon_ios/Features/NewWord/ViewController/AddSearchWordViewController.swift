@@ -85,7 +85,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         }
         
         activityView.setup {
-            $0.animation = Animation.named("42327-random-s")
+            $0.animation = Animation.named("linesLoading")
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.bottom.equalToSuperview()

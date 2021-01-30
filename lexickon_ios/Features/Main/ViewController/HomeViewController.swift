@@ -16,6 +16,7 @@ import RxDataSources
 import Resolver
 import UIComponents
 import Lottie
+import Assets
 
 final class HomeViewController: UIViewController, Stepper {
     
@@ -24,6 +25,7 @@ final class HomeViewController: UIViewController, Stepper {
         static let profileIconRightMargin: CGFloat = 16
         static let headerHeight: CGFloat = 210
         static let addButtonSize: CGFloat = 100
+        fileprivate static let refreshTopMargin: CGFloat = 140
     }
     
     let steps = PublishRelay<Step>()
@@ -33,7 +35,7 @@ final class HomeViewController: UIViewController, Stepper {
     private var dataSource: HomeWordRxDataSource!
     private let needToRefrash = PublishRelay<Void>()
     
-    fileprivate let refreshView = AnimationView()
+    fileprivate let refreshView = UIImageView()
     private let headerView = HomeHeaderView()
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
@@ -79,10 +81,20 @@ final class HomeViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        tableView.rx.didScroll.asDriver()
+        let tableViewContentOffsetY = tableView.rx
+            .didScroll
+            .asDriver()
             .map { _ in self.tableView.contentOffset.y * -1 }
+            
+        tableViewContentOffsetY
             .map { $0 < 120 ? 120 : $0 }
             .drive(headerView.rx.height)
+            .disposed(by: disposeBag)
+        
+        tableViewContentOffsetY
+            .map { ($0 - 257) / 50 }
+            .map { $0 > 1 ? 1 : $0 }
+            .drive(rx.refresh)
             .disposed(by: disposeBag)
     }
     
@@ -115,8 +127,17 @@ final class HomeViewController: UIViewController, Stepper {
         }
         
         refreshView.setup {
-            $0.animation = Animation.named("13005-refresh")
+            $0.image = Asset.Images.refresh.image
+            $0.contentMode = .scaleAspectFit
+            $0.tintColor = .white
+            $0.setShadow()
+            $0.alpha = 0
             view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(UIConstants.refreshTopMargin)
+                $0.size.equalTo(34)
+            }
         }
         
         profileIconView.setup {
@@ -261,5 +282,19 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
         
         return nil
+    }
+}
+
+private extension Reactive where Base: HomeViewController {
+    var refresh: Binder<CGFloat> {
+        Binder(base) { base, refreshProgress in
+            base.refreshView.alpha = refreshProgress
+            base.refreshView.transform = CGAffineTransform(rotationAngle: refreshProgress * -5)
+            base.refreshView.snp.updateConstraints {
+                let newTopMargin = HomeViewController.UIConstants.refreshTopMargin
+                    + (HomeViewController.UIConstants.refreshTopMargin * (refreshProgress/6))
+                $0.top.equalTo(newTopMargin)
+            }
+        }
     }
 }
