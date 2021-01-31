@@ -21,6 +21,7 @@ final class HomePresenter: PresenterType {
     @Injected var mainInteractor: MainInteractorProtocol
     
     struct Input {
+        let refreshData: Signal<Void>
         let needLoadNextWordsPage: Signal<Void>
     }
     
@@ -32,6 +33,20 @@ final class HomePresenter: PresenterType {
     private var pagesCount: Int = 1
     
     func configurate(input: Input) -> Output {
+        
+        let refreshedWords = input.refreshData
+            .flatMapLatest { _ -> Driver<[LxWordList]> in
+                self.mainInteractor.words(
+                    per: 10,
+                    page: 1
+                )
+                .map { $0.items }
+                .asDriver(onErrorJustReturn: [])
+                .do(onNext: { _ in
+                    self.loadedWordsCount = 10
+                    self.pagesCount = 1
+                })
+            }
         
         let words = input.needLoadNextWordsPage
             .startWith(())
@@ -48,7 +63,10 @@ final class HomePresenter: PresenterType {
                 })
             }
         
-        let sections = words
+        let sections = Driver.merge(
+            words,
+            refreshedWords
+        )
             .map { words -> [HomeWordSectionModel] in
                 var fireWords: [HomeWordViewModel] = []
                 var readyWords: [HomeWordViewModel] = []
@@ -103,7 +121,6 @@ final class HomePresenter: PresenterType {
                 
                 return sections
             }
-        
         
         return Output(sections: sections)
     }

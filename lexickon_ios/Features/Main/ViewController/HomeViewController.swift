@@ -69,8 +69,13 @@ final class HomeViewController: UIViewController, Stepper {
 
     private func configureUI() {
         
+        let refreshData = PublishRelay<Void>()
+        
         let presenterOutput = presenter.configurate(
-            input: .init(needLoadNextWordsPage: needToRefrash.asSignal())
+            input: .init(
+                refreshData: refreshData.asSignal(),
+                needLoadNextWordsPage: needToRefrash.asSignal()
+            )
         )
         
         configureTableView(with: presenterOutput.sections)
@@ -98,9 +103,20 @@ final class HomeViewController: UIViewController, Stepper {
         refreshProgress
             .drive(rx.refresh)
             .disposed(by: disposeBag)
+        
+        let isRefreshing = refreshProgress
+            .map { $0 >= 1 }
+            .distinctUntilChanged()
+            
+        isRefreshing
+            .filter { $0 }
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+            .emit(to: refreshData)
+            .disposed(by: disposeBag)
            
         refreshView.configure(
-            input: .init(animateActivity: refreshProgress.map { $0 >= 1 } )
+            input: .init(animateActivity: isRefreshing)
         )
     }
     
@@ -290,7 +306,9 @@ private extension Reactive where Base: HomeViewController {
     var refresh: Binder<CGFloat> {
         Binder(base) { base, refreshProgress in
             base.refreshView.alpha = refreshProgress - 0.2
-            base.refreshView.refreshImageView.transform = CGAffineTransform(rotationAngle: refreshProgress * -5)
+            base.refreshView.refreshImageView.transform = CGAffineTransform(
+                rotationAngle: refreshProgress * -5
+            )
             base.refreshView.snp.updateConstraints {
                 let newTopMargin = HomeViewController.UIConstants.refreshTopMargin
                     + (HomeViewController.UIConstants.refreshTopMargin * (refreshProgress/6))
