@@ -37,7 +37,9 @@ final class HomeViewController: UIViewController, Stepper {
     
     fileprivate let refreshView = RefreshView()
     private let headerView = HomeHeaderView()
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    fileprivate let tableView = UITableView(frame: .zero, style: .grouped)
+    fileprivate let paginationProgressView = PaginationProgressView()
+    fileprivate let activityView = AnimationView()
     
     // public for Animator
     let profileIconView = ProfileIconView()
@@ -104,20 +106,27 @@ final class HomeViewController: UIViewController, Stepper {
             .drive(rx.refresh)
             .disposed(by: disposeBag)
         
-        let isRefreshing = refreshProgress
+        refreshProgress
             .map { $0 >= 1 }
             .distinctUntilChanged()
-            
-        isRefreshing
             .filter { $0 }
             .map { _ in () }
+            .startWith(())
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: refreshData)
             .disposed(by: disposeBag)
            
         refreshView.configure(
-            input: .init(animateActivity: isRefreshing)
+            input: .init(animateActivity: presenterOutput.isWordsUpdating)
         )
+        
+        paginationProgressView.configure(
+            input: .init(animateActivity: presenterOutput.isNextPageLoading)
+        )
+        
+        presenterOutput.isWordsUpdating.debug("🎲")
+            .drive(rx.isWordsLoading)
+            .disposed(by: disposeBag)
     }
     
     private func createUI() {
@@ -138,6 +147,15 @@ final class HomeViewController: UIViewController, Stepper {
             $0.snp.makeConstraints {
                 $0.right.left.top.equalToSuperview()
                 $0.height.equalTo(UIConstants.headerHeight)
+            }
+        }
+        
+        activityView.setup {
+            $0.animation = Animation.named("linesLoading")
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.bottom.equalToSuperview()
+                $0.top.equalToSuperview().offset(257)
             }
         }
         
@@ -167,11 +185,21 @@ final class HomeViewController: UIViewController, Stepper {
             }
         }
         
+        paginationProgressView.setup {
+            $0.setShadow()
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.bottom.equalToSuperview().offset(-Margin.mid)
+            }
+        }
+        
         addWordButton.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.size.equalTo(UIConstants.addButtonSize)
-                $0.bottom.equalToSuperview().offset(-Margin.mid)
+                $0.bottom.equalTo(paginationProgressView.snp.top).offset(-Margin.small)
                 $0.right.equalToSuperview()
             }
         }
@@ -313,6 +341,25 @@ private extension Reactive where Base: HomeViewController {
                 let newTopMargin = HomeViewController.UIConstants.refreshTopMargin
                     + (HomeViewController.UIConstants.refreshTopMargin * (refreshProgress/6))
                 $0.top.equalTo(newTopMargin)
+            }
+        }
+    }
+    
+    var isWordsLoading: Binder<Bool> {
+        return Binder(base) { base, isLoading in
+            UIView.animate(withDuration: 0.1) {
+                base.tableView.alpha = isLoading ? 0 : 1
+                base.activityView.alpha = isLoading ? 1 : 0
+                if isLoading {
+                    base.activityView.play(
+                        fromFrame: nil,
+                        toFrame: .init(30),
+                        loopMode: .loop,
+                        completion: nil
+                    )
+                } else {
+                    base.activityView.stop()
+                }
             }
         }
     }

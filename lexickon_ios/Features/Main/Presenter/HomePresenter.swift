@@ -12,6 +12,7 @@ import LexickonApi
 import RxDataSources
 import Resolver
 import UIComponents
+import RxExtensions
 
 typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
 typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
@@ -26,6 +27,8 @@ final class HomePresenter: PresenterType {
     }
     
     struct Output {
+        let isNextPageLoading: Driver<Bool>
+        let isWordsUpdating: Driver<Bool>
         let sections: Driver<[HomeWordSectionModel]>
     }
     
@@ -34,6 +37,9 @@ final class HomePresenter: PresenterType {
     
     func configurate(input: Input) -> Output {
         
+        let isNextPageLoading = RxActivityIndicator()
+        let isWordsUpdating = RxActivityIndicator()
+        
         let refreshedWords = input.refreshData
             .flatMapLatest { _ -> Driver<[LxWordList]> in
                 self.mainInteractor.words(
@@ -41,6 +47,7 @@ final class HomePresenter: PresenterType {
                     page: 1
                 )
                 .map { $0.items }
+                .trackActivity(isWordsUpdating)
                 .asDriver(onErrorJustReturn: [])
                 .do(onNext: { _ in
                     self.loadedWordsCount = 10
@@ -56,6 +63,7 @@ final class HomePresenter: PresenterType {
                     page: self.pagesCount
                 )
                 .map { $0.items }
+                .trackActivity(isNextPageLoading)
                 .asDriver(onErrorJustReturn: [])
                 .do(onNext: {
                     self.loadedWordsCount += $0.count
@@ -122,6 +130,10 @@ final class HomePresenter: PresenterType {
                 return sections
             }
         
-        return Output(sections: sections)
+        return Output(
+            isNextPageLoading: isNextPageLoading.asDriver(),
+            isWordsUpdating: isWordsUpdating.asDriver(),
+            sections: sections
+        )
     }
 }
