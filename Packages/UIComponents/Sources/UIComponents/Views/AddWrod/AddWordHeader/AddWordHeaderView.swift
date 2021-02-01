@@ -28,54 +28,44 @@ public final class AddWordHeaderView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    public var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(Asset.Images.backArrow.image, for: .normal)
-        return button
-    }()
+    public var backButton = UIButton()
     
     private let addSearchWordTextField = AddSearchWordTextField()
     private var textViewHeight: Constraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureView()
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func configureView() {
-        createUI()
-        configureUI()
-    }
        
     private func createUI() {
-        addSubviews(
-            addSearchWordTextField,
-            backButton
-        )
-    }
-    
-    private func configureUI() {
+        
         backgroundColor = Asset.Colors.mainBG.color
         
-        backButton.snp
-            .makeConstraints {
+        backButton.setup {
+            addSubview($0)
+            $0.setImage(Asset.Images.backArrow.image, for: .normal)
+            $0.snp.makeConstraints {
                 $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
                 $0.size.equalTo(56)
                 $0.left.equalToSuperview()
             }
+        }
         
-        addSearchWordTextField.snp
-            .makeConstraints {
+        addSearchWordTextField.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
                 $0.top.equalTo(self.backButton.snp.bottom)
                 $0.left.equalTo(Margin.regular)
                 $0.right.equalTo(-Margin.regular)
                 self.textViewHeight = $0.height.greaterThanOrEqualTo(UIConstants.minTextFieldHeight)
                     .constraint
             }
+        }
     }
     
     public func configure() -> Output {
