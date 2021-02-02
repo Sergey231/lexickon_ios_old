@@ -18,6 +18,7 @@ public final class AddWordHeaderView: UIView {
     
     private enum UIConstants {
         static let minTextFieldHeight = AddSearchWordTextField.UIConstants.minHeight
+        static let backButtonSize: CGFloat = 56
     }
     
     public struct Output {
@@ -30,6 +31,7 @@ public final class AddWordHeaderView: UIView {
     
     public var backButton = UIButton()
     
+    private let titleView = MultiLabelView()
     private let addSearchWordTextField = AddSearchWordTextField()
     private var textViewHeight: Constraint?
     
@@ -51,7 +53,7 @@ public final class AddWordHeaderView: UIView {
             $0.setImage(Asset.Images.backArrow.image, for: .normal)
             $0.snp.makeConstraints {
                 $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-                $0.size.equalTo(56)
+                $0.size.equalTo(UIConstants.backButtonSize)
                 $0.left.equalToSuperview()
             }
         }
@@ -64,6 +66,16 @@ public final class AddWordHeaderView: UIView {
                 $0.right.equalTo(-Margin.regular)
                 self.textViewHeight = $0.height.greaterThanOrEqualTo(UIConstants.minTextFieldHeight)
                     .constraint
+            }
+        }
+        
+        titleView.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(backButton.snp.right)
+                $0.centerY.equalTo(backButton.snp.centerY)
+                $0.height.equalTo(backButton.snp.height)
+                $0.right.equalToSuperview().offset(-UIConstants.backButtonSize)
             }
         }
     }
@@ -85,6 +97,10 @@ public final class AddWordHeaderView: UIView {
             .map { size, addSearchWordHeight in
                 size.height + (addSearchWordHeight - UIConstants.minTextFieldHeight)
             }
+        
+        titleView.configure(
+            MultiLabelView.Input(titles: ["Добавить слова", "Найти слова"])
+        )
         
         let text = addSearchWordOutput.text
             .map { $0 ?? "" }

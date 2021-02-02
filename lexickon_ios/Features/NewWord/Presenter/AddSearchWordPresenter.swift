@@ -81,7 +81,6 @@ final class AddSearchWordPresenter: PresenterType {
                 
                 return self.interacor.addWord(wordForAdding)
             }
-            .debug("🎲")
             .subscribe()
         
         let translationsSections = translationCellModels

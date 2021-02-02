@@ -124,7 +124,7 @@ final class HomeViewController: UIViewController, Stepper {
             input: .init(animateActivity: presenterOutput.isNextPageLoading)
         )
         
-        presenterOutput.isWordsUpdating.debug("🎲")
+        presenterOutput.isWordsUpdating
             .drive(rx.isWordsLoading)
             .disposed(by: disposeBag)
     }
