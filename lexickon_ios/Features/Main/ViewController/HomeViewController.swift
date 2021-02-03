@@ -129,6 +129,12 @@ final class HomeViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            steps.accept(MainStep.addWord)
+        }
+    }
+    
     private func createUI() {
         
         tableView.setup {

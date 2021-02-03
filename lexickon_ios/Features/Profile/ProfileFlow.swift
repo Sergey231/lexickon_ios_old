@@ -14,6 +14,7 @@ enum ProfileStep: Step {
     case profileMainScreen
     case toHome
     case logout
+    case addWord
 }
 
 class ProfileFlow: Flow {
@@ -43,6 +44,8 @@ class ProfileFlow: Flow {
             return navigateToHome()
         case .logout:
             return navigateToAuthorization()
+        case .addWord:
+            return navigateToAddWord()
         }
     }
     
@@ -59,6 +62,11 @@ class ProfileFlow: Flow {
     
     private func navigateToAuthorization() -> FlowContributors {
         return .end(forwardToParentFlowWithStep: MainStep.authorization)
+    }
+    
+    private func navigateToAddWord() -> FlowContributors {
+        rootViewController.popToRootViewController(animated: true)
+        return .end(forwardToParentFlowWithStep: MainStep.addWord)
     }
 }
 

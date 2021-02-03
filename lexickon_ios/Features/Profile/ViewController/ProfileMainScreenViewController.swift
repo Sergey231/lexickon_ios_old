@@ -67,6 +67,12 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         configureUI()
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            steps.accept(ProfileStep.addWord)
+        }
+    }
+    
     private func createUI() {
         view.addSubviews(
             backButton,
