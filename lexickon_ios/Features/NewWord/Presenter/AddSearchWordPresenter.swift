@@ -17,7 +17,7 @@ import TranslationRepository
 typealias TranslationReulstSectionModel = AnimatableSectionModel<String, TranslationResultViewModel>
 typealias TranslationReulstRxDataSource = RxTableViewSectionedAnimatedDataSource<TranslationReulstSectionModel>
 
-final class AddSearchWordPresenter: PresenterType {
+final class AddSearchWordPresenter {
     
     @Injected var interacor: NewWordInteractorProtocol
     

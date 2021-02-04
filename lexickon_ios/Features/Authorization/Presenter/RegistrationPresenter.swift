@@ -6,14 +6,12 @@
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
-import RxSwift
 import RxCocoa
-import SwiftUI
 import Validator
 import Resolver
 import Assets
 
-final class RegistrationPresenter: PresenterType {
+final class RegistrationPresenter {
     
     @Injected var authorisationInteractor: AuthorizationInteractorProtocol
 
@@ -36,7 +34,66 @@ final class RegistrationPresenter: PresenterType {
         let registrated: Signal<Void>
     }
     
-    private let disposeBag = DisposeBag()
+    enum TextFieldError {
+        
+        enum Password: ValidationError {
+            
+            case empty
+            case needDigital
+            case needUpcase
+            case needLowcase
+            case tooShort
+            case tooLong
+            
+            var message: String {
+                switch self {
+                case .empty:
+                    return Str.registrationEnterPassword
+                case .needDigital:
+                    return Str.registrationPasswordMustContainDigits
+                case .needUpcase:
+                    return Str.registrationPasswordMustContainUpercaseCharacters
+                case .needLowcase:
+                    return Str.registrationPasswordMustContainLowercaseCharacters
+                case .tooShort:
+                    return Str.registrationPasswordTooShort
+                case .tooLong:
+                    return Str.registrationPasswordTooLong
+                }
+            }
+        }
+        
+        enum Name: ValidationError {
+            
+            case empty
+            case tooShort
+            
+            var message: String {
+                switch self {
+                case .empty:
+                    return Str.registrationEnterName
+                case .tooShort:
+                    return Str.registrationNameTooShort
+                }
+            }
+        }
+        
+        enum Email: ValidationError {
+            
+            case empty
+            case incorrectEmail
+            
+            var message: String {
+                switch self {
+                case .empty:
+                    return Str.registrationEnterEmail
+                case .incorrectEmail:
+                    return Str.registrationIncorrectEmail
+                }
+            }
+        }
+    }
+
     
     func configure(input: Input) -> Output {
         
@@ -201,66 +258,5 @@ final class RegistrationPresenter: PresenterType {
             errorMsg: errorMsg.asSignal(),
             registrated: registrated
         )
-    }
-}
-
-// MARK: - Extract in future
-enum TextFieldError {
-    
-    enum Password: ValidationError {
-        
-        case empty
-        case needDigital
-        case needUpcase
-        case needLowcase
-        case tooShort
-        case tooLong
-        
-        var message: String {
-            switch self {
-            case .empty:
-                return Str.registrationEnterPassword
-            case .needDigital:
-                return Str.registrationPasswordMustContainDigits
-            case .needUpcase:
-                return Str.registrationPasswordMustContainUpercaseCharacters
-            case .needLowcase:
-                return Str.registrationPasswordMustContainLowercaseCharacters
-            case .tooShort:
-                return Str.registrationPasswordTooShort
-            case .tooLong:
-                return Str.registrationPasswordTooLong
-            }
-        }
-    }
-    
-    enum Name: ValidationError {
-        
-        case empty
-        case tooShort
-        
-        var message: String {
-            switch self {
-            case .empty:
-                return Str.registrationEnterName
-            case .tooShort:
-                return Str.registrationNameTooShort
-            }
-        }
-    }
-    
-    enum Email: ValidationError {
-        
-        case empty
-        case incorrectEmail
-        
-        var message: String {
-            switch self {
-            case .empty:
-                return Str.registrationEnterEmail
-            case .incorrectEmail:
-                return Str.registrationIncorrectEmail
-            }
-        }
     }
 }

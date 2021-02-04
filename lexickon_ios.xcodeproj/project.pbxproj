@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1C3E5323534FB400C82DFF /* PresenterType.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
@@ -23,7 +22,7 @@
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
 		EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginViewController.swift */; };
-		EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppAssembler.swift */; };
+		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
 		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
 		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
@@ -86,7 +85,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC1C3E5323534FB400C82DFF /* PresenterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterType.swift; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3750A325B078180090F95F /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIComponents; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
@@ -98,7 +96,7 @@
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EC47965123923E6400C9BDD3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		EC4CB12F22D2418800CB826E /* AppAssembler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAssembler.swift; sourceTree = "<group>"; };
+		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
 		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
@@ -252,11 +250,10 @@
 		EC4278D722D070E5001218AB /* lexickon_ios */ = {
 			isa = PBXGroup;
 			children = (
-				EC4CB12F22D2418800CB826E /* AppAssembler.swift */,
+				EC4CB12F22D2418800CB826E /* AppResolder.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
-				EC1C3E5323534FB400C82DFF /* PresenterType.swift */,
 				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
 			);
@@ -686,8 +683,7 @@
 				ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */,
 				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
 				EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */,
-				EC4CB13022D2418800CB826E /* AppAssembler.swift in Sources */,
-				EC1C3E5423534FB400C82DFF /* PresenterType.swift in Sources */,
+				EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */,
 				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
 				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,

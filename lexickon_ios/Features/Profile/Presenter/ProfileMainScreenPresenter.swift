@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Resolver
 
-final class ProfileMainScreenPresenter: PresenterType {
+final class ProfileMainScreenPresenter {
     
     @Injected var interactor: ProfileInteractorProtocol
     

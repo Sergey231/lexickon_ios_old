@@ -30,10 +30,12 @@ class AuthorizationFlow: Flow {
         rootViewController = root
     }
     
+    // For Navigation debug
     deinit {
         print("\(type(of: self)): \(#function)")
     }
 
+    // Reduce function
     func navigate(to step: Step) -> FlowContributors {
         guard let step = step as? AuthorizationStep else { return .none }
         
@@ -50,6 +52,7 @@ class AuthorizationFlow: Flow {
         }
     }
     
+    // Side Effects
     private func navigateToStart() -> FlowContributors {
         let startVC: StartViewController = Resolver.resolve()
         (root as! UINavigationController).pushViewController(startVC, animated: true)
@@ -73,6 +76,7 @@ class AuthorizationFlow: Flow {
     }
 }
 
+// MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerAuthorisationObjects() {
         

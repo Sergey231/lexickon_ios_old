@@ -17,7 +17,7 @@ import RxExtensions
 typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
 typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
 
-final class HomePresenter: PresenterType {
+final class HomePresenter {
     
     @Injected var mainInteractor: MainInteractorProtocol
     

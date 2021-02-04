@@ -6,12 +6,10 @@
 //  Copyright © 2019 Sergey Borovikov. All rights reserved.
 //
 
-import Foundation
 import RxCocoa
-import RxSwift
 import Resolver
 
-final class StartPresenter: PresenterType {
+final class StartPresenter {
     
     @Injected var authorisationInteractor: AuthorizationInteractorProtocol
     

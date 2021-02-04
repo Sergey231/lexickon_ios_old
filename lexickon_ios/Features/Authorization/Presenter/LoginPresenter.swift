@@ -10,10 +10,10 @@ import UIKit
 import Validator
 import LexickonApi
 import RxCocoa
-import RxSwift
 import Resolver
+import Assets
 
-final class LoginPresenter: PresenterType {
+final class LoginPresenter {
     
     @Injected var authorisationInteractor: AuthorizationInteractorProtocol
 
@@ -30,6 +30,37 @@ final class LoginPresenter: PresenterType {
         let showLoading: Driver<Bool>
         let errorMsg: Signal<String>
         let logined: Signal<Void>
+    }
+    
+    // MARK: - Extract in future
+    enum TextFieldError {
+        
+        enum Password: ValidationError {
+
+            case tooShort
+            case tooLong
+            
+            var message: String {
+                switch self {
+                case .tooShort:
+                    return Str.registrationPasswordTooShort
+                case .tooLong:
+                    return Str.registrationPasswordTooLong
+                }
+            }
+        }
+        
+        enum Email: ValidationError {
+            
+            case incorrectEmail
+            
+            var message: String {
+                switch self {
+                case .incorrectEmail:
+                    return Str.registrationIncorrectEmail
+                }
+            }
+        }
     }
     
     func configure(input: Input) -> Output {
