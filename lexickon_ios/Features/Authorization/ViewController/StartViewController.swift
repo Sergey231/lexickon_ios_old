@@ -30,32 +30,11 @@ class StartViewController: UIViewController, Stepper {
     @Injected var presenter: StartPresenter
     
     fileprivate let logo = StartLogo()
-    
-    fileprivate let beginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(Str.startBeginButtonTitle, for: .normal)
-        return button
-    }()
-    
-    fileprivate let iAmHaveAccountButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(Str.startIHaveAccountButtonTitle, for: .normal)
-        return button
-    }()
-    
-    fileprivate let createAccountButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(Str.startCreateAccountButtonTitle, for: .normal)
-        return button
-    }()
-    
-    fileprivate let bgImageView: UIImageView = {
-        let imageView = UIImageView(image: Asset.Images.bgStart.image)
-        imageView.contentMode = .scaleAspectFill
-        imageView.alpha = 0
-        return imageView
-    }()
-    
+    fileprivate let beginButton = UIButton()
+    fileprivate let iAmHaveAccountButton = UIButton()
+    fileprivate let createAccountButton = UIButton()
+    fileprivate let bgImageView = UIImageView(image: Asset.Images.bgStart.image)
+
     private let disposeBag = DisposeBag()
     
     init() {
@@ -67,7 +46,7 @@ class StartViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("💀")
+        print("Start 💀")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -92,6 +71,52 @@ class StartViewController: UIViewController, Stepper {
         logo.stopAnimation()
     }
     
+    private func createUI() {
+
+        bgImageView.setup {
+            $0.contentMode = .scaleAspectFill
+            $0.alpha = 0
+            view.addSubview($0)
+        }
+        
+        logo.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+        }
+        
+        createAccountButton.setup {
+            $0.setTitle(Str.startCreateAccountButtonTitle, for: .normal)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalToSuperview().offset(-Margin.huge)
+            }
+        }
+        
+        iAmHaveAccountButton.setup {
+            $0.setTitle(Str.startIHaveAccountButtonTitle, for: .normal)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalTo(createAccountButton.snp.top).offset(-Margin.mid)
+            }
+        }
+        
+        beginButton.setup {
+            $0.setTitle(Str.startBeginButtonTitle, for: .normal)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalTo(iAmHaveAccountButton.snp.top).offset(-Margin.mid)
+            }
+        }
+    }
+    
     private func configureUI() {
         
         navigationController?.setupLargeTitleNavBar()
@@ -103,6 +128,8 @@ class StartViewController: UIViewController, Stepper {
             iAmHaveAccountButtonTapped: iAmHaveAccountButton.rx.tap.asSignal(),
             createAccountButtonTapped: createAccountButton.rx.tap.asSignal()
         )
+        
+        let presenterOutput = presenter.configure(input: presenterInput)
         
         beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
         iAmHaveAccountButton.setRoundedBorderedStyle(
@@ -138,8 +165,6 @@ class StartViewController: UIViewController, Stepper {
         createAccountButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
-        let presenterOutput = presenter.configure(input: presenterInput)
-        
         rx.didShow.asDriver()
             .withLatestFrom(presenterOutput.isAuthorized)
             .filter(!)
@@ -154,38 +179,6 @@ class StartViewController: UIViewController, Stepper {
             .map { _ -> Step in AuthorizationStep.begin(animated: false) }
             .bind(to: steps)
             .disposed(by: disposeBag)
-    }
-    
-    private func createUI() {
-        view.addSubviews(
-            bgImageView,
-            logo,
-            beginButton,
-            iAmHaveAccountButton,
-            createAccountButton
-        )
-        
-        logo.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
-        createAccountButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(Size.button)
-            $0.bottom.equalToSuperview().offset(-Margin.huge)
-        }
-        
-        iAmHaveAccountButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(Size.button)
-            $0.bottom.equalTo(createAccountButton.snp.top).offset(-Margin.mid)
-        }
-        
-        beginButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(Size.button)
-            $0.bottom.equalTo(iAmHaveAccountButton.snp.top).offset(-Margin.mid)
-        }
     }
     
     fileprivate func resetAnimations() {
