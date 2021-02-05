@@ -26,32 +26,18 @@ final class LoginViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     private let contentView = UIView()
-    private let logo: UIImageView = {
-        let imageView = UIImageView(image: Asset.Images.textLogo.image)
-        imageView.contentMode = .scaleAspectFit
-        imageView.setShadow()
-        return imageView
-    }()
+    private let logo = UIImageView(image: Asset.Images.textLogo.image)
     private let emailTextField = LXTextField()
     private let passwordTextField = LXTextField()
-    private let activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.color = .white
-        return indicator
-    }()
-    
-    private let loginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(Str.loginLoginButtonTitle, for: .normal)
-        return button
-    }()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let loginButton = UIButton()
     
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     
     deinit {
-        print("💀 LoginViewController")
+        print("LoginViewController 💀")
     }
     
     required init?(coder: NSCoder) {
@@ -76,6 +62,66 @@ final class LoginViewController: UIViewController, Stepper {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+    }
+    
+    private func createUI() {
+        
+        view.addSubview(contentView)
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        logo.setup {
+            $0.contentMode = .scaleAspectFit
+            $0.setShadow()
+            contentView.addSubview($0)
+            logo.snp.makeConstraints {
+                $0.size.equalTo(UIScreen.main.bounds.height/3)
+                $0.centerX.equalToSuperview()
+                $0.centerY.equalToSuperview().offset(view.frame.size.height * -0.12)
+            }
+        }
+        
+        emailTextField.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(Size.textField.height)
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.centerY.equalToSuperview().offset(Margin.mid)
+            }
+        }
+        
+        passwordTextField.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(Size.textField.height)
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
+            }
+        }
+        
+        activityIndicator.setup {
+            $0.color = .white
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(Size.textField.height)
+                $0.width.equalToSuperview()
+                $0.top.equalTo(passwordTextField.snp.bottom).offset(Margin.regular)
+            }
+        }
+        
+        loginButton.setup {
+            $0.setTitle(Str.loginLoginButtonTitle, for: .normal)
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(Size.button)
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(activityIndicator.snp.bottom).offset(Margin.regular)
+            }
+        }
     }
     
     private func configureUI() {
@@ -134,7 +180,7 @@ final class LoginViewController: UIViewController, Stepper {
             }
             .subscribe(onNext: { _ in
                 self.loginButton.show()
-                print("🌈🌈🌈")
+                print("🌈")
             })
             .disposed(by: disposeBag)
         
@@ -162,58 +208,6 @@ final class LoginViewController: UIViewController, Stepper {
         
         loginButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
-    }
-    
-    private func createUI() {
-        
-        view.addSubview(contentView)
-        
-        contentView.addSubviews(
-            logo,
-            emailTextField,
-            passwordTextField,
-            activityIndicator,
-            loginButton
-        )
-        
-        contentView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.equalToSuperview().offset(0)
-            $0.right.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
-        logo.snp.makeConstraints {
-            $0.size.equalTo(UIScreen.main.bounds.height/3)
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(view.frame.size.height * -0.12)
-        }
-        
-        emailTextField.snp.makeConstraints {
-            $0.height.equalTo(Size.textField.height)
-            $0.left.equalToSuperview().offset(Margin.mid)
-            $0.right.equalToSuperview().offset(-Margin.mid)
-            $0.centerY.equalToSuperview().offset(Margin.mid)
-        }
-        
-        passwordTextField.snp.makeConstraints {
-            $0.height.equalTo(Size.textField.height)
-            $0.left.equalToSuperview().offset(Margin.mid)
-            $0.right.equalToSuperview().offset(-Margin.mid)
-            $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
-        }
-        
-        activityIndicator.snp.makeConstraints {
-            $0.height.equalTo(Size.textField.height)
-            $0.width.equalToSuperview()
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(Margin.regular)
-        }
-        
-        loginButton.snp.makeConstraints {
-            $0.size.equalTo(Size.button)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(activityIndicator.snp.bottom).offset(Margin.regular)
-        }
     }
     
     fileprivate func layout(bottom: CGFloat) {

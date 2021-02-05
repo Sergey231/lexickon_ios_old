@@ -23,7 +23,7 @@ extension UINavigationController {
     }
 }
 
-class StartViewController: UIViewController, Stepper {
+final class StartViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
@@ -46,7 +46,7 @@ class StartViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("Start 💀")
+        print("StartViewController 💀")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
