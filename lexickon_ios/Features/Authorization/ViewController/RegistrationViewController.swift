@@ -19,21 +19,8 @@ final class RegistrationViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     private let contentView = UIView()
-    
-    private let logo: UIImageView = {
-        let imageView = UIImageView(image: Asset.Images.textLogo.image)
-        imageView.contentMode = .scaleAspectFit
-        imageView.setShadow()
-        return imageView
-    }()
-    
-    private let nameTextField: LXTextField = {
-        let textField = LXTextField()
-        textField.textField.enablesReturnKeyAutomatically = true
-        textField.textField.becomeFirstResponder()
-        return textField
-    }()
-    
+    private let logo = UIImageView(image: Asset.Images.textLogo.image)
+    private let nameTextField = LXTextField()
     private let emailTextField = LXTextField()
     private let passwordTextField = LXTextField()
     
@@ -45,18 +32,14 @@ final class RegistrationViewController: UIViewController, Stepper {
         return label
     }()
     
-    private let registrateButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(Str.registrationSubmitButtonTitle, for: .normal)
-        return button
-    }()
+    private let registrateButton = UIButton()
     
     init() {
         super.init(nibName: nil, bundle: nil)
     }
     
     deinit {
-        print("💀 RegistrationViewController")
+        print("RegistrationViewController 💀")
     }
     
     required init?(coder: NSCoder) {
@@ -84,55 +67,79 @@ final class RegistrationViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubviews(
-            contentView,
-            registrateButton
-        )
         
-        contentView.addSubviews(
-            logo,
-            nameTextField,
-            emailTextField,
-            passwordTextField,
-            msgLabel
-        )
-        
-        contentView.snp.makeConstraints {
-            $0.top.right.left.equalToSuperview()
-            $0.bottom.equalToSuperview()
+        contentView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.right.left.equalToSuperview()
+                $0.bottom.equalToSuperview()
+            }
         }
         
-        logo.snp.makeConstraints {
-            $0.size.equalTo(UIScreen.main.bounds.height/3)
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(view.frame.size.height * -0.1)
+        logo.setup {
+            $0.contentMode = .scaleAspectFit
+            $0.setShadow()
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(UIScreen.main.bounds.height/3)
+                $0.centerX.equalToSuperview()
+                $0.centerY.equalToSuperview().offset(view.frame.size.height * -0.1)
+            }
         }
         
-        nameTextField.snp.makeConstraints {
-            $0.height.equalTo(Size.textField.height)
-            $0.left.equalToSuperview().offset(Margin.mid)
-            $0.right.equalToSuperview().offset(-Margin.mid)
-            $0.centerY.equalToSuperview()
+        nameTextField.setup {
+            $0.textField.enablesReturnKeyAutomatically = true
+            $0.textField.becomeFirstResponder()
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(Size.textField.height)
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.centerY.equalToSuperview().offset(40)
+            }
         }
         
-        emailTextField.snp.makeConstraints {
-            $0.height.equalTo(Size.textField.height)
-            $0.left.equalToSuperview().offset(Margin.mid)
-            $0.right.equalToSuperview().offset(-Margin.mid)
-            $0.top.equalTo(nameTextField.snp.bottom).offset(Margin.regular)
+        msgLabel.setup {
+            $0.textAlignment = .center
+            $0.textColor = .white
+            $0.numberOfLines = 2
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.height.equalTo(44)
+                $0.bottom.equalTo(nameTextField.snp.top)
+            }
         }
         
-        passwordTextField.snp.makeConstraints {
-            $0.height.equalTo(Size.textField.height)
-            $0.left.equalToSuperview().offset(Margin.mid)
-            $0.right.equalToSuperview().offset(-Margin.mid)
-            $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
+        emailTextField.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(Size.textField.height)
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.top.equalTo(nameTextField.snp.bottom).offset(Margin.regular)
+            }
         }
         
-        registrateButton.snp.makeConstraints {
-            $0.size.equalTo(Size.button)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(passwordTextField.snp.bottom).offset(Margin.regular)
+        passwordTextField.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.equalTo(Size.textField.height)
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.top.equalTo(emailTextField.snp.bottom).offset(Margin.regular)
+            }
+        }
+        
+        registrateButton.setup {
+            $0.setTitle(Str.registrationSubmitButtonTitle, for: .normal)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(Size.button)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.regular)
+            }
         }
     }
     
