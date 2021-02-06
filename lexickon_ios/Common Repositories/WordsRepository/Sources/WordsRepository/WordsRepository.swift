@@ -13,7 +13,9 @@ import SwiftKeychainWrapper
 import Foundation
 import ApiRepository
 
-public final class WordRepository: WordRepositoryProtocol, ApiRepository {
+public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
+    
+    public init() {}
     
     public func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
         

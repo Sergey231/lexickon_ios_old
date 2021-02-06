@@ -11,12 +11,13 @@ import LexickonApi
 import Resolver
 import ConfigsRepository
 import TranslationRepository
+import WordsRepository
 
 final class NewWordInteractor: NewWordInteractorProtocol {
     
     @Injected private var translationRepository: TranslationRepositoryProtocol
     @Injected private var configsRepository: ConfigsRepositoryProtocol
-    @Injected private var wordRepository: WordRepositoryProtocol
+    @Injected private var wordRepository: WordsRepositoryProtocol
     
     func translate(_ text: String) -> Single<TranslationResultsDTO> {
         let requestDTO = TranslationRequestDTO(

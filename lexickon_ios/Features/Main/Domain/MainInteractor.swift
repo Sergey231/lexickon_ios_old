@@ -9,10 +9,11 @@
 import LexickonApi
 import RxSwift
 import Resolver
+import WordsRepository
 
 final class MainInteractor: MainInteractorProtocol {
     
-    @Injected var wordRepository: WordRepositoryProtocol
+    @Injected var wordRepository: WordsRepositoryProtocol
     
     func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
         wordRepository.words(per: per, page: page)

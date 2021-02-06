@@ -1,18 +1,18 @@
 strings:
-  inputs: Packages/Assets/Sources/Assets/Resources/Localizable.strings
+  inputs: lexickon_ios/Resources/Assets/Sources/Assets/Resources/Localizable.strings
   filter: .+\.strings$
   outputs:
     - templateName: flat-swift5
-      output: Packages/Assets/Sources/Assets/Strings.swift
+      output: lexickon_ios/Resources/Assets/Sources/Assets/Strings.swift
       params: 
         enumName: Str
         publicAccess: public
 xcassets:
   inputs:
-    - Packages/Assets/Sources/Assets/Resources/Images.xcassets
-    - Packages/Assets/Sources/Assets/Resources/Colors.xcassets
+    - lexickon_ios/Resources/Assets/Sources/Assets/Resources/Images.xcassets
+    - lexickon_ios/Resources/Assets/Sources/Assets/Resources/Colors.xcassets
   outputs:
     - templateName: swift5
-      output: Packages/Assets/Sources/Assets/Assets.swift
+      output: lexickon_ios/Resources/Assets/Sources/Assets/Assets.swift
       params: 
         publicAccess: public

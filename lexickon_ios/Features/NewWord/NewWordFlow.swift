@@ -12,6 +12,7 @@ import Resolver
 import KeyValueRepository
 import ConfigsRepository
 import TranslationRepository
+import WordsRepository
 
 enum NewWordStep: Step {
     case addSearch
@@ -64,6 +65,7 @@ final class NewWordFlow: Flow {
     }
 }
 
+// MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerNewWordObjects() {
         register { AddSearchWordViewController() }
@@ -72,5 +74,6 @@ extension Resolver {
         register { TranslationRepository() as TranslationRepositoryProtocol }
         register { KeyValueRepository() as KeyValueRepositoryProtocol }
         register { ConfigsRepository() as ConfigsRepositoryProtocol }
+        register { WordsRepository() as WordsRepositoryProtocol }
     }
 }

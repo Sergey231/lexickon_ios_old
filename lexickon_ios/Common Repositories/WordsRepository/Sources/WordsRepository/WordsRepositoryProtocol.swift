@@ -9,7 +9,7 @@
 import LexickonApi
 import RxSwift
 
-public protocol WordRepositoryProtocol {
+public protocol WordsRepositoryProtocol {
     
     func words(per: Int, page: Int) -> Single<LxPage<LxWordList>>
     func word(by id: String) -> Single<LxWordGet>

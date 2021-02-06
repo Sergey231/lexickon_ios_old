@@ -9,6 +9,7 @@
 import UIKit
 import RxFlow
 import Resolver
+import WordsRepository
 
 enum MainStep: Step {
     case home(animated: Bool)
@@ -84,11 +85,12 @@ class MainFlow: Flow {
     }
 }
 
+// MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerMainObjects() {
         register { HomeViewController() }
         register { HomePresenter() }
         register { MainInteractor() as MainInteractorProtocol }
-        register { WordRepository() as WordRepositoryProtocol }
+        register { WordsRepository() as WordsRepositoryProtocol }
     }
 }

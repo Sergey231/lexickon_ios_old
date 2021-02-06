@@ -70,6 +70,7 @@ class ProfileFlow: Flow {
     }
 }
 
+// MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerProfileObjects() {
         register { ProfileMainScreenViewController() }
