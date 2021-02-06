@@ -29,18 +29,10 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    let profileIconView: ProfileIconView = {
-        let iconView = ProfileIconView()
-        iconView.backgroundColor = .gray
-        return iconView
-    }()
+    // Public for Animator
+    let profileIconView = ProfileIconView()
     
-    let backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(Asset.Images.backArrow.image, for: .normal)
-        return button
-    }()
-    
+    private let backButton = UIButton()
     private let logoutButton = UIButton()
     
     init() {
@@ -74,28 +66,34 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.addSubviews(
-            backButton,
-            logoutButton,
-            profileIconView
-        )
-        
-        backButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.size.equalTo(56)
-            $0.left.equalToSuperview()
+
+        backButton.setup {
+            $0.setImage(Asset.Images.backArrow.image, for: .normal)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+                $0.size.equalTo(56)
+                $0.left.equalToSuperview()
+            }
         }
         
-        profileIconView.snp.makeConstraints {
-            $0.size.equalTo(UIConstants.profileIconSize)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIConstants.profileIconTopMargin)
+        profileIconView.setup {
+            $0.backgroundColor = .gray
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(UIConstants.profileIconSize)
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIConstants.profileIconTopMargin)
+            }
         }
         
-        logoutButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.size.equalTo(Size.button)
-            $0.bottom.equalToSuperview().offset(-Margin.big)
+        logoutButton.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalToSuperview().offset(-Margin.big)
+            }
         }
     }
     

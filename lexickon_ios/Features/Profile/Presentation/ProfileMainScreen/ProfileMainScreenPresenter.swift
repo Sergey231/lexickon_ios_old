@@ -6,9 +6,7 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
-import Foundation
 import RxCocoa
-import RxSwift
 import Resolver
 
 final class ProfileMainScreenPresenter {

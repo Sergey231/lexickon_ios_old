@@ -191,8 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */,
-				ECCB193F23F964100069C5A7 /* Presenter */,
-				ECCB194023F9642C0069C5A7 /* ViewController */,
+				ECDA691525CE85CB005E07D5 /* Presentation */,
 				ECCB194723FAF4110069C5A7 /* Domain */,
 				ECCB194A23FAF45F0069C5A7 /* Data */,
 			);
@@ -298,8 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */,
-				ECCB194323F964ED0069C5A7 /* Presenter */,
-				ECCB194423F964FC0069C5A7 /* ViewController */,
+				ECDA691E25CE88EA005E07D5 /* Presentation */,
 				ECC932A2255449CC007D61B4 /* Domain */,
 				ECC932A1255449AF007D61B4 /* Data */,
 			);
@@ -319,8 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				ECA1454A257296F600352868 /* NewWordFlow.swift */,
-				ECA14491257289F800352868 /* Presenter */,
-				ECA1449225728A0800352868 /* ViewController */,
+				ECDA692025CE890A005E07D5 /* Presentation */,
 				EC6F3A62259B6A6A00D35BE3 /* Domain */,
 				ECA144882572878E00352868 /* Data */,
 			);
@@ -333,22 +330,6 @@
 				ECDCE5E725B322BE0018110F /* TranslationRepository */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		ECA14491257289F800352868 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		ECA1449225728A0800352868 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ECA1450025728DB500352868 /* AddSearchWordViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		ECB50CB6258F45E3003B9A68 /* Packages */ = {
@@ -368,8 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC48E8825456D26006503C2 /* ProfileFlow.swift */,
-				ECC48E8C25456FFD006503C2 /* Presenter */,
-				ECC48E8D25457020006503C2 /* ViewController */,
+				ECDA691B25CE86A3005E07D5 /* Presentation */,
 				ECC48E7C25455D29006503C2 /* Domain */,
 				ECC48E7D25455D30006503C2 /* Data */,
 			);
@@ -390,22 +370,6 @@
 			children = (
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		ECC48E8C25456FFD006503C2 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		ECC48E8D25457020006503C2 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		ECC932A1255449AF007D61B4 /* Data */ = {
@@ -434,42 +398,6 @@
 			path = WordRepository;
 			sourceTree = "<group>";
 		};
-		ECCB193F23F964100069C5A7 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				EC6CDEED22D08EE900012079 /* StartPresenter.swift */,
-				EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */,
-				EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		ECCB194023F9642C0069C5A7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EC6CDEF122D08F3800012079 /* StartViewController.swift */,
-				EC47965123923E6400C9BDD3 /* LoginViewController.swift */,
-				EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		ECCB194323F964ED0069C5A7 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				EC873D7B23DD755E00787E51 /* HomePresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		ECCB194423F964FC0069C5A7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		ECCB194723FAF4110069C5A7 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +423,94 @@
 				ECCB195623FD940A0069C5A7 /* UserRepository.swift */,
 			);
 			path = UserRepository;
+			sourceTree = "<group>";
+		};
+		ECDA691525CE85CB005E07D5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				ECDA691625CE85DA005E07D5 /* Start */,
+				ECDA691725CE85FC005E07D5 /* Login */,
+				ECDA691825CE8610005E07D5 /* Registration */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		ECDA691625CE85DA005E07D5 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				EC6CDEED22D08EE900012079 /* StartPresenter.swift */,
+				EC6CDEF122D08F3800012079 /* StartViewController.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		ECDA691725CE85FC005E07D5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */,
+				EC47965123923E6400C9BDD3 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		ECDA691825CE8610005E07D5 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */,
+				EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		ECDA691B25CE86A3005E07D5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				ECDA691C25CE86B5005E07D5 /* ProfileMainScreen */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		ECDA691C25CE86B5005E07D5 /* ProfileMainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */,
+				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
+			);
+			path = ProfileMainScreen;
+			sourceTree = "<group>";
+		};
+		ECDA691E25CE88EA005E07D5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				ECDA691F25CE88EE005E07D5 /* Home */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		ECDA691F25CE88EE005E07D5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EC873D7B23DD755E00787E51 /* HomePresenter.swift */,
+				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		ECDA692025CE890A005E07D5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				ECDA692125CE891A005E07D5 /* AddSearchWord */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		ECDA692125CE891A005E07D5 /* AddSearchWord */ = {
+			isa = PBXGroup;
+			children = (
+				ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */,
+				ECA1450025728DB500352868 /* AddSearchWordViewController.swift */,
+			);
+			path = AddSearchWord;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -69,72 +69,6 @@ final class HomeViewController: UIViewController, Stepper {
         configureUI()
     }
 
-    private func configureUI() {
-        
-        let refreshData = PublishRelay<Void>()
-        
-        let presenterOutput = presenter.configurate(
-            input: .init(
-                refreshData: refreshData.asSignal(),
-                needLoadNextWordsPage: needToRefrash.asSignal()
-            )
-        )
-        
-        configureTableView(with: presenterOutput.sections)
-        
-        profileIconView.configure(input: ProfileIconView.Input())
-            .didTap
-            .map { _ in MainStep.profile }
-            .emit(to: steps)
-            .disposed(by: disposeBag)
-        
-        let tableViewContentOffsetY = tableView.rx
-            .didScroll
-            .asDriver()
-            .map { _ in self.tableView.contentOffset.y * -1 }
-            
-        tableViewContentOffsetY
-            .map { $0 < 120 ? 120 : $0 }
-            .drive(headerView.rx.height)
-            .disposed(by: disposeBag)
-        
-        let refreshProgress = tableViewContentOffsetY
-            .map { ($0 - 257) / 50 }
-            .map { $0 > 1 ? 1 : $0 }
-            
-        refreshProgress
-            .drive(rx.refresh)
-            .disposed(by: disposeBag)
-        
-        refreshProgress
-            .map { $0 >= 1 }
-            .distinctUntilChanged()
-            .filter { $0 }
-            .map { _ in () }
-            .startWith(())
-            .asSignal(onErrorSignalWith: .empty())
-            .emit(to: refreshData)
-            .disposed(by: disposeBag)
-           
-        refreshView.configure(
-            input: .init(animateActivity: presenterOutput.isWordsUpdating)
-        )
-        
-        paginationProgressView.configure(
-            input: .init(animateActivity: presenterOutput.isNextPageLoading)
-        )
-        
-        presenterOutput.isWordsUpdating
-            .drive(rx.isWordsLoading)
-            .disposed(by: disposeBag)
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            steps.accept(MainStep.addWord)
-        }
-    }
-    
     private func createUI() {
         
         tableView.setup {
@@ -208,6 +142,72 @@ final class HomeViewController: UIViewController, Stepper {
                 $0.bottom.equalTo(paginationProgressView.snp.top).offset(-Margin.small)
                 $0.right.equalToSuperview()
             }
+        }
+    }
+    
+    private func configureUI() {
+        
+        let refreshData = PublishRelay<Void>()
+        
+        let presenterOutput = presenter.configurate(
+            input: .init(
+                refreshData: refreshData.asSignal(),
+                needLoadNextWordsPage: needToRefrash.asSignal()
+            )
+        )
+        
+        configureTableView(with: presenterOutput.sections)
+        
+        profileIconView.configure(input: ProfileIconView.Input())
+            .didTap
+            .map { _ in MainStep.profile }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
+        let tableViewContentOffsetY = tableView.rx
+            .didScroll
+            .asDriver()
+            .map { _ in self.tableView.contentOffset.y * -1 }
+            
+        tableViewContentOffsetY
+            .map { $0 < 120 ? 120 : $0 }
+            .drive(headerView.rx.height)
+            .disposed(by: disposeBag)
+        
+        let refreshProgress = tableViewContentOffsetY
+            .map { ($0 - 257) / 50 }
+            .map { $0 > 1 ? 1 : $0 }
+            
+        refreshProgress
+            .drive(rx.refresh)
+            .disposed(by: disposeBag)
+        
+        refreshProgress
+            .map { $0 >= 1 }
+            .distinctUntilChanged()
+            .filter { $0 }
+            .map { _ in () }
+            .startWith(())
+            .asSignal(onErrorSignalWith: .empty())
+            .emit(to: refreshData)
+            .disposed(by: disposeBag)
+           
+        refreshView.configure(
+            input: .init(animateActivity: presenterOutput.isWordsUpdating)
+        )
+        
+        paginationProgressView.configure(
+            input: .init(animateActivity: presenterOutput.isNextPageLoading)
+        )
+        
+        presenterOutput.isWordsUpdating
+            .drive(rx.isWordsLoading)
+            .disposed(by: disposeBag)
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            steps.accept(MainStep.addWord)
         }
     }
     
