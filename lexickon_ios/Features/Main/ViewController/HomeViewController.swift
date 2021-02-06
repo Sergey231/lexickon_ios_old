@@ -50,7 +50,7 @@ final class HomeViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("💀 Home")
+        print("💀 \(type(of: self)): \(#function)")
     }
     
     required init?(coder: NSCoder) {

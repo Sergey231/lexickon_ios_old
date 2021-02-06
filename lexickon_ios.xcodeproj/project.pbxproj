@@ -32,7 +32,6 @@
 		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
 		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
 		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
-		EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7123DD60D100787E51 /* IntroViewController.swift */; };
 		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
 		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
 		EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28125164A860058F779 /* UserTokenRepository.swift */; };
@@ -46,7 +45,6 @@
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
 		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
-		ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6C002448261000D86417 /* IntroFlow.swift */; };
 		ECAF5063257E663300F021EA /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF5062257E663300F021EA /* Utils */; };
 		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
@@ -105,7 +103,6 @@
 		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC873D7123DD60D100787E51 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		EC873D7D23DD756F00787E51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EC93A28125164A860058F779 /* UserTokenRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepository.swift; sourceTree = "<group>"; };
@@ -119,7 +116,6 @@
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
 		ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
-		ECAC6C002448261000D86417 /* IntroFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroFlow.swift; sourceTree = "<group>"; };
 		ECB50D2D258F45FB003B9A68 /* Utils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils; sourceTree = "<group>"; };
 		ECB50D2E258F4608003B9A68 /* UIExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIExtensions; sourceTree = "<group>"; };
 		ECB50D2F258F460B003B9A68 /* RxExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RxExtensions; sourceTree = "<group>"; };
@@ -222,7 +218,6 @@
 				ECC48E7825455CE7006503C2 /* Profile */,
 				EC873D7823DD753400787E51 /* Main */,
 				ECA14483257286A900352868 /* NewWord */,
-				EC873D6823DD5AD800787E51 /* Intro */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -297,15 +292,6 @@
 				ECEA376D25C3000200D6C6DC /* linesLoading.json */,
 			);
 			path = LottieJSONAnimations;
-			sourceTree = "<group>";
-		};
-		EC873D6823DD5AD800787E51 /* Intro */ = {
-			isa = PBXGroup;
-			children = (
-				ECAC6C002448261000D86417 /* IntroFlow.swift */,
-				ECCB194623F965330069C5A7 /* ViewController */,
-			);
-			path = Intro;
 			sourceTree = "<group>";
 		};
 		EC873D7823DD753400787E51 /* Main */ = {
@@ -484,14 +470,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		ECCB194623F965330069C5A7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				EC873D7123DD60D100787E51 /* IntroViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		ECCB194723FAF4110069C5A7 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -658,7 +636,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */,
-				ECAC6C012448261000D86417 /* IntroFlow.swift in Sources */,
 				ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */,
 				ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */,
 				EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */,
@@ -689,7 +666,6 @@
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */,
 				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
-				EC873D7223DD60D100787E51 /* IntroViewController.swift in Sources */,
 				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,

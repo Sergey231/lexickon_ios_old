@@ -52,7 +52,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("💀 ProfileMainScreen")
+        print("💀 \(type(of: self)): \(#function)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

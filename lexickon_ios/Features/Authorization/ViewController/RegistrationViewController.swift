@@ -23,14 +23,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     private let nameTextField = LXTextField()
     private let emailTextField = LXTextField()
     private let passwordTextField = LXTextField()
-    
-    private let msgLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.numberOfLines = 2
-        return label
-    }()
+    private let msgLabel = UILabel()
     
     private let registrateButton = UIButton()
     
@@ -39,7 +32,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("RegistrationViewController 💀")
+        print("💀 \(type(of: self)): \(#function)")
     }
     
     required init?(coder: NSCoder) {

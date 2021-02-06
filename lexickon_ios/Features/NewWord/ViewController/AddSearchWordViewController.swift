@@ -42,7 +42,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     deinit {
-        print("💀 Home")
+        print("💀 \(type(of: self)): \(#function)")
     }
     
     required init?(coder: NSCoder) {

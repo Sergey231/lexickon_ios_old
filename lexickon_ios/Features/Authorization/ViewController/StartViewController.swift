@@ -46,7 +46,7 @@ final class StartViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("StartViewController 💀")
+        print("💀 \(type(of: self)): \(#function)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

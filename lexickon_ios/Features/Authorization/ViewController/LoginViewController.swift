@@ -37,7 +37,7 @@ final class LoginViewController: UIViewController, Stepper {
     }
     
     deinit {
-        print("LoginViewController 💀")
+        print("💀 \(type(of: self)): \(#function)")
     }
     
     required init?(coder: NSCoder) {
