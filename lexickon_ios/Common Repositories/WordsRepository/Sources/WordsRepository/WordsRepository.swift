@@ -74,7 +74,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         }
     }
     
-    public func add(_ word: LxWordCreate) -> Single<_LxWordGet> {
+    public func add(_ word: LxWordCreate) -> Single<LxWordGet> {
         
         guard let headers = headersWithAuthToken else {
             return .error(LxHTTPObject.Error.unauthorized)
@@ -92,7 +92,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
             
             AF.request(url, method: .post, parameters: parametrs, headers: headers)
                 .responseDecodable(
-                    of: _LxWordGet.self,
+                    of: LxWordGet.self,
                     decoder: self.jsonDecoder
                 ) { res in
 
@@ -106,59 +106,6 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
                     }
                 }
             return Disposables.create()
-        }
-    }
-}
-
-
-public struct _LxWordGet: Codable {
-    
-    public init(
-        id: UUID,
-        studyWord: String,
-        translates: [String],
-        nextLessonDate: Date,
-        image: String
-    ) {
-        self.id = id
-        self.studyWord = studyWord
-        self.translates = translates
-        self.nextLessonDate = nextLessonDate
-        self.image = image
-    }
-    
-    public let id: UUID
-    public let studyWord: String
-    public let translates: [String]
-    public let nextLessonDate: Date
-    public let image: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case studyWord
-        case translates
-        case nextLessonDate
-        case image
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try container.decode(UUID.self, forKey: .id)
-        studyWord = try container.decode(String.self, forKey: .studyWord)
-        translates = try container.decode([String].self, forKey: .translates)
-        image = try container.decode(String.self, forKey: .image)
-        
-        let nextLessonDateString = try container.decode(String.self, forKey: .nextLessonDate)
-        let dateFormatter = DateFormatter.iso8601
-        if let date = dateFormatter.date(from: nextLessonDateString) {
-            nextLessonDate = date
-        } else {
-            throw DecodingError.dataCorruptedError(
-                forKey: .nextLessonDate,
-                in: container,
-                debugDescription: "Date string does not match format expected by formatter."
-            )
         }
     }
 }

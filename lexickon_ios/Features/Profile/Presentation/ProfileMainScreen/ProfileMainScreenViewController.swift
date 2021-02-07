@@ -35,6 +35,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private let backButton = UIButton()
     private let logoutButton = UIButton()
     
+    private let infoLabel = UILabel()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -93,6 +95,16 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
                 $0.centerX.equalToSuperview()
                 $0.size.equalTo(Size.button)
                 $0.bottom.equalToSuperview().offset(-Margin.big)
+            }
+        }
+        
+        infoLabel.setup {
+            $0.text = "Profile is developing 😐"
+            $0.textAlignment = .center
+            $0.textColor = .white
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
             }
         }
     }

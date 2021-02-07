@@ -191,6 +191,13 @@ final class HomeViewController: UIViewController, Stepper {
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: refreshData)
             .disposed(by: disposeBag)
+        
+        let isWordsUpdating = refreshProgress
+            .map { $0 > 0 }
+            
+        _ = headerView.configure(
+            input: .init(isWordsUpdating: isWordsUpdating)
+        )
            
         refreshView.configure(
             input: .init(animateActivity: presenterOutput.isWordsUpdating)

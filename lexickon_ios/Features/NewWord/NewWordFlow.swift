@@ -74,6 +74,5 @@ extension Resolver {
         register { TranslationRepository() as TranslationRepositoryProtocol }
         register { KeyValueRepository() as KeyValueRepositoryProtocol }
         register { ConfigsRepository() as ConfigsRepositoryProtocol }
-        register { WordsRepository() as WordsRepositoryProtocol }
     }
 }

@@ -91,6 +91,6 @@ extension Resolver {
         register { HomeViewController() }
         register { HomePresenter() }
         register { MainInteractor() as MainInteractorProtocol }
-        register { WordsRepository() as WordsRepositoryProtocol }
+        register { WordsRepositoryMock() as WordsRepositoryProtocol }
     }
 }
