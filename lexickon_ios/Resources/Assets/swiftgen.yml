@@ -1,0 +1,18 @@
+strings:
+  inputs: Sources/Assets/Resources/Localizable.strings
+  filter: .+\.strings$
+  outputs:
+    - templateName: flat-swift5
+      output: Sources/Assets/Strings.swift
+      params: 
+        enumName: Str
+        publicAccess: public
+xcassets:
+  inputs:
+    - Sources/Assets/Resources/Images.xcassets
+    - Sources/Assets/Resources/Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: Sources/Assets/Assets.swift
+      params: 
+        publicAccess: public

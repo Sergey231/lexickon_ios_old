@@ -26,6 +26,12 @@ if [[ $(command -v swiftgen) == "" ]]; then
     brew install swiftgen
 fi
 
+cd lexickon_ios/Resources/Assets
 swiftgen
-(xcodebuild build -target lexickon_ios -scheme Assets -quiet) & spin $!
-echo "\033[0;32m 🎉 New Assets constants have been generated! ";
+if (xcodebuild build -target lexickon_ios -scheme Assets -quiet); then
+    printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    echo "\033[0;32m 🎉 You can use new Assets constants! ";
+else
+    echo "\033[0;31m 😐 New constants was generated BUT Assets package wasn't rebuilt";
+fi & spin $!
+

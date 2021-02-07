@@ -41,7 +41,6 @@ public enum Asset {
     public static let placeholder = ColorAsset(name: "placeholder")
   }
   public enum Images {
-    public static let aaa = ImageAsset(name: "AAA")
     public static let backArrow = ImageAsset(name: "BackArrow")
     public static let imageLogo = ImageAsset(name: "ImageLogo")
     public static let logoWithoutEyes = ImageAsset(name: "LogoWithoutEyes")
@@ -61,6 +60,7 @@ public enum Asset {
     public static let wordMustReapetIcon = ImageAsset(name: "WordMustReapetIcon")
     public static let addIcon = ImageAsset(name: "addIcon")
     public static let bgStart = ImageAsset(name: "bgStart")
+    public static let clear = ImageAsset(name: "clear")
     public static let refresh = ImageAsset(name: "refresh")
     public static let searchIcon = ImageAsset(name: "searchIcon")
     public static let waitingWordIcon = ImageAsset(name: "waitingWordIcon")
