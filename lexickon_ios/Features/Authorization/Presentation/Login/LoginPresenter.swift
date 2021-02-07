@@ -128,7 +128,7 @@ final class LoginPresenter {
                 .asSignal { error -> Signal<()> in
                     errorMsg.accept(error.localizedDescription)
                     showLoading.accept(false)
-                    return .just(())
+                    return .empty()
                 }
             })
             .do(onNext: { _ in showLoading.accept(false) })

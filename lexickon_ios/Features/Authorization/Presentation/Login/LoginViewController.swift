@@ -60,10 +60,6 @@ final class LoginViewController: UIViewController, Stepper {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     private func createUI() {
         
         view.addSubview(contentView)
@@ -172,7 +168,7 @@ final class LoginViewController: UIViewController, Stepper {
             .asObservable()
             .do(onNext: { _ in self.loginButton.hide() })
             .flatMapLatest {
-                return self.showMsg(
+                 self.showMsg(
                     msg: $0,
                     buttonTitle: Str.errorAlertButtonTitle,
                     buttonColor: Asset.Colors.mainBG.color
