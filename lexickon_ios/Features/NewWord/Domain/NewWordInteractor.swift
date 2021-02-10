@@ -19,6 +19,8 @@ final class NewWordInteractor: NewWordInteractorProtocol {
     @Injected private var configsRepository: ConfigsRepositoryProtocol
     @Injected private var wordRepository: WordsRepositoryProtocol
     
+    private typealias Translation = TranslationResultsDTO.Translation
+    
     func translate(_ text: String) -> Single<TranslationResultsDTO> {
         let requestDTO = TranslationRequestDTO(
             text: text,
@@ -48,17 +50,30 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         ))
         .map {
             let translations = $0.def.first?.tr ?? []
-            return TranslationResultsDTO(
-                textForTranslate: dto.text,
-                translations: translations.map { tr in
-                    TranslationResultsDTO.Translation(
+            let mainTranslation = Translation(
+                text: dto.text,
+                translation: translations.first?.text ?? "",
+                pos: .unknown,
+                gender: .unknown
+            )
+            
+            let otherTranslations: [Translation] = translations
+                .dropFirst()
+                .map {
+                    Translation(
                         text: dto.text,
-                        translation: tr.text,
+                        translation: $0.text,
                         pos: .unknown,
                         gender: .unknown
                     )
                 }
-            )}
+            
+            return TranslationResultsDTO(
+                textForTranslate: dto.text,
+                mainTranslation: mainTranslation,
+                otherTranslations: otherTranslations
+            )
+        }
     }
     
     private func translateByRapidApiGoogleTranslate(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
@@ -74,14 +89,18 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         
         return translationRepository.translateByRapidApiGoogleTranslate(request)
             .map {
-                TranslationResultsDTO(
+                
+                let mainTranslation = Translation(
+                    text: request.dto.text,
+                    translation: $0.data.translation,
+                    pos: .unknown,
+                    gender: .unknown
+                )
+                
+                return TranslationResultsDTO(
                     textForTranslate: request.dto.text,
-                    translations: [TranslationResultsDTO.Translation(
-                        text: request.dto.text,
-                        translation: $0.data.translation,
-                        pos: .unknown,
-                        gender: .unknown
-                    )]
+                    mainTranslation: mainTranslation,
+                    otherTranslations: []
                 )
             }
     }
@@ -101,16 +120,29 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         
         return translationRepository.translateByMicrosoftTranslate(request)
             .map {
-                TranslationResultsDTO(
-                    textForTranslate: request.dto.text,
-                    translations: $0.translations.map {
-                        TranslationResultsDTO.Translation(
+                let firstTranslation: MicrosoftTranslatorResultsDTO.Translation? = $0.translations.first
+                let mainTranslation = Translation(
+                    text: request.dto.text,
+                    translation: firstTranslation?.to ?? "",
+                    pos: .unknown,
+                    gender: .unknown
+                )
+                
+                let otherTranslations: [Translation] = $0.translations
+                    .dropFirst()
+                    .map {
+                        Translation(
                             text: request.dto.text,
-                            translation: $0.text,
+                            translation: $0.to,
                             pos: .unknown,
                             gender: .unknown
                         )
                     }
+                
+                return TranslationResultsDTO(
+                    textForTranslate: request.dto.text,
+                    mainTranslation: mainTranslation,
+                    otherTranslations: otherTranslations
                 )
             }
     }
@@ -130,16 +162,30 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         
         return translationRepository.translateByMicrosoftDictionary(request)
             .map {
-                TranslationResultsDTO(
-                    textForTranslate: request.dto.text,
-                    translations: $0.translations.map {
-                        TranslationResultsDTO.Translation(
+                let firstTranslation: MicrosoftDictionaryResultsDTO.Translation? = $0.translations.first
+                let mainTranslation = Translation(
+                    text: request.dto.text,
+                    translation: firstTranslation?.displayTarget ?? "",
+                    pos: firstTranslation?.posTag ?? .unknown,
+                    gender: .unknown
+                )
+                
+                let otherTranslations: [Translation] = $0.translations
+                    .dropFirst()
+                    .map {
+                        Translation(
                             text: request.dto.text,
                             translation: $0.displayTarget,
                             pos: .unknown,
                             gender: .unknown
                         )
                     }
+                
+                
+                return TranslationResultsDTO(
+                    textForTranslate: request.dto.text,
+                    mainTranslation: mainTranslation,
+                    otherTranslations: otherTranslations
                 )
             }
     }
