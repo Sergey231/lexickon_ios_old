@@ -12,6 +12,7 @@ import RxCocoa
 import Utils
 import RxDataSources
 import UIExtensions
+import Assets
 
 public struct MainTranslationResultViewModel {
     
@@ -76,15 +77,14 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         }
         
         addWordButton.setup {
-            $0.setTitle("+ в мой Lexickon", for: .normal)
+            $0.setTitle("+", for: .normal)
+            $0.backgroundColor = Asset.Colors.mainBG.color
             $0.configureTapScaleAnimation().disposed(by: disposeBag)
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.top.equalTo(translationLable.snp.bottom).offset(Margin.regular)
-                $0.height.equalTo(Size.button.height)
-                $0.bottom.equalToSuperview().offset(-Margin.regular)
+                $0.size.equalTo(40)
+                $0.centerY.equalToSuperview()
             }
         }
     }
@@ -101,5 +101,3 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
 }
 
 extension MainTranslationResultCell: ClassIdentifiable {}
-
-

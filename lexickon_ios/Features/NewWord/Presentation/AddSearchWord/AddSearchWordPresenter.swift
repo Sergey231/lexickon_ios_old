@@ -41,13 +41,17 @@ final class AddSearchWordPresenter {
         
         let activityIndicator = RxActivityIndicator()
         
-        let translationCellModels = input.textForTranslate
+        let translations = input.textForTranslate
             .flatMap { text -> Driver<[TranslationResultsDTO.Translation]> in
                 self.interacor.translate(text)
-                    .map { $0.translations }
+                    .map { $0.otherTranslations }
                     .trackActivity(activityIndicator)
                     .asDriver(onErrorJustReturn: [])
             }
+            
+            translations
+                .map { $0.from }
+                
             .map { translations in
                 translations.map {
                     TranslationResultViewModel(
