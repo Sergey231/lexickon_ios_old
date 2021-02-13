@@ -14,7 +14,7 @@ import Utils
 import RxDataSources
 import UIExtensions
 
-public struct TranslationResultViewModel {
+public struct OtherTranslationCellModel {
     
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
     public var addWordButtonDidTap: Signal<Void> {
@@ -32,7 +32,7 @@ public struct TranslationResultViewModel {
     public let text: String
 }
 
-extension TranslationResultViewModel: Hashable {
+extension OtherTranslationCellModel: Hashable {
     public static func == (lsh: Self, rsh: Self) -> Bool {
         return lsh.translation == rsh.translation
     }
@@ -42,7 +42,7 @@ extension TranslationResultViewModel: Hashable {
     }
 }
 
-extension TranslationResultViewModel: IdentifiableType {
+extension OtherTranslationCellModel: IdentifiableType {
     public var identity: String {
         return self.translation
     }
@@ -52,7 +52,7 @@ extension TranslationResultViewModel: IdentifiableType {
 public final class TranslationResultCell: DisposableTableViewCell {
     
     private let translationLable = UILabel()
-    private let addWordButton = AddWordToLesickonButton()
+    private let addWordButton = AddWordButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,7 +62,7 @@ public final class TranslationResultCell: DisposableTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createUI(with input: TranslationResultViewModel) {
+    private func createUI(with input: OtherTranslationCellModel) {
         
         translationLable.setup {
             $0.font = .systemRegular17
@@ -90,7 +90,7 @@ public final class TranslationResultCell: DisposableTableViewCell {
         }
     }
     
-    public func configurate(with model: TranslationResultViewModel) {
+    public func configurate(with model: OtherTranslationCellModel) {
         
         createUI(with: model)
         

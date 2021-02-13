@@ -14,12 +14,12 @@ import Assets
 public final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let addSearchWordVCHeaderViewFrame: CGRect
-    private let homeVCAddWordButton: AddWordButtonView
+    private let homeVCAddWordButton: AddSearchWordButton
     private let addSearchWordVCHeaderView: UIView
     
     public init(
         addSearchWordVCHeaderViewFrame: CGRect,
-        homeVCAddWordButton: AddWordButtonView,
+        homeVCAddWordButton: AddSearchWordButton,
         addSearchWordVCHeaderView: UIView
     ) {
         self.addSearchWordVCHeaderViewFrame = addSearchWordVCHeaderViewFrame

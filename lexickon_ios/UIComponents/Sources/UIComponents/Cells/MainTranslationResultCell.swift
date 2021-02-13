@@ -14,7 +14,7 @@ import RxDataSources
 import UIExtensions
 import Assets
 
-public struct MainTranslationResultViewModel {
+public struct MainTranslationCellModel {
     
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
     public var addWordButtonDidTap: Signal<Void> {
@@ -32,7 +32,7 @@ public struct MainTranslationResultViewModel {
     public let text: String
 }
 
-extension MainTranslationResultViewModel: Hashable {
+extension MainTranslationCellModel: Hashable {
     public static func == (lsh: Self, rsh: Self) -> Bool {
         return lsh.translation == rsh.translation
     }
@@ -42,7 +42,7 @@ extension MainTranslationResultViewModel: Hashable {
     }
 }
 
-extension MainTranslationResultViewModel: IdentifiableType {
+extension MainTranslationCellModel: IdentifiableType {
     public var identity: String {
         return self.translation
     }
@@ -52,21 +52,21 @@ extension MainTranslationResultViewModel: IdentifiableType {
 public final class MainTranslationResultCell: DisposableTableViewCell {
     
     private let translationLable = UILabel()
-    private let addWordButton = AddWordToLesickonButton()
+    private let addWordButton = AddWordButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        createUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func createUI(with input: MainTranslationResultViewModel) {
+    private func createUI() {
         
         translationLable.setup {
             $0.font = .systemRegular17
-            $0.text = input.translation
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
@@ -77,21 +77,18 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         }
         
         addWordButton.setup {
-            $0.setTitle("+", for: .normal)
-            $0.backgroundColor = Asset.Colors.mainBG.color
+            $0.setShadow()
             $0.configureTapScaleAnimation().disposed(by: disposeBag)
             contentView.addSubview($0)
             $0.snp.makeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
-                $0.size.equalTo(40)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.size.equalTo(44)
                 $0.centerY.equalToSuperview()
             }
         }
     }
     
-    public func configurate(with model: MainTranslationResultViewModel) {
-        
-        createUI(with: model)
+    public func configurate(with model: MainTranslationCellModel) {
         
         addWordButton.rx.tap
             .asSignal()

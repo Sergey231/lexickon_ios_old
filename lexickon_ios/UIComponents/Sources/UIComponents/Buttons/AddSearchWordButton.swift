@@ -12,7 +12,7 @@ import RxSwift
 import UIExtensions
 import Assets
 
-public final class AddWordButtonView: UIView {
+public final class AddSearchWordButton: UIView {
     
     private let disposeBag = DisposeBag()
     

@@ -96,7 +96,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         tableView.setup {
             $0.rowHeight = 100
             $0.register(cellType: MainTranslationResultCell.self)
-            $0.register(cellType: TranslationResultCell.self)
+//            $0.register(cellType: TranslationResultCell.self)
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.bottom.equalToSuperview()
@@ -131,11 +131,11 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .disposed(by: disposeBag)
     }
     
-    private func configureTableView(with models: Driver<[TranslationReulstSectionModel]>) {
+    private func configureTableView(with models: Driver<[MainTranslationSectionModel]>) {
         
         var configureCell: TranslationReulstRxDataSource.ConfigureCell {
             return { _, tableView, indexPath, model in
-                let cell: TranslationResultCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let cell: MainTranslationResultCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.configurate(with: model)
                 return cell
             }

@@ -43,7 +43,7 @@ final class HomeViewController: UIViewController, Stepper {
     
     // public for Animator
     let profileIconView = ProfileIconView()
-    let addWordButton = AddWordButtonView()
+    let addWordButton = AddSearchWordButton()
     
     init() {
         super.init(nibName: nil, bundle: nil)

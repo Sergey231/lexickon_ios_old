@@ -14,11 +14,11 @@ import Assets
 public final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let headerViewHeight: CGFloat
-    private let addWordButton: AddWordButtonView
+    private let addWordButton: AddSearchWordButton
     
     public init(
         headerViewHeight: CGFloat,
-        addWordButton: AddWordButtonView
+        addWordButton: AddSearchWordButton
     ) {
         self.headerViewHeight = headerViewHeight
         self.addWordButton = addWordButton
