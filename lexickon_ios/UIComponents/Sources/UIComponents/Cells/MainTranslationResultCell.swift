@@ -53,6 +53,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     
     private let translationLable = UILabel()
     private let addWordButton = AddWordButton()
+    private let wordRatingView = WordRatingView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -86,9 +87,20 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 $0.centerY.equalToSuperview()
             }
         }
+        
+        wordRatingView.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(64)
+                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.left.equalToSuperview().offset(Margin.regular)
+            }
+        }
     }
     
     public func configurate(with model: MainTranslationCellModel) {
+        
+        wordRatingView.configure(input: WordRatingView.Input(rating: .just(1)))
         
         addWordButton.rx.tap
             .asSignal()

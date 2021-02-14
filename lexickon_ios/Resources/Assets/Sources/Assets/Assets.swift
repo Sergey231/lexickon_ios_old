@@ -58,6 +58,10 @@ public enum Asset {
     public static let eyeShowIcon = ImageAsset(name: "eye_show_icon")
     public static let lockIcon = ImageAsset(name: "lock_icon")
     public static let wordMustReapetIcon = ImageAsset(name: "WordMustReapetIcon")
+    public enum WordRating {
+      public static let arrow = ImageAsset(name: "WordRating/arrow")
+      public static let scale = ImageAsset(name: "WordRating/scale")
+    }
     public static let addIcon = ImageAsset(name: "addIcon")
     public static let bgStart = ImageAsset(name: "bgStart")
     public static let clear = ImageAsset(name: "clear")
