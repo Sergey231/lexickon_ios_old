@@ -61,6 +61,7 @@ public enum Asset {
     public static let addIcon = ImageAsset(name: "addIcon")
     public static let bgStart = ImageAsset(name: "bgStart")
     public static let clear = ImageAsset(name: "clear")
+    public static let plusIcon = ImageAsset(name: "plusIcon")
     public static let refresh = ImageAsset(name: "refresh")
     public static let searchIcon = ImageAsset(name: "searchIcon")
     public static let waitingWordIcon = ImageAsset(name: "waitingWordIcon")
