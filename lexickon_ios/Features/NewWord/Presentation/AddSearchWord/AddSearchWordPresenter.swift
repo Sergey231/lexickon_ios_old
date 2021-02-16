@@ -14,25 +14,42 @@ import UIComponents
 import RxExtensions
 import TranslationRepository
 
-typealias OtherTranslationsSectionModel = AnimatableSectionModel<String, OtherTranslationCellModel>
-typealias MainTranslationSectionModel = AnimatableSectionModel<String, MainTranslationCellModel>
-typealias TranslationReulstRxDataSource = RxTableViewSectionedAnimatedDataSource<MainTranslationSectionModel>
+enum TranslationCell {
+    case Main(MainTranslationCellModel)
+    case Other(OtherTranslationCellModel)
+    
+    var text: String {
+        switch self {
+        case .Main(let model):
+            return model.text
+        case .Other(let model):
+            return model.text
+        }
+    }
+    
+    var translation: String {
+        switch self {
+        case .Main(let model):
+            return model.translation
+        case .Other(let model):
+            return model.translation
+        }
+    }
+}
+
+typealias TranslationsSection = SectionModel<String, TranslationCell>
+typealias TranslationReulstRxDataSource = RxTableViewSectionedReloadDataSource<TranslationsSection>
 
 final class AddSearchWordPresenter {
     
     @Injected var interacor: NewWordInteractorProtocol
-    
-    struct WordTranslationPair {
-        let word: String
-        let translation: String
-    }
     
     struct Input {
         let textForTranslate: Signal<String>
     }
     
     struct Output {
-        let sections: Driver<[MainTranslationSectionModel]>
+        let sections: Driver<[TranslationsSection]>
         let isLoading: Driver<Bool>
         let disposables: CompositeDisposable
     }
@@ -43,27 +60,31 @@ final class AddSearchWordPresenter {
         
         let translationResult = input.textForTranslate
             .flatMap { text -> Driver<TranslationResultsDTO> in
-                self.interacor.translate(text)
+                self.interacor.translate(text).debug("🎲")
                     .trackActivity(activityIndicator)
                     .asDriver(onErrorDriveWith: .empty())
             }
         
         let mainTranslationCellModels = translationResult
-            .map { result -> [MainTranslationCellModel] in
+            .map { result -> [TranslationCell] in
                 [
-                    MainTranslationCellModel(
-                        translation: result.mainTranslation.translation,
-                        text: result.mainTranslation.text
+                    TranslationCell.Main(
+                        MainTranslationCellModel(
+                            translation: result.mainTranslation.translation,
+                            text: result.mainTranslation.text
+                        )
                     )
                 ]
             }
             
         let otherTranslationCellModels = translationResult
-            .map { translationResult -> [OtherTranslationCellModel] in
+            .map { translationResult -> [TranslationCell] in
                 translationResult.otherTranslations.map {
-                    OtherTranslationCellModel(
-                        translation: $0.translation,
-                        text: $0.text
+                    TranslationCell.Other(
+                        OtherTranslationCellModel(
+                            translation: $0.translation,
+                            text: $0.text
+                        )
                     )
                 }
             }
@@ -71,14 +92,17 @@ final class AddSearchWordPresenter {
         let didTapAddWord = otherTranslationCellModels
             .flatMap {
                 Signal.merge(
-                    $0.map { cellModel -> Signal<WordTranslationPair> in
-                        cellModel.addWordButtonDidTap
-                            .map { _ -> WordTranslationPair in
-                                WordTranslationPair(
-                                    word: cellModel.text,
-                                    translation: cellModel.translation
-                                )
-                            }
+                    $0.map { cellModel -> Signal<TranslationCell> in
+                        switch cellModel {
+                        
+                        case .Main(let model):
+                            return model.addWordButtonDidTap
+                                .map { _ in cellModel }
+                            
+                        case .Other(let model):
+                            return model.addWordButtonDidTap
+                                .map { _ in cellModel }
+                        }
                     }
                 )
             }
@@ -87,7 +111,7 @@ final class AddSearchWordPresenter {
             .asObservable()
             .flatMap { word -> Single<Void> in
                 let wordForAdding = TranslationResultsDTO.Translation(
-                    text: word.word,
+                    text: word.text,
                     translation: word.translation,
                     pos: .unknown,
                     gender: .unknown
@@ -98,7 +122,7 @@ final class AddSearchWordPresenter {
             .subscribe()
         
         let translationsSections = mainTranslationCellModels
-            .map { [MainTranslationSectionModel(model: "MainTranslationSection", items: $0)] }
+            .map { [SectionModel(model: "MainTranslationSection", items: $0)] }
             .asDriver()
         
         return Output(

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIFont {
+public extension UILabel {
     
     func width(height: CGFloat) -> CGFloat {
 
@@ -16,14 +16,14 @@ public extension UIFont {
             height: height
         )
 
-        let boundingBox = self.text.boundingRect(
+        let boundingBox = self.text?.boundingRect(
             with: rect,
             options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: [.font: self.font],
+            attributes: [.font: self.font!],
             context: nil
         )
 
-        return boundingBox.width
+        return boundingBox?.width ?? 0
     }
 }
 

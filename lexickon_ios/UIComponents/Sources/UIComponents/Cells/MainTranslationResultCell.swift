@@ -54,6 +54,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     private let translationLable = UILabel()
     private let addWordButton = AddWordButton()
     private let wordRatingView = WordRatingView()
+    private let translationLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -96,11 +97,24 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 $0.left.equalToSuperview().offset(Margin.regular)
             }
         }
+        
+        translationLabel.setup {
+            $0.numberOfLines = 0
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
+                $0.right.equalTo(addWordButton.snp.left).offset(Margin.regular)
+                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.bottom.equalToSuperview().offset(-Margin.regular)
+            }
+        }
     }
     
     public func configurate(with model: MainTranslationCellModel) {
         
         wordRatingView.configure(input: WordRatingView.Input(rating: .just(1)))
+        
+        translationLabel.text = model.translation
         
         addWordButton.rx.tap
             .asSignal()

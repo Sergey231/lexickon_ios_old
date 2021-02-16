@@ -12,13 +12,22 @@ public extension UITableView {
         register(cellType.self, forCellReuseIdentifier: cellType.reuseId)
     }
 
-    func dequeueReusableCell<T: UITableViewCell>(withCellType type: T.Type = T.self) -> T where T: ClassIdentifiable {
-        guard let cell = dequeueReusableCell(withIdentifier: type.reuseId) as? T else { fatalError(dequeueError(withIdentifier: type.reuseId, type: self)) }
+    func dequeueReusableCell<T: UITableViewCell>(
+        withCellType type: T.Type = T.self
+    ) -> T where T: ClassIdentifiable {
+        guard
+            let cell = dequeueReusableCell(withIdentifier: type.reuseId) as? T
+        else {
+            fatalError(dequeueError(withIdentifier: type.reuseId, type: self))
+        }
 
         return cell
     }
 
-    func dequeueReusableCell<T: UITableViewCell>(withCellType type: T.Type = T.self, forIndexPath indexPath: IndexPath) -> T where T: ClassIdentifiable {
+    func dequeueReusableCell<T: UITableViewCell>(
+        withCellType type: T.Type = T.self,
+        forIndexPath indexPath: IndexPath
+    ) -> T where T: ClassIdentifiable {
         guard let cell = dequeueReusableCell(withIdentifier: type.reuseId, for: indexPath) as? T else { fatalError(dequeueError(withIdentifier: type.reuseId, type: self)) }
 
         return cell

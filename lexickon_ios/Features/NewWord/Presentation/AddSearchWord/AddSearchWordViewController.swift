@@ -131,24 +131,42 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .disposed(by: disposeBag)
     }
     
-    private func configureTableView(with models: Driver<[MainTranslationSectionModel]>) {
+    private func configureTableView(with models: Driver<[TranslationsSection]>) {
         
         var configureCell: TranslationReulstRxDataSource.ConfigureCell {
             return { _, tableView, indexPath, model in
-                let cell: MainTranslationResultCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configurate(with: model)
-                return cell
+                switch model {
+                case .Main(let mainCellModel):
+                    return self.makeMainTranslationResultCell(with: mainCellModel, from: tableView)
+                case .Other(let otherCellModel):
+                    return self.makeTranslationResultCell(with: otherCellModel, from: tableView)
+                }
             }
         }
         
-        dataSource = TranslationReulstRxDataSource(
-            animationConfiguration: AnimationConfiguration(),
-            configureCell: configureCell
-        )
+        dataSource = TranslationReulstRxDataSource(configureCell: configureCell)
         
         models
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+    
+    private func makeMainTranslationResultCell(
+        with model: MainTranslationCellModel,
+        from table: UITableView
+    ) -> MainTranslationResultCell {
+        let cell = table.dequeueReusableCell(withCellType: MainTranslationResultCell.self)
+        cell.configurate(with: model)
+        return cell
+    }
+    
+    private func makeTranslationResultCell(
+        with model: OtherTranslationCellModel,
+        from table: UITableView
+    ) -> TranslationResultCell {
+        let cell = table.dequeueReusableCell(withCellType: TranslationResultCell.self)
+        cell.configurate(with: model)
+        return cell
     }
 }
 
