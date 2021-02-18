@@ -57,9 +57,10 @@ final class AddSearchWordPresenter {
     func configurate(input: Input) -> Output {
         
         let activityIndicator = RxActivityIndicator()
+        let errorDetector = RxErrorProvider()
         
         let translationResult = input.textForTranslate
-            .flatMap { text -> Driver<TranslationResultsDTO> in
+            .flatMapLatest { text -> Driver<TranslationResultsDTO> in
                 self.interacor.translate(text).debug("🎲")
                     .trackActivity(activityIndicator)
                     .asDriver(onErrorDriveWith: .empty())
