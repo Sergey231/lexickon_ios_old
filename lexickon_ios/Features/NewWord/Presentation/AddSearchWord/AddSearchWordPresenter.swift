@@ -61,9 +61,10 @@ final class AddSearchWordPresenter {
         
         let translationResult = input.textForTranslate
             .flatMapLatest { text -> Driver<TranslationResultsDTO> in
-                self.interacor.translate(text).debug("🎲")
+                self.interacor.translate(text)
+                    .asObservable()
                     .trackActivity(activityIndicator)
-                    .asDriver(onErrorDriveWith: .empty())
+                    .provideError(errorDetector)
             }
         
         let mainTranslationCellModels = translationResult
