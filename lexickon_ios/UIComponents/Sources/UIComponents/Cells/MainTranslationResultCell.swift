@@ -50,11 +50,11 @@ extension MainTranslationCellModel: IdentifiableType {
 }
 
 public final class MainTranslationResultCell: DisposableTableViewCell {
-    
-    private let translationLable = UILabel()
+
     private let addWordButton = AddWordButton()
     private let wordRatingView = WordRatingView()
     private let translationLabel = UILabel()
+    private let inLexickonStateView = InLexickonStateView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,17 +66,6 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     }
     
     private func createUI() {
-        
-        translationLable.setup {
-            $0.font = .systemRegular17
-            contentView.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.top.equalToSuperview().offset(Margin.regular)
-                $0.height.equalTo(Size.textField.height)
-            }
-        }
         
         addWordButton.setup {
             $0.setShadow()
@@ -90,7 +79,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         }
         
         wordRatingView.setup {
-            addSubview($0)
+            contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.size.equalTo(64)
                 $0.top.equalToSuperview().offset(Margin.regular)
@@ -98,14 +87,26 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
             }
         }
         
-        translationLabel.setup {
-            $0.numberOfLines = 0
-            addSubview($0)
+        inLexickonStateView.setup {
+            contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
-                $0.right.equalTo(addWordButton.snp.left).offset(Margin.regular)
-                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.right.equalTo(addWordButton.snp.left).offset(-Margin.regular)
+                $0.height.equalTo(16)
                 $0.bottom.equalToSuperview().offset(-Margin.regular)
+            }
+        }
+        
+        translationLabel.setup {
+            $0.numberOfLines = 0
+            $0.textColor = Asset.Colors.baseText.color
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
+                $0.right.equalTo(addWordButton.snp.left).offset(-Margin.regular)
+                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.height.greaterThanOrEqualTo(0)
+                $0.bottom.equalTo(inLexickonStateView.snp.top).offset(-Margin.regular)
             }
         }
     }
@@ -115,6 +116,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         wordRatingView.configure(input: WordRatingView.Input(rating: .just(1)))
         
         translationLabel.text = model.translation
+        
+        inLexickonStateView.configure(input: .init(state: .hasAsNewWord))
         
         addWordButton.rx.tap
             .asSignal()

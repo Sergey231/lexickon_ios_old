@@ -25,18 +25,43 @@ public final class InLexickonStateView: UIView {
         }
         
         public enum State {
+            
             case hasAsFireWord
             case hasAsNewWord
             case hasAsReadyWord
             case hasAsWaitingWord
             case hasnt
+            
+            public var stateColor: UIColor {
+                switch self {
+                case .hasAsFireWord:
+                    return Asset.Colors.fireWordBright.color
+                case .hasAsNewWord:
+                    return Asset.Colors.newWordBright.color
+                case .hasAsReadyWord:
+                    return Asset.Colors.readyWordBright.color
+                case .hasAsWaitingWord:
+                    return Asset.Colors.waitingWordBright.color
+                case .hasnt:
+                    return Asset.Colors.paleText.color
+                }
+            }
+            
+            public var stateText: String {
+                switch self {
+                case .hasnt:
+                    return Str.inLexickonStateHasnt
+                default:
+                    return Str.inLexickonStateHas
+                }
+            }
         }
         let state: State
     }
     
     private let disposeBag = DisposeBag()
     
-    private let stateIconImageView = UIImageView(image: Asset.Images.WordRating.scale.image)
+    private let stateIconImageView = UIImageView(image: Asset.Images.imageLogo.image)
     fileprivate let stateLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -51,28 +76,47 @@ public final class InLexickonStateView: UIView {
     private func createUI() {
         
         backgroundColor = .clear
-        alpha = 0
-        
-        stateLabel.setup {
-            $0.contentMode = .scaleAspectFit
-            addSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.top.bottom.equalToSuperview()
-                $0.width.equalTo(Size.icon.width)
-            }
-        }
         
         stateIconImageView.setup {
             $0.contentMode = .scaleAspectFit
+            $0.tintColor = Asset.Colors.fireWordBright.color
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.left.equalTo(stateLabel.snp.right).offset(Margin.regular)
+                $0.left.top.bottom.equalToSuperview()
+                $0.width.equalTo(16)
+            }
+        }
+        
+        stateLabel.setup {
+            $0.font = .systemRegular12
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(stateIconImageView.snp.right).offset(Margin.small)
                 $0.top.bottom.right.equalToSuperview()
             }
         }
     }
     
     public func configure(input: Input) {
+        stateLabel.textColor = input.state.stateColor
+        stateLabel.text = input.state.stateText
+        stateIconImageView.tintColor = input.state.stateColor
+        switch input.state {
+        case .hasnt:
+            stateIconImageView.snp.updateConstraints {
+                $0.width.equalTo(0)
+            }
+            stateLabel.snp.updateConstraints {
+                $0.left.equalTo(stateIconImageView.snp.right).offset(0)
+            }
+        default:
+            stateIconImageView.snp.updateConstraints {
+                $0.width.equalTo(16)
+            }
+            stateLabel.snp.updateConstraints {
+                $0.left.equalTo(stateIconImageView.snp.right).offset(Margin.small)
+            }
+        }
         
     }
 }

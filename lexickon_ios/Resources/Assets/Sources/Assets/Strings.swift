@@ -21,6 +21,10 @@ public enum Str {
   public static let homeReadySectionTitle = Str.tr("Localizable", "Home_ready_section_title")
   /// Созревают...
   public static let homeWaitingSectionTitle = Str.tr("Localizable", "Home_waiting_section_title")
+  /// Есть в Вашем Lexickon
+  public static let inLexickonStateHas = Str.tr("Localizable", "InLexickonState_has")
+  /// Нет в Вашем Lexickon
+  public static let inLexickonStateHasnt = Str.tr("Localizable", "InLexickonState_hasnt")
   /// Войти
   public static let loginLoginButtonTitle = Str.tr("Localizable", "Login_login_button_title")
   /// У меня есть аккаунт
@@ -69,10 +73,6 @@ public enum Str {
   public static let startCreateAccountButtonTitle = Str.tr("Localizable", "Start_create_account_button_title")
   /// У МЕНЯ ЕСТЬ АККАУНТ
   public static let startIHaveAccountButtonTitle = Str.tr("Localizable", "Start_i_have_account_button_title")
-  /// Тест %@
-  public static func test(_ p1: Any) -> String {
-    return Str.tr("Localizable", "Test", String(describing: p1))
-  }
 }
 // swiftlint:enable function_parameter_count identifier_name line_length type_body_length
 
