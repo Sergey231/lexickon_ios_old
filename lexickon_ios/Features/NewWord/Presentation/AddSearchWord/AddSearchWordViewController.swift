@@ -97,7 +97,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             $0.register(cellType: MainTranslationResultCell.self)
             $0.rowHeight = UITableView.automaticDimension
             $0.estimatedRowHeight = 100
-//            $0.register(cellType: TranslationResultCell.self)
+            $0.register(cellType: TranslationResultCell.self)
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.bottom.equalToSuperview()

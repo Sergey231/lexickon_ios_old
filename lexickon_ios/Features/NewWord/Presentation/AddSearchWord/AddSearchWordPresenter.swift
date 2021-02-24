@@ -78,6 +78,7 @@ final class AddSearchWordPresenter {
                     )
                 ]
             }
+            .asDriver(onErrorJustReturn: [])
             
         let otherTranslationCellModels = translationResult
             .map { translationResult -> [TranslationCell] in
@@ -90,6 +91,7 @@ final class AddSearchWordPresenter {
                     )
                 }
             }
+            .asDriver(onErrorJustReturn: [])
         
         let didTapAddWord = otherTranslationCellModels
             .flatMap {
@@ -123,9 +125,14 @@ final class AddSearchWordPresenter {
             }
             .subscribe()
         
-        let translationsSections = mainTranslationCellModels
-            .map { [SectionModel(model: "MainTranslationSection", items: $0)] }
-            .asDriver()
+        let translationsSections = Driver.combineLatest(
+            mainTranslationCellModels,
+            otherTranslationCellModels
+        )
+            .map { [
+                SectionModel(model: "MainTranslationSection", items: $0),
+                SectionModel(model: "OtherTranslationSection", items: $1)
+            ] }
         
         return Output(
             sections: translationsSections,
