@@ -13,6 +13,7 @@ import RxCocoa
 import Utils
 import RxDataSources
 import UIExtensions
+import Assets
 
 public struct OtherTranslationCellModel {
     
@@ -51,8 +52,8 @@ extension OtherTranslationCellModel: IdentifiableType {
 
 public final class TranslationResultCell: DisposableTableViewCell {
     
+    private let wordRaitingView = WordRatingView()
     private let translationLable = UILabel()
-    private let addWordButton = AddWordButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,28 +65,27 @@ public final class TranslationResultCell: DisposableTableViewCell {
     
     private func createUI(with input: OtherTranslationCellModel) {
         
-        translationLable.setup {
-            $0.font = .systemRegular17
-            $0.text = input.translation
+        wordRaitingView.setup {
             contentView.addSubview($0)
+            $0.configure(input: WordRatingView.Input(rating: .just(1)))
             $0.snp.makeConstraints {
+                $0.size.equalTo(34)
                 $0.left.equalToSuperview().offset(Margin.regular)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.top.equalToSuperview().offset(Margin.regular)
-                $0.height.equalTo(Size.textField.height)
+                $0.top.equalToSuperview().offset(Margin.small)
             }
         }
         
-        addWordButton.setup {
-            $0.setTitle("+ в мой Lexickon", for: .normal)
-            $0.configureTapScaleAnimation().disposed(by: disposeBag)
+        translationLable.setup {
+            $0.numberOfLines = 0
+            $0.font = .systemRegular14
+            $0.text = input.translation
+            $0.textColor = Asset.Colors.baseText.color
             contentView.addSubview($0)
             $0.snp.makeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.left.equalTo(wordRaitingView.snp.right).offset(Margin.regular)
                 $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.top.equalTo(translationLable.snp.bottom).offset(Margin.regular)
-                $0.height.equalTo(Size.button.height)
-                $0.bottom.equalToSuperview().offset(-Margin.regular)
+                $0.centerY.equalToSuperview()
+                $0.height.equalTo(21)
             }
         }
     }
@@ -94,10 +94,7 @@ public final class TranslationResultCell: DisposableTableViewCell {
         
         createUI(with: model)
         
-        addWordButton.rx.tap
-            .asSignal()
-            .emit(to: model.addWordButtonDidTapRelay)
-            .disposed(by: disposeBag)
+        
     }
 }
 
