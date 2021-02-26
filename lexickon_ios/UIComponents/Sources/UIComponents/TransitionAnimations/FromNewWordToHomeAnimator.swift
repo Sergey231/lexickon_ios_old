@@ -87,7 +87,7 @@ public final class FromNewWordToHomeAnimator: NSObject, UIViewControllerAnimated
                             $0.width.equalToSuperview()
                         }
                         tmpView.superview?.layoutIfNeeded()
-                        tmpView.backgroundColor = Asset.Colors.mainBG.color
+                        tmpView.backgroundColor = Colors.mainBG.color
                         tmpView.layer.cornerRadius = homeVCAddWordButton.circleView.frame.size.height / 2
                         tmpHeaderView.layer.cornerRadius = homeVCAddWordButton.circleView.frame.size.height / 2
                         homeVC.view.alpha = 0.8

@@ -34,7 +34,7 @@ public final class AddSearchWordTextField: UIView {
     private let textView = TextView()
     private var textViewHeight: CGFloat = 0
     
-    private var searchIconImageView = UIImageView(image: Asset.Images.searchIcon.image)
+    private var searchIconImageView = UIImageView(image: Images.searchIcon.image)
     
     //MARK: Text
     private var testView: UIView = {

@@ -18,7 +18,7 @@ public final class TextView: UITextView {
     
     public struct Input {
         var font: UIFont = .systemRegular17
-        var textColor: UIColor = Asset.Colors.baseText.color
+        var textColor: UIColor = Colors.baseText.color
     }
     
     public struct Output {

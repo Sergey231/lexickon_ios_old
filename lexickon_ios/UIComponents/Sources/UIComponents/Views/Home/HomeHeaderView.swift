@@ -49,7 +49,7 @@ public final class HomeHeaderView: UIView {
        
     private func createUI() {
         
-        backgroundColor = Asset.Colors.mainBG.color
+        backgroundColor = Colors.mainBG.color
         
         button.setup {
             addSubview($0)

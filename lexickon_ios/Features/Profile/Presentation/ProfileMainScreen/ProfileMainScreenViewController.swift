@@ -70,7 +70,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private func createUI() {
 
         backButton.setup {
-            $0.setImage(Asset.Images.backArrow.image, for: .normal)
+            $0.setImage(Images.backArrow.image, for: .normal)
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)

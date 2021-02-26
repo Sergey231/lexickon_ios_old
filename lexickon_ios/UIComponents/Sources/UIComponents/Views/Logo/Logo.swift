@@ -27,7 +27,7 @@ public final class Logo: UIView {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Asset.Images.logoWithoutEyes.image
+        imageView.image = Images.logoWithoutEyes.image
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

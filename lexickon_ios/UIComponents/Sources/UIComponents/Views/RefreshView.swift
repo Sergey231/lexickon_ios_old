@@ -44,7 +44,7 @@ public final class RefreshView: UIView {
         backgroundColor = .clear
         
         refreshImageView.setup {
-            $0.image = Asset.Images.refresh.image
+            $0.image = Images.refresh.image
             $0.contentMode = .scaleAspectFit
             $0.tintColor = .white
             addSubview($0)

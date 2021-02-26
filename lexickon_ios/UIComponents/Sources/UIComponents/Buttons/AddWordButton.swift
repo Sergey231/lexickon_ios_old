@@ -16,7 +16,7 @@ public final class AddWordButton: UIButton {
     
     private let desposeBag = DisposeBag()
     
-    private let addIconImageView = UIImageView(image: Asset.Images.plusIcon.image)
+    private let addIconImageView = UIImageView(image: Images.plusIcon.image)
     
     required init(value: Int = 0) {
         super.init(frame: .zero)
@@ -30,7 +30,7 @@ public final class AddWordButton: UIButton {
     
     private func createUI() {
         
-        backgroundColor = Asset.Colors.mainBG.color
+        backgroundColor = Colors.mainBG.color
         
         addIconImageView.setup {
             $0.tintColor = .white

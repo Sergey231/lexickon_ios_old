@@ -19,7 +19,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     private let contentView = UIView()
-    private let logo = UIImageView(image: Asset.Images.textLogo.image)
+    private let logo = UIImageView(image: Images.textLogo.image)
     private let nameTextField = LXTextField()
     private let emailTextField = LXTextField()
     private let passwordTextField = LXTextField()
@@ -41,7 +41,7 @@ final class RegistrationViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Asset.Colors.mainBG.color
+        view.backgroundColor = Colors.mainBG.color
         createUI()
         configureUI()
     }
@@ -157,20 +157,20 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         nameTextField.configure(input: LXTextField.Input(
             placeholder: Str.registrationNameTextfield,
-            leftIcon: Asset.Images.accountIcon.image,
+            leftIcon: Images.accountIcon.image,
             returnKeyType: .next
         ))
         
         emailTextField.configure(input: LXTextField.Input(
             placeholder: Str.registrationEmailTextfield,
-            leftIcon: Asset.Images.emailIcon.image,
+            leftIcon: Images.emailIcon.image,
             keyboardType: .emailAddress,
             returnKeyType: .next
         ))
         
         passwordTextField.configure(input: LXTextField.Input(
             placeholder: Str.registrationPasswordTextfield,
-            leftIcon: Asset.Images.lockIcon.image,
+            leftIcon: Images.lockIcon.image,
             isSecure: true,
             returnKeyType: .join
         ))
@@ -221,7 +221,7 @@ final class RegistrationViewController: UIViewController, Stepper {
                 return self.showMsg(
                     msg: $0,
                     buttonTitle: Str.errorAlertButtonTitle,
-                    buttonColor: Asset.Colors.mainBG.color
+                    buttonColor: Colors.mainBG.color
                 )
             }
             .subscribe(onNext: { _ in
@@ -251,7 +251,7 @@ final class RegistrationViewController: UIViewController, Stepper {
             .drive(msgLabel.rx.textWithAnimaiton)
             .disposed(by: disposeBag)
         
-        registrateButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        registrateButton.setRoundedFilledStyle(titleColor: Colors.mainBG.color)
         registrateButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         

@@ -50,7 +50,7 @@ public final class HomeWordsSectionHeaderView: UIView {
     
     private let bgTitleView: UIView = {
         let bg = UIView()
-        bg.backgroundColor = Asset.Colors.homeWordSectionHeaderBG.color
+        bg.backgroundColor = Colors.homeWordSectionHeaderBG.color
         return bg
     }()
     

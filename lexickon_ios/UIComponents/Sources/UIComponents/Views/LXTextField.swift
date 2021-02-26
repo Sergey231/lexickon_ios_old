@@ -83,7 +83,7 @@ public final class LXTextField: UIView {
     private var _input: Input?
     private let disposeBag = DisposeBag()
     
-    private let eyeIcon = BehaviorRelay<UIImage>(value: Asset.Images.eyeHideIcon.image)
+    private let eyeIcon = BehaviorRelay<UIImage>(value: Images.eyeHideIcon.image)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -124,7 +124,7 @@ public final class LXTextField: UIView {
         
         textField.attributedPlaceholder = NSAttributedString(
             string: input.placeholder,
-            attributes: [.foregroundColor: Asset.Colors.placeholder.color]
+            attributes: [.foregroundColor: Colors.placeholder.color]
         )
         textField.keyboardType = input.keyboardType
         textField.returnKeyType = input.returnKeyType
@@ -134,8 +134,8 @@ public final class LXTextField: UIView {
         rightIconView.image = input.rightIcon
         
         eyeIconButton.configure(input: .init(
-            onIcon: Asset.Images.eyeHideIcon.image,
-            offIcon: Asset.Images.eyeShowIcon.image
+            onIcon: Images.eyeHideIcon.image,
+            offIcon: Images.eyeShowIcon.image
         ))
         
         eyeIconButton.on

@@ -46,11 +46,11 @@ public final class AddWordHeaderView: UIView {
        
     private func createUI() {
         
-        backgroundColor = Asset.Colors.mainBG.color
+        backgroundColor = Colors.mainBG.color
         
         backButton.setup {
             addSubview($0)
-            $0.setImage(Asset.Images.backArrow.image, for: .normal)
+            $0.setImage(Images.backArrow.image, for: .normal)
             $0.snp.makeConstraints {
                 $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
                 $0.size.equalTo(UIConstants.backButtonSize)

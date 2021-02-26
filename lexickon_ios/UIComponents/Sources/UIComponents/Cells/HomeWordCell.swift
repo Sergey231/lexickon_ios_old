@@ -144,51 +144,51 @@ public final class HomeWordCell: DisposableTableViewCell {
         createUI(with: model)
         configureUI()
         
-        logo.configure(with: .init(tintColor: Asset.Colors.readyWordBright.color))
+        logo.configure(with: .init(tintColor: Colors.readyWordBright.color))
         
         wordLable.text = model.word
         
         switch model.studyType {
             
         case .fire:
-            wordLable.textColor = Asset.Colors.fireWordBright.color
-            iconImageView.image = Asset.Images.wordMustReapetIcon.image
-            iconImageView.tintColor = Asset.Colors.fireWordBright.color
+            wordLable.textColor = Colors.fireWordBright.color
+            iconImageView.image = Images.wordMustReapetIcon.image
+            iconImageView.tintColor = Colors.fireWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
-                    bgColor: Asset.Colors.fireWordPale.color,
-                    progressColor: Asset.Colors.fireWord.color,
+                    bgColor: Colors.fireWordPale.color,
+                    progressColor: Colors.fireWord.color,
                     progress: 0.5
                 )
             )
         case .ready:
-            wordLable.textColor = Asset.Colors.readyWordBright.color
+            wordLable.textColor = Colors.readyWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
-                    bgColor: Asset.Colors.readyWordPale.color,
-                    progressColor: Asset.Colors.readyWord.color,
+                    bgColor: Colors.readyWordPale.color,
+                    progressColor: Colors.readyWord.color,
                     progress: 0.5
                 )
             )
         case .new:
-            wordLable.textColor = Asset.Colors.newWordBright.color
-            iconImageView.image = Asset.Images.newWordIcon.image
-            iconImageView.tintColor = Asset.Colors.newWordBright.color
+            wordLable.textColor = Colors.newWordBright.color
+            iconImageView.image = Images.newWordIcon.image
+            iconImageView.tintColor = Colors.newWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
-                    bgColor: Asset.Colors.newWord.color,
-                    progressColor: Asset.Colors.newWord.color,
+                    bgColor: Colors.newWord.color,
+                    progressColor: Colors.newWord.color,
                     progress: 0.5
                 )
             )
         case .waiting:
-            wordLable.textColor = Asset.Colors.waitingWordBright.color
-            iconImageView.image = Asset.Images.waitingWordIcon.image
-            iconImageView.tintColor = Asset.Colors.waitingWordBright.color
+            wordLable.textColor = Colors.waitingWordBright.color
+            iconImageView.image = Images.waitingWordIcon.image
+            iconImageView.tintColor = Colors.waitingWordBright.color
             progressView.configure(
                 input: WideWordProgressView.Input(
-                    bgColor: Asset.Colors.waitingWordPale.color,
-                    progressColor: Asset.Colors.waitingWord.color,
+                    bgColor: Colors.waitingWordPale.color,
+                    progressColor: Colors.waitingWord.color,
                     progress: 0.5
                 )
             )

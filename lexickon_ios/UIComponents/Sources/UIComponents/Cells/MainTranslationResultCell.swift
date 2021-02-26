@@ -99,7 +99,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         translationLabel.setup {
             $0.numberOfLines = 0
-            $0.textColor = Asset.Colors.baseText.color
+            $0.textColor = Colors.baseText.color
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)

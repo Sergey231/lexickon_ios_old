@@ -49,7 +49,7 @@ public final class FromHomeToNewWordAnimator: NSObject, UIViewControllerAnimated
             tmpView.backgroundColor = .white
             tmpView.layer.cornerRadius = circleViewFrame.size.height / 2
             tmpView.clipsToBounds = true
-            tmpView.backgroundColor = Asset.Colors.mainBG.color
+            tmpView.backgroundColor = Colors.mainBG.color
             return tmpView
         }()
         

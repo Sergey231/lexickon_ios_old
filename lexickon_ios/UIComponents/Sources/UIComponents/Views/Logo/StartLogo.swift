@@ -77,7 +77,7 @@ public final class StartLogo: UIView {
     
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Asset.Images.logoWithoutEyes.image
+        imageView.image = Images.logoWithoutEyes.image
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .white
         return imageView
@@ -85,7 +85,7 @@ public final class StartLogo: UIView {
     
     private let textLogoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Asset.Images.textLogo.image
+        imageView.image = Images.textLogo.image
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

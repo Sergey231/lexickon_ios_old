@@ -35,15 +35,15 @@ public final class InLexickonStateView: UIView {
             public var stateColor: UIColor {
                 switch self {
                 case .hasAsFireWord:
-                    return Asset.Colors.fireWordBright.color
+                    return Colors.fireWordBright.color
                 case .hasAsNewWord:
-                    return Asset.Colors.newWordBright.color
+                    return Colors.newWordBright.color
                 case .hasAsReadyWord:
-                    return Asset.Colors.readyWordBright.color
+                    return Colors.readyWordBright.color
                 case .hasAsWaitingWord:
-                    return Asset.Colors.waitingWordBright.color
+                    return Colors.waitingWordBright.color
                 case .hasnt:
-                    return Asset.Colors.paleText.color
+                    return Colors.paleText.color
                 }
             }
             
@@ -61,7 +61,7 @@ public final class InLexickonStateView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let stateIconImageView = UIImageView(image: Asset.Images.imageLogo.image)
+    private let stateIconImageView = UIImageView(image: Images.imageLogo.image)
     fileprivate let stateLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -79,7 +79,7 @@ public final class InLexickonStateView: UIView {
         
         stateIconImageView.setup {
             $0.contentMode = .scaleAspectFit
-            $0.tintColor = Asset.Colors.fireWordBright.color
+            $0.tintColor = Colors.fireWordBright.color
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.top.bottom.equalToSuperview()

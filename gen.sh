@@ -15,20 +15,10 @@ spin()
     done
 }
 
-if [[ $(command -v brew) == "" ]]; then
-    echo "Installing Hombrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-if [[ $(command -v swiftgen) == "" ]]; then
-    echo "Installing Swiftgen"
-    brew update
-    brew install swiftgen
-fi
-
 cd lexickon_ios/Resources/Assets
-swiftgen
-if (xcodebuild build -target lexickon_ios -scheme Assets -quiet); then
+./swiftgen/bin/swiftgen
+
+if (xcodebuild build -scheme Assets -quiet); then
     printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
     echo "\033[0;32m 🎉 You can use new Assets constants! ";
 else

@@ -33,7 +33,7 @@ final class StartViewController: UIViewController, Stepper {
     fileprivate let beginButton = UIButton()
     fileprivate let iAmHaveAccountButton = UIButton()
     fileprivate let createAccountButton = UIButton()
-    fileprivate let bgImageView = UIImageView(image: Asset.Images.bgStart.image)
+    fileprivate let bgImageView = UIImageView(image: Images.bgStart.image)
 
     private let disposeBag = DisposeBag()
     
@@ -55,7 +55,7 @@ final class StartViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Asset.Colors.mainBG.color
+        view.backgroundColor = Colors.mainBG.color
         createUI()
         configureUI()
     }
@@ -131,14 +131,14 @@ final class StartViewController: UIViewController, Stepper {
         
         let presenterOutput = presenter.configure(input: presenterInput)
         
-        beginButton.setRoundedFilledStyle(titleColor: Asset.Colors.mainBG.color)
+        beginButton.setRoundedFilledStyle(titleColor: Colors.mainBG.color)
         iAmHaveAccountButton.setRoundedBorderedStyle(
-            bgColor: Asset.Colors.mainBG.color,
-            borderColor: Asset.Colors.mainBG.color
+            bgColor: Colors.mainBG.color,
+            borderColor: Colors.mainBG.color
         )
         createAccountButton.setRoundedBorderedStyle(
-            bgColor: Asset.Colors.mainBG.color,
-            borderColor: Asset.Colors.mainBG.color
+            bgColor: Colors.mainBG.color,
+            borderColor: Colors.mainBG.color
         )
         
         beginButton.rx.tap
@@ -190,7 +190,7 @@ final class StartViewController: UIViewController, Stepper {
     fileprivate func animateBG() {
         
         let bgImageHeight = view.frame.size.height
-        let bgImageWidth = (Asset.Images.bgStart.image as UIImage).width(withHeight: bgImageHeight)
+        let bgImageWidth = (Images.bgStart.image as UIImage).width(withHeight: bgImageHeight)
         
         bgImageView.snp.remakeConstraints {
             $0.height.equalTo(bgImageHeight)

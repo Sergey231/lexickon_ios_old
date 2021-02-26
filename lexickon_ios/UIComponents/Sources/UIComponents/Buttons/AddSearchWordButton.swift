@@ -18,13 +18,13 @@ public final class AddSearchWordButton: UIView {
     
     private let button = UIButton()
     private let searchIconImageView: UIImageView = {
-        let imageView = UIImageView(image: Asset.Images.searchIcon.image)
+        let imageView = UIImageView(image: Images.searchIcon.image)
         imageView.alpha = 0
         imageView.tintColor = .white
         return imageView
     }()
     private let addIconImageView: UIImageView = {
-        let imageView = UIImageView(image: Asset.Images.addIcon.image)
+        let imageView = UIImageView(image: Images.addIcon.image)
         imageView.tintColor = .white
         return imageView
     }()
@@ -33,7 +33,7 @@ public final class AddSearchWordButton: UIView {
     public let circleView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 28
-        view.backgroundColor = Asset.Colors.mainBG.color
+        view.backgroundColor = Colors.mainBG.color
         view.setShadow()
         return view
     }()

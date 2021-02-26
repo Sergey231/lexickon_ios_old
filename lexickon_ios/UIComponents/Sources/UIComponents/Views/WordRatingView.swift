@@ -29,8 +29,8 @@ public final class WordRatingView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let scaleImageView = UIImageView(image: Asset.Images.WordRating.scale.image)
-    fileprivate let arrowImageView = UIImageView(image: Asset.Images.WordRating.arrow.image)
+    private let scaleImageView = UIImageView(image: Images.WordRating.scale.image)
+    fileprivate let arrowImageView = UIImageView(image: Images.WordRating.arrow.image)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
