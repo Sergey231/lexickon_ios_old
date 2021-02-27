@@ -82,21 +82,28 @@ public final class HomeWordCell: DisposableTableViewCell {
     }
     
     private func createUI(with input: HomeWordViewModel) {
-        contentView.addSubviews(
-            progressView,
-            wordLable
-        )
-        contentView.addSubview(input.isReady ? logo : iconImageView)
         
-        contentView.snp.makeConstraints {
-            $0.right.equalToSuperview().offset(-Margin.regular)
-            $0.left.equalToSuperview().offset(Margin.regular)
-            $0.top.equalToSuperview().offset(Margin.regular)
-            $0.bottom.equalToSuperview().offset(-Margin.regular/2)
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
+        
+        progressView.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
         
-        progressView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        contentView.addSubview(wordLable)
+        contentView.setup {
+            $0.addSubview(input.isReady ? logo : iconImageView)
+            $0.snp.makeConstraints {
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.bottom.equalToSuperview().offset(-Margin.regular/2)
+            }
         }
     }
     
@@ -130,13 +137,6 @@ public final class HomeWordCell: DisposableTableViewCell {
                 $0.centerY.equalToSuperview()
             }
         }
-    }
-    
-    private func configureUI() {
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        contentView.layer.cornerRadius = 16
-        contentView.clipsToBounds = true
     }
     
     public func configurate(with model: HomeWordViewModel) {
