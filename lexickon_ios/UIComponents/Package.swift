@@ -26,6 +26,10 @@ let package = Package(
         .package(
             url: "https://github.com/SnapKit/SnapKit.git",
             from: "5.0.1"
+        ),
+        .package(
+            url: "https://github.com/SwipeCellKit/SwipeCellKit.git",
+            from: "2.7.1"
         )
     ],
     targets: [
@@ -37,6 +41,7 @@ let package = Package(
                 "RxSwift",
                 .product(name: "RxCocoa", package: "RxSwift"),
                 "SnapKit",
+                "SwipeCellKit"
             ]),
         .testTarget(
             name: "UIComponentsTests",

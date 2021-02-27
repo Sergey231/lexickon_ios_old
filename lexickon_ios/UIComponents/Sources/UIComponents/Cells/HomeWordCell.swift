@@ -58,18 +58,8 @@ extension HomeWordViewModel: IdentifiableType {
 
 public final class HomeWordCell: DisposableTableViewCell {
     
-    private let wordLable: UILabel = {
-        let label = UILabel()
-        label.font = .systemRegular24
-        return label
-    }()
-    
-    private let progressView: WideWordProgressView = {
-        let view = WideWordProgressView()
-        view.layer.cornerRadius = 13
-        return view
-    }()
-    
+    private let wordLable = UILabel()
+    private let progressView = WideWordProgressView()
     private lazy var iconImageView = UIImageView()
     private lazy var logo = Logo()
     
@@ -89,60 +79,63 @@ public final class HomeWordCell: DisposableTableViewCell {
         contentView.clipsToBounds = true
         
         progressView.setup {
+            $0.layer.cornerRadius = 13
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
         }
         
-        contentView.addSubview(wordLable)
         contentView.setup {
-            $0.addSubview(input.isReady ? logo : iconImageView)
             $0.snp.makeConstraints {
                 $0.right.equalToSuperview().offset(-Margin.regular)
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.top.equalToSuperview().offset(Margin.regular)
                 $0.bottom.equalToSuperview().offset(-Margin.regular/2)
             }
+            
+            if input.isReady {
+                $0.addSubview(logo)
+                logo.snp.remakeConstraints {
+                    $0.left.equalToSuperview().offset(Margin.regular)
+                    $0.size.equalTo(45)
+                    $0.centerY.equalToSuperview()
+                }
+                
+            } else {
+                $0.addSubview(iconImageView)
+                iconImageView.snp.makeConstraints {
+                    $0.left.equalToSuperview().offset(Margin.regular)
+                    $0.size.equalTo(45)
+                    $0.centerY.equalToSuperview()
+                }
+            }
         }
-    }
-    
-    private func layout(with input: HomeWordViewModel) {
         
-        if input.isReady {
+        wordLable.setup {
+            $0.font = .systemRegular24
+            contentView.addSubview($0)
             
-            logo.snp.remakeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
-                $0.size.equalTo(45)
-                $0.centerY.equalToSuperview()
-            }
-            
-            wordLable.snp.makeConstraints {
-                $0.left.equalTo(logo.snp.right).offset(Margin.small)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.centerY.equalToSuperview()
-            }
-            
-        } else {
-            
-            iconImageView.snp.makeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
-                $0.size.equalTo(45)
-                $0.centerY.equalToSuperview()
-            }
-
-            wordLable.snp.makeConstraints {
-                $0.left.equalTo(iconImageView.snp.right).offset(Margin.small)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.centerY.equalToSuperview()
+            if input.isReady {
+                wordLable.snp.makeConstraints {
+                    $0.left.equalTo(logo.snp.right).offset(Margin.small)
+                    $0.right.equalToSuperview().offset(-Margin.regular)
+                    $0.centerY.equalToSuperview()
+                }
+            } else {
+                wordLable.snp.makeConstraints {
+                    $0.left.equalTo(iconImageView.snp.right).offset(Margin.small)
+                    $0.right.equalToSuperview().offset(-Margin.regular)
+                    $0.centerY.equalToSuperview()
+                }
             }
         }
+        
     }
     
     public func configurate(with model: HomeWordViewModel) {
         
         createUI(with: model)
-        configureUI()
         
         logo.configure(with: .init(tintColor: Colors.readyWordBright.color))
         
@@ -194,11 +187,11 @@ public final class HomeWordCell: DisposableTableViewCell {
             )
         }
         
-        rx.layoutSubviews
-            .subscribe(onNext: { _ in
-                self.layout(with: model)
-            })
-            .disposed(by: disposeBag)
+//        rx.layoutSubviews
+//            .subscribe(onNext: { _ in
+//                self.layout(with: model)
+//            })
+//            .disposed(by: disposeBag)
     }
 }
 
