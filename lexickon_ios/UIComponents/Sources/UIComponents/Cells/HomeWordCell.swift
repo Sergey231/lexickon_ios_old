@@ -58,6 +58,8 @@ extension HomeWordViewModel: IdentifiableType {
 
 public final class HomeWordCell: DisposableTableViewCell {
     
+    private let scrollView = UIScrollView()
+    private let swipeContentView = UIView()
     private let wordLable = UILabel()
     private let progressView = WideWordProgressView()
     private lazy var iconImageView = UIImageView()
@@ -75,47 +77,57 @@ public final class HomeWordCell: DisposableTableViewCell {
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-        contentView.layer.cornerRadius = 16
         contentView.clipsToBounds = true
         
-        progressView.setup {
-            $0.layer.cornerRadius = 13
+        scrollView.setup {
+            $0.alwaysBounceHorizontal = true
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
         }
         
-        contentView.setup {
+        swipeContentView.setup {
+            scrollView.addSubview($0)
             $0.snp.makeConstraints {
-                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
+                $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
+                $0.edges.equalToSuperview()
+            }
+        }
+        
+        progressView.setup {
+            $0.layer.cornerRadius = 13
+            swipeContentView.addSubview($0)
+            $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
-                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalToSuperview().offset(Margin.regular/2)
                 $0.bottom.equalToSuperview().offset(-Margin.regular/2)
             }
-            
-            if input.isReady {
-                $0.addSubview(logo)
-                logo.snp.remakeConstraints {
-                    $0.left.equalToSuperview().offset(Margin.regular)
-                    $0.size.equalTo(45)
-                    $0.centerY.equalToSuperview()
-                }
-                
-            } else {
-                $0.addSubview(iconImageView)
-                iconImageView.snp.makeConstraints {
-                    $0.left.equalToSuperview().offset(Margin.regular)
-                    $0.size.equalTo(45)
-                    $0.centerY.equalToSuperview()
-                }
+        }
+        
+        if input.isReady {
+            progressView.addSubview(logo)
+            logo.snp.remakeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.size.equalTo(45)
+                $0.centerY.equalToSuperview()
+            }
+
+        } else {
+            progressView.addSubview(iconImageView)
+            iconImageView.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.size.equalTo(45)
+                $0.centerY.equalToSuperview()
             }
         }
         
         wordLable.setup {
             $0.font = .systemRegular24
-            contentView.addSubview($0)
-            
+            swipeContentView.addSubview($0)
+
             if input.isReady {
                 wordLable.snp.makeConstraints {
                     $0.left.equalTo(logo.snp.right).offset(Margin.small)
@@ -130,7 +142,6 @@ public final class HomeWordCell: DisposableTableViewCell {
                 }
             }
         }
-        
     }
     
     public func configurate(with model: HomeWordViewModel) {
