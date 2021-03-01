@@ -21,7 +21,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(
             url: "https://github.com/ReactiveX/RxSwift",
-            .revision("502c905ddbbba144ecca48ad4081a88aa95306a6")
+            from: "6.1.0"
         ),
         .package(
             url: "https://github.com/SnapKit/SnapKit.git",

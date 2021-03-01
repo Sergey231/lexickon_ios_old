@@ -18,7 +18,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/ReactiveX/RxSwift", .revision("502c905ddbbba144ecca48ad4081a88aa95306a6"))
+        .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.1.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
