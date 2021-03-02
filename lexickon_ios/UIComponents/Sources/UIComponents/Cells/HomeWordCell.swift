@@ -15,6 +15,7 @@ import RxDataSources
 import RxExtensions
 import UIExtensions
 import Assets
+import LexickonApi
 
 public struct HomeWordViewModel {
     
@@ -24,13 +25,6 @@ public struct HomeWordViewModel {
     ) {
         self.word = word
         self.studyType = studyType
-    }
-    
-    public enum StudyType {
-        case fire
-        case ready
-        case new
-        case waiting
     }
     
     public var isReady: Bool { self.studyType == .ready }

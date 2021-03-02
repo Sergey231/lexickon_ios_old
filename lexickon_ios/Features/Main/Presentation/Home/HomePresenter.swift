@@ -97,7 +97,7 @@ final class HomePresenter {
                 
                 if !fireWords.isEmpty {
                     let fireWordsSection = HomeWordSectionModel(
-                        model: "fire",
+                        model: StudyType.fire.rawValue,
                         items: fireWords
                     )
                     sections.append(fireWordsSection)
@@ -105,7 +105,7 @@ final class HomePresenter {
                 
                 if !readyWords.isEmpty {
                     let readyWordsSection = HomeWordSectionModel(
-                        model: "ready",
+                        model: StudyType.ready.rawValue,
                         items: readyWords
                     )
                     sections.append(readyWordsSection)
@@ -113,7 +113,7 @@ final class HomePresenter {
                 
                 if !newWords.isEmpty {
                     let newWordsSection = HomeWordSectionModel(
-                        model: "new",
+                        model: StudyType.new.rawValue,
                         items: newWords
                     )
                     sections.append(newWordsSection)
@@ -121,7 +121,7 @@ final class HomePresenter {
                 
                 if !waitingWords.isEmpty {
                     let waitingWordsSection = HomeWordSectionModel(
-                        model: "waiting",
+                        model: StudyType.waiting.rawValue,
                         items: waitingWords
                     )
                     sections.append(waitingWordsSection)

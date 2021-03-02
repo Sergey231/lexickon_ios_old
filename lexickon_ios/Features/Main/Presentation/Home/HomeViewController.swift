@@ -17,6 +17,7 @@ import Resolver
 import UIComponents
 import Lottie
 import Assets
+import LexickonApi
 
 final class HomeViewController: UIViewController, Stepper {
     
@@ -260,8 +261,9 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView.numberOfRows(inSection: section) > 0 {
             let headerView = HomeWordsSectionHeaderView()
-            let sectionType = HomeWordsSectionHeaderView.StudyWordsType(rawValue: section) ?? .waiting
-            headerView.configure(input: HomeWordsSectionHeaderView.Input(studyWordsType: sectionType))
+            let dataSourceSection = dataSource.sectionModels[section]
+            let sectionType = StudyType(rawValue: dataSourceSection.model) ?? .waiting
+            headerView.configure(input: HomeWordsSectionHeaderView.Input(studyType: sectionType))
             return headerView
         }
         return nil
