@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0DBEC225F0B92500CBED4D /* NewWordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE3825F0B92400CBED4D /* NewWordFlow.swift */; };
+		EC0DBED625F0B92500CBED4D /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE5C25F0B92400CBED4D /* NewWordInteractorProtocol.swift */; };
+		EC0DBED725F0B92500CBED4D /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE5D25F0B92400CBED4D /* NewWordInteractor.swift */; };
+		EC0DBED825F0B92500CBED4D /* AddSearchWordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */; };
+		EC0DBED925F0B92500CBED4D /* AddSearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE6125F0B92400CBED4D /* AddSearchWordViewController.swift */; };
+		EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9825F0B92400CBED4D /* ProfileFlow.swift */; };
+		EC0DBEFE25F0B92500CBED4D /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9A25F0B92400CBED4D /* ProfileInteractorProtocol.swift */; };
+		EC0DBEFF25F0B92500CBED4D /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9B25F0B92400CBED4D /* ProfileInteractor.swift */; };
+		EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */; };
+		EC0DBF0125F0B92500CBED4D /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */; };
+		EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */; };
+		EC0DBF0325F0B92500CBED4D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA425F0B92400CBED4D /* UserRepository.swift */; };
+		EC0DBF0425F0B92500CBED4D /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA525F0B92400CBED4D /* UserRepositoryProtocol.swift */; };
+		EC0DBF0525F0B92500CBED4D /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA725F0B92400CBED4D /* UserTokenRepository.swift */; };
+		EC0DBF0625F0B92500CBED4D /* UserTokenRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA825F0B92400CBED4D /* UserTokenRepositoryProtocol.swift */; };
+		EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */; };
+		EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */; };
+		EC0DBF0925F0B92500CBED4D /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */; };
+		EC0DBF0A25F0B92500CBED4D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAF25F0B92400CBED4D /* RegistrationViewController.swift */; };
+		EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEB125F0B92400CBED4D /* StartViewController.swift */; };
+		EC0DBF0C25F0B92500CBED4D /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEB225F0B92400CBED4D /* StartPresenter.swift */; };
+		EC0DBF0D25F0B92500CBED4D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEB425F0B92400CBED4D /* LoginViewController.swift */; };
+		EC0DBF0E25F0B92500CBED4D /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEB525F0B92400CBED4D /* LoginPresenter.swift */; };
+		EC0DBF0F25F0B92500CBED4D /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEB725F0B92400CBED4D /* MainFlow.swift */; };
+		EC0DBF1125F0B92500CBED4D /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEBC25F0B92400CBED4D /* MainInteractor.swift */; };
+		EC0DBF1225F0B92500CBED4D /* MainInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEBD25F0B92400CBED4D /* MainInteractorProtocol.swift */; };
+		EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEC025F0B92400CBED4D /* HomeViewController.swift */; };
+		EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEC125F0B92400CBED4D /* HomePresenter.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
@@ -20,46 +48,18 @@
 		EC3F44572520BF26004706DC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44562520BF26004706DC /* RxCocoa */; };
 		EC3F44592520BF26004706DC /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44582520BF26004706DC /* RxBlocking */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
-		EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */; };
-		EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC47965123923E6400C9BDD3 /* LoginViewController.swift */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
-		EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEED22D08EE900012079 /* StartPresenter.swift */; };
-		EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CDEF122D08F3800012079 /* StartViewController.swift */; };
-		EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */; };
-		EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
-		EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */; };
-		EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */; };
-		EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */; };
-		EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */; };
-		EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7B23DD755E00787E51 /* HomePresenter.swift */; };
-		EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC873D7D23DD756F00787E51 /* HomeViewController.swift */; };
-		EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28125164A860058F779 /* UserTokenRepository.swift */; };
-		EC93A28425164A860058F779 /* UserTokenRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */; };
-		ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */; };
-		ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1450025728DB500352868 /* AddSearchWordViewController.swift */; };
-		ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA1454A257296F600352868 /* NewWordFlow.swift */; };
 		ECA1695B25B038F100F2F19B /* KeychainRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECA1695A25B038F100F2F19B /* KeychainRepository */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
-		ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */; };
 		ECAF5063257E663300F021EA /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF5062257E663300F021EA /* Utils */; };
 		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
-		ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */; };
 		ECC15EEC2416220F00149AC9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E8825456D26006503C2 /* ProfileFlow.swift */; };
-		ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */; };
-		ECC48E9625457403006503C2 /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */; };
-		ECC932B2255547D5007D61B4 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932B1255547D5007D61B4 /* MainInteractor.swift */; };
-		ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC932B5255547F3007D61B4 /* MainInteractorProtocol.swift */; };
-		ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */; };
-		ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */; };
-		ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */; };
-		ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCB195623FD940A0069C5A7 /* UserRepository.swift */; };
 		ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA693925CEA19E005E07D5 /* WordsRepository */; };
 		ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5EA25B323890018110F /* TranslationRepository */; };
 		ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5F725B41BE60018110F /* ApiRepository */; };
@@ -82,56 +82,56 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC0DBE3825F0B92400CBED4D /* NewWordFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordFlow.swift; sourceTree = "<group>"; };
+		EC0DBE5C25F0B92400CBED4D /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
+		EC0DBE5D25F0B92400CBED4D /* NewWordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
+		EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSearchWordPresenter.swift; sourceTree = "<group>"; };
+		EC0DBE6125F0B92400CBED4D /* AddSearchWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSearchWordViewController.swift; sourceTree = "<group>"; };
+		EC0DBE9825F0B92400CBED4D /* ProfileFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
+		EC0DBE9A25F0B92400CBED4D /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
+		EC0DBE9B25F0B92400CBED4D /* ProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
+		EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
+		EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
+		EC0DBEA425F0B92400CBED4D /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		EC0DBEA525F0B92400CBED4D /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		EC0DBEA725F0B92400CBED4D /* UserTokenRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepository.swift; sourceTree = "<group>"; };
+		EC0DBEA825F0B92400CBED4D /* UserTokenRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepositoryProtocol.swift; sourceTree = "<group>"; };
+		EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
+		EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
+		EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		EC0DBEAF25F0B92400CBED4D /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		EC0DBEB125F0B92400CBED4D /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		EC0DBEB225F0B92400CBED4D /* StartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
+		EC0DBEB425F0B92400CBED4D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		EC0DBEB525F0B92400CBED4D /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		EC0DBEB725F0B92400CBED4D /* MainFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
+		EC0DBEBC25F0B92400CBED4D /* MainInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
+		EC0DBEBD25F0B92400CBED4D /* MainInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInteractorProtocol.swift; sourceTree = "<group>"; };
+		EC0DBEC025F0B92400CBED4D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EC0DBEC125F0B92400CBED4D /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		EC0DBF1925F0B93500CBED4D /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIComponents; sourceTree = "<group>"; };
+		EC0DBF3425F0BB4700CBED4D /* TranslationRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TranslationRepository; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC3750A325B078180090F95F /* UIComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIComponents; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		EC47965123923E6400C9BDD3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
-		EC6CDEED22D08EE900012079 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
-		EC6CDEF122D08F3800012079 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
-		EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
-		EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
-		EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC873D7B23DD755E00787E51 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
-		EC873D7D23DD756F00787E51 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		EC93A28125164A860058F779 /* UserTokenRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepository.swift; sourceTree = "<group>"; };
-		EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepositoryProtocol.swift; sourceTree = "<group>"; };
-		ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordPresenter.swift; sourceTree = "<group>"; };
-		ECA1450025728DB500352868 /* AddSearchWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchWordViewController.swift; sourceTree = "<group>"; };
-		ECA1454A257296F600352868 /* NewWordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWordFlow.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
-		ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
 		ECB50D2D258F45FB003B9A68 /* Utils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils; sourceTree = "<group>"; };
 		ECB50D2E258F4608003B9A68 /* UIExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIExtensions; sourceTree = "<group>"; };
 		ECB50D2F258F460B003B9A68 /* RxExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RxExtensions; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
-		ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
-		ECC48E8825456D26006503C2 /* ProfileFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
-		ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
-		ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
-		ECC932B1255547D5007D61B4 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
-		ECC932B5255547F3007D61B4 /* MainInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorProtocol.swift; sourceTree = "<group>"; };
-		ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
-		ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
-		ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
-		ECCB195623FD940A0069C5A7 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		ECDA692E25CE9EC8005E07D5 /* KeychainRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeychainRepository; sourceTree = "<group>"; };
 		ECDA692F25CE9EC8005E07D5 /* ApiRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ApiRepository; sourceTree = "<group>"; };
 		ECDA693025CE9EC8005E07D5 /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConfigsRepository; sourceTree = "<group>"; };
 		ECDA693125CE9EC9005E07D5 /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyValueRepository; sourceTree = "<group>"; };
 		ECDA693425CEA050005E07D5 /* WordsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsRepository; sourceTree = "<group>"; };
-		ECDCE5E725B322BE0018110F /* TranslationRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TranslationRepository; sourceTree = "<group>"; };
 		ECEA376D25C3000200D6C6DC /* linesLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = linesLoading.json; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
@@ -179,45 +179,197 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
+		EC0DBE3625F0B92400CBED4D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				ECBEB5082439C2190017855E /* AppFlow.swift */,
+				EC0DBF1925F0B93500CBED4D /* UIComponents */,
+				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
+				EC0DBE9725F0B92400CBED4D /* ProfileFlow */,
+				EC0DBEA025F0B92400CBED4D /* AuthorizationFlow */,
+				EC0DBEB625F0B92400CBED4D /* MainFlow */,
 			);
-			name = Frameworks;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
-		EC291AF623F034860082E45C /* Authorization */ = {
+		EC0DBE3725F0B92400CBED4D /* NewWordFlow */ = {
 			isa = PBXGroup;
 			children = (
-				ECBEB51B2439E89E0017855E /* AuthorizationFlow.swift */,
-				ECDA691525CE85CB005E07D5 /* Presentation */,
-				ECCB194723FAF4110069C5A7 /* Domain */,
-				ECCB194A23FAF45F0069C5A7 /* Data */,
+				EC0DBE3825F0B92400CBED4D /* NewWordFlow.swift */,
+				EC0DBE5F25F0B92400CBED4D /* AddSearchWord */,
 			);
-			path = Authorization;
+			path = NewWordFlow;
 			sourceTree = "<group>";
 		};
-		EC37503725B06BCB0090F95F /* Common Repositories */ = {
+		EC0DBE5F25F0B92400CBED4D /* AddSearchWord */ = {
 			isa = PBXGroup;
 			children = (
+				EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */,
+				EC0DBE6125F0B92400CBED4D /* AddSearchWordViewController.swift */,
+			);
+			path = AddSearchWord;
+			sourceTree = "<group>";
+		};
+		EC0DBE9725F0B92400CBED4D /* ProfileFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBE9825F0B92400CBED4D /* ProfileFlow.swift */,
+				EC0DBE9D25F0B92400CBED4D /* ProfileMainScreen */,
+			);
+			path = ProfileFlow;
+			sourceTree = "<group>";
+		};
+		EC0DBE9D25F0B92400CBED4D /* ProfileMainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */,
+				EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */,
+			);
+			path = ProfileMainScreen;
+			sourceTree = "<group>";
+		};
+		EC0DBEA025F0B92400CBED4D /* AuthorizationFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */,
+				EC0DBEAD25F0B92400CBED4D /* Registration */,
+				EC0DBEB025F0B92400CBED4D /* Start */,
+				EC0DBEB325F0B92400CBED4D /* Login */,
+			);
+			path = AuthorizationFlow;
+			sourceTree = "<group>";
+		};
+		EC0DBEA325F0B92400CBED4D /* UserRepository */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEA425F0B92400CBED4D /* UserRepository.swift */,
+				EC0DBEA525F0B92400CBED4D /* UserRepositoryProtocol.swift */,
+			);
+			path = UserRepository;
+			sourceTree = "<group>";
+		};
+		EC0DBEA625F0B92400CBED4D /* AuthTokenRepository */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEA725F0B92400CBED4D /* UserTokenRepository.swift */,
+				EC0DBEA825F0B92400CBED4D /* UserTokenRepositoryProtocol.swift */,
+			);
+			path = AuthTokenRepository;
+			sourceTree = "<group>";
+		};
+		EC0DBEAD25F0B92400CBED4D /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */,
+				EC0DBEAF25F0B92400CBED4D /* RegistrationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		EC0DBEB025F0B92400CBED4D /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEB125F0B92400CBED4D /* StartViewController.swift */,
+				EC0DBEB225F0B92400CBED4D /* StartPresenter.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		EC0DBEB325F0B92400CBED4D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEB425F0B92400CBED4D /* LoginViewController.swift */,
+				EC0DBEB525F0B92400CBED4D /* LoginPresenter.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		EC0DBEB625F0B92400CBED4D /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEB725F0B92400CBED4D /* MainFlow.swift */,
+				EC0DBEBF25F0B92400CBED4D /* Home */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		EC0DBEBF25F0B92400CBED4D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEC025F0B92400CBED4D /* HomeViewController.swift */,
+				EC0DBEC125F0B92400CBED4D /* HomePresenter.swift */,
+			);
+			name = Home;
+			path = Presentation/Home;
+			sourceTree = "<group>";
+		};
+		EC0DBF1C25F0B94400CBED4D /* NewWordInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBE5C25F0B92400CBED4D /* NewWordInteractorProtocol.swift */,
+				EC0DBE5D25F0B92400CBED4D /* NewWordInteractor.swift */,
+			);
+			path = NewWordInteractor;
+			sourceTree = "<group>";
+		};
+		EC0DBF1F25F0B96600CBED4D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBF3425F0BB4700CBED4D /* TranslationRepository */,
 				ECDA693425CEA050005E07D5 /* WordsRepository */,
 				ECDA692F25CE9EC8005E07D5 /* ApiRepository */,
 				ECDA693025CE9EC8005E07D5 /* ConfigsRepository */,
 				ECDA692E25CE9EC8005E07D5 /* KeychainRepository */,
 				ECDA693125CE9EC9005E07D5 /* KeyValueRepository */,
 			);
-			path = "Common Repositories";
+			path = Data;
 			sourceTree = "<group>";
 		};
-		EC3EAB1022D4DC1C00BFCBFC /* Features */ = {
+		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				EC291AF623F034860082E45C /* Authorization */,
-				ECC48E7825455CE7006503C2 /* Profile */,
-				EC873D7823DD753400787E51 /* Main */,
-				ECA14483257286A900352868 /* NewWord */,
+				EC0DBF2F25F0BA8600CBED4D /* MainInteractor */,
+				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
+				EC0DBEA325F0B92400CBED4D /* UserRepository */,
+				EC0DBEA625F0B92400CBED4D /* AuthTokenRepository */,
+				EC0DBF2725F0B9D700CBED4D /* ProfileInteractorProtocol */,
+				EC0DBF1C25F0B94400CBED4D /* NewWordInteractor */,
 			);
-			path = Features;
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		EC0DBF2725F0B9D700CBED4D /* ProfileInteractorProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBE9A25F0B92400CBED4D /* ProfileInteractorProtocol.swift */,
+				EC0DBE9B25F0B92400CBED4D /* ProfileInteractor.swift */,
+			);
+			path = ProfileInteractorProtocol;
+			sourceTree = "<group>";
+		};
+		EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */,
+				EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */,
+			);
+			path = AuthorizationInteractor;
+			sourceTree = "<group>";
+		};
+		EC0DBF2F25F0BA8600CBED4D /* MainInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBEBC25F0B92400CBED4D /* MainInteractor.swift */,
+				EC0DBEBD25F0B92400CBED4D /* MainInteractorProtocol.swift */,
+			);
+			path = MainInteractor;
+			sourceTree = "<group>";
+		};
+		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EC4278CC22D070E5001218AB = {
@@ -245,11 +397,10 @@
 				EC4CB12F22D2418800CB826E /* AppResolder.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
-				ECBEB5082439C2190017855E /* AppFlow.swift */,
-				EC37503725B06BCB0090F95F /* Common Repositories */,
-				EC3750A325B078180090F95F /* UIComponents */,
+				EC0DBF2225F0B98C00CBED4D /* Domain */,
+				EC0DBF1F25F0B96600CBED4D /* Data */,
+				EC0DBE3625F0B92400CBED4D /* Presentation */,
 				ECB50CB6258F45E3003B9A68 /* Helpers */,
-				EC3EAB1022D4DC1C00BFCBFC /* Features */,
 				EC4278FF22D071F4001218AB /* Resources */,
 			);
 			path = lexickon_ios;
@@ -278,60 +429,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		EC6F3A62259B6A6A00D35BE3 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				EC6F3A63259B6AAC00D35BE3 /* NewWordInteractor.swift */,
-				EC6F3A67259B6AD100D35BE3 /* NewWordInteractorProtocol.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		EC75A1E625C551160053F88E /* LottieJSONAnimations */ = {
 			isa = PBXGroup;
 			children = (
 				ECEA376D25C3000200D6C6DC /* linesLoading.json */,
 			);
 			path = LottieJSONAnimations;
-			sourceTree = "<group>";
-		};
-		EC873D7823DD753400787E51 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				ECAC6BFD2446EAAC00D86417 /* MainFlow.swift */,
-				ECDA691E25CE88EA005E07D5 /* Presentation */,
-				ECC932A2255449CC007D61B4 /* Domain */,
-				ECC932A1255449AF007D61B4 /* Data */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		EC93A27C25164A2F0058F779 /* AuthTokenRepository */ = {
-			isa = PBXGroup;
-			children = (
-				EC93A28225164A860058F779 /* UserTokenRepositoryProtocol.swift */,
-				EC93A28125164A860058F779 /* UserTokenRepository.swift */,
-			);
-			path = AuthTokenRepository;
-			sourceTree = "<group>";
-		};
-		ECA14483257286A900352868 /* NewWord */ = {
-			isa = PBXGroup;
-			children = (
-				ECA1454A257296F600352868 /* NewWordFlow.swift */,
-				ECDA692025CE890A005E07D5 /* Presentation */,
-				EC6F3A62259B6A6A00D35BE3 /* Domain */,
-				ECA144882572878E00352868 /* Data */,
-			);
-			path = NewWord;
-			sourceTree = "<group>";
-		};
-		ECA144882572878E00352868 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				ECDCE5E725B322BE0018110F /* TranslationRepository */,
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		ECB50CB6258F45E3003B9A68 /* Helpers */ = {
@@ -342,164 +445,6 @@
 				ECB50D2D258F45FB003B9A68 /* Utils */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		ECC48E7825455CE7006503C2 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				ECC48E8825456D26006503C2 /* ProfileFlow.swift */,
-				ECDA691B25CE86A3005E07D5 /* Presentation */,
-				ECC48E7C25455D29006503C2 /* Domain */,
-				ECC48E7D25455D30006503C2 /* Data */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		ECC48E7C25455D29006503C2 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				EC82BBF02546CB0100037DA0 /* ProfileInteractorProtocol.swift */,
-				EC82BBEA2546CA8F00037DA0 /* ProfileInteractor.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		ECC48E7D25455D30006503C2 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		ECC932A1255449AF007D61B4 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		ECC932A2255449CC007D61B4 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				ECC932B5255547F3007D61B4 /* MainInteractorProtocol.swift */,
-				ECC932B1255547D5007D61B4 /* MainInteractor.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		ECCB194723FAF4110069C5A7 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				ECCB194E23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift */,
-				ECCB194823FAF4570069C5A7 /* AuthorizationInteractor.swift */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		ECCB194A23FAF45F0069C5A7 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				EC93A27C25164A2F0058F779 /* AuthTokenRepository */,
-				ECCB195323FD92560069C5A7 /* UserRepository */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		ECCB195323FD92560069C5A7 /* UserRepository */ = {
-			isa = PBXGroup;
-			children = (
-				ECCB195423FD930D0069C5A7 /* UserRepositoryProtocol.swift */,
-				ECCB195623FD940A0069C5A7 /* UserRepository.swift */,
-			);
-			path = UserRepository;
-			sourceTree = "<group>";
-		};
-		ECDA691525CE85CB005E07D5 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				ECDA691625CE85DA005E07D5 /* Start */,
-				ECDA691725CE85FC005E07D5 /* Login */,
-				ECDA691825CE8610005E07D5 /* Registration */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		ECDA691625CE85DA005E07D5 /* Start */ = {
-			isa = PBXGroup;
-			children = (
-				EC6CDEED22D08EE900012079 /* StartPresenter.swift */,
-				EC6CDEF122D08F3800012079 /* StartViewController.swift */,
-			);
-			path = Start;
-			sourceTree = "<group>";
-		};
-		ECDA691725CE85FC005E07D5 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				EC47964F23923E5100C9BDD3 /* LoginPresenter.swift */,
-				EC47965123923E6400C9BDD3 /* LoginViewController.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		ECDA691825CE8610005E07D5 /* Registration */ = {
-			isa = PBXGroup;
-			children = (
-				EC7D6F5722EDC15E00DE4B18 /* RegistrationPresenter.swift */,
-				EC7D6F5922EDC1E000DE4B18 /* RegistrationViewController.swift */,
-			);
-			path = Registration;
-			sourceTree = "<group>";
-		};
-		ECDA691B25CE86A3005E07D5 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				ECDA691C25CE86B5005E07D5 /* ProfileMainScreen */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		ECDA691C25CE86B5005E07D5 /* ProfileMainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				ECC48E8E25457058006503C2 /* ProfileMainScreenPresenter.swift */,
-				ECC48E9525457403006503C2 /* ProfileMainScreenViewController.swift */,
-			);
-			path = ProfileMainScreen;
-			sourceTree = "<group>";
-		};
-		ECDA691E25CE88EA005E07D5 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				ECDA691F25CE88EE005E07D5 /* Home */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		ECDA691F25CE88EE005E07D5 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				EC873D7B23DD755E00787E51 /* HomePresenter.swift */,
-				EC873D7D23DD756F00787E51 /* HomeViewController.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		ECDA692025CE890A005E07D5 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				ECDA692125CE891A005E07D5 /* AddSearchWord */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		ECDA692125CE891A005E07D5 /* AddSearchWord */ = {
-			isa = PBXGroup;
-			children = (
-				ECA1449325728A5300352868 /* AddSearchWordPresenter.swift */,
-				ECA1450025728DB500352868 /* AddSearchWordViewController.swift */,
-			);
-			path = AddSearchWord;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -641,38 +586,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC6F3A64259B6AAC00D35BE3 /* NewWordInteractor.swift in Sources */,
-				ECA1449425728A5300352868 /* AddSearchWordPresenter.swift in Sources */,
-				ECC932B6255547F3007D61B4 /* MainInteractorProtocol.swift in Sources */,
-				EC93A28325164A860058F779 /* UserTokenRepository.swift in Sources */,
-				ECCB195523FD930D0069C5A7 /* UserRepositoryProtocol.swift in Sources */,
-				EC7D6F5822EDC15E00DE4B18 /* RegistrationPresenter.swift in Sources */,
-				ECC932B2255547D5007D61B4 /* MainInteractor.swift in Sources */,
-				ECC48E9625457403006503C2 /* ProfileMainScreenViewController.swift in Sources */,
-				EC7D6F5A22EDC1E000DE4B18 /* RegistrationViewController.swift in Sources */,
-				ECCB194923FAF4570069C5A7 /* AuthorizationInteractor.swift in Sources */,
-				EC6F3A68259B6AD100D35BE3 /* NewWordInteractorProtocol.swift in Sources */,
-				EC47965223923E6400C9BDD3 /* LoginViewController.swift in Sources */,
-				EC6CDEF222D08F3800012079 /* StartViewController.swift in Sources */,
+				EC0DBEFE25F0B92500CBED4D /* ProfileInteractorProtocol.swift in Sources */,
+				EC0DBF0925F0B92500CBED4D /* RegistrationPresenter.swift in Sources */,
+				EC0DBED925F0B92500CBED4D /* AddSearchWordViewController.swift in Sources */,
+				EC0DBED625F0B92500CBED4D /* NewWordInteractorProtocol.swift in Sources */,
+				EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */,
+				EC0DBF0E25F0B92500CBED4D /* LoginPresenter.swift in Sources */,
+				EC0DBF0625F0B92500CBED4D /* UserTokenRepositoryProtocol.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
-				EC6CDEEE22D08EE900012079 /* StartPresenter.swift in Sources */,
-				ECC48E8925456D26006503C2 /* ProfileFlow.swift in Sources */,
-				EC93A28425164A860058F779 /* UserTokenRepositoryProtocol.swift in Sources */,
-				ECCB194F23FD8DD60069C5A7 /* AuthorizationInteractorProtocol.swift in Sources */,
-				EC82BBF12546CB0100037DA0 /* ProfileInteractorProtocol.swift in Sources */,
-				EC873D7E23DD756F00787E51 /* HomeViewController.swift in Sources */,
-				ECC48E8F25457058006503C2 /* ProfileMainScreenPresenter.swift in Sources */,
-				ECAC6BFE2446EAAC00D86417 /* MainFlow.swift in Sources */,
-				EC82BBEB2546CA8F00037DA0 /* ProfileInteractor.swift in Sources */,
+				EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */,
+				EC0DBF0425F0B92500CBED4D /* UserRepositoryProtocol.swift in Sources */,
+				EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */,
+				EC0DBF0325F0B92500CBED4D /* UserRepository.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */,
-				EC873D7C23DD755E00787E51 /* HomePresenter.swift in Sources */,
-				EC47965023923E5100C9BDD3 /* LoginPresenter.swift in Sources */,
+				EC0DBF0525F0B92500CBED4D /* UserTokenRepository.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
-				ECA1450125728DB500352868 /* AddSearchWordViewController.swift in Sources */,
-				ECBEB51C2439E89E0017855E /* AuthorizationFlow.swift in Sources */,
-				ECCB195723FD940A0069C5A7 /* UserRepository.swift in Sources */,
+				EC0DBF0A25F0B92500CBED4D /* RegistrationViewController.swift in Sources */,
+				EC0DBED725F0B92500CBED4D /* NewWordInteractor.swift in Sources */,
+				EC0DBF0C25F0B92500CBED4D /* StartPresenter.swift in Sources */,
+				EC0DBF0125F0B92500CBED4D /* ProfileMainScreenPresenter.swift in Sources */,
+				EC0DBF0D25F0B92500CBED4D /* LoginViewController.swift in Sources */,
+				EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */,
+				EC0DBED825F0B92500CBED4D /* AddSearchWordPresenter.swift in Sources */,
+				EC0DBF1125F0B92500CBED4D /* MainInteractor.swift in Sources */,
+				EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */,
+				EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */,
+				EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */,
+				EC0DBF1225F0B92500CBED4D /* MainInteractorProtocol.swift in Sources */,
+				EC0DBEFF25F0B92500CBED4D /* ProfileInteractor.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
-				ECA1454B257296F600352868 /* NewWordFlow.swift in Sources */,
+				EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */,
+				EC0DBF0F25F0B92500CBED4D /* MainFlow.swift in Sources */,
+				EC0DBEC225F0B92500CBED4D /* NewWordFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
