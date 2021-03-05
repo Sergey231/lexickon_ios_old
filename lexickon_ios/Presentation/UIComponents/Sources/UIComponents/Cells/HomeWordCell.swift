@@ -191,12 +191,6 @@ public final class HomeWordCell: DisposableTableViewCell {
                 )
             )
         }
-        
-//        rx.layoutSubviews
-//            .subscribe(onNext: { _ in
-//                self.layout(with: model)
-//            })
-//            .disposed(by: disposeBag)
     }
 }
 
