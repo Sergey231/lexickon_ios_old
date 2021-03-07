@@ -11,7 +11,7 @@ import RxCocoa
 import LexickonApi
 import RxDataSources
 import Resolver
-import UIComponents
+import LXControlKit
 import RxExtensions
 
 typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>

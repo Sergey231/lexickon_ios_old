@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "UIComponents",
+    name: "LXControlKit",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_12),
@@ -13,38 +13,22 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "UIComponents",
-            targets: ["UIComponents"]),
+            name: "LXControlKit",
+            targets: ["LXControlKit"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(
-            url: "https://github.com/ReactiveX/RxSwift",
-            from: "6.1.0"
-        ),
-        .package(
-            url: "https://github.com/SnapKit/SnapKit.git",
-            from: "5.0.1"
-        ),
-        .package(
-            url: "https://github.com/SwipeCellKit/SwipeCellKit.git",
-            from: "2.7.1"
-        )
+        .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.1.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "UIComponents",
-            dependencies: [
-                "RxSwift",
-                .product(name: "RxCocoa", package: "RxSwift"),
-                "SnapKit",
-                "SwipeCellKit"
-            ]),
+            name: "LXControlKit",
+            dependencies: [.product(name: "RxCocoa", package: "RxSwift")]),
         .testTarget(
-            name: "UIComponentsTests",
-            dependencies: ["UIComponents"]),
+            name: "LXControlKitTests",
+            dependencies: ["LXControlKit"]),
     ]
 )

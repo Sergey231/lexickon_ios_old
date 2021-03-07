@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Resolver
 import RxDataSources
-import UIComponents
+import LXControlKit
 import RxExtensions
 import TranslationRepository
 

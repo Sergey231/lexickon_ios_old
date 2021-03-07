@@ -14,7 +14,7 @@ import RxSwift
 import UIExtensions
 import RxDataSources
 import Resolver
-import UIComponents
+import LXControlKit
 import Lottie
 import Assets
 import LexickonApi

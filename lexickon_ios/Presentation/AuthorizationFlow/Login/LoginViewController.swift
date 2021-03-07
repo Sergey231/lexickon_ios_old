@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import UIComponents
+import LXControlKit
 import UIExtensions
 import RxExtensions
 import RxFlow
