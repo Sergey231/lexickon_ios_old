@@ -124,14 +124,14 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             $0.delegate = self
             $0.alwaysBounceHorizontal = true
             contentView.addSubview($0)
-            $0.snp.makeConstraints {
+            $0.snp.makeConstraints { [unowned self] in
                 $0.edges.equalToSuperview()
             }
         }
         
         swipeContentView.setup {
             scrollView.addSubview($0)
-            $0.snp.makeConstraints {
+            $0.snp.makeConstraints { [unowned self] in
                 $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
                 $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
                 $0.edges.equalToSuperview()
