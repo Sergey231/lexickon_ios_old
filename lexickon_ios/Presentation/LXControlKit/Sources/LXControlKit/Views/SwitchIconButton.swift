@@ -17,22 +17,30 @@ public final class SwitchIconButton: UIView {
     
     public struct Input {
         
-        public init(onIcon: UIImage, offIcon: UIImage) {
+        public init(
+            onIcon: UIImage,
+            offIcon: UIImage,
+            onColor: UIColor? = nil,
+            offColor: UIColor? = nil,
+            selected: Driver<Bool>? = nil
+        ) {
             self.onIcon = onIcon
             self.offIcon = offIcon
+            self.onColor = onColor
+            self.offColor = offColor
+            self.selected = selected
         }
         public let onIcon: UIImage
         public let offIcon: UIImage
+        public let onColor: UIColor?
+        public let offColor: UIColor?
+        public let selected: Driver<Bool>?
     }
     
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private let iconImageView = UIImageView()
     
     private let onRelay = BehaviorRelay<Bool>(value: true)
     
@@ -50,19 +58,23 @@ public final class SwitchIconButton: UIView {
     }
        
     private func createUI() {
-        addSubviews(
-            iconImageView,
-            button
-        )
-        iconImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        iconImageView.setup {
+            $0.contentMode = .scaleAspectFit
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
-        button.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        button.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
     }
     
     public func configure(input: Input) {
+        
         button.rx.tap
             .withLatestFrom(onRelay.asObservable())
             .map { !$0 }
@@ -73,6 +85,18 @@ public final class SwitchIconButton: UIView {
             .map { $0 ? input.onIcon : input.offIcon }
             .asDriver(onErrorDriveWith: .empty())
             .drive(iconImageView.rx.imageWithAnimation)
+            .disposed(by: disposeBag)
+        
+        onRelay
+            .map { $0 ? input.onColor : input.offColor }
+            .asDriver(onErrorDriveWith: .empty())
+            .filter { $0 != nil }
+            .drive(iconImageView.rx.tintColor)
+            .disposed(by: disposeBag)
+        
+        input
+            .selected?
+            .drive(onRelay)
             .disposed(by: disposeBag)
     }
 }

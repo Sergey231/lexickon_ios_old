@@ -30,8 +30,10 @@ public enum Images {
   public static let enter = ImageAsset(name: "enter")
   public static let splash = ImageAsset(name: "splash")
   public static let newWordIcon = ImageAsset(name: "NewWordIcon")
-  public static let oval = ImageAsset(name: "Oval")
-  public static let ovalBorder = ImageAsset(name: "OvalBorder")
+  public enum Selection {
+    public static let off = ImageAsset(name: "Selection/off")
+    public static let on = ImageAsset(name: "Selection/on")
+  }
   public static let accountIcon = ImageAsset(name: "account_icon")
   public static let emailIcon = ImageAsset(name: "email_icon")
   public static let eyeHideIcon = ImageAsset(name: "eye_hide_icon")

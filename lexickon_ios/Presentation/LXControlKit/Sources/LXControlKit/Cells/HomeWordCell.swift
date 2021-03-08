@@ -52,12 +52,22 @@ extension HomeWordViewModel: IdentifiableType {
 
 public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
+    private enum SelectionType {
+        case selected
+        case notSelected
+        case none
+    }
+    
     private let scrollView = UIScrollView()
     private let swipeContentView = UIView()
     private let wordLable = UILabel()
     private let progressView = WideWordProgressView()
     private lazy var iconImageView = UIImageView()
+    private let selectionIcon = SwitchIconButton()
     private lazy var logo = Logo()
+    
+    private var wordSelectedState = BehaviorRelay<SelectionType>(value: .none)
+    private var lastX: CGFloat = 0
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -72,6 +82,15 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.clipsToBounds = true
+        
+        selectionIcon.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.size.equalTo(18)
+            }
+        }
         
         progressView.setup {
             $0.layer.cornerRadius = CornerRadius.big
@@ -124,7 +143,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             $0.delegate = self
             $0.alwaysBounceHorizontal = true
             contentView.addSubview($0)
-            $0.snp.makeConstraints { [unowned self] in
+            $0.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
         }
@@ -154,11 +173,25 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .filter { $0 >= 0 }
         
         contentOffsetX.drive(onNext: { [unowned self] offsetX in
+            let offset = -(Margin.regular + (offsetX * 0.5))
             progressView.snp.updateConstraints {
-                $0.right.equalToSuperview().offset(-(Margin.regular + offsetX))
+                $0.right.equalToSuperview().offset(offset)
             }
         })
         .disposed(by: disposeBag)
+        
+        contentOffsetX
+            .map { [unowned self] x -> Bool in
+                let result = self.lastX > x
+                self.lastX = x
+                return result
+            }
+            .distinctUntilChanged()
+            .debug("⚽️⚽️")
+            .drive()
+            
+        
+        var selectionOnColor: UIColor = Colors.fireWordBright.color
         
         switch model.studyType {
             
@@ -173,6 +206,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     progress: 0.5
                 )
             )
+            selectionOnColor = Colors.fireWordBright.color
         case .ready:
             wordLable.textColor = Colors.readyWordBright.color
             progressView.configure(
@@ -182,6 +216,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     progress: 0.5
                 )
             )
+            selectionOnColor = Colors.readyWordBright.color
         case .new:
             wordLable.textColor = Colors.newWordBright.color
             iconImageView.image = Images.newWordIcon.image
@@ -193,6 +228,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     progress: 0.5
                 )
             )
+            selectionOnColor = Colors.newWordBright.color
         case .waiting:
             wordLable.textColor = Colors.waitingWordBright.color
             iconImageView.image = Images.waitingWordIcon.image
@@ -204,7 +240,46 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     progress: 0.5
                 )
             )
+            selectionOnColor = Colors.waitingWordBright.color
         }
+        
+        wordSelectedState
+            .asDriver()
+            .drive(onNext: { [unowned self] state in
+                UIView.animate(withDuration: 0.3) {
+                    switch state {
+                    case .selected, .notSelected:
+                        self.progressView.snp.updateConstraints {
+                            $0.right.equalToSuperview().offset(-Margin.big)
+                        }
+                    case .none:
+                        self.progressView.snp.updateConstraints {
+                            $0.right.equalToSuperview().offset(-Margin.regular)
+                        }
+                    }
+                }
+            })
+        
+        let isWordSelected = wordSelectedState
+            .asDriver()
+            .map { state -> Bool in
+                switch state {
+                case .selected:
+                    return true
+                case .notSelected, .none:
+                    return false
+                }
+            }
+        
+        selectionIcon.configure(
+            input: SwitchIconButton.Input(
+                onIcon: Images.Selection.on.image,
+                offIcon: Images.Selection.off.image,
+                onColor: selectionOnColor,
+                offColor: Colors.paleText.color,
+                selected: isWordSelected
+            )
+        )
     }
 }
 
