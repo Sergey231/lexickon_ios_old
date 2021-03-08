@@ -168,7 +168,7 @@ final class HomeViewController: UIViewController, Stepper {
         let tableViewContentOffsetY = tableView.rx
             .didScroll
             .asDriver()
-            .map { _ in self.tableView.contentOffset.y * -1 }
+            .map { [unowned self] _ in self.tableView.contentOffset.y * -1 }
             
         tableViewContentOffsetY
             .map { $0 < 120 ? 120 : $0 }

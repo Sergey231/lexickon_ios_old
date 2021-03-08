@@ -147,10 +147,18 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         wordLable.text = model.word
         
-        scrollView.rx.didScroll
+        let contentOffsetX = scrollView.rx
+            .didScroll
             .asDriver()
             .map { [unowned self] _ in self.scrollView.contentOffset.x }
-            .debug("🔥").drive()
+            .filter { $0 >= 0 }
+        
+        contentOffsetX.drive(onNext: { [unowned self] offsetX in
+            progressView.snp.updateConstraints {
+                $0.right.equalToSuperview().offset(-(Margin.regular + offsetX))
+            }
+        })
+        .disposed(by: disposeBag)
         
         switch model.studyType {
             
