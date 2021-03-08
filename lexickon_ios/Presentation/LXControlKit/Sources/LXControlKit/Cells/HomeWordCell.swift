@@ -50,7 +50,7 @@ extension HomeWordViewModel: IdentifiableType {
     public typealias Identity = String
 }
 
-public final class HomeWordCell: DisposableTableViewCell {
+public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
     private let scrollView = UIScrollView()
     private let swipeContentView = UIView()
@@ -73,26 +73,9 @@ public final class HomeWordCell: DisposableTableViewCell {
         contentView.backgroundColor = .clear
         contentView.clipsToBounds = true
         
-        scrollView.setup {
-            $0.alwaysBounceHorizontal = true
-            contentView.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-        }
-        
-        swipeContentView.setup {
-            scrollView.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
-                $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
-                $0.edges.equalToSuperview()
-            }
-        }
-        
         progressView.setup {
             $0.layer.cornerRadius = CornerRadius.big
-            swipeContentView.addSubview($0)
+            contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.right.equalToSuperview().offset(-Margin.regular)
@@ -120,7 +103,7 @@ public final class HomeWordCell: DisposableTableViewCell {
         
         wordLable.setup {
             $0.font = .systemRegular24
-            swipeContentView.addSubview($0)
+            contentView.addSubview($0)
 
             if input.isReady {
                 wordLable.snp.makeConstraints {
@@ -136,6 +119,24 @@ public final class HomeWordCell: DisposableTableViewCell {
                 }
             }
         }
+        
+        scrollView.setup {
+            $0.delegate = self
+            $0.alwaysBounceHorizontal = true
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+        
+        swipeContentView.setup {
+            scrollView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
+                $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
+                $0.edges.equalToSuperview()
+            }
+        }
     }
     
     public func configurate(with model: HomeWordViewModel) {
@@ -145,6 +146,11 @@ public final class HomeWordCell: DisposableTableViewCell {
         logo.configure(with: .init(tintColor: Colors.readyWordBright.color))
         
         wordLable.text = model.word
+        
+        scrollView.rx.didScroll
+            .asDriver()
+            .map { [unowned self] _ in self.scrollView.contentOffset.x }
+            .debug("🔥").drive()
         
         switch model.studyType {
             

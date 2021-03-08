@@ -185,7 +185,6 @@
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC0DBF5025F4A2D100CBED4D /* LXControlKit */,
 				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
-				EC0DBE9725F0B92400CBED4D /* ProfileFlow */,
 				EC0DBEA025F0B92400CBED4D /* AuthorizationFlow */,
 				EC0DBEB625F0B92400CBED4D /* MainFlow */,
 			);
@@ -289,6 +288,7 @@
 			children = (
 				EC0DBEB725F0B92400CBED4D /* MainFlow.swift */,
 				EC0DBEBF25F0B92400CBED4D /* Home */,
+				EC0DBE9725F0B92400CBED4D /* ProfileFlow */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -397,9 +397,9 @@
 				EC4CB12F22D2418800CB826E /* AppResolder.swift */,
 				ECA61E3322D07798003DD5B1 /* AppDelegate.swift */,
 				ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */,
+				EC0DBE3625F0B92400CBED4D /* Presentation */,
 				EC0DBF2225F0B98C00CBED4D /* Domain */,
 				EC0DBF1F25F0B96600CBED4D /* Data */,
-				EC0DBE3625F0B92400CBED4D /* Presentation */,
 				ECB50CB6258F45E3003B9A68 /* Helpers */,
 				EC4278FF22D071F4001218AB /* Resources */,
 			);
