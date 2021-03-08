@@ -91,7 +91,7 @@ public final class HomeWordCell: DisposableTableViewCell {
         }
         
         progressView.setup {
-            $0.layer.cornerRadius = 13
+            $0.layer.cornerRadius = CornerRadius.big
             swipeContentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
