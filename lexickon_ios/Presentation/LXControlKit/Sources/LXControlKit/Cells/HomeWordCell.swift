@@ -21,16 +21,19 @@ public struct HomeWordViewModel {
     
     public init(
         word: String,
-        studyType: StudyType
+        studyType: StudyType,
+        didSelect: @escaping () -> ()
     ) {
         self.word = word
         self.studyType = studyType
+        self.didSelect = didSelect
     }
     
     public var isReady: Bool { self.studyType == .ready }
     
     public let word: String
     public let studyType: StudyType
+    public let didSelect: () -> ()
 }
 
 extension HomeWordViewModel: Hashable {
@@ -172,24 +175,43 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .map { [unowned self] _ in self.scrollView.contentOffset.x }
             .filter { $0 >= 0 }
         
-        contentOffsetX.drive(onNext: { [unowned self] offsetX in
-            let offset = -(Margin.regular + (offsetX * 0.5))
-            progressView.snp.updateConstraints {
-                $0.right.equalToSuperview().offset(offset)
-            }
+        contentOffsetX
+            .withLatestFrom(wordSelectedState.asDriver()) { (offsetX: $0, wordSelectedState: $1) }
+            .drive(onNext: { [unowned self] args in
+                let rightMargin = args.wordSelectedState == .none
+                    ? Margin.regular
+                    : Margin.big
+                let offset = -(rightMargin + (args.offsetX * 0.5))
+                progressView.snp.updateConstraints {
+                    $0.right.equalToSuperview().offset(offset)
+                }
         })
         .disposed(by: disposeBag)
         
-        contentOffsetX
+        let selection = contentOffsetX
             .map { [unowned self] x -> Bool in
                 let result = self.lastX > x
                 self.lastX = x
                 return result
             }
             .distinctUntilChanged()
-            .debug("⚽️⚽️")
-            .drive()
+            .filter { $0 }
+            .do(onNext: { _ in
+                model.didSelect()
+            })
             
+        selection
+            .withLatestFrom(wordSelectedState.asDriver())
+            .map { state in
+                switch state {
+                case .selected:
+                    return .notSelected
+                case .notSelected, .none:
+                    return .selected
+                }
+            }
+            .drive(wordSelectedState)
+            .disposed(by: disposeBag)
         
         var selectionOnColor: UIColor = Colors.fireWordBright.color
         
@@ -250,15 +272,17 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     switch state {
                     case .selected, .notSelected:
                         self.progressView.snp.updateConstraints {
-                            $0.right.equalToSuperview().offset(-Margin.big)
+                            $0.right.equalTo(-Margin.big)
                         }
                     case .none:
                         self.progressView.snp.updateConstraints {
                             $0.right.equalToSuperview().offset(-Margin.regular)
                         }
                     }
+                    self.progressView.superview?.layoutIfNeeded()
                 }
             })
+            .disposed(by: disposeBag)
         
         let isWordSelected = wordSelectedState
             .asDriver()

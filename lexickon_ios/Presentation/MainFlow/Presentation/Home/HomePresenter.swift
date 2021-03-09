@@ -83,13 +83,37 @@ final class HomePresenter {
                 words.forEach {
                     switch $0.studyType {
                     case .fire:
-                        fireWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .fire))
+                        fireWords.append(
+                            HomeWordViewModel(
+                                word: $0.studyWord,
+                                studyType: .fire,
+                                didSelect: { print("fire") }
+                            )
+                        )
                     case .ready:
-                        readyWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .ready))
+                        readyWords.append(
+                            HomeWordViewModel(
+                                word: $0.studyWord,
+                                studyType: .ready,
+                                didSelect: { print("ready") }
+                            )
+                        )
                     case .new:
-                        newWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .new))
+                        newWords.append(
+                            HomeWordViewModel(
+                                word: $0.studyWord,
+                                studyType: .new,
+                                didSelect: { print("new") }
+                            )
+                        )
                     case .waiting:
-                        waitingWords.append(HomeWordViewModel(word: $0.studyWord, studyType: .waiting))
+                        waitingWords.append(
+                            HomeWordViewModel(
+                                word: $0.studyWord,
+                                studyType: .waiting,
+                                didSelect: { print("waiting") }
+                            )
+                        )
                     }
                 }
                 
