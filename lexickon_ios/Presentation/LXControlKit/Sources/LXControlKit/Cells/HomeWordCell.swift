@@ -66,7 +66,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     private let wordLable = UILabel()
     private let progressView = WideWordProgressView()
     private lazy var iconImageView = UIImageView()
-    private let selectionIcon = SwitchIconButton()
+    private let selectionIcon = CheckBox()
     private lazy var logo = Logo()
     
     private var wordSelectedState = BehaviorRelay<SelectionType>(value: .none)
@@ -90,8 +90,9 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.size.equalTo(18)
+                $0.right.equalToSuperview()
+                $0.height.equalTo(18)
+                $0.width.equalTo(46)
             }
         }
         
@@ -100,7 +101,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
-                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.right.equalTo(selectionIcon.snp.left)
                 $0.top.equalToSuperview().offset(Margin.regular/2)
                 $0.bottom.equalToSuperview().offset(-Margin.regular/2)
             }
@@ -180,10 +181,10 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .drive(onNext: { [unowned self] args in
                 let rightMargin = args.wordSelectedState == .none
                     ? Margin.regular
-                    : Margin.big
-                let offset = -(rightMargin + (args.offsetX * 0.5))
-                progressView.snp.updateConstraints {
-                    $0.right.equalToSuperview().offset(offset)
+                    : 46
+                let offset = (rightMargin + (args.offsetX * 0.5))
+                selectionIcon.snp.updateConstraints {
+                    $0.width.equalTo(offset)
                 }
         })
         .disposed(by: disposeBag)
@@ -271,12 +272,12 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                 UIView.animate(withDuration: 0.3) {
                     switch state {
                     case .selected, .notSelected:
-                        self.progressView.snp.updateConstraints {
-                            $0.right.equalTo(-Margin.big)
+                        self.selectionIcon.snp.updateConstraints {
+                            $0.width.equalTo(46)
                         }
                     case .none:
-                        self.progressView.snp.updateConstraints {
-                            $0.right.equalToSuperview().offset(-Margin.regular)
+                        self.selectionIcon.snp.updateConstraints {
+                            $0.width.equalTo(Margin.regular)
                         }
                     }
                     self.progressView.superview?.layoutIfNeeded()
@@ -296,12 +297,13 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             }
         
         selectionIcon.configure(
-            input: SwitchIconButton.Input(
+            input: CheckBox.Input(
                 onIcon: Images.Selection.on.image,
                 offIcon: Images.Selection.off.image,
                 onColor: selectionOnColor,
                 offColor: Colors.paleText.color,
-                selected: isWordSelected
+                selected: isWordSelected,
+                animated: false
             )
         )
     }

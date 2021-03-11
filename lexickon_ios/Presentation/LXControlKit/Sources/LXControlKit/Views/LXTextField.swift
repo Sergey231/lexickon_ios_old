@@ -77,7 +77,7 @@ public final class LXTextField: UIView {
     }()
     private let leftIconView = UIImageView()
     private let rightIconView = UIImageView()
-    private let eyeIconButton = SwitchIconButton()
+    private let eyeIconButton = CheckBox()
     private let lineView = UIView()
     
     private var _input: Input?
