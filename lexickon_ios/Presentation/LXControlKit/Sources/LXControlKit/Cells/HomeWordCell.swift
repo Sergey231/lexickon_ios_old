@@ -176,30 +176,37 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .map { [unowned self] _ in self.scrollView.contentOffset.x }
             .filter { $0 >= 0 }
         
-        contentOffsetX
-            .withLatestFrom(wordSelectedState.asDriver()) { (offsetX: $0, wordSelectedState: $1) }
-            .drive(onNext: { [unowned self] args in
-                let rightMargin = args.wordSelectedState == .none
-                    ? Margin.regular
-                    : 46
-                let offset = (rightMargin + (args.offsetX * 0.5))
-                selectionIcon.snp.updateConstraints {
-                    $0.width.equalTo(offset)
-                }
-        })
-        .disposed(by: disposeBag)
-        
-        let selection = contentOffsetX
+        let isPullingUp = contentOffsetX
             .map { [unowned self] x -> Bool in
                 let result = self.lastX > x
                 self.lastX = x
                 return result
             }
             .distinctUntilChanged()
+            
+        let selection = isPullingUp
             .filter { $0 }
-            .do(onNext: { _ in
-                model.didSelect()
-            })
+            .do(onNext: { _ in model.didSelect() })
+        
+        Driver.combineLatest(
+            contentOffsetX,
+            isPullingUp
+        ) .flatMapLatest { x, isPullingUp -> Driver<CGFloat> in
+            isPullingUp ? .empty() : .just(x)
+        }
+        .withLatestFrom(wordSelectedState.asDriver()) { (offsetX: $0, wordSelectedState: $1) }
+        .drive(onNext: { [unowned self] args in
+            
+            let selectionIconWidth = args.wordSelectedState == .none
+                ? Margin.regular
+                : 46
+            
+            let offset = (selectionIconWidth + (args.offsetX * 0.5))
+            
+            selectionIcon.snp.updateConstraints {
+                $0.width.equalTo(offset)
+            }
+        })
             
         selection
             .withLatestFrom(wordSelectedState.asDriver())
