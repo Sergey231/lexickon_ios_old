@@ -221,68 +221,59 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .drive(wordSelectedState)
             .disposed(by: disposeBag)
         
-        var selectionOnColor: UIColor = Colors.fireWordBright.color
+        var wordColor: UIColor = Colors.fireWordBright.color
+        var progressColor: UIColor = Colors.fireWord.color
+        var bgColor: UIColor = Colors.fireWordPale.color
         
         switch model.studyType {
             
         case .fire:
-            wordLable.textColor = Colors.fireWordBright.color
             iconImageView.image = Images.wordMustReapetIcon.image
-            iconImageView.tintColor = Colors.fireWordBright.color
-            progressView.configure(
-                input: WideWordProgressView.Input(
-                    bgColor: Colors.fireWordPale.color,
-                    progressColor: Colors.fireWord.color,
-                    progress: 0.5
-                )
-            )
-            selectionOnColor = Colors.fireWordBright.color
+            wordColor = Colors.fireWordBright.color
+            progressColor = Colors.fireWord.color
+            bgColor = Colors.fireWordPale.color
+
         case .ready:
-            wordLable.textColor = Colors.readyWordBright.color
-            progressView.configure(
-                input: WideWordProgressView.Input(
-                    bgColor: Colors.readyWordPale.color,
-                    progressColor: Colors.readyWord.color,
-                    progress: 0.5
-                )
-            )
-            selectionOnColor = Colors.readyWordBright.color
-        case .new:
-            wordLable.textColor = Colors.newWordBright.color
             iconImageView.image = Images.newWordIcon.image
-            iconImageView.tintColor = Colors.newWordBright.color
-            progressView.configure(
-                input: WideWordProgressView.Input(
-                    bgColor: Colors.newWord.color,
-                    progressColor: Colors.newWord.color,
-                    progress: 0.5
-                )
-            )
-            selectionOnColor = Colors.newWordBright.color
+            wordColor = Colors.readyWordBright.color
+            progressColor = Colors.readyWord.color
+            bgColor = Colors.readyWordPale.color
+            
+        case .new:
+            iconImageView.image = Images.newWordIcon.image
+            wordColor = Colors.newWordBright.color
+            progressColor = Colors.newWord.color
+            bgColor = Colors.newWord.color
+            
         case .waiting:
-            wordLable.textColor = Colors.waitingWordBright.color
             iconImageView.image = Images.waitingWordIcon.image
-            iconImageView.tintColor = Colors.waitingWordBright.color
-            progressView.configure(
-                input: WideWordProgressView.Input(
-                    bgColor: Colors.waitingWordPale.color,
-                    progressColor: Colors.waitingWord.color,
-                    progress: 0.5
-                )
-            )
-            selectionOnColor = Colors.waitingWordBright.color
+            wordColor = Colors.waitingWordBright.color
+            progressColor = Colors.waitingWord.color
+            bgColor = Colors.waitingWordPale.color
         }
+        
+        wordLable.textColor = wordColor
+        iconImageView.tintColor = wordColor
+        progressView.configure(
+            input: WideWordProgressView.Input(
+                bgColor: bgColor,
+                progressColor: progressColor,
+                progress: 0.5
+            )
+        )
         
         wordSelectedState
             .asDriver()
             .drive(onNext: { [unowned self] state in
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.2) {
                     switch state {
                     case .selected, .notSelected:
+                        selectionIcon.alpha = 1
                         self.selectionIcon.snp.updateConstraints {
                             $0.width.equalTo(46)
                         }
                     case .none:
+                        selectionIcon.alpha = 0
                         self.selectionIcon.snp.updateConstraints {
                             $0.width.equalTo(Margin.regular)
                         }
@@ -307,7 +298,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             input: CheckBox.Input(
                 onIcon: Images.Selection.on.image,
                 offIcon: Images.Selection.off.image,
-                onColor: selectionOnColor,
+                onColor: wordColor,
                 offColor: Colors.paleText.color,
                 selected: isWordSelected,
                 animated: false
