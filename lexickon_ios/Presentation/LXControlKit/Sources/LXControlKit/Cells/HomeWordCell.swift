@@ -19,21 +19,28 @@ import LexickonApi
 
 public struct HomeWordViewModel {
     
-    public init(
-        word: String,
-        studyType: StudyType,
-        didSelect: @escaping () -> ()
-    ) {
-        self.word = word
-        self.studyType = studyType
-        self.didSelect = didSelect
+    public enum SelectionType {
+        case selected
+        case notSelected
+        case none
     }
     
     public var isReady: Bool { self.studyType == .ready }
-    
     public let word: String
     public let studyType: StudyType
-    public let didSelect: () -> ()
+    public let didTap: PublishRelay<Void>
+    
+    public var wordSelectedState = BehaviorRelay<SelectionType>(value: .none)
+    
+    public init(
+        word: String,
+        studyType: StudyType,
+        didTap: PublishRelay<Void>
+    ) {
+        self.word = word
+        self.studyType = studyType
+        self.didTap = didTap
+    }
 }
 
 extension HomeWordViewModel: Hashable {
@@ -55,12 +62,6 @@ extension HomeWordViewModel: IdentifiableType {
 
 public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
-    private enum SelectionType {
-        case selected
-        case notSelected
-        case none
-    }
-    
     private let scrollView = UIScrollView()
     private let swipeContentView = UIView()
     private let wordLable = UILabel()
@@ -69,7 +70,6 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     private let selectionIcon = CheckBox()
     private lazy var logo = Logo()
     
-    private var wordSelectedState = BehaviorRelay<SelectionType>(value: .none)
     private var lastX: CGFloat = 0
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -183,10 +183,11 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                 return result
             }
             .distinctUntilChanged()
+            .asDriver()
             
         let selection = isPullingUp
             .filter { $0 }
-            .do(onNext: { _ in model.didSelect() })
+            .do(onNext: { _ in model.didTap.accept(()) })
         
         Driver.combineLatest(
             contentOffsetX,
@@ -194,7 +195,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         ) .flatMapLatest { x, isPullingUp -> Driver<CGFloat> in
             isPullingUp ? .empty() : .just(x)
         }
-        .withLatestFrom(wordSelectedState.asDriver()) { (offsetX: $0, wordSelectedState: $1) }
+        .withLatestFrom(model.wordSelectedState.asDriver()) { (offsetX: $0, wordSelectedState: $1) }
         .drive(onNext: { [unowned self] args in
             
             let selectionIconWidth = args.wordSelectedState == .none
@@ -207,9 +208,10 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                 $0.width.equalTo(offset)
             }
         })
+        .disposed(by: disposeBag)
             
         selection
-            .withLatestFrom(wordSelectedState.asDriver())
+            .withLatestFrom(model.wordSelectedState.asDriver())
             .map { state in
                 switch state {
                 case .selected:
@@ -218,7 +220,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     return .selected
                 }
             }
-            .drive(wordSelectedState)
+            .drive(model.wordSelectedState)
             .disposed(by: disposeBag)
         
         var wordColor: UIColor = Colors.fireWordBright.color
@@ -262,7 +264,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             )
         )
         
-        wordSelectedState
+        model.wordSelectedState
             .asDriver()
             .drive(onNext: { [unowned self] state in
                 UIView.animate(withDuration: 0.2) {
@@ -283,7 +285,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             })
             .disposed(by: disposeBag)
         
-        let isWordSelected = wordSelectedState
+        let isWordSelected = model.wordSelectedState
             .asDriver()
             .map { state -> Bool in
                 switch state {
