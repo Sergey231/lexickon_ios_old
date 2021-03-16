@@ -160,17 +160,20 @@ final class HomePresenter {
         let wordModels = sections
             .map { $0.flatMap { $0.items } }
         
-        didTap.asDriver(onErrorDriveWith: .empty()).debug("🎲").drive()
+//        didTap.asDriver(onErrorDriveWith: .empty()).debug("🎲").drive()
         
-//        didSelected
-//            .withLatestFrom(wordModels)
-//            .map { words -> Bool in
-//                words.reduce(false) { _, wordModel -> Bool in
-//                    wordModel.wordSelectedState.value != .none
-//                }
-//            }
+        didTap
+            .withLatestFrom(wordModels)
+            .flatMapLatest { words -> Bool in
+                print("😀 \(words.map { $0.wordSelectedState.value } )")
+                return words.reduce(false) { acc, wordModel -> Bool in
+                    var result = acc
+                    result = wordModel.wordSelectedState.value != .none
+                    return result
+                }
+            }
 //            .debug("😀")
-//            .drive()
+            .subscribe()
         
         return Output(
             isNextPageLoading: isNextPageLoading.asDriver(),
