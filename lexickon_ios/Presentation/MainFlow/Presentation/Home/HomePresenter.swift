@@ -164,13 +164,14 @@ final class HomePresenter {
         
         didTap
             .withLatestFrom(wordModels)
-            .flatMapLatest { words -> Bool in
-                print("😀 \(words.map { $0.wordSelectedState.value } )")
-                return words.reduce(false) { acc, wordModel -> Bool in
-                    var result = acc
-                    result = wordModel.wordSelectedState.value != .none
-                    return result
-                }
+            .map { words -> Bool in
+                print("😀 \(words.map { wordModel in Unmanaged.passUnretained(wordModel).toOpaque() } )")
+//                return words.reduce(false) { acc, wordModel -> Bool in
+//                    var result = acc
+//                    result = wordModel.wordSelectedState
+//                    return result
+//                }
+                return false
             }
 //            .debug("😀")
             .subscribe()
