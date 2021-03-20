@@ -51,7 +51,7 @@ public class HomeWordViewModel {
         wordSelectedStateRelay
             .asDriver()
             .drive(onNext: { [unowned self] state in
-                print("😀😀 \(Unmanaged.passUnretained(self).toOpaque())")
+//                print("😀😀 \(Unmanaged.passUnretained(self).toOpaque())")
                 self.wordSelectedState = state
             })
             .disposed(by: disposeBag)
@@ -213,7 +213,9 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         ) .flatMapLatest { x, isPullingUp -> Driver<CGFloat> in
             isPullingUp ? .empty() : .just(x)
         }
-        .withLatestFrom(model.wordSelectedStateRelay.asDriver()) { (offsetX: $0, wordSelectedState: $1) }
+        .withLatestFrom(
+            model.wordSelectedStateRelay.asDriver()
+        ) { (offsetX: $0, wordSelectedState: $1) }
         .drive(onNext: { [unowned self] args in
             
             let selectionIconWidth = args.wordSelectedState == .none
@@ -313,6 +315,10 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     return false
                 }
             }
+        
+        if model.word == "Cup" {
+            model.wordSelectedStateRelay.asDriver().debug("😀").drive()
+        }
         
         selectionIcon.configure(
             input: CheckBox.Input(
