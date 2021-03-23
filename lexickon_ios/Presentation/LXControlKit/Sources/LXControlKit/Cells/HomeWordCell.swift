@@ -32,6 +32,8 @@ public class HomeWordViewModel {
     public let studyType: StudyType
     public let didTap: PublishRelay<Void>
     
+    public let wordDidSelect: (HomeWordViewModel.SelectionType) -> ()
+    
     fileprivate var wordSelectedStateRelay = BehaviorRelay<SelectionType>(value: .none)
     public var wordSelectedState: SelectionType = .none
     
@@ -51,7 +53,6 @@ public class HomeWordViewModel {
         wordSelectedStateRelay
             .asDriver()
             .drive(onNext: { [unowned self] state in
-//                print("😀😀 \(Unmanaged.passUnretained(self).toOpaque())")
                 self.wordSelectedState = state
             })
             .disposed(by: disposeBag)
@@ -315,10 +316,6 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     return false
                 }
             }
-        
-        if model.word == "Cup" {
-            model.wordSelectedStateRelay.asDriver().debug("😀").drive()
-        }
         
         selectionIcon.configure(
             input: CheckBox.Input(
