@@ -34,7 +34,9 @@ final class HomePresenter {
     
     private var loadedWordsCount: Int = 10
     private var pagesCount: Int = 1
-    private var didTap = PublishRelay<Void>()
+    private let didSwipe = PublishRelay<HomeWordViewModel.SelectionType>()
+    
+    private var selectedWordModels: [HomeWordViewModel] = []
     
     func configurate(input: Input) -> Output {
         
@@ -87,32 +89,28 @@ final class HomePresenter {
                         fireWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .fire,
-                                didTap: self.didTap
+                                studyType: .fire
                             )
                         )
                     case .ready:
                         readyWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .ready,
-                                didTap: self.didTap
+                                studyType: .ready
                             )
                         )
                     case .new:
                         newWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .new,
-                                didTap: self.didTap
+                                studyType: .new
                             )
                         )
                     case .waiting:
                         waitingWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .waiting,
-                                didTap: self.didTap
+                                studyType: .waiting
                             )
                         )
                     }
@@ -160,13 +158,13 @@ final class HomePresenter {
         let wordModels = sections
             .map { $0.flatMap { $0.items } }
         
-        didTap
-            .withLatestFrom(wordModels)
-            .map { words -> Bool in
-
-                return false
+        wordModels
+            .flatMap { words in
+                Driver.merge( words.map { $0.wordSelectionState } )
             }
-            .subscribe()
+            .map { $0.wordSelectedState }
+            .debug("🎲")
+            .drive()
         
         return Output(
             isNextPageLoading: isNextPageLoading.asDriver(),

@@ -30,21 +30,22 @@ public class HomeWordViewModel {
     public var isReady: Bool { self.studyType == .ready }
     public let word: String
     public let studyType: StudyType
-    public let didTap: PublishRelay<Void>
-    
-    public let wordDidSelect: (HomeWordViewModel.SelectionType) -> ()
     
     fileprivate var wordSelectedStateRelay = BehaviorRelay<SelectionType>(value: .none)
     public var wordSelectedState: SelectionType = .none
     
+    public var wordSelectionState: Driver<HomeWordViewModel> {
+        wordSelectedStateRelay
+            .asDriver()
+            .map { _ in self }
+    }
+    
     public init(
         word: String,
-        studyType: StudyType,
-        didTap: PublishRelay<Void>
+        studyType: StudyType
     ) {
         self.word = word
         self.studyType = studyType
-        self.didTap = didTap
         
         self.configureWordSeletedState()
     }
@@ -204,9 +205,9 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .distinctUntilChanged()
             .asDriver()
             
-        let selection = isPullingUp
+        let swipeSelection = isPullingUp
             .filter { $0 }
-            .do(onNext: { _ in model.didTap.accept(()) })
+//            .do(onNext: { _ in model.didSwipe.accept(()) })
         
         Driver.combineLatest(
             contentOffsetX,
@@ -231,7 +232,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         })
         .disposed(by: disposeBag)
             
-        selection
+        swipeSelection
             .withLatestFrom(model.wordSelectedStateRelay.asDriver())
             .map { state in
                 switch state {
