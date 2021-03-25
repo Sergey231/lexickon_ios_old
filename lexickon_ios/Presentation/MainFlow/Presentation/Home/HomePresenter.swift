@@ -7,6 +7,7 @@
 //
 
 import RxDataSources
+import RxSwift
 import RxCocoa
 import LexickonApi
 import RxDataSources
@@ -36,7 +37,7 @@ final class HomePresenter {
     private var pagesCount: Int = 1
     private let didSwipe = PublishRelay<HomeWordViewModel.SelectionType>()
     
-    private var selectedWordModels: [HomeWordViewModel] = []
+    fileprivate var selectedWordModels: [HomeWordViewModel] = []
     
     func configurate(input: Input) -> Output {
         
@@ -162,8 +163,16 @@ final class HomePresenter {
             .flatMap { words in
                 Driver.merge( words.map { $0.wordSelectionState } )
             }
-            .map { $0.wordSelectedState }
-            .debug("🎲")
+            .do(onNext: { wordModel in
+                if wordModel.wordSelectedState == .selected {
+                    self.selectedWordModels.append(wordModel)
+                } else {
+                    _ = self.selectedWordModels.remove(where: { selectedWordModel -> Bool in
+                        selectedWordModel == wordModel
+                    })
+                }
+                print("🎲 \(self.selectedWordModels)")
+            })
             .drive()
         
         return Output(
