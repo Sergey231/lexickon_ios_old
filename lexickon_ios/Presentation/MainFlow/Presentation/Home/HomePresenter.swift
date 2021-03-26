@@ -31,6 +31,7 @@ final class HomePresenter {
         let isNextPageLoading: Driver<Bool>
         let isWordsUpdating: Driver<Bool>
         let sections: Driver<[HomeWordSectionModel]>
+        let isEditMode: Driver<Bool>
     }
     
     private var loadedWordsCount: Int = 10
@@ -159,7 +160,7 @@ final class HomePresenter {
         let wordModels = sections
             .map { $0.flatMap { $0.items } }
         
-        wordModels
+        let isEditMode = wordModels
             .flatMap { words in
                 Driver.merge( words.map { $0.wordSelectionState } )
             }
@@ -171,14 +172,15 @@ final class HomePresenter {
                         selectedWordModel == wordModel
                     })
                 }
-                print("🎲 \(self.selectedWordModels)")
             })
-            .drive()
+            .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
+            .distinctUntilChanged()
         
         return Output(
             isNextPageLoading: isNextPageLoading.asDriver(),
             isWordsUpdating: isWordsUpdating.asDriver(),
-            sections: sections
+            sections: sections,
+            isEditMode: isEditMode
         )
     }
 }

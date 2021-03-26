@@ -24,7 +24,7 @@ final class ProfileMainScreenPresenter {
     func configure(input: Input) -> Output {
         
         let didLogout = input.didTapLogOut
-            .flatMap {
+            .flatMap { [unowned self] in
                 self.interactor.logout()
                     .asSignal(onErrorSignalWith: .empty())
             }

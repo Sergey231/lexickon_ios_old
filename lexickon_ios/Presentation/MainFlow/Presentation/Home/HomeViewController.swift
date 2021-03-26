@@ -21,7 +21,7 @@ import LexickonApi
 
 final class HomeViewController: UIViewController, Stepper {
     
-    struct UIConstants {
+    fileprivate struct UIConstants {
         static let profileIconSize: CGFloat = 44
         static let profileIconRightMargin: CGFloat = 16
         static let headerHeight: CGFloat = 210
@@ -211,6 +211,8 @@ final class HomeViewController: UIViewController, Stepper {
         presenterOutput.isWordsUpdating
             .drive(rx.isWordsLoading)
             .disposed(by: disposeBag)
+        
+        presenterOutput.isEditMode.debug("🎲").skip(1).drive(rx.isEditMode)
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -361,7 +363,7 @@ private extension Reactive where Base: HomeViewController {
     }
     
     var isWordsLoading: Binder<Bool> {
-        return Binder(base) { base, isLoading in
+        Binder(base) { base, isLoading in
             UIView.animate(withDuration: 0.1) {
                 base.tableView.alpha = isLoading ? 0 : 1
                 base.activityView.alpha = isLoading ? 1 : 0
@@ -376,6 +378,56 @@ private extension Reactive where Base: HomeViewController {
                     base.activityView.stop()
                 }
             }
+        }
+    }
+    
+    var isEditMode: Binder<Bool> {
+        Binder(base) { base, isEditMode in
+            
+            func showEditMenu() {
+                print("🔥 Edit Menu 🔥")
+            }
+            
+            UIView.animate(withDuration: 0.1) {
+                base.profileIconView.alpha = isEditMode ? 0 : 1
+                base.addWordButton.alpha = isEditMode ? 0 : 1
+            }
+            
+            UIView.animate(
+                withDuration: 0.6,
+                delay: 0,
+                usingSpringWithDamping: 0.3,
+                initialSpringVelocity: 0.5,
+                options: .curveEaseInOut,
+                animations: {
+                    if isEditMode {
+                        base.profileIconView.snp.remakeConstraints {
+                            $0.size.equalTo(HomeViewController.UIConstants.profileIconSize)
+                            $0.right.equalToSuperview().offset(-Margin.regular)
+                            $0.top.equalTo(-Margin.huge)
+                        }
+                        base.addWordButton.snp.updateConstraints {
+                            $0.bottom.equalTo(base.paginationProgressView.snp.top).offset(Margin.huge)
+                        }
+                        
+                    } else {
+                        base.profileIconView.snp.remakeConstraints {
+                            $0.size.equalTo(HomeViewController.UIConstants.profileIconSize)
+                            $0.right.equalToSuperview().offset(-Margin.regular)
+                            $0.top.equalTo(base.view.safeAreaLayoutGuide.snp.top)
+                        }
+                        
+                        base.addWordButton.snp.updateConstraints {
+                            $0.bottom.equalTo(base.paginationProgressView.snp.top).offset(-Margin.small)
+                        }
+                    }
+                    base.profileIconView.superview?.layoutIfNeeded()
+                },
+                completion: { _ in
+                    if isEditMode {
+                        showEditMenu()
+                    }
+                })
         }
     }
 }
