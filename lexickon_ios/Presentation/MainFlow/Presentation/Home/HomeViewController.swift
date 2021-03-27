@@ -212,7 +212,13 @@ final class HomeViewController: UIViewController, Stepper {
             .drive(rx.isWordsLoading)
             .disposed(by: disposeBag)
         
-        presenterOutput.isEditMode.debug("🎲").skip(1).drive(rx.isEditMode)
+        presenterOutput.disposables
+            .disposed(by: disposeBag)
+        
+        presenterOutput.isEditMode
+            .skip(1)
+            .drive(rx.isEditMode)
+            .disposed(by: disposeBag)
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {

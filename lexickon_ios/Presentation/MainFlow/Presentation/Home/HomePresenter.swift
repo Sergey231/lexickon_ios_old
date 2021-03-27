@@ -32,11 +32,12 @@ final class HomePresenter {
         let isWordsUpdating: Driver<Bool>
         let sections: Driver<[HomeWordSectionModel]>
         let isEditMode: Driver<Bool>
+        let disposables: CompositeDisposable
     }
     
     private var loadedWordsCount: Int = 10
     private var pagesCount: Int = 1
-    private let didSwipe = PublishRelay<HomeWordViewModel.SelectionType>()
+    private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
     
     fileprivate var selectedWordModels: [HomeWordViewModel] = []
     
@@ -46,7 +47,7 @@ final class HomePresenter {
         let isWordsUpdating = RxActivityIndicator()
         
         let refreshedWords = input.refreshData
-            .flatMapLatest { _ -> Driver<[LxWordList]> in
+            .flatMapLatest { [unowned self] _ -> Driver<[LxWordList]> in
                 self.mainInteractor.words(
                     per: 10,
                     page: 1
@@ -60,9 +61,17 @@ final class HomePresenter {
                 })
             }
         
+        let refreshDataResetSelectionStateDisposable = input.refreshData
+            .do(onNext: { [unowned self] _ in
+                self.selectedWordModels.removeAll()
+            })
+            .map { false }
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(isEditModeRelay)
+        
         let words = input.needLoadNextWordsPage
             .startWith(())
-            .flatMapLatest { _ -> Driver<[LxWordList]> in
+            .flatMapLatest { [unowned self] _ -> Driver<[LxWordList]> in
                 self.mainInteractor.words(
                     per: self.loadedWordsCount,
                     page: self.pagesCount
@@ -80,7 +89,7 @@ final class HomePresenter {
             words,
             refreshedWords
         )
-            .map { words -> [HomeWordSectionModel] in
+            .map { [unowned self] words -> [HomeWordSectionModel] in
                 var fireWords: [HomeWordViewModel] = []
                 var readyWords: [HomeWordViewModel] = []
                 var newWords: [HomeWordViewModel] = []
@@ -91,28 +100,32 @@ final class HomePresenter {
                         fireWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .fire
+                                studyType: .fire,
+                                isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     case .ready:
                         readyWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .ready
+                                studyType: .ready,
+                                isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     case .new:
                         newWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .new
+                                studyType: .new,
+                                isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     case .waiting:
                         waitingWords.append(
                             HomeWordViewModel(
                                 word: $0.studyWord,
-                                studyType: .waiting
+                                studyType: .waiting,
+                                isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     }
@@ -162,10 +175,10 @@ final class HomePresenter {
         
         let isEditMode = wordModels
             .flatMap { words in
-                Driver.merge( words.map { $0.wordSelectionState } )
+                Driver.merge( words.map { $0.wordSelectionStateDriver } )
             }
             .do(onNext: { wordModel in
-                if wordModel.wordSelectedState == .selected {
+                if wordModel.wordSelectionState == .selected {
                     self.selectedWordModels.append(wordModel)
                 } else {
                     _ = self.selectedWordModels.remove(where: { selectedWordModel -> Bool in
@@ -176,11 +189,19 @@ final class HomePresenter {
             .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
             .distinctUntilChanged()
         
+        let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
+        
+        let disposables = CompositeDisposable(disposables: [
+            resetWordCellsSelectionDisposable,
+            refreshDataResetSelectionStateDisposable
+        ])
+        
         return Output(
             isNextPageLoading: isNextPageLoading.asDriver(),
             isWordsUpdating: isWordsUpdating.asDriver(),
             sections: sections,
-            isEditMode: isEditMode
+            isEditMode: isEditMode,
+            disposables: disposables
         )
     }
 }

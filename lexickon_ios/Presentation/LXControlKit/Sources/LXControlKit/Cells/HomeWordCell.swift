@@ -19,7 +19,7 @@ import LexickonApi
 
 public class HomeWordViewModel {
     
-    public enum SelectionType {
+    public enum SelectionState {
         case selected
         case notSelected
         case none
@@ -29,12 +29,13 @@ public class HomeWordViewModel {
     
     public var isReady: Bool { self.studyType == .ready }
     public let word: String
+    public let isEditMode: Driver<Bool>
     public let studyType: StudyType
     
-    fileprivate var wordSelectedStateRelay = BehaviorRelay<SelectionType>(value: .none)
-    public var wordSelectedState: SelectionType = .none
+    fileprivate var wordSelectedStateRelay = BehaviorRelay<SelectionState>(value: .none)
+    public var wordSelectionState: SelectionState = .none
     
-    public var wordSelectionState: Driver<HomeWordViewModel> {
+    public var wordSelectionStateDriver: Driver<HomeWordViewModel> {
         wordSelectedStateRelay
             .asDriver()
             .map { _ in self }
@@ -42,10 +43,12 @@ public class HomeWordViewModel {
     
     public init(
         word: String,
-        studyType: StudyType
+        studyType: StudyType,
+        isEditMode: Driver<Bool>
     ) {
         self.word = word
         self.studyType = studyType
+        self.isEditMode = isEditMode
         
         self.configureWordSeletedState()
     }
@@ -54,7 +57,7 @@ public class HomeWordViewModel {
         wordSelectedStateRelay
             .asDriver()
             .drive(onNext: { [unowned self] state in
-                self.wordSelectedState = state
+                self.wordSelectionState = state
             })
             .disposed(by: disposeBag)
     }
@@ -82,12 +85,15 @@ extension HomeWordViewModel: IdentifiableType {
 
 public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
+    fileprivate var model: HomeWordViewModel!
+    
+    fileprivate let progressView = WideWordProgressView()
+    fileprivate let selectionIcon = CheckBox()
+    
     private let scrollView = UIScrollView()
     private let swipeContentView = UIView()
     private let wordLable = UILabel()
-    private let progressView = WideWordProgressView()
     private lazy var iconImageView = UIImageView()
-    private let selectionIcon = CheckBox()
     private lazy var logo = Logo()
     
     private var lastX: CGFloat = 0
@@ -184,6 +190,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
     public func configurate(with model: HomeWordViewModel) {
         
+        self.model = model
         createUI(with: model)
         
         logo.configure(with: .init(tintColor: Colors.readyWordBright.color))
@@ -215,16 +222,13 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         ) .flatMapLatest { x, isPullingUp -> Driver<CGFloat> in
             isPullingUp ? .empty() : .just(x)
         }
-        .withLatestFrom(
-            model.wordSelectedStateRelay.asDriver()
-        ) { (offsetX: $0, wordSelectedState: $1) }
-        .drive(onNext: { [unowned self] args in
+        .drive(onNext: { [unowned self] offsetX in
             
-            let selectionIconWidth = args.wordSelectedState == .none
+            let selectionIconWidth = self.model.wordSelectionState == .none
                 ? Margin.regular
                 : 46
             
-            let offset = (selectionIconWidth + (args.offsetX * 0.5))
+            let offset = (selectionIconWidth + (offsetX * 0.5))
             
             selectionIcon.snp.updateConstraints {
                 $0.width.equalTo(offset)
@@ -288,23 +292,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         model.wordSelectedStateRelay
             .asDriver()
-            .drive(onNext: { [unowned self] state in
-                UIView.animate(withDuration: 0.2) {
-                    switch state {
-                    case .selected, .notSelected:
-                        selectionIcon.alpha = 1
-                        self.selectionIcon.snp.updateConstraints {
-                            $0.width.equalTo(46)
-                        }
-                    case .none:
-                        selectionIcon.alpha = 0
-                        self.selectionIcon.snp.updateConstraints {
-                            $0.width.equalTo(Margin.regular)
-                        }
-                    }
-                    self.progressView.superview?.layoutIfNeeded()
-                }
-            })
+            .drive(rx.selectionState)
             .disposed(by: disposeBag)
         
         let isWordSelected = model.wordSelectedStateRelay
@@ -317,6 +305,12 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     return false
                 }
             }
+        
+        model.isEditMode
+            .debounce(.microseconds(10))
+            .map { $0 ? .notSelected : .none }
+            .drive(rx.selectionState)
+            .disposed(by: disposeBag)
         
         selectionIcon.configure(
             input: CheckBox.Input(
@@ -332,3 +326,26 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
 }
 
 extension HomeWordCell: ClassIdentifiable {}
+
+private extension Reactive where Base: HomeWordCell {
+    var selectionState: Binder<HomeWordViewModel.SelectionState> {
+        Binder(base) { base, state in
+            base.model.wordSelectionState = state
+            UIView.animate(withDuration: 0.2) {
+                switch state {
+                case .selected, .notSelected:
+                    base.selectionIcon.alpha = 1
+                    base.selectionIcon.snp.updateConstraints {
+                        $0.width.equalTo(46)
+                    }
+                case .none:
+                    base.selectionIcon.alpha = 0
+                    base.selectionIcon.snp.updateConstraints {
+                        $0.width.equalTo(Margin.regular)
+                    }
+                }
+                base.progressView.superview?.layoutIfNeeded()
+            }
+        }
+    }
+}
