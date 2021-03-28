@@ -93,3 +93,4 @@ Packages/Assets/Sources/Assets/Assets.swift
 Packages/Assets/Sources/Assets/Strings.swift
 lexickon_ios/Common Repositories/ApiRepository/.swiftpm/xcode/package.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 lexickon_ios/Resources/Assets/swiftgen/bin/swiftgen
+.idea
