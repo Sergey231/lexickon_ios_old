@@ -32,12 +32,12 @@ public class HomeWordViewModel {
     public let isEditMode: Driver<Bool>
     public let studyType: StudyType
     
-    fileprivate var wordSelectedStateRelay = BehaviorRelay<SelectionState>(value: .none)
+    fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
     public var wordSelectionState: SelectionState = .none
     
     public var wordSelectionStateDriver: Driver<HomeWordViewModel> {
-        wordSelectedStateRelay
-            .asDriver()
+        wordSelectionStateChangedRelay
+            .asDriver(onErrorDriveWith: .empty())
             .map { _ in self }
     }
     
@@ -49,17 +49,6 @@ public class HomeWordViewModel {
         self.word = word
         self.studyType = studyType
         self.isEditMode = isEditMode
-        
-        self.configureWordSeletedState()
-    }
-    
-    private func configureWordSeletedState() {
-        wordSelectedStateRelay
-            .asDriver()
-            .drive(onNext: { [unowned self] state in
-                self.wordSelectionState = state
-            })
-            .disposed(by: disposeBag)
     }
 }
 
@@ -106,6 +95,10 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+    
     private func createUI(with input: HomeWordViewModel) {
         
         backgroundColor = .clear
@@ -114,7 +107,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         selectionIcon.setup {
             contentView.addSubview($0)
-            $0.snp.makeConstraints {
+            $0.snp.remakeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.right.equalToSuperview()
                 $0.height.equalTo(18)
@@ -125,7 +118,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         progressView.setup {
             $0.layer.cornerRadius = CornerRadius.big
             contentView.addSubview($0)
-            $0.snp.makeConstraints {
+            $0.snp.remakeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.right.equalTo(selectionIcon.snp.left)
                 $0.top.equalToSuperview().offset(Margin.regular/2)
@@ -143,7 +136,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
 
         } else {
             progressView.addSubview(iconImageView)
-            iconImageView.snp.makeConstraints {
+            iconImageView.snp.remakeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.size.equalTo(45)
                 $0.centerY.equalToSuperview()
@@ -155,13 +148,13 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             contentView.addSubview($0)
 
             if input.isReady {
-                wordLable.snp.makeConstraints {
+                wordLable.snp.remakeConstraints {
                     $0.left.equalTo(logo.snp.right).offset(Margin.small)
                     $0.right.equalToSuperview().offset(-Margin.regular)
                     $0.centerY.equalToSuperview()
                 }
             } else {
-                wordLable.snp.makeConstraints {
+                wordLable.snp.remakeConstraints {
                     $0.left.equalTo(iconImageView.snp.right).offset(Margin.small)
                     $0.right.equalToSuperview().offset(-Margin.regular)
                     $0.centerY.equalToSuperview()
@@ -173,14 +166,14 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             $0.delegate = self
             $0.alwaysBounceHorizontal = true
             contentView.addSubview($0)
-            $0.snp.makeConstraints {
+            $0.snp.remakeConstraints {
                 $0.edges.equalToSuperview()
             }
         }
         
         swipeContentView.setup {
             scrollView.addSubview($0)
-            $0.snp.makeConstraints { [unowned self] in
+            $0.snp.remakeConstraints { [unowned self] in
                 $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
                 $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
                 $0.edges.equalToSuperview()
@@ -237,16 +230,14 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         .disposed(by: disposeBag)
             
         swipeSelection
-            .withLatestFrom(model.wordSelectedStateRelay.asDriver())
-            .map { state in
-                switch state {
+            .drive(onNext: { [unowned self] _ in
+                switch self.model.wordSelectionState {
                 case .selected:
-                    return .notSelected
+                    self.model.wordSelectionState = .notSelected
                 case .notSelected, .none:
-                    return .selected
+                    self.model.wordSelectionState = .selected
                 }
-            }
-            .drive(model.wordSelectedStateRelay)
+            })
             .disposed(by: disposeBag)
         
         var wordColor: UIColor = Colors.fireWordBright.color
@@ -290,15 +281,21 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             )
         )
         
-        model.wordSelectedStateRelay
-            .asDriver()
-            .drive(rx.selectionState)
+        swipeSelection
+            .asSignal(onErrorSignalWith: .empty())
+            .map { _ in () }
+            .emit(to: model.wordSelectionStateChangedRelay)
             .disposed(by: disposeBag)
         
-        let isWordSelected = model.wordSelectedStateRelay
+        swipeSelection
+            .map { [unowned self] _ in self.model.wordSelectionState }
             .asDriver()
-            .map { state -> Bool in
-                switch state {
+            .drive(rx.selectionStateOffset)
+            .disposed(by: disposeBag)
+        
+        let isWordSelected = swipeSelection
+            .map { [unowned self] _ -> Bool in
+                switch self.model.wordSelectionState {
                 case .selected:
                     return true
                 case .notSelected, .none:
@@ -308,8 +305,15 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         model.isEditMode
             .debounce(.microseconds(10))
-            .map { $0 ? .notSelected : .none }
-            .drive(rx.selectionState)
+            .map {
+                switch ($0, self.model.wordSelectionState) {
+                case (true, .none): return .notSelected
+                case (true, .selected): return .selected
+                case (true, .notSelected): return .notSelected
+                case (false, _): return .none
+                }
+            }
+            .drive(rx.selectionStateOffset)
             .disposed(by: disposeBag)
         
         selectionIcon.configure(
@@ -328,11 +332,14 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
 extension HomeWordCell: ClassIdentifiable {}
 
 private extension Reactive where Base: HomeWordCell {
-    var selectionState: Binder<HomeWordViewModel.SelectionState> {
+    var selectionStateOffset: Binder<HomeWordViewModel.SelectionState> {
         Binder(base) { base, state in
+            if base.model.word == "Car" {
+                print("🎲🎲🎲 \(state)")
+            }
             base.model.wordSelectionState = state
             UIView.animate(withDuration: 0.2) {
-                switch state {
+                switch base.model.wordSelectionState {
                 case .selected, .notSelected:
                     base.selectionIcon.alpha = 1
                     base.selectionIcon.snp.updateConstraints {
