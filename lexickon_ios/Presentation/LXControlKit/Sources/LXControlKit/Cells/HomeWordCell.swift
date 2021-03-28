@@ -207,7 +207,6 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             
         let swipeSelection = isPullingUp
             .filter { $0 }
-//            .do(onNext: { _ in model.didSwipe.accept(()) })
         
         Driver.combineLatest(
             contentOffsetX,
@@ -293,7 +292,22 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .drive(rx.selectionStateOffset)
             .disposed(by: disposeBag)
         
-        let isWordSelected = swipeSelection
+        let stateAferEditModeChanging = model.isEditMode
+            .debounce(.microseconds(10))
+            .map { [unowned self] isEditMode -> HomeWordViewModel.SelectionState in
+                switch (isEditMode, self.model.wordSelectionState) {
+                case (true, .none): return .notSelected
+                case (true, .selected): return .selected
+                case (true, .notSelected): return .notSelected
+                case (false, _): return .none
+                }
+            }
+            
+        stateAferEditModeChanging
+            .drive(rx.selectionStateOffset)
+            .disposed(by: disposeBag)
+        
+        let isWordSelected = stateAferEditModeChanging
             .map { [unowned self] _ -> Bool in
                 switch self.model.wordSelectionState {
                 case .selected:
@@ -302,19 +316,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                     return false
                 }
             }
-        
-        model.isEditMode
-            .debounce(.microseconds(10))
-            .map {
-                switch ($0, self.model.wordSelectionState) {
-                case (true, .none): return .notSelected
-                case (true, .selected): return .selected
-                case (true, .notSelected): return .notSelected
-                case (false, _): return .none
-                }
-            }
-            .drive(rx.selectionStateOffset)
-            .disposed(by: disposeBag)
+            .startWith(false)
         
         selectionIcon.configure(
             input: CheckBox.Input(
@@ -334,9 +336,6 @@ extension HomeWordCell: ClassIdentifiable {}
 private extension Reactive where Base: HomeWordCell {
     var selectionStateOffset: Binder<HomeWordViewModel.SelectionState> {
         Binder(base) { base, state in
-            if base.model.word == "Car" {
-                print("🎲🎲🎲 \(state)")
-            }
             base.model.wordSelectionState = state
             UIView.animate(withDuration: 0.2) {
                 switch base.model.wordSelectionState {

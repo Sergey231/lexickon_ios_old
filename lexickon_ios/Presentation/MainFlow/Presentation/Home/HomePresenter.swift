@@ -187,7 +187,6 @@ final class HomePresenter {
                 }
             })
             .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
-            .distinctUntilChanged()
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
         
