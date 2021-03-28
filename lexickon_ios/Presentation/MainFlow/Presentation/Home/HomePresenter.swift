@@ -65,8 +65,8 @@ final class HomePresenter {
             .do(onNext: { [unowned self] _ in
                 self.selectedWordModels.removeAll()
             })
-            .map { false }
             .asDriver(onErrorDriveWith: .empty())
+            .map { false }
             .drive(isEditModeRelay)
         
         let words = input.needLoadNextWordsPage
