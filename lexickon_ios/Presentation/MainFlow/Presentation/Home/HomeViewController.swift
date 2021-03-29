@@ -41,6 +41,7 @@ final class HomeViewController: UIViewController, Stepper {
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped)
     fileprivate let paginationProgressView = PaginationProgressView()
     fileprivate let activityView = AnimationView()
+    fileprivate let wordsStatetsPanelView = UIView()
     
     // public for Animator
     let profileIconView = ProfileIconView()
@@ -72,6 +73,16 @@ final class HomeViewController: UIViewController, Stepper {
 
     private func createUI() {
         
+        wordsStatetsPanelView.setup {
+            $0.backgroundColor = .red
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(150)
+            }
+        }
+        
         tableView.setup {
             $0.delegate = self
             $0.rowHeight = 100
@@ -87,7 +98,7 @@ final class HomeViewController: UIViewController, Stepper {
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.left.top.equalToSuperview()
-                $0.height.equalTo(UIConstants.headerHeight)
+                $0.bottom.equalTo(wordsStatetsPanelView.snp.top)
             }
         }
         
