@@ -190,6 +190,11 @@ final class HomePresenter {
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
         
+        let isEditModeForOutput = Driver.merge(
+            isEditMode,
+            isEditModeRelay.asDriver()
+        )
+        
         let disposables = CompositeDisposable(disposables: [
             resetWordCellsSelectionDisposable,
             refreshDataResetSelectionStateDisposable
@@ -199,7 +204,7 @@ final class HomePresenter {
             isNextPageLoading: isNextPageLoading.asDriver(),
             isWordsUpdating: isWordsUpdating.asDriver(),
             sections: sections,
-            isEditMode: isEditMode,
+            isEditMode: isEditModeForOutput,
             disposables: disposables
         )
     }
