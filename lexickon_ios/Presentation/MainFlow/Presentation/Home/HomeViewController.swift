@@ -41,7 +41,7 @@ final class HomeViewController: UIViewController, Stepper {
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped)
     fileprivate let paginationProgressView = PaginationProgressView()
     fileprivate let activityView = AnimationView()
-    fileprivate let wordsStatetsPanelView = UIView()
+    fileprivate let wordsEditPanelView = UIView()
     
     // public for Animator
     let profileIconView = ProfileIconView()
@@ -73,13 +73,13 @@ final class HomeViewController: UIViewController, Stepper {
 
     private func createUI() {
         
-        wordsStatetsPanelView.setup {
+        wordsEditPanelView.setup {
             $0.backgroundColor = .red
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
                 $0.bottom.equalToSuperview()
-                $0.height.equalTo(150)
+                $0.height.equalTo(0)
             }
         }
         
@@ -98,7 +98,7 @@ final class HomeViewController: UIViewController, Stepper {
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.left.top.equalToSuperview()
-                $0.bottom.equalTo(wordsStatetsPanelView.snp.top)
+                $0.bottom.equalTo(wordsEditPanelView.snp.top)
             }
         }
         
@@ -227,7 +227,6 @@ final class HomeViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         presenterOutput.isEditMode
-            .skip(1)
             .drive(rx.isEditMode)
             .disposed(by: disposeBag)
     }
@@ -394,13 +393,20 @@ private extension Reactive where Base: HomeViewController {
     var isEditMode: Binder<Bool> {
         Binder(base) { base, isEditMode in
             
-            func showEditMenu() {
-                print("🔥 Edit Menu 🔥")
+            let wordsEditPanelViewHeight = isEditMode
+                ? 100
+                : 0
+            
+            UIView.animate(withDuration: 0.3) {
+                base.wordsEditPanelView.snp.updateConstraints {
+                    $0.height.equalTo(wordsEditPanelViewHeight)
+                }
             }
             
             UIView.animate(withDuration: 0.1) {
                 base.profileIconView.alpha = isEditMode ? 0 : 1
                 base.addWordButton.alpha = isEditMode ? 0 : 1
+                base.wordsEditPanelView.alpha = isEditMode ? 1 : 0
             }
             
             UIView.animate(
@@ -432,11 +438,6 @@ private extension Reactive where Base: HomeViewController {
                         }
                     }
                     base.profileIconView.superview?.layoutIfNeeded()
-                },
-                completion: { _ in
-                    if isEditMode {
-                        showEditMenu()
-                    }
                 })
         }
     }
