@@ -238,13 +238,6 @@ final class HomeViewController: UIViewController, Stepper {
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        tableView.snp.remakeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
     private func configureTableView(with models: Driver<[HomeWordSectionModel]>) {
         
         var configureCell: HomeWordRxDataSource.ConfigureCell {
