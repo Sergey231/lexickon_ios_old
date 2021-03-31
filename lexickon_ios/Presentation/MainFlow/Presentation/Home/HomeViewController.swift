@@ -41,7 +41,7 @@ final class HomeViewController: UIViewController, Stepper {
     fileprivate let tableView = UITableView(frame: .zero, style: .grouped)
     fileprivate let paginationProgressView = PaginationProgressView()
     fileprivate let activityView = AnimationView()
-    fileprivate let wordsEditPanelView = UIView()
+    fileprivate let wordsEditPanelView = WordEditPanelView()
     
     // public for Animator
     let profileIconView = ProfileIconView()
@@ -219,6 +219,14 @@ final class HomeViewController: UIViewController, Stepper {
             input: .init(animateActivity: presenterOutput.isNextPageLoading)
         )
         
+        let wordsEditPanelViewOutput = wordsEditPanelView.configure(
+            input: WordEditPanelView.Input(
+                learnCount: .just(1),
+                resetCount: .just(3),
+                deleteCount: .just(2)
+            )
+        )
+        
         presenterOutput.isWordsUpdating
             .drive(rx.isWordsLoading)
             .disposed(by: disposeBag)
@@ -229,6 +237,17 @@ final class HomeViewController: UIViewController, Stepper {
         presenterOutput.isEditMode
             .drive(rx.isEditMode)
             .disposed(by: disposeBag)
+        
+        Driver.combineLatest(
+            presenterOutput.isEditMode,
+            wordsEditPanelViewOutput.height
+        ) { isEditMode, height -> CGFloat in
+            isEditMode
+                ? height
+                : 0
+        }
+        .drive(rx.wordsEditPanelViewHieght)
+        .disposed(by: disposeBag)
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -263,6 +282,8 @@ final class HomeViewController: UIViewController, Stepper {
     }
 }
 
+// MARK: UITableViewDelegate extension
+
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -280,6 +301,8 @@ extension HomeViewController: UITableViewDelegate {
         return nil
     }
 }
+
+// MARK: NavigationControllerDelegate extension
 
 extension HomeViewController: UINavigationControllerDelegate {
     
@@ -356,6 +379,8 @@ extension HomeViewController: UINavigationControllerDelegate {
     }
 }
 
+// MARK: private Rx Extensions
+
 private extension Reactive where Base: HomeViewController {
     var refresh: Binder<CGFloat> {
         Binder(base) { base, refreshProgress in
@@ -393,16 +418,6 @@ private extension Reactive where Base: HomeViewController {
     var isEditMode: Binder<Bool> {
         Binder(base) { base, isEditMode in
             
-            let wordsEditPanelViewHeight = isEditMode
-                ? 100
-                : 0
-            
-            UIView.animate(withDuration: 0.3) {
-                base.wordsEditPanelView.snp.updateConstraints {
-                    $0.height.equalTo(wordsEditPanelViewHeight)
-                }
-            }
-            
             UIView.animate(withDuration: 0.1) {
                 base.profileIconView.alpha = isEditMode ? 0 : 1
                 base.addWordButton.alpha = isEditMode ? 0 : 1
@@ -439,6 +454,16 @@ private extension Reactive where Base: HomeViewController {
                     }
                     base.profileIconView.superview?.layoutIfNeeded()
                 })
+        }
+    }
+    
+    var wordsEditPanelViewHieght: Binder<CGFloat> {
+        Binder(base) { base, height in
+            UIView.animate(withDuration: 0.3) {
+                base.wordsEditPanelView.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                }
+            }
         }
     }
 }

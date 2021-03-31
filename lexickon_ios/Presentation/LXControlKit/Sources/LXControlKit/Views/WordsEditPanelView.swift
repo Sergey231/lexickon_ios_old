@@ -33,9 +33,12 @@ public final class WordEditPanelView: UIView {
         let deleteCount: Driver<UInt>
     }
     
+    public struct Output {
+        public let height: Driver<CGFloat>
+    }
+    
     private let disposeBag = DisposeBag()
     
-    private let scaleImageView = UIImageView(image: Images.WordRating.scale.image)
     fileprivate let arrowImageView = UIImageView(image: Images.WordRating.arrow.image)
     
     override init(frame: CGRect) {
@@ -52,8 +55,8 @@ public final class WordEditPanelView: UIView {
         
     }
     
-    public func configure(input: Input) {
+    public func configure(input: Input) -> Output {
         
-       
+        Output(height: Driver.just(100))
     }
 }
