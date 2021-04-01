@@ -39,7 +39,9 @@ public final class WordEditPanelView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    fileprivate let arrowImageView = UIImageView(image: Images.WordRating.arrow.image)
+    private let learnWordsView = PlateView()
+    private let resetWordsView = PlateView()
+    private let deleteWordsView = PlateView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
