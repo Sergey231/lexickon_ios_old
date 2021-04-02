@@ -20,7 +20,7 @@ public final class PlateView: UIView {
     
     public struct Input {
         public init(
-            title: Driver<String>
+            title: Driver<String>,
             titleColor: UIColor = .lightGray
         ) {
             self.title = title
@@ -76,6 +76,6 @@ public final class PlateView: UIView {
         
         titleLabel.textColor = input.titleColor
         
-        Output(didTap: button.rx.tap.asSignal())
+        return Output(didTap: button.rx.tap.asSignal())
     }
 }

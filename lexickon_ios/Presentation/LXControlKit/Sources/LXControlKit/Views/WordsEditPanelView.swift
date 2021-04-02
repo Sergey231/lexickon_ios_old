@@ -15,7 +15,6 @@ public final class WordEditPanelView: UIView {
     
     public init() {
         super.init(frame: .zero)
-        createUI()
     }
     
     public struct Input {
@@ -41,24 +40,49 @@ public final class WordEditPanelView: UIView {
     
     private let learnWordsView = PlateView()
     private let resetWordsView = PlateView()
-    private let deleteWordsView = PlateView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        createUI()
-    }
+    fileprivate let deleteWordsView = PlateView()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
        
-    private func createUI() {
+    private func createUI(input: Input) {
 //        backgroundColor = .clear
         
+        deleteWordsView.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+                $0.height.equalTo(44)
+            }
+        }
     }
     
     public func configure(input: Input) -> Output {
         
-        Output(height: Driver.just(100))
+        createUI(input: input)
+        
+        input.deleteCount
+            .drive(rx.deleteWordsViewCount)
+            .disposed(by: disposeBag)
+        
+        return Output(height: Driver.just(100))
+    }
+}
+
+extension Reactive where Base: WordEditPanelView {
+    
+    var deleteWordsViewCount: Binder<UInt> {
+        Binder(base) { base, count in
+            let height = count > 0 ? 44 : 0
+            UIView.animate(withDuration: 0.3) {
+                base.deleteWordsView.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                }
+                base.layoutIfNeeded()
+            }
+        }
     }
 }
