@@ -47,7 +47,8 @@ public final class WordEditPanelView: UIView {
     }
        
     private func createUI(input: Input) {
-//        backgroundColor = .clear
+        
+        backgroundColor = .clear
         
         deleteWordsView.setup {
             addSubview($0)

@@ -71,17 +71,9 @@ final class HomeViewController: UIViewController, Stepper {
         configureUI()
     }
 
+    // MARK: Create UI
+    
     private func createUI() {
-        
-        wordsEditPanelView.setup {
-            $0.backgroundColor = .red
-            view.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
-                $0.bottom.equalToSuperview()
-                $0.height.equalTo(0)
-            }
-        }
         
         tableView.setup {
             $0.delegate = self
@@ -98,7 +90,16 @@ final class HomeViewController: UIViewController, Stepper {
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.left.top.equalToSuperview()
-                $0.bottom.equalTo(wordsEditPanelView.snp.top)
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            }
+        }
+        
+        wordsEditPanelView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(0)
             }
         }
         
@@ -156,6 +157,8 @@ final class HomeViewController: UIViewController, Stepper {
             }
         }
     }
+    
+    // MARK: Configure UI
     
     private func configureUI() {
         
@@ -460,6 +463,12 @@ private extension Reactive where Base: HomeViewController {
     var wordsEditPanelViewHieght: Binder<CGFloat> {
         Binder(base) { base, height in
             UIView.animate(withDuration: 0.3) {
+                base.tableView.contentInset = UIEdgeInsets(
+                    top: HomeViewController.UIConstants.headerHeight,
+                    left: 0,
+                    bottom: height,
+                    right: 0
+                )
                 base.wordsEditPanelView.snp.updateConstraints {
                     $0.height.equalTo(height)
                 }

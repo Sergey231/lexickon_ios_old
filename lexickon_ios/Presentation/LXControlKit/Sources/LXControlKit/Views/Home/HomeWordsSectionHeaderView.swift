@@ -35,7 +35,7 @@ public final class HomeWordsSectionHeaderView: UIView {
     private func createUI() {
         
         bgTitleView.setup {
-            $0.backgroundColor = Colors.homeWordSectionHeaderBG.color
+            $0.backgroundColor = Colors.baseBG.color
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.top.equalToSuperview()
