@@ -59,3 +59,8 @@
 "NewWrod_placeholder" = "Здесь, Вы можете добавить любое, новое слово в ваш Lexickon";
 "InLexickonState_has" = "Есть в Вашем Lexickon";
 "InLexickonState_hasnt" = "Нет в Вашем Lexickon";
+
+// MARK: Edit Words Panel
+"WordsEditPanelDeleteTitle" = "Удалить (%@)";
+"WordsEditPanelResetTitle" = "Сбросить прогресс изучения (%@)";
+"WordsEditPanelLearnTitle" = "Закрепить (%@)";

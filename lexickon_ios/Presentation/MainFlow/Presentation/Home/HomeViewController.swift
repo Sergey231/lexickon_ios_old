@@ -84,13 +84,13 @@ final class HomeViewController: UIViewController, Stepper {
             $0.contentInset = UIEdgeInsets(
                 top: UIConstants.headerHeight,
                 left: 0,
-                bottom: 0,
+                bottom: view.safeAreaInsets.bottom,
                 right: 0
             )
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.left.top.equalToSuperview()
-                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+                $0.bottom.equalToSuperview()
             }
         }
         
@@ -466,7 +466,7 @@ private extension Reactive where Base: HomeViewController {
                 base.tableView.contentInset = UIEdgeInsets(
                     top: HomeViewController.UIConstants.headerHeight,
                     left: 0,
-                    bottom: height,
+                    bottom: base.view.safeAreaInsets.bottom + height,
                     right: 0
                 )
                 base.wordsEditPanelView.snp.updateConstraints {
