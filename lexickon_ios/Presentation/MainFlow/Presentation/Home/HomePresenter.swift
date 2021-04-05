@@ -32,6 +32,7 @@ final class HomePresenter {
         let isWordsUpdating: Driver<Bool>
         let sections: Driver<[HomeWordSectionModel]>
         let isEditMode: Driver<Bool>
+        let deleteWoresCount: Driver<UInt>
         let disposables: CompositeDisposable
     }
     
@@ -205,6 +206,7 @@ final class HomePresenter {
             isWordsUpdating: isWordsUpdating.asDriver(),
             sections: sections,
             isEditMode: isEditModeForOutput,
+            deleteWoresCount: .just(1),
             disposables: disposables
         )
     }

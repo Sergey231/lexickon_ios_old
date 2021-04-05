@@ -226,7 +226,7 @@ final class HomeViewController: UIViewController, Stepper {
             input: WordEditPanelView.Input(
                 learnCount: .just(1),
                 resetCount: .just(3),
-                deleteCount: .just(2)
+                deleteCount: presenterOutput.deleteWoresCount
             )
         )
         
@@ -249,6 +249,7 @@ final class HomeViewController: UIViewController, Stepper {
                 ? height
                 : 0
         }
+        .distinctUntilChanged()
         .drive(rx.wordsEditPanelViewHieght)
         .disposed(by: disposeBag)
     }
@@ -462,6 +463,7 @@ private extension Reactive where Base: HomeViewController {
     
     var wordsEditPanelViewHieght: Binder<CGFloat> {
         Binder(base) { base, height in
+            print("🎲 \(height)")
             UIView.animate(withDuration: 0.3) {
                 base.tableView.contentInset = UIEdgeInsets(
                     top: HomeViewController.UIConstants.headerHeight,
@@ -472,6 +474,7 @@ private extension Reactive where Base: HomeViewController {
                 base.wordsEditPanelView.snp.updateConstraints {
                     $0.height.equalTo(height)
                 }
+                base.wordsEditPanelView.superview?.layoutIfNeeded()
             }
         }
     }
