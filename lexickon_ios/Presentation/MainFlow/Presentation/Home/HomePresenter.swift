@@ -32,6 +32,7 @@ final class HomePresenter {
         let isWordsUpdating: Driver<Bool>
         let sections: Driver<[HomeWordSectionModel]>
         let isEditMode: Driver<Bool>
+        let wordsForDelete: Driver<[HomeWordViewModel]>
         let disposables: CompositeDisposable
     }
     
@@ -168,15 +169,15 @@ final class HomePresenter {
                 return sections
             }
         
-        
-        
         let wordModels = sections
             .map { $0.flatMap { $0.items } }
         
-        let isEditMode = wordModels
+        let wordSelectionStateDriver = wordModels
             .flatMap { words in
                 Driver.merge( words.map { $0.wordSelectionStateDriver } )
             }
+        
+        let isEditMode = wordSelectionStateDriver
             .do(onNext: { wordModel in
                 if wordModel.wordSelectionState == .selected {
                     self.selectedWordModels.append(wordModel)
@@ -187,6 +188,11 @@ final class HomePresenter {
                 }
             })
             .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
+        
+        let wordsForDelete = wordSelectionStateDriver
+            .map { [unowned self] _ -> [HomeWordViewModel] in
+                self.selectedWordModels
+            }
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
         
@@ -205,6 +211,7 @@ final class HomePresenter {
             isWordsUpdating: isWordsUpdating.asDriver(),
             sections: sections,
             isEditMode: isEditModeForOutput,
+            wordsForDelete: wordsForDelete,
             disposables: disposables
         )
     }
