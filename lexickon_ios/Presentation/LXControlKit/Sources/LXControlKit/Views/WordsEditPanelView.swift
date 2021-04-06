@@ -141,6 +141,8 @@ public final class WordEditPanelView: UIView {
     }
 }
 
+// Rx Extension
+
 extension Reactive where Base: WordEditPanelView {
     
     var deleteWordsViewCount: Binder<UInt> {
