@@ -226,7 +226,7 @@ final class HomeViewController: UIViewController, Stepper {
             input: WordEditPanelView.Input(
                 learnCount: .just(1),
                 resetCount: .just(3),
-                deleteCount: presenterOutput.deleteWoresCount
+                deleteCount: presenterOutput.wordsForDelete.map { UInt($0.count) }
             )
         )
         
