@@ -105,7 +105,7 @@ public final class WordEditPanelView: UIView {
             .drive(rx.learnWordsViewCount)
             .disposed(by: disposeBag)
         
-        let resetWordsTitle = input.learnCount
+        let resetWordsTitle = input.resetCount
             .map { Str.wordsEditPanelResetTitle($0) }
         
         let learnWordsTitle = input.learnCount

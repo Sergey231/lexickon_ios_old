@@ -33,6 +33,7 @@ final class HomePresenter {
         let sections: Driver<[HomeWordSectionModel]>
         let isEditMode: Driver<Bool>
         let wordsForDelete: Driver<[HomeWordViewModel]>
+        let wordsForReset: Driver<[HomeWordViewModel]>
         let disposables: CompositeDisposable
     }
     
@@ -194,6 +195,11 @@ final class HomePresenter {
                 self.selectedWordModels
             }
         
+        let wordsForReset = wordSelectionStateDriver
+            .map { [unowned self] _ -> [HomeWordViewModel] in
+                self.selectedWordModels.filter { $0.studyType.canBeReseted }
+            }
+        
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
         
         let isEditModeForOutput = Driver.merge(
@@ -212,6 +218,7 @@ final class HomePresenter {
             sections: sections,
             isEditMode: isEditModeForOutput,
             wordsForDelete: wordsForDelete,
+            wordsForReset: wordsForReset,
             disposables: disposables
         )
     }
