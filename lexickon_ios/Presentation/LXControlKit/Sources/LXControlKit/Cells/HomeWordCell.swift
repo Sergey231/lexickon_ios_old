@@ -17,7 +17,9 @@ import UIExtensions
 import Assets
 import LexickonApi
 
-public class HomeWordViewModel {
+// MARK: Cell Model
+
+public class HomeWordCellModel {
     
     public enum SelectionState {
         case selected
@@ -35,7 +37,7 @@ public class HomeWordViewModel {
     fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
     public var wordSelectionState: SelectionState = .none
     
-    public var wordSelectionStateDriver: Driver<HomeWordViewModel> {
+    public var wordSelectionStateDriver: Driver<HomeWordCellModel> {
         wordSelectionStateChangedRelay
             .asDriver(onErrorDriveWith: .empty())
             .map { _ in self }
@@ -52,10 +54,10 @@ public class HomeWordViewModel {
     }
 }
 
-extension HomeWordViewModel: Hashable {
+extension HomeWordCellModel: Hashable {
     public static func == (
-        lsh: HomeWordViewModel,
-        rsh: HomeWordViewModel
+        lsh: HomeWordCellModel,
+        rsh: HomeWordCellModel
     ) -> Bool {
         lsh.word == rsh.word
     }
@@ -65,22 +67,24 @@ extension HomeWordViewModel: Hashable {
     }
 }
 
-extension HomeWordViewModel: IdentifiableType {
+extension HomeWordCellModel: IdentifiableType {
     public var identity: String {
         return self.word
     }
     public typealias Identity = String
 }
 
+// MARK: Table View Cell
+
 public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
-    fileprivate var model: HomeWordViewModel!
-    
-    fileprivate let progressView = WideWordProgressView()
-    fileprivate let selectionIcon = CheckBox()
+    fileprivate var model: HomeWordCellModel!
     
     private let scrollView = UIScrollView()
     private let swipeContentView = UIView()
+    fileprivate let selectionIcon = CheckBox()
+    
+    fileprivate let progressView = WideWordProgressView()
     private let wordLable = UILabel()
     private lazy var iconImageView = UIImageView()
     private lazy var logo = Logo()
@@ -99,7 +103,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         super.layoutSubviews()
     }
     
-    private func createUI(with input: HomeWordViewModel) {
+    private func createUI(with input: HomeWordCellModel) {
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear
@@ -181,7 +185,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         }
     }
     
-    public func configurate(with model: HomeWordViewModel) {
+    public func configurate(with model: HomeWordCellModel) {
         
         self.model = model
         createUI(with: model)
@@ -294,7 +298,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         let stateAferEditModeChanging = model.isEditMode
             .debounce(.microseconds(10))
-            .map { [unowned self] isEditMode -> HomeWordViewModel.SelectionState in
+            .map { [unowned self] isEditMode -> HomeWordCellModel.SelectionState in
                 switch (isEditMode, self.model.wordSelectionState) {
                 case (true, .none): return .notSelected
                 case (true, .selected): return .selected
@@ -334,7 +338,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
 extension HomeWordCell: ClassIdentifiable {}
 
 private extension Reactive where Base: HomeWordCell {
-    var selectionStateOffset: Binder<HomeWordViewModel.SelectionState> {
+    var selectionStateOffset: Binder<HomeWordCellModel.SelectionState> {
         Binder(base) { base, state in
             base.model.wordSelectionState = state
             UIView.animate(withDuration: 0.2) {

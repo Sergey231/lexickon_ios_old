@@ -15,6 +15,8 @@ import RxDataSources
 import UIExtensions
 import Assets
 
+// MARK: Cell Model
+
 public struct OtherTranslationCellModel {
     
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
@@ -49,6 +51,8 @@ extension OtherTranslationCellModel: IdentifiableType {
     }
     public typealias Identity = String
 }
+
+// MARK: Table View Cell
 
 public final class TranslationResultCell: DisposableTableViewCell {
     

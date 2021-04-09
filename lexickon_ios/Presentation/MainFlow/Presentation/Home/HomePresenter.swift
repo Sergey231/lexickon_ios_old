@@ -15,7 +15,7 @@ import Resolver
 import LXControlKit
 import RxExtensions
 
-typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordViewModel>
+typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordCellModel>
 typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
 
 final class HomePresenter {
@@ -32,9 +32,9 @@ final class HomePresenter {
         let isWordsUpdating: Driver<Bool>
         let sections: Driver<[HomeWordSectionModel]>
         let isEditMode: Driver<Bool>
-        let wordsForDelete: Driver<[HomeWordViewModel]>
-        let wordsForReset: Driver<[HomeWordViewModel]>
-        let wordsForLearn: Driver<[HomeWordViewModel]>
+        let wordsForDelete: Driver<[HomeWordCellModel]>
+        let wordsForReset: Driver<[HomeWordCellModel]>
+        let wordsForLearn: Driver<[HomeWordCellModel]>
         let disposables: CompositeDisposable
     }
     
@@ -42,7 +42,7 @@ final class HomePresenter {
     private var pagesCount: Int = 1
     private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
     
-    fileprivate var selectedWordModels: [HomeWordViewModel] = []
+    fileprivate var selectedWordModels: [HomeWordCellModel] = []
     
     func configurate(input: Input) -> Output {
         
@@ -93,15 +93,15 @@ final class HomePresenter {
             refreshedWords
         )
             .map { [unowned self] words -> [HomeWordSectionModel] in
-                var fireWords: [HomeWordViewModel] = []
-                var readyWords: [HomeWordViewModel] = []
-                var newWords: [HomeWordViewModel] = []
-                var waitingWords: [HomeWordViewModel] = []
+                var fireWords: [HomeWordCellModel] = []
+                var readyWords: [HomeWordCellModel] = []
+                var newWords: [HomeWordCellModel] = []
+                var waitingWords: [HomeWordCellModel] = []
                 words.forEach {
                     switch $0.studyType {
                     case .fire:
                         fireWords.append(
-                            HomeWordViewModel(
+                            HomeWordCellModel(
                                 word: $0.studyWord,
                                 studyType: .fire,
                                 isEditMode: self.isEditModeRelay.asDriver()
@@ -109,7 +109,7 @@ final class HomePresenter {
                         )
                     case .ready:
                         readyWords.append(
-                            HomeWordViewModel(
+                            HomeWordCellModel(
                                 word: $0.studyWord,
                                 studyType: .ready,
                                 isEditMode: self.isEditModeRelay.asDriver()
@@ -117,7 +117,7 @@ final class HomePresenter {
                         )
                     case .new:
                         newWords.append(
-                            HomeWordViewModel(
+                            HomeWordCellModel(
                                 word: $0.studyWord,
                                 studyType: .new,
                                 isEditMode: self.isEditModeRelay.asDriver()
@@ -125,7 +125,7 @@ final class HomePresenter {
                         )
                     case .waiting:
                         waitingWords.append(
-                            HomeWordViewModel(
+                            HomeWordCellModel(
                                 word: $0.studyWord,
                                 studyType: .waiting,
                                 isEditMode: self.isEditModeRelay.asDriver()
@@ -192,17 +192,17 @@ final class HomePresenter {
             .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
         
         let wordsForDelete = wordSelectionStateDriver
-            .map { [unowned self] _ -> [HomeWordViewModel] in
+            .map { [unowned self] _ -> [HomeWordCellModel] in
                 self.selectedWordModels
             }
         
         let wordsForReset = wordSelectionStateDriver
-            .map { [unowned self] _ -> [HomeWordViewModel] in
+            .map { [unowned self] _ -> [HomeWordCellModel] in
                 self.selectedWordModels.filter { $0.studyType.canBeReseted }
             }
         
         let wordsForLearn = wordSelectionStateDriver
-            .map { [unowned self] _ -> [HomeWordViewModel] in
+            .map { [unowned self] _ -> [HomeWordCellModel] in
                 self.selectedWordModels.filter { $0.studyType.canBeLearnt }
             }
         

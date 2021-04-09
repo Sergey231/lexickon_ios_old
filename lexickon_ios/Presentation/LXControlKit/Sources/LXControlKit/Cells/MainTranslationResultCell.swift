@@ -14,6 +14,8 @@ import RxDataSources
 import UIExtensions
 import Assets
 
+// MARK: Cell Model
+
 public struct MainTranslationCellModel {
     
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
@@ -49,8 +51,14 @@ extension MainTranslationCellModel: IdentifiableType {
     public typealias Identity = String
 }
 
+// MARK: Table View Cell
+
 public final class MainTranslationResultCell: DisposableTableViewCell {
 
+    private let scrollView = UIScrollView()
+    private let swipeContentView = UIView()
+    fileprivate let selectionIcon = CheckBox()
+    
     private let addWordButton = AddWordButton()
     private let wordRatingView = WordRatingView()
     private let translationLabel = UILabel()
