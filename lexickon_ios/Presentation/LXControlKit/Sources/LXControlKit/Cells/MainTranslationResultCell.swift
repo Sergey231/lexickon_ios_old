@@ -18,6 +18,12 @@ import Assets
 
 public struct MainTranslationCellModel {
     
+    public enum SelectionState {
+        case selected
+        case notSelected
+        case none
+    }
+    
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
     public var addWordButtonDidTap: Signal<Void> {
         addWordButtonDidTapRelay.asSignal()
@@ -32,6 +38,9 @@ public struct MainTranslationCellModel {
     }
     public let translation: String
     public let text: String
+    
+    fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
+    public var wordSelectionState: SelectionState = .none
 }
 
 extension MainTranslationCellModel: Hashable {
@@ -55,6 +64,8 @@ extension MainTranslationCellModel: IdentifiableType {
 
 public final class MainTranslationResultCell: DisposableTableViewCell {
 
+    fileprivate var model: MainTranslationCellModel!
+    
     private let scrollView = UIScrollView()
     private let swipeContentView = UIView()
     fileprivate let selectionIcon = CheckBox()
@@ -64,6 +75,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     private let translationLabel = UILabel()
     private let inLexickonStateView = InLexickonStateView()
     
+    private var lastX: CGFloat = 0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         createUI()
@@ -72,6 +85,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Create UI
     
     private func createUI() {
         
@@ -117,7 +132,37 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 $0.bottom.equalTo(inLexickonStateView.snp.top).offset(-Margin.regular)
             }
         }
+        
+        selectionIcon.setup {
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.right.equalToSuperview()
+                $0.height.equalTo(18)
+                $0.width.equalTo(46)
+            }
+        }
+        
+        scrollView.setup {
+            $0.delegate = self
+            $0.alwaysBounceHorizontal = true
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+        
+        swipeContentView.setup {
+            scrollView.addSubview($0)
+            $0.snp.remakeConstraints { [unowned self] in
+                $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
+                $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
+                $0.edges.equalToSuperview()
+            }
+        }
     }
+    
+    // MARK: Configurate Cell
     
     public func configurate(with model: MainTranslationCellModel) {
         
@@ -127,6 +172,49 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         inLexickonStateView.configure(input: .init(state: .hasAsNewWord))
         
+        let contentOffsetX = scrollView.rx
+            .didScroll
+            .asDriver()
+            .map { [unowned self] _ in self.scrollView.contentOffset.x }
+            .filter { $0 >= 0 }
+        
+        let isPullingUp = contentOffsetX
+            .map { [unowned self] x -> Bool in
+                let result = self.lastX > x
+                self.lastX = x
+                return result
+            }
+            .distinctUntilChanged()
+            .asDriver()
+        
+        let swipeSelection = isPullingUp
+            .filter { $0 }
+        
+        swipeSelection
+            .drive(onNext: { [unowned self] _ in
+                switch self.model.wordSelectionState {
+                case .selected:
+                    self.model.wordSelectionState = .notSelected
+                case .notSelected, .none:
+                    self.model.wordSelectionState = .selected
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        Driver.combineLatest(
+            contentOffsetX,
+            isPullingUp
+        ) .flatMapLatest { x, isPullingUp -> Driver<CGFloat> in
+            isPullingUp ? .empty() : .just(x)
+        }
+        .drive(onNext: { [unowned self] offsetX in
+            
+            let offset = offsetX * 0.5
+            
+            print("🎲 \(offset)")
+        })
+        .disposed(by: disposeBag)
+        
         addWordButton.rx.tap
             .asSignal()
             .emit(to: model.addWordButtonDidTapRelay)
@@ -135,3 +223,21 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
 }
 
 extension MainTranslationResultCell: ClassIdentifiable {}
+extension MainTranslationResultCell: UIScrollViewDelegate {}
+
+private extension Reactive where Base: MainTranslationResultCell {
+    var selectionStateOffset: Binder<MainTranslationCellModel.SelectionState> {
+        Binder(base) { base, state in
+            base.model.wordSelectionState = state
+            UIView.animate(withDuration: 0.2) {
+                switch base.model.wordSelectionState {
+                case .selected, .notSelected:
+                    base.selectionIcon.alpha = 1
+                case .none:
+                    base.selectionIcon.alpha = 0
+                }
+                base.layoutIfNeeded()
+            }
+        }
+    }
+}

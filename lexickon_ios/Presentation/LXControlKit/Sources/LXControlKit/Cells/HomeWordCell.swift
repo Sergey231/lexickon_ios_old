@@ -103,6 +103,8 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         super.layoutSubviews()
     }
     
+    // MARK: Create UI
+    
     private func createUI(with input: HomeWordCellModel) {
         
         backgroundColor = .clear
@@ -184,6 +186,8 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             }
         }
     }
+    
+    // MARK: Configure UI
     
     public func configurate(with model: HomeWordCellModel) {
         
