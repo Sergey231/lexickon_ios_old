@@ -26,13 +26,24 @@ public struct OtherTranslationCellModel {
     
     public init(
         translation: String,
-        text: String
+        text: String,
+        isEditMode: Driver<Bool>
     ) {
         self.translation = translation
         self.text = text
+        self.isEditMode = isEditMode
     }
     public let translation: String
     public let text: String
+    public let isEditMode: Driver<Bool>
+    
+    fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
+    public var wordSelectionState: TranslationCell.SelectionState = .none
+    var wordSelectionStateDriver: Driver<OtherTranslationCellModel> {
+        wordSelectionStateChangedRelay
+            .asDriver(onErrorDriveWith: .empty())
+            .map { _ in self }
+    }
 }
 
 extension OtherTranslationCellModel: Hashable {
@@ -71,7 +82,7 @@ public final class TranslationResultCell: DisposableTableViewCell {
         
         wordRaitingView.setup {
             contentView.addSubview($0)
-            $0.configure(input: WordRatingView.Input(rating: .just(1)))
+            $0.configure(input: WordRatingView.Input(rating: .just(0.5)))
             $0.snp.makeConstraints {
                 $0.size.equalTo(34)
                 $0.left.equalToSuperview().offset(Margin.regular)

@@ -65,6 +65,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         configure()
     }
     
+    // MARK: Create UI
+    
     private func createUI() {
         
         placeholderView.setup {
@@ -106,6 +108,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         }
     }
     
+    // MARK: Configure UI
+    
     private func configure() {
         
         let headerViewOutput = headerView.configure()
@@ -130,6 +134,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         presenterOutput.isLoading
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
+        
+        presenterOutput.isEditMode.drive()
     }
     
     private func configureTableView(with models: Driver<[TranslationsSection]>) {

@@ -18,12 +18,6 @@ import Assets
 
 public struct MainTranslationCellModel {
     
-    public enum SelectionState {
-        case selected
-        case notSelected
-        case none
-    }
-    
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
     public var addWordButtonDidTap: Signal<Void> {
         addWordButtonDidTapRelay.asSignal()
@@ -31,16 +25,25 @@ public struct MainTranslationCellModel {
     
     public init(
         translation: String,
-        text: String
+        text: String,
+        isEditMode: Driver<Bool>
     ) {
         self.translation = translation
         self.text = text
+        self.isEditMode = isEditMode
     }
     public let translation: String
     public let text: String
     
     fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
-    public var wordSelectionState: SelectionState = .none
+    public var wordSelectionState: TranslationCell.SelectionState = .none
+    public let isEditMode: Driver<Bool>
+    var wordSelectionStateDriver: Driver<MainTranslationCellModel> {
+        wordSelectionStateChangedRelay
+            .asDriver(onErrorDriveWith: .empty())
+            .map { _ in self }
+            .debug("3🎲")
+    }
 }
 
 extension MainTranslationCellModel: Hashable {
@@ -70,7 +73,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     private let swipeContentView = UIView()
     fileprivate let selectionIcon = CheckBox()
     
-    private let addWordButton = AddWordButton()
+    fileprivate let selectableBGView = UIView()
+    fileprivate let addWordButton = AddWordButton()
     private let wordRatingView = WordRatingView()
     private let translationLabel = UILabel()
     private let inLexickonStateView = InLexickonStateView()
@@ -90,10 +94,20 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     
     private func createUI() {
         
+        selectableBGView.setup {
+            $0.backgroundColor = .lightGray
+            contentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.bottom.equalToSuperview()
+                $0.right.equalToSuperview()
+                $0.left.equalToSuperview()
+            }
+        }
+        
         addWordButton.setup {
             $0.setShadow()
             $0.configureTapScaleAnimation().disposed(by: disposeBag)
-            contentView.addSubview($0)
+            selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.equalToSuperview().offset(-Margin.mid)
                 $0.size.equalTo(44)
@@ -102,7 +116,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         }
         
         wordRatingView.setup {
-            contentView.addSubview($0)
+            selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.size.equalTo(64)
                 $0.top.equalToSuperview().offset(Margin.regular)
@@ -111,7 +125,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         }
         
         inLexickonStateView.setup {
-            contentView.addSubview($0)
+            selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
                 $0.right.equalTo(addWordButton.snp.left).offset(-Margin.regular)
@@ -123,7 +137,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         translationLabel.setup {
             $0.numberOfLines = 0
             $0.textColor = Colors.baseText.color
-            contentView.addSubview($0)
+            selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
                 $0.right.equalTo(addWordButton.snp.left).offset(-Margin.regular)
@@ -134,7 +148,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         }
         
         selectionIcon.setup {
-            contentView.addSubview($0)
+            selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.right.equalToSuperview()
@@ -146,7 +160,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         scrollView.setup {
             $0.delegate = self
             $0.alwaysBounceHorizontal = true
-            contentView.addSubview($0)
+            addSubview($0)
             $0.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
@@ -165,6 +179,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     // MARK: Configurate Cell
     
     public func configurate(with model: MainTranslationCellModel) {
+        
+        self.model = model
         
         wordRatingView.configure(input: WordRatingView.Input(rating: .just(1)))
         
@@ -190,8 +206,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         let swipeSelection = isPullingUp
             .filter { $0 }
         
-        swipeSelection
-            .drive(onNext: { [unowned self] _ in
+        let wordSelectionDriver = swipeSelection
+            .do(onNext: { [unowned self] _ in
                 switch self.model.wordSelectionState {
                 case .selected:
                     self.model.wordSelectionState = .notSelected
@@ -199,6 +215,20 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                     self.model.wordSelectionState = .selected
                 }
             })
+            .map { [unowned self] _ in self.model.wordSelectionState }
+            .debug("1🎲")
+            
+        wordSelectionDriver
+            .debounce(.seconds(1))
+            .debug("2🎲")
+            .asSignal(onErrorSignalWith: .empty())
+            .map { _ in () }
+            .emit(to: model.wordSelectionStateChangedRelay)
+            .disposed(by: disposeBag)
+            
+        wordSelectionDriver
+            .debug("🎲🎲")
+            .drive(rx.selectionState)
             .disposed(by: disposeBag)
         
         Driver.combineLatest(
@@ -210,10 +240,43 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         .drive(onNext: { [unowned self] offsetX in
             
             let offset = offsetX * 0.5
-            
-            print("🎲 \(offset)")
+            self.selectableBGView.snp.updateConstraints {
+                $0.right.equalToSuperview().offset(-offset)
+            }
         })
         .disposed(by: disposeBag)
+        
+        let stateAferEditModeChanging = model.isEditMode
+            .debounce(.microseconds(10))
+            .map { [unowned self] isEditMode -> HomeWordCellModel.SelectionState in
+                switch (isEditMode, self.model.wordSelectionState) {
+                case (true, .none): return .notSelected
+                case (true, .selected): return .selected
+                case (true, .notSelected): return .notSelected
+                case (false, _): return .none
+                }
+            }
+        
+        let isWordSelected = stateAferEditModeChanging
+            .map { [unowned self] _ -> Bool in
+                switch self.model.wordSelectionState {
+                case .selected:
+                    return true
+                case .notSelected, .none:
+                    return false
+                }
+            }
+            .startWith(false)
+        
+        selectionIcon.configure(
+            input: CheckBox.Input(
+                onIcon: Images.Selection.on.image,
+                offIcon: Images.Selection.off.image,
+                onColor: .red,
+                offColor: Colors.paleText.color,
+                selected: isWordSelected
+            )
+        )
         
         addWordButton.rx.tap
             .asSignal()
@@ -226,15 +289,20 @@ extension MainTranslationResultCell: ClassIdentifiable {}
 extension MainTranslationResultCell: UIScrollViewDelegate {}
 
 private extension Reactive where Base: MainTranslationResultCell {
-    var selectionStateOffset: Binder<MainTranslationCellModel.SelectionState> {
+    var selectionState: Binder<TranslationCell.SelectionState> {
         Binder(base) { base, state in
             base.model.wordSelectionState = state
             UIView.animate(withDuration: 0.2) {
                 switch base.model.wordSelectionState {
                 case .selected, .notSelected:
                     base.selectionIcon.alpha = 1
+                    base.addWordButton.alpha = 0
                 case .none:
                     base.selectionIcon.alpha = 0
+                    base.addWordButton.alpha = 1
+                }
+                base.selectableBGView.snp.updateConstraints {
+                    $0.right.equalToSuperview().offset(0)
                 }
                 base.layoutIfNeeded()
             }

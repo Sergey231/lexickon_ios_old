@@ -463,7 +463,6 @@ private extension Reactive where Base: HomeViewController {
     
     var wordsEditPanelViewHieght: Binder<CGFloat> {
         Binder(base) { base, height in
-            print("🎲 \(height)")
             UIView.animate(withDuration: 0.3) {
                 base.tableView.contentInset = UIEdgeInsets(
                     top: HomeViewController.UIConstants.headerHeight,

@@ -14,35 +14,14 @@ import LXControlKit
 import RxExtensions
 import TranslationRepository
 
-enum TranslationCell {
-    case Main(MainTranslationCellModel)
-    case Other(OtherTranslationCellModel)
-    
-    var text: String {
-        switch self {
-        case .Main(let model):
-            return model.text
-        case .Other(let model):
-            return model.text
-        }
-    }
-    
-    var translation: String {
-        switch self {
-        case .Main(let model):
-            return model.translation
-        case .Other(let model):
-            return model.translation
-        }
-    }
-}
-
 typealias TranslationsSection = SectionModel<String, TranslationCell>
 typealias TranslationReulstRxDataSource = RxTableViewSectionedReloadDataSource<TranslationsSection>
 
 final class AddSearchWordPresenter {
     
     @Injected var interacor: NewWordInteractorProtocol
+    private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
+    fileprivate var selectedWordModels: [TranslationCell] = []
     
     struct Input {
         let textForTranslate: Signal<String>
@@ -52,6 +31,7 @@ final class AddSearchWordPresenter {
         let sections: Driver<[TranslationsSection]>
         let isLoading: Driver<Bool>
         let disposables: CompositeDisposable
+        let isEditMode: Driver<Bool>
     }
     
     func configurate(input: Input) -> Output {
@@ -68,12 +48,13 @@ final class AddSearchWordPresenter {
             }
         
         let mainTranslationCellModels = translationResult
-            .map { result -> [TranslationCell] in
+            .map { [unowned self] result -> [TranslationCell] in
                 [
                     TranslationCell.Main(
                         MainTranslationCellModel(
                             translation: result.mainTranslation.translation,
-                            text: result.mainTranslation.text
+                            text: result.mainTranslation.text,
+                            isEditMode: self.isEditModeRelay.asDriver()
                         )
                     )
                 ]
@@ -86,7 +67,8 @@ final class AddSearchWordPresenter {
                     TranslationCell.Other(
                         OtherTranslationCellModel(
                             translation: $0.translation,
-                            text: $0.text
+                            text: $0.text,
+                            isEditMode: self.isEditModeRelay.asDriver()
                         )
                     )
                 }
@@ -134,10 +116,32 @@ final class AddSearchWordPresenter {
                 SectionModel(model: "OtherTranslationSection", items: $1)
             ] }
         
+        let translationModels = translationsSections
+            .map { $0.flatMap { $0.items } }
+        
+        let wordSelectionStateDriver = translationModels
+            .flatMap { words in
+                Driver.merge( words.map { $0.wordSelectionStateDriver } )
+            }
+        
+        let isEditMode = wordSelectionStateDriver
+            .do(onNext: { wordModel in
+                print("state: \(wordModel.wordSelectionState)")
+                if wordModel.wordSelectionState == .selected {
+                    self.selectedWordModels.append(wordModel)
+                } else {
+                    _ = self.selectedWordModels.remove(where: { selectedWordModel -> Bool in
+                        selectedWordModel == wordModel
+                    })
+                }
+            })
+            .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
+        
         return Output(
             sections: translationsSections,
             isLoading: activityIndicator.asDriver(),
-            disposables: CompositeDisposable(disposables: [didTapAddWordDisposable])
+            disposables: CompositeDisposable(disposables: [didTapAddWordDisposable]),
+            isEditMode: isEditMode
         )
     }
 }
