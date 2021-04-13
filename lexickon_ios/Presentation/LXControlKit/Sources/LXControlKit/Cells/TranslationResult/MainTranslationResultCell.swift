@@ -16,7 +16,7 @@ import Assets
 
 // MARK: Cell Model
 
-public struct MainTranslationCellModel {
+public final class MainTranslationCellModel {
     
     fileprivate let addWordButtonDidTapRelay = PublishRelay<Void>()
     public var addWordButtonDidTap: Signal<Void> {
@@ -41,14 +41,19 @@ public struct MainTranslationCellModel {
     var wordSelectionStateDriver: Driver<MainTranslationCellModel> {
         wordSelectionStateChangedRelay
             .asDriver(onErrorDriveWith: .empty())
-            .map { _ in self }
-            .debug("3🎲")
+            .map { _ in
+                print("🎲🎲🎲: " + String.pointer(self))
+                return self
+            }
     }
 }
 
 extension MainTranslationCellModel: Hashable {
-    public static func == (lsh: Self, rsh: Self) -> Bool {
-        return lsh.translation == rsh.translation
+    public static func == (
+        lsh: MainTranslationCellModel,
+        rsh: MainTranslationCellModel
+    ) -> Bool {
+        lsh.translation == rsh.translation
     }
     
     public func hash(into hasher: inout Hasher) {
@@ -214,20 +219,18 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 case .notSelected, .none:
                     self.model.wordSelectionState = .selected
                 }
+                print("🎲🎲" + String.pointer(self.model))
             })
             .map { [unowned self] _ in self.model.wordSelectionState }
-            .debug("1🎲")
             
         wordSelectionDriver
             .debounce(.seconds(1))
-            .debug("2🎲")
             .asSignal(onErrorSignalWith: .empty())
             .map { _ in () }
             .emit(to: model.wordSelectionStateChangedRelay)
             .disposed(by: disposeBag)
             
         wordSelectionDriver
-            .debug("🎲🎲")
             .drive(rx.selectionState)
             .disposed(by: disposeBag)
         
