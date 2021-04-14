@@ -136,12 +136,24 @@ final class AddSearchWordPresenter {
                 }
             })
             .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
+
+        let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
+        
+        let isEditModeForOutput = Driver.merge(
+            isEditModeRelay.asDriver(),
+            isEditMode
+        )
+        
+        let dispossables = CompositeDisposable(disposables: [
+            resetWordCellsSelectionDisposable,
+            didTapAddWordDisposable
+        ])
         
         return Output(
             sections: translationsSections,
             isLoading: activityIndicator.asDriver(),
-            disposables: CompositeDisposable(disposables: [didTapAddWordDisposable]),
-            isEditMode: isEditMode
+            disposables: dispossables,
+            isEditMode: isEditModeForOutput
         )
     }
 }

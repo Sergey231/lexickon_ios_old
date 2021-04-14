@@ -41,10 +41,7 @@ public final class MainTranslationCellModel {
     var wordSelectionStateDriver: Driver<MainTranslationCellModel> {
         wordSelectionStateChangedRelay
             .asDriver(onErrorDriveWith: .empty())
-            .map { _ in
-                print("🎲🎲🎲: " + String.pointer(self))
-                return self
-            }
+            .map { _ in self }
     }
 }
 
@@ -219,12 +216,10 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 case .notSelected, .none:
                     self.model.wordSelectionState = .selected
                 }
-                print("🎲🎲" + String.pointer(self.model))
             })
             .map { [unowned self] _ in self.model.wordSelectionState }
             
         wordSelectionDriver
-            .debounce(.seconds(1))
             .asSignal(onErrorSignalWith: .empty())
             .map { _ in () }
             .emit(to: model.wordSelectionStateChangedRelay)
@@ -277,7 +272,8 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 offIcon: Images.Selection.off.image,
                 onColor: .red,
                 offColor: Colors.paleText.color,
-                selected: isWordSelected
+                selected: isWordSelected,
+                animated: false
             )
         )
         
