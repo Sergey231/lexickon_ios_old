@@ -97,12 +97,11 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
     private func createUI() {
         
         selectableBGView.setup {
-            $0.backgroundColor = .lightGray
             contentView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.top.bottom.equalToSuperview()
                 $0.right.equalToSuperview()
-                $0.left.equalToSuperview()
+                $0.width.equalTo(contentView.snp.width)
             }
         }
         
@@ -246,7 +245,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         let stateAferEditModeChanging = model.isEditMode
             .debounce(.microseconds(10))
-            .map { [unowned self] isEditMode -> HomeWordCellModel.SelectionState in
+            .map { [unowned self] isEditMode -> TranslationCell.SelectionState in
                 switch (isEditMode, self.model.wordSelectionState) {
                 case (true, .none): return .notSelected
                 case (true, .selected): return .selected
@@ -254,6 +253,10 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 case (false, _): return .none
                 }
             }
+        
+        stateAferEditModeChanging
+            .drive(rx.selectionState)
+            .disposed(by: disposeBag)
         
         let isWordSelected = stateAferEditModeChanging
             .map { [unowned self] _ -> Bool in

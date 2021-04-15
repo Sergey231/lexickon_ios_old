@@ -133,9 +133,9 @@ public final class WordEditPanelView: UIView {
             )
         )
         
-        resetWordsViewOutput.didTap.debug("👀").emit()
-        learnWordsViewOutput.didTap.debug("⌨️").emit()
-        deleteWordsViewOutput.didTap.debug("⚽️").emit()
+//        resetWordsViewOutput.didTap.debug("👀").emit()
+//        learnWordsViewOutput.didTap.debug("⌨️").emit()
+//        deleteWordsViewOutput.didTap.debug("⚽️").emit()
         
         return Output(height: Driver.just(200))
     }

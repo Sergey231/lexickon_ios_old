@@ -343,6 +343,8 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
 
 extension HomeWordCell: ClassIdentifiable {}
 
+// MARK: Rx Extensions
+
 private extension Reactive where Base: HomeWordCell {
     var selectionStateOffset: Binder<HomeWordCellModel.SelectionState> {
         Binder(base) { base, state in
