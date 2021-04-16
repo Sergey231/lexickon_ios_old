@@ -67,6 +67,10 @@ extension OtherTranslationCellModel: IdentifiableType {
 
 public final class TranslationResultCell: DisposableTableViewCell {
     
+    private let scrollView = UIScrollView()
+    private let swipeContentView = UIView()
+    fileprivate let selectionIcon = CheckBox()
+    
     private let wordRaitingView = WordRatingView()
     private let translationLable = UILabel()
     
