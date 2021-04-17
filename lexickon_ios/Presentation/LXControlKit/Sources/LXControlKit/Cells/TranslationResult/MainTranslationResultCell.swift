@@ -223,10 +223,6 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
             .map { _ in () }
             .emit(to: model.wordSelectionStateChangedRelay)
             .disposed(by: disposeBag)
-            
-        wordSelectionDriver
-            .drive(rx.selectionState)
-            .disposed(by: disposeBag)
         
         Driver.combineLatest(
             contentOffsetX,
@@ -254,7 +250,10 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 }
             }
         
-        stateAferEditModeChanging
+        Driver.merge(
+            stateAferEditModeChanging,
+            wordSelectionDriver
+        )
             .drive(rx.selectionState)
             .disposed(by: disposeBag)
         
