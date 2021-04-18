@@ -64,3 +64,4 @@
 "WordsEditPanelDeleteTitle" = "Удалить (%@)";
 "WordsEditPanelResetTitle" = "Сбросить прогресс изучения (%@)";
 "WordsEditPanelLearnTitle" = "Закрепить (%@)";
+"WordsEditPanelAddingTitle" = "Добавить в Lexickon (%@)";

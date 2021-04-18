@@ -13,6 +13,7 @@ import Utils
 import RxDataSources
 import UIExtensions
 import Assets
+import LexickonApi
 
 // MARK: Cell Model
 
@@ -26,17 +27,20 @@ public final class MainTranslationCellModel {
     public init(
         translation: String,
         text: String,
-        isEditMode: Driver<Bool>
+        isEditMode: Driver<Bool>,
+        studyType: StudyType
     ) {
         self.translation = translation
         self.text = text
         self.isEditMode = isEditMode
+        self.studyType = studyType
     }
     public let translation: String
     public let text: String
+    public let studyType: StudyType
     
     fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
-    public var wordSelectionState: TranslationCell.SelectionState = .none
+    public var wordSelectionState: TranslationCellModelEnum.SelectionState = .none
     public let isEditMode: Driver<Bool>
     var wordSelectionStateDriver: Driver<MainTranslationCellModel> {
         wordSelectionStateChangedRelay
@@ -241,7 +245,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         let stateAferEditModeChanging = model.isEditMode
             .debounce(.microseconds(10))
-            .map { [unowned self] isEditMode -> TranslationCell.SelectionState in
+            .map { [unowned self] isEditMode -> TranslationCellModelEnum.SelectionState in
                 switch (isEditMode, self.model.wordSelectionState) {
                 case (true, .none): return .notSelected
                 case (true, .selected): return .selected
@@ -290,7 +294,7 @@ extension MainTranslationResultCell: ClassIdentifiable {}
 extension MainTranslationResultCell: UIScrollViewDelegate {}
 
 private extension Reactive where Base: MainTranslationResultCell {
-    var selectionState: Binder<TranslationCell.SelectionState> {
+    var selectionState: Binder<TranslationCellModelEnum.SelectionState> {
         Binder(base) { base, state in
             base.model.wordSelectionState = state
             UIView.animate(withDuration: 0.2) {

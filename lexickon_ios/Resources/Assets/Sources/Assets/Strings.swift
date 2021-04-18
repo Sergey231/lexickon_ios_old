@@ -73,15 +73,19 @@ public enum Str {
   public static let startCreateAccountButtonTitle = Str.tr("Localizable", "Start_create_account_button_title")
   /// У МЕНЯ ЕСТЬ АККАУНТ
   public static let startIHaveAccountButtonTitle = Str.tr("Localizable", "Start_i_have_account_button_title")
+  /// Добавить в Lexickon (%@)
+  public static func wordsEditPanelAddingTitle(_ p1: Any) -> String {
+    return Str.tr("Localizable", "WordsEditPanelAddingTitle", String(describing: p1))
+  }
   /// Удалить (%@)
   public static func wordsEditPanelDeleteTitle(_ p1: Any) -> String {
     return Str.tr("Localizable", "WordsEditPanelDeleteTitle", String(describing: p1))
   }
-  /// Сбросить прогресс изучения (%@)
+  /// Закрепить (%@)
   public static func wordsEditPanelLearnTitle(_ p1: Any) -> String {
     return Str.tr("Localizable", "WordsEditPanelLearnTitle", String(describing: p1))
   }
-  /// Закрепить (%@)
+  /// Сбросить прогресс изучения (%@)
   public static func wordsEditPanelResetTitle(_ p1: Any) -> String {
     return Str.tr("Localizable", "WordsEditPanelResetTitle", String(describing: p1))
   }

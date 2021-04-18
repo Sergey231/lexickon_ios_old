@@ -11,7 +11,7 @@ import RxSwift
 import UIExtensions
 import Assets
 
-public final class PlateView: UIView {
+public final class SubmenuItem: UIView {
     
     public init() {
         super.init(frame: .zero)
@@ -21,12 +21,15 @@ public final class PlateView: UIView {
     public struct Input {
         public init(
             title: Driver<String>,
+            emojiIcon: Driver<String> = .just("😀"),
             titleColor: UIColor = .lightGray
         ) {
             self.title = title
+            self.emojiIcon = emojiIcon
             self.titleColor = titleColor
         }
         let title: Driver<String>
+        let emojiIcon: Driver<String>
         let titleColor: UIColor
     }
     
@@ -36,6 +39,7 @@ public final class PlateView: UIView {
     
     private let disposeBag = DisposeBag()
     
+    private let emojiIcon = UILabel()
     private let titleLabel = UILabel()
     private let button = UIButton()
     
@@ -49,14 +53,24 @@ public final class PlateView: UIView {
     }
        
     private func createUI() {
-        backgroundColor = .white
-        layer.cornerRadius = CornerRadius.big
-        setShadow()
-        titleLabel.setup {
-            $0.textAlignment = .center
+        
+        emojiIcon.setup {
+            $0.font = .systemRegular24
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.width.equalTo(32)
+                $0.top.bottom.equalToSuperview()
+            }
+        }
+        
+        titleLabel.setup {
+            $0.textAlignment = .left
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(emojiIcon.snp.right).offset(Margin.regular)
+                $0.right.equalToSuperview().offset(Margin.regular)
+                $0.top.bottom.equalToSuperview()
             }
         }
         
@@ -72,6 +86,10 @@ public final class PlateView: UIView {
         
         input.title
             .drive(titleLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        input.emojiIcon
+            .drive(emojiIcon.rx.text)
             .disposed(by: disposeBag)
         
         titleLabel.textColor = input.titleColor

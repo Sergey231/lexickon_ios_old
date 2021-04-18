@@ -13,15 +13,16 @@ import RxDataSources
 import LXControlKit
 import RxExtensions
 import TranslationRepository
+import LexickonApi
 
-typealias TranslationsSection = SectionModel<String, TranslationCell>
+typealias TranslationsSection = SectionModel<String, TranslationCellModelEnum>
 typealias TranslationReulstRxDataSource = RxTableViewSectionedReloadDataSource<TranslationsSection>
 
 final class AddSearchWordPresenter {
     
     @Injected var interacor: NewWordInteractorProtocol
     private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
-    fileprivate var selectedWordModels: [TranslationCell] = []
+    fileprivate var selectedWordModels: [TranslationCellModelEnum] = []
     
     struct Input {
         let textForTranslate: Signal<String>
@@ -32,6 +33,10 @@ final class AddSearchWordPresenter {
         let isLoading: Driver<Bool>
         let disposables: CompositeDisposable
         let isEditMode: Driver<Bool>
+        let wordsForDelete: Driver<[TranslationCellModelEnum]>
+        let wordsForReset: Driver<[TranslationCellModelEnum]>
+        let wordsForLearn: Driver<[TranslationCellModelEnum]>
+        let wordsForEdding: Driver<[TranslationCellModelEnum]>
     }
     
     func configurate(input: Input) -> Output {
@@ -48,13 +53,14 @@ final class AddSearchWordPresenter {
             }
         
         let mainTranslationCellModels = translationResult
-            .map { [unowned self] result -> [TranslationCell] in
+            .map { [unowned self] result -> [TranslationCellModelEnum] in
                 [
-                    TranslationCell.Main(
+                    TranslationCellModelEnum.Main(
                         MainTranslationCellModel(
                             translation: result.mainTranslation.translation,
                             text: result.mainTranslation.text,
-                            isEditMode: self.isEditModeRelay.asDriver()
+                            isEditMode: self.isEditModeRelay.asDriver(),
+                            studyType: StudyType.fire
                         )
                     )
                 ]
@@ -62,13 +68,14 @@ final class AddSearchWordPresenter {
             .asDriver(onErrorJustReturn: [])
             
         let otherTranslationCellModels = translationResult
-            .map { translationResult -> [TranslationCell] in
+            .map { translationResult -> [TranslationCellModelEnum] in
                 translationResult.otherTranslations.map {
-                    TranslationCell.Other(
+                    TranslationCellModelEnum.Other(
                         OtherTranslationCellModel(
                             translation: $0.translation,
                             text: $0.text,
-                            isEditMode: self.isEditModeRelay.asDriver()
+                            isEditMode: self.isEditModeRelay.asDriver(),
+                            studyType: StudyType.fire
                         )
                     )
                 }
@@ -78,7 +85,7 @@ final class AddSearchWordPresenter {
         let didTapAddWord = otherTranslationCellModels
             .flatMap {
                 Signal.merge(
-                    $0.map { cellModel -> Signal<TranslationCell> in
+                    $0.map { cellModel -> Signal<TranslationCellModelEnum> in
                         switch cellModel {
                         
                         case .Main(let model):
@@ -144,6 +151,26 @@ final class AddSearchWordPresenter {
             isEditMode
         )
         
+        let wordsForDelete = wordSelectionStateDriver
+            .map { [unowned self] _ -> [TranslationCellModelEnum] in
+                self.selectedWordModels
+            }
+        
+        let wordsForReset = wordSelectionStateDriver
+            .map { [unowned self] _ -> [TranslationCellModelEnum] in
+                self.selectedWordModels.filter { $0.canBeReseted }
+            }
+        
+        let wordsForLearn = wordSelectionStateDriver
+            .map { [unowned self] _ -> [TranslationCellModelEnum] in
+                self.selectedWordModels.filter { $0.canBeLearnt }
+            }
+        
+        let wordsForEdding = wordSelectionStateDriver
+            .map { [unowned self] _ -> [TranslationCellModelEnum] in
+                self.selectedWordModels
+            }
+        
         let dispossables = CompositeDisposable(disposables: [
             resetWordCellsSelectionDisposable,
             didTapAddWordDisposable
@@ -153,7 +180,11 @@ final class AddSearchWordPresenter {
             sections: translationsSections,
             isLoading: activityIndicator.asDriver(),
             disposables: dispossables,
-            isEditMode: isEditModeForOutput
+            isEditMode: isEditModeForOutput,
+            wordsForDelete: wordsForDelete,
+            wordsForReset: wordsForReset,
+            wordsForLearn: wordsForLearn,
+            wordsForEdding: wordsForEdding
         )
     }
 }

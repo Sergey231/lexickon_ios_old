@@ -36,6 +36,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     
     fileprivate let tableView = UITableView()
     fileprivate let activityView = AnimationView()
+    fileprivate let wordsEditPanelView = WordEditPanelView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -50,7 +51,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        .lightContent
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -106,6 +107,15 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
                 $0.top.equalTo(headerView.snp.bottom)
             }
         }
+        
+        wordsEditPanelView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(0)
+            }
+        }
     }
     
     // MARK: Configure UI
@@ -135,7 +145,26 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .drive(rx.isLoading)
             .disposed(by: disposeBag)
         
-        presenterOutput.isEditMode.drive()
+        let wordsEditPanelViewOutput = wordsEditPanelView.configure(
+            input: WordEditPanelView.Input(
+                learnCount: presenterOutput.wordsForLearn.map { UInt($0.count) },
+                resetCount: presenterOutput.wordsForReset.map { UInt($0.count) },
+                deleteCount: presenterOutput.wordsForDelete.map { UInt($0.count) },
+                addingCount: presenterOutput.wordsForEdding.map { UInt($0.count) }
+            )
+        )
+        
+        Driver.combineLatest(
+            presenterOutput.isEditMode,
+            wordsEditPanelViewOutput.height
+        ) { isEditMode, height -> CGFloat in
+            isEditMode
+                ? height
+                : 0
+        }
+        .distinctUntilChanged()
+        .drive(rx.wordsEditPanelViewHieght)
+        .disposed(by: disposeBag)
     }
     
     private func configureTableView(with models: Driver<[TranslationsSection]>) {
@@ -179,7 +208,7 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
 
 private extension Reactive where Base: AddWordHeaderView {
     var height: Binder<CGFloat> {
-        return Binder(base) { base, height in
+        Binder(base) { base, height in
             UIView.animate(withDuration: 0.2) {
                 base.snp.updateConstraints {
                     $0.height.equalTo(height)
@@ -192,7 +221,7 @@ private extension Reactive where Base: AddWordHeaderView {
 
 private extension Reactive where Base: AddSearchWordViewController {
     var isLoading: Binder<Bool> {
-        return Binder(base) { base, isLoading in
+        Binder(base) { base, isLoading in
             UIView.animate(withDuration: 0.3) {
                 base.tableView.alpha = isLoading ? 0 : 1
                 base.activityView.alpha = isLoading ? 1 : 0
@@ -206,6 +235,23 @@ private extension Reactive where Base: AddSearchWordViewController {
                 } else {
                     base.activityView.stop()
                 }
+            }
+        }
+    }
+    
+    var wordsEditPanelViewHieght: Binder<CGFloat> {
+        Binder(base) { base, height in
+            UIView.animate(withDuration: 0.3) {
+                base.tableView.contentInset = UIEdgeInsets(
+                    top: 0,
+                    left: 0,
+                    bottom: base.view.safeAreaInsets.bottom + height,
+                    right: 0
+                )
+                base.wordsEditPanelView.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                }
+                base.wordsEditPanelView.superview?.layoutIfNeeded()
             }
         }
     }

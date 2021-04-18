@@ -7,7 +7,7 @@
 
 import RxCocoa
 
-public enum TranslationCell {
+public enum TranslationCellModelEnum {
     
     public enum SelectionState {
         case selected
@@ -36,14 +36,14 @@ public enum TranslationCell {
         }
     }
     
-    public var wordSelectionStateDriver: Driver<TranslationCell> {
+    public var wordSelectionStateDriver: Driver<TranslationCellModelEnum> {
         switch self {
         case .Main(let mainTranslationCellModel):
             return mainTranslationCellModel.wordSelectionStateDriver
-                .map { TranslationCell.Main($0) }
+                .map { TranslationCellModelEnum.Main($0) }
         case .Other(let otherTranslationCellModel):
             return otherTranslationCellModel.wordSelectionStateDriver
-                .map { TranslationCell.Other($0) }
+                .map { TranslationCellModelEnum.Other($0) }
         }
     }
     
@@ -55,11 +55,29 @@ public enum TranslationCell {
             return otherTranslationCellModel.wordSelectionState
         }
     }
+    
+    public var canBeReseted: Bool {
+        switch self {
+        case .Main(let mainTranslationCellModel):
+            return mainTranslationCellModel.studyType.canBeReseted
+        case .Other(let otherTranslationCellModel):
+            return otherTranslationCellModel.studyType.canBeReseted
+        }
+    }
+    
+    public var canBeLearnt: Bool {
+        switch self {
+        case .Main(let mainTranslationCellModel):
+            return mainTranslationCellModel.studyType.canBeLearnt
+        case .Other(let otherTranslationCellModel):
+            return otherTranslationCellModel.studyType.canBeLearnt
+        }
+    }
 }
 
-extension TranslationCell: Equatable {
+extension TranslationCellModelEnum: Equatable {
     
-    public static func == (lhs: TranslationCell, rhs: TranslationCell) -> Bool {
+    public static func == (lhs: TranslationCellModelEnum, rhs: TranslationCellModelEnum) -> Bool {
         lhs.text == rhs.text && lhs.translation == rhs.translation
     }
 }
