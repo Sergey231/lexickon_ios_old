@@ -171,7 +171,20 @@ public final class WordEditPanelView: UIView {
 //        deleteWordsViewOutput.didTap.debug("⚽️").emit()
 //        addingWordsViewOutput.didTap.debug("⚽️").emit()
         
-        return Output(height: .just(280))
+        let height: Driver<CGFloat> = Driver.combineLatest(
+            input.addingCount,
+            input.deleteCount,
+            input.learnCount,
+            input.resetCount
+        ) { $0 + $1 + $2 + $3 }
+        .map { itemsCount -> CGFloat in
+            let itemHeight = (WordEditPanelView.UIConstants.itemHeight + Margin.regular)
+            let window = UIApplication.shared.windows[0]
+            let bottomPadding = window.safeAreaInsets.bottom
+            return CGFloat(itemsCount) * itemHeight + bottomPadding
+        }
+        
+        return Output(height: height)
     }
 }
 
