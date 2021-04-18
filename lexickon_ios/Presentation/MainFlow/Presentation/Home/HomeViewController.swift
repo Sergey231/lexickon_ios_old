@@ -232,6 +232,11 @@ final class HomeViewController: UIViewController, Stepper {
             )
         )
         
+//        wordsEditPanelViewOutput.addWordsDidTap.debug("📥").emit()
+//        wordsEditPanelViewOutput.learnWordsDidTap.debug("🚀").emit()
+//        wordsEditPanelViewOutput.resetWordsDidTap.debug("🧹").emit()
+//        wordsEditPanelViewOutput.deleteWordsDidTap.debug("🔥").emit()
+        
         presenterOutput.isWordsUpdating
             .drive(rx.isWordsLoading)
             .disposed(by: disposeBag)

@@ -40,6 +40,10 @@ public final class WordEditPanelView: UIView {
     }
     
     public struct Output {
+        public let addWordsDidTap: Signal<Void>
+        public let learnWordsDidTap: Signal<Void>
+        public let resetWordsDidTap: Signal<Void>
+        public let deleteWordsDidTap: Signal<Void>
         public let height: Driver<CGFloat>
     }
     
@@ -166,11 +170,6 @@ public final class WordEditPanelView: UIView {
             )
         )
         
-//        resetWordsViewOutput.didTap.debug("👀").emit()
-//        learnWordsViewOutput.didTap.debug("⌨️").emit()
-//        deleteWordsViewOutput.didTap.debug("⚽️").emit()
-//        addingWordsViewOutput.didTap.debug("⚽️").emit()
-        
         let height: Driver<CGFloat> = Driver.combineLatest(
             input.addingCount,
             input.deleteCount,
@@ -182,7 +181,7 @@ public final class WordEditPanelView: UIView {
                 + (learnCount == 0 ? 0 : 1)
                 + (resetCount == 0 ? 0 : 1)
             return itemsCount
-        }.debug("🎲")
+        }
         .map { itemsCount -> CGFloat in
             let itemHeight = (WordEditPanelView.UIConstants.itemHeight + Margin.regular)
             let window = UIApplication.shared.windows[0]
@@ -190,7 +189,13 @@ public final class WordEditPanelView: UIView {
             return CGFloat(itemsCount) * itemHeight + bottomPadding
         }
         
-        return Output(height: height)
+        return Output(
+            addWordsDidTap: addingWordsViewOutput.didTap,
+            learnWordsDidTap: learnWordsViewOutput.didTap,
+            resetWordsDidTap: resetWordsViewOutput.didTap,
+            deleteWordsDidTap: deleteWordsViewOutput.didTap,
+            height: height
+        )
     }
 }
 
