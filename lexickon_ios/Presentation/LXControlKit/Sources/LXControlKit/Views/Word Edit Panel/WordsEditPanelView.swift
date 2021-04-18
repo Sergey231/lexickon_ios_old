@@ -62,32 +62,12 @@ public final class WordEditPanelView: UIView {
         backgroundColor = .white
         layer.cornerRadius = CornerRadius.big
         
-        deleteWordsView.setup {
-            addSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
-                $0.height.equalTo(UIConstants.itemHeight)
-            }
-        }
-        
         addingWordsView.setup {
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.bottom.equalTo(deleteWordsView.snp.top).offset(-Margin.regular)
-                $0.height.equalTo(0)
-            }
-        }
-        
-        resetWordsView.setup {
-            addSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.equalToSuperview().offset(Margin.regular)
-                $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.bottom.equalTo(addingWordsView.snp.top).offset(-Margin.regular)
+                $0.top.equalToSuperview().offset(0)
                 $0.height.equalTo(0)
             }
         }
@@ -97,7 +77,27 @@ public final class WordEditPanelView: UIView {
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.right.equalToSuperview().offset(-Margin.regular)
-                $0.bottom.equalTo(resetWordsView.snp.top).offset(-Margin.regular)
+                $0.top.equalTo(addingWordsView.snp.bottom).offset(0)
+                $0.height.equalTo(0)
+            }
+        }
+        
+        resetWordsView.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalTo(learnWordsView.snp.bottom).offset(0)
+                $0.height.equalTo(0)
+            }
+        }
+        
+        deleteWordsView.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalTo(resetWordsView.snp.bottom).offset(0)
                 $0.height.equalTo(0)
             }
         }
@@ -176,7 +176,13 @@ public final class WordEditPanelView: UIView {
             input.deleteCount,
             input.learnCount,
             input.resetCount
-        ) { $0 + $1 + $2 + $3 }
+        ) { addingCount, deleteCount, learnCount, resetCount -> Int in
+            let itemsCount = (addingCount == 0 ? 0 : 1)
+                + (deleteCount == 0 ? 0 : 1)
+                + (learnCount == 0 ? 0 : 1)
+                + (resetCount == 0 ? 0 : 1)
+            return itemsCount
+        }.debug("🎲")
         .map { itemsCount -> CGFloat in
             let itemHeight = (WordEditPanelView.UIConstants.itemHeight + Margin.regular)
             let window = UIApplication.shared.windows[0]
@@ -192,51 +198,20 @@ public final class WordEditPanelView: UIView {
 
 extension Reactive where Base: WordEditPanelView {
     
-    var deleteWordsViewCount: Binder<UInt> {
-        Binder(base) { base, count in
-            let height = count > 0
-                ? WordEditPanelView.UIConstants.itemHeight
-                : 0
-            UIView.animate(withDuration: 0.3) {
-                base.deleteWordsView.snp.updateConstraints {
-                    $0.height.equalTo(height)
-                }
-                base.layoutIfNeeded()
-            }
-        }
-    }
-    
     var addingWordsViewCount: Binder<UInt> {
         Binder(base) { base, count in
             let height = count > 0
                 ? WordEditPanelView.UIConstants.itemHeight
                 : 0
-            let bottomMargin = count > 0
-                ? -Margin.regular
+            let topMargin = count > 0
+                ? Margin.regular
                 : 0
             UIView.animate(withDuration: 0.3) {
                 base.addingWordsView.snp.updateConstraints {
                     $0.height.equalTo(height)
-                    $0.bottom.equalTo(base.deleteWordsView.snp.top).offset(bottomMargin)
+                    $0.top.equalToSuperview().offset(topMargin)
                 }
                 base.layoutIfNeeded()
-            }
-        }
-    }
-    
-    var resetWordsViewCount: Binder<UInt> {
-        Binder(base) { base, count in
-            let height = count > 0
-                ? WordEditPanelView.UIConstants.itemHeight
-                : 0
-            let bottomMargin = count > 0
-                ? -Margin.regular
-                : 0
-            UIView.animate(withDuration: 0.3) {
-                base.resetWordsView.snp.updateConstraints {
-                    $0.height.equalTo(height)
-                    $0.bottom.equalTo(base.addingWordsView.snp.top).offset(bottomMargin)
-                }
             }
         }
     }
@@ -246,14 +221,49 @@ extension Reactive where Base: WordEditPanelView {
             let height = count > 0
                 ? WordEditPanelView.UIConstants.itemHeight
                 : 0
-            let bottomMargin = count > 0
-                ? -Margin.regular
+            let topMargin = count > 0
+                ? Margin.regular
                 : 0
             UIView.animate(withDuration: 0.3) {
                 base.learnWordsView.snp.updateConstraints {
                     $0.height.equalTo(height)
-                    $0.bottom.equalTo(base.resetWordsView.snp.top).offset(bottomMargin)
+                    $0.top.equalTo(base.addingWordsView.snp.bottom).offset(topMargin)
                 }
+            }
+        }
+    }
+    
+    var resetWordsViewCount: Binder<UInt> {
+        Binder(base) { base, count in
+            let height = count > 0
+                ? WordEditPanelView.UIConstants.itemHeight
+                : 0
+            let topMargin = count > 0
+                ? Margin.regular
+                : 0
+            UIView.animate(withDuration: 0.3) {
+                base.resetWordsView.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                    $0.top.equalTo(base.learnWordsView.snp.bottom).offset(topMargin)
+                }
+            }
+        }
+    }
+    
+    var deleteWordsViewCount: Binder<UInt> {
+        Binder(base) { base, count in
+            let height = count > 0
+                ? WordEditPanelView.UIConstants.itemHeight
+                : 0
+            let topMargin = count > 0
+                ? Margin.regular
+                : 0
+            UIView.animate(withDuration: 0.3) {
+                base.deleteWordsView.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                    $0.top.equalTo(base.resetWordsView.snp.bottom).offset(topMargin)
+                }
+                base.layoutIfNeeded()
             }
         }
     }
