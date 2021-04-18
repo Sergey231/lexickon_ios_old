@@ -16,7 +16,8 @@ spin()
 }
 
 cd lexickon_ios/Resources/Assets
-./swiftgen/bin/swiftgen
+#./swiftgen/bin/swiftgen
+swiftgen
 
 if (xcodebuild build -scheme Assets -quiet); then
     printf "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
