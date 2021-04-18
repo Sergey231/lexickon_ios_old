@@ -22,7 +22,7 @@ public final class SubmenuItem: UIView {
         public init(
             title: Driver<String>,
             emojiIcon: Driver<String> = .just("😀"),
-            titleColor: UIColor = .lightGray
+            titleColor: UIColor = Colors.baseText.color
         ) {
             self.title = title
             self.emojiIcon = emojiIcon

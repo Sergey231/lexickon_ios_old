@@ -139,25 +139,29 @@ public final class WordEditPanelView: UIView {
         
         let resetWordsViewOutput = resetWordsView.configure(
             input: SubmenuItem.Input(
-                title: resetWordsTitle
+                title: resetWordsTitle,
+                emojiIcon: .just("🧹")
             )
         )
         
         let learnWordsViewOutput = learnWordsView.configure(
             input: SubmenuItem.Input(
-                title: learnWordsTitle
+                title: learnWordsTitle,
+                emojiIcon: .just("🚀")
             )
         )
         
         let addingWordsViewOutput = addingWordsView.configure(
             input: SubmenuItem.Input(
-                title: addingWordsTitle
+                title: addingWordsTitle,
+                emojiIcon: .just("📥")
             )
         )
         
         let deleteWordsViewOutput = deleteWordsView.configure(
             input: SubmenuItem.Input(
                 title: deleteWordsTitle,
+                emojiIcon: .just("🔥"),
                 titleColor: .red
             )
         )
