@@ -194,10 +194,13 @@ extension Reactive where Base: WordEditPanelView {
             let height = count > 0
                 ? WordEditPanelView.UIConstants.itemHeight
                 : 0
+            let bottomMargin = count > 0
+                ? -Margin.regular
+                : 0
             UIView.animate(withDuration: 0.3) {
                 base.addingWordsView.snp.updateConstraints {
                     $0.height.equalTo(height)
-                    $0.bottom.equalTo(base.deleteWordsView.snp.top).offset(0)
+                    $0.bottom.equalTo(base.deleteWordsView.snp.top).offset(bottomMargin)
                 }
                 base.layoutIfNeeded()
             }
@@ -209,10 +212,13 @@ extension Reactive where Base: WordEditPanelView {
             let height = count > 0
                 ? WordEditPanelView.UIConstants.itemHeight
                 : 0
+            let bottomMargin = count > 0
+                ? -Margin.regular
+                : 0
             UIView.animate(withDuration: 0.3) {
                 base.resetWordsView.snp.updateConstraints {
                     $0.height.equalTo(height)
-                    $0.bottom.equalTo(base.addingWordsView.snp.top).offset(0)
+                    $0.bottom.equalTo(base.addingWordsView.snp.top).offset(bottomMargin)
                 }
             }
         }
@@ -223,10 +229,13 @@ extension Reactive where Base: WordEditPanelView {
             let height = count > 0
                 ? WordEditPanelView.UIConstants.itemHeight
                 : 0
+            let bottomMargin = count > 0
+                ? -Margin.regular
+                : 0
             UIView.animate(withDuration: 0.3) {
                 base.learnWordsView.snp.updateConstraints {
                     $0.height.equalTo(height)
-                    $0.bottom.equalTo(base.resetWordsView.snp.top).offset(0)
+                    $0.bottom.equalTo(base.resetWordsView.snp.top).offset(bottomMargin)
                 }
             }
         }
