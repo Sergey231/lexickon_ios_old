@@ -111,7 +111,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
         wordsEditPanelView.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
+                $0.left.equalToSuperview().offset(Margin.small)
+                $0.right.equalToSuperview().offset(-Margin.small)
                 $0.bottom.equalToSuperview()
                 $0.height.equalTo(0)
             }

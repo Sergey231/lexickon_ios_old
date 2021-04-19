@@ -109,17 +109,6 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
             }
         }
         
-        addWordButton.setup {
-            $0.setShadow()
-            $0.configureTapScaleAnimation().disposed(by: disposeBag)
-            selectableBGView.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.right.equalToSuperview().offset(-Margin.mid)
-                $0.size.equalTo(44)
-                $0.centerY.equalToSuperview()
-            }
-        }
-        
         wordRatingView.setup {
             selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
@@ -133,7 +122,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
             selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
-                $0.right.equalTo(addWordButton.snp.left).offset(-Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
                 $0.height.equalTo(16)
                 $0.bottom.equalToSuperview().offset(-Margin.regular)
             }
@@ -145,7 +134,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
             selectableBGView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(wordRatingView.snp.right).offset(Margin.regular)
-                $0.right.equalTo(addWordButton.snp.left).offset(-Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
                 $0.top.equalToSuperview().offset(Margin.regular)
                 $0.height.greaterThanOrEqualTo(0)
                 $0.bottom.equalTo(inLexickonStateView.snp.top).offset(-Margin.regular)
@@ -177,6 +166,17 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
                 $0.height.greaterThanOrEqualTo(self.contentView.snp.height)
                 $0.width.greaterThanOrEqualTo(self.contentView.snp.width)
                 $0.edges.equalToSuperview()
+            }
+        }
+        
+        addWordButton.setup {
+            $0.setShadow()
+            $0.configureTapScaleAnimation().disposed(by: disposeBag)
+            swipeContentView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.size.equalTo(44)
+                $0.centerY.equalToSuperview()
             }
         }
     }
