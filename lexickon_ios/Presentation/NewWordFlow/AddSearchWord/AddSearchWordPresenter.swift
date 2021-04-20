@@ -82,14 +82,26 @@ final class AddSearchWordPresenter {
             }
             .asDriver(onErrorJustReturn: [])
         
-        let didTapAddWord = otherTranslationCellModels
+        let translationsSections = Driver.combineLatest(
+            mainTranslationCellModels,
+            otherTranslationCellModels
+        )
+            .map { [
+                SectionModel(model: "MainTranslationSection", items: $0),
+                SectionModel(model: "OtherTranslationSection", items: $1)
+            ] }
+        
+        let translationModels = translationsSections
+            .map { $0.flatMap { $0.items } }
+        
+        let didTapAddWord = translationModels
             .flatMap {
                 Signal.merge(
                     $0.map { cellModel -> Signal<TranslationCellModelEnum> in
                         switch cellModel {
                         
                         case .Main(let model):
-                            return model.addWordButtonDidTap
+                            return model.addWordButtonDidTap.debug("🎲")
                                 .map { _ in cellModel }
                             
                         case .Other(let model):
@@ -99,6 +111,7 @@ final class AddSearchWordPresenter {
                     }
                 )
             }
+            
         
         let didTapAddWordDisposable = didTapAddWord
             .asObservable()
@@ -113,18 +126,6 @@ final class AddSearchWordPresenter {
                 return self.interacor.addWord(wordForAdding)
             }
             .subscribe()
-        
-        let translationsSections = Driver.combineLatest(
-            mainTranslationCellModels,
-            otherTranslationCellModels
-        )
-            .map { [
-                SectionModel(model: "MainTranslationSection", items: $0),
-                SectionModel(model: "OtherTranslationSection", items: $1)
-            ] }
-        
-        let translationModels = translationsSections
-            .map { $0.flatMap { $0.items } }
         
         let wordSelectionStateDriver = translationModels
             .flatMap { words in
