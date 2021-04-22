@@ -155,6 +155,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             )
         )
         
+        wordsEditPanelViewOutput.addWordsDidTap.debug("🎲").emit()
+        
         Driver.combineLatest(
             presenterOutput.isEditMode,
             wordsEditPanelViewOutput.height

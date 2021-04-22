@@ -101,7 +101,7 @@ final class AddSearchWordPresenter {
                         switch cellModel {
                         
                         case .Main(let model):
-                            return model.addWordButtonDidTap.debug("🎲")
+                            return model.addWordButtonDidTap
                                 .map { _ in cellModel }
                             
                         case .Other(let model):
