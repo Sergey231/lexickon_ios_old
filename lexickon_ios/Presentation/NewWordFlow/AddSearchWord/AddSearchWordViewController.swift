@@ -38,6 +38,8 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
     fileprivate let activityView = AnimationView()
     fileprivate let wordsEditPanelView = WordEditPanelView()
     
+    private let addToLexickonRelay = PublishRelay<Void>()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -138,7 +140,12 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .debounce(.seconds(1))
             .asSignal(onErrorJustReturn: "")
         
-        let presenterOutput = presenter.configurate(input: .init(textForTranslate: textForTranslate))
+        let presenterOutput = presenter.configurate(
+            input: AddSearchWordPresenter.Input(
+                textForTranslate: textForTranslate,
+                addToLexickonFromWordsEditPanelDidTap: addToLexickonRelay.asSignal()
+            )
+        )
         
         configureTableView(with: presenterOutput.sections)
         
@@ -155,7 +162,9 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             )
         )
         
-        wordsEditPanelViewOutput.addWordsDidTap.debug("🎲").emit()
+        wordsEditPanelViewOutput.addWordsDidTap
+            .emit(to: addToLexickonRelay)
+            .disposed(by: disposeBag)
         
         Driver.combineLatest(
             presenterOutput.isEditMode,

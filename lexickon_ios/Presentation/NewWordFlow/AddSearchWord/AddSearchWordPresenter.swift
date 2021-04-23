@@ -26,6 +26,7 @@ final class AddSearchWordPresenter {
     
     struct Input {
         let textForTranslate: Signal<String>
+        let addToLexickonFromWordsEditPanelDidTap: Signal<Void>
     }
     
     struct Output {
@@ -94,7 +95,7 @@ final class AddSearchWordPresenter {
         let translationModels = translationsSections
             .map { $0.flatMap { $0.items } }
         
-        let didTapAddWord = translationModels
+        let wordForAddingFromWordCellButton = translationModels
             .flatMap {
                 Signal.merge(
                     $0.map { cellModel -> Signal<TranslationCellModelEnum> in
@@ -111,21 +112,6 @@ final class AddSearchWordPresenter {
                     }
                 )
             }
-            
-        
-        let didTapAddWordDisposable = didTapAddWord
-            .asObservable()
-            .flatMap { word -> Single<Void> in
-                let wordForAdding = TranslationResultsDTO.Translation(
-                    text: word.text,
-                    translation: word.translation,
-                    pos: .unknown,
-                    gender: .unknown
-                )
-                
-                return self.interacor.addWord(wordForAdding)
-            }
-            .subscribe()
         
         let wordSelectionStateDriver = translationModels
             .flatMap { words in
@@ -171,6 +157,29 @@ final class AddSearchWordPresenter {
             .map { [unowned self] _ -> [TranslationCellModelEnum] in
                 self.selectedWordModels
             }
+        
+        let wordsForEddingFromEditPanel = input.addToLexickonFromWordsEditPanelDidTap
+            .withLatestFrom(wordsForEdding)
+        
+        let wordsForAdding = Signal.merge(
+            wordForAddingFromWordCellButton.map { [$0] },
+            wordsForEddingFromEditPanel
+        )
+        
+        let didTapAddWordDisposable = wordsForAdding
+            .asObservable()
+            .flatMap { wordModelsForAdding -> Single<Void> in
+                let wordsTranslations = wordModelsForAdding.map { word in
+                    let wordForAdding = TranslationResultsDTO.Translation(
+                        text: word.text,
+                        translation: word.translation,
+                        pos: .unknown,
+                        gender: .unknown
+                    )
+                }
+                return self.interacor.addWord(wordsTranslations)
+            }
+            .subscribe()
         
         let dispossables = CompositeDisposable(disposables: [
             resetWordCellsSelectionDisposable,
