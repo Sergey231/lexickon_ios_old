@@ -166,18 +166,48 @@ final class AddSearchWordPresenter {
             wordsForEddingFromEditPanel
         )
         
-        let didTapAddWordDisposable = wordsForAdding
+        let testWordsForAdding: Signal<[TranslationCellModelEnum]> = wordsForAdding
+            .map { _ in
+                [
+                    TranslationCellModelEnum.Other(
+                        OtherTranslationCellModel(
+                            translation: "Cat",
+                            text: "Кот",
+                            isEditMode: .empty(),
+                            studyType: .new
+                        ))
+                    ,
+                    TranslationCellModelEnum.Other(
+                        OtherTranslationCellModel(
+                            translation: "Dog",
+                            text: "Сабака",
+                            isEditMode: .empty(),
+                            studyType: .new
+                        ))
+                    ,
+                    TranslationCellModelEnum.Other(
+                        OtherTranslationCellModel(
+                            translation: "Bug",
+                            text: "Жук",
+                            isEditMode: .empty(),
+                            studyType: .new
+                        )
+                    )
+                ]
+            }
+        
+        let didTapAddWordDisposable = testWordsForAdding
             .asObservable()
             .flatMap { wordModelsForAdding -> Single<Void> in
                 let wordsTranslations = wordModelsForAdding.map { word in
-                    let wordForAdding = TranslationResultsDTO.Translation(
+                    TranslationResultsDTO.Translation(
                         text: word.text,
                         translation: word.translation,
                         pos: .unknown,
                         gender: .unknown
                     )
                 }
-                return self.interacor.addWord(wordsTranslations)
+                return self.interacor.addWords(wordsTranslations)
             }
             .subscribe()
         

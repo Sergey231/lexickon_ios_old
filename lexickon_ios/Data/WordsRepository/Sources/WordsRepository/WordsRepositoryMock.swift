@@ -32,7 +32,7 @@ public final class WordsRepositoryMock: WordsRepositoryProtocol, ApiRepository {
         Single.create { _ in Disposables.create() }
     }
     
-    public func add(_ word: LxWordCreate) -> Single<LxWordGet> {
+    public func add(_ words: [LxWordCreate]) -> Single<[LxWordGet]> {
         Single.create { _ in Disposables.create() }
     }
     

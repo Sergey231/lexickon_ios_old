@@ -30,13 +30,15 @@ final class NewWordInteractor: NewWordInteractorProtocol {
         return translateByMicrosoftDictionary(requestDTO)
     }
     
-    public func addWord(_ word: TranslationResultsDTO.Translation) -> Single<Void> {
-        let wordCreateModel = LxWordCreate(
-            studyWord: word.text,
-            translates: [word.translation],
-            image: ""
-        )
-        return wordRepository.add(wordCreateModel)
+    public func addWords(_ words: [TranslationResultsDTO.Translation]) -> Single<Void> {
+        let wordCreateModels = words.map {
+            LxWordCreate(
+                studyWord: $0.text,
+                translates: [$0.translation],
+                image: ""
+            )
+        }
+        return wordRepository.add(wordCreateModels)
             .map { _ in () }
     }
     

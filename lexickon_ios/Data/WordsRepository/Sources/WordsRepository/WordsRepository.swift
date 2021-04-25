@@ -74,25 +74,29 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         }
     }
     
-    public func add(_ word: LxWordCreate) -> Single<LxWordGet> {
+    public func add(_ words: [LxWordCreate]) -> Single<[LxWordGet]> {
         
         guard let headers = headersWithAuthToken else {
             return .error(LxHTTPObject.Error.unauthorized)
         }
         
-        let url = baseURL + "/api/words/"
+        let url = baseURL + "/api/addWords"
         
-        let parametrs: Parameters = [
-            "studyWord" : word.studyWord,
-            "translates" : word.translates,
-            "image" : word.image
-        ]
+        let wordParametrs = words.map {
+            [
+                "studyWord" : $0.studyWord,
+                "translates" : $0.translates,
+                "image" : $0.image
+            ]
+        }
+        
+        let parametrs: Parameters = ["words" : wordParametrs]
         
         return Single.create { single -> Disposable in
             
             AF.request(url, method: .post, parameters: parametrs, headers: headers)
                 .responseDecodable(
-                    of: LxWordGet.self,
+                    of: [LxWordGet].self,
                     decoder: self.jsonDecoder
                 ) { res in
 

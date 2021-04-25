@@ -13,5 +13,5 @@ public protocol WordsRepositoryProtocol {
     
     func words(per: Int, page: Int) -> Single<LxPage<LxWordList>>
     func word(by id: String) -> Single<LxWordGet>
-    func add(_ word: LxWordCreate) -> Single<LxWordGet>
+    func add(_ words: [LxWordCreate]) -> Single<[LxWordGet]>
 }
