@@ -80,9 +80,15 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
             return .error(LxHTTPObject.Error.unauthorized)
         }
         
-        let url = baseURL + "/api/addWords"
+        guard let url = URL(string: baseURL + "/api/addWords") else {
+            return .error(LxHTTPObject.Error.invalidRepositoryRequest)
+        }
         
-        let wordParametrs = words.map {
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let wordsParametrs = words.map {
             [
                 "studyWord" : $0.studyWord,
                 "translates" : $0.translates,
@@ -90,11 +96,12 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
             ]
         }
         
-        let parametrs: Parameters = ["words" : wordParametrs]
+        request.httpBody = try! JSONSerialization.data(withJSONObject: wordsParametrs)
+        request.headers = headers
         
         return Single.create { single -> Disposable in
             
-            AF.request(url, method: .post, parameters: parametrs, headers: headers)
+            AF.request(request)
                 .responseDecodable(
                     of: [LxWordGet].self,
                     decoder: self.jsonDecoder
@@ -102,11 +109,9 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
 
                     switch res.result {
                     case .success(let model):
-                        print(model)
                         single(.success(model))
                     case .failure(let failure):
-                        print(failure)
-                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                        single(.failure(LxHTTPObject.Error(with: failure.responseCode)))
                     }
                 }
             return Disposables.create()
