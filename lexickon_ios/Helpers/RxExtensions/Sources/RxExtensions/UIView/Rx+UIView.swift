@@ -42,4 +42,12 @@ public extension Reactive where Base: UIView {
             }
         }
     }
+    
+    var alphaAnimated: Binder<CGFloat> {
+        Binder(base) { base, alpha in
+            UIView.animate(withDuration: 0.3) {
+                base.alpha = alpha
+            }
+        }
+    }
 }
