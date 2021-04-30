@@ -17,6 +17,7 @@ import RxDataSources
 import Resolver
 import Assets
 import Lottie
+import RxExtensions
 
 final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRecognizerDelegate {
     
@@ -168,11 +169,15 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             .drive(rx.endEditForce)
             .disposed(by: disposeBag)
         
+        RxKeyboard.instance.visibleHeight
+            .drive(rx.tableViewBottomContentInset)
+            .disposed(by: disposeBag)
+        
         wordsEditPanelViewOutput.addWordsDidTap
             .emit(to: addToLexickonRelay)
             .disposed(by: disposeBag)
         
-        Driver.combineLatest(
+        let wordsEditPanelViewHeight = Driver.combineLatest(
             presenterOutput.isEditMode,
             wordsEditPanelViewOutput.height
         ) { isEditMode, height -> CGFloat in
@@ -181,8 +186,19 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
                 : 0
         }
         .distinctUntilChanged()
-        .drive(rx.wordsEditPanelViewHieght)
-        .disposed(by: disposeBag)
+        
+        presenterOutput.isEditMode
+            .map { $0 ? 1 : 0 }
+            .drive(wordsEditPanelView.rx.alphaAnimated)
+            .disposed(by: disposeBag)
+        
+        wordsEditPanelViewHeight
+            .drive(rx.tableViewBottomContentInset)
+            .disposed(by: disposeBag)
+        
+        wordsEditPanelViewHeight
+            .drive(rx.wordsEditPanelViewHeight)
+            .disposed(by: disposeBag)
     }
     
     private func configureTableView(with models: Driver<[TranslationsSection]>) {
@@ -257,7 +273,18 @@ private extension Reactive where Base: AddSearchWordViewController {
         }
     }
     
-    var wordsEditPanelViewHieght: Binder<CGFloat> {
+    var wordsEditPanelViewHeight: Binder<CGFloat> {
+        Binder(base) { base, height in
+            UIView.animate(withDuration: 0.3) {
+                base.wordsEditPanelView.snp.updateConstraints {
+                    $0.height.equalTo(height)
+                }
+                base.wordsEditPanelView.superview?.layoutIfNeeded()
+            }
+        }
+    }
+    
+    var tableViewBottomContentInset: Binder<CGFloat> {
         Binder(base) { base, height in
             UIView.animate(withDuration: 0.3) {
                 base.tableView.contentInset = UIEdgeInsets(
@@ -266,10 +293,6 @@ private extension Reactive where Base: AddSearchWordViewController {
                     bottom: base.view.safeAreaInsets.bottom + height,
                     right: 0
                 )
-                base.wordsEditPanelView.snp.updateConstraints {
-                    $0.height.equalTo(height)
-                }
-                base.wordsEditPanelView.superview?.layoutIfNeeded()
             }
         }
     }
