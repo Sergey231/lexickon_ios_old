@@ -162,6 +162,12 @@ final class AddSearchWordViewController: UIViewController, Stepper, UIGestureRec
             )
         )
         
+        presenterOutput.isEditMode
+            .filter { $0 }
+            .map { _ in () }
+            .drive(rx.endEditForce)
+            .disposed(by: disposeBag)
+        
         wordsEditPanelViewOutput.addWordsDidTap
             .emit(to: addToLexickonRelay)
             .disposed(by: disposeBag)
@@ -266,5 +272,9 @@ private extension Reactive where Base: AddSearchWordViewController {
                 base.wordsEditPanelView.superview?.layoutIfNeeded()
             }
         }
+    }
+    
+    var endEditForce: Binder<Void> {
+        Binder(base) { base, _ in base.view.endEditing(true) }
     }
 }
