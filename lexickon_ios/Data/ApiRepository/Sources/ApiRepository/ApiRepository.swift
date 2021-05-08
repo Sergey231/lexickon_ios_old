@@ -30,7 +30,8 @@ public extension ApiRepository {
         }
         
         let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(strongAuthToken)"
+            "Authorization" : "Bearer \(strongAuthToken)",
+            "Content-Type" : "application/json"
         ]
         
         return headers

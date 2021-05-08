@@ -86,8 +86,6 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let wordsParametrs = words.map {
             [
