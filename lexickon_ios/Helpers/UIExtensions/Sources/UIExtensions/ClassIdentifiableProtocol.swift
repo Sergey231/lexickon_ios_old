@@ -5,7 +5,7 @@
 //  Created by Sergey Borovikov on 04.11.2020.
 //
 
-public protocol ClassIdentifiable: class {
+public protocol ClassIdentifiable: AnyObject {
     static var reuseId: String { get }
 }
 
