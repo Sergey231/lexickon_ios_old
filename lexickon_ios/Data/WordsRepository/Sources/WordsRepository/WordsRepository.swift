@@ -15,19 +15,20 @@ import ApiRepository
 
 public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     
-    public init() {}
+    private let session: Session
+    
+    public init() {
+        self.session = ApiRepository.lxSession
+    }
+    
     
     public func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
-        
-        guard let headers = headersWithAuthToken else {
-            return .error(LxHTTPObject.Error.unauthorized)
-        }
         
         let url = baseURL + "/api/words?per=\(per)&page=\(page)"
         
         return Single.create { single -> Disposable in
             
-            AF.request(url, headers: headers)
+            self.session.request(url)
                 .responseDecodable(
                     of: LxPage<LxWordList>.self,
                     decoder: self.jsonDecoder
@@ -48,15 +49,11 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     
     public func word(by id: String) -> Single<LxWordGet> {
         
-        guard let headers = headersWithAuthToken else {
-            return .error(LxHTTPObject.Error.unauthorized)
-        }
-        
         let url = baseURL + "/api/words/\(id)"
         
         return Single.create { single -> Disposable in
             
-            AF.request(url, headers: headers)
+            self.session.request(url)
                 .responseDecodable(
                     of: LxWordGet.self,
                     decoder: self.jsonDecoder
@@ -76,10 +73,6 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     
     public func add(_ words: [LxWordCreate]) -> Single<[LxWordGet]> {
         
-        guard let headers = headersWithAuthToken else {
-            return .error(LxHTTPObject.Error.unauthorized)
-        }
-        
         guard let url = URL(string: baseURL + "/api/addWords") else {
             return .error(LxHTTPObject.Error.invalidRepositoryRequest)
         }
@@ -96,11 +89,10 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         }
         
         request.httpBody = try! JSONSerialization.data(withJSONObject: wordsParametrs)
-        request.headers = headers
         
         return Single.create { single -> Disposable in
             
-            AF.request(request)
+            self.session.request(request)
                 .responseDecodable(
                     of: [LxWordGet].self,
                     decoder: self.jsonDecoder
