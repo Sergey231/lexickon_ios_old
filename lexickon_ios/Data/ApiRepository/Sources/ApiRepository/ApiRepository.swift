@@ -9,16 +9,27 @@ public protocol ApiRepository {
     var jsonDecoder: JSONDecoder { get }
 }
 
-public extension ApiRepository {
+public class LxSessionManager {
     
-    static var lxSession: Session {
+    public let session: Session
+    
+    init() {
         let configuration = URLSessionConfiguration.af.default
+        configuration.timeoutIntervalForRequest = 30
         configuration.waitsForConnectivity = true
-        
-        return Session(
+        self.session = Session(
             configuration: configuration,
             interceptor: LxRequestInterceptor()
         )
+    }
+    
+    public static var shared = LxSessionManager()
+}
+
+public extension ApiRepository {
+    
+    static var lxSession: Session {
+        LxSessionManager.shared.session
     }
     
     var baseURL: String {
