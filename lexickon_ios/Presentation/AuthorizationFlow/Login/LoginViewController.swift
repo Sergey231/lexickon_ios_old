@@ -176,7 +176,6 @@ final class LoginViewController: UIViewController, Stepper {
             }
             .subscribe(onNext: { _ in
                 self.loginButton.show()
-                print("🌈")
             })
             .disposed(by: disposeBag)
         

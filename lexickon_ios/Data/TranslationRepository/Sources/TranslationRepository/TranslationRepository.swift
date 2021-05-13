@@ -31,21 +31,18 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
         ]
         
         return Single.create { single -> Disposable in
-            AF.request(url, headers: headers) { req in
-                print(req)
-            }
-            .responseDecodable(
-                of: RapidApiGoogleTranslateResultDTO.self,
-                decoder: self.jsonDecoder
-            ) { res in
-                switch res.result {
-                case .success(let model):
-                    single(.success(model))
-                case .failure(let failure):
-                    print(failure)
-                    single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+            AF.request(url, headers: headers)
+                .responseDecodable(
+                    of: RapidApiGoogleTranslateResultDTO.self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    switch res.result {
+                    case .success(let model):
+                        single(.success(model))
+                    case .failure:
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
                 }
-            }
             return Disposables.create()
         }
     }
@@ -67,21 +64,18 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
             + "&text=\(request.dto.text)"
         
         return Single.create { single -> Disposable in
-            AF.request(url) { req in
-                print(req)
-            }
-            .responseDecodable(
-                of: YandexDictionaryApiResultDTO.self,
-                decoder: self.jsonDecoder
-            ) { res in
-                switch res.result {
-                case .success(let model):
-                    single(.success(model))
-                case .failure(let failure):
-                    print(failure)
-                    single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+            AF.request(url)
+                .responseDecodable(
+                    of: YandexDictionaryApiResultDTO.self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    switch res.result {
+                    case .success(let model):
+                        single(.success(model))
+                    case .failure:
+                        single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
+                    }
                 }
-            }
             return Disposables.create()
         }
     }
@@ -127,8 +121,7 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
                         } else {
                             single(.success(model.first!))
                         }
-                    case .failure(let failure):
-                        print(failure)
+                    case .failure:
                         single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
@@ -178,8 +171,7 @@ public final class TranslationRepository: TranslationRepositoryProtocol, ApiRepo
                         } else {
                             single(.success(model.first!))
                         }
-                    case .failure(let failure):
-                        print(failure)
+                    case .failure:
                         single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }

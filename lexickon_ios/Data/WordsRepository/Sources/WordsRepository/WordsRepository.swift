@@ -33,8 +33,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
-                    case .failure(let failure):
-                        print(failure)
+                    case .failure:
                         single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }
@@ -59,8 +58,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
                     switch res.result {
                     case .success(let model):
                         single(.success(model))
-                    case .failure(let failure):
-                        print(failure)
+                    case .failure:
                         single(.failure(LxHTTPObject.Error(with: res.response?.statusCode)))
                     }
                 }

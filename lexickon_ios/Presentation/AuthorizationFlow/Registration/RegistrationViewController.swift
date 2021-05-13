@@ -226,7 +226,6 @@ final class RegistrationViewController: UIViewController, Stepper {
             }
             .subscribe(onNext: { _ in
                 self.registrateButton.show()
-                print("🌈🌈🌈")
             })
             .disposed(by: disposeBag)
         

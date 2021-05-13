@@ -224,8 +224,6 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         }
         .drive(onNext: { [unowned self] offsetX in
             
-            print(offsetX)
-            
             let selectionIconWidth = self.model.wordSelectionState == .none
                 ? Margin.regular
                 : 46
