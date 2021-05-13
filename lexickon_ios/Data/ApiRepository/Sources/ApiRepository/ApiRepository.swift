@@ -4,7 +4,6 @@ import Alamofire
 import ConfigsRepository
 
 public protocol ApiRepository {
-    static var lxSession: Session { get }
     var baseURL: String { get }
     var jsonDecoder: JSONDecoder { get }
 }
@@ -13,7 +12,7 @@ public class LxSessionManager {
     
     public let session: Session
     
-    init() {
+    public init() {
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 30
         configuration.waitsForConnectivity = true
@@ -27,10 +26,6 @@ public class LxSessionManager {
 }
 
 public extension ApiRepository {
-    
-    static var lxSession: Session {
-        LxSessionManager.shared.session
-    }
     
     var baseURL: String {
         ConfigsRepository().object(forKey: .BaseURL)!

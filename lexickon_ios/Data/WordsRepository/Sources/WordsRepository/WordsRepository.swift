@@ -15,20 +15,16 @@ import ApiRepository
 
 public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     
-    private let session: Session
-    
-    public init() {
-        self.session = ApiRepository.lxSession
-    }
-    
+    public init() {}
     
     public func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
         
         let url = baseURL + "/api/words?per=\(per)&page=\(page)"
+        let session = LxSessionManager.shared.session
         
         return Single.create { single -> Disposable in
             
-            self.session.request(url)
+            session.request(url)
                 .responseDecodable(
                     of: LxPage<LxWordList>.self,
                     decoder: self.jsonDecoder
@@ -50,10 +46,11 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     public func word(by id: String) -> Single<LxWordGet> {
         
         let url = baseURL + "/api/words/\(id)"
+        let session = LxSessionManager.shared.session
         
         return Single.create { single -> Disposable in
             
-            self.session.request(url)
+            session.request(url)
                 .responseDecodable(
                     of: LxWordGet.self,
                     decoder: self.jsonDecoder
@@ -79,6 +76,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
+        let session = LxSessionManager.shared.session
         
         let wordsParametrs = words.map {
             [
@@ -92,7 +90,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         
         return Single.create { single -> Disposable in
             
-            self.session.request(request)
+            session.request(request)
                 .responseDecodable(
                     of: [LxWordGet].self,
                     decoder: self.jsonDecoder
