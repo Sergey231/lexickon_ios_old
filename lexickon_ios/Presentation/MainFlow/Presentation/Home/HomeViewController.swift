@@ -164,15 +164,23 @@ final class HomeViewController: UIViewController, Stepper {
     private func configureUI() {
         
         let refreshData = PublishRelay<Void>()
+        let modelSelected = PublishRelay<HomeWordCellModel>()
         
         let presenterOutput = presenter.configurate(
             input: .init(
                 refreshData: refreshData.asSignal(),
-                needLoadNextWordsPage: needToRefrash.asSignal()
+                needLoadNextWordsPage: needToRefrash.asSignal(),
+                selectedWordCellModel: modelSelected.asSignal()
             )
         )
         
         configureTableView(with: presenterOutput.sections)
+        tableView.rx.itemSelected.debug("😀").subscribe()
+        tableView.rx.modelSelected(HomeWordCellModel.self)
+            .asSignal()
+            .debug("🔥")
+            .emit(to: modelSelected)
+            .disposed(by: disposeBag)
         
         profileIconView.configure(input: ProfileIconView.Input())
             .didTap
