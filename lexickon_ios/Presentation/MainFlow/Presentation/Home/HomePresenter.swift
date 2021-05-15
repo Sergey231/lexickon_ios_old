@@ -25,7 +25,6 @@ final class HomePresenter {
     struct Input {
         let refreshData: Signal<Void>
         let needLoadNextWordsPage: Signal<Void>
-        let selectedWordCellModel: Signal<HomeWordCellModel>
     }
     
     struct Output {
@@ -49,8 +48,6 @@ final class HomePresenter {
         
         let isNextPageLoading = RxActivityIndicator()
         let isWordsUpdating = RxActivityIndicator()
-        
-        input.selectedWordCellModel.debug("🎲").emit()
         
         let refreshedWords = input.refreshData
             .flatMapLatest { [unowned self] _ -> Driver<[LxWordList]> in
