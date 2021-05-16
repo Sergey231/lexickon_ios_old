@@ -219,6 +219,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         let swipeSelection = isPullingUp
             .filter { $0 }
+            .map { _ in () }
         
         let anySelection = Driver.merge(
             swipeSelection,
