@@ -193,6 +193,15 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         inLexickonStateView.configure(input: .init(state: .hasAsNewWord))
         
+        let tap = UITapGestureRecognizer()
+        scrollView.addGestureRecognizer(tap)
+        
+        let tappedInEditMode: Signal<Void> = tap.rx.event
+            .withLatestFrom(model.isEditMode) { $1 }
+            .filter { $0 }.debug("🎲2")
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+        
         let contentOffsetX = scrollView.rx
             .didScroll
             .asDriver()
@@ -211,7 +220,12 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         let swipeSelection = isPullingUp
             .filter { $0 }
         
-        let wordSelectionDriver = swipeSelection
+        let anySelection = Driver.merge(
+            swipeSelection,
+            tappedInEditMode.asDriver(onErrorDriveWith: .empty())
+        )
+        
+        let wordSelectionDriver = anySelection
             .do(onNext: { [unowned self] _ in
                 switch self.model.wordSelectionState {
                 case .selected:
