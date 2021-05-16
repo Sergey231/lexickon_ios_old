@@ -198,7 +198,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         let tappedInEditMode: Signal<Void> = tap.rx.event
             .withLatestFrom(model.isEditMode) { $1 }
-            .filter { $0 }.debug("🎲2")
+            .filter { $0 }
             .map { _ in () }
             .asSignal(onErrorSignalWith: .empty())
         
