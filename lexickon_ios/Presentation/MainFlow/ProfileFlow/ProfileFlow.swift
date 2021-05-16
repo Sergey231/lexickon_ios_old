@@ -9,6 +9,7 @@
 import UIKit
 import RxFlow
 import Resolver
+import AuthTokenRepository
 
 enum ProfileStep: Step {
     case profileMainScreen

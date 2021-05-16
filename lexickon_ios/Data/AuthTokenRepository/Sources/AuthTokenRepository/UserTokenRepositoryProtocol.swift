@@ -2,7 +2,7 @@
 import LexickonApi
 import RxSwift
 
-protocol AuthTokenRepositoryProtocol {
+public protocol AuthTokenRepositoryProtocol {
     
     func get(with credentiols: LxUserCreate) -> Single<LxUserTokenGet>
     func erasе() -> Single<Void>

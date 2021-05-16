@@ -2,7 +2,7 @@
 import LexickonApi
 import RxSwift
 
-protocol UserRepositoryProtocol {
+public protocol UserRepositoryProtocol {
     
     func createUser(
         with credentials: LxUserCreate

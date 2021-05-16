@@ -18,10 +18,6 @@
 		EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */; };
 		EC0DBF0125F0B92500CBED4D /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */; };
 		EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */; };
-		EC0DBF0325F0B92500CBED4D /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA425F0B92400CBED4D /* UserRepository.swift */; };
-		EC0DBF0425F0B92500CBED4D /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA525F0B92400CBED4D /* UserRepositoryProtocol.swift */; };
-		EC0DBF0525F0B92500CBED4D /* UserTokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA725F0B92400CBED4D /* UserTokenRepository.swift */; };
-		EC0DBF0625F0B92500CBED4D /* UserTokenRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA825F0B92400CBED4D /* UserTokenRepositoryProtocol.swift */; };
 		EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */; };
 		EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */; };
 		EC0DBF0925F0B92500CBED4D /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */; };
@@ -63,12 +59,14 @@
 		ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA693925CEA19E005E07D5 /* WordsRepository */; };
 		ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5EA25B323890018110F /* TranslationRepository */; };
 		ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5F725B41BE60018110F /* ApiRepository */; };
+		ECE626B92650F0AA005573C6 /* UserRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECE626B82650F0AA005573C6 /* UserRepository */; };
 		ECEA376A25C2FF8A00D6C6DC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA376925C2FF8A00D6C6DC /* Lottie */; };
 		ECEA376E25C3000200D6C6DC /* linesLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = ECEA376D25C3000200D6C6DC /* linesLoading.json */; };
 		ECEF16E625B01B6D00A7ABC9 /* ConfigsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E525B01B6D00A7ABC9 /* ConfigsRepository */; };
 		ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E925B01B6D00A7ABC9 /* KeyValueRepository */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
+		ECFE3F402650F42D00C1440A /* AuthTokenRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,10 +91,6 @@
 		EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
 		EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
 		EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
-		EC0DBEA425F0B92400CBED4D /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		EC0DBEA525F0B92400CBED4D /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
-		EC0DBEA725F0B92400CBED4D /* UserTokenRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepository.swift; sourceTree = "<group>"; };
-		EC0DBEA825F0B92400CBED4D /* UserTokenRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTokenRepositoryProtocol.swift; sourceTree = "<group>"; };
 		EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
 		EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
@@ -118,6 +112,7 @@
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
+		EC7BF18C2650EF3C00E8B583 /* UserRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UserRepository; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +127,7 @@
 		ECDA693025CE9EC8005E07D5 /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConfigsRepository; sourceTree = "<group>"; };
 		ECDA693125CE9EC9005E07D5 /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyValueRepository; sourceTree = "<group>"; };
 		ECDA693425CEA050005E07D5 /* WordsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsRepository; sourceTree = "<group>"; };
+		ECE626BA2650F387005573C6 /* AuthTokenRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AuthTokenRepository; sourceTree = "<group>"; };
 		ECEA376D25C3000200D6C6DC /* linesLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = linesLoading.json; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
@@ -142,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFE3F402650F42D00C1440A /* AuthTokenRepository in Frameworks */,
 				ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */,
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				EC0DBF5425F4A2D900CBED4D /* LXControlKit in Frameworks */,
@@ -155,6 +152,7 @@
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
 				ECAF5063257E663300F021EA /* Utils in Frameworks */,
+				ECE626B92650F0AA005573C6 /* UserRepository in Frameworks */,
 				ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */,
 				ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
@@ -238,24 +236,6 @@
 			path = AuthorizationFlow;
 			sourceTree = "<group>";
 		};
-		EC0DBEA325F0B92400CBED4D /* UserRepository */ = {
-			isa = PBXGroup;
-			children = (
-				EC0DBEA425F0B92400CBED4D /* UserRepository.swift */,
-				EC0DBEA525F0B92400CBED4D /* UserRepositoryProtocol.swift */,
-			);
-			path = UserRepository;
-			sourceTree = "<group>";
-		};
-		EC0DBEA625F0B92400CBED4D /* AuthTokenRepository */ = {
-			isa = PBXGroup;
-			children = (
-				EC0DBEA725F0B92400CBED4D /* UserTokenRepository.swift */,
-				EC0DBEA825F0B92400CBED4D /* UserTokenRepositoryProtocol.swift */,
-			);
-			path = AuthTokenRepository;
-			sourceTree = "<group>";
-		};
 		EC0DBEAD25F0B92400CBED4D /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,8 +295,8 @@
 		EC0DBF1F25F0B96600CBED4D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				EC0DBEA625F0B92400CBED4D /* AuthTokenRepository */,
-				EC0DBEA325F0B92400CBED4D /* UserRepository */,
+				ECE626BA2650F387005573C6 /* AuthTokenRepository */,
+				EC7BF18C2650EF3C00E8B583 /* UserRepository */,
 				EC0DBF3425F0BB4700CBED4D /* TranslationRepository */,
 				ECDA693425CEA050005E07D5 /* WordsRepository */,
 				ECDA692F25CE9EC8005E07D5 /* ApiRepository */,
@@ -487,6 +467,8 @@
 				ECEA376925C2FF8A00D6C6DC /* Lottie */,
 				ECDA693925CEA19E005E07D5 /* WordsRepository */,
 				EC0DBF5325F4A2D900CBED4D /* LXControlKit */,
+				ECE626B82650F0AA005573C6 /* UserRepository */,
+				ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -592,14 +574,10 @@
 				EC0DBED625F0B92500CBED4D /* NewWordInteractorProtocol.swift in Sources */,
 				EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */,
 				EC0DBF0E25F0B92500CBED4D /* LoginPresenter.swift in Sources */,
-				EC0DBF0625F0B92500CBED4D /* UserTokenRepositoryProtocol.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */,
-				EC0DBF0425F0B92500CBED4D /* UserRepositoryProtocol.swift in Sources */,
 				EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */,
-				EC0DBF0325F0B92500CBED4D /* UserRepository.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */,
-				EC0DBF0525F0B92500CBED4D /* UserTokenRepository.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				EC0DBF0A25F0B92500CBED4D /* RegistrationViewController.swift in Sources */,
 				EC0DBED725F0B92500CBED4D /* NewWordInteractor.swift in Sources */,
@@ -1037,6 +1015,10 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ApiRepository;
 		};
+		ECE626B82650F0AA005573C6 /* UserRepository */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UserRepository;
+		};
 		ECEA376925C2FF8A00D6C6DC /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECEA376825C2FF8A00D6C6DC /* XCRemoteSwiftPackageReference "lottie-ios" */;
@@ -1049,6 +1031,10 @@
 		ECEF16E925B01B6D00A7ABC9 /* KeyValueRepository */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = KeyValueRepository;
+		};
+		ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AuthTokenRepository;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

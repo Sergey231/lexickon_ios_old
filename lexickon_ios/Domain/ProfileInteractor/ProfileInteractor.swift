@@ -8,6 +8,7 @@
 
 import RxSwift
 import Resolver
+import AuthTokenRepository
 
 struct ProfileInteractor: ProfileInteractorProtocol {
     

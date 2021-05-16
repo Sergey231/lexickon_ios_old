@@ -5,9 +5,11 @@ import RxCocoa
 import Alamofire
 import ApiRepository
 
-final class UserRepository: UserRepositoryProtocol, ApiRepository {
+public final class UserRepository: UserRepositoryProtocol, ApiRepository {
 
-    func createUser(
+    public init() {}
+    
+    public func createUser(
         with credentials: LxUserCreate
     ) -> Single<LxUserGet> {
         

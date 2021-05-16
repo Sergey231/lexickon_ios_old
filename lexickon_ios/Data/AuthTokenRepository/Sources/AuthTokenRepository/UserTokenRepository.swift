@@ -7,11 +7,13 @@ import KeychainRepository
 import Resolver
 import ApiRepository
 
-final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
+public final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
     
     @Injected private var KeychainRepository: KeychainRepositoryProtocol
     
-    func get(with credentiols: LxUserCreate) -> Single<LxUserTokenGet> {
+    public init() {}
+    
+    public func get(with credentiols: LxUserCreate) -> Single<LxUserTokenGet> {
         
         let KeychainRepository = self.KeychainRepository
         let url = baseURL + "/api/user/login"
@@ -42,7 +44,7 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
         }
     }
     
-    func erasе() -> Single<Void> {
+    public func erasе() -> Single<Void> {
         let KeychainRepository = self.KeychainRepository
         return Single.create { single -> Disposable in
             KeychainRepository.removeObject(forKey: .authToken)
@@ -52,7 +54,7 @@ final class AuthTokenRepository: AuthTokenRepositoryProtocol, ApiRepository {
         }
     }
     
-    var cach: Single<LxUserTokenGet> {
+    public var cach: Single<LxUserTokenGet> {
         let KeychainRepository = self.KeychainRepository
         return Single.create { single -> Disposable in
             
