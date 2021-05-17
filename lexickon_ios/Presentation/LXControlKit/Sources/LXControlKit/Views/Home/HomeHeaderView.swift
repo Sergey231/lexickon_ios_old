@@ -34,7 +34,7 @@ public final class HomeHeaderView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let button = UIButton()
+    private let wordsStateButton = WordsStateButton()
     
     fileprivate let infoLabel = UILabel()
     
@@ -51,20 +51,23 @@ public final class HomeHeaderView: UIView {
         
         backgroundColor = Colors.mainBG.color
         
-        button.setup {
+        wordsStateButton.setup {
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview().offset(-24)
             }
         }
         
         infoLabel.setup {
-            $0.text = "Header is developing 😐"
+            $0.text = Str.homeHeaderInfoDone
             $0.textAlignment = .center
             $0.textColor = .white
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.width.equalToSuperview()
+                $0.height.equalTo(24)
+                $0.bottom.equalTo(wordsStateButton.snp.top).offset(-24)
             }
         }
     }
@@ -75,7 +78,7 @@ public final class HomeHeaderView: UIView {
             .drive(rx.isWordsUpdating)
             .disposed(by: disposeBag)
         
-        return Output(didTap: button.rx.tap.asSignal())
+        return Output(didTap: wordsStateButton.rx.tap.asSignal())
     }
 }
 

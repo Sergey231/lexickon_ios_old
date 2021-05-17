@@ -15,6 +15,8 @@ public enum Str {
   public static let errorAlertTitle = Str.tr("Localizable", "Error_alert_title")
   /// Необходимо срочно повторить
   public static let homeFireSectionTitle = Str.tr("Localizable", "Home_fire_section_title")
+  /// Пора заниматься!
+  public static let homeHeaderInfoDone = Str.tr("Localizable", "Home_Header_info_done")
   /// Новые слова
   public static let homeNewSectionTitle = Str.tr("Localizable", "Home_new_section_title")
   /// Готовы к испытаниям
