@@ -29,7 +29,7 @@ public final class WordsStateButton: UIButton {
     required init(value: Int = 0) {
         super.init(frame: .zero)
         self.createUI()
-        self.configure()
+        self.configure(input: .init(state: .just(.hasReadyWords)))
     }
     
     required init?(coder aDecoder: NSCoder) {
