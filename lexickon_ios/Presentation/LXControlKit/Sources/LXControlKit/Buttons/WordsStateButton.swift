@@ -14,7 +14,17 @@ import RxSwift
 
 public final class WordsStateButton: UIButton {
     
-    private let desposeBag = DisposeBag()
+    public enum State {
+        case hasReadyWords
+        case hasFireWords
+        case waiating
+    }
+    
+    public struct Input {
+        let state: Driver<State>
+    }
+    
+    private let disposeBag = DisposeBag()
     
     required init(value: Int = 0) {
         super.init(frame: .zero)
@@ -39,11 +49,14 @@ public final class WordsStateButton: UIButton {
             .asDriver(onErrorDriveWith: .empty())
             .map { $0.height/2 }
             .drive(rx.cornerRadius)
-            .disposed(by: desposeBag)
+            .disposed(by: disposeBag)
     }
     
-    private func configure() {
+    private func configure(input: Input) {
         
+        input.state
+            .drive(rx.state)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -51,6 +64,12 @@ private extension Reactive where Base: WordsStateButton {
     var cornerRadius: Binder<CGFloat> {
         Binder(base) { base, cornerRadius in
             base.layer.cornerRadius = cornerRadius
+        }
+    }
+    
+    var state: Binder<WordsStateButton.State> {
+        Binder(base) { base, state in
+            print("✅ \(state)")
         }
     }
 }
