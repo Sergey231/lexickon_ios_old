@@ -67,6 +67,7 @@
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
 		ECFE3F402650F42D00C1440A /* AuthTokenRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */; };
+		ECFE3F482654DC5900C1440A /* LexickonStateEntity in Frameworks */ = {isa = PBXBuildFile; productRef = ECFE3F472654DC5900C1440A /* LexickonStateEntity */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		ECEA376D25C3000200D6C6DC /* linesLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = linesLoading.json; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
+		ECFE3F462654DBEC00C1440A /* LexickonStateEntity */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LexickonStateEntity; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */,
 				ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
+				ECFE3F482654DC5900C1440A /* LexickonStateEntity in Frameworks */,
 				EC3750F225B195030090F95F /* Assets in Frameworks */,
 				ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */,
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
@@ -310,6 +313,7 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE3F462654DBEC00C1440A /* LexickonStateEntity */,
 				EC0DBF2F25F0BA8600CBED4D /* MainInteractor */,
 				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
 				EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */,
@@ -469,6 +473,7 @@
 				EC0DBF5325F4A2D900CBED4D /* LXControlKit */,
 				ECE626B82650F0AA005573C6 /* UserRepository */,
 				ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */,
+				ECFE3F472654DC5900C1440A /* LexickonStateEntity */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -1035,6 +1040,10 @@
 		ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AuthTokenRepository;
+		};
+		ECFE3F472654DC5900C1440A /* LexickonStateEntity */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LexickonStateEntity;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import Assets
+import LexickonStateEntity
 
 public final class HomeHeaderView: UIView {
     
@@ -21,11 +22,14 @@ public final class HomeHeaderView: UIView {
     
     public struct Input {
         public init(
-            isWordsUpdating: Driver<Bool>
+            isWordsUpdating: Driver<Bool>,
+            state: Driver<LexickonStateEntity>
         ) {
             self.isWordsUpdating = isWordsUpdating
+            self.state = state
         }
         let isWordsUpdating: Driver<Bool>
+        let state: Driver<LexickonStateEntity>
     }
     
     public struct Output {
@@ -77,6 +81,12 @@ public final class HomeHeaderView: UIView {
         input.isWordsUpdating
             .drive(rx.isWordsUpdating)
             .disposed(by: disposeBag)
+        
+        wordsStateButton.configure(
+            input: .init(
+                state: input.state
+            )
+        )
         
         return Output(didTap: wordsStateButton.rx.tap.asSignal())
     }

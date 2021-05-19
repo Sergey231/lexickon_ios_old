@@ -212,7 +212,10 @@ final class HomeViewController: UIViewController, Stepper {
             .map { $0 > 0 }
             
         _ = headerView.configure(
-            input: .init(isWordsUpdating: isWordsUpdating)
+            input: .init(
+                isWordsUpdating: isWordsUpdating,
+                state: .just(.hasReadyWords)
+            )
         )
            
         refreshView.configure(

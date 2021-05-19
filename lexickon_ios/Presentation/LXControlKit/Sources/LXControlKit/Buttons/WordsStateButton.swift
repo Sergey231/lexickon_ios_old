@@ -11,25 +11,21 @@ import Assets
 import SnapKit
 import RxCocoa
 import RxSwift
+import LexickonStateEntity
 
 public final class WordsStateButton: UIButton {
     
-    public enum State {
-        case hasReadyWords
-        case hasFireWords
-        case waiating
+    public struct Input {
+        let state: Driver<LexickonStateEntity>
     }
     
-    public struct Input {
-        let state: Driver<State>
-    }
+    fileprivate let stateLabel = UILabel()
     
     private let disposeBag = DisposeBag()
     
     required init(value: Int = 0) {
         super.init(frame: .zero)
         self.createUI()
-        self.configure(input: .init(state: .just(.hasReadyWords)))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,9 +46,18 @@ public final class WordsStateButton: UIButton {
             .map { $0.height/2 }
             .drive(rx.cornerRadius)
             .disposed(by: disposeBag)
+        
+        stateLabel.setup {
+            $0.textAlignment = .center
+            $0.textColor = Colors.mainBG.color
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
     }
     
-    private func configure(input: Input) {
+    public func configure(input: Input) {
         
         input.state
             .drive(rx.state)
@@ -67,9 +72,17 @@ private extension Reactive where Base: WordsStateButton {
         }
     }
     
-    var state: Binder<WordsStateButton.State> {
+    var state: Binder<LexickonStateEntity> {
         Binder(base) { base, state in
             print("✅ \(state)")
+            switch state {
+            case .hasReadyWords:
+                base.stateLabel.text = "Слова готовы!"
+            case .hasFireWords:
+                base.stateLabel.text = "Срочно повторить!"
+            case .waiating:
+                base.stateLabel.text = "Слов созревают..."
+            }
         }
     }
 }
