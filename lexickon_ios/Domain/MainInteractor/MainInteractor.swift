@@ -10,16 +10,33 @@ import LexickonApi
 import RxSwift
 import Resolver
 import WordsRepository
+import LexickonStateEntity
 
 final class MainInteractor: MainInteractorProtocol {
     
     @Injected var wordRepository: WordsRepositoryProtocol
     
-    func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
+    func words(per: Int, page: Int) -> Single<LxPage<WordEntity>> {
         wordRepository.words(per: per, page: page)
+            .map { page -> LxPage<WordEntity> in
+                
+                let metadata = LxPage<WordEntity>.Metadata(
+                    page: page.metadata.page,
+                    per: page.metadata.per,
+                    total: page.metadata.total
+                )
+                
+                let items: [WordEntity] = page.items.map { WordEntity(withLxWordList: $0) }
+                
+                return LxPage<WordEntity>.init(
+                    metadata: metadata,
+                    items: items
+                )
+            }
     }
     
-    func word(by id: String) -> Single<LxWordGet> {
+    func word(by id: String) -> Single<WordEntity> {
         wordRepository.word(by: id)
+            .map { WordEntity(withLxWordGet: $0) }
     }
 }

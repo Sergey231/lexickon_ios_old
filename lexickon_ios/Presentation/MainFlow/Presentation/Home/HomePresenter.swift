@@ -14,6 +14,7 @@ import RxDataSources
 import Resolver
 import LXControlKit
 import RxExtensions
+import LexickonStateEntity
 
 typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordCellModel>
 typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>
@@ -50,7 +51,7 @@ final class HomePresenter {
         let isWordsUpdating = RxActivityIndicator()
         
         let refreshedWords = input.refreshData
-            .flatMapLatest { [unowned self] _ -> Driver<[LxWordList]> in
+            .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
                 self.mainInteractor.words(
                     per: 10,
                     page: 1
@@ -74,7 +75,7 @@ final class HomePresenter {
         
         let words = input.needLoadNextWordsPage
             .startWith(())
-            .flatMapLatest { [unowned self] _ -> Driver<[LxWordList]> in
+            .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
                 self.mainInteractor.words(
                     per: self.loadedWordsCount,
                     page: self.pagesCount

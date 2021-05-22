@@ -16,7 +16,7 @@ import LexickonStateEntity
 public final class WordsStateButton: UIButton {
     
     public struct Input {
-        let state: Driver<LexickonStateEntity>
+        let state: Driver<LexickonStateEntity.State>
     }
     
     fileprivate let stateLabel = UILabel()
@@ -72,7 +72,7 @@ private extension Reactive where Base: WordsStateButton {
         }
     }
     
-    var state: Binder<LexickonStateEntity> {
+    var state: Binder<LexickonStateEntity.State> {
         Binder(base) { base, state in
             print("✅ \(state)")
             switch state {
@@ -82,6 +82,8 @@ private extension Reactive where Base: WordsStateButton {
                 base.stateLabel.text = "Срочно повторить!"
             case .waiating:
                 base.stateLabel.text = "Слов созревают..."
+            case .empty:
+                base.stateLabel.text = "У вас пока нет слов"
             }
         }
     }

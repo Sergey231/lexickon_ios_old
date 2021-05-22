@@ -8,9 +8,10 @@
 
 import RxSwift
 import LexickonApi
+import LexickonStateEntity
 
 protocol MainInteractorProtocol {
     
-    func words(per: Int, page: Int) -> Single<LxPage<LxWordList>>
-    func word(by id: String) -> Single<LxWordGet>
+    func words(per: Int, page: Int) -> Single<LxPage<WordEntity>>
+    func word(by id: String) -> Single<WordEntity>
 }

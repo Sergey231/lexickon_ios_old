@@ -166,37 +166,7 @@ final class AddSearchWordPresenter {
             wordsForEddingFromEditPanel
         )
         
-        let testWordsForAdding: Signal<[TranslationCellModelEnum]> = wordsForAdding
-            .map { _ in
-                [
-                    TranslationCellModelEnum.Other(
-                        OtherTranslationCellModel(
-                            translation: "Cat",
-                            text: "Кот",
-                            isEditMode: .empty(),
-                            studyType: .new
-                        ))
-                    ,
-                    TranslationCellModelEnum.Other(
-                        OtherTranslationCellModel(
-                            translation: "Dog",
-                            text: "Сабака",
-                            isEditMode: .empty(),
-                            studyType: .new
-                        ))
-                    ,
-                    TranslationCellModelEnum.Other(
-                        OtherTranslationCellModel(
-                            translation: "Bug",
-                            text: "Жук",
-                            isEditMode: .empty(),
-                            studyType: .new
-                        )
-                    )
-                ]
-            }
-        
-        let didTapAddWordDisposable = testWordsForAdding
+        let didTapAddWordDisposable = wordsForAdding
             .asObservable()
             .flatMap { wordModelsForAdding -> Single<Void> in
                 let wordsTranslations = wordModelsForAdding.map { word in

@@ -23,13 +23,13 @@ public final class HomeHeaderView: UIView {
     public struct Input {
         public init(
             isWordsUpdating: Driver<Bool>,
-            state: Driver<LexickonStateEntity>
+            state: Driver<LexickonStateEntity.State>
         ) {
             self.isWordsUpdating = isWordsUpdating
             self.state = state
         }
         let isWordsUpdating: Driver<Bool>
-        let state: Driver<LexickonStateEntity>
+        let state: Driver<LexickonStateEntity.State>
     }
     
     public struct Output {
