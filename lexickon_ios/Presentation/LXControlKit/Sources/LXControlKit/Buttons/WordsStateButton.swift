@@ -74,16 +74,15 @@ private extension Reactive where Base: WordsStateButton {
     
     var state: Binder<LexickonStateEntity.State> {
         Binder(base) { base, state in
-            print("✅ \(state)")
             switch state {
             case .hasReadyWords:
-                base.stateLabel.text = "Слова готовы!"
+                base.stateLabel.text = "готовы к испытаниям!"
             case .hasFireWords:
-                base.stateLabel.text = "Срочно повторить!"
+                base.stateLabel.text = "нужно срочно повторить!"
             case .waiating:
-                base.stateLabel.text = "Слов созревают..."
+                base.stateLabel.text = "осталось до занятия"
             case .empty:
-                base.stateLabel.text = "У вас пока нет слов"
+                base.stateLabel.text = ""
             }
         }
     }
