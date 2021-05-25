@@ -16,6 +16,10 @@ final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     
     @Injected var wordRepository: WordsRepositoryProtocol
     
+    func state() -> Single<LexickonStateEntity> {
+        .error(LxHTTPObject.Error.unknown)
+    }
+    
     func words(per: Int, page: Int) -> Single<LxPage<WordEntity>> {
         wordRepository.words(per: per, page: page)
             .map { page -> LxPage<WordEntity> in
