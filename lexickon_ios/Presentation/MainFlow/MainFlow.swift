@@ -90,7 +90,7 @@ extension Resolver {
     public static func registerMainObjects() {
         register { HomeViewController() }
         register { HomePresenter() }
-        register { MainInteractor() as MainInteractorProtocol }
+        register { LexickonStateInteractor() as LexickonStateInteractorProtocol }
         register { WordsRepository() as WordsRepositoryProtocol }
     }
 }

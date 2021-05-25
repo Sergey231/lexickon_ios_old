@@ -10,7 +10,7 @@ import RxSwift
 import LexickonApi
 import LexickonStateEntity
 
-protocol MainInteractorProtocol {
+protocol LexickonStateInteractorProtocol {
     
     func words(per: Int, page: Int) -> Single<LxPage<WordEntity>>
     func word(by id: String) -> Single<WordEntity>

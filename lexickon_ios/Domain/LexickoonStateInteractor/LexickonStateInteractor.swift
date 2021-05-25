@@ -12,7 +12,7 @@ import Resolver
 import WordsRepository
 import LexickonStateEntity
 
-final class MainInteractor: MainInteractorProtocol {
+final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     
     @Injected var wordRepository: WordsRepositoryProtocol
     

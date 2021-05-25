@@ -21,7 +21,7 @@ typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWord
 
 final class HomePresenter {
     
-    @Injected var mainInteractor: MainInteractorProtocol
+    @Injected var LexickonStateInteractor: LexickonStateInteractorProtocol
     
     struct Input {
         let refreshData: Signal<Void>
@@ -52,7 +52,7 @@ final class HomePresenter {
         
         let refreshedWords = input.refreshData
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
-                self.mainInteractor.words(
+                self.LexickonStateInteractor.words(
                     per: 10,
                     page: 1
                 )
@@ -76,7 +76,7 @@ final class HomePresenter {
         let words = input.needLoadNextWordsPage
             .startWith(())
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
-                self.mainInteractor.words(
+                self.LexickonStateInteractor.words(
                     per: self.loadedWordsCount,
                     page: self.pagesCount
                 )
