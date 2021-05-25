@@ -38,5 +38,4 @@ public struct LexickonStateEntity {
             return .empty
         }
     }
-    
 }

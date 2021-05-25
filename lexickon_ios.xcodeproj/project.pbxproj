@@ -81,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC057D4C265CC60900056566 /* WordsStateRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsStateRepository; sourceTree = "<group>"; };
 		EC0DBE3825F0B92400CBED4D /* NewWordFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordFlow.swift; sourceTree = "<group>"; };
 		EC0DBE5C25F0B92400CBED4D /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC0DBE5D25F0B92400CBED4D /* NewWordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
@@ -298,6 +299,7 @@
 		EC0DBF1F25F0B96600CBED4D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				EC057D4C265CC60900056566 /* WordsStateRepository */,
 				ECE626BA2650F387005573C6 /* AuthTokenRepository */,
 				EC7BF18C2650EF3C00E8B583 /* UserRepository */,
 				EC0DBF3425F0BB4700CBED4D /* TranslationRepository */,
@@ -899,7 +901,7 @@
 			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.2;
+				minimumVersion = 0.7.3;
 			};
 		};
 		ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */ = {
