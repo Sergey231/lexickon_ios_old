@@ -5,4 +5,9 @@
 //  Created by Sergey Borovikov on 25.05.2021.
 //
 
-import Foundation
+import RxSwift
+import LexickonApi
+
+public protocol WordsStateRepositoryProtocol {
+    func wordsState() -> Single<WordsState>
+}
