@@ -9,5 +9,5 @@ import RxSwift
 import LexickonApi
 
 public protocol WordsStateRepositoryProtocol {
-    func wordsState() -> Single<WordsState>
+    func wordsState() -> Single<LxWordsState>
 }

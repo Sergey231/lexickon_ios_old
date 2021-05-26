@@ -6,7 +6,7 @@ public final class WordsStateRepository: WordsStateRepositoryProtocol, ApiReposi
    
     public init() {}
     
-    public func wordsState() -> Single<WordsState> {
+    public func wordsState() -> Single<LxWordsState> {
         
         let url = baseURL + "/api/wordsState"
         let session = LxSessionManager.shared.session
@@ -15,7 +15,7 @@ public final class WordsStateRepository: WordsStateRepositoryProtocol, ApiReposi
             
             session.request(url)
                 .responseDecodable(
-                    of: WordsState.self,
+                    of: LxWordsState.self,
                     decoder: self.jsonDecoder
                 ) { res in
                     
