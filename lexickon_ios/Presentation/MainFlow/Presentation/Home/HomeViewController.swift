@@ -106,6 +106,7 @@ final class HomeViewController: UIViewController, Stepper {
         }
         
         activityView.setup {
+            activityView.alpha = 0
             $0.animation = Animation.named("linesLoading")
             view.addSubview($0)
             $0.snp.makeConstraints {
@@ -181,6 +182,11 @@ final class HomeViewController: UIViewController, Stepper {
             )
         )
         
+        presenterOutput.wordsState
+            .map { $0 == .empty }
+            .drive(rx.isEmptyLexickon)
+            .disposed(by: disposeBag)
+        
         configureTableView(with: presenterOutput.sections)
         
         profileIconView.configure(input: ProfileIconView.Input())
@@ -249,16 +255,32 @@ final class HomeViewController: UIViewController, Stepper {
 //        wordsEditPanelViewOutput.resetWordsDidTap.debug("🧹").emit()
 //        wordsEditPanelViewOutput.deleteWordsDidTap.debug("🔥").emit()
         
-        presenterOutput.isWordsUpdating
+        Driver.combineLatest(
+            presenterOutput.isWordsUpdating,
+            presenterOutput.wordsState
+        )
+        .flatMap { isWordsUpdating, wordsState -> Driver<Bool> in
+            wordsState == .empty
+                ? .empty()
+                : .just(isWordsUpdating)
+        }
             .drive(rx.isWordsLoading)
             .disposed(by: disposeBag)
         
         presenterOutput.disposables
             .disposed(by: disposeBag)
         
-        presenterOutput.isEditMode
-            .drive(rx.isEditMode)
-            .disposed(by: disposeBag)
+        Driver.combineLatest(
+            presenterOutput.isEditMode,
+            presenterOutput.wordsState
+        )
+        .flatMap { isEditMode, wordsState -> Driver<Bool> in
+            wordsState == .empty
+                ? .empty()
+                : .just(isEditMode)
+        }
+        .drive(rx.isEditMode)
+        .disposed(by: disposeBag)
         
         Driver.combineLatest(
             presenterOutput.isEditMode,
@@ -494,6 +516,14 @@ private extension Reactive where Base: HomeViewController {
                 }
                 base.wordsEditPanelView.superview?.layoutIfNeeded()
             }
+        }
+    }
+    
+    var isEmptyLexickon: Binder<Bool> {
+        Binder(base) { base, isEmpty in
+            base.tableView.alpha = isEmpty ? 0 : 1
+            base.withoutWordsLabelView.alpha = isEmpty ? 1 : 0
+            base.addWordButton.alpha = isEmpty ? 0 : 1
         }
     }
 }
