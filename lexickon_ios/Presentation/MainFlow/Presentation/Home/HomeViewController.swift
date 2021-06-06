@@ -42,6 +42,7 @@ final class HomeViewController: UIViewController, Stepper {
     fileprivate let paginationProgressView = PaginationProgressView()
     fileprivate let activityView = AnimationView()
     fileprivate let wordsEditPanelView = WordEditPanelView()
+    fileprivate let withoutWordsLabelView = WithoutWordsLabelView()
     
     // public for Animator
     let profileIconView = ProfileIconView()
@@ -117,6 +118,14 @@ final class HomeViewController: UIViewController, Stepper {
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
+            }
+        }
+        
+        withoutWordsLabelView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(300)
+                $0.width.equalToSuperview()
             }
         }
         
