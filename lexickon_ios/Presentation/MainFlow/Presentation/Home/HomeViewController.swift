@@ -43,6 +43,7 @@ final class HomeViewController: UIViewController, Stepper {
     fileprivate let activityView = AnimationView()
     fileprivate let wordsEditPanelView = WordEditPanelView()
     fileprivate let withoutWordsLabelView = WithoutWordsLabelView()
+    fileprivate let startAddingWordsView = StartAddingWordsView()
     
     // public for Animator
     let profileIconView = ProfileIconView()
@@ -130,6 +131,14 @@ final class HomeViewController: UIViewController, Stepper {
             }
         }
         
+        startAddingWordsView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.width.equalToSuperview()
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            }
+        }
+        
         refreshView.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {
@@ -185,6 +194,23 @@ final class HomeViewController: UIViewController, Stepper {
         presenterOutput.wordsState
             .map { $0 == .empty }
             .drive(rx.isEmptyLexickon)
+            .disposed(by: disposeBag)
+        
+        let startAddingWordsViewOutput = startAddingWordsView.configure()
+        
+        startAddingWordsViewOutput.selectWordsButtonTap
+            .debug("🎲 selectWordsButtonTap")
+            .emit()
+            .disposed(by: disposeBag)
+        
+        startAddingWordsViewOutput.authoAddingWordsButtonTap
+            .debug("🎲 authoAddingWordsButtonTap")
+            .emit()
+            .disposed(by: disposeBag)
+        
+        startAddingWordsViewOutput.manualAddingWordsButtonTap
+            .debug("🎲 manualAddingWordsButtonTap")
+            .emit()
             .disposed(by: disposeBag)
         
         configureTableView(with: presenterOutput.sections)

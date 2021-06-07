@@ -55,6 +55,7 @@ public final class WithoutWordsLabelView: UIView {
                 $0.width.equalToSuperview()
                 $0.height.equalTo(46)
                 $0.top.equalTo(infoLabel.snp.bottom)
+                $0.bottom.equalToSuperview()
             }
         }
     }
