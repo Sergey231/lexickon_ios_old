@@ -53,6 +53,10 @@
 "Home_ready_section_title" = "Готовы к испытаниям";
 "Home_new_section_title" = "Новые слова";
 "Home_waiting_section_title" = "Созревают...";
+"Home_empty_lexickon_label" = "У вас пока нет слов\n  в вашем";
+"Home_manual_adding_words_button_title" = "Добавить слова вручную";
+"Home_autoadding_button_title" = "Настроить автодобавление слов";
+"Home_selecte_words_button_title" = "Выбрать из предложенных слов";
 
 // MARK: Home Screen/Header
 

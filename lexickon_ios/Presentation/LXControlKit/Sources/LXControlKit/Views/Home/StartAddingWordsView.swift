@@ -25,7 +25,7 @@ public final class StartAddingWordsView: UIView {
     }
     
     fileprivate let selectWordsButton = UIButton()
-    fileprivate let authoAddingWordsButton = UIButton()
+    fileprivate let autoAddingWordsButton = UIButton()
     fileprivate let manualAddingWordsButton = UIButton()
     
     override init(frame: CGRect) {
@@ -42,7 +42,7 @@ public final class StartAddingWordsView: UIView {
         backgroundColor = .clear
         
         manualAddingWordsButton.setup {
-            $0.setTitle("Добавить слова вручную", for: .normal)
+            $0.setTitle(Str.homeManualAddingWordsButtonTitle, for: .normal)
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.bottom.right.equalToSuperview().offset(-Margin.mid)
@@ -51,8 +51,8 @@ public final class StartAddingWordsView: UIView {
             }
         }
         
-        authoAddingWordsButton.setup {
-            $0.setTitle("Настроить автодобавление слов", for: .normal)
+        autoAddingWordsButton.setup {
+            $0.setTitle(Str.homeAutoaddingButtonTitle, for: .normal)
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.bottom.equalTo(manualAddingWordsButton.snp.top).offset(-Margin.mid)
@@ -63,10 +63,10 @@ public final class StartAddingWordsView: UIView {
         }
         
         selectWordsButton.setup {
-            $0.setTitle("Выбрать из предложенных слов", for: .normal)
+            $0.setTitle(Str.homeSelecteWordsButtonTitle, for: .normal)
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.bottom.equalTo(authoAddingWordsButton.snp.top).offset(-Margin.mid)
+                $0.bottom.equalTo(autoAddingWordsButton.snp.top).offset(-Margin.mid)
                 $0.left.equalToSuperview().offset(Margin.mid)
                 $0.right.equalToSuperview().offset(-Margin.mid)
                 $0.height.equalTo(Size.button.height)
@@ -82,7 +82,7 @@ public final class StartAddingWordsView: UIView {
             borderColor: Colors.mainBG.color
         )
         
-        authoAddingWordsButton.setRoundedBorderedStyle(
+        autoAddingWordsButton.setRoundedBorderedStyle(
             bgColor: Colors.mainBG.color,
             borderColor: Colors.mainBG.color
         )
@@ -94,7 +94,7 @@ public final class StartAddingWordsView: UIView {
         
         return Output(
             selectWordsButtonTap: selectWordsButton.rx.tap.asSignal(),
-            authoAddingWordsButtonTap: authoAddingWordsButton.rx.tap.asSignal(),
+            authoAddingWordsButtonTap: autoAddingWordsButton.rx.tap.asSignal(),
             manualAddingWordsButtonTap: manualAddingWordsButton.rx.tap.asSignal()
         )
     }

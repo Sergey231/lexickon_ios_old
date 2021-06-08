@@ -13,14 +13,22 @@ public enum Str {
   public static let errorAlertButtonTitle = Str.tr("Localizable", "Error_alert_button_title")
   /// Ошибка
   public static let errorAlertTitle = Str.tr("Localizable", "Error_alert_title")
+  /// Настроить автодобавление слов
+  public static let homeAutoaddingButtonTitle = Str.tr("Localizable", "Home_autoadding_button_title")
+  /// У вас пока нет слов\n  в вашем
+  public static let homeEmptyLexickonLabel = Str.tr("Localizable", "Home_empty_lexickon_label")
   /// Необходимо срочно повторить
   public static let homeFireSectionTitle = Str.tr("Localizable", "Home_fire_section_title")
   /// Пора заниматься!
   public static let homeHeaderInfoDone = Str.tr("Localizable", "Home_Header_info_done")
+  /// Добавить слова вручную
+  public static let homeManualAddingWordsButtonTitle = Str.tr("Localizable", "Home_manual_adding_words_button_title")
   /// Новые слова
   public static let homeNewSectionTitle = Str.tr("Localizable", "Home_new_section_title")
   /// Готовы к испытаниям
   public static let homeReadySectionTitle = Str.tr("Localizable", "Home_ready_section_title")
+  /// Выбрать из предложенных слов
+  public static let homeSelecteWordsButtonTitle = Str.tr("Localizable", "Home_selecte_words_button_title")
   /// Созревают...
   public static let homeWaitingSectionTitle = Str.tr("Localizable", "Home_waiting_section_title")
   /// Есть в Вашем Lexickon

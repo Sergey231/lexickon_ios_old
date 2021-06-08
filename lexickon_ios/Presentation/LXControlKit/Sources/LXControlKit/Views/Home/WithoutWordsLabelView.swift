@@ -34,7 +34,7 @@ public final class WithoutWordsLabelView: UIView {
         backgroundColor = .clear
         
         infoLabel.setup {
-            $0.text = "У вас пока нет слов\n  в вашем"
+            $0.text = Str.homeEmptyLexickonLabel
             $0.numberOfLines = 2
             $0.textAlignment = .center
             $0.textColor = Colors.waitingWord.color

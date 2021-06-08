@@ -548,8 +548,9 @@ private extension Reactive where Base: HomeViewController {
     var isEmptyLexickon: Binder<Bool> {
         Binder(base) { base, isEmpty in
             base.tableView.alpha = isEmpty ? 0 : 1
-            base.withoutWordsLabelView.alpha = isEmpty ? 1 : 0
             base.addWordButton.alpha = isEmpty ? 0 : 1
+            base.withoutWordsLabelView.alpha = isEmpty ? 1 : 0
+            base.startAddingWordsView.alpha = isEmpty ? 1 : 0
         }
     }
 }
