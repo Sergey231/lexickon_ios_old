@@ -36,7 +36,7 @@ final class HomePresenter {
         let wordsForDelete: Driver<[HomeWordCellModel]>
         let wordsForReset: Driver<[HomeWordCellModel]>
         let wordsForLearn: Driver<[HomeWordCellModel]>
-        let wordsState: Driver<LexickonStateEntity.State>
+        let lexickonState: Driver<LexickonStateEntity.State>
         let disposables: CompositeDisposable
     }
     
@@ -229,7 +229,7 @@ final class HomePresenter {
             wordsForDelete: wordsForDelete,
             wordsForReset: wordsForReset,
             wordsForLearn: wordsForLearn,
-            wordsState: .just(LexickonStateEntity.State.empty),
+            lexickonState: .just(LexickonStateEntity.State.hasFireWords),
             disposables: disposables
         )
     }

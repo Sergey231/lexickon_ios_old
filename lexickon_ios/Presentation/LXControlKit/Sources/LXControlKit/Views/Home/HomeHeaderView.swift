@@ -23,13 +23,13 @@ public final class HomeHeaderView: UIView {
     public struct Input {
         public init(
             isWordsUpdating: Driver<Bool>,
-            state: Driver<LexickonStateEntity.State>
+            lexickonState: Driver<LexickonStateEntity.State>
         ) {
             self.isWordsUpdating = isWordsUpdating
-            self.state = state
+            self.lexickonState = lexickonState
         }
         let isWordsUpdating: Driver<Bool>
-        let state: Driver<LexickonStateEntity.State>
+        let lexickonState: Driver<LexickonStateEntity.State>
     }
     
     public struct Output {
@@ -38,8 +38,7 @@ public final class HomeHeaderView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let wordsStateButton = WordsStateButton()
-    
+    fileprivate let wordsStateButton = LexickonStateButton()
     fileprivate let infoLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -82,9 +81,13 @@ public final class HomeHeaderView: UIView {
             .drive(rx.isWordsUpdating)
             .disposed(by: disposeBag)
         
+        input.lexickonState
+            .drive(rx.lexickonStatus)
+            .disposed(by: disposeBag)
+        
         wordsStateButton.configure(
             input: .init(
-                state: input.state
+                state: input.lexickonState
             )
         )
         
@@ -98,6 +101,20 @@ private extension Reactive where Base : HomeHeaderView {
         Binder(base) { base, isWordsUpdating in
             UIView.animate(withDuration: 0.3) {
                 base.infoLabel.alpha = isWordsUpdating ? 0 : 1
+                base.wordsStateButton.alpha = isWordsUpdating ? 0 : 1
+            }
+        }
+    }
+    
+    var lexickonStatus: Binder<LexickonStateEntity.State> {
+        Binder(base) { base, status in
+            UIView.animate(withDuration: 0.3) {
+                switch status {
+                case .hasFireWords:
+                    base.backgroundColor = Colors.hasFireWordsHeader.color
+                default:
+                    base.backgroundColor = Colors.mainBG.color
+                }
             }
         }
     }

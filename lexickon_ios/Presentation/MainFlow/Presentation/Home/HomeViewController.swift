@@ -191,7 +191,7 @@ final class HomeViewController: UIViewController, Stepper {
             )
         )
         
-        presenterOutput.wordsState
+        presenterOutput.lexickonState
             .map { $0 == .empty }
             .drive(rx.isEmptyLexickon)
             .disposed(by: disposeBag)
@@ -255,7 +255,7 @@ final class HomeViewController: UIViewController, Stepper {
         _ = headerView.configure(
             input: .init(
                 isWordsUpdating: isWordsUpdating,
-                state: .just(.hasReadyWords)
+                lexickonState: presenterOutput.lexickonState
             )
         )
            
@@ -283,7 +283,7 @@ final class HomeViewController: UIViewController, Stepper {
         
         Driver.combineLatest(
             presenterOutput.isWordsUpdating,
-            presenterOutput.wordsState
+            presenterOutput.lexickonState
         )
         .flatMap { isWordsUpdating, wordsState -> Driver<Bool> in
             wordsState == .empty
@@ -298,7 +298,7 @@ final class HomeViewController: UIViewController, Stepper {
         
         Driver.combineLatest(
             presenterOutput.isEditMode,
-            presenterOutput.wordsState
+            presenterOutput.lexickonState
         )
         .flatMap { isEditMode, wordsState -> Driver<Bool> in
             wordsState == .empty

@@ -13,7 +13,7 @@ import RxCocoa
 import RxSwift
 import LexickonStateEntity
 
-public final class WordsStateButton: UIButton {
+public final class LexickonStateButton: UIButton {
     
     public struct Input {
         let state: Driver<LexickonStateEntity.State>
@@ -65,7 +65,7 @@ public final class WordsStateButton: UIButton {
     }
 }
 
-private extension Reactive where Base: WordsStateButton {
+private extension Reactive where Base: LexickonStateButton {
     var cornerRadius: Binder<CGFloat> {
         Binder(base) { base, cornerRadius in
             base.layer.cornerRadius = cornerRadius
@@ -77,12 +77,16 @@ private extension Reactive where Base: WordsStateButton {
             switch state {
             case .hasReadyWords:
                 base.stateLabel.text = "готовы к испытаниям!"
+                base.stateLabel.textColor = Colors.readyWordBright.color
             case .hasFireWords:
                 base.stateLabel.text = "нужно срочно повторить!"
+                base.stateLabel.textColor = Colors.fireWordBright.color
             case .waiating:
                 base.stateLabel.text = "осталось до занятия"
+                base.stateLabel.textColor = Colors.readyWordBright.color
             case .empty:
                 base.stateLabel.text = ""
+                base.stateLabel.textColor = Colors.readyWordBright.color
             }
         }
     }
