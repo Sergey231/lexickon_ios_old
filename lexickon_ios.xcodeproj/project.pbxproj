@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20C52671E23600881DDD /* WordCordFlow.swift */; };
+		EC0B20C92671E3FE00881DDD /* WordCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */; };
 		EC0DBEC225F0B92500CBED4D /* NewWordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE3825F0B92400CBED4D /* NewWordFlow.swift */; };
 		EC0DBED625F0B92500CBED4D /* NewWordInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE5C25F0B92400CBED4D /* NewWordInteractorProtocol.swift */; };
 		EC0DBED725F0B92500CBED4D /* NewWordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE5D25F0B92400CBED4D /* NewWordInteractor.swift */; };
@@ -82,6 +84,8 @@
 
 /* Begin PBXFileReference section */
 		EC057D4C265CC60900056566 /* WordsStateRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsStateRepository; sourceTree = "<group>"; };
+		EC0B20C52671E23600881DDD /* WordCordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCordFlow.swift; sourceTree = "<group>"; };
+		EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardViewController.swift; sourceTree = "<group>"; };
 		EC0DBE3825F0B92400CBED4D /* NewWordFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordFlow.swift; sourceTree = "<group>"; };
 		EC0DBE5C25F0B92400CBED4D /* NewWordInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC0DBE5D25F0B92400CBED4D /* NewWordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWordInteractor.swift; sourceTree = "<group>"; };
@@ -181,13 +185,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC0B20C42671E1C900881DDD /* WordCardFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EC0B20C52671E23600881DDD /* WordCordFlow.swift */,
+				EC0B20C72671E3E900881DDD /* WordCard */,
+			);
+			path = WordCardFlow;
+			sourceTree = "<group>";
+		};
+		EC0B20C72671E3E900881DDD /* WordCard */ = {
+			isa = PBXGroup;
+			children = (
+				EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */,
+			);
+			path = WordCard;
+			sourceTree = "<group>";
+		};
 		EC0DBE3625F0B92400CBED4D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC0DBF5025F4A2D100CBED4D /* LXControlKit */,
-				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
 				EC0DBEA025F0B92400CBED4D /* AuthorizationFlow */,
+				EC0B20C42671E1C900881DDD /* WordCardFlow */,
 				EC0DBEB625F0B92400CBED4D /* MainFlow */,
 			);
 			path = Presentation;
@@ -272,6 +293,7 @@
 			children = (
 				EC0DBEB725F0B92400CBED4D /* MainFlow.swift */,
 				EC0DBEBF25F0B92400CBED4D /* Home */,
+				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
 				EC0DBE9725F0B92400CBED4D /* ProfileFlow */,
 			);
 			path = MainFlow;
@@ -579,6 +601,7 @@
 				EC0DBF0925F0B92500CBED4D /* RegistrationPresenter.swift in Sources */,
 				EC0DBED925F0B92500CBED4D /* AddSearchWordViewController.swift in Sources */,
 				EC0DBED625F0B92500CBED4D /* NewWordInteractorProtocol.swift in Sources */,
+				EC0B20C92671E3FE00881DDD /* WordCardViewController.swift in Sources */,
 				EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */,
 				EC0DBF0E25F0B92500CBED4D /* LoginPresenter.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
@@ -593,6 +616,7 @@
 				EC0DBF0D25F0B92500CBED4D /* LoginViewController.swift in Sources */,
 				EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */,
 				EC0DBED825F0B92500CBED4D /* AddSearchWordPresenter.swift in Sources */,
+				EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */,
 				EC0DBF1125F0B92500CBED4D /* LexickonStateInteractor.swift in Sources */,
 				EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */,

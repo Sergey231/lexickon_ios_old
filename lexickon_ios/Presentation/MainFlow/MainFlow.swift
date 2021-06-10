@@ -16,6 +16,7 @@ enum MainStep: Step {
     case profile
     case addWord
     case authorization
+    case wordCard
 }
 
 class MainFlow: Flow {
@@ -47,6 +48,8 @@ class MainFlow: Flow {
             return navigateToNewWord()
         case .authorization:
             return navigateToAuthorization()
+        case .wordCard:
+            return navigateToWordCard()
         }
     }
     
@@ -82,6 +85,10 @@ class MainFlow: Flow {
     private func navigateToAuthorization() -> FlowContributors {
         (root as! UINavigationController).delegate = nil
         return .end(forwardToParentFlowWithStep: AppStep.authorization)
+    }
+    
+    private func navigateToWordCard() -> FlowContributors {
+        return .none
     }
 }
 
