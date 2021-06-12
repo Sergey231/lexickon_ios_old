@@ -211,7 +211,6 @@
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
 				EC0DBF5025F4A2D100CBED4D /* LXControlKit */,
 				EC0DBEA025F0B92400CBED4D /* AuthorizationFlow */,
-				EC0B20C42671E1C900881DDD /* WordCardFlow */,
 				EC0DBEB625F0B92400CBED4D /* MainFlow */,
 			);
 			path = Presentation;
@@ -297,6 +296,7 @@
 				EC0DBEB725F0B92400CBED4D /* MainFlow.swift */,
 				EC0DBEBF25F0B92400CBED4D /* Home */,
 				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
+				EC0B20C42671E1C900881DDD /* WordCardFlow */,
 				EC0DBE9725F0B92400CBED4D /* ProfileFlow */,
 			);
 			path = MainFlow;

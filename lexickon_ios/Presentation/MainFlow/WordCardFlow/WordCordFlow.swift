@@ -15,8 +15,8 @@ import AuthTokenRepository
 
 enum WordCardStep: Step {
     case word
-    case home
     case exercise
+    case home
 }
 
 class WordCardFlow: Flow {
@@ -44,22 +44,18 @@ class WordCardFlow: Flow {
             
         case .word:
             return .none
-        case .home:
-            return .none
         case .exercise:
+            return .none
+        case .home:
             return .none
         }
     }
     
     // Side Effects
     private func navigateToWord() -> FlowContributors {
-        let startVC: StartViewController = Resolver.resolve()
-        (root as! UINavigationController).pushViewController(startVC, animated: true)
-        return .one(flowContributor: .contribute(withNext: startVC))
-    }
-    
-    private func navigateToHome() -> FlowContributors {
-        .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
+        let wordCardViewController: WordCardViewController = Resolver.resolve()
+        (root as! UINavigationController).pushViewController(wordCardViewController, animated: true)
+        return .one(flowContributor: .contribute(withNext: wordCardViewController))
     }
     
     private func navigateToExercise() -> FlowContributors {
@@ -67,12 +63,16 @@ class WordCardFlow: Flow {
         (root as! UINavigationController).pushViewController(registrationVC, animated: true)
         return .one(flowContributor: .contribute(withNext: registrationVC))
     }
+    
+    private func navigateToHome() -> FlowContributors {
+        .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
+    }
 }
 
 // MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerWordCardObjects() {
-        
-        register { StartViewController() }
+        register { WordCardViewController() }
+        register { WordCardPresenter() }
     }
 }

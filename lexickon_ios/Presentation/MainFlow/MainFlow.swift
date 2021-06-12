@@ -88,7 +88,13 @@ class MainFlow: Flow {
     }
     
     private func navigateToWordCard() -> FlowContributors {
-        return .none
+        let wordCardFlow = WordCardFlow(with: rootViewController)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: wordCardFlow,
+            withNextStepper: OneStepper(
+                withSingleStep: WordCardStep.word
+            )
+        ))
     }
 }
 

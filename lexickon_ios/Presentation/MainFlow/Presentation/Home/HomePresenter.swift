@@ -171,13 +171,12 @@ final class HomePresenter {
                 }
                 
                 return sections
-//                return []
             }
         
         let wordModels = sections
             .map { $0.flatMap { $0.items } }
         
-        let wordSelectionStateDriver = wordModels
+        let wordSelectionStateDriver = wordModels.debug("🎲")
             .flatMap { words in
                 Driver.merge( words.map { $0.wordSelectionStateDriver } )
             }

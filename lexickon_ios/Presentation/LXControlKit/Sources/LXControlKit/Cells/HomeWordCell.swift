@@ -33,8 +33,12 @@ public class HomeWordCellModel {
     public let word: String
     public let isEditMode: Driver<Bool>
     public let studyType: StudyType
+    public var tapWithoutEditMode: Signal<Void> {
+        self.tapWithoutEditModeRelay.asSignal()
+    }
     
     fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
+    fileprivate let tapWithoutEditModeRelay = PublishRelay<Void>()
     public var wordSelectionState: SelectionState = .none
     
     public var wordSelectionStateDriver: Driver<HomeWordCellModel> {
@@ -203,9 +207,17 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         let tappedInEditMode: Signal<Void> = tap.rx.event
             .withLatestFrom(model.isEditMode) { $1 }
-            .filter { $0 }.debug("🎲2")
+            .filter { $0 }
             .map { _ in () }
-            .asSignal(onErrorSignalWith: .empty())
+            .asSignal(onErrorSignalWith: .empty()).debug("🎲1")
+        
+        tap.rx.event
+            .withLatestFrom(model.isEditMode) { $1 }
+            .filter(!)
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty()).debug("🎲2")
+            .emit(to: model.tapWithoutEditModeRelay)
+            .disposed(by: disposeBag)
 
         let contentOffsetX = scrollView.rx
             .didScroll

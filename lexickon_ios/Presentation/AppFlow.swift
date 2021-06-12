@@ -67,6 +67,6 @@ final class AppStepper: Stepper {
     let steps = PublishRelay<Step>()
     
     var initialStep: Step {
-        return AppStep.authorization
+        AppStep.authorization
     }
 }

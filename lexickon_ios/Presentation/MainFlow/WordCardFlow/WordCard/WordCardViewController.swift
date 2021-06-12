@@ -21,7 +21,7 @@ final class WordCardViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-//    @Injected var presenter: WordCardPresenter
+    @Injected var presenter: WordCardPresenter
 
     private let disposeBag = DisposeBag()
     
@@ -55,7 +55,7 @@ final class WordCardViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        
+        view.backgroundColor = Colors.mainBG.color
     }
     
     private func configureUI() {

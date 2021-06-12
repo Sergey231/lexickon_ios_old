@@ -199,17 +199,14 @@ final class HomeViewController: UIViewController, Stepper {
         let startAddingWordsViewOutput = startAddingWordsView.configure()
         
         startAddingWordsViewOutput.selectWordsButtonTap
-            .debug("🎲 selectWordsButtonTap")
             .emit()
             .disposed(by: disposeBag)
         
         startAddingWordsViewOutput.authoAddingWordsButtonTap
-            .debug("🎲 authoAddingWordsButtonTap")
             .emit()
             .disposed(by: disposeBag)
         
         startAddingWordsViewOutput.manualAddingWordsButtonTap
-            .debug("🎲 manualAddingWordsButtonTap")
             .emit()
             .disposed(by: disposeBag)
         
