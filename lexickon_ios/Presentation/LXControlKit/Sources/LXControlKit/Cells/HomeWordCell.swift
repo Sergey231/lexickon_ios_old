@@ -209,13 +209,13 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             .withLatestFrom(model.isEditMode) { $1 }
             .filter { $0 }
             .map { _ in () }
-            .asSignal(onErrorSignalWith: .empty()).debug("🎲1")
+            .asSignal(onErrorSignalWith: .empty())
         
         tap.rx.event
             .withLatestFrom(model.isEditMode) { $1 }
             .filter(!)
             .map { _ in () }
-            .asSignal(onErrorSignalWith: .empty()).debug("🎲2")
+            .asSignal(onErrorSignalWith: .empty())
             .emit(to: model.tapWithoutEditModeRelay)
             .disposed(by: disposeBag)
 

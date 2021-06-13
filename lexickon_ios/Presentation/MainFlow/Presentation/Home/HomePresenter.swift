@@ -176,7 +176,7 @@ final class HomePresenter {
         let wordModels = sections
             .map { $0.flatMap { $0.items } }
         
-        let wordSelectionStateDriver = wordModels.debug("🎲")
+        let wordSelectionStateDriver = wordModels
             .flatMap { words in
                 Driver.merge( words.map { $0.wordSelectionStateDriver } )
             }
