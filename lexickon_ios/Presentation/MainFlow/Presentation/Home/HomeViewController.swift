@@ -191,6 +191,11 @@ final class HomeViewController: UIViewController, Stepper {
             )
         )
         
+        presenterOutput.wordTap
+            .map { MainStep.wordCard }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
         presenterOutput.lexickonState
             .map { $0 == .empty }
             .drive(rx.isEmptyLexickon)

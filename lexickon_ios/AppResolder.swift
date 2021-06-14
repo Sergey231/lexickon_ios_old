@@ -14,5 +14,6 @@ extension Resolver: ResolverRegistering {
         registerMainObjects()
         registerProfileObjects()
         registerNewWordObjects()
+        registerWordCardObjects()
     }
 }

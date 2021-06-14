@@ -43,29 +43,16 @@ class WordCardFlow: Flow {
         switch step {
             
         case .word:
-            return .none
+            let wordCardViewController: WordCardViewController = Resolver.resolve()
+            (root as! UINavigationController).pushViewController(wordCardViewController, animated: true)
+            return .one(flowContributor: .contribute(withNext: wordCardViewController))
         case .exercise:
-            return .none
+            let registrationVC: RegistrationViewController = Resolver.resolve()
+            (root as! UINavigationController).pushViewController(registrationVC, animated: true)
+            return .one(flowContributor: .contribute(withNext: registrationVC))
         case .home:
-            return .none
+            return .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
         }
-    }
-    
-    // Side Effects
-    private func navigateToWord() -> FlowContributors {
-        let wordCardViewController: WordCardViewController = Resolver.resolve()
-        (root as! UINavigationController).pushViewController(wordCardViewController, animated: true)
-        return .one(flowContributor: .contribute(withNext: wordCardViewController))
-    }
-    
-    private func navigateToExercise() -> FlowContributors {
-        let registrationVC: RegistrationViewController = Resolver.resolve()
-        (root as! UINavigationController).pushViewController(registrationVC, animated: true)
-        return .one(flowContributor: .contribute(withNext: registrationVC))
-    }
-    
-    private func navigateToHome() -> FlowContributors {
-        .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
     }
 }
 

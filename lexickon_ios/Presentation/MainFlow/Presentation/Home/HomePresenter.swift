@@ -37,6 +37,7 @@ final class HomePresenter {
         let wordsForReset: Driver<[HomeWordCellModel]>
         let wordsForLearn: Driver<[HomeWordCellModel]>
         let lexickonState: Driver<LexickonStateEntity.State>
+        let wordTap: Signal<Void>
         let disposables: CompositeDisposable
     }
     
@@ -181,6 +182,11 @@ final class HomePresenter {
                 Driver.merge( words.map { $0.wordSelectionStateDriver } )
             }
         
+        let wordTapSignal = wordModels
+            .flatMap { words -> Signal<Void> in
+                Signal.merge( words.map { $0.tapWithoutEditMode } )
+            }
+        
         let isEditMode = wordSelectionStateDriver
             .do(onNext: { wordModel in
                 if wordModel.wordSelectionState == .selected {
@@ -229,6 +235,7 @@ final class HomePresenter {
             wordsForReset: wordsForReset,
             wordsForLearn: wordsForLearn,
             lexickonState: .just(LexickonStateEntity.State.hasFireWords),
+            wordTap: wordTapSignal,
             disposables: disposables
         )
     }
