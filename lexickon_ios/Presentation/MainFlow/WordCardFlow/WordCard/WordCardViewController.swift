@@ -50,7 +50,7 @@ final class WordCardViewController: UIViewController, Stepper {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        
         navigationController?.navigationBar.barStyle = .black
     }
     
