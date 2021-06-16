@@ -27,7 +27,7 @@ public final class WordCardTopBarView: UIView {
     }
     
     public struct Output {
-        let didTap: Signal<Void>
+        
     }
     
     private let disposeBag = DisposeBag()
@@ -43,10 +43,14 @@ public final class WordCardTopBarView: UIView {
        
     private func createUI() {
         backgroundColor = .gray
+        snp.makeConstraints {
+            let safeAreaTop = UIApplication.shared.windows[0].safeAreaInsets.top
+            $0.height.equalTo(safeAreaTop + 48)
+        }
     }
     
     public func configure(input: Input) -> Output {
-        
+        Output()
     }
 }
 

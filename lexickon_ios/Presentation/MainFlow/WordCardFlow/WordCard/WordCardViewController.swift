@@ -25,6 +25,8 @@ final class WordCardViewController: UIViewController, Stepper {
 
     private let disposeBag = DisposeBag()
     
+    private let topBarView = WordCardTopBarView()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,7 +40,7 @@ final class WordCardViewController: UIViewController, Stepper {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        .lightContent
     }
     
     override func viewDidLoad() {
@@ -56,6 +58,13 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func createUI() {
         view.backgroundColor = Colors.mainBG.color
+        
+        topBarView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.top.equalToSuperview()
+            }
+        }
     }
     
     private func configureUI() {
