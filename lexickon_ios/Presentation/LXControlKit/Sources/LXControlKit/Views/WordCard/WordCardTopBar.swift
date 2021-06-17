@@ -53,12 +53,21 @@ public final class WordCardTopBarView: UIView {
         
         titleLabel.setup {
             $0.textAlignment = .center
+            $0.textColor = .white
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.huge)
                 $0.right.equalToSuperview().offset(-Margin.huge)
                 $0.bottom.equalToSuperview()
                 $0.height.equalTo(Size.textField.height)
+            }
+        }
+        
+        moreButton.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(titleLabel.snp.right).offset(Margin.small)
+                $0.centerY.equalTo(titleLabel.snp.centerY)
             }
         }
     }
@@ -78,13 +87,17 @@ private extension Reactive where Base : WordCardTopBarView {
         Binder(base) { base, studyState in
             switch studyState {
             case .fire:
-                base.titleLabel.text = "Fire"
+                base.titleLabel.text = Str.wordCardFireStateTitle
+                base.backgroundColor = Colors.fireWordBG.color
             case .ready:
-                base.titleLabel.text = "Ready"
+                base.titleLabel.text = Str.wordCardReadyStateTitle
+                base.backgroundColor = Colors.mainBG.color
             case .new:
-                base.titleLabel.text = "New"
+                base.titleLabel.text = Str.wordCardNewStateTitle
+                base.backgroundColor = Colors.newWord.color
             case .waiting:
-                base.titleLabel.text = "Waiting"
+                base.titleLabel.text = Str.wordCardWaitingStateTitle
+                base.backgroundColor = Colors.waitingWordBG.color
             }
         }
     }

@@ -45,7 +45,6 @@ final class WordCardViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = Colors.mainBG.color
         createUI()
         configureUI()
     }
@@ -57,8 +56,7 @@ final class WordCardViewController: UIViewController, Stepper {
     }
     
     private func createUI() {
-        view.backgroundColor = Colors.mainBG.color
-        
+        view.backgroundColor = .white
         topBarView.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {

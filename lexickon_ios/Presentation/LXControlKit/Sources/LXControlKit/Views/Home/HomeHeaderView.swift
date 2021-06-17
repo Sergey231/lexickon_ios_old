@@ -111,7 +111,7 @@ private extension Reactive where Base : HomeHeaderView {
             UIView.animate(withDuration: 0.3) {
                 switch status {
                 case .hasFireWords:
-                    base.backgroundColor = Colors.hasFireWordsHeader.color
+                    base.backgroundColor = Colors.fireWordBG.color
                 default:
                     base.backgroundColor = Colors.mainBG.color
                 }

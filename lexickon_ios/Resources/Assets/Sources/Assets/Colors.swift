@@ -20,8 +20,8 @@ public typealias AssetColorTypeAlias = ColorAsset.Color
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum Colors {
   public static let color = ColorAsset(name: "Color")
-  public static let hasFireWordsHeader = ColorAsset(name: "HasFireWordsHeader")
   public static let fireWord = ColorAsset(name: "fireWord")
+  public static let fireWordBG = ColorAsset(name: "fireWordBG")
   public static let fireWordBright = ColorAsset(name: "fireWordBright")
   public static let fireWordPale = ColorAsset(name: "fireWordPale")
   public static let newWord = ColorAsset(name: "newWord")
@@ -30,6 +30,7 @@ public enum Colors {
   public static let readyWordBright = ColorAsset(name: "readyWordBright")
   public static let readyWordPale = ColorAsset(name: "readyWordPale")
   public static let waitingWord = ColorAsset(name: "waitingWord")
+  public static let waitingWordBG = ColorAsset(name: "waitingWordBG")
   public static let waitingWordBright = ColorAsset(name: "waitingWordBright")
   public static let waitingWordPale = ColorAsset(name: "waitingWordPale")
   public static let baseBG = ColorAsset(name: "baseBG")

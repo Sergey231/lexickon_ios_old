@@ -73,3 +73,10 @@
 "WordsEditPanelResetTitle" = "Сбросить прогресс изучения (%@)";
 "WordsEditPanelLearnTitle" = "Закрепить (%@)";
 "WordsEditPanelAddingTitle" = "Добавить в Lexickon (%@)";
+
+
+// MARK: Word Card
+"WordCardFireStateTitle" = "Пора заниматься!";
+"WordCardReadyStateTitle" = "Можно заниматься";
+"WordCardWaitingStateTitle" = "Привет!";
+"WordCardNewStateTitle" = "Привет!";
