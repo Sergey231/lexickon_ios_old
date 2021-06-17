@@ -87,6 +87,7 @@ public final class StartLogo: UIView {
         let imageView = UIImageView()
         imageView.image = Images.textLogo.image
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
         return imageView
     }()
     
