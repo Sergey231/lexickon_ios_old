@@ -32,6 +32,9 @@ public final class WordCardTopBarView: UIView {
     
     private let disposeBag = DisposeBag()
     
+    fileprivate let titleLabel = UILabel()
+    fileprivate let moreButton = MoreButton()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         createUI()
@@ -47,14 +50,43 @@ public final class WordCardTopBarView: UIView {
             let safeAreaTop = UIApplication.shared.windows[0].safeAreaInsets.top
             $0.height.equalTo(safeAreaTop + 48)
         }
+        
+        titleLabel.setup {
+            $0.textAlignment = .center
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.huge)
+                $0.right.equalToSuperview().offset(-Margin.huge)
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(Size.textField.height)
+            }
+        }
     }
     
     public func configure(input: Input) -> Output {
-        Output()
+        
+        input.studyState
+            .drive(rx.studyState)
+            .disposed(by: disposeBag)
+        
+        return Output()
     }
 }
 
 private extension Reactive where Base : WordCardTopBarView {
-    
+    var studyState: Binder<StudyType> {
+        Binder(base) { base, studyState in
+            switch studyState {
+            case .fire:
+                base.titleLabel.text = "Fire"
+            case .ready:
+                base.titleLabel.text = "Ready"
+            case .new:
+                base.titleLabel.text = "New"
+            case .waiting:
+                base.titleLabel.text = "Waiting"
+            }
+        }
+    }
 }
 

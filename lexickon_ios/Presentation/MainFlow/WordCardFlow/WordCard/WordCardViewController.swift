@@ -69,6 +69,10 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
+        _ = topBarView.configure(
+            input: WordCardTopBarView.Input(studyState: .just(.fire))
+        )
+        
     }
 }
 
