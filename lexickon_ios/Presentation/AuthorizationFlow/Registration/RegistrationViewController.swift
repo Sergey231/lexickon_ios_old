@@ -71,6 +71,7 @@ final class RegistrationViewController: UIViewController, Stepper {
         
         logo.setup {
             $0.contentMode = .scaleAspectFit
+            $0.tintColor = .white
             $0.setShadow()
             contentView.addSubview($0)
             $0.snp.makeConstraints {
