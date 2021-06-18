@@ -58,7 +58,7 @@ class ProfileFlow: Flow {
     
     private func navigateToHome() -> FlowContributors {
         rootViewController.popToRootViewController(animated: true)
-        return .none
+        return .end(forwardToParentFlowWithStep: MainStep.home(animated: false))
     }
     
     private func navigateToAuthorization() -> FlowContributors {

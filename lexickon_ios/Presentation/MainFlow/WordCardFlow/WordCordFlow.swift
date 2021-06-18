@@ -33,7 +33,7 @@ class WordCardFlow: Flow {
     
     // For Navigation debug
     deinit {
-        print("\(type(of: self)): \(#function)")
+        print("💀💀 \(type(of: self)): \(#function)")
     }
 
     // Reduce function
@@ -51,7 +51,8 @@ class WordCardFlow: Flow {
             (root as! UINavigationController).pushViewController(registrationVC, animated: true)
             return .one(flowContributor: .contribute(withNext: registrationVC))
         case .home:
-            return .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
+            (root as! UINavigationController).popToRootViewController(animated: true)
+            return .end(forwardToParentFlowWithStep: MainStep.home(animated: false))
         }
     }
 }

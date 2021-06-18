@@ -67,10 +67,14 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        _ = topBarView.configure(
+        let topBarViewOutput = topBarView.configure(
             input: WordCardTopBarView.Input(studyState: .just(.fire))
         )
         
+        topBarViewOutput.didTapBack
+            .map { WordCardStep.home }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
 }
 

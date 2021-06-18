@@ -27,11 +27,12 @@ public final class WordCardTopBarView: UIView {
     }
     
     public struct Output {
-        
+        public let didTapBack: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
     
+    private let backButton = UIButton()
     fileprivate let titleLabel = UILabel()
     fileprivate let moreButton = MoreButton()
     
@@ -70,6 +71,16 @@ public final class WordCardTopBarView: UIView {
                 $0.centerY.equalTo(titleLabel.snp.centerY)
             }
         }
+        
+        backButton.setup {
+            $0.setImage(Images.backArrow.image, for: .normal)
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerY.equalTo(titleLabel.snp.centerY)
+                $0.size.equalTo(56)
+                $0.right.equalTo(titleLabel.snp.left)
+            }
+        }
     }
     
     public func configure(input: Input) -> Output {
@@ -78,7 +89,7 @@ public final class WordCardTopBarView: UIView {
             .drive(rx.studyState)
             .disposed(by: disposeBag)
         
-        return Output()
+        return Output(didTapBack: backButton.rx.tap.asSignal())
     }
 }
 
