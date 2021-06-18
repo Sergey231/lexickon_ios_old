@@ -26,6 +26,7 @@ final class WordCardViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     private let topBarView = WordCardTopBarView()
+//    private let bottomBarView 
     
     init() {
         super.init(nibName: nil, bundle: nil)
