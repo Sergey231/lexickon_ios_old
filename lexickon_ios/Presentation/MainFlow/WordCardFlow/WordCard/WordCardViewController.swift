@@ -16,6 +16,7 @@ import UIExtensions
 import RxExtensions
 import Resolver
 import Assets
+import LexickonApi
 
 final class WordCardViewController: UIViewController, Stepper {
     
@@ -25,6 +26,8 @@ final class WordCardViewController: UIViewController, Stepper {
 
     private let disposeBag = DisposeBag()
     
+    fileprivate let studyWordLabel = UILabel()
+    fileprivate let translateLabel = UILabel()
     private let topBarView = WordCardTopBarView()
     private let bottomBarView = WordCardBottomBarView()
     
@@ -64,6 +67,29 @@ final class WordCardViewController: UIViewController, Stepper {
                 $0.left.right.top.equalToSuperview()
             }
         }
+        
+        studyWordLabel.setup {
+            $0.font = .systemRegular24
+            $0.textAlignment = .center
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalTo(topBarView.snp.bottom).offset(Margin.huge)
+            }
+        }
+        
+        translateLabel.setup {
+            $0.font = .systemRegular17
+            $0.textAlignment = .center
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.top.equalTo(studyWordLabel.snp.bottom).offset(Margin.small)
+            }
+        }
+        
         bottomBarView.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {
@@ -79,6 +105,9 @@ final class WordCardViewController: UIViewController, Stepper {
             input: WordCardTopBarView.Input(studyState: .just(.fire))
         )
         
+        studyWordLabel.text = "Study Word"
+        translateLabel.text = "Translate Word"
+        
         let bottomBarViewOutput = bottomBarView.configure(
             input: WordCardBottomBarView.Input(wordRaiting: .just(0.8))
         )
@@ -92,10 +121,33 @@ final class WordCardViewController: UIViewController, Stepper {
             .map { WordCardStep.addWord }
             .emit(to: steps)
             .disposed(by: disposeBag)
+        
+        Signal.just(StudyType.fire)
+            .emit(to: rx.studyState)
+            .disposed(by: disposeBag)
     }
 }
 
 private extension Reactive where Base: WordCardViewController {
     
+    var studyState: Binder<StudyType> {
+        Binder(base) { base, stdudyState in
+            switch stdudyState {
+            
+            case .fire:
+                base.studyWordLabel.textColor = Colors.fireWordBright.color
+                base.translateLabel.textColor = Colors.fireWordBright.color
+            case .ready:
+                base.studyWordLabel.textColor = Colors.readyWordBright.color
+                base.translateLabel.textColor = Colors.readyWordBright.color
+            case .new:
+                base.studyWordLabel.textColor = Colors.newWordBright.color
+                base.translateLabel.textColor = Colors.newWordBright.color
+            case .waiting:
+                base.studyWordLabel.textColor = Colors.waitingWordBright.color
+                base.translateLabel.textColor = Colors.waitingWordBright.color
+            }
+        }
+    }
 }
 
