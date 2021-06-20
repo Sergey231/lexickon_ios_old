@@ -38,7 +38,7 @@ public final class WordCardBottomBarView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let speekButtonImageView = SpeekerButton()
+    fileprivate let speekButtonImageView = SpeekerButton()
     fileprivate let addWordButton = AddWordButton()
     fileprivate let wordRaitingView = WordRatingView()
     
@@ -58,19 +58,22 @@ public final class WordCardBottomBarView: UIView {
         }
         
         speekButtonImageView.setup {
+            $0.alpha = 0
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.center.equalToSuperview()
+                $0.centerY.equalToSuperview().offset(50)
+                $0.centerX.equalToSuperview()
                 $0.size.equalTo(46)
             }
         }
         
         addWordButton.setup {
             $0.setShadow()
+            $0.alpha = 0
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.equalToSuperview().offset(-Margin.big)
-                $0.centerY.equalTo(speekButtonImageView.snp.centerY)
+                $0.centerY.equalToSuperview().offset(50)
                 $0.size.equalTo(UIConstants.addButtonSize)
             }
         }
@@ -78,7 +81,7 @@ public final class WordCardBottomBarView: UIView {
         wordRaitingView.setup {
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.centerY.equalTo(speekButtonImageView.snp.centerY)
+                $0.centerY.equalToSuperview().offset(50)
                 $0.size.equalTo(64)
                 $0.left.equalToSuperview().offset(Margin.big)
             }
@@ -87,11 +90,17 @@ public final class WordCardBottomBarView: UIView {
     
     public func configure(input: Input) -> Output {
         
+        parentViewController?.rx.viewDidAppear
+            .asSignal()
+            .emit(to: rx.startAnimation)
+            .disposed(by: disposeBag)
+        
         let wordRaitingOutput = wordRaitingView.configure(
             input: WordRatingView.Input(
                 rating: input.wordRaiting
             )
         )
+        wordRaitingView.alpha = 0
         
         let speekerButtonOutput = speekButtonImageView.configure()
         
@@ -103,8 +112,41 @@ public final class WordCardBottomBarView: UIView {
     }
 }
 
-private extension Reactive where Base : WordCardTopBarView {
+private extension Reactive where Base : WordCardBottomBarView {
    
+    var startAnimation: Binder<Void> {
+        Binder(base) { base, _ in
+            UIView.animate(withDuration: 0.2) {
+                base.wordRaitingView.alpha = 1
+                base.wordRaitingView.snp.updateConstraints {
+                    $0.centerY.equalToSuperview().offset(0)
+                }
+                base.layoutIfNeeded()
+            }
+            
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0.05,
+                options: UIView.AnimationOptions()) {
+                base.speekButtonImageView.alpha = 1
+                base.speekButtonImageView.snp.updateConstraints {
+                    $0.centerY.equalToSuperview().offset(0)
+                }
+                base.layoutIfNeeded()
+            }
+            
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0.1,
+                options: UIView.AnimationOptions()) {
+                base.addWordButton.alpha = 1
+                base.addWordButton.snp.updateConstraints {
+                    $0.centerY.equalToSuperview().offset(0)
+                }
+                base.layoutIfNeeded()
+            }
+        }
+    }
 }
 
 
