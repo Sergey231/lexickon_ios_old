@@ -69,8 +69,8 @@
 		ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECEF16E925B01B6D00A7ABC9 /* KeyValueRepository */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
 		ECF20D62236D942500DA8715 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D60236D942500DA8715 /* logo.png */; };
+		ECFB46BA267E3148004B5A6F /* LexickonStateEntity in Frameworks */ = {isa = PBXBuildFile; productRef = ECFB46B9267E3148004B5A6F /* LexickonStateEntity */; };
 		ECFE3F402650F42D00C1440A /* AuthTokenRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */; };
-		ECFE3F482654DC5900C1440A /* LexickonStateEntity in Frameworks */ = {isa = PBXBuildFile; productRef = ECFE3F472654DC5900C1440A /* LexickonStateEntity */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,7 +165,7 @@
 				ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */,
 				ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
-				ECFE3F482654DC5900C1440A /* LexickonStateEntity in Frameworks */,
+				ECFB46BA267E3148004B5A6F /* LexickonStateEntity in Frameworks */,
 				EC3750F225B195030090F95F /* Assets in Frameworks */,
 				ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */,
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
@@ -500,7 +500,7 @@
 				EC0DBF5325F4A2D900CBED4D /* LXControlKit */,
 				ECE626B82650F0AA005573C6 /* UserRepository */,
 				ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */,
-				ECFE3F472654DC5900C1440A /* LexickonStateEntity */,
+				ECFB46B9267E3148004B5A6F /* LexickonStateEntity */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -1067,13 +1067,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = KeyValueRepository;
 		};
+		ECFB46B9267E3148004B5A6F /* LexickonStateEntity */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LexickonStateEntity;
+		};
 		ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AuthTokenRepository;
-		};
-		ECFE3F472654DC5900C1440A /* LexickonStateEntity */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LexickonStateEntity;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

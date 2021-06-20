@@ -14,6 +14,10 @@ import LexickonApi
 
 public final class WordCardBottomBarView: UIView {
     
+    fileprivate struct UIConstants {
+        static let addButtonSize: CGFloat = 56
+    }
+    
     public init() {
         super.init(frame: .zero)
         createUI()
@@ -27,12 +31,14 @@ public final class WordCardBottomBarView: UIView {
     }
     
     public struct Output {
-        public let didTapBack: Signal<Void>
+        public let didTapSpeekerButton: Signal<Void>
+        public let didTapdistributionStatusButton: Signal<Void>
+        public let didTapAddWordButton: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
     
-    private let speekButton = UIButton()
+    private let speekButtonImageView = UIImageView()
     fileprivate let addWordButton = AddWordButton()
     fileprivate let wordDistributionIconView = UIView()
     
@@ -46,14 +52,14 @@ public final class WordCardBottomBarView: UIView {
     }
        
     private func createUI() {
-        backgroundColor = .gray
         snp.makeConstraints {
-            $0.height.equalTo(48)
+            $0.height.equalTo(56)
             $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
         
-        speekButton.setup {
-            $0.textColor = .white
+        speekButtonImageView.setup {
+            $0.image = Images.speekerIcon.image
+            $0.tintColor = .lightGray
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.center.equalToSuperview()
@@ -65,7 +71,8 @@ public final class WordCardBottomBarView: UIView {
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.equalToSuperview().offset(-Margin.big)
-                $0.centerY.equalTo(titleLabel.snp.centerY)
+                $0.centerY.equalTo(speekButtonImageView.snp.centerY)
+                $0.size.equalTo(UIConstants.addButtonSize)
             }
         }
         
@@ -73,7 +80,7 @@ public final class WordCardBottomBarView: UIView {
             $0.backgroundColor = .red
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.centerY.equalTo(titleLabel.snp.centerY)
+                $0.centerY.equalTo(speekButtonImageView.snp.centerY)
                 $0.size.equalTo(56)
                 $0.left.equalToSuperview().offset(Margin.big)
             }
@@ -82,33 +89,16 @@ public final class WordCardBottomBarView: UIView {
     
     public func configure(input: Input) -> Output {
         
-        input.studyState
-            .drive(rx.studyState)
-            .disposed(by: disposeBag)
-        
-        return Output(didTapBack: backButton.rx.tap.asSignal())
+        return Output(
+            didTapSpeekerButton: .empty(),
+            didTapdistributionStatusButton: .empty(),
+            didTapAddWordButton: .empty()
+        )
     }
 }
 
 private extension Reactive where Base : WordCardTopBarView {
-    var studyState: Binder<StudyType> {
-        Binder(base) { base, studyState in
-            switch studyState {
-            case .fire:
-                base.titleLabel.text = Str.wordCardFireStateTitle
-                base.backgroundColor = Colors.fireWordBG.color
-            case .ready:
-                base.titleLabel.text = Str.wordCardReadyStateTitle
-                base.backgroundColor = Colors.mainBG.color
-            case .new:
-                base.titleLabel.text = Str.wordCardNewStateTitle
-                base.backgroundColor = Colors.newWord.color
-            case .waiting:
-                base.titleLabel.text = Str.wordCardWaitingStateTitle
-                base.backgroundColor = Colors.waitingWordBG.color
-            }
-        }
-    }
+   
 }
 
 

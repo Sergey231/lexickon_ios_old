@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
         "state": {
           "branch": null,
-          "revision": "dba8170fc8c6f40fda2f4ae51e66a1fe96c561a2",
-          "version": "0.7.5"
+          "revision": "6e95c809ae6b368dc70521083190eb47356e5319",
+          "version": "0.7.6"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/hmlongco/Resolver.git",
         "state": {
           "branch": null,
-          "revision": "e0bcbc721818328c192a1eb22c6a6ca48029e550",
-          "version": "1.4.1"
+          "revision": "730a02bc3c861524e4f0e496ec3d9a907984be0d",
+          "version": "1.4.2"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxFlow.git",
         "state": {
           "branch": null,
-          "revision": "0a96fa20f3bace4010d22d84c6fb498cf86f0e96",
-          "version": "2.12.1"
+          "revision": "e85a54421b79ba9873704169c4611cc41383d772",
+          "version": "2.12.2"
         }
       },
       {

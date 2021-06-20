@@ -50,6 +50,7 @@ public enum Images {
   public static let plusIcon = ImageAsset(name: "plusIcon")
   public static let refresh = ImageAsset(name: "refresh")
   public static let searchIcon = ImageAsset(name: "searchIcon")
+  public static let speekerIcon = ImageAsset(name: "speekerIcon")
   public static let waitingWordIcon = ImageAsset(name: "waitingWordIcon")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

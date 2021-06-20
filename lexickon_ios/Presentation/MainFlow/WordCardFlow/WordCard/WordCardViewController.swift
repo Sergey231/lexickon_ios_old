@@ -26,7 +26,7 @@ final class WordCardViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     private let topBarView = WordCardTopBarView()
-//    private let bottomBarView 
+    private let bottomBarView = WordCardBottomBarView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -62,6 +62,13 @@ final class WordCardViewController: UIViewController, Stepper {
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.top.equalToSuperview()
+            }
+        }
+        bottomBarView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             }
         }
     }
