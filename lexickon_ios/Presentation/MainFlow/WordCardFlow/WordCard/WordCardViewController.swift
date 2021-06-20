@@ -79,8 +79,17 @@ final class WordCardViewController: UIViewController, Stepper {
             input: WordCardTopBarView.Input(studyState: .just(.fire))
         )
         
+        let bottomBarViewOutput = bottomBarView.configure(
+            input: WordCardBottomBarView.Input(wordRaiting: .just(0.8))
+        )
+        
         topBarViewOutput.didTapBack
             .map { WordCardStep.home }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
+        bottomBarViewOutput.didTapAddWordButton
+            .map { WordCardStep.addWord }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }

@@ -107,7 +107,6 @@ public final class TranslationResultCell: DisposableTableViewCell {
         
         wordRaitingView.setup {
             selectableBGView.addSubview($0)
-            $0.configure(input: WordRatingView.Input(rating: .just(0.5)))
             $0.snp.makeConstraints {
                 $0.size.equalTo(34)
                 $0.left.equalToSuperview().offset(Margin.regular)
@@ -161,6 +160,8 @@ public final class TranslationResultCell: DisposableTableViewCell {
     public func configurate(with model: OtherTranslationCellModel) {
         
         self.model = model
+        
+        _ = wordRaitingView.configure(input: WordRatingView.Input(rating: .just(0.5)))
         
         createUI(with: model)
         

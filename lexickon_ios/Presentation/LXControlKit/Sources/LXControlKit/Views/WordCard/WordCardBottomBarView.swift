@@ -24,23 +24,23 @@ public final class WordCardBottomBarView: UIView {
     }
     
     public struct Input {
-        public init(distributionStatus: Driver<CGFloat>) {
-            self.distributionStatus = distributionStatus
+        public init(wordRaiting: Driver<CGFloat>) {
+            self.wordRaiting = wordRaiting
         }
-        let distributionStatus: Driver<CGFloat>
+        let wordRaiting: Driver<CGFloat>
     }
     
     public struct Output {
         public let didTapSpeekerButton: Signal<Void>
-        public let didTapdistributionStatusButton: Signal<Void>
+        public let didTapWordRaitingButton: Signal<Void>
         public let didTapAddWordButton: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
     
-    private let speekButtonImageView = UIImageView()
+    private let speekButtonImageView = SpeekerButton()
     fileprivate let addWordButton = AddWordButton()
-    fileprivate let wordDistributionIconView = UIView()
+    fileprivate let wordRaitingView = WordRatingView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,16 +58,15 @@ public final class WordCardBottomBarView: UIView {
         }
         
         speekButtonImageView.setup {
-            $0.image = Images.speekerIcon.image
-            $0.tintColor = .lightGray
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.center.equalToSuperview()
-                $0.size.equalTo(Size.icon)
+                $0.size.equalTo(46)
             }
         }
         
         addWordButton.setup {
+            $0.setShadow()
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.right.equalToSuperview().offset(-Margin.big)
@@ -76,12 +75,11 @@ public final class WordCardBottomBarView: UIView {
             }
         }
         
-        wordDistributionIconView.setup {
-            $0.backgroundColor = .red
+        wordRaitingView.setup {
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerY.equalTo(speekButtonImageView.snp.centerY)
-                $0.size.equalTo(56)
+                $0.size.equalTo(64)
                 $0.left.equalToSuperview().offset(Margin.big)
             }
         }
@@ -89,10 +87,18 @@ public final class WordCardBottomBarView: UIView {
     
     public func configure(input: Input) -> Output {
         
+        let wordRaitingOutput = wordRaitingView.configure(
+            input: WordRatingView.Input(
+                rating: input.wordRaiting
+            )
+        )
+        
+        let speekerButtonOutput = speekButtonImageView.configure()
+        
         return Output(
-            didTapSpeekerButton: .empty(),
-            didTapdistributionStatusButton: .empty(),
-            didTapAddWordButton: .empty()
+            didTapSpeekerButton: speekerButtonOutput.didTap,
+            didTapWordRaitingButton: wordRaitingOutput.didTap,
+            didTapAddWordButton: addWordButton.rx.tap.asSignal()
         )
     }
 }

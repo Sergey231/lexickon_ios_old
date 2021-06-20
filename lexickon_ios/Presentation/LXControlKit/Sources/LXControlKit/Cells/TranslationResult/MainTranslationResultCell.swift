@@ -187,7 +187,7 @@ public final class MainTranslationResultCell: DisposableTableViewCell {
         
         self.model = model
         
-        wordRatingView.configure(input: WordRatingView.Input(rating: .just(1)))
+        _ = wordRatingView.configure(input: WordRatingView.Input(rating: .just(1)))
         
         translationLabel.text = model.translation
         

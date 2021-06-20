@@ -17,6 +17,7 @@ enum WordCardStep: Step {
     case word
     case exercise
     case home
+    case addWord
 }
 
 class WordCardFlow: Flow {
@@ -53,6 +54,8 @@ class WordCardFlow: Flow {
         case .home:
             (root as! UINavigationController).popToRootViewController(animated: true)
             return .end(forwardToParentFlowWithStep: MainStep.home(animated: false))
+        case .addWord:
+            return .end(forwardToParentFlowWithStep: MainStep.addWord)
         }
     }
 }

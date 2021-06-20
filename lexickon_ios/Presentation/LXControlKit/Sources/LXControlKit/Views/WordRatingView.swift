@@ -27,6 +27,10 @@ public final class WordRatingView: UIView {
         let rating: Driver<CGFloat>
     }
     
+    public struct Output {
+        let didTap: Signal<Void>
+    }
+    
     private let disposeBag = DisposeBag()
     
     private let scaleImageView = UIImageView(image: Images.WordRating.scale.image)
@@ -63,11 +67,20 @@ public final class WordRatingView: UIView {
         }
     }
     
-    public func configure(input: Input) {
+    public func configure(input: Input) -> Output {
         
         input.rating
             .drive(rx.rating)
             .disposed(by: disposeBag)
+        
+        let tap = UITapGestureRecognizer()
+        addGestureRecognizer(tap)
+        
+        let didTap = tap.rx.event
+            .map { _ in () }
+            .asSignal(onErrorSignalWith: .empty())
+        
+        return Output(didTap: didTap)
     }
 }
 
