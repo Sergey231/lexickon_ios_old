@@ -19,6 +19,10 @@ public final class WordCardProgressBarView: UIView {
         createUI()
     }
     
+    private enum UIConstrant {
+        static let wordLevelViewSize: CGFloat = 48
+    }
+    
     public struct Input {
         public init(
             studyState: Driver<StudyType>,
@@ -43,7 +47,7 @@ public final class WordCardProgressBarView: UIView {
     
     private let disposeBag = DisposeBag()
     
-    private let levelView = UIView()
+    fileprivate let levelView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,12 +59,16 @@ public final class WordCardProgressBarView: UIView {
     }
        
     private func createUI() {
-        backgroundColor = .gray
-        snp.makeConstraints {
-            let safeAreaTop = UIApplication.shared.windows[0].safeAreaInsets.top
-            $0.height.equalTo(safeAreaTop + 48)
-        }
         
+        levelView.setup {
+            $0.layer.cornerRadius = UIConstrant.wordLevelViewSize/2
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalTo(4)
+                $0.top.equalTo(4)
+                $0.size.equalTo(UIConstrant.wordLevelViewSize)
+            }
+        }
     }
     
     public func configure(input: Input) -> Output {
@@ -69,12 +77,24 @@ public final class WordCardProgressBarView: UIView {
             .drive(rx.studyState)
             .disposed(by: disposeBag)
         
-        return Output(didTapBack: backButton.rx.tap.asSignal())
+        return Output(didTapBack: .empty())
     }
 }
 
 private extension Reactive where Base : WordCardProgressBarView {
-    
+    var studyState: Binder<StudyType> {
+        Binder(base) { base, stdudyState in
+            switch stdudyState {
+            
+            case .fire:
+                base.levelView.backgroundColor = Colors.fireWordBright.color
+            case .ready:
+                base.levelView.backgroundColor = Colors.readyWordBright.color
+            case .new:
+                base.levelView.backgroundColor = Colors.newWordBright.color
+            case .waiting:
+                base.levelView.backgroundColor = Colors.waitingWordBright.color
+            }
+        }
+    }
 }
-
-

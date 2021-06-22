@@ -29,6 +29,7 @@ final class WordCardViewController: UIViewController, Stepper {
     fileprivate let studyWordLabel = UILabel()
     fileprivate let translateLabel = UILabel()
     private let topBarView = WordCardTopBarView()
+    private let progressView = WordCardProgressBarView()
     private let bottomBarView = WordCardBottomBarView()
     
     init() {
@@ -90,6 +91,16 @@ final class WordCardViewController: UIViewController, Stepper {
             }
         }
         
+        progressView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.mid)
+                $0.right.equalToSuperview().offset(-Margin.mid)
+                $0.top.equalTo(translateLabel.snp.bottom).offset(Margin.huge)
+                $0.height.equalTo(200)
+            }
+        }
+        
         bottomBarView.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {
@@ -101,8 +112,13 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
+        let testStudyState: Driver<StudyType> = .just(.fire)
+        let testWaitingTimePeriod: Int = 1209600 // (14 days)
+        let testReadyTimePeriod: Int = 345600 // (4 days)
+        let testFireTimePeriod: Int = 172800 // (2 days)
+        
         let topBarViewOutput = topBarView.configure(
-            input: WordCardTopBarView.Input(studyState: .just(.fire))
+            input: WordCardTopBarView.Input(studyState: testStudyState)
         )
         
         studyWordLabel.text = "Study Word"
@@ -110,6 +126,15 @@ final class WordCardViewController: UIViewController, Stepper {
         
         let bottomBarViewOutput = bottomBarView.configure(
             input: WordCardBottomBarView.Input(wordRaiting: .just(0.8))
+        )
+        
+        _ = progressView.configure(
+            input: .init(
+                studyState: testStudyState,
+                waitingTimePeriod: .just(testWaitingTimePeriod),
+                readyTimePeriod: .just(testReadyTimePeriod),
+                fireTimePariod: .just(testFireTimePeriod)
+            )
         )
         
         topBarViewOutput.didTapBack
