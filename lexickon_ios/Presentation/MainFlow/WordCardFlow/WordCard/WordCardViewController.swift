@@ -131,6 +131,7 @@ final class WordCardViewController: UIViewController, Stepper {
         _ = progressView.configure(
             input: .init(
                 studyState: testStudyState,
+                wordLevel: .just(7),
                 waitingTimePeriod: .just(testWaitingTimePeriod),
                 readyTimePeriod: .just(testReadyTimePeriod),
                 fireTimePariod: .just(testFireTimePeriod)

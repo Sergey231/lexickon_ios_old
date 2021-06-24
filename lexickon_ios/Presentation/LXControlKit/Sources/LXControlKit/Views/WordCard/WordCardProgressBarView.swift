@@ -27,16 +27,19 @@ public final class WordCardProgressBarView: UIView {
     public struct Input {
         public init(
             studyState: Driver<StudyType>,
+            wordLevel: Driver<Int>,
             waitingTimePeriod: Driver<Int>,
             readyTimePeriod: Driver<Int>,
             fireTimePariod: Driver<Int>
         ) {
             self.studyState = studyState
+            self.wordLevel = wordLevel
             self.waitingTimePeriod = waitingTimePeriod
             self.readyTimePeriod = readyTimePeriod
             self.fireTimePariod = fireTimePariod
         }
         let studyState: Driver<StudyType>
+        let wordLevel: Driver<Int>
         let waitingTimePeriod: Driver<Int>
         let readyTimePeriod: Driver<Int>
         let fireTimePariod: Driver<Int>
@@ -108,10 +111,12 @@ public final class WordCardProgressBarView: UIView {
         }
         
         levelCountLabel.setup {
+            $0.textColor = .white
+            $0.textAlignment = .center
             $0.font = .bold18
             levelView.addSubview($0)
-            levelView.snp.makeConstraints {
-                $0.top.equalToSuperview().offset(Margin.regular)
+            $0.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(Margin.small)
                 $0.left.right.equalToSuperview()
                 $0.height.equalTo(22)
             }
@@ -122,6 +127,11 @@ public final class WordCardProgressBarView: UIView {
         
         input.studyState
             .drive(rx.studyState)
+            .disposed(by: disposeBag)
+        
+        input.wordLevel
+            .map { String($0) }
+            .drive(levelCountLabel.rx.text)
             .disposed(by: disposeBag)
         
         parentViewController?.rx.viewDidAppear
