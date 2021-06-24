@@ -154,7 +154,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         }
         
         wordLable.setup {
-            $0.font = .systemRegular24
+            $0.font = .regular24
             contentView.addSubview($0)
 
             if input.isReady {

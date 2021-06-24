@@ -88,7 +88,7 @@ public final class InLexickonStateView: UIView {
         }
         
         stateLabel.setup {
-            $0.font = .systemRegular12
+            $0.font = .regular12
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalTo(stateIconImageView.snp.right).offset(Margin.small)

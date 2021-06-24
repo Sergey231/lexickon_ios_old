@@ -52,6 +52,8 @@ public final class WordCardProgressBarView: UIView {
     fileprivate let scaleBgView = UIView()
     fileprivate let scaleView = UIView()
     fileprivate let levelView = UIView()
+    fileprivate let levelCountLabel = UILabel()
+    fileprivate let levelTitleLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,6 +104,16 @@ public final class WordCardProgressBarView: UIView {
                 $0.height.equalTo(14)
                 $0.width.equalTo(4)
                 $0.left.equalTo(levelView.snp.right).offset(-4)
+            }
+        }
+        
+        levelCountLabel.setup {
+            $0.font = .bold18
+            levelView.addSubview($0)
+            levelView.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(Margin.regular)
+                $0.left.right.equalToSuperview()
+                $0.height.equalTo(22)
             }
         }
     }

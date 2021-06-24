@@ -70,7 +70,7 @@ final class WordCardViewController: UIViewController, Stepper {
         }
         
         studyWordLabel.setup {
-            $0.font = .systemRegular24
+            $0.font = .bold18
             $0.textAlignment = .center
             view.addSubview($0)
             $0.snp.makeConstraints {
@@ -81,7 +81,7 @@ final class WordCardViewController: UIViewController, Stepper {
         }
         
         translateLabel.setup {
-            $0.font = .systemRegular17
+            $0.font = .regular17
             $0.textAlignment = .center
             view.addSubview($0)
             $0.snp.makeConstraints {

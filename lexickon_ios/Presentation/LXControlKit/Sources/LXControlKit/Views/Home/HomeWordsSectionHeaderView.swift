@@ -44,7 +44,7 @@ public final class HomeWordsSectionHeaderView: UIView {
         }
         
         titleLabel.setup {
-            $0.font = .systemRegular12
+            $0.font = .regular12
             $0.textColor = .lightGray
             bgTitleView.addSubview($0)
             $0.snp.makeConstraints {

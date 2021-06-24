@@ -55,7 +55,7 @@ public final class SubmenuItem: UIView {
     private func createUI() {
         
         emojiIcon.setup {
-            $0.font = .systemRegular24
+            $0.font = .regular24
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.equalToSuperview().offset(Margin.regular)

@@ -17,7 +17,7 @@ import Assets
 public final class TextView: UITextView {
     
     public struct Input {
-        var font: UIFont = .systemRegular17
+        var font: UIFont = .regular17
         var textColor: UIColor = Colors.baseText.color
     }
     

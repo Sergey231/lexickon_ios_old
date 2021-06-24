@@ -116,7 +116,7 @@ public final class TranslationResultCell: DisposableTableViewCell {
         
         translationLable.setup {
             $0.numberOfLines = 0
-            $0.font = .systemRegular14
+            $0.font = .regular14
             $0.text = input.translation
             $0.textColor = Colors.baseText.color
             selectableBGView.addSubview($0)
