@@ -116,9 +116,22 @@ public final class WordCardProgressBarView: UIView {
             $0.font = .bold18
             levelView.addSubview($0)
             $0.snp.makeConstraints {
-                $0.top.equalToSuperview().offset(Margin.small)
+                $0.top.equalToSuperview().offset(6)
                 $0.left.right.equalToSuperview()
                 $0.height.equalTo(22)
+            }
+        }
+        
+        levelTitleLabel.setup {
+            $0.textColor = .white
+            $0.textAlignment = .center
+            $0.font = .bold10
+            $0.text = "Lvl."
+            levelView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalTo(levelCountLabel.snp.bottom)
+                $0.left.right.equalToSuperview()
+                $0.height.equalTo(12)
             }
         }
     }

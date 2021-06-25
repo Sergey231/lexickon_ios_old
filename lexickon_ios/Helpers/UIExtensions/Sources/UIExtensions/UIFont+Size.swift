@@ -38,4 +38,8 @@ extension UIFont {
     public static var bold18: UIFont {
         systemBold(of: 18)
     }
+    
+    public static var bold10: UIFont {
+        systemBold(of: 10)
+    }
 }
