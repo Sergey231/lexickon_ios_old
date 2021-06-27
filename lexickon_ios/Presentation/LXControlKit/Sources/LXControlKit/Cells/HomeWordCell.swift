@@ -29,10 +29,10 @@ public class HomeWordCellModel {
     
     public var disposeBag = DisposeBag()
     
-    public var isReady: Bool { self.studyType == .ready }
+    public var isReady: Bool { self.studyState == .ready }
     public let word: String
     public let isEditMode: Driver<Bool>
-    public let studyType: StudyType
+    public let studyState: StudyState
     public var tapWithoutEditMode: Signal<Void> {
         self.tapWithoutEditModeRelay.asSignal()
     }
@@ -49,11 +49,11 @@ public class HomeWordCellModel {
     
     public init(
         word: String,
-        studyType: StudyType,
+        studyState: StudyState,
         isEditMode: Driver<Bool>
     ) {
         self.word = word
-        self.studyType = studyType
+        self.studyState = studyState
         self.isEditMode = isEditMode
     }
 }
@@ -278,7 +278,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         var progressColor: UIColor = Colors.fireWord.color
         var bgColor: UIColor = Colors.fireWordPale.color
         
-        switch model.studyType {
+        switch model.studyState {
             
         case .fire:
             iconImageView.image = Images.wordMustReapetIcon.image

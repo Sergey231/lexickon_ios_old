@@ -59,18 +59,18 @@ public enum TranslationCellModelEnum {
     public var canBeReseted: Bool {
         switch self {
         case .Main(let mainTranslationCellModel):
-            return mainTranslationCellModel.studyType.canBeReseted
+            return mainTranslationCellModel.studyState.canBeReseted
         case .Other(let otherTranslationCellModel):
-            return otherTranslationCellModel.studyType.canBeReseted
+            return otherTranslationCellModel.studyState.canBeReseted
         }
     }
     
     public var canBeLearnt: Bool {
         switch self {
         case .Main(let mainTranslationCellModel):
-            return mainTranslationCellModel.studyType.canBeLearnt
+            return mainTranslationCellModel.studyState.canBeLearnt
         case .Other(let otherTranslationCellModel):
-            return otherTranslationCellModel.studyType.canBeLearnt
+            return otherTranslationCellModel.studyState.canBeLearnt
         }
     }
 }

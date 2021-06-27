@@ -13,20 +13,20 @@ public struct WordEntity: Decodable {
     public let id: UUID
     public let studyWord: String
     public let translates: [String]
-    public let nextLessonDate: Date?
+    public let updatingStudyRatingDate: Int?
     public let image: String
     
     public init(
         id: UUID,
         studyWord: String,
         translates: [String],
-        nextLessonDate: Date?,
+        updatingStudyRatingDate: Int?,
         image: String
     ) {
         self.id = id
         self.studyWord = studyWord
         self.translates = translates
-        self.nextLessonDate = nextLessonDate
+        self.updatingStudyRatingDate = updatingStudyRatingDate
         self.image = image
     }
     
@@ -34,7 +34,7 @@ public struct WordEntity: Decodable {
         self.id = lxWord.id
         self.studyWord = lxWord.studyWord
         self.translates = lxWord.translates
-        self.nextLessonDate = lxWord.nextLessonDate
+        self.updatingStudyRatingDate = lxWord.updatingStudyRatingDate
         self.image = lxWord.image
     }
     
@@ -42,12 +42,12 @@ public struct WordEntity: Decodable {
         self.id = lxWord.id
         self.studyWord = lxWord.studyWord
         self.translates = lxWord.translates
-        self.nextLessonDate = lxWord.nextLessonDate
+        self.updatingStudyRatingDate = lxWord.updatingStudyRatingDate
         self.image = lxWord.image
     }
     
     // MARK: Test Implementation
-    public var studyType: StudyType {
+    public var studyState: StudyState {
         if studyWord == "Cup" || studyWord == "Car" {
             return .fire
         } else if studyWord == "Knife" || studyWord == "dog" || studyWord == "cat" {

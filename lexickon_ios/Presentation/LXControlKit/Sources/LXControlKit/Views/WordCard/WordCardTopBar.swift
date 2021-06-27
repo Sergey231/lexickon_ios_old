@@ -20,10 +20,10 @@ public final class WordCardTopBarView: UIView {
     }
     
     public struct Input {
-        public init(studyState: Driver<StudyType>) {
+        public init(studyState: Driver<StudyState>) {
             self.studyState = studyState
         }
-        let studyState: Driver<StudyType>
+        let studyState: Driver<StudyState>
     }
     
     public struct Output {
@@ -94,7 +94,7 @@ public final class WordCardTopBarView: UIView {
 }
 
 private extension Reactive where Base : WordCardTopBarView {
-    var studyState: Binder<StudyType> {
+    var studyState: Binder<StudyState> {
         Binder(base) { base, studyState in
             switch studyState {
             case .fire:

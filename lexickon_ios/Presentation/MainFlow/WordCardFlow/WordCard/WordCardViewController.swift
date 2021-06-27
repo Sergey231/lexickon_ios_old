@@ -112,7 +112,7 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let testStudyState: Driver<StudyType> = .just(.fire)
+        let testStudyState: Driver<StudyState> = .just(.fire)
         let testWaitingTimePeriod: Int = 1209600 // (14 days)
         let testReadyTimePeriod: Int = 345600 // (4 days)
         let testFireTimePeriod: Int = 172800 // (2 days)
@@ -148,7 +148,7 @@ final class WordCardViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        Signal.just(StudyType.fire)
+        Signal.just(StudyState.fire)
             .emit(to: rx.studyState)
             .disposed(by: disposeBag)
     }
@@ -156,7 +156,7 @@ final class WordCardViewController: UIViewController, Stepper {
 
 private extension Reactive where Base: WordCardViewController {
     
-    var studyState: Binder<StudyType> {
+    var studyState: Binder<StudyState> {
         Binder(base) { base, stdudyState in
             switch stdudyState {
             

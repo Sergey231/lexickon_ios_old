@@ -28,16 +28,16 @@ public final class MainTranslationCellModel {
         translation: String,
         text: String,
         isEditMode: Driver<Bool>,
-        studyType: StudyType
+        studyState: StudyState
     ) {
         self.translation = translation
         self.text = text
         self.isEditMode = isEditMode
-        self.studyType = studyType
+        self.studyState = studyState
     }
     public let translation: String
     public let text: String
-    public let studyType: StudyType
+    public let studyState: StudyState
     
     fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
     public var wordSelectionState: TranslationCellModelEnum.SelectionState = .none

@@ -101,12 +101,12 @@ final class HomePresenter {
                 var newWords: [HomeWordCellModel] = []
                 var waitingWords: [HomeWordCellModel] = []
                 words.forEach {
-                    switch $0.studyType {
+                    switch $0.studyState {
                     case .fire:
                         fireWords.append(
                             HomeWordCellModel(
                                 word: $0.studyWord,
-                                studyType: .fire,
+                                studyState: .fire,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
@@ -114,7 +114,7 @@ final class HomePresenter {
                         readyWords.append(
                             HomeWordCellModel(
                                 word: $0.studyWord,
-                                studyType: .ready,
+                                studyState: .ready,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
@@ -122,7 +122,7 @@ final class HomePresenter {
                         newWords.append(
                             HomeWordCellModel(
                                 word: $0.studyWord,
-                                studyType: .new,
+                                studyState: .new,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
@@ -130,7 +130,7 @@ final class HomePresenter {
                         waitingWords.append(
                             HomeWordCellModel(
                                 word: $0.studyWord,
-                                studyType: .waiting,
+                                studyState: .waiting,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
@@ -141,7 +141,7 @@ final class HomePresenter {
                 
                 if !fireWords.isEmpty {
                     let fireWordsSection = HomeWordSectionModel(
-                        model: StudyType.fire.rawValue,
+                        model: StudyState.fire.rawValue,
                         items: fireWords
                     )
                     sections.append(fireWordsSection)
@@ -149,7 +149,7 @@ final class HomePresenter {
                 
                 if !readyWords.isEmpty {
                     let readyWordsSection = HomeWordSectionModel(
-                        model: StudyType.ready.rawValue,
+                        model: StudyState.ready.rawValue,
                         items: readyWords
                     )
                     sections.append(readyWordsSection)
@@ -157,7 +157,7 @@ final class HomePresenter {
                 
                 if !newWords.isEmpty {
                     let newWordsSection = HomeWordSectionModel(
-                        model: StudyType.new.rawValue,
+                        model: StudyState.new.rawValue,
                         items: newWords
                     )
                     sections.append(newWordsSection)
@@ -165,7 +165,7 @@ final class HomePresenter {
                 
                 if !waitingWords.isEmpty {
                     let waitingWordsSection = HomeWordSectionModel(
-                        model: StudyType.waiting.rawValue,
+                        model: StudyState.waiting.rawValue,
                         items: waitingWords
                     )
                     sections.append(waitingWordsSection)
@@ -206,12 +206,12 @@ final class HomePresenter {
         
         let wordsForReset = wordSelectionStateDriver
             .map { [unowned self] _ -> [HomeWordCellModel] in
-                self.selectedWordModels.filter { $0.studyType.canBeReseted }
+                self.selectedWordModels.filter { $0.studyState.canBeReseted }
             }
         
         let wordsForLearn = wordSelectionStateDriver
             .map { [unowned self] _ -> [HomeWordCellModel] in
-                self.selectedWordModels.filter { $0.studyType.canBeLearnt }
+                self.selectedWordModels.filter { $0.studyState.canBeLearnt }
             }
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)

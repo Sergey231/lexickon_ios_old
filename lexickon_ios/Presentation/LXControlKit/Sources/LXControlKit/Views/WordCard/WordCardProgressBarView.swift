@@ -26,7 +26,7 @@ public final class WordCardProgressBarView: UIView {
     
     public struct Input {
         public init(
-            studyState: Driver<StudyType>,
+            studyState: Driver<StudyState>,
             wordLevel: Driver<Int>,
             waitingTimePeriod: Driver<Int>,
             readyTimePeriod: Driver<Int>,
@@ -38,11 +38,13 @@ public final class WordCardProgressBarView: UIView {
             self.readyTimePeriod = readyTimePeriod
             self.fireTimePariod = fireTimePariod
         }
-        let studyState: Driver<StudyType>
+        let studyState: Driver<StudyState>
         let wordLevel: Driver<Int>
         let waitingTimePeriod: Driver<Int>
         let readyTimePeriod: Driver<Int>
         let fireTimePariod: Driver<Int>
+        
+        
     }
     
     public struct Output {
@@ -57,6 +59,7 @@ public final class WordCardProgressBarView: UIView {
     fileprivate let levelView = UIView()
     fileprivate let levelCountLabel = UILabel()
     fileprivate let levelTitleLabel = UILabel()
+    fileprivate let timeLeftLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -134,6 +137,18 @@ public final class WordCardProgressBarView: UIView {
                 $0.height.equalTo(12)
             }
         }
+        
+        timeLeftLabel.setup {
+            $0.textAlignment = .center
+            $0.font = .regular12
+            $0.numberOfLines = 2
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalTo(levelBgView.snp.bottom)
+                $0.left.right.equalToSuperview()
+                $0.height.equalTo(30)
+            }
+        }
     }
     
     public func configure(input: Input) -> Output {
@@ -158,7 +173,7 @@ public final class WordCardProgressBarView: UIView {
 }
 
 private extension Reactive where Base : WordCardProgressBarView {
-    var studyState: Binder<StudyType> {
+    var studyState: Binder<StudyState> {
         Binder(base) { base, stdudyState in
             switch stdudyState {
             
@@ -167,21 +182,25 @@ private extension Reactive where Base : WordCardProgressBarView {
                 base.levelBgView.backgroundColor = Colors.fireWordPale.color
                 base.scaleBgView.backgroundColor = Colors.fireWordPale.color
                 base.scaleView.backgroundColor = Colors.fireWordBright.color
+                base.timeLeftLabel.textColor = Colors.fireWordBright.color
             case .ready:
                 base.levelView.backgroundColor = Colors.readyWordBright.color
                 base.levelBgView.backgroundColor = Colors.readyWordPale.color
                 base.scaleBgView.backgroundColor = Colors.readyWordPale.color
                 base.scaleView.backgroundColor = Colors.readyWordBright.color
+                base.timeLeftLabel.textColor = Colors.readyWordBright.color
             case .new:
                 base.levelView.backgroundColor = Colors.newWordBright.color
                 base.levelBgView.backgroundColor = Colors.newWord.color
                 base.scaleBgView.backgroundColor = Colors.newWord.color
                 base.scaleView.backgroundColor = Colors.newWordBright.color
+                base.timeLeftLabel.textColor = Colors.newWordBright.color
             case .waiting:
                 base.levelView.backgroundColor = Colors.waitingWordBright.color
                 base.levelBgView.backgroundColor = Colors.waitingWordPale.color
                 base.scaleBgView.backgroundColor = Colors.waitingWordPale.color
                 base.scaleView.backgroundColor = Colors.waitingWordBright.color
+                base.timeLeftLabel.textColor = Colors.waitingWordBright.color
             }
         }
     }

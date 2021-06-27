@@ -367,8 +367,8 @@ extension HomeViewController: UITableViewDelegate {
         if tableView.numberOfRows(inSection: section) > 0 {
             let headerView = HomeWordsSectionHeaderView()
             let dataSourceSection = dataSource.sectionModels[section]
-            let sectionType = StudyType(rawValue: dataSourceSection.model) ?? .waiting
-            headerView.configure(input: HomeWordsSectionHeaderView.Input(studyType: sectionType))
+            let sectionType = StudyState(rawValue: dataSourceSection.model) ?? .waiting
+            headerView.configure(input: HomeWordsSectionHeaderView.Input(studyState: sectionType))
             return headerView
         }
         return nil

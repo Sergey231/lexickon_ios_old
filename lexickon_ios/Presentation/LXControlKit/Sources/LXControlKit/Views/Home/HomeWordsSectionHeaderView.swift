@@ -15,10 +15,10 @@ import LexickonApi
 public final class HomeWordsSectionHeaderView: UIView {
     
     public struct Input {
-        public init(studyType: StudyType) {
-            self.studyType = studyType
+        public init(studyState: StudyState) {
+            self.studyState = studyState
         }
-        let studyType: StudyType
+        let studyState: StudyState
     }
     
     private let titleLabel = UILabel()
@@ -58,7 +58,7 @@ public final class HomeWordsSectionHeaderView: UIView {
     public func configure(input: Input) {
         
         var title: String {
-            switch input.studyType {
+            switch input.studyState {
             case .fire:
                 return Str.homeFireSectionTitle
             case .ready:
