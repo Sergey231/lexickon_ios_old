@@ -80,3 +80,4 @@
 "WordCardReadyStateTitle" = "Можно заниматься";
 "WordCardWaitingStateTitle" = "Привет!";
 "WordCardNewStateTitle" = "Привет!";
+"WordCardLearnButtonTitle" = "Закрепить это слово";
