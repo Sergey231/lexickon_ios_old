@@ -85,6 +85,8 @@ public enum Str {
   public static let startIHaveAccountButtonTitle = Str.tr("Localizable", "Start_i_have_account_button_title")
   /// Пора заниматься!
   public static let wordCardFireStateTitle = Str.tr("Localizable", "WordCardFireStateTitle")
+  /// Закрепить это слово
+  public static let wordCardLearnButtonTitle = Str.tr("Localizable", "WordCardLearnButtonTitle")
   /// Привет!
   public static let wordCardNewStateTitle = Str.tr("Localizable", "WordCardNewStateTitle")
   /// Можно заниматься

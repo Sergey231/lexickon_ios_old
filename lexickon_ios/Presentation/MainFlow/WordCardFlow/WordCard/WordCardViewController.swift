@@ -28,6 +28,7 @@ final class WordCardViewController: UIViewController, Stepper {
     
     fileprivate let studyWordLabel = UILabel()
     fileprivate let translateLabel = UILabel()
+    fileprivate let learnButton = UIButton()
     private let topBarView = WordCardTopBarView()
     private let progressView = WordCardProgressBarView()
     private let bottomBarView = WordCardBottomBarView()
@@ -108,11 +109,20 @@ final class WordCardViewController: UIViewController, Stepper {
                 $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             }
         }
+        
+        learnButton.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalTo(bottomBarView.snp.top).offset(-Margin.big)
+            }
+        }
     }
     
     private func configureUI() {
         
-        let testStudyState: Driver<StudyState> = .just(.fire)
+        let testStudyState: Driver<StudyState> = .just(.new)
         let testWaitingTimePeriod: Int = 1209600 // (14 days)
         let testReadyTimePeriod: Int = 345600 // (4 days)
         let testFireTimePeriod: Int = 172800 // (2 days)
@@ -123,6 +133,8 @@ final class WordCardViewController: UIViewController, Stepper {
         
         studyWordLabel.text = "Study Word"
         translateLabel.text = "Translate Word"
+        
+        learnButton.setTitle(Str.wordCardLearnButtonTitle, for: .normal)
         
         let bottomBarViewOutput = bottomBarView.configure(
             input: WordCardBottomBarView.Input(wordRaiting: .just(0.8))
@@ -148,7 +160,8 @@ final class WordCardViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        Signal.just(StudyState.fire)
+        testStudyState
+            .asSignal(onErrorSignalWith: .empty())
             .emit(to: rx.studyState)
             .disposed(by: disposeBag)
     }
@@ -158,21 +171,31 @@ private extension Reactive where Base: WordCardViewController {
     
     var studyState: Binder<StudyState> {
         Binder(base) { base, stdudyState in
+            var learnButtonColor: UIColor = .white
             switch stdudyState {
             
             case .fire:
                 base.studyWordLabel.textColor = Colors.fireWordBright.color
                 base.translateLabel.textColor = Colors.fireWordBright.color
+                learnButtonColor = Colors.fireWordBright.color
             case .ready:
                 base.studyWordLabel.textColor = Colors.readyWordBright.color
                 base.translateLabel.textColor = Colors.readyWordBright.color
+                learnButtonColor = Colors.readyWordBright.color
             case .new:
                 base.studyWordLabel.textColor = Colors.newWordBright.color
                 base.translateLabel.textColor = Colors.newWordBright.color
+                learnButtonColor = Colors.newWordBright.color
             case .waiting:
                 base.studyWordLabel.textColor = Colors.waitingWordBright.color
                 base.translateLabel.textColor = Colors.waitingWordBright.color
+                learnButtonColor = Colors.waitingWordBright.color
             }
+            
+            base.learnButton.setRoundedBorderedStyle(
+                bgColor: .white,
+                borderColor: learnButtonColor
+            )
         }
     }
 }

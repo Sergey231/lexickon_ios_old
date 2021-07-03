@@ -25,6 +25,7 @@ public enum Colors {
   public static let fireWordBright = ColorAsset(name: "fireWordBright")
   public static let fireWordPale = ColorAsset(name: "fireWordPale")
   public static let newWord = ColorAsset(name: "newWord")
+  public static let newWordBG = ColorAsset(name: "newWordBG")
   public static let newWordBright = ColorAsset(name: "newWordBright")
   public static let readyWord = ColorAsset(name: "readyWord")
   public static let readyWordBright = ColorAsset(name: "readyWordBright")
