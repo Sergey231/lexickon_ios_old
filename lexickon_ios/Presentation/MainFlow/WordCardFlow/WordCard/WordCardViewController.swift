@@ -32,7 +32,7 @@ final class WordCardViewController: UIViewController, Stepper {
     private let topBarView = WordCardTopBarView()
     private let progressView = WordCardProgressBarView()
     private let bottomBarView = WordCardBottomBarView()
-    private let cantLearnHint = UILabel()
+    fileprivate let cantLearnHint = UILabel()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -112,6 +112,7 @@ final class WordCardViewController: UIViewController, Stepper {
         }
         
         learnButton.setup {
+            $0.alpha = 0
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
@@ -121,6 +122,7 @@ final class WordCardViewController: UIViewController, Stepper {
         }
         
         cantLearnHint.setup {
+            $0.alpha = 0
             $0.text = "Когда настанет время,\n вы сможете закрепить это слово\n в упражнениях"
             $0.textColor = Colors.pale.color
             $0.textAlignment = .center
@@ -135,7 +137,7 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let testStudyState: Driver<StudyState> = .just(.waiting)
+        let testStudyState: Driver<StudyState> = .just(.ready)
         let testWaitingTimePeriod: Int = 1209600 // (14 days)
         let testReadyTimePeriod: Int = 345600 // (4 days)
         let testFireTimePeriod: Int = 172800 // (2 days)
@@ -221,6 +223,10 @@ private extension Reactive where Base: WordCardViewController {
                 bgColor: .white,
                 borderColor: learnButtonColor
             )
+            UIView.animate(withDuration: 0.6, delay: 1) {
+                base.learnButton.alpha = 1
+                base.cantLearnHint.alpha = 1
+            }
         }
     }
 }
