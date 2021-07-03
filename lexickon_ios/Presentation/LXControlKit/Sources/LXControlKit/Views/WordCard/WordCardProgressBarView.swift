@@ -114,6 +114,7 @@ public final class WordCardProgressBarView: UIView {
         }
         
         levelCountLabel.setup {
+            $0.alpha = 0
             $0.textColor = .white
             $0.textAlignment = .center
             $0.font = .bold18
@@ -126,6 +127,7 @@ public final class WordCardProgressBarView: UIView {
         }
         
         levelTitleLabel.setup {
+            $0.alpha = 0
             $0.textColor = .white
             $0.textAlignment = .center
             $0.font = .bold10
@@ -139,6 +141,7 @@ public final class WordCardProgressBarView: UIView {
         }
         
         timeLeftLabel.setup {
+            $0.alpha = 0
             $0.textAlignment = .center
             $0.font = .regular12
             $0.numberOfLines = 2
@@ -161,6 +164,8 @@ public final class WordCardProgressBarView: UIView {
             .map { String($0) }
             .drive(levelCountLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        timeLeftLabel.text = "Time Left Label\n Time Left Label"
         
         parentViewController?.rx.viewDidAppear
             .asSignal()
@@ -213,6 +218,11 @@ private extension Reactive where Base : WordCardProgressBarView {
                     $0.width.equalTo(4 + 260)
                 }
                 base.layoutIfNeeded()
+            }
+            UIView.animate(withDuration: 0.3, delay: 0.3) {
+                base.timeLeftLabel.alpha = 1
+                base.levelCountLabel.alpha = 1
+                base.levelTitleLabel.alpha = 1
             }
         }
     }
