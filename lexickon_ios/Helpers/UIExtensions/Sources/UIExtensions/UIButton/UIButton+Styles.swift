@@ -19,11 +19,16 @@ extension UIButton {
     
     public func setRoundedBorderedStyle(
         bgColor: UIColor = .gray,
-        borderColor: UIColor = .white
+        borderColor: UIColor = .white,
+        titleColor: UIColor? = nil
     ) {
         setRoundedStyle(bgColor: bgColor)
         layer.borderWidth = 2
         layer.borderColor = borderColor.cgColor
+        let titleColor = titleColor == nil
+            ? borderColor
+            : titleColor
+        setTitleColor(titleColor, for: .normal)
     }
     
     public func setRoundedFilledStyle(
