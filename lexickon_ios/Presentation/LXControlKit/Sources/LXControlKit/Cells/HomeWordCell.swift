@@ -301,7 +301,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         case .waiting:
             iconImageView.image = Images.waitingWordIcon.image
             wordColor = Colors.waitingWordBright.color
-            progressColor = Colors.waitingWord.color
+            progressColor = Colors.waitingWordBG.color
             bgColor = Colors.waitingWordPale.color
         }
         

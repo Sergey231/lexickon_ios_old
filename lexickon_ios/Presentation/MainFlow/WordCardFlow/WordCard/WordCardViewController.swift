@@ -32,6 +32,7 @@ final class WordCardViewController: UIViewController, Stepper {
     private let topBarView = WordCardTopBarView()
     private let progressView = WordCardProgressBarView()
     private let bottomBarView = WordCardBottomBarView()
+    private let cantLearnHint = UILabel()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -118,11 +119,23 @@ final class WordCardViewController: UIViewController, Stepper {
                 $0.bottom.equalTo(bottomBarView.snp.top).offset(-Margin.big)
             }
         }
+        
+        cantLearnHint.setup {
+            $0.text = "Когда настанет время,\n вы сможете закрепить это слово\n в упражнениях"
+            $0.textColor = Colors.pale.color
+            $0.textAlignment = .center
+            $0.numberOfLines = 0
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.bottom.equalTo(bottomBarView.snp.top).offset(-Margin.big)
+                $0.left.right.equalToSuperview()
+            }
+        }
     }
     
     private func configureUI() {
         
-        let testStudyState: Driver<StudyState> = .just(.new)
+        let testStudyState: Driver<StudyState> = .just(.waiting)
         let testWaitingTimePeriod: Int = 1209600 // (14 days)
         let testReadyTimePeriod: Int = 345600 // (4 days)
         let testFireTimePeriod: Int = 172800 // (2 days)
@@ -163,6 +176,18 @@ final class WordCardViewController: UIViewController, Stepper {
         testStudyState
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: rx.studyState)
+            .disposed(by: disposeBag)
+        
+        let canLearn = testStudyState
+            .map { $0 != .waiting }
+        
+        canLearn
+            .map(!)
+            .drive(learnButton.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        canLearn
+            .drive(cantLearnHint.rx.isHidden)
             .disposed(by: disposeBag)
     }
 }

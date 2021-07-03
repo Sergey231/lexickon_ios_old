@@ -37,7 +37,7 @@ public final class WithoutWordsLabelView: UIView {
             $0.text = Str.homeEmptyLexickonLabel
             $0.numberOfLines = 2
             $0.textAlignment = .center
-            $0.textColor = Colors.waitingWord.color
+            $0.textColor = Colors.pale.color
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.width.equalToSuperview()
@@ -48,7 +48,7 @@ public final class WithoutWordsLabelView: UIView {
         
         logo.setup {
             $0.image = Images.textLogo.image
-            $0.tintColor = Colors.waitingWord.color
+            $0.tintColor = Colors.pale.color
             $0.contentMode = .scaleAspectFit
             addSubview($0)
             $0.snp.makeConstraints {
