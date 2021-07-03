@@ -105,7 +105,7 @@ private extension Reactive where Base : WordCardTopBarView {
                 base.backgroundColor = Colors.mainBG.color
             case .new:
                 base.titleLabel.text = Str.wordCardNewStateTitle
-                base.backgroundColor = Colors.newWord.color
+                base.backgroundColor = Colors.newWordBG.color
             case .waiting:
                 base.titleLabel.text = Str.wordCardWaitingStateTitle
                 base.backgroundColor = Colors.waitingWordBG.color

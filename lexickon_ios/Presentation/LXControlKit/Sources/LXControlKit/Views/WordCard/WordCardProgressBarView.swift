@@ -195,10 +195,10 @@ private extension Reactive where Base : WordCardProgressBarView {
                 base.scaleView.backgroundColor = Colors.readyWordBright.color
                 base.timeLeftLabel.textColor = Colors.readyWordBright.color
             case .new:
-                base.levelView.backgroundColor = Colors.newWordBright.color
+                base.levelView.backgroundColor = Colors.newWordBG.color
                 base.levelBgView.backgroundColor = Colors.newWord.color
                 base.scaleBgView.backgroundColor = Colors.newWord.color
-                base.scaleView.backgroundColor = Colors.newWordBright.color
+                base.scaleView.backgroundColor = Colors.newWordBG.color
                 base.timeLeftLabel.textColor = Colors.newWordBright.color
             case .waiting:
                 base.levelView.backgroundColor = Colors.waitingWordBright.color
