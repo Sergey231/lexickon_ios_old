@@ -134,11 +134,13 @@ final class StartViewController: UIViewController, Stepper {
         beginButton.setRoundedFilledStyle(titleColor: Colors.mainBG.color)
         iAmHaveAccountButton.setRoundedBorderedStyle(
             bgColor: Colors.mainBG.color,
-            borderColor: Colors.mainBG.color
+            borderColor: Colors.mainBG.color,
+            titleColor: .white
         )
         createAccountButton.setRoundedBorderedStyle(
             bgColor: Colors.mainBG.color,
-            borderColor: Colors.mainBG.color
+            borderColor: Colors.mainBG.color,
+            titleColor: .white
         )
         
         beginButton.rx.tap

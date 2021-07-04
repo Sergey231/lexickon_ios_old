@@ -30,6 +30,7 @@ public enum Colors {
   public static let readyWord = ColorAsset(name: "readyWord")
   public static let readyWordBright = ColorAsset(name: "readyWordBright")
   public static let readyWordPale = ColorAsset(name: "readyWordPale")
+  public static let waitingWord = ColorAsset(name: "waitingWord")
   public static let waitingWordBG = ColorAsset(name: "waitingWordBG")
   public static let waitingWordBright = ColorAsset(name: "waitingWordBright")
   public static let waitingWordPale = ColorAsset(name: "waitingWordPale")
