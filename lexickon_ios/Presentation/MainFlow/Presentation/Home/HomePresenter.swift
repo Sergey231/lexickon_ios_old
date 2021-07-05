@@ -37,7 +37,7 @@ final class HomePresenter {
         let wordsForReset: Driver<[HomeWordCellModel]>
         let wordsForLearn: Driver<[HomeWordCellModel]>
         let lexickonState: Driver<LexickonStateEntity.State>
-        let wordTap: Signal<Void>
+        let wordTap: Signal<WordEntity>
         let disposables: CompositeDisposable
     }
     
@@ -101,36 +101,32 @@ final class HomePresenter {
                 var newWords: [HomeWordCellModel] = []
                 var waitingWords: [HomeWordCellModel] = []
                 words.forEach {
-                    switch $0.studyState {
+                    switch $0.testStudyState {
                     case .fire:
                         fireWords.append(
                             HomeWordCellModel(
-                                word: $0.studyWord,
-                                studyState: .fire,
+                                wordEntity: $0,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     case .ready:
                         readyWords.append(
                             HomeWordCellModel(
-                                word: $0.studyWord,
-                                studyState: .ready,
+                                wordEntity: $0,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     case .new:
                         newWords.append(
                             HomeWordCellModel(
-                                word: $0.studyWord,
-                                studyState: .new,
+                                wordEntity: $0,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
                     case .waiting:
                         waitingWords.append(
                             HomeWordCellModel(
-                                word: $0.studyWord,
-                                studyState: .waiting,
+                                wordEntity: $0,
                                 isEditMode: self.isEditModeRelay.asDriver()
                             )
                         )
@@ -183,8 +179,12 @@ final class HomePresenter {
             }
         
         let wordTapSignal = wordModels
-            .flatMap { words -> Signal<Void> in
-                Signal.merge( words.map { $0.tapWithoutEditMode } )
+            .flatMap { wordCellModels -> Signal<WordEntity> in
+                Signal.merge(
+                    wordCellModels.map { wordCellModel in
+                        wordCellModel.tapWithoutEditMode.map { _ in wordCellModel.wordEntity }
+                    }
+                )
             }
         
         let isEditMode = wordSelectionStateDriver

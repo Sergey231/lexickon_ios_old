@@ -16,6 +16,7 @@ import RxExtensions
 import UIExtensions
 import Assets
 import LexickonApi
+import LexickonStateEntity
 
 // MARK: Cell Model
 
@@ -31,6 +32,7 @@ public class HomeWordCellModel {
     
     public var isReady: Bool { self.studyState == .ready }
     public let word: String
+    public let wordEntity: WordEntity
     public let isEditMode: Driver<Bool>
     public let studyState: StudyState
     public var tapWithoutEditMode: Signal<Void> {
@@ -48,12 +50,12 @@ public class HomeWordCellModel {
     }
     
     public init(
-        word: String,
-        studyState: StudyState,
+        wordEntity: WordEntity,
         isEditMode: Driver<Bool>
     ) {
-        self.word = word
-        self.studyState = studyState
+        self.wordEntity = wordEntity
+        self.word = wordEntity.studyWord
+        self.studyState = wordEntity.testStudyState
         self.isEditMode = isEditMode
     }
 }

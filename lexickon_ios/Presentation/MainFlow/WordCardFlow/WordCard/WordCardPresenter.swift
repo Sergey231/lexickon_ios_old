@@ -8,19 +8,21 @@
 
 import RxCocoa
 import Resolver
+import LexickonApi
+import LexickonStateEntity
 
 final class WordCardPresenter {
     
     struct Input {
-        
+        let word: WordEntity
     }
     
     struct Output {
-        
+        let studySate: Driver<StudyState>
     }
     
     func configure(input: Input) -> Output {
         
-        return Output()
+        return Output(studySate: .just(input.word.testStudyState))
     }
 }

@@ -192,7 +192,7 @@ final class HomeViewController: UIViewController, Stepper {
         )
         
         presenterOutput.wordTap
-            .map { MainStep.wordCard }
+            .map { wordEntity in MainStep.wordCard(wordEntity) }
             .emit(to: steps)
             .disposed(by: disposeBag)
         

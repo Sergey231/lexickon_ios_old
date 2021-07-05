@@ -10,13 +10,14 @@ import UIKit
 import RxFlow
 import Resolver
 import WordsRepository
+import LexickonStateEntity
 
 enum MainStep: Step {
     case home(animated: Bool)
     case profile
     case addWord
     case authorization
-    case wordCard
+    case wordCard(WordEntity)
 }
 
 class MainFlow: Flow {
@@ -48,8 +49,8 @@ class MainFlow: Flow {
             return navigateToNewWord()
         case .authorization:
             return navigateToAuthorization()
-        case .wordCard:
-            return navigateToWordCard()
+        case .wordCard(let word):
+            return navigateToWordCard(word: word)
         }
     }
     
@@ -87,12 +88,12 @@ class MainFlow: Flow {
         return .end(forwardToParentFlowWithStep: AppStep.authorization)
     }
     
-    private func navigateToWordCard() -> FlowContributors {
+    private func navigateToWordCard(word: WordEntity) -> FlowContributors {
         let wordCardFlow = WordCardFlow(with: rootViewController)
         return .one(flowContributor: .contribute(
             withNextPresentable: wordCardFlow,
             withNextStepper: OneStepper(
-                withSingleStep: WordCardStep.word
+                withSingleStep: WordCardStep.word(word)
             )
         ))
     }

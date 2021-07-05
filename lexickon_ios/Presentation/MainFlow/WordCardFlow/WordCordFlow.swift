@@ -12,9 +12,10 @@ import Resolver
 import KeychainRepository
 import UserRepository
 import AuthTokenRepository
+import LexickonStateEntity
 
 enum WordCardStep: Step {
-    case word
+    case word(WordEntity)
     case exercise
     case home
     case addWord
@@ -43,8 +44,8 @@ class WordCardFlow: Flow {
         
         switch step {
             
-        case .word:
-            let wordCardViewController: WordCardViewController = Resolver.resolve()
+        case .word(let word):
+            let wordCardViewController: WordCardViewController = Resolver.resolve(args: ["word" : word])
             (root as! UINavigationController).pushViewController(wordCardViewController, animated: true)
             return .one(flowContributor: .contribute(withNext: wordCardViewController))
         case .exercise:
@@ -63,7 +64,7 @@ class WordCardFlow: Flow {
 // MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerWordCardObjects() {
-        register { WordCardViewController() }
+        register { (_, args) in WordCardViewController(word: args("word")) }
         register { WordCardPresenter() }
     }
 }

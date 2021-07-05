@@ -47,7 +47,7 @@ public struct WordEntity: Decodable {
     }
     
     // MARK: Test Implementation
-    public var studyState: StudyState {
+    public var testStudyState: StudyState {
         if studyWord == "Cup" || studyWord == "Car" {
             return .fire
         } else if studyWord == "Knife" || studyWord == "dog" || studyWord == "cat" {

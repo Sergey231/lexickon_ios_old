@@ -17,6 +17,7 @@ import RxExtensions
 import Resolver
 import Assets
 import LexickonApi
+import LexickonStateEntity
 
 final class WordCardViewController: UIViewController, Stepper {
     
@@ -26,6 +27,8 @@ final class WordCardViewController: UIViewController, Stepper {
 
     private let disposeBag = DisposeBag()
     
+    private let word: WordEntity
+    
     fileprivate let studyWordLabel = UILabel()
     fileprivate let translateLabel = UILabel()
     fileprivate let learnButton = UIButton()
@@ -34,7 +37,8 @@ final class WordCardViewController: UIViewController, Stepper {
     private let bottomBarView = WordCardBottomBarView()
     fileprivate let cantLearnHint = UILabel()
     
-    init() {
+    init(word: WordEntity) {
+        self.word = word
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,7 +62,6 @@ final class WordCardViewController: UIViewController, Stepper {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         navigationController?.navigationBar.barStyle = .black
     }
     
@@ -137,13 +140,13 @@ final class WordCardViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let testStudyState: Driver<StudyState> = .just(.ready)
+        let presenterOutput = presenter.configure(input: .init(word: word))
         let testWaitingTimePeriod: Int = 1209600 // (14 days)
         let testReadyTimePeriod: Int = 345600 // (4 days)
         let testFireTimePeriod: Int = 172800 // (2 days)
         
         let topBarViewOutput = topBarView.configure(
-            input: WordCardTopBarView.Input(studyState: testStudyState)
+            input: WordCardTopBarView.Input(studyState: presenterOutput.studySate)
         )
         
         studyWordLabel.text = "Study Word"
@@ -157,7 +160,7 @@ final class WordCardViewController: UIViewController, Stepper {
         
         _ = progressView.configure(
             input: .init(
-                studyState: testStudyState,
+                studyState: presenterOutput.studySate,
                 wordLevel: .just(7),
                 waitingTimePeriod: .just(testWaitingTimePeriod),
                 readyTimePeriod: .just(testReadyTimePeriod),
@@ -175,12 +178,12 @@ final class WordCardViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        testStudyState
+        presenterOutput.studySate
             .asSignal(onErrorSignalWith: .empty())
             .emit(to: rx.studyState)
             .disposed(by: disposeBag)
         
-        let canLearn = testStudyState
+        let canLearn = presenterOutput.studySate
             .map { $0 != .waiting }
         
         canLearn
