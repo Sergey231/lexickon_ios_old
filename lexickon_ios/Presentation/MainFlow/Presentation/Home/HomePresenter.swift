@@ -102,7 +102,7 @@ final class HomePresenter {
                 var waitingWords: [HomeWordCellModel] = []
                 words.forEach {
                     switch $0.testStudyState {
-                    case .fire:
+                    case .fire, .downgradeRating:
                         fireWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
@@ -137,7 +137,7 @@ final class HomePresenter {
                 
                 if !fireWords.isEmpty {
                     let fireWordsSection = HomeWordSectionModel(
-                        model: StudyState.fire.rawValue,
+                        model: LxStudyState.fire.rawValue,
                         items: fireWords
                     )
                     sections.append(fireWordsSection)
@@ -145,7 +145,7 @@ final class HomePresenter {
                 
                 if !readyWords.isEmpty {
                     let readyWordsSection = HomeWordSectionModel(
-                        model: StudyState.ready.rawValue,
+                        model: LxStudyState.ready.rawValue,
                         items: readyWords
                     )
                     sections.append(readyWordsSection)
@@ -153,7 +153,7 @@ final class HomePresenter {
                 
                 if !newWords.isEmpty {
                     let newWordsSection = HomeWordSectionModel(
-                        model: StudyState.new.rawValue,
+                        model: LxStudyState.new.rawValue,
                         items: newWords
                     )
                     sections.append(newWordsSection)
@@ -161,7 +161,7 @@ final class HomePresenter {
                 
                 if !waitingWords.isEmpty {
                     let waitingWordsSection = HomeWordSectionModel(
-                        model: StudyState.waiting.rawValue,
+                        model: LxStudyState.waiting.rawValue,
                         items: waitingWords
                     )
                     sections.append(waitingWordsSection)

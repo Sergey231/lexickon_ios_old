@@ -61,7 +61,7 @@ final class AddSearchWordPresenter {
                             translation: result.mainTranslation.translation,
                             text: result.mainTranslation.text,
                             isEditMode: self.isEditModeRelay.asDriver(),
-                            studyState: StudyState.fire
+                            studyState: LxStudyState.fire
                         )
                     )
                 ]
@@ -76,7 +76,7 @@ final class AddSearchWordPresenter {
                             translation: $0.translation,
                             text: $0.text,
                             isEditMode: self.isEditModeRelay.asDriver(),
-                            studyState: StudyState.fire
+                            studyState: LxStudyState.fire
                         )
                     )
                 }

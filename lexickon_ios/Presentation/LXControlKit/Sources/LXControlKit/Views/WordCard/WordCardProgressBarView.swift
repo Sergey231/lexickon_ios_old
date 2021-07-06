@@ -26,7 +26,7 @@ public final class WordCardProgressBarView: UIView {
     
     public struct Input {
         public init(
-            studyState: Driver<StudyState>,
+            studyState: Driver<LxStudyState>,
             wordLevel: Driver<Int>,
             waitingTimePeriod: Driver<Int>,
             readyTimePeriod: Driver<Int>,
@@ -38,7 +38,7 @@ public final class WordCardProgressBarView: UIView {
             self.readyTimePeriod = readyTimePeriod
             self.fireTimePariod = fireTimePariod
         }
-        let studyState: Driver<StudyState>
+        let studyState: Driver<LxStudyState>
         let wordLevel: Driver<Int>
         let waitingTimePeriod: Driver<Int>
         let readyTimePeriod: Driver<Int>
@@ -178,11 +178,11 @@ public final class WordCardProgressBarView: UIView {
 }
 
 private extension Reactive where Base : WordCardProgressBarView {
-    var studyState: Binder<StudyState> {
+    var studyState: Binder<LxStudyState> {
         Binder(base) { base, stdudyState in
             switch stdudyState {
             
-            case .fire:
+            case .fire, .downgradeRating:
                 base.levelView.backgroundColor = Colors.fireWordBright.color
                 base.levelBgView.backgroundColor = Colors.fireWordPale.color
                 base.scaleBgView.backgroundColor = Colors.fireWordPale.color

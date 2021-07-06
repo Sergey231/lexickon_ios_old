@@ -15,10 +15,10 @@ import LexickonApi
 public final class HomeWordsSectionHeaderView: UIView {
     
     public struct Input {
-        public init(studyState: StudyState) {
+        public init(studyState: LxStudyState) {
             self.studyState = studyState
         }
-        let studyState: StudyState
+        let studyState: LxStudyState
     }
     
     private let titleLabel = UILabel()
@@ -67,6 +67,8 @@ public final class HomeWordsSectionHeaderView: UIView {
                 return Str.homeNewSectionTitle
             case .waiting:
                 return Str.homeWaitingSectionTitle
+            case .downgradeRating:
+                return "Рейтинг некоторых слов начел снижаться:("
             }
         }
         

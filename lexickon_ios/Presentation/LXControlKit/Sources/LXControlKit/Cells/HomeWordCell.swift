@@ -34,7 +34,7 @@ public class HomeWordCellModel {
     public let word: String
     public let wordEntity: WordEntity
     public let isEditMode: Driver<Bool>
-    public let studyState: StudyState
+    public let studyState: LxStudyState
     public var tapWithoutEditMode: Signal<Void> {
         self.tapWithoutEditModeRelay.asSignal()
     }
@@ -55,7 +55,7 @@ public class HomeWordCellModel {
     ) {
         self.wordEntity = wordEntity
         self.word = wordEntity.studyWord
-        self.studyState = wordEntity.testStudyState
+        self.studyState = .fire // wordEntity.testStudyState
         self.isEditMode = isEditMode
     }
 }
@@ -282,7 +282,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         
         switch model.studyState {
             
-        case .fire:
+        case .fire, .downgradeRating:
             iconImageView.image = Images.wordMustReapetIcon.image
             wordColor = Colors.fireWordBright.color
             progressColor = Colors.fireWord.color

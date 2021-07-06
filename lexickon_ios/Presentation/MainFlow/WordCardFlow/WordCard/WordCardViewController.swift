@@ -199,12 +199,12 @@ final class WordCardViewController: UIViewController, Stepper {
 
 private extension Reactive where Base: WordCardViewController {
     
-    var studyState: Binder<StudyState> {
+    var studyState: Binder<LxStudyState> {
         Binder(base) { base, stdudyState in
             var learnButtonColor: UIColor = .white
             switch stdudyState {
             
-            case .fire:
+            case .fire, .downgradeRating:
                 base.studyWordLabel.textColor = Colors.fireWordBright.color
                 base.translateLabel.textColor = Colors.fireWordBright.color
                 learnButtonColor = Colors.fireWordBright.color

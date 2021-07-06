@@ -29,7 +29,7 @@ public final class OtherTranslationCellModel {
         translation: String,
         text: String,
         isEditMode: Driver<Bool>,
-        studyState: StudyState
+        studyState: LxStudyState
     ) {
         self.translation = translation
         self.text = text
@@ -39,7 +39,7 @@ public final class OtherTranslationCellModel {
     public let translation: String
     public let text: String
     public let isEditMode: Driver<Bool>
-    public let studyState: StudyState
+    public let studyState: LxStudyState
     
     fileprivate var wordSelectionStateChangedRelay = PublishRelay<Void>()
     public var wordSelectionState: TranslationCellModelEnum.SelectionState = .none

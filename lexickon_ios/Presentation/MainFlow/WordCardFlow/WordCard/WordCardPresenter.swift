@@ -18,7 +18,7 @@ final class WordCardPresenter {
     }
     
     struct Output {
-        let studySate: Driver<StudyState>
+        let studySate: Driver<LxStudyState>
         let studyWord: String
         let translation: String
         let wordRatingLevel: Driver<Int>

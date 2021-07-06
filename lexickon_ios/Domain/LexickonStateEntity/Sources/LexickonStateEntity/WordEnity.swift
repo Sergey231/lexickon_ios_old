@@ -52,7 +52,7 @@ public struct WordEntity: Decodable {
     }
     
     // MARK: Test Implementation
-    public var testStudyState: StudyState {
+    public var testStudyState: LxStudyState {
         if studyWord == "Cup" || studyWord == "Car" {
             return .fire
         } else if studyWord == "Knife" || studyWord == "dog" || studyWord == "cat" {
@@ -63,14 +63,14 @@ public struct WordEntity: Decodable {
         return .waiting
     }
     
-    public var studyState: StudyState {
+    public var studyState: LxStudyState {
         // 100% full Word Life Cycle Time Period (wordRating)
         // 70% waiting
         // 20% ready
         // 10% fire
         
         let now = Date().timeIntervalSince1970
-        var result: StudyState = .fire
+        var result: LxStudyState = .fire
         let waitingPeriod = TimeInterval(updatingStudyRatingDate ?? Int(Date().timeIntervalSince1970))
         let readyPeriod: TimeInterval = waitingPeriod + (TimeInterval(studyRating) * 0.7)
         let firePeriod: TimeInterval = readyPeriod + (TimeInterval(studyRating) * 0.2)
