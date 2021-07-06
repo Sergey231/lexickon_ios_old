@@ -57,7 +57,7 @@ final class WordCardViewController: UIViewController, Stepper {
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
-        configureUI()
+        configure()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,7 +138,7 @@ final class WordCardViewController: UIViewController, Stepper {
         }
     }
     
-    private func configureUI() {
+    private func configure() {
         
         let presenterOutput = presenter.configure(input: .init(word: word))
         let testWaitingTimePeriod: Int = 1209600 // (14 days)
@@ -149,8 +149,8 @@ final class WordCardViewController: UIViewController, Stepper {
             input: WordCardTopBarView.Input(studyState: presenterOutput.studySate)
         )
         
-        studyWordLabel.text = "Study Word"
-        translateLabel.text = "Translate Word"
+        studyWordLabel.text = presenterOutput.studyWord
+        translateLabel.text = presenterOutput.translation
         
         learnButton.setTitle(Str.wordCardLearnButtonTitle, for: .normal)
         
@@ -161,7 +161,7 @@ final class WordCardViewController: UIViewController, Stepper {
         _ = progressView.configure(
             input: .init(
                 studyState: presenterOutput.studySate,
-                wordLevel: .just(7),
+                wordLevel: presenterOutput.wordRatingLevel,
                 waitingTimePeriod: .just(testWaitingTimePeriod),
                 readyTimePeriod: .just(testReadyTimePeriod),
                 fireTimePariod: .just(testFireTimePeriod)

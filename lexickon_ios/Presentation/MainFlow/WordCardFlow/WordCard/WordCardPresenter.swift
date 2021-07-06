@@ -19,10 +19,18 @@ final class WordCardPresenter {
     
     struct Output {
         let studySate: Driver<StudyState>
+        let studyWord: String
+        let translation: String
+        let wordRatingLevel: Driver<Int>
     }
     
     func configure(input: Input) -> Output {
         
-        return Output(studySate: .just(input.word.testStudyState))
+        return Output(
+            studySate: .just(input.word.testStudyState),
+            studyWord: input.word.studyWord,
+            translation: input.word.translates.first ?? "",
+            wordRatingLevel: .just(10)
+        )
     }
 }
