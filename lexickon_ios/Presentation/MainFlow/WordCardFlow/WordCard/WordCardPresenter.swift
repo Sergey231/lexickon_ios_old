@@ -27,7 +27,7 @@ final class WordCardPresenter {
     func configure(input: Input) -> Output {
         
         return Output(
-            studySate: .just(input.word.testStudyState),
+            studySate: .just(input.word.studyState),
             studyWord: input.word.studyWord,
             translation: input.word.translates.first ?? "",
             wordRatingLevel: .just(10)

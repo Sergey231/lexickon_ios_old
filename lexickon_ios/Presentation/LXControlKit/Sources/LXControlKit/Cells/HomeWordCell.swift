@@ -55,7 +55,7 @@ public class HomeWordCellModel {
     ) {
         self.wordEntity = wordEntity
         self.word = wordEntity.studyWord
-        self.studyState = .fire // wordEntity.testStudyState
+        self.studyState = wordEntity.studyState
         self.isEditMode = isEditMode
     }
 }

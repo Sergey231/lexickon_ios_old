@@ -101,7 +101,7 @@ final class HomePresenter {
                 var newWords: [HomeWordCellModel] = []
                 var waitingWords: [HomeWordCellModel] = []
                 words.forEach {
-                    switch $0.testStudyState {
+                    switch $0.studyState {
                     case .fire, .downgradeRating:
                         fireWords.append(
                             HomeWordCellModel(
