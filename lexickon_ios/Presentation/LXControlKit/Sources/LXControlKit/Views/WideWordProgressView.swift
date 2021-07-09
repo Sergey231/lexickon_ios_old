@@ -19,7 +19,7 @@ public final class WideWordProgressView: UIView {
         public init(
             bgColor: UIColor,
             progressColor: UIColor,
-            progress: CGFloat
+            progress: Driver<CGFloat>
         ) {
             self.bgColor = bgColor
             self.progressColor = progressColor
@@ -28,7 +28,7 @@ public final class WideWordProgressView: UIView {
         
         let bgColor: UIColor
         let progressColor: UIColor
-        let progress: CGFloat
+        let progress: Driver<CGFloat>
     }
     
     private let progressView = UIView()
@@ -72,10 +72,14 @@ public final class WideWordProgressView: UIView {
         progressView.backgroundColor = input.progressColor
         progressView.layer.cornerRadius = 12
         
-        rx.layoutSubviews.take(1)
-            .subscribe(onNext: {
-                self.overlapView.snp.updateConstraints {
-                    $0.left.equalToSuperview().offset((self.progressView.frame.maxX - 10) * input.progress)
+        rx.layoutSubviews
+            .asDriver()
+            .flatMap { _ in input.progress }
+            .drive(onNext: { progress in
+                UIView.animate(withDuration: 0.3) {
+                    self.overlapView.snp.updateConstraints {
+                        $0.left.equalToSuperview().offset((self.progressView.frame.maxX - 10) * progress)
+                    }
                 }
             })
             .disposed(by: disposeBag)

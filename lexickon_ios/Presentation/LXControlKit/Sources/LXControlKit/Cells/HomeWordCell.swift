@@ -313,7 +313,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             input: WideWordProgressView.Input(
                 bgColor: bgColor,
                 progressColor: progressColor,
-                progress: 0.5
+                progress: .just(0.5)
             )
         )
         
