@@ -307,13 +307,15 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             bgColor = Colors.waitingWordPale.color
         }
         
+        let ratingPersent = CGFloat(model.wordEntity.studyStatePercent)
+        
         wordLable.textColor = wordColor
         iconImageView.tintColor = wordColor
         progressView.configure(
             input: WideWordProgressView.Input(
                 bgColor: bgColor,
                 progressColor: progressColor,
-                progress: .just(0.5)
+                progress: .just(ratingPersent)
             )
         )
         

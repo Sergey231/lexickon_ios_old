@@ -85,4 +85,13 @@ public struct WordEntity: Decodable {
         }
         return result
     }
+    
+    public var studyStatePercent: Double {
+        let now = Date().timeIntervalSince1970
+        let waitingPeriod = Double(updatingStudyRatingDate ?? Int(Date().timeIntervalSince1970))
+        let result = now - waitingPeriod
+        let onePersent = Double(studyRating)/100
+        let resultPersent = (result/onePersent)/100
+        return resultPersent
+    }
 }
