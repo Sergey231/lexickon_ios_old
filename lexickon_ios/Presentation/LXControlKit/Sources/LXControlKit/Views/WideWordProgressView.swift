@@ -76,9 +76,10 @@ public final class WideWordProgressView: UIView {
             .asDriver()
             .flatMap { _ in input.progress }
             .drive(onNext: { progress in
+                let leftOffset = (self.progressView.frame.maxX - 10) * progress
                 UIView.animate(withDuration: 0.3) {
                     self.overlapView.snp.updateConstraints {
-                        $0.left.equalToSuperview().offset((self.progressView.frame.maxX - 10) * progress)
+                        $0.left.equalToSuperview().offset(leftOffset)
                     }
                 }
             })
