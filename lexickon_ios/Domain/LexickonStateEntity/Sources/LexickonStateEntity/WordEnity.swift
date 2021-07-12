@@ -92,7 +92,8 @@ public struct WordEntity: Decodable {
         let resultTimeInterval = now - waitingPeriod
         let onePersent = Double(studyRating)/100
         let resultPersent = (resultTimeInterval/onePersent)/100
-        let result = resultPersent > 1 ? 1 :resultPersent
+        let oneSafeResult = resultPersent > 1 ? 1 : resultPersent
+        let result = oneSafeResult < 0 ? 0 : oneSafeResult
         return result
     }
 }
