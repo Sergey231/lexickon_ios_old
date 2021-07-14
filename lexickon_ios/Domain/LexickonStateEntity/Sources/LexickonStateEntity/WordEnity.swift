@@ -64,24 +64,35 @@ public struct WordEntity: Decodable {
     }
     
     public var studyState: LxStudyState {
-        // 100% full Word Life Cycle Time Period (wordRating)
-        // 70% waiting
-        // 20% ready
-        // 10% fire
         
-        let now = Date().timeIntervalSince1970
+        // 100% full Word Life Cycle Time Period (wordRating)
+        let startOfDowngrateRatingPeriod = 1.0
+
+        // 70% waiting
+        let startOfWaitingPeriod = 0.0
+        
+        // 20% ready
+        let startOfReadyPeriod = 0.7
+        
+        // 10% fire
+        let startOfFirePeriod = 0.9
+        
+        let currentStudyPercent = studyStatePercent
         var result: LxStudyState = .fire
-        let waitingPeriod = TimeInterval(updatingStudyRatingDate ?? Int(Date().timeIntervalSince1970))
-        let readyPeriod: TimeInterval = waitingPeriod + (TimeInterval(studyRating) * 0.7)
-        let firePeriod: TimeInterval = readyPeriod + (TimeInterval(studyRating) * 0.2)
+        
         if studyRating == 0 {
             result = .new
-        } else if now >= waitingPeriod && now < readyPeriod {
+        } else if currentStudyPercent >= startOfWaitingPeriod &&
+                    currentStudyPercent < startOfReadyPeriod {
             result = .waiting
-        } else if now >= readyPeriod && now < firePeriod {
+        } else if currentStudyPercent >= startOfReadyPeriod &&
+                    currentStudyPercent < startOfFirePeriod {
             result = .ready
-        } else if now >= firePeriod && now < TimeInterval(studyRating) {
+        } else if currentStudyPercent >= startOfFirePeriod &&
+                    currentStudyPercent < startOfDowngrateRatingPeriod {
             result = .fire
+        } else if currentStudyPercent > startOfDowngrateRatingPeriod {
+            result = .downgradeRating
         }
         return result
     }
@@ -94,6 +105,7 @@ public struct WordEntity: Decodable {
         let resultPersent = (resultTimeInterval/onePersent)/100
         let oneSafeResult = resultPersent > 1 ? 1 : resultPersent
         let result = oneSafeResult < 0 ? 0 : oneSafeResult
+//        print("👮🏿‍♀️ \(studyWord): studyStatePercent: \(result), studyRating: \(studyRating)")
         return result
     }
 }
