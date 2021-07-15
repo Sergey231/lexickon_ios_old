@@ -16,6 +16,16 @@ final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     
     @Injected var wordRepository: WordsRepositoryProtocol
     
+    private let disposeBag = DisposeBag()
+    private let updateWordsTimer = Observable<Int>.interval(
+        .seconds(2),
+        scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
+    )
+    
+    init() {
+        self.configureWordsUpdating()
+    }
+    
     func state() -> Single<LexickonStateEntity> {
         .error(LxHTTPObject.Error.unknown)
     }
@@ -42,5 +52,13 @@ final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     func word(by id: String) -> Single<WordEntity> {
         wordRepository.word(by: id)
             .map { WordEntity(withLxWordGet: $0) }
+    }
+    
+    private func configureWordsUpdating() {
+        updateWordsTimer
+            .debug("⚽️")
+            .subscribe()
+            .disposed(by: disposeBag)
+            
     }
 }
