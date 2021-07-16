@@ -17,8 +17,12 @@ final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     @Injected var wordRepository: WordsRepositoryProtocol
     
     private let disposeBag = DisposeBag()
-    private let updateWordsTimer = Observable<Int>.interval(
+    private let oneMinuteTimer = Observable<Int>.interval(
         .seconds(2),
+        scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
+    )
+    private let oneHoureTimer = Observable<Int>.interval(
+        .seconds(3600),
         scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
     )
     
@@ -55,7 +59,7 @@ final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     }
     
     private func configureWordsUpdating() {
-        updateWordsTimer
+        oneMinuteTimer
             .debug("⚽️")
             .subscribe()
             .disposed(by: disposeBag)
