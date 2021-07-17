@@ -41,11 +41,18 @@ final class HomePresenter {
         let disposables: CompositeDisposable
     }
     
-    private var loadedWordsCount: Int = 10
-    private var pagesCount: Int = 1
+    private var loadedWordsCount = 10
+    private var pagesCount = 1
     private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
     
+    private let oneMinuteTimer = Observable<Int>.interval(
+        .seconds(2),
+        scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
+    )
+    
     fileprivate var selectedWordModels: [HomeWordCellModel] = []
+    
+    // MARK: Configure
     
     func configurate(input: Input) -> Output {
         
@@ -96,10 +103,12 @@ final class HomePresenter {
             refreshedWords
         )
             .map { [unowned self] words -> [HomeWordSectionModel] in
+                
                 var fireWords: [HomeWordCellModel] = []
                 var readyWords: [HomeWordCellModel] = []
                 var newWords: [HomeWordCellModel] = []
                 var waitingWords: [HomeWordCellModel] = []
+                
                 words.forEach {
                     switch $0.studyState {
                     case .fire, .downgradeRating:
