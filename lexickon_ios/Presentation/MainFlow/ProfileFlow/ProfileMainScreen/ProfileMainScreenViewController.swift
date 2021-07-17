@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import RxFlow
 import SnapKit
-import LXControlKit
+import LXUIKit
 import UIExtensions
 import Resolver
 import Assets

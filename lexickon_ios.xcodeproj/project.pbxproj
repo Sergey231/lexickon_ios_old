@@ -34,7 +34,6 @@
 		EC0DBF1225F0B92500CBED4D /* LexickonStateInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEBD25F0B92400CBED4D /* LexickonStateInteractorProtocol.swift */; };
 		EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEC025F0B92400CBED4D /* HomeViewController.swift */; };
 		EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEC125F0B92400CBED4D /* HomePresenter.swift */; };
-		EC0DBF5425F4A2D900CBED4D /* LXControlKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC0DBF5325F4A2D900CBED4D /* LXControlKit */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
 		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
@@ -47,6 +46,7 @@
 		EC3F44572520BF26004706DC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44562520BF26004706DC /* RxCocoa */; };
 		EC3F44592520BF26004706DC /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44582520BF26004706DC /* RxBlocking */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
+		EC443D3A26A2A6BA0004E854 /* LXUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC443D3926A2A6BA0004E854 /* LXUIKit */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		ECA1695B25B038F100F2F19B /* KeychainRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECA1695A25B038F100F2F19B /* KeychainRepository */; };
@@ -113,12 +113,12 @@
 		EC0DBEC025F0B92400CBED4D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EC0DBEC125F0B92400CBED4D /* HomePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		EC0DBF3425F0BB4700CBED4D /* TranslationRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TranslationRepository; sourceTree = "<group>"; };
-		EC0DBF5025F4A2D100CBED4D /* LXControlKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LXControlKit; sourceTree = "<group>"; };
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC443D3826A2A6470004E854 /* LXUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LXUIKit; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
 		EC7BF18C2650EF3C00E8B583 /* UserRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UserRepository; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -150,7 +150,6 @@
 				ECFE3F402650F42D00C1440A /* AuthTokenRepository in Frameworks */,
 				ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */,
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
-				EC0DBF5425F4A2D900CBED4D /* LXControlKit in Frameworks */,
 				ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
 				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
@@ -163,6 +162,7 @@
 				ECAF5063257E663300F021EA /* Utils in Frameworks */,
 				ECE626B92650F0AA005573C6 /* UserRepository in Frameworks */,
 				ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */,
+				EC443D3A26A2A6BA0004E854 /* LXUIKit in Frameworks */,
 				ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */,
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
 				ECFB46BA267E3148004B5A6F /* LexickonStateEntity in Frameworks */,
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBEB5082439C2190017855E /* AppFlow.swift */,
-				EC0DBF5025F4A2D100CBED4D /* LXControlKit */,
+				EC443D3826A2A6470004E854 /* LXUIKit */,
 				EC0DBEA025F0B92400CBED4D /* AuthorizationFlow */,
 				EC0DBEB625F0B92400CBED4D /* MainFlow */,
 			);
@@ -497,10 +497,10 @@
 				ECDCE5F725B41BE60018110F /* ApiRepository */,
 				ECEA376925C2FF8A00D6C6DC /* Lottie */,
 				ECDA693925CEA19E005E07D5 /* WordsRepository */,
-				EC0DBF5325F4A2D900CBED4D /* LXControlKit */,
 				ECE626B82650F0AA005573C6 /* UserRepository */,
 				ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */,
 				ECFB46B9267E3148004B5A6F /* LexickonStateEntity */,
+				EC443D3926A2A6BA0004E854 /* LXUIKit */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -959,10 +959,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EC0DBF5325F4A2D900CBED4D /* LXControlKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LXControlKit;
-		};
 		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
@@ -1009,6 +1005,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */;
 			productName = Validator;
+		};
+		EC443D3926A2A6BA0004E854 /* LXUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LXUIKit;
 		};
 		EC7B6FA325861A1500EB1D28 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

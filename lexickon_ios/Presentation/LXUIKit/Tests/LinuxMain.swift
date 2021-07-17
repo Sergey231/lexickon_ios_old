@@ -1,7 +1,7 @@
 import XCTest
 
-import LXControlKitTests
+import LXUIKitTests
 
 var tests = [XCTestCaseEntry]()
-tests += LXControlKitTests.allTests()
+tests += LXUIKitTests.allTests()
 XCTMain(tests)

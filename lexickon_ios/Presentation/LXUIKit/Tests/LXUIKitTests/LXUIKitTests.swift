@@ -1,12 +1,12 @@
 import XCTest
-@testable import LXControlKit
+@testable import LXUIKit
 
-final class LXControlKitTests: XCTestCase {
+final class LXUIKitTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(LXControlKit().text, "Hello, World!")
+        XCTAssertEqual(LXUIKit().text, "Hello, World!")
     }
 
     static var allTests = [

@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Resolver
 import RxDataSources
-import LXControlKit
+import LXUIKit
 import RxExtensions
 import TranslationRepository
 import LexickonApi

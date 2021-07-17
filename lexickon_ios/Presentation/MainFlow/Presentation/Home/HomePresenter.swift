@@ -12,7 +12,7 @@ import RxCocoa
 import LexickonApi
 import RxDataSources
 import Resolver
-import LXControlKit
+import LXUIKit
 import RxExtensions
 import LexickonStateEntity
 
