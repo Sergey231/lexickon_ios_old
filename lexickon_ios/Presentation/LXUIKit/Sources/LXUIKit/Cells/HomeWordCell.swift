@@ -35,6 +35,7 @@ public class HomeWordCellModel {
     public let wordEntity: WordEntity
     public let isEditMode: Driver<Bool>
     public let studyState: LxStudyState
+    public let updateWordStudyProgresEvent: Signal<Void>
     public var tapWithoutEditMode: Signal<Void> {
         self.tapWithoutEditModeRelay.asSignal()
     }
@@ -51,12 +52,14 @@ public class HomeWordCellModel {
     
     public init(
         wordEntity: WordEntity,
-        isEditMode: Driver<Bool>
+        isEditMode: Driver<Bool>,
+        updateWordStudyProgresEvent: Signal<Void>
     ) {
         self.wordEntity = wordEntity
         self.word = wordEntity.studyWord
         self.studyState = wordEntity.studyState
         self.isEditMode = isEditMode
+        self.updateWordStudyProgresEvent = updateWordStudyProgresEvent
     }
 }
 
@@ -197,6 +200,11 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
     public func configurate(with model: HomeWordCellModel) {
         
+        model.updateWordStudyProgresEvent
+            .filter { model.word == "Car" }
+            .debug("👨🏻")
+            .emit()
+        
         self.model = model
         createUI(with: model)
         
@@ -307,7 +315,10 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             bgColor = Colors.waitingWordPale.color
         }
         
-        let ratingPersent = CGFloat(model.wordEntity.studyStatePercent)
+        let progress = model.updateWordStudyProgresEvent
+            .map { CGFloat(model.wordEntity.studyStatePercent) }
+            .asDriver(onErrorJustReturn: 0)
+            .startWith(CGFloat(model.wordEntity.studyStatePercent))
         
         wordLable.textColor = wordColor
         iconImageView.tintColor = wordColor
@@ -315,7 +326,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
             input: WideWordProgressView.Input(
                 bgColor: bgColor,
                 progressColor: progressColor,
-                progress: .just(ratingPersent)
+                progress: progress
             )
         )
         

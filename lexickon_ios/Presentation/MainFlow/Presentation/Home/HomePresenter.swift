@@ -109,34 +109,42 @@ final class HomePresenter {
                 var newWords: [HomeWordCellModel] = []
                 var waitingWords: [HomeWordCellModel] = []
                 
+                let updateWordStudyProgresEvent = oneMinuteTimer
+                    .asSignal(onErrorSignalWith: .empty())
+                    .mapTo(())
+                
                 words.forEach {
                     switch $0.studyState {
                     case .fire, .downgradeRating:
                         fireWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver()
+                                isEditMode: self.isEditModeRelay.asDriver(),
+                                updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
                     case .ready:
                         readyWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver()
+                                isEditMode: self.isEditModeRelay.asDriver(),
+                                updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
                     case .new:
                         newWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver()
+                                isEditMode: self.isEditModeRelay.asDriver(),
+                                updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
                     case .waiting:
                         waitingWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver()
+                                isEditMode: self.isEditModeRelay.asDriver(),
+                                updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
                     }
