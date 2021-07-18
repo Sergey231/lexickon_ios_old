@@ -46,9 +46,16 @@ final class HomePresenter {
     private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
     
     private let oneMinuteTimer = Observable<Int>.interval(
-        .seconds(2),
+        .seconds(60),
         scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
     )
+    
+    private let oneHoureTimer = Observable<Int>.interval(
+        .seconds(3600),
+        scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
+    )
+    .map { _ in () }
+    .asSignal(onErrorSignalWith: .empty())
     
     fileprivate var selectedWordModels: [HomeWordCellModel] = []
     
@@ -59,7 +66,10 @@ final class HomePresenter {
         let isNextPageLoading = RxActivityIndicator()
         let isWordsUpdating = RxActivityIndicator()
         
-        let refreshedWords = input.refreshData
+        let refreshedWords = Signal.combineLatest(
+            input.refreshData,
+            oneHoureTimer
+        ) { _, _ in () }
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
                 self.LexickonStateInteractor.words(
                     per: 10,

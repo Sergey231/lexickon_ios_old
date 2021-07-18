@@ -18,11 +18,6 @@ final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     
     private let disposeBag = DisposeBag()
     
-    private let oneHoureTimer = Observable<Int>.interval(
-        .seconds(3600),
-        scheduler: ConcurrentDispatchQueueScheduler(qos: .background)
-    )
-    
     init() {
         self.configureWordsUpdating()
     }

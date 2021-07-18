@@ -200,11 +200,6 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
     
     public func configurate(with model: HomeWordCellModel) {
         
-        model.updateWordStudyProgresEvent
-            .filter { model.word == "Car" }
-            .debug("👨🏻")
-            .emit()
-        
         self.model = model
         createUI(with: model)
         
