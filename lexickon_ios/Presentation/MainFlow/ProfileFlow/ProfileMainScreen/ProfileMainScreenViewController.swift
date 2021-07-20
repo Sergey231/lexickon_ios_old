@@ -135,9 +135,11 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
                 )
         )
         
-        logoutButton
-        
-        lo
+        logoutButton.setRoundedBorderedStyle(
+            bgColor: .white,
+            borderColor: Colors.mainBG.color,
+            titleColor: Colors.mainBG.color
+        )
         
         let didTapLogout = logoutButton.rx.tap
             .asSignal()
