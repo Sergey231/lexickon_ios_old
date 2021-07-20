@@ -32,10 +32,11 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     // Public for Animator
     let profileIconView = ProfileIconView()
     
+    private let nickNameTextField = LXTextField()
+    private let emailLabel = UILabel()
+    
     private let backButton = UIButton()
     private let logoutButton = UIButton()
-    
-    private let infoLabel = UILabel()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -55,8 +56,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-        
+        view.backgroundColor = .white
         createUI()
         configureUI()
     }
@@ -89,8 +89,23 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             }
         }
         
+        nickNameTextField.setup {
+            view.addSubview($0)
+            $0.textField.font = .regular24
+            $0.textField.textColor = Colors.baseText.color
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.top.equalTo(profileIconView.snp.bottom)
+                $0.size.equalTo(Size.textField)
+            }
+        }
+        
         logoutButton.setup {
             view.addSubview($0)
+            $0.setTitle(
+                Str.loginLoginButtonTitle,
+                for: .normal
+            )
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
                 $0.size.equalTo(Size.button)
@@ -98,10 +113,9 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             }
         }
         
-        infoLabel.setup {
+        emailLabel.setup {
             $0.text = "Profile is developing 😐"
             $0.textAlignment = .center
-            $0.textColor = .white
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.edges.equalToSuperview()
@@ -111,10 +125,19 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        logoutButton.setTitle(
-            Str.loginLoginButtonTitle,
-            for: .normal
+        nickNameTextField.configure(
+            input:
+                LXTextField.Input(
+                    placeholder: "Ввидите публичное имя",
+                    keyboardType: .asciiCapable,
+                    returnKeyType: .done,
+                    initValue: "initValue"
+                )
         )
+        
+        logoutButton
+        
+        lo
         
         let didTapLogout = logoutButton.rx.tap
             .asSignal()
