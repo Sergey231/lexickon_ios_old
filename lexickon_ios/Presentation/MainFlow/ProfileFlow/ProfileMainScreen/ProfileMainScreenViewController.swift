@@ -131,7 +131,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
                     placeholder: "Ввидите публичное имя",
                     keyboardType: .asciiCapable,
                     returnKeyType: .done,
-                    initValue: "initValue"
+                    initValue: "initValue",
+                    lineIsVisibleBySelectedTextField: true
                 )
         )
         

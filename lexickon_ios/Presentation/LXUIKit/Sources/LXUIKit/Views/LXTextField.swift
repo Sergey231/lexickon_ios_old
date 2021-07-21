@@ -24,6 +24,8 @@ public final class LXTextField: UIView {
         let keyboardType: UIKeyboardType
         let returnKeyType: UIReturnKeyType
         let initValue: String
+        let lineColor: UIColor
+        let lineIsVisibleBySelectedTextField: Bool
         
         public init(
             placeholder: String = "",
@@ -32,7 +34,9 @@ public final class LXTextField: UIView {
             isSecure: Bool = false,
             keyboardType: UIKeyboardType = .asciiCapable,
             returnKeyType: UIReturnKeyType = .join,
-            initValue: String = ""
+            initValue: String = "",
+            lineColor: UIColor = .white,
+            lineIsVisibleBySelectedTextField: Bool = false
         ) {
             self.placeholder = placeholder
             self.leftIcon = leftIcon
@@ -41,28 +45,30 @@ public final class LXTextField: UIView {
             self.keyboardType = keyboardType
             self.returnKeyType = returnKeyType
             self.initValue = initValue
+            self.lineColor = lineColor
+            self.lineIsVisibleBySelectedTextField = lineIsVisibleBySelectedTextField
         }
         
         var leftIconWidth: CGFloat {
-            return leftIcon != nil
+            leftIcon != nil
                 ? Size.icon.width
                 : 0
         }
         
         var rightIconWidth: CGFloat {
-            return rightIcon != nil
+            rightIcon != nil
                 ? Size.icon.width
                 : 0
         }
         
         var hTextFieldMargin: CGFloat {
-            return rightIcon != nil || leftIcon != nil
+            rightIcon != nil || leftIcon != nil
                 ? Size.icon.width
                 : 0
         }
         
         var eyeIconWidth: CGFloat {
-            return isSecure
+            isSecure
                 ? Size.icon.width
                 : 0
         }
@@ -114,12 +120,14 @@ public final class LXTextField: UIView {
         rightIconView.contentMode = .scaleAspectFit
         leftIconView.tintColor = .white
         rightIconView.tintColor = .white
-        lineView.backgroundColor = .white
     }
     
     public func configure(input: Input) {
         
-        _input = input 
+        _input = input
+        
+        lineView.backgroundColor = input.lineColor
+        
         setupConstraints(input)
         
         textField.attributedPlaceholder = NSAttributedString(
@@ -141,6 +149,20 @@ public final class LXTextField: UIView {
         eyeIconButton.on
             .map { input.isSecure ? $0 : false }
             .drive(textField.rx.isSecureTextEntry)
+            .disposed(by: disposeBag)
+        
+        textField.rx.controlEvent(UIControl.Event.editingDidBegin)
+            .filter { _ in input.lineIsVisibleBySelectedTextField }
+            .asDriver(onErrorDriveWith: .empty())
+            .map { false }
+            .drive(lineView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        textField.rx.controlEvent(UIControl.Event.editingDidEnd)
+            .filter { _ in input.lineIsVisibleBySelectedTextField }
+            .asDriver(onErrorDriveWith: .empty())
+            .map { true }
+            .drive(lineView.rx.isHidden)
             .disposed(by: disposeBag)
         
         lineView.round()
