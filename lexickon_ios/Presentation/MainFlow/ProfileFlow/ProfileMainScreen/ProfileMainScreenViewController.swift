@@ -96,7 +96,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             $0.textField.tintColor = Colors.mainBG.color
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
-                $0.top.equalTo(profileIconView.snp.bottom)
+                $0.top.equalTo(profileIconView.snp.bottom).offset(Margin.regular)
                 $0.size.equalTo(Size.textField)
             }
         }
