@@ -93,6 +93,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             view.addSubview($0)
             $0.textField.font = .regular24
             $0.textField.textColor = Colors.baseText.color
+            $0.textField.tintColor = Colors.mainBG.color
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
                 $0.top.equalTo(profileIconView.snp.bottom)
@@ -125,6 +126,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
+        configureHidingKeyboardByTap()
+        
         nickNameTextField.configure(
             input:
                 LXTextField.Input(
@@ -132,6 +135,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
                     keyboardType: .asciiCapable,
                     returnKeyType: .done,
                     initValue: "initValue",
+                    lineColor: Colors.mainBG.color,
                     lineIsVisibleBySelectedTextField: true
                 )
         )

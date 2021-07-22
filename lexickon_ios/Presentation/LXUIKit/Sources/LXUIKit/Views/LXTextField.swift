@@ -154,15 +154,17 @@ public final class LXTextField: UIView {
         textField.rx.controlEvent(UIControl.Event.editingDidBegin)
             .filter { _ in input.lineIsVisibleBySelectedTextField }
             .asDriver(onErrorDriveWith: .empty())
-            .map { false }
-            .drive(lineView.rx.isHidden)
+            .map { 1 }
+            .drive(lineView.rx.alphaAnimated)
             .disposed(by: disposeBag)
         
         textField.rx.controlEvent(UIControl.Event.editingDidEnd)
+            .map { _ in () }
+            .startWith(())
             .filter { _ in input.lineIsVisibleBySelectedTextField }
             .asDriver(onErrorDriveWith: .empty())
-            .map { true }
-            .drive(lineView.rx.isHidden)
+            .map { 0 }
+            .drive(lineView.rx.alphaAnimated)
             .disposed(by: disposeBag)
         
         lineView.round()
