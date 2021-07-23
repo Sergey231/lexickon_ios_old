@@ -9,14 +9,22 @@
 import RxSwift
 import Resolver
 import AuthTokenRepository
+import UserRepository
 
 struct ProfileInteractor: ProfileInteractorProtocol {
     
     @Injected var authTokenRepository: AuthTokenRepositoryProtocol
+    @Injected var userRepository: UserRepositoryProtocol
     
     func logout() -> Single<Void> {
-        return authTokenRepository.erasе()
+        authTokenRepository.erasе()
+    }
+    
+    public var user: UserEntity {
+        let userEntiry = UserEntity(
+            name: .just("Name"),
+            email: .just("email@test.ru")
+        )
+        return userEntiry
     }
 }
-
-

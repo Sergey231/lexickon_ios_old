@@ -115,11 +115,14 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         }
         
         emailLabel.setup {
-            $0.text = "Profile is developing 😐"
+            $0.font = .regular14
             $0.textAlignment = .center
+            $0.textColor = Colors.paleText.color
             view.addSubview($0)
             $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
+                $0.left.right.equalToSuperview()
+                $0.top.equalTo(nickNameTextField.snp.bottom)
+                $0.height.equalTo(Size.textField.height)
             }
         }
     }
@@ -127,18 +130,6 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private func configureUI() {
         
         configureHidingKeyboardByTap()
-        
-        nickNameTextField.configure(
-            input:
-                LXTextField.Input(
-                    placeholder: "Ввидите публичное имя",
-                    keyboardType: .asciiCapable,
-                    returnKeyType: .done,
-                    initValue: "initValue",
-                    lineColor: Colors.mainBG.color,
-                    lineIsVisibleBySelectedTextField: true
-                )
-        )
         
         logoutButton.setRoundedBorderedStyle(
             bgColor: .white,
@@ -149,11 +140,30 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         let didTapLogout = logoutButton.rx.tap
             .asSignal()
         
-        let presentOutput = presenter.configure(
+        let presenterOutput = presenter.configure(
             input: .init(
                 didTapLogOut: didTapLogout
             )
         )
+        
+        nickNameTextField.configure(
+            input:
+                LXTextField.Input(
+                    placeholder: "Ввидите публичное имя",
+                    keyboardType: .asciiCapable,
+                    returnKeyType: .done,
+                    lineColor: Colors.mainBG.color,
+                    lineIsVisibleBySelectedTextField: true
+                )
+        )
+        
+        presenterOutput.name
+            .drive(nickNameTextField.textField.rx.text)
+            .disposed(by: disposeBag)
+        
+        presenterOutput.email
+            .drive(emailLabel.rx.text)
+            .disposed(by: disposeBag)
         
         backButton.rx.tap
             .asSignal()
@@ -161,7 +171,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        presentOutput.didLogout
+        presenterOutput.didLogout
             .map { _ in ProfileStep.logout }
             .emit(to: steps )
             .disposed(by: disposeBag)

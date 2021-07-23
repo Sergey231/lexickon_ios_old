@@ -19,6 +19,8 @@ final class ProfileMainScreenPresenter {
     
     struct Output {
         let didLogout: Signal<Void>
+        let name: Driver<String>
+        let email: Driver<String>
     }
     
     func configure(input: Input) -> Output {
@@ -29,8 +31,16 @@ final class ProfileMainScreenPresenter {
                     .asSignal(onErrorSignalWith: .empty())
             }
         
+        let name = interactor.user.name
+            .asDriver(onErrorJustReturn: "")
+        
+        let email = interactor.user.email
+            .asDriver(onErrorJustReturn: "")
+        
         return Output(
-            didLogout: didLogout
+            didLogout: didLogout,
+            name: name,
+            email: email
         )
     }
 }

@@ -49,6 +49,7 @@
 		EC443D3A26A2A6BA0004E854 /* LXUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC443D3926A2A6BA0004E854 /* LXUIKit */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
+		EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8880A426AA7FDB00C2294F /* UserEntity.swift */; };
 		ECA1695B25B038F100F2F19B /* KeychainRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECA1695A25B038F100F2F19B /* KeychainRepository */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
@@ -121,6 +122,7 @@
 		EC443D3826A2A6470004E854 /* LXUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LXUIKit; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
 		EC7BF18C2650EF3C00E8B583 /* UserRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UserRepository; sourceTree = "<group>"; };
+		EC8880A426AA7FDB00C2294F /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -340,7 +342,7 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				ECFE3F462654DBEC00C1440A /* LexickonStateEntity */,
+				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickoonStateInteractor */,
 				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
 				EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */,
@@ -446,6 +448,15 @@
 				ECEA376D25C3000200D6C6DC /* linesLoading.json */,
 			);
 			path = LottieJSONAnimations;
+			sourceTree = "<group>";
+		};
+		EC8880A326AA7FB100C2294F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				ECFE3F462654DBEC00C1440A /* LexickonStateEntity */,
+				EC8880A426AA7FDB00C2294F /* UserEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		ECB50CB6258F45E3003B9A68 /* Helpers */ = {
@@ -607,6 +618,7 @@
 				EC0B20C92671E3FE00881DDD /* WordCardViewController.swift in Sources */,
 				EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */,
 				EC0DBF0E25F0B92500CBED4D /* LoginPresenter.swift in Sources */,
+				EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */,
 				EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */,

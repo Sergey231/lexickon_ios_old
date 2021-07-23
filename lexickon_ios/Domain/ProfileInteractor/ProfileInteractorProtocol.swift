@@ -8,7 +8,11 @@
 
 import RxSwift
 
-protocol ProfileInteractorProtocol {
+struct UserProfileEntity {
     
+}
+
+protocol ProfileInteractorProtocol {
     func logout() -> Single<Void>
+    var user: UserEntity { get }
 }
