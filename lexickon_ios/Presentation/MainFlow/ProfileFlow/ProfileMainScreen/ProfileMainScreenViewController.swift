@@ -32,8 +32,11 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     // Public for Animator
     let profileIconView = ProfileIconView()
     
+    private let scrollView = UIScrollView()
     private let nickNameTextField = LXTextField()
     private let emailLabel = UILabel()
+    private let vocabularyView = VocabularyView()
+    private let notificationSettingsView = NotificationsView()
     
     private let backButton = UIButton()
     private let logoutButton = UIButton()
@@ -51,7 +54,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     override func viewDidLoad() {
@@ -69,8 +72,16 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     
     private func createUI() {
 
+        scrollView.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+        
         backButton.setup {
             $0.setImage(Images.backArrow.image, for: .normal)
+            $0.tintColor = .gray
             view.addSubview($0)
             $0.snp.makeConstraints {
                 $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -81,16 +92,16 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         
         profileIconView.setup {
             $0.backgroundColor = .gray
-            view.addSubview($0)
+            scrollView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.size.equalTo(UIConstants.profileIconSize)
                 $0.centerX.equalToSuperview()
-                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(UIConstants.profileIconTopMargin)
+                $0.top.equalToSuperview().offset(UIConstants.profileIconTopMargin)
             }
         }
         
         nickNameTextField.setup {
-            view.addSubview($0)
+            scrollView.addSubview($0)
             $0.textField.font = .regular24
             $0.textField.textColor = Colors.baseText.color
             $0.textField.tintColor = Colors.mainBG.color
@@ -101,28 +112,46 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             }
         }
         
+        emailLabel.setup {
+            $0.font = .regular14
+            $0.textAlignment = .center
+            $0.textColor = Colors.paleText.color
+            scrollView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.top.equalTo(nickNameTextField.snp.bottom)
+                $0.height.equalTo(Size.textField.height)
+            }
+        }
+        
+        vocabularyView.setup {
+            scrollView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalTo(emailLabel.snp.bottom).offset(Margin.regular)
+                $0.left.right.equalToSuperview()
+                $0.width.equalTo(view.snp.width)
+            }
+        }
+        
+        notificationSettingsView.setup {
+            scrollView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalTo(vocabularyView.snp.bottom)
+                $0.left.right.equalToSuperview()
+            }
+        }
+        
         logoutButton.setup {
-            view.addSubview($0)
+            scrollView.addSubview($0)
             $0.setTitle(
                 Str.loginLoginButtonTitle,
                 for: .normal
             )
             $0.snp.makeConstraints {
+                $0.top.equalTo(notificationSettingsView.snp.bottom).offset(Margin.regular)
                 $0.centerX.equalToSuperview()
                 $0.size.equalTo(Size.button)
                 $0.bottom.equalToSuperview().offset(-Margin.big)
-            }
-        }
-        
-        emailLabel.setup {
-            $0.font = .regular14
-            $0.textAlignment = .center
-            $0.textColor = Colors.paleText.color
-            view.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
-                $0.top.equalTo(nickNameTextField.snp.bottom)
-                $0.height.equalTo(Size.textField.height)
             }
         }
     }

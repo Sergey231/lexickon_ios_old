@@ -24,7 +24,7 @@ public enum Size {
     public static let button = CGSize(width: 280, height: 56)
     public static let icon = CGSize(width: 24, height: 24)
     public static let uiTextField = CGSize(width: 260, height: 44)
-    public static let textField = CGSize(width: 260, height: 56)
+    public static let textField = CGSize(width: 260, height: 48)
     public static let line = CGSize(width: 260, height: 2)
     public static let activityIndicator = CGSize(width: 36, height: 36)
 }

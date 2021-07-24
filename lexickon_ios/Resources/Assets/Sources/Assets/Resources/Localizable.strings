@@ -81,3 +81,6 @@
 "WordCardWaitingStateTitle" = "Привет!";
 "WordCardNewStateTitle" = "Привет!";
 "WordCardLearnButtonTitle" = "Закрепить это слово";
+
+// MARK: Profile
+"ProfileVocabularyViewTitle" = "СЛОВАРНЫЙ ЗАПАС";
