@@ -37,6 +37,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private let emailLabel = UILabel()
     private let vocabularyView = VocabularyView()
     private let notificationSettingsView = NotificationsView()
+    private let buttonsSetView = ProfileButtonsSetView()
     
     private let backButton = UIButton()
     private let logoutButton = UIButton()
