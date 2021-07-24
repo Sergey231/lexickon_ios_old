@@ -84,3 +84,4 @@
 
 // MARK: Profile
 "ProfileVocabularyViewTitle" = "СЛОВАРНЫЙ ЗАПАС";
+"ProfileNameTextFieldPlaceholder" = "Ввидите публичное имя";

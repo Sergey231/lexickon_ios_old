@@ -43,6 +43,8 @@ public enum Str {
   public static let newWrodPlaceholder = Str.tr("Localizable", "NewWrod_placeholder")
   /// Выйти
   public static let profileMainLogoutButtonTitle = Str.tr("Localizable", "Profile_main_logout_button_title")
+  /// Ввидите публичное имя
+  public static let profileNameTextFieldPlaceholder = Str.tr("Localizable", "ProfileNameTextFieldPlaceholder")
   /// СЛОВАРНЫЙ ЗАПАС
   public static let profileVocabularyViewTitle = Str.tr("Localizable", "ProfileVocabularyViewTitle")
   /// Повторите пароль

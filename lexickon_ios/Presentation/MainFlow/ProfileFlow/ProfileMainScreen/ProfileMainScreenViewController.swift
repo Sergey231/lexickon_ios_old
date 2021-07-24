@@ -178,7 +178,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         nickNameTextField.configure(
             input:
                 LXTextField.Input(
-                    placeholder: "Ввидите публичное имя",
+                    placeholder: Str.profileNameTextFieldPlaceholder,
                     keyboardType: .asciiCapable,
                     returnKeyType: .done,
                     lineColor: Colors.mainBG.color,
