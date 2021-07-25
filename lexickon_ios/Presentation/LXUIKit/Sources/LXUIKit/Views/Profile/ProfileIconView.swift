@@ -67,6 +67,7 @@ public final class ProfileIconView: UIView {
             $0.layer.cornerRadius = UIConstants.buttonSize/2
             $0.backgroundColor = Colors.mainBG.color
             $0.setImage(Images.Profile.editIcon.image, for: .normal)
+            $0.alpha = 0
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.size.equalTo(UIConstants.buttonSize)
@@ -78,6 +79,7 @@ public final class ProfileIconView: UIView {
             $0.layer.cornerRadius = UIConstants.buttonSize/2
             $0.backgroundColor = Colors.mainBG.color
             $0.setImage(Images.Profile.closeIcon.image, for: .normal)
+            $0.alpha = 0
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.size.equalTo(UIConstants.buttonSize)
@@ -104,6 +106,10 @@ public final class ProfileIconView: UIView {
                 self.layer.cornerRadius = self.frame.size.height/2
             })
             .disposed(by: disposeBag)
+        
+        input.isEditMode
+            .debug("👨🏻")
+            .drive()
         
         return Output(
             didTap: button.rx.tap.asSignal(),
