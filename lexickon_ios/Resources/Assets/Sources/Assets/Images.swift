@@ -30,6 +30,14 @@ public enum Images {
   public static let enter = ImageAsset(name: "enter")
   public static let splash = ImageAsset(name: "splash")
   public static let newWordIcon = ImageAsset(name: "NewWordIcon")
+  public enum Profile {
+    public static let colorBoxIcon = ImageAsset(name: "Profile/ColorBoxIcon")
+    public static let exWithBadge = ImageAsset(name: "Profile/ExWithBadge")
+    public static let fireNotificationIcon = ImageAsset(name: "Profile/FireNotificationIcon")
+    public static let greenBoxIcon = ImageAsset(name: "Profile/GreenBoxIcon")
+    public static let notificationIcon = ImageAsset(name: "Profile/NotificationIcon")
+    public static let yellowBoxIcon = ImageAsset(name: "Profile/YellowBoxIcon")
+  }
   public enum Selection {
     public static let off = ImageAsset(name: "Selection/off")
     public static let on = ImageAsset(name: "Selection/on")
