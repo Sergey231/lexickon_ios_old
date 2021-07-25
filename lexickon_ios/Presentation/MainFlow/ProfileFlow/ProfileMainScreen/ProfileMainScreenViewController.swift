@@ -193,6 +193,16 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             .drive(isEditModeRelay)
             .disposed(by: disposeBag)
         
+        presenterOutput.isEditMode
+            .drive(onNext: { [unowned self] isEditMode in
+                if isEditMode {
+                    self.nameTextField.textField.becomeFirstResponder()
+                } else {
+                    self.nameTextField.textField.resignFirstResponder()
+                }
+            })
+            .disposed(by: disposeBag)
+        
         nameTextField.configure(
             input:
                 LXTextField.Input(

@@ -40,9 +40,9 @@ public final class ProfileIconView: UIView {
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let iconImageView = UIImageView()
-    private let editAvaButton = UIButton()
-    private let removeAvaButton = UIButton()
+    fileprivate let iconImageView = UIImageView()
+    fileprivate let editAvaButton = UIButton()
+    fileprivate let removeAvaButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -109,7 +109,8 @@ public final class ProfileIconView: UIView {
         
         input.isEditMode
             .debug("👨🏻")
-            .drive()
+            .drive(rx.isEditMode)
+            .disposed(by: disposeBag)
         
         return Output(
             didTap: button.rx.tap.asSignal(),
@@ -119,3 +120,25 @@ public final class ProfileIconView: UIView {
     }
 }
 
+private extension Reactive where Base: ProfileIconView {
+    
+    var isEditMode: Binder<Bool> {
+        Binder(base) { base, isEditMode in
+            UIView.animate(withDuration: 0.3) {
+                base.editAvaButton.alpha = isEditMode ? 1 : 0
+                base.removeAvaButton.alpha = isEditMode ? 1 : 0
+                let editAvaButtonOffset = isEditMode ? 80 : 0
+                let removeAvaButtonOffset = isEditMode ? 130 : 0
+                
+                base.editAvaButton.snp.updateConstraints {
+                    $0.centerX.equalTo(base.iconImageView.snp.centerX).offset(editAvaButtonOffset)
+                }
+                
+                base.removeAvaButton.snp.updateConstraints {
+                    $0.centerX.equalTo(base.iconImageView.snp.centerX).offset(removeAvaButtonOffset)
+                }
+                base.layoutIfNeeded()
+            }
+        }
+    }
+}
