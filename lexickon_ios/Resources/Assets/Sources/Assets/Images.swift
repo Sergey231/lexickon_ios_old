@@ -31,7 +31,9 @@ public enum Images {
   public static let splash = ImageAsset(name: "splash")
   public static let newWordIcon = ImageAsset(name: "NewWordIcon")
   public enum Profile {
+    public static let closeIcon = ImageAsset(name: "Profile/CloseIcon")
     public static let colorBoxIcon = ImageAsset(name: "Profile/ColorBoxIcon")
+    public static let editIcon = ImageAsset(name: "Profile/EditIcon")
     public static let exWithBadge = ImageAsset(name: "Profile/ExWithBadge")
     public static let fireNotificationIcon = ImageAsset(name: "Profile/FireNotificationIcon")
     public static let greenBoxIcon = ImageAsset(name: "Profile/GreenBoxIcon")
