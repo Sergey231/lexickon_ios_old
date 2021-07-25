@@ -13,6 +13,7 @@ import RxFlow
 import SnapKit
 import LXUIKit
 import UIExtensions
+import RxExtensions
 import Resolver
 import Assets
 
@@ -33,7 +34,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     let profileIconView = ProfileIconView()
     
     private let scrollView = UIScrollView()
-    private let nickNameTextField = LXTextField()
+    private let nameTextField = LXTextField()
     private let emailLabel = UILabel()
     private let vocabularyView = VocabularyView()
     private let notificationSettingsView = NotificationsView()
@@ -71,6 +72,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         }
     }
     
+    //MARK: Create UI
+    
     private func createUI() {
 
         scrollView.setup {
@@ -101,7 +104,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             }
         }
         
-        nickNameTextField.setup {
+        nameTextField.setup {
             scrollView.addSubview($0)
             $0.textField.font = .regular24
             $0.textField.textColor = Colors.baseText.color
@@ -120,7 +123,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             scrollView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.top.equalTo(nickNameTextField.snp.bottom)
+                $0.top.equalTo(nameTextField.snp.bottom)
                 $0.height.equalTo(Size.textField.height)
             }
         }
@@ -157,9 +160,17 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         }
     }
     
+    //MARK: Configure UI
+    
     private func configureUI() {
         
         configureHidingKeyboardByTap()
+        
+        let isEditModeRelay = BehaviorRelay<Bool>(value: false)
+        
+        let profileIconViewOutput = profileIconView.configure(
+            input: ProfileIconView.Input(isEditMode: isEditModeRelay.asDriver())
+        )
         
         logoutButton.setRoundedBorderedStyle(
             bgColor: .white,
@@ -172,11 +183,17 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         
         let presenterOutput = presenter.configure(
             input: .init(
+                didTapProfileIcon: profileIconViewOutput.didTap,
+                isFocusedNameTextField: nameTextField.textField.rx.isFocused,
                 didTapLogOut: didTapLogout
             )
         )
         
-        nickNameTextField.configure(
+        presenterOutput.isEditMode
+            .drive(isEditModeRelay)
+            .disposed(by: disposeBag)
+        
+        nameTextField.configure(
             input:
                 LXTextField.Input(
                     placeholder: Str.profileNameTextFieldPlaceholder,
@@ -188,7 +205,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         )
         
         presenterOutput.name
-            .drive(nickNameTextField.textField.rx.text)
+            .drive(nameTextField.textField.rx.text)
             .disposed(by: disposeBag)
         
         presenterOutput.email

@@ -217,7 +217,13 @@ final class HomeViewController: UIViewController, Stepper {
         
         configureTableView(with: presenterOutput.sections)
         
-        profileIconView.configure(input: ProfileIconView.Input())
+        let profileIconViewOutput = profileIconView.configure(
+            input: ProfileIconView.Input(
+                isEditMode: presenterOutput.isEditMode
+            )
+        )
+        
+        profileIconViewOutput
             .didTap
             .map { _ in MainStep.profile }
             .emit(to: steps)

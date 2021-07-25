@@ -17,4 +17,22 @@ public extension Reactive where Base: UITextField {
             events: base.rx.controlEvent(.editingDidEndOnExit)
         )
     }
+    
+    var isFocused: Driver<Bool> {
+        
+        let editingDidBegin = base.rx
+            .controlEvent(UIControl.Event.editingDidBegin)
+            .map { _ in true }
+            .asDriver(onErrorDriveWith: .empty())
+        
+        let editingDidEnd = base.rx
+            .controlEvent(UIControl.Event.editingDidEnd)
+            .map { _ in false }
+            .asDriver(onErrorDriveWith: .empty())
+        
+        return Driver<Bool>.merge(
+            editingDidBegin,
+            editingDidEnd
+        )
+    }
 }

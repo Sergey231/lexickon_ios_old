@@ -6,6 +6,7 @@
 //  Copyright © 2020 Sergey Borovikov. All rights reserved.
 //
 
+import RxSwift
 import RxCocoa
 import Resolver
 
@@ -14,6 +15,8 @@ final class ProfileMainScreenPresenter {
     @Injected var interactor: ProfileInteractorProtocol
     
     struct Input {
+        let didTapProfileIcon: Signal<Void>
+        let isFocusedNameTextField: Driver<Bool>
         let didTapLogOut: Signal<Void>
     }
     
@@ -21,6 +24,8 @@ final class ProfileMainScreenPresenter {
         let didLogout: Signal<Void>
         let name: Driver<String>
         let email: Driver<String>
+        let isEditMode: Driver<Bool>
+        let disposables: CompositeDisposable
     }
     
     func configure(input: Input) -> Output {
@@ -37,10 +42,27 @@ final class ProfileMainScreenPresenter {
         let email = interactor.user.email
             .asDriver(onErrorJustReturn: "")
         
+        let isEditModeRelay = BehaviorRelay<Bool>(value: false)
+        
+        let didTapProfileIconDisposable = input.didTapProfileIcon
+            .withLatestFrom(isEditModeRelay.asSignal(onErrorSignalWith: .empty()))
+            .map(!)
+            .emit(to: isEditModeRelay)
+        
+        let isFocusedNameTextFieldDisposable = input.isFocusedNameTextField
+            .drive(isEditModeRelay)
+        
+        let disposables = CompositeDisposable(disposables: [
+            didTapProfileIconDisposable,
+            isFocusedNameTextFieldDisposable
+        ])
+        
         return Output(
             didLogout: didLogout,
             name: name,
-            email: email
+            email: email,
+            isEditMode: isEditModeRelay.asDriver(),
+            disposables: disposables
         )
     }
 }

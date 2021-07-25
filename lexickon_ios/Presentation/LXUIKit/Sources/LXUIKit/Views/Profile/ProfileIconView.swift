@@ -11,28 +11,38 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import RxExtensions
+import Assets
 
 public final class ProfileIconView: UIView {
     
+    private enum UIConstants {
+        static let buttonSize: CGFloat = 44
+    }
+    
     public struct Input {
-        public init(icon: UIImage? = nil) {
-            self.icon = icon
-        }
         let icon: UIImage?
+        let isEditMode: Driver<Bool>
+        public init(
+            icon: UIImage? = nil,
+            isEditMode: Driver<Bool>
+        ) {
+            self.icon = icon
+            self.isEditMode = isEditMode
+        }
     }
     
     public struct Output {
         public let didTap: Signal<Void>
+        public let didTapOnRemoveAva: Signal<Void>
+        public let didTapOnEditAva: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
     
     private let button = UIButton()
-    private let iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
+    private let iconImageView = UIImageView()
+    private let editAvaButton = UIButton()
+    private let removeAvaButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,18 +54,49 @@ public final class ProfileIconView: UIView {
     }
        
     private func createUI() {
-        addSubviews(
-            iconImageView,
-            button
-        )
         
-        iconImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        iconImageView.setup {
+            $0.contentMode = .scaleAspectFit
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
         }
         
-        button.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        editAvaButton.setup {
+            $0.layer.cornerRadius = UIConstants.buttonSize/2
+            $0.backgroundColor = Colors.mainBG.color
+            $0.setImage(Images.Profile.editIcon.image, for: .normal)
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(UIConstants.buttonSize)
+                $0.center.equalTo(iconImageView.snp.center)
+            }
         }
+        
+        removeAvaButton.setup {
+            $0.layer.cornerRadius = UIConstants.buttonSize/2
+            $0.backgroundColor = Colors.mainBG.color
+            $0.setImage(Images.Profile.closeIcon.image, for: .normal)
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(UIConstants.buttonSize)
+                $0.center.equalTo(iconImageView.snp.center)
+            }
+        }
+        
+        button.setup {
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+        
+    }
+    
+    public func configure(input: Input) -> Output {
+        
+        iconImageView.image = input.icon
         
         rx.size.take(1)
             .asDriver(onErrorDriveWith: .empty())
@@ -63,11 +104,12 @@ public final class ProfileIconView: UIView {
                 self.layer.cornerRadius = self.frame.size.height/2
             })
             .disposed(by: disposeBag)
-    }
-    
-    public func configure(input: Input) -> Output {
-        iconImageView.image = input.icon
-        return Output(didTap: button.rx.tap.asSignal())
+        
+        return Output(
+            didTap: button.rx.tap.asSignal(),
+            didTapOnRemoveAva: removeAvaButton.rx.tap.asSignal(),
+            didTapOnEditAva: editAvaButton.rx.tap.asSignal()
+        )
     }
 }
 
