@@ -14,8 +14,10 @@ import SnapKit
 public final class VocabularyView: UIView {
     
     public struct Input {
-        
+        public init() {}
     }
+    
+    private let yellowBoxView = WordsCountView()
     
     private let titleLabel = UILabel()
     private let vocabularyStackView = UIStackView()
@@ -51,10 +53,24 @@ public final class VocabularyView: UIView {
             }
         }
         
-        
+        yellowBoxView.setup {
+            addSubviews($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.top.equalTo(titleLabel.snp.bottom)
+                $0.height.equalTo(48)
+            }
+        }
     }
     
     public func configure(input: Input) {
         
+        yellowBoxView.configure(
+            input: WordsCountView.Input(
+                icon: Images.Profile.yellowBoxIcon.image,
+                count: 23,
+                description: "Новых"
+            )
+        )
     }
 }

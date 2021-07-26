@@ -189,6 +189,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             )
         )
         
+        _ = vocabularyView.configure(input: VocabularyView.Input())
+        
         presenterOutput.isEditMode
             .drive(isEditModeRelay)
             .disposed(by: disposeBag)
