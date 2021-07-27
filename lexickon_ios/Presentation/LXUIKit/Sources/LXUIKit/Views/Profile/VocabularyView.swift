@@ -53,6 +53,16 @@ public final class VocabularyView: UIView {
             }
         }
         
+        vocabularyStackView.setup {
+            $0.axis = .vertical
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.top.equalTo(titleLabel.snp.bottom)
+                $0.bottom.equalToSuperview()
+            }
+        }
+        
         yellowBoxView.setup {
             addSubviews($0)
             $0.snp.makeConstraints {
