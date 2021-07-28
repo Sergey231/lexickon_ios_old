@@ -18,9 +18,11 @@ public final class VocabularyView: UIView {
     }
     
     private let yellowBoxView = WordsCountView()
+    private let colorBoxView = WordsCountView()
+    private let greenBoxView = WordsCountView()
     
     private let titleLabel = UILabel()
-    private let vocabularyStackView = UIStackView()
+    private let stackView = UIStackView()
     private let autoAddingWordsSettings = UIButton()
     
     public override init(frame: CGRect) {
@@ -48,13 +50,15 @@ public final class VocabularyView: UIView {
             $0.textAlignment = .center
             addSubview($0)
             $0.snp.makeConstraints {
+                $0.top.equalToSuperview()
                 $0.left.right.equalToSuperview()
                 $0.height.equalTo(Size.textField.height)
             }
         }
         
-        vocabularyStackView.setup {
+        stackView.setup {
             $0.axis = .vertical
+            $0.distribution = .equalCentering
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
@@ -64,10 +68,25 @@ public final class VocabularyView: UIView {
         }
         
         yellowBoxView.setup {
-            addSubviews($0)
+            stackView.addArrangedSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.top.equalTo(titleLabel.snp.bottom)
+                $0.height.equalTo(48)
+            }
+        }
+        
+        colorBoxView.setup {
+            stackView.addArrangedSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
+                $0.height.equalTo(48)
+            }
+        }
+        
+        greenBoxView.setup {
+            stackView.addArrangedSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.right.equalToSuperview()
                 $0.height.equalTo(48)
             }
         }
@@ -75,11 +94,27 @@ public final class VocabularyView: UIView {
     
     public func configure(input: Input) {
         
-        yellowBoxView.configure(
+        _ = yellowBoxView.configure(
             input: WordsCountView.Input(
                 icon: Images.Profile.yellowBoxIcon.image,
                 count: 23,
                 description: "Новых"
+            )
+        )
+        
+        _ = colorBoxView.configure(
+            input: WordsCountView.Input(
+                icon: Images.Profile.colorBoxIcon.image,
+                count: 654,
+                description: "В процессе"
+            )
+        )
+        
+        _ = greenBoxView.configure(
+            input: WordsCountView.Input(
+                icon: Images.Profile.greenBoxIcon.image,
+                count: 334,
+                description: "Выученх (более 6 мес.)"
             )
         )
     }
