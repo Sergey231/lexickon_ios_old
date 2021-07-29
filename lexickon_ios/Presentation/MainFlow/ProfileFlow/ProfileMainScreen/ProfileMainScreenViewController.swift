@@ -131,7 +131,7 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         vocabularyView.setup {
             scrollView.addSubview($0)
             $0.snp.makeConstraints {
-                $0.top.equalTo(emailLabel.snp.bottom).offset(Margin.regular)
+                $0.top.equalTo(emailLabel.snp.bottom)
                 $0.left.right.equalToSuperview()
                 $0.width.equalTo(view.snp.width)
             }

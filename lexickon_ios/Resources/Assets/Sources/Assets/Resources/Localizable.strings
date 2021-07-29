@@ -85,3 +85,6 @@
 // MARK: Profile
 "ProfileVocabularyViewTitle" = "СЛОВАРНЫЙ ЗАПАС";
 "ProfileNameTextFieldPlaceholder" = "Ввидите публичное имя";
+"ProfileVocabularyNewWordsTitle" = "Новых";
+"ProfileVocabularyInProgressWordsTitle" = "В процессе";
+"ProfileVocabularyDoneWordsTitle" = "Выученх (более 6 мес.)";

@@ -36,13 +36,6 @@ public final class VocabularyView: UIView {
     
     private func createUI() {
         
-        // test
-        backgroundColor = .lightGray
-        
-        snp.makeConstraints {
-            $0.height.equalTo(300)
-        }
-        
         titleLabel.setup {
             $0.font = .regular17
             $0.textColor = Colors.baseText.color
@@ -59,35 +52,22 @@ public final class VocabularyView: UIView {
         stackView.setup {
             $0.axis = .vertical
             $0.distribution = .equalCentering
+            $0.spacing = Margin.regular
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.top.equalTo(titleLabel.snp.bottom)
-                $0.bottom.equalToSuperview()
+                $0.top.equalTo(titleLabel.snp.bottom).offset(Margin.regular)
+                $0.bottom.equalToSuperview().offset(-Margin.mid)
             }
         }
         
-        yellowBoxView.setup {
-            stackView.addArrangedSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
-                $0.height.equalTo(48)
-            }
-        }
-        
-        colorBoxView.setup {
-            stackView.addArrangedSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
-                $0.height.equalTo(48)
-            }
-        }
-        
-        greenBoxView.setup {
-            stackView.addArrangedSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
-                $0.height.equalTo(48)
+        [yellowBoxView, colorBoxView, greenBoxView].forEach {
+            $0.setup {
+                stackView.addArrangedSubview($0)
+                $0.snp.makeConstraints {
+                    $0.left.right.equalToSuperview()
+                    $0.height.equalTo(48)
+                }
             }
         }
     }
@@ -98,7 +78,7 @@ public final class VocabularyView: UIView {
             input: WordsCountView.Input(
                 icon: Images.Profile.yellowBoxIcon.image,
                 count: 23,
-                description: "Новых"
+                description: Str.profileVocabularyNewWordsTitle
             )
         )
         
@@ -106,7 +86,7 @@ public final class VocabularyView: UIView {
             input: WordsCountView.Input(
                 icon: Images.Profile.colorBoxIcon.image,
                 count: 654,
-                description: "В процессе"
+                description: Str.profileVocabularyInProgressWordsTitle
             )
         )
         
@@ -114,7 +94,7 @@ public final class VocabularyView: UIView {
             input: WordsCountView.Input(
                 icon: Images.Profile.greenBoxIcon.image,
                 count: 334,
-                description: "Выученх (более 6 мес.)"
+                description: Str.profileVocabularyDoneWordsTitle
             )
         )
     }
