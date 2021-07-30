@@ -41,21 +41,21 @@ public final class NotificationsView: UIView {
         }
         
         topLineView.setup {
-            $0.backgroundColor = .lightGray
+            $0.backgroundColor = Colors.pale.color
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.height.equalTo(1)
+                $0.height.equalTo(0.5)
                 $0.top.equalToSuperview()
             }
         }
         
         bottomLineView.setup {
-            $0.backgroundColor = .lightGray
+            $0.backgroundColor = Colors.pale.color
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.height.equalTo(1)
+                $0.height.equalTo(0.5)
                 $0.bottom.equalToSuperview()
             }
         }
