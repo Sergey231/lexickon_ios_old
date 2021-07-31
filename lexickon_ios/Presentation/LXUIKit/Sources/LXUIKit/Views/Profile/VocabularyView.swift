@@ -20,6 +20,7 @@ public final class VocabularyView: UIView {
     private let yellowBoxView = WordsCountView()
     private let colorBoxView = WordsCountView()
     private let greenBoxView = WordsCountView()
+    private let authoaddingOfWordsButton = UIButton()
     
     private let titleLabel = UILabel()
     private let stackView = UIStackView()
@@ -57,7 +58,6 @@ public final class VocabularyView: UIView {
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
                 $0.top.equalTo(titleLabel.snp.bottom).offset(Margin.regular)
-                $0.bottom.equalToSuperview().offset(-Margin.mid)
             }
         }
         
@@ -68,6 +68,17 @@ public final class VocabularyView: UIView {
                     $0.left.right.equalToSuperview()
                     $0.height.equalTo(48)
                 }
+            }
+        }
+        
+        authoaddingOfWordsButton.setup {
+            $0.setTitle(Str.profielVocabularyAutoaddingWordsButtonTitle, for: .normal)
+            addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalTo(stackView.snp.bottom).offset(Margin.mid)
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.bottom.equalToSuperview().offset(-Margin.mid)
             }
         }
     }
@@ -96,6 +107,11 @@ public final class VocabularyView: UIView {
                 count: 334,
                 description: Str.profileVocabularyDoneWordsTitle
             )
+        )
+        
+        authoaddingOfWordsButton.setRoundedBorderedStyle(
+            bgColor: .white,
+            borderColor: Colors.gold.color
         )
     }
 }

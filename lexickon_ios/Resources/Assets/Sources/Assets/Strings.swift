@@ -41,6 +41,8 @@ public enum Str {
   public static let loginScreenTitle = Str.tr("Localizable", "Login_screen_title")
   /// Здесь, Вы можете добавить любое, новое слово в ваш Lexickon
   public static let newWrodPlaceholder = Str.tr("Localizable", "NewWrod_placeholder")
+  /// Автодобавление слов
+  public static let profielVocabularyAutoaddingWordsButtonTitle = Str.tr("Localizable", "ProfielVocabularyAutoaddingWordsButtonTitle")
   /// Выйти
   public static let profileMainLogoutButtonTitle = Str.tr("Localizable", "Profile_main_logout_button_title")
   /// Ввидите публичное имя

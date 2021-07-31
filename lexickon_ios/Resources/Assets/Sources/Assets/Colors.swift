@@ -36,6 +36,7 @@ public enum Colors {
   public static let waitingWordPale = ColorAsset(name: "waitingWordPale")
   public static let baseBG = ColorAsset(name: "baseBG")
   public static let baseText = ColorAsset(name: "baseText")
+  public static let gold = ColorAsset(name: "gold")
   public static let mainBG = ColorAsset(name: "mainBG")
   public static let pale = ColorAsset(name: "pale")
   public static let paleText = ColorAsset(name: "paleText")
