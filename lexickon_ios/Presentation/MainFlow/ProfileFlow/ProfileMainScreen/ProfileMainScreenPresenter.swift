@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Resolver
+import LXUIKit
 
 final class ProfileMainScreenPresenter {
     
@@ -25,6 +26,7 @@ final class ProfileMainScreenPresenter {
         let name: Driver<String>
         let email: Driver<String>
         let isEditMode: Driver<Bool>
+        let vocabularyViewInput: VocabularyView.Input
         let disposables: CompositeDisposable
     }
     
@@ -57,11 +59,20 @@ final class ProfileMainScreenPresenter {
             isFocusedNameTextFieldDisposable
         ])
         
+        let vocabularyViewInput = VocabularyView.Input(
+            newWordsCount: 5,
+            oneDayWordsCount: 3,
+            oneWeekWordsCount: 10,
+            oneMonthWordsCount: 54,
+            halfYearWordsCount: 36
+        )
+        
         return Output(
             didLogout: didLogout,
             name: name,
             email: email,
             isEditMode: isEditModeRelay.asDriver(),
+            vocabularyViewInput: vocabularyViewInput,
             disposables: disposables
         )
     }
