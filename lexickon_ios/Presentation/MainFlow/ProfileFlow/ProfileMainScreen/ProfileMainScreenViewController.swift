@@ -193,6 +193,8 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             input: presenterOutput.vocabularyViewInput
         )
         
+        _ = notificationSettingsView.configure(input: NotificationsView.Input())
+        
         presenterOutput.isEditMode
             .drive(isEditModeRelay)
             .disposed(by: disposeBag)
