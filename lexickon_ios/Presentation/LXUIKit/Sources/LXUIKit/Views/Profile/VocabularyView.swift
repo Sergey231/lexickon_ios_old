@@ -14,7 +14,26 @@ import SnapKit
 public final class VocabularyView: UIView {
     
     public struct Input {
-        public init() {}
+        
+        let newWordsCount: UInt
+        let oneDayWordsCount: UInt
+        let oneWeekWordsCount: UInt
+        let oneMonthWordsCount: UInt
+        let halfYearWordsCount: UInt
+        
+        public init(
+            newWordsCount: UInt,
+            oneDayWordsCount: UInt,
+            oneWeekWordsCount: UInt,
+            oneMonthWordsCount: UInt,
+            halfYearWordsCount: UInt
+        ) {
+            self.newWordsCount = newWordsCount
+            self.oneDayWordsCount = oneDayWordsCount
+            self.oneWeekWordsCount = oneMonthWordsCount
+            self.oneMonthWordsCount = oneMonthWordsCount
+            self.halfYearWordsCount = halfYearWordsCount
+        }
     }
     
     private let yellowBoxView = WordsCountView()
@@ -88,15 +107,19 @@ public final class VocabularyView: UIView {
         _ = yellowBoxView.configure(
             input: WordsCountView.Input(
                 icon: Images.Profile.yellowBoxIcon.image,
-                count: 23,
+                count: input.newWordsCount,
                 description: Str.profileVocabularyNewWordsTitle
             )
         )
         
+        let inProcessWordsCount = input.oneDayWordsCount
+            + input.oneWeekWordsCount
+            + input.oneMonthWordsCount
+        
         _ = colorBoxView.configure(
             input: WordsCountView.Input(
                 icon: Images.Profile.colorBoxIcon.image,
-                count: 654,
+                count: inProcessWordsCount,
                 description: Str.profileVocabularyInProgressWordsTitle
             )
         )
@@ -104,7 +127,7 @@ public final class VocabularyView: UIView {
         _ = greenBoxView.configure(
             input: WordsCountView.Input(
                 icon: Images.Profile.greenBoxIcon.image,
-                count: 334,
+                count: input.halfYearWordsCount,
                 description: Str.profileVocabularyDoneWordsTitle
             )
         )
