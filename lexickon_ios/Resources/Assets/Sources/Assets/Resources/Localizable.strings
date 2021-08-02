@@ -89,3 +89,6 @@
 "ProfileVocabularyInProgressWordsTitle" = "В процессе";
 "ProfileVocabularyDoneWordsTitle" = "Выученх (более 6 мес.)";
 "ProfielVocabularyAutoaddingWordsButtonTitle" = "Автодобавление слов";
+"ProfileNotificationSettingsFireWordsTitle" = "Уведамления о горячих словах";
+"ProfileNotificationSettingsReadyWordsTitle" = "Уведамления о созревании слов";
+"ProfileNotificationSettingsTimeInExercisesTitle" = "Время в упражнениях";

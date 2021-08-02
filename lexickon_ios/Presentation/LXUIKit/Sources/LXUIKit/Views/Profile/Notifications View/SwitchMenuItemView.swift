@@ -67,13 +67,14 @@ public final class SwitchMenuItemView: UIView {
         onSwitch.setup {
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.right.equalToSuperview().offset(-Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.big)
                 $0.centerY.equalToSuperview()
             }
         }
         
         descriptionLabel.setup {
             $0.textColor = Colors.baseText.color
+            $0.font = .regular14
             $0.numberOfLines = 0
             addSubview($0)
             $0.snp.makeConstraints {

@@ -47,6 +47,12 @@ public enum Str {
   public static let profileMainLogoutButtonTitle = Str.tr("Localizable", "Profile_main_logout_button_title")
   /// Ввидите публичное имя
   public static let profileNameTextFieldPlaceholder = Str.tr("Localizable", "ProfileNameTextFieldPlaceholder")
+  /// Уведамления о горячих словах
+  public static let profileNotificationSettingsFireWordsTitle = Str.tr("Localizable", "ProfileNotificationSettingsFireWordsTitle")
+  /// Уведамления о созревании слов
+  public static let profileNotificationSettingsReadyWordsTitle = Str.tr("Localizable", "ProfileNotificationSettingsReadyWordsTitle")
+  /// Время в упражнениях
+  public static let profileNotificationSettingsTimeInExercisesTitle = Str.tr("Localizable", "ProfileNotificationSettingsTimeInExercisesTitle")
   /// Выученх (более 6 мес.)
   public static let profileVocabularyDoneWordsTitle = Str.tr("Localizable", "ProfileVocabularyDoneWordsTitle")
   /// В процессе

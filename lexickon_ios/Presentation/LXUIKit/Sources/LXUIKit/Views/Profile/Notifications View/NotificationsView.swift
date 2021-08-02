@@ -25,6 +25,8 @@ public final class NotificationsView: UIView {
     private let stackView = UIStackView()
     private let bottomLineView = UIView()
     private let fireWordsNotificaitonsView = SwitchMenuItemView()
+    private let readyWordsNotificaitonsView = SwitchMenuItemView()
+    private let timeInExercisesNotificaitonsView = SwitchMenuItemView()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,18 +66,23 @@ public final class NotificationsView: UIView {
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.top.equalTo(topLineView.snp.bottom).offset(Margin.regular)
-                $0.bottom.equalTo(bottomLineView.snp.top).offset(-Margin.regular)
+                $0.top.equalTo(topLineView.snp.bottom).offset(Margin.mid)
+                $0.bottom.equalTo(bottomLineView.snp.top).offset(-Margin.mid)
             }
         }
         
-        fireWordsNotificaitonsView.setup {
-            stackView.addArrangedSubview($0)
-            $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
-                $0.height.equalTo(48)
+        [fireWordsNotificaitonsView,
+         readyWordsNotificaitonsView,
+         timeInExercisesNotificaitonsView]
+            .forEach {
+                $0.setup {
+                    stackView.addArrangedSubview($0)
+                    $0.snp.makeConstraints {
+                        $0.left.right.equalToSuperview()
+                        $0.height.equalTo(48)
+                    }
+                }
             }
-        }
     }
     
     public func configure(input: Input) -> Output {
@@ -84,10 +91,25 @@ public final class NotificationsView: UIView {
             input: SwitchMenuItemView.Input(
                 icon: Images.Profile.fireNotificationIcon.image,
                 on: .just(false),
-                description: "Уведамления о горячих словах"
+                description: Str.profileNotificationSettingsFireWordsTitle
             )
         )
         
+        _ = readyWordsNotificaitonsView.configure(
+            input: SwitchMenuItemView.Input(
+                icon: Images.Profile.notificationIcon.image,
+                on: .just(false),
+                description: Str.profileNotificationSettingsReadyWordsTitle
+            )
+        )
+        
+        _ = timeInExercisesNotificaitonsView.configure(
+            input: SwitchMenuItemView.Input(
+                icon: Images.Profile.exWithBadge.image,
+                on: .just(false),
+                description: Str.profileNotificationSettingsTimeInExercisesTitle
+            )
+        )
         return Output()
     }
 }

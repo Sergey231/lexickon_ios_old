@@ -97,7 +97,7 @@ public final class VocabularyView: UIView {
                 $0.top.equalTo(stackView.snp.bottom).offset(Margin.mid)
                 $0.centerX.equalToSuperview()
                 $0.size.equalTo(Size.button)
-                $0.bottom.bottom.equalToSuperview().offset(-Margin.mid)
+                $0.bottom.bottom.equalToSuperview().offset(-Margin.big)
             }
         }
     }
