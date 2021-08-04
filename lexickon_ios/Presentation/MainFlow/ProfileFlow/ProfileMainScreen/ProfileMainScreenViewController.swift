@@ -41,7 +41,6 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
     private let buttonsSetView = ProfileButtonsSetView()
     
     private let backButton = UIButton()
-    private let logoutButton = UIButton()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -145,17 +144,12 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             }
         }
         
-        logoutButton.setup {
+        buttonsSetView.setup {
             scrollView.addSubview($0)
-            $0.setTitle(
-                Str.loginLoginButtonTitle,
-                for: .normal
-            )
             $0.snp.makeConstraints {
-                $0.top.equalTo(notificationSettingsView.snp.bottom).offset(Margin.regular)
-                $0.centerX.equalToSuperview()
-                $0.size.equalTo(Size.button)
-                $0.bottom.equalToSuperview().offset(-Margin.big)
+                $0.top.equalTo(notificationSettingsView.snp.bottom)
+                $0.left.right.equalToSuperview()
+                $0.bottom.equalToSuperview()
             }
         }
     }
@@ -172,24 +166,17 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             input: ProfileIconView.Input(isEditMode: isEditModeRelay.asDriver())
         )
         
-        logoutButton.setRoundedBorderedStyle(
-            bgColor: .white,
-            borderColor: Colors.mainBG.color,
-            titleColor: Colors.mainBG.color
-        )
-        
-        let didTapLogout = logoutButton.rx.tap
-            .asSignal()
+        let buttonsSetOutput = buttonsSetView.configure(input: ProfileButtonsSetView.Input())
         
         let presenterOutput = presenter.configure(
             input: .init(
                 didTapProfileIcon: profileIconViewOutput.didTap,
                 isFocusedNameTextField: nameTextField.textField.rx.isFocused,
-                didTapLogOut: didTapLogout
+                didTapLogOut: buttonsSetOutput.logoutDidTap
             )
         )
         
-        _ = vocabularyView.configure(
+        vocabularyView.configure(
             input: presenterOutput.vocabularyViewInput
         )
         
