@@ -38,26 +38,25 @@ public final class ProfileButtonsSetView: UIView {
     
     private func createUI() {
         
-        snp.makeConstraints {
-            $0.height.equalTo(250)
-        }
-        
         stackView.setup {
+            $0.axis = .vertical
+            $0.distribution = .equalCentering
+            $0.spacing = Margin.regular
             addSubview($0)
             $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
+                $0.centerX.equalToSuperview()
+                $0.width.equalTo(Size.button.width)
                 $0.top.equalToSuperview().offset(Margin.mid)
                 $0.bottom.equalToSuperview().offset(-Margin.mid)
             }
         }
         
         [supportProjectButton,
-        writeToDeveloperButton,
-        showHelpButton,
-        logoutButton].forEach {
+         writeToDeveloperButton,
+         showHelpButton,
+         logoutButton].forEach {
             stackView.addArrangedSubview($0)
             $0.snp.makeConstraints {
-                $0.left.right.equalToSuperview()
                 $0.size.equalTo(Size.button)
             }
         }
