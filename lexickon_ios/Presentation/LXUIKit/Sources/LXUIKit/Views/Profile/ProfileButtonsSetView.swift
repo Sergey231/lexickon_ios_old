@@ -18,12 +18,15 @@ public final class ProfileButtonsSetView: UIView {
     }
     
     public struct Output {
+        public let msgToDeveloperDidTap: Signal<Void>
+        public let showIntroDidTap: Signal<Void>
+        public let supportLesickonDidTap: Signal<Void>
         public let logoutDidTap: Signal<Void>
     }
     
     private let stackView = UIStackView()
     private let supportProjectButton = UIButton()
-    private let writeToDeveloperButton = UIButton()
+    private let msgToDeveloperButton = UIButton()
     private let showHelpButton = UIButton()
     private let logoutButton = UIButton()
     
@@ -41,18 +44,18 @@ public final class ProfileButtonsSetView: UIView {
         stackView.setup {
             $0.axis = .vertical
             $0.distribution = .equalCentering
-            $0.spacing = Margin.regular
+            $0.spacing = Margin.mid
             addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
                 $0.width.equalTo(Size.button.width)
-                $0.top.equalToSuperview().offset(Margin.mid)
-                $0.bottom.equalToSuperview().offset(-Margin.mid)
+                $0.top.equalToSuperview().offset(Margin.big)
+                $0.bottom.equalToSuperview().offset(-Margin.big)
             }
         }
         
         [supportProjectButton,
-         writeToDeveloperButton,
+         msgToDeveloperButton,
          showHelpButton,
          logoutButton].forEach {
             stackView.addArrangedSubview($0)
@@ -64,13 +67,18 @@ public final class ProfileButtonsSetView: UIView {
     
     public func configure(input: Input) -> Output {
         
+        supportProjectButton.setTitle(Str.profileLexickonSupportButtonTitle, for: .normal)
+        msgToDeveloperButton.setTitle(Str.profileMessageToDeveloperButtonTitle, for: .normal)
+        showHelpButton.setTitle(Str.profileShowIntroButtonTitle, for: .normal)
+        logoutButton.setTitle(Str.profileMainLogoutButtonTitle, for: .normal)
+        
         supportProjectButton.setRoundedBorderedStyle(
             bgColor: Colors.gold.color,
             borderColor: Colors.gold.color,
             titleColor: .white
         )
         
-        writeToDeveloperButton.setRoundedBorderedStyle(
+        msgToDeveloperButton.setRoundedBorderedStyle(
             bgColor: .white,
             borderColor: Colors.mainBG.color,
             titleColor: Colors.mainBG.color
@@ -88,9 +96,23 @@ public final class ProfileButtonsSetView: UIView {
             titleColor: Colors.mainBG.color
         )
         
-        let didTapLogout = logoutButton.rx.tap
-            .asSignal()
+        let logoutDidTap = logoutButton.rx.tap
+            .asSignal(onErrorJustReturn: ())
         
-        return Output(logoutDidTap: didTapLogout)
+        let msgToDeveloperDidTap = msgToDeveloperButton.rx.tap
+            .asSignal(onErrorJustReturn: ())
+        
+        let showIntroDidTap = showHelpButton.rx.tap
+            .asSignal(onErrorJustReturn: ())
+        
+        let supportLesickonDidTap = supportProjectButton.rx.tap
+            .asSignal(onErrorJustReturn: ())
+        
+        return Output(
+            msgToDeveloperDidTap: msgToDeveloperDidTap,
+            showIntroDidTap: showIntroDidTap,
+            supportLesickonDidTap: supportLesickonDidTap,
+            logoutDidTap: logoutDidTap
+        )
     }
 }

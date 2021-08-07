@@ -92,3 +92,7 @@
 "ProfileNotificationSettingsFireWordsTitle" = "Уведамления о горячих словах";
 "ProfileNotificationSettingsReadyWordsTitle" = "Уведамления о созревании слов";
 "ProfileNotificationSettingsTimeInExercisesTitle" = "Время в упражнениях";
+"ProfileLexickonSupportButtonTitle" = "Поддержать проект";
+"ProfileMessageToDeveloperButtonTitle" = "Написать разработчику";
+"ProfileShowIntroButtonTitle" = "Показать интро";
+"ProfileLogoutButtonTitle" = "Выйти";

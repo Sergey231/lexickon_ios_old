@@ -18,7 +18,9 @@ public final class NotificationsView: UIView {
     }
     
     public struct Output {
-        
+        public let fireWordsNotificationsDidTap: Driver<Bool>
+        public let readyWordsNotificationsDidTap: Driver<Bool>
+        public let timeInExercisesNotitidationsDidTap: Driver<Bool>
     }
     
     private let topLineView = UIView()
@@ -87,7 +89,7 @@ public final class NotificationsView: UIView {
     
     public func configure(input: Input) -> Output {
         
-        _ = fireWordsNotificaitonsView.configure(
+        let fireWordsNotificaitonsViewOutput = fireWordsNotificaitonsView.configure(
             input: SwitchMenuItemView.Input(
                 icon: Images.Profile.fireNotificationIcon.image,
                 on: .just(false),
@@ -95,7 +97,7 @@ public final class NotificationsView: UIView {
             )
         )
         
-        _ = readyWordsNotificaitonsView.configure(
+        let readyWordsNotificaitonsViewOutput = readyWordsNotificaitonsView.configure(
             input: SwitchMenuItemView.Input(
                 icon: Images.Profile.notificationIcon.image,
                 on: .just(false),
@@ -103,14 +105,18 @@ public final class NotificationsView: UIView {
             )
         )
         
-        _ = timeInExercisesNotificaitonsView.configure(
+        let timeInExercisesNotificaitonsViewOutput = timeInExercisesNotificaitonsView.configure(
             input: SwitchMenuItemView.Input(
                 icon: Images.Profile.exWithBadge.image,
                 on: .just(false),
                 description: Str.profileNotificationSettingsTimeInExercisesTitle
             )
         )
-        return Output()
+        return Output(
+            fireWordsNotificationsDidTap: fireWordsNotificaitonsViewOutput.on,
+            readyWordsNotificationsDidTap: readyWordsNotificaitonsViewOutput.on,
+            timeInExercisesNotitidationsDidTap: timeInExercisesNotificaitonsViewOutput.on
+        )
     }
 }
 

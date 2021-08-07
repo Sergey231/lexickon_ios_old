@@ -168,6 +168,10 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
         
         let buttonsSetOutput = buttonsSetView.configure(input: ProfileButtonsSetView.Input())
         
+        _ = buttonsSetOutput.msgToDeveloperDidTap.debug("🧢1").emit()
+        _ = buttonsSetOutput.showIntroDidTap.debug("🧢2").emit()
+        _ = buttonsSetOutput.supportLesickonDidTap.debug("🧢3").emit()
+        
         let presenterOutput = presenter.configure(
             input: .init(
                 didTapProfileIcon: profileIconViewOutput.didTap,
@@ -176,11 +180,19 @@ class ProfileMainScreenViewController: UIViewController, Stepper {
             )
         )
         
-        vocabularyView.configure(
+        let vocabularyViewOutput = vocabularyView.configure(
             input: presenterOutput.vocabularyViewInput
         )
         
-        _ = notificationSettingsView.configure(input: NotificationsView.Input())
+        _ = vocabularyViewOutput.autoaddingWordsDidTap.debug("🧵").emit()
+        
+        let notificationSettingsViewOutput = notificationSettingsView.configure(
+            input: NotificationsView.Input()
+        )
+        
+        _ = notificationSettingsViewOutput.fireWordsNotificationsDidTap.debug("🛹1").drive()
+        _ = notificationSettingsViewOutput.readyWordsNotificationsDidTap.debug("🛹2").drive()
+        _ = notificationSettingsViewOutput.timeInExercisesNotitidationsDidTap.debug("🛹3").drive()
         
         presenterOutput.isEditMode
             .drive(isEditModeRelay)

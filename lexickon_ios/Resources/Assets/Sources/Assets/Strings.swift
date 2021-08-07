@@ -45,6 +45,12 @@ public enum Str {
   public static let profielVocabularyAutoaddingWordsButtonTitle = Str.tr("Localizable", "ProfielVocabularyAutoaddingWordsButtonTitle")
   /// Выйти
   public static let profileMainLogoutButtonTitle = Str.tr("Localizable", "Profile_main_logout_button_title")
+  /// Поддержать проект
+  public static let profileLexickonSupportButtonTitle = Str.tr("Localizable", "ProfileLexickonSupportButtonTitle")
+  /// Выйти
+  public static let profileLogoutButtonTitle = Str.tr("Localizable", "ProfileLogoutButtonTitle")
+  /// Написать разработчику
+  public static let profileMessageToDeveloperButtonTitle = Str.tr("Localizable", "ProfileMessageToDeveloperButtonTitle")
   /// Ввидите публичное имя
   public static let profileNameTextFieldPlaceholder = Str.tr("Localizable", "ProfileNameTextFieldPlaceholder")
   /// Уведамления о горячих словах
@@ -53,6 +59,8 @@ public enum Str {
   public static let profileNotificationSettingsReadyWordsTitle = Str.tr("Localizable", "ProfileNotificationSettingsReadyWordsTitle")
   /// Время в упражнениях
   public static let profileNotificationSettingsTimeInExercisesTitle = Str.tr("Localizable", "ProfileNotificationSettingsTimeInExercisesTitle")
+  /// Показать интро
+  public static let profileShowIntroButtonTitle = Str.tr("Localizable", "ProfileShowIntroButtonTitle")
   /// Выученх (более 6 мес.)
   public static let profileVocabularyDoneWordsTitle = Str.tr("Localizable", "ProfileVocabularyDoneWordsTitle")
   /// В процессе

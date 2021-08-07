@@ -36,6 +36,10 @@ public final class VocabularyView: UIView {
         }
     }
     
+    public struct Output {
+        public let autoaddingWordsDidTap: Signal<Void>
+    }
+    
     private let yellowBoxView = WordsCountView()
     private let colorBoxView = WordsCountView()
     private let greenBoxView = WordsCountView()
@@ -102,7 +106,7 @@ public final class VocabularyView: UIView {
         }
     }
     
-    public func configure(input: Input) {
+    public func configure(input: Input) -> Output {
         
         _ = yellowBoxView.configure(
             input: WordsCountView.Input(
@@ -136,5 +140,10 @@ public final class VocabularyView: UIView {
             bgColor: .white,
             borderColor: Colors.gold.color
         )
+        
+        let autoaddingWordsDidTap = authoaddingOfWordsButton.rx.tap
+            .asSignal(onErrorJustReturn: ())
+        
+        return Output(autoaddingWordsDidTap: autoaddingWordsDidTap)
     }
 }
