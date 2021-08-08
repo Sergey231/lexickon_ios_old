@@ -79,7 +79,6 @@ public struct WordEntity: Decodable {
         
         let currentStudyPercent = studyStatePercent
         var result: LxStudyState = .fire
-        
         if studyRating == 0 {
             result = .new
         } else if currentStudyPercent >= startOfWaitingPeriod &&
@@ -91,7 +90,7 @@ public struct WordEntity: Decodable {
         } else if currentStudyPercent >= startOfFirePeriod &&
                     currentStudyPercent < startOfDowngrateRatingPeriod {
             result = .fire
-        } else if currentStudyPercent > startOfDowngrateRatingPeriod {
+        } else if currentStudyPercent >= startOfDowngrateRatingPeriod {
             result = .downgradeRating
         }
         return result
@@ -105,7 +104,6 @@ public struct WordEntity: Decodable {
         let resultPersent = (resultTimeInterval/onePersent)/100
         let oneSafeResult = resultPersent > 1 ? 1 : resultPersent
         let result = oneSafeResult < 0 ? 0 : oneSafeResult
-//        print("👮🏿‍♀️ \(studyWord): studyStatePercent: \(result), studyRating: \(studyRating)")
         return result
     }
 }
