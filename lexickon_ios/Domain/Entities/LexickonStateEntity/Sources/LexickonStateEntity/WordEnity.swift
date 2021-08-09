@@ -37,8 +37,8 @@ public struct WordEntity: Decodable {
         self.id = lxWord.id
         self.studyWord = lxWord.studyWord
         self.translates = lxWord.translates
-        self.updatingStudyRatingDate = lxWord.updatingStudyRatingDate
-        self.studyRating = lxWord.studyRating
+        self.updatingStudyRatingDate = Int(lxWord.updatingStudyRatingDate ?? 0)
+        self.studyRating = Int(lxWord.studyRating)
         self.image = lxWord.image
     }
     
@@ -46,8 +46,8 @@ public struct WordEntity: Decodable {
         self.id = lxWord.id
         self.studyWord = lxWord.studyWord
         self.translates = lxWord.translates
-        self.updatingStudyRatingDate = lxWord.updatingStudyRatingDate
-        self.studyRating = lxWord.studyRating
+        self.updatingStudyRatingDate = Int(lxWord.updatingStudyRatingDate ?? 0)
+        self.studyRating = Int(lxWord.studyRating)
         self.image = lxWord.image
     }
     

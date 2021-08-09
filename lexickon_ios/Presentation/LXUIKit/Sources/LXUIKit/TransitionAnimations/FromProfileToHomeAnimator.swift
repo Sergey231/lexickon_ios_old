@@ -40,6 +40,7 @@ public final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimated
         using transitionContext: UIViewControllerContextTransitioning
     ) {
         
+        let container = transitionContext.containerView
         let homeVC = transitionContext.viewController(forKey: .to)!
         let profileVC = transitionContext.viewController(forKey: .from)!
         profileVCProfileIconView.isHidden = true
@@ -54,13 +55,12 @@ public final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimated
         
         let tmpProfileIconView: UIView = {
             let tmpProfileIconView = UIView()
-            tmpProfileIconView.frame = profileVCProfileIconView.frame
+            tmpProfileIconView.frame = container.convert(profileVCProfileIconView.frame, from: profileVC.view)
             tmpProfileIconView.backgroundColor = profileVCProfileIconView.backgroundColor
             tmpProfileIconView.layer.cornerRadius = tmpProfileIconView.frame.size.height / 2
             return tmpProfileIconView
         }()
         
-        let container = transitionContext.containerView
         container.frame = profileVC.view.frame
         container.addSubview(homeVC.view)
         container.addSubview(profileVC.view)
