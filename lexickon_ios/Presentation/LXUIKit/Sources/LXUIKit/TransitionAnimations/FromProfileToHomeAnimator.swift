@@ -70,10 +70,10 @@ public final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimated
         // Profile Icon View animation
         UIView.animate(
             withDuration: Self.duration,
-            animations: {
+            animations: { [unowned self] in
                 
-                let profileIconViewSize = self.homeVCProfileIconSize
-                let profileIconRightMargin = self.homeVCProfileIconRightMargin
+                let profileIconViewSize = homeVCProfileIconSize
+                let profileIconRightMargin = homeVCProfileIconRightMargin
                 
                 tmpProfileIconView.layer.cornerRadius = profileIconViewSize / 2
                 tmpProfileIconView.snp.makeConstraints {
