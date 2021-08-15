@@ -19,7 +19,7 @@ enum AppStep: Step {
 final class AppFlow: Flow {
     
     var root: Presentable {
-        self.rootViewController
+        rootViewController
     }
     
     private lazy var rootViewController: UINavigationController = {
@@ -55,10 +55,12 @@ final class AppFlow: Flow {
     private func navigationToMain(animated: Bool) -> FlowContributors {
         
         let mainFlow = MainFlow(with: rootViewController)
-        return .one(flowContributor: .contribute(
-            withNextPresentable: mainFlow,
-            withNextStepper: OneStepper(withSingleStep: MainStep.home(animated: animated))
-        ))
+        return .one(
+            flowContributor: .contribute(
+                withNextPresentable: mainFlow,
+                withNextStepper: OneStepper(withSingleStep: MainStep.home(animated: animated))
+            )
+        )
     }
 }
 
