@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import UIExtensions
 
 public final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
@@ -55,7 +56,7 @@ public final class FromProfileToHomeAnimator: NSObject, UIViewControllerAnimated
         
         let tmpProfileIconView: UIView = {
             let tmpProfileIconView = UIView()
-            tmpProfileIconView.frame = container.convert(profileVCProfileIconView.frame, from: profileVC.view)
+            tmpProfileIconView.frame = profileVCProfileIconView.frameOfViewInWindowsCoordinateSystem()
             tmpProfileIconView.backgroundColor = profileVCProfileIconView.backgroundColor
             tmpProfileIconView.layer.cornerRadius = tmpProfileIconView.frame.size.height / 2
             return tmpProfileIconView

@@ -8,11 +8,11 @@
 import UIKit
 
 extension UIView {
-    public func frameOfViewInWindowsCoordinateSystem(_ view: UIView) -> CGRect {
-        if let superview = view.superview {
-            return superview.convert(view.frame, to: nil)
+    public func frameOfViewInWindowsCoordinateSystem(to view: UIView? = nil) -> CGRect {
+        if let superview = superview {
+            return superview.convert(frame, to: view)
         }
-        print("[ANIMATION WARNING] Seems like this view is not in views hierarchy\n\(view)\nOriginal frame returned")
-        return view.frame
+        print("[ANIMATION WARNING] Seems like this view is not in views hierarchy\n\(self)\nOriginal frame returned")
+        return frame
     }
 }
