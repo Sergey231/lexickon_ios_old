@@ -15,5 +15,6 @@ extension Resolver: ResolverRegistering {
         registerProfileObjects()
         registerNewWordObjects()
         registerWordCardObjects()
+        registerExercisesObjects()
     }
 }

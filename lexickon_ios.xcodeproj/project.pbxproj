@@ -63,6 +63,7 @@
 		ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA693925CEA19E005E07D5 /* WordsRepository */; };
 		ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5EA25B323890018110F /* TranslationRepository */; };
 		ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5F725B41BE60018110F /* ApiRepository */; };
+		ECDEECF326CE2A3100EB2F53 /* ExercisesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */; };
 		ECE626B92650F0AA005573C6 /* UserRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECE626B82650F0AA005573C6 /* UserRepository */; };
 		ECEA376A25C2FF8A00D6C6DC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA376925C2FF8A00D6C6DC /* Lottie */; };
 		ECEA376E25C3000200D6C6DC /* linesLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = ECEA376D25C3000200D6C6DC /* linesLoading.json */; };
@@ -137,6 +138,7 @@
 		ECDA693025CE9EC8005E07D5 /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConfigsRepository; sourceTree = "<group>"; };
 		ECDA693125CE9EC9005E07D5 /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyValueRepository; sourceTree = "<group>"; };
 		ECDA693425CEA050005E07D5 /* WordsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsRepository; sourceTree = "<group>"; };
+		ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesFlow.swift; sourceTree = "<group>"; };
 		ECE626BA2650F387005573C6 /* AuthTokenRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AuthTokenRepository; sourceTree = "<group>"; };
 		ECEA376D25C3000200D6C6DC /* linesLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = linesLoading.json; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				EC0DBEB725F0B92400CBED4D /* MainFlow.swift */,
+				ECDEECF126CE29B600EB2F53 /* ExercisesFlow */,
 				EC0DBEBF25F0B92400CBED4D /* Home */,
 				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
 				EC0B20C42671E1C900881DDD /* WordCardFlow */,
@@ -467,6 +470,14 @@
 				ECB50D2D258F45FB003B9A68 /* Utils */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		ECDEECF126CE29B600EB2F53 /* ExercisesFlow */ = {
+			isa = PBXGroup;
+			children = (
+				ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */,
+			);
+			path = ExercisesFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -642,6 +653,7 @@
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */,
 				EC0DBF0F25F0B92500CBED4D /* MainFlow.swift in Sources */,
+				ECDEECF326CE2A3100EB2F53 /* ExercisesFlow.swift in Sources */,
 				EC0DBEC225F0B92500CBED4D /* NewWordFlow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
