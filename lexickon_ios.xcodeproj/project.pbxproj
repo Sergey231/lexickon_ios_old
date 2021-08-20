@@ -61,6 +61,8 @@
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
 		ECC15EEC2416220F00149AC9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA693925CEA19E005E07D5 /* WordsRepository */; };
+		ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */; };
+		ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */; };
 		ECDCE5EB25B323890018110F /* TranslationRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5EA25B323890018110F /* TranslationRepository */; };
 		ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDCE5F725B41BE60018110F /* ApiRepository */; };
 		ECDEECF326CE2A3100EB2F53 /* ExercisesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */; };
@@ -138,6 +140,8 @@
 		ECDA693025CE9EC8005E07D5 /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ConfigsRepository; sourceTree = "<group>"; };
 		ECDA693125CE9EC9005E07D5 /* KeyValueRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeyValueRepository; sourceTree = "<group>"; };
 		ECDA693425CEA050005E07D5 /* WordsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsRepository; sourceTree = "<group>"; };
+		ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewExerciseViewController.swift; sourceTree = "<group>"; };
+		ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewExercisePresenter.swift; sourceTree = "<group>"; };
 		ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesFlow.swift; sourceTree = "<group>"; };
 		ECE626BA2650F387005573C6 /* AuthTokenRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AuthTokenRepository; sourceTree = "<group>"; };
 		ECEA376D25C3000200D6C6DC /* linesLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = linesLoading.json; sourceTree = "<group>"; };
@@ -472,10 +476,20 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		ECDAF0EB26CF76600020582E /* WordViewExercise */ = {
+			isa = PBXGroup;
+			children = (
+				ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */,
+				ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */,
+			);
+			path = WordViewExercise;
+			sourceTree = "<group>";
+		};
 		ECDEECF126CE29B600EB2F53 /* ExercisesFlow */ = {
 			isa = PBXGroup;
 			children = (
 				ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */,
+				ECDAF0EB26CF76600020582E /* WordViewExercise */,
 			);
 			path = ExercisesFlow;
 			sourceTree = "<group>";
@@ -635,6 +649,7 @@
 				EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
+				ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */,
 				EC0DBF0A25F0B92500CBED4D /* RegistrationViewController.swift in Sources */,
 				EC0DBED725F0B92500CBED4D /* NewWordInteractor.swift in Sources */,
 				EC0DBF0C25F0B92500CBED4D /* StartPresenter.swift in Sources */,
@@ -648,6 +663,7 @@
 				EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */,
 				EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */,
 				EC0DBF1225F0B92500CBED4D /* LexickonStateInteractorProtocol.swift in Sources */,
+				ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */,
 				EC0B20CB2671E55A00881DDD /* WordCardPresenter.swift in Sources */,
 				EC0DBEFF25F0B92500CBED4D /* ProfileInteractor.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
