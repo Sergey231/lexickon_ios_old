@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "LexickonApi",
-        "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
-        "state": {
-          "branch": null,
-          "revision": "4a2ceb185793c86b05a70df19fbce81bd65eef9e",
-          "version": "0.8.5"
-        }
-      },
-      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {
@@ -51,8 +42,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxFlow.git",
         "state": {
           "branch": null,
-          "revision": "e85a54421b79ba9873704169c4611cc41383d772",
-          "version": "2.12.2"
+          "revision": "8114d4781b9c5de693ed225cfb28ca3b695b023a",
+          "version": "2.12.4"
         }
       },
       {

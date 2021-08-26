@@ -18,7 +18,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.1.0"),
+        .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.2.0"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.0.1")
     ],
     targets: [

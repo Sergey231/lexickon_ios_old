@@ -20,7 +20,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.1.0"),
+        .package(url: "https://github.com/ReactiveX/RxSwift", from: "6.2.0"),
         .package(url: "https://github.com/Sergey231/LexickonApi.git", from: "0.5.9"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .revision("c244d3275ab5d88c3355c907acd9be687feccb50"))
     ],

@@ -49,17 +49,16 @@
 		EC443D3A26A2A6BA0004E854 /* LXUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC443D3926A2A6BA0004E854 /* LXUIKit */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
+		EC86B86326D54BCE00D0DB37 /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC86B86226D54BCE00D0DB37 /* LexickonApi */; };
 		EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8880A426AA7FDB00C2294F /* UserEntity.swift */; };
 		ECA1695B25B038F100F2F19B /* KeychainRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECA1695A25B038F100F2F19B /* KeychainRepository */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
-		ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = ECAC1D60255A848D008B0ECC /* LexickonApi */; };
 		ECAF5063257E663300F021EA /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF5062257E663300F021EA /* Utils */; };
 		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
-		ECC15EEC2416220F00149AC9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA693925CEA19E005E07D5 /* WordsRepository */; };
 		ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */; };
 		ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */; };
@@ -160,10 +159,10 @@
 				ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */,
 				ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */,
 				EC3F44552520BF26004706DC /* RxRelay in Frameworks */,
-				ECC15EEC2416220F00149AC9 /* (null) in Frameworks */,
 				ECEA376A25C2FF8A00D6C6DC /* Lottie in Frameworks */,
 				ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */,
 				ECEF16E625B01B6D00A7ABC9 /* ConfigsRepository in Frameworks */,
+				EC86B86326D54BCE00D0DB37 /* LexickonApi in Frameworks */,
 				EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */,
 				EC3F44532520BF26004706DC /* RxSwift in Frameworks */,
 				EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */,
@@ -175,7 +174,6 @@
 				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
 				ECFB46BA267E3148004B5A6F /* LexickonStateEntity in Frameworks */,
 				EC3750F225B195030090F95F /* Assets in Frameworks */,
-				ECAC1D61255A848D008B0ECC /* LexickonApi in Frameworks */,
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
 				EC3F44592520BF26004706DC /* RxBlocking in Frameworks */,
 				ECA1695B25B038F100F2F19B /* KeychainRepository in Frameworks */,
@@ -521,7 +519,6 @@
 				EC31385A2535D4D4007FFCB0 /* RxExtensions */,
 				EC3C3859254FED4D008D1D3C /* RxDataSources */,
 				EC3C385B254FED4D008D1D3C /* Differentiator */,
-				ECAC1D60255A848D008B0ECC /* LexickonApi */,
 				ECAF5062257E663300F021EA /* Utils */,
 				EC7B6FA325861A1500EB1D28 /* SnapKit */,
 				ECB50D3A259075B9003B9A68 /* Resolver */,
@@ -537,6 +534,7 @@
 				ECFE3F3F2650F42D00C1440A /* AuthTokenRepository */,
 				ECFB46B9267E3148004B5A6F /* LexickonStateEntity */,
 				EC443D3926A2A6BA0004E854 /* LXUIKit */,
+				EC86B86226D54BCE00D0DB37 /* LexickonApi */,
 			);
 			productName = lexickon_ios;
 			productReference = EC4278D522D070E5001218AB /* lexickon_ios.app */;
@@ -594,10 +592,10 @@
 				EC3F44512520BF26004706DC /* XCRemoteSwiftPackageReference "RxSwift" */,
 				EC7330DD2541D9AC000B1EDD /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				EC3C3858254FED4D008D1D3C /* XCRemoteSwiftPackageReference "RxDataSources" */,
-				ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */,
 				EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */,
 				ECEA376825C2FF8A00D6C6DC /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				EC86B86126D54BCE00D0DB37 /* XCRemoteSwiftPackageReference "LexickonApi" */,
 			);
 			productRefGroup = EC4278D622D070E5001218AB /* Products */;
 			projectDirPath = "";
@@ -813,6 +811,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = lexickon_ios/Resources;
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
@@ -825,6 +824,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sergey.lexickon-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -834,6 +834,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = lexickon_ios/Resources;
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
@@ -846,6 +847,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "sergey.lexickon-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -937,7 +939,7 @@
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.0;
+				minimumVersion = 6.2.0;
 			};
 		};
 		EC407EDD237C3B8400A3FD42 /* XCRemoteSwiftPackageReference "Validator" */ = {
@@ -964,12 +966,12 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
+		EC86B86126D54BCE00D0DB37 /* XCRemoteSwiftPackageReference "LexickonApi" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Sergey231/LexickonApi.git";
+			repositoryURL = "https://github.com/Sergey231/LexickonApi";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.8.5;
+				minimumVersion = 0.8.7;
 			};
 		};
 		ECB50D39259075B9003B9A68 /* XCRemoteSwiftPackageReference "Resolver" */ = {
@@ -985,7 +987,7 @@
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxFlow.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.12.1;
+				minimumVersion = 2.12.4;
 			};
 		};
 		ECEA376825C2FF8A00D6C6DC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
@@ -1055,14 +1057,14 @@
 			package = EC7B6FA225861A1500EB1D28 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
+		EC86B86226D54BCE00D0DB37 /* LexickonApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EC86B86126D54BCE00D0DB37 /* XCRemoteSwiftPackageReference "LexickonApi" */;
+			productName = LexickonApi;
+		};
 		ECA1695A25B038F100F2F19B /* KeychainRepository */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = KeychainRepository;
-		};
-		ECAC1D60255A848D008B0ECC /* LexickonApi */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ECAC1D5F255A848D008B0ECC /* XCRemoteSwiftPackageReference "LexickonApi" */;
-			productName = LexickonApi;
 		};
 		ECAF5062257E663300F021EA /* Utils */ = {
 			isa = XCSwiftPackageProductDependency;
