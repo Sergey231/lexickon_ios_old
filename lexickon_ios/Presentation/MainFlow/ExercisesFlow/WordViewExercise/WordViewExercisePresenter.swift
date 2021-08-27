@@ -6,4 +6,23 @@
 //  Copyright © 2021 Sergey Borovikov. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
+import Resolver
+import LXUIKit
+
+final class WordViewExercisePresenter {
+    
+    struct Input {
+        
+    }
+    
+    struct Output {
+      
+    }
+    
+    func configure(input: Input) -> Output {
+        
+        return Output()
+    }
+}

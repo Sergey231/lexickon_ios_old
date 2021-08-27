@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "LexickonApi",
+        "repositoryURL": "https://github.com/Sergey231/LexickonApi",
+        "state": {
+          "branch": null,
+          "revision": "051d6bcb83cfd095846ff7a5b7d0ff5b05daee43",
+          "version": "0.8.9"
+        }
+      },
+      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {

@@ -78,7 +78,7 @@ public final class ProfileIconView: UIView {
         removeAvaButton.setup {
             $0.layer.cornerRadius = UIConstants.buttonSize/2
             $0.backgroundColor = Colors.mainBG.color
-            $0.setImage(Images.Profile.closeIcon.image, for: .normal)
+            $0.setImage(Images.closeIcon.image, for: .normal)
             $0.alpha = 0
             addSubview($0)
             $0.snp.makeConstraints {

@@ -20,6 +20,7 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum Images {
   public static let backArrow = ImageAsset(name: "BackArrow")
+  public static let closeIcon = ImageAsset(name: "CloseIcon")
   public static let imageLogo = ImageAsset(name: "ImageLogo")
   public static let logoWithoutEyes = ImageAsset(name: "LogoWithoutEyes")
   public static let textLogo = ImageAsset(name: "TextLogo")
@@ -31,7 +32,6 @@ public enum Images {
   public static let splash = ImageAsset(name: "splash")
   public static let newWordIcon = ImageAsset(name: "NewWordIcon")
   public enum Profile {
-    public static let closeIcon = ImageAsset(name: "Profile/CloseIcon")
     public static let colorBoxIcon = ImageAsset(name: "Profile/ColorBoxIcon")
     public static let editIcon = ImageAsset(name: "Profile/EditIcon")
     public static let exWithBadge = ImageAsset(name: "Profile/ExWithBadge")
