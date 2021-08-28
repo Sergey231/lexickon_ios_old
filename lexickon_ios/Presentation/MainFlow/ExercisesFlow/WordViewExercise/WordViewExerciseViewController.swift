@@ -80,6 +80,12 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private func configureUI() {
         view.backgroundColor = .gray
+        
+        closeButton.rx.tap
+            .asSignal()
+            .map { ExercisesStep.home(animated: true) }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
 }
 
