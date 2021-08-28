@@ -55,10 +55,9 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         configureUI()
     }
     
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            steps.accept(ProfileStep.addWord)
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     //MARK: Create UI

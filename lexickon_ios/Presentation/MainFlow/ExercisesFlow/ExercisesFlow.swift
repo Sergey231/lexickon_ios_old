@@ -36,7 +36,11 @@ class ExercisesFlow: Flow {
     }
     
     func navigate(to step: Step) -> FlowContributors {
-        guard let step = step as? ExercisesStep else { return .none }
+        guard
+            let step = step as? ExercisesStep
+        else {
+            return .none
+        }
         
         switch step {
         case .wordViewExercise:
@@ -57,17 +61,11 @@ class ExercisesFlow: Flow {
         }
         
         navigationController.setViewControllers([vc], animated: true)
-        navigationController.setNavigationBarHidden(false, animated: false)
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
-        let vc: HomeViewController = Resolver.resolve()
-        let navigationController = (root as! UINavigationController)
-        navigationController.setViewControllers([vc], animated: animated)
-        navigationController.navigationBar.isHidden = true
-        navigationController.delegate = vc
-        return .one(flowContributor: .contribute(withNext: vc))
+        .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
     }
     
     private func navigateToLobby() -> FlowContributors {

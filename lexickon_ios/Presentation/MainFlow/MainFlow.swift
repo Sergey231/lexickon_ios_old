@@ -38,7 +38,11 @@ class MainFlow: Flow {
     }
     
     func navigate(to step: Step) -> FlowContributors {
-        guard let step = step as? MainStep else { return .none }
+        guard
+            let step = step as? MainStep
+        else {
+            return .none
+        }
         
         switch step {
             
@@ -62,6 +66,7 @@ class MainFlow: Flow {
         let navigationController = (root as! UINavigationController)
         navigationController.setViewControllers([vc], animated: animated)
         navigationController.navigationBar.isHidden = true
+        navigationController.setNavigationBarHidden(true, animated: false)
         navigationController.delegate = vc
         return .one(flowContributor: .contribute(withNext: vc))
     }
@@ -103,6 +108,8 @@ class MainFlow: Flow {
     
     private func navigationToExercises() -> FlowContributors {
         let exercisesFlow = ExercisesFlow(with: rootViewController)
+        let navigationController = (root as! UINavigationController)
+        navigationController.navigationBar.isHidden = false
         return .one(flowContributor: .contribute(
             withNextPresentable: exercisesFlow,
             withNextStepper: OneStepper(withSingleStep: ExercisesStep.wordViewExercise)
