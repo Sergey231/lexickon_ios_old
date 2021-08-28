@@ -55,17 +55,23 @@ class ExercisesFlow: Flow {
     private func navigateToExercise() -> FlowContributors {
         let vc: WordViewExerciseViewController = Resolver.resolve()
         guard
-            let navigationController = root as? UINavigationController
+            let nv = root as? UINavigationController
         else {
             return .none
         }
         
-        navigationController.setViewControllers([vc], animated: true)
+        nv.pushViewController(vc, animated: true)
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
-        .end(forwardToParentFlowWithStep: MainStep.home(animated: true))
+        guard
+            let nv = root as? UINavigationController
+        else {
+            return .none
+        }
+        nv.popToRootViewController(animated: true)
+        return .end(forwardToParentFlowWithStep: MainStep.home(animated: false))
     }
     
     private func navigateToLobby() -> FlowContributors {

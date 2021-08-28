@@ -58,6 +58,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.setHidesBackButton(true, animated: false)
     }
     
     //MARK: Create UI
