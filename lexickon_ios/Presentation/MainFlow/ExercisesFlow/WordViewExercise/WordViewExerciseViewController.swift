@@ -79,7 +79,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     //MARK: Configure UI
     
     private func configureUI() {
-        
+        view.backgroundColor = .gray
     }
 }
 

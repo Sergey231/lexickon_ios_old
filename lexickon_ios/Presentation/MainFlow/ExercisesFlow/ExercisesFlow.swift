@@ -14,6 +14,7 @@ import Resolver
 import WordsRepository
 
 enum ExercisesStep: Step {
+    case wordViewExercise
     case home(animated: Bool)
     case lobby
 }
@@ -38,12 +39,26 @@ class ExercisesFlow: Flow {
         guard let step = step as? ExercisesStep else { return .none }
         
         switch step {
-            
+        case .wordViewExercise:
+            return navigateToExercise()
         case .home(let animated):
             return navigateToHome(animated: animated)
         case .lobby:
             return navigateToLobby()
         }
+    }
+    
+    private func navigateToExercise() -> FlowContributors {
+        let vc: WordViewExerciseViewController = Resolver.resolve()
+        guard
+            let navigationController = root as? UINavigationController
+        else {
+            return .none
+        }
+        
+        navigationController.setViewControllers([vc], animated: true)
+        navigationController.navigationBar.isHidden = true
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
@@ -56,13 +71,14 @@ class ExercisesFlow: Flow {
     }
     
     private func navigateToLobby() -> FlowContributors {
-        .none
+        return .none
     }
 }
 
 // MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerExercisesObjects() {
-        
+        register { WordViewExerciseViewController() }
+        register { WordViewExercisePresenter() }
     }
 }

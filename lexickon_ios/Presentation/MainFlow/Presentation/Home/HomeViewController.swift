@@ -260,12 +260,17 @@ final class HomeViewController: UIViewController, Stepper {
         let isWordsUpdating = refreshProgress
             .map { $0 > 0 }
             
-        _ = headerView.configure(
+        let headerViewOutput = headerView.configure(
             input: .init(
                 isWordsUpdating: isWordsUpdating,
                 lexickonState: presenterOutput.lexickonState
             )
         )
+        
+        headerViewOutput.didTap
+            .map { MainStep.exercises }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
            
         refreshView.configure(
             input: .init(animateActivity: presenterOutput.isWordsUpdating)

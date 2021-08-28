@@ -33,7 +33,7 @@ public final class HomeHeaderView: UIView {
     }
     
     public struct Output {
-        let didTap: Signal<Void>
+        public let didTap: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()

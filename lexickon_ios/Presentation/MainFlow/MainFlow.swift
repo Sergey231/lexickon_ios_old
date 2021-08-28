@@ -18,6 +18,7 @@ enum MainStep: Step {
     case addWord
     case authorization
     case wordCard(WordEntity)
+    case exercises
 }
 
 class MainFlow: Flow {
@@ -51,6 +52,8 @@ class MainFlow: Flow {
             return navigateToAuthorization()
         case .wordCard(let word):
             return navigateToWordCard(word: word)
+        case .exercises:
+            return navigationToExercises()
         }
     }
     
@@ -95,6 +98,14 @@ class MainFlow: Flow {
             withNextStepper: OneStepper(
                 withSingleStep: WordCardStep.word(word)
             )
+        ))
+    }
+    
+    private func navigationToExercises() -> FlowContributors {
+        let exercisesFlow = ExercisesFlow(with: rootViewController)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: exercisesFlow,
+            withNextStepper: OneStepper(withSingleStep: ExercisesStep.wordViewExercise)
         ))
     }
 }
