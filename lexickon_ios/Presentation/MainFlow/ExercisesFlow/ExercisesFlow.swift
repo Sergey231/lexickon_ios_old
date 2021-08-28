@@ -57,7 +57,7 @@ class ExercisesFlow: Flow {
         }
         
         navigationController.setViewControllers([vc], animated: true)
-        navigationController.navigationBar.isHidden = true
+        navigationController.setNavigationBarHidden(false, animated: false)
         return .one(flowContributor: .contribute(withNext: vc))
     }
     

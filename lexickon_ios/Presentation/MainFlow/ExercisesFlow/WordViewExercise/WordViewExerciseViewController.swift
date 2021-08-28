@@ -29,7 +29,8 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    private let closeButton = UIButton()
+    
+    private let titleView = ExercisesTitleView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -44,7 +45,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        .darkContent
     }
     
     override func viewDidLoad() {
@@ -63,29 +64,27 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     //MARK: Create UI
     
     private func createUI() {
-
-        closeButton.setup {
-            $0.setImage(Images.closeIcon.image, for: .normal)
-            $0.tintColor = .gray
-            view.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-                $0.size.equalTo(56)
-                $0.left.equalToSuperview()
-            }
+        
+        titleView.setup {
+            $0.frame = .init(
+                x: 0,
+                y: 0,
+                width: view.frame.width,
+                height: 44
+            )
+            navigationItem.titleView = $0
         }
     }
     
     //MARK: Configure UI
     
     private func configureUI() {
-        view.backgroundColor = .gray
         
-        closeButton.rx.tap
-            .asSignal()
+        let titleVIewOutput = titleView.configure(input: ExercisesTitleView.Input())
+        
+        titleVIewOutput.closeDidTap
             .map { ExercisesStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }
 }
-

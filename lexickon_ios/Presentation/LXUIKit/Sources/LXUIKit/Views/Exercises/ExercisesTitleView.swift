@@ -11,44 +11,23 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 import SnapKit
+import Assets
+import LBTATools
 
 public final class ExercisesTitleView: UIView {
     
     public struct Input {
-        
-        public init(
-            onIcon: UIImage,
-            offIcon: UIImage,
-            onColor: UIColor? = nil,
-            offColor: UIColor? = nil,
-            selected: Driver<Bool>? = nil,
-            animated: Bool = true
-        ) {
-            self.onIcon = onIcon
-            self.offIcon = offIcon
-            self.onColor = onColor
-            self.offColor = offColor
-            self.selected = selected
-            self.animated = animated
-        }
-        public let onIcon: UIImage
-        public let offIcon: UIImage
-        public let onColor: UIColor?
-        public let offColor: UIColor?
-        public let selected: Driver<Bool>?
-        public let animated: Bool
+        public init() {}
+    }
+    
+    public struct Output {
+        public let closeDidTap: Signal<Void>
     }
     
     private let disposeBag = DisposeBag()
     
-    private let button = UIButton()
-    private let iconImageView = UIImageView()
-    
-    private let onRelay = BehaviorRelay<Bool>(value: true)
-    
-    public var on: Driver<Bool> {
-        onRelay.asDriver()
-    }
+    private let closeButton = UIButton()
+    private let scaleView = UIView()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,53 +39,22 @@ public final class ExercisesTitleView: UIView {
     }
        
     private func createUI() {
-        iconImageView.setup {
-            $0.contentMode = .scaleAspectFit
-            addSubview($0)
-            $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-        }
-        button.setup {
-            addSubview($0)
-            $0.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
-        }
+        
+        closeButton.setImage(Images.closeIcon.image, for: .normal)
+        closeButton.tintColor = .gray
+        closeButton.backgroundColor = .red
+
+        let scaleViewWidth = UIScreen.main.bounds.width - (44 + 8 + 8)
+        scaleView.backgroundColor = .yellow
+        
+        hstack(
+            scaleView.withWidth(scaleViewWidth),
+            closeButton.withWidth(44)
+        )
     }
     
-    public func configure(input: Input) {
+    public func configure(input: Input) -> Output {
         
-        button.rx.tap
-            .withLatestFrom(onRelay.asObservable())
-            .map { !$0 }
-            .bind(to: onRelay)
-            .disposed(by: disposeBag)
-        
-        if input.animated {
-            onRelay
-                .map { $0 ? input.onIcon : input.offIcon }
-                .asDriver(onErrorDriveWith: .empty())
-                .drive(iconImageView.rx.imageWithAnimation)
-                .disposed(by: disposeBag)
-        } else {
-            onRelay
-                .map { $0 ? input.onIcon : input.offIcon }
-                .asDriver(onErrorDriveWith: .empty())
-                .drive(iconImageView.rx.image)
-                .disposed(by: disposeBag)
-        }
-        
-        onRelay
-            .map { $0 ? input.onColor : input.offColor }
-            .asDriver(onErrorDriveWith: .empty())
-            .drive(iconImageView.rx.tintColor)
-            .disposed(by: disposeBag)
-        
-        input
-            .selected?
-            .drive(onRelay)
-            .disposed(by: disposeBag)
+        return Output(closeDidTap: closeButton.rx.tap.asSignal())
     }
 }
-
