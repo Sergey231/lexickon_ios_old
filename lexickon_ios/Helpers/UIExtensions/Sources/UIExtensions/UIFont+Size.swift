@@ -14,6 +14,10 @@ extension UIFont {
         systemFont(ofSize: size, weight: .regular)
     }
     
+    public static var regular32: UIFont {
+        systemRegular(of: 32)
+    }
+    
     public static var regular24: UIFont {
         systemRegular(of: 24)
     }
