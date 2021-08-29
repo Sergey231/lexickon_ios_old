@@ -16,6 +16,7 @@ import UIExtensions
 import RxExtensions
 import Resolver
 import Assets
+import LBTATools
 
 class WordViewExerciseViewController: UIViewController, Stepper {
     
@@ -30,7 +31,10 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     private let disposeBag = DisposeBag()
     
     private let titleView = ExercisesTitleView()
+    private let wordStackView = UIView()
     private let studyWordLabel = UILabel()
+    private let translationLabel = UILabel()
+    private let button = UIButton()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -61,6 +65,19 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         navigationItem.setHidesBackButton(true, animated: false)
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            wordStackView.snp.updateConstraints {
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Margin.huge)
+            }
+            // Для того игнорирования стартовой анимации
+            if view.safeAreaInsets.top > 47 {
+                view.layoutIfNeeded()
+            }
+        }
+    }
+
     //MARK: Create UI
     
     private func createUI() {
@@ -75,16 +92,30 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             navigationItem.titleView = $0
         }
         
-        studyWordLabel.setup {
+        wordStackView.setup {
             view.addSubview($0)
-            $0.font = .regular24
-            $0.textAlignment = .center
             $0.snp.makeConstraints {
-                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Margin.regular)
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Margin.huge)
                 $0.left.equalToSuperview().offset(Margin.regular)
                 $0.right.equalToSuperview().offset(-Margin.regular)
             }
         }
+        
+        studyWordLabel.setup {
+            $0.font = .regular32
+            $0.textAlignment = .center
+        }
+        
+        translationLabel.setup {
+            $0.font = .regular24
+            $0.textAlignment = .center
+        }
+        
+        wordStackView.stack(
+            studyWordLabel,
+            translationLabel,
+            spacing: 50
+        )
     }
     
     //MARK: Configure UI
@@ -99,19 +130,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        studyWordLabel.text = "adfadsfadf"
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.studyWordLabel.snp.updateConstraints {
-                $0.top.equalTo(self?.view.safeAreaLayoutGuide.snp.top ?? 0).offset(Margin.regular)
-            }
-            // Для того игнорирования стартовой анимации
-            if self?.view.safeAreaInsets.top ?? 0 > 47 {
-                self?.view.layoutIfNeeded()
-            }
-        }
+        studyWordLabel.text = "Knife"
+        translationLabel.text = "Нож"
     }
 }
