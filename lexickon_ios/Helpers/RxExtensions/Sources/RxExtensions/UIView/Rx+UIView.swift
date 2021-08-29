@@ -50,4 +50,12 @@ public extension Reactive where Base: UIView {
             }
         }
     }
+    
+    var alphaSlowAnimated: Binder<CGFloat> {
+        Binder(base) { base, alpha in
+            UIView.animate(withDuration: 1) {
+                base.alpha = alpha
+            }
+        }
+    }
 }
