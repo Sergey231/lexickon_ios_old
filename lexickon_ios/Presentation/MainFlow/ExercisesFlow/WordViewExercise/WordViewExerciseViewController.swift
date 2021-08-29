@@ -109,6 +109,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         translationLabel.setup {
             $0.font = .regular24
             $0.textAlignment = .center
+            $0.alpha = 0
         }
         
         wordStackView.stack(
@@ -116,6 +117,15 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             translationLabel,
             spacing: 50
         )
+        
+        button.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.regular)
+            }
+        }
     }
     
     //MARK: Configure UI
@@ -132,5 +142,19 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         
         studyWordLabel.text = "Knife"
         translationLabel.text = "Нож"
+        
+        button.configureRoundedFilledStyle(
+            fillColor: Colors.mainBG.color,
+            titleColor: .white
+        )
+        button.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
+        button.setTitle("Далее", for: .normal)
+        
+        rx.viewDidAppear
+            .asDriver(onErrorDriveWith: .empty())
+            .map { 1 }
+            .drive(translationLabel.rx.alphaSlowAnimated)
+            .disposed(by: disposeBag)
     }
 }
