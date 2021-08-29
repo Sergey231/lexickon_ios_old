@@ -42,7 +42,6 @@ public final class ExercisesTitleView: UIView {
         
         closeButton.setImage(Images.closeIcon.image, for: .normal)
         closeButton.tintColor = .gray
-        closeButton.backgroundColor = .red
 
         let scaleViewWidth = UIScreen.main.bounds.width - (44 + 8 + 8)
         scaleView.backgroundColor = .yellow
