@@ -131,7 +131,7 @@ final class StartViewController: UIViewController, Stepper {
         
         let presenterOutput = presenter.configure(input: presenterInput)
         
-        beginButton.setRoundedFilledStyle(titleColor: Colors.mainBG.color)
+        beginButton.configureRoundedFilledStyle(titleColor: Colors.mainBG.color)
         iAmHaveAccountButton.setRoundedBorderedStyle(
             bgColor: Colors.mainBG.color,
             borderColor: Colors.mainBG.color,

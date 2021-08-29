@@ -200,7 +200,7 @@ final class LoginViewController: UIViewController, Stepper {
         CompositeDisposable(disposables: enumerableTextFieldDisposables)
             .disposed(by: disposeBag)
         
-        loginButton.setRoundedFilledStyle(titleColor: Colors.mainBG.color)
+        loginButton.configureRoundedFilledStyle(titleColor: Colors.mainBG.color)
         
         loginButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)

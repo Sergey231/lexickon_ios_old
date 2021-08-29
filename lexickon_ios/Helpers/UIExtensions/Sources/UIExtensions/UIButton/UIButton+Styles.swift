@@ -31,7 +31,7 @@ extension UIButton {
         setTitleColor(titleColor, for: .normal)
     }
     
-    public func setRoundedFilledStyle(
+    public func configureRoundedFilledStyle(
         fillColor: UIColor = .white,
         titleColor: UIColor = .gray
     ) {

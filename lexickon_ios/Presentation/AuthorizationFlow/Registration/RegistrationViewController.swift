@@ -251,7 +251,7 @@ final class RegistrationViewController: UIViewController, Stepper {
             .drive(msgLabel.rx.textWithAnimaiton)
             .disposed(by: disposeBag)
         
-        registrateButton.setRoundedFilledStyle(titleColor: Colors.mainBG.color)
+        registrateButton.configureRoundedFilledStyle(titleColor: Colors.mainBG.color)
         registrateButton.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
