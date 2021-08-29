@@ -29,8 +29,8 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    
     private let titleView = ExercisesTitleView()
+    private let studyWordLabel = UILabel()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -74,6 +74,17 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             )
             navigationItem.titleView = $0
         }
+        
+        studyWordLabel.setup {
+            view.addSubview($0)
+            $0.font = .regular24
+            $0.textAlignment = .center
+            $0.snp.makeConstraints {
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Margin.regular)
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.right.equalToSuperview().offset(-Margin.regular)
+            }
+        }
     }
     
     //MARK: Configure UI
@@ -81,10 +92,26 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     private func configureUI() {
         
         let titleVIewOutput = titleView.configure(input: ExercisesTitleView.Input())
+        navigationItem.largeTitleDisplayMode = .never
         
         titleVIewOutput.closeDidTap
             .map { ExercisesStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
+        
+        studyWordLabel.text = "adfadsfadf"
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.studyWordLabel.snp.updateConstraints {
+                $0.top.equalTo(self?.view.safeAreaLayoutGuide.snp.top ?? 0).offset(Margin.regular)
+            }
+            // Для того игнорирования стартовой анимации
+            if self?.view.safeAreaInsets.top ?? 0 > 47 {
+                self?.view.layoutIfNeeded()
+            }
+        }
     }
 }
