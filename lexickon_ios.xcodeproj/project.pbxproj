@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC08F05526DCAD0200790316 /* ExercisesInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */; };
 		EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20C52671E23600881DDD /* WordCordFlow.swift */; };
 		EC0B20C92671E3FE00881DDD /* WordCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */; };
 		EC0B20CB2671E55A00881DDD /* WordCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20CA2671E55A00881DDD /* WordCardPresenter.swift */; };
@@ -89,6 +90,7 @@
 
 /* Begin PBXFileReference section */
 		EC057D4C265CC60900056566 /* WordsStateRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WordsStateRepository; sourceTree = "<group>"; };
+		EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC0B20C52671E23600881DDD /* WordCordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCordFlow.swift; sourceTree = "<group>"; };
 		EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardViewController.swift; sourceTree = "<group>"; };
 		EC0B20CA2671E55A00881DDD /* WordCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardPresenter.swift; sourceTree = "<group>"; };
@@ -195,6 +197,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC08F05326DCACD900790316 /* ExercisesInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */,
+			);
+			path = ExercisesInteractor;
+			sourceTree = "<group>";
+		};
 		EC0B20C42671E1C900881DDD /* WordCardFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +359,7 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickoonStateInteractor */,
 				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
@@ -670,6 +681,7 @@
 				EC0DBEFF25F0B92500CBED4D /* ProfileInteractor.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */,
+				EC08F05526DCAD0200790316 /* ExercisesInteractorProtocol.swift in Sources */,
 				EC0DBF0F25F0B92500CBED4D /* MainFlow.swift in Sources */,
 				ECDEECF326CE2A3100EB2F53 /* ExercisesFlow.swift in Sources */,
 				EC0DBEC225F0B92500CBED4D /* NewWordFlow.swift in Sources */,
