@@ -46,6 +46,7 @@
 		EC3F44552520BF26004706DC /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44542520BF26004706DC /* RxRelay */; };
 		EC3F44572520BF26004706DC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44562520BF26004706DC /* RxCocoa */; };
 		EC3F44592520BF26004706DC /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44582520BF26004706DC /* RxBlocking */; };
+		EC3FCD0926DF822A00AF7C6E /* ExercisesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC40862526DA70F20096CD72 /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862426DA70F20096CD72 /* LexickonApi */; };
 		EC40862826DA71520096CD72 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862726DA71520096CD72 /* LBTATools */; };
@@ -122,6 +123,7 @@
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesInteractor.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC443D3826A2A6470004E854 /* LXUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LXUIKit; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */,
+				EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */,
 			);
 			path = ExercisesInteractor;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */,
 				EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */,
+				EC3FCD0926DF822A00AF7C6E /* ExercisesInteractor.swift in Sources */,
 				EC0DBF1225F0B92500CBED4D /* LexickonStateInteractorProtocol.swift in Sources */,
 				ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */,
 				EC0B20CB2671E55A00881DDD /* WordCardPresenter.swift in Sources */,
