@@ -14,4 +14,5 @@ protocol LexickonStateInteractorProtocol {
     func state() -> Single<LexickonStateEntity>
     func words(per: Int, page: Int) -> Single<LxPage<WordEntity>>
     func word(by id: String) -> Single<WordEntity>
+    func wordsForLearing(count: Int) -> Single<[WordEntity]>
 }

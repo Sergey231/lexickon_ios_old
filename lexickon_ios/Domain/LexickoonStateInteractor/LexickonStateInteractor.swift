@@ -47,4 +47,8 @@ public final class LexickonStateInteractor: LexickonStateInteractorProtocol {
         wordRepository.word(by: id)
             .map { WordEntity(withLxWordGet: $0) }
     }
+    
+    func wordsForLearing(count: Int) -> Single<[WordEntity]> {
+        .just([])
+    }
 }
