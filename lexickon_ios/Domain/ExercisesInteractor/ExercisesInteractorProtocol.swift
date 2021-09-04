@@ -16,5 +16,5 @@ public struct ExercisesSessionEntity {
 }
 
 public protocol ExercisesInteractorProtocol {
-    func getExercisesSession() -> Single<ExercisesSessionEntity>
+    func getExercisesSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity>
 }

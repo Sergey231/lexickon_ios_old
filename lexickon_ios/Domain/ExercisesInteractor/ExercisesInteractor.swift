@@ -13,7 +13,7 @@ import LexickonApi
 
 public class ExercisesInteractor: ExercisesInteractorProtocol {
     
-    public func getExercisesSession() -> Single<ExercisesSessionEntity> {
+    public func getExercisesSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity> {
         .error(LxHTTPObject.Error.unknown)
     }
 }
