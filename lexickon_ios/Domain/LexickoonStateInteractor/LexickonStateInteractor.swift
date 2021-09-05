@@ -49,6 +49,12 @@ public final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     }
     
     func wordsForLearing(count: Int) -> Single<[WordEntity]> {
-        .just([])
+        wordRepository.words(per: count, page: 1)
+            .map { page -> [WordEntity] in
+                page.items.compactMap {
+                    let word = WordEntity(withLxWordList: $0)
+                    return word.studyState != .waiting ? word : nil
+                }
+            }
     }
 }

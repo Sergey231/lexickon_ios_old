@@ -18,7 +18,7 @@ enum MainStep: Step {
     case addWord
     case authorization
     case wordCard(WordEntity)
-    case exercises
+    case exercises(withWords: [WordEntity])
 }
 
 class MainFlow: Flow {
@@ -56,8 +56,8 @@ class MainFlow: Flow {
             return navigateToAuthorization()
         case .wordCard(let word):
             return navigateToWordCard(word: word)
-        case .exercises:
-            return navigationToExercises()
+        case .exercises(let wordsForLearing):
+            return navigationToExercises(with: wordsForLearing)
         }
     }
     
@@ -106,7 +106,8 @@ class MainFlow: Flow {
         ))
     }
     
-    private func navigationToExercises() -> FlowContributors {
+    private func navigationToExercises(with wordsForLearning: [WordEntity]) -> FlowContributors {
+        print("words: \(wordsForLearning)")
         let exercisesFlow = ExercisesFlow(with: rootViewController)
         let navigationController = (root as! UINavigationController)
         navigationController.navigationBar.isHidden = false

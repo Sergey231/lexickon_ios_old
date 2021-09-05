@@ -21,9 +21,10 @@ typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWord
 
 final class HomePresenter {
     
-    @Injected var LexickonStateInteractor: LexickonStateInteractorProtocol
+    @Injected var lexickonStateInteractor: LexickonStateInteractorProtocol
     
     struct Input {
+        let startNewExercisesSession: Signal<Void>
         let refreshData: Signal<Void>
         let needLoadNextWordsPage: Signal<Void>
     }
@@ -38,6 +39,7 @@ final class HomePresenter {
         let wordsForLearn: Driver<[HomeWordCellModel]>
         let lexickonState: Driver<LexickonStateEntity.State>
         let wordTap: Signal<WordEntity>
+        let wordsForLearning: Signal<[WordEntity]>
         let disposables: CompositeDisposable
     }
     
@@ -71,7 +73,7 @@ final class HomePresenter {
             oneHoureTimer
         ) { _, _ in () }
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
-                self.LexickonStateInteractor.words(
+                lexickonStateInteractor.words(
                     per: 10,
                     page: 1
                 )
@@ -95,7 +97,7 @@ final class HomePresenter {
         let words = input.needLoadNextWordsPage
             .startWith(())
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
-                self.LexickonStateInteractor.words(
+                self.lexickonStateInteractor.words(
                     per: self.loadedWordsCount,
                     page: self.pagesCount
                 )
@@ -129,7 +131,7 @@ final class HomePresenter {
                         fireWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver(),
+                                isEditMode: isEditModeRelay.asDriver(),
                                 updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
@@ -137,7 +139,7 @@ final class HomePresenter {
                         readyWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver(),
+                                isEditMode: isEditModeRelay.asDriver(),
                                 updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
@@ -145,7 +147,7 @@ final class HomePresenter {
                         newWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver(),
+                                isEditMode: isEditModeRelay.asDriver(),
                                 updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
@@ -153,7 +155,7 @@ final class HomePresenter {
                         waitingWords.append(
                             HomeWordCellModel(
                                 wordEntity: $0,
-                                isEditMode: self.isEditModeRelay.asDriver(),
+                                isEditMode: isEditModeRelay.asDriver(),
                                 updateWordStudyProgresEvent: updateWordStudyProgresEvent
                             )
                         )
@@ -215,30 +217,30 @@ final class HomePresenter {
             }
         
         let isEditMode = wordSelectionStateDriver
-            .do(onNext: { wordModel in
+            .do(onNext: { [unowned self] wordModel in
                 if wordModel.wordSelectionState == .selected {
-                    self.selectedWordModels.append(wordModel)
+                    selectedWordModels.append(wordModel)
                 } else {
-                    _ = self.selectedWordModels.remove(where: { selectedWordModel -> Bool in
+                    _ = selectedWordModels.remove(where: { selectedWordModel -> Bool in
                         selectedWordModel == wordModel
                     })
                 }
             })
-            .map { [unowned self] _ -> Bool in !self.selectedWordModels.isEmpty }
+            .map { [unowned self] _ -> Bool in !selectedWordModels.isEmpty }
         
         let wordsForDelete = wordSelectionStateDriver
             .map { [unowned self] _ -> [HomeWordCellModel] in
-                self.selectedWordModels
+                selectedWordModels
             }
         
         let wordsForReset = wordSelectionStateDriver
             .map { [unowned self] _ -> [HomeWordCellModel] in
-                self.selectedWordModels.filter { $0.studyState.canBeReseted }
+                selectedWordModels.filter { $0.studyState.canBeReseted }
             }
         
         let wordsForLearn = wordSelectionStateDriver
             .map { [unowned self] _ -> [HomeWordCellModel] in
-                self.selectedWordModels.filter { $0.studyState.canBeLearnt }
+                selectedWordModels.filter { $0.studyState.canBeLearnt }
             }
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
@@ -247,6 +249,15 @@ final class HomePresenter {
             isEditMode,
             isEditModeRelay.asDriver()
         )
+        
+        let wordsForLearding = input.startNewExercisesSession
+            .flatMap { [unowned self] _ -> Signal<[WordEntity]> in
+                lexickonStateInteractor.wordsForLearing(count: 5)
+                    .asSignal { error in
+                        print("❌ \(error.localizedDescription)")
+                        return .just([])
+                    }
+            }
         
         let disposables = CompositeDisposable(disposables: [
             resetWordCellsSelectionDisposable,
@@ -263,6 +274,7 @@ final class HomePresenter {
             wordsForLearn: wordsForLearn,
             lexickonState: .just(LexickonStateEntity.State.hasFireWords),
             wordTap: wordTapSignal,
+            wordsForLearning: wordsForLearding,
             disposables: disposables
         )
     }

@@ -183,9 +183,11 @@ final class HomeViewController: UIViewController, Stepper {
     private func configureUI() {
         
         let refreshData = PublishRelay<Void>()
+        let didTapOnHeaderRelay = PublishRelay<Void>()
         
         let presenterOutput = presenter.configurate(
             input: .init(
+                startNewExercisesSession: didTapOnHeaderRelay.asSignal(),
                 refreshData: refreshData.asSignal(),
                 needLoadNextWordsPage: needToRefrash.asSignal()
             )
@@ -268,7 +270,11 @@ final class HomeViewController: UIViewController, Stepper {
         )
         
         headerViewOutput.didTap
-            .map { MainStep.exercises }
+            .emit(to: didTapOnHeaderRelay)
+            .disposed(by: disposeBag)
+        
+        presenterOutput.wordsForLearning
+            .map { MainStep.exercises(withWords: $0) }
             .emit(to: steps)
             .disposed(by: disposeBag)
            
