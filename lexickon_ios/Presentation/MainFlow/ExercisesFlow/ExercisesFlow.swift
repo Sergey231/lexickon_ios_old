@@ -15,7 +15,7 @@ import WordsRepository
 import LexickonStateEntity
 
 enum ExercisesStep: Step {
-    case startExerceses(words: [WordEntity])
+    case startExerceses
     case wordViewExercise
     case home(animated: Bool)
     case lobby
@@ -45,8 +45,8 @@ class ExercisesFlow: Flow {
         }
         
         switch step {
-        case .startExerceses(let words):
-            return navigateToStartExercises(words: words)
+        case .startExerceses:
+            return navigateToStartExercises()
         case .wordViewExercise:
             return navigateToViewExercise()
         case .home(let animated):
@@ -56,8 +56,16 @@ class ExercisesFlow: Flow {
         }
     }
     
-    private func navigateToStartExercises(words: [WordEntity]) -> FlowContributors {
-        .none
+    private func navigateToStartExercises() -> FlowContributors {
+        let vc: StartExercisesViewController = Resolver.resolve()
+        guard
+            let nv = root as? UINavigationController
+        else {
+            return .none
+        }
+        
+        nv.pushViewController(vc, animated: true)
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToViewExercise() -> FlowContributors {
@@ -90,6 +98,8 @@ class ExercisesFlow: Flow {
 // MARK: Registering all needed objects in the DI Container for this Flow
 extension Resolver {
     public static func registerExercisesObjects() {
+        register { StartExercisesViewController() }
+        register { StartExercisesPresenter() }
         register { WordViewExerciseViewController() }
         register { WordViewExercisePresenter() }
     }

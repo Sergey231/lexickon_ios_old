@@ -270,11 +270,7 @@ final class HomeViewController: UIViewController, Stepper {
         )
         
         headerViewOutput.didTap
-            .emit(to: didTapOnHeaderRelay)
-            .disposed(by: disposeBag)
-        
-        presenterOutput.wordsForLearning
-            .map { MainStep.exercises(withWords: $0) }
+            .map { MainStep.exercises }
             .emit(to: steps)
             .disposed(by: disposeBag)
            
