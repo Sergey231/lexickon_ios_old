@@ -12,8 +12,10 @@ import UIKit
 import RxFlow
 import Resolver
 import WordsRepository
+import LexickonStateEntity
 
 enum ExercisesStep: Step {
+    case startExerceses(words: [WordEntity])
     case wordViewExercise
     case home(animated: Bool)
     case lobby
@@ -43,6 +45,8 @@ class ExercisesFlow: Flow {
         }
         
         switch step {
+        case .startExerceses(let words):
+            return navigateToStartExercises(words: words)
         case .wordViewExercise:
             return navigateToExercise()
         case .home(let animated):
@@ -50,6 +54,10 @@ class ExercisesFlow: Flow {
         case .lobby:
             return navigateToLobby()
         }
+    }
+    
+    private func navigateToStartExercises(words: [WordEntity]) -> FlowContributors {
+        .none
     }
     
     private func navigateToExercise() -> FlowContributors {
