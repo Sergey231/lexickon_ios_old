@@ -48,7 +48,7 @@ class ExercisesFlow: Flow {
         case .startExerceses(let words):
             return navigateToStartExercises(words: words)
         case .wordViewExercise:
-            return navigateToExercise()
+            return navigateToViewExercise()
         case .home(let animated):
             return navigateToHome(animated: animated)
         case .lobby:
@@ -60,7 +60,7 @@ class ExercisesFlow: Flow {
         .none
     }
     
-    private func navigateToExercise() -> FlowContributors {
+    private func navigateToViewExercise() -> FlowContributors {
         let vc: WordViewExerciseViewController = Resolver.resolve()
         guard
             let nv = root as? UINavigationController
