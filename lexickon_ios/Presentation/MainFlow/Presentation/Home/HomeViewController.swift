@@ -183,11 +183,9 @@ final class HomeViewController: UIViewController, Stepper {
     private func configureUI() {
         
         let refreshData = PublishRelay<Void>()
-        let didTapOnHeaderRelay = PublishRelay<Void>()
         
         let presenterOutput = presenter.configurate(
             input: .init(
-                startNewExercisesSession: didTapOnHeaderRelay.asSignal(),
                 refreshData: refreshData.asSignal(),
                 needLoadNextWordsPage: needToRefrash.asSignal()
             )

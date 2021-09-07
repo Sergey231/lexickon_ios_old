@@ -25,6 +25,14 @@ final class StartExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
+        let wordsForExerceses = lexickonStateInteractor.wordsForLearing(count: 5)
+            .asSignal { error in
+                print("❌ \(error.localizedDescription)")
+                return .just([])
+            }
+        
+        _ = wordsForExerceses.debug("👨🏻").emit()
+        
         return Output()
     }
 }

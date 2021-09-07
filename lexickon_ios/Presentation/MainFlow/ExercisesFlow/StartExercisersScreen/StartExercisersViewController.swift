@@ -69,7 +69,7 @@ class StartExercisesViewController: UIViewController, Stepper {
     
     //MARK: Configure UI
     private func configureUI() {
-        
+        _ = presenter.configure(input: .init())
     }
 }
 

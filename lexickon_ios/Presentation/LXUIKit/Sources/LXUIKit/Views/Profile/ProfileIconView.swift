@@ -108,7 +108,6 @@ public final class ProfileIconView: UIView {
             .disposed(by: disposeBag)
         
         input.isEditMode
-            .debug("👨🏻")
             .drive(rx.isEditMode)
             .disposed(by: disposeBag)
         

@@ -24,7 +24,6 @@ final class HomePresenter {
     @Injected var lexickonStateInteractor: LexickonStateInteractorProtocol
     
     struct Input {
-        let startNewExercisesSession: Signal<Void>
         let refreshData: Signal<Void>
         let needLoadNextWordsPage: Signal<Void>
     }
@@ -39,7 +38,6 @@ final class HomePresenter {
         let wordsForLearn: Driver<[HomeWordCellModel]>
         let lexickonState: Driver<LexickonStateEntity.State>
         let wordTap: Signal<WordEntity>
-        let wordsForLearning: Signal<[WordEntity]>
         let disposables: CompositeDisposable
     }
     
@@ -250,15 +248,6 @@ final class HomePresenter {
             isEditModeRelay.asDriver()
         )
         
-        let wordsForLearding = input.startNewExercisesSession
-            .flatMap { [unowned self] _ -> Signal<[WordEntity]> in
-                lexickonStateInteractor.wordsForLearing(count: 5)
-                    .asSignal { error in
-                        print("❌ \(error.localizedDescription)")
-                        return .just([])
-                    }
-            }
-        
         let disposables = CompositeDisposable(disposables: [
             resetWordCellsSelectionDisposable,
             refreshDataResetSelectionStateDisposable
@@ -274,7 +263,6 @@ final class HomePresenter {
             wordsForLearn: wordsForLearn,
             lexickonState: .just(LexickonStateEntity.State.hasFireWords),
             wordTap: wordTapSignal,
-            wordsForLearning: wordsForLearding,
             disposables: disposables
         )
     }
