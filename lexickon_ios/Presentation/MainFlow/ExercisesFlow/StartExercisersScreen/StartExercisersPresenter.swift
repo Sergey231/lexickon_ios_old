@@ -13,12 +13,14 @@ import LXUIKit
 
 final class StartExercisesPresenter {
     
+    @Injected private var lexickonStateInteractor: LexickonStateInteractorProtocol
+    
     struct Input {
         
     }
     
     struct Output {
-      
+        
     }
     
     func configure(input: Input) -> Output {

@@ -26,7 +26,7 @@ class StartExercisesViewController: UIViewController, Stepper {
     
     let steps = PublishRelay<Step>()
     
-    @Injected var presenter: StartExercisesPresenter
+    @Injected private var presenter: StartExercisesPresenter
     
     private let disposeBag = DisposeBag()
     
