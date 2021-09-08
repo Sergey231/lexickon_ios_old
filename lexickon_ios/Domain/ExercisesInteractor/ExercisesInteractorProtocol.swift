@@ -10,9 +10,13 @@ import Foundation
 import LexickonStateEntity
 import RxSwift
 
+public enum ExerciseEntity {
+    case wordView
+}
+
 public struct ExercisesSessionEntity {
     public let words: [WordEntity]
-//    public let exercises: [ExerciseEntity]
+    public let exercises: [ExerciseEntity]
 }
 
 public protocol ExercisesInteractorProtocol {

@@ -14,6 +14,10 @@ import LexickonApi
 public class ExercisesInteractor: ExercisesInteractorProtocol {
     
     public func getExercisesSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity> {
-        .error(LxHTTPObject.Error.unknown)
+        let exercisesSessionEntity = ExercisesSessionEntity(
+            words: words,
+            exercises: [.wordView]
+        )
+        return .just(exercisesSessionEntity)
     }
 }
