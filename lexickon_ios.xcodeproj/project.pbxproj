@@ -60,6 +60,7 @@
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAF5063257E663300F021EA /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = ECAF5062257E663300F021EA /* Utils */; };
 		ECB50D3B259075B9003B9A68 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = ECB50D3A259075B9003B9A68 /* Resolver */; };
+		ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBAB3D326E9E2970083C513 /* ExercisesSessionEntity.swift */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
 		ECDA693A25CEA19E005E07D5 /* WordsRepository in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA693925CEA19E005E07D5 /* WordsRepository */; };
@@ -140,6 +141,7 @@
 		ECB50D2D258F45FB003B9A68 /* Utils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils; sourceTree = "<group>"; };
 		ECB50D2E258F4608003B9A68 /* UIExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UIExtensions; sourceTree = "<group>"; };
 		ECB50D2F258F460B003B9A68 /* RxExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RxExtensions; sourceTree = "<group>"; };
+		ECBAB3D326E9E2970083C513 /* ExercisesSessionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesSessionEntity.swift; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		ECDA692E25CE9EC8005E07D5 /* KeychainRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KeychainRepository; sourceTree = "<group>"; };
 		ECDA692F25CE9EC8005E07D5 /* ApiRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ApiRepository; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */,
 				EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */,
+				ECBAB3D326E9E2970083C513 /* ExercisesSessionEntity.swift */,
 			);
 			path = ExercisesInteractor;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
 				EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */,
 				EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */,
+				ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */,
 				EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */,
 				ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */,
 				ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */,

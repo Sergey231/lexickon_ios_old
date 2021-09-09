@@ -14,11 +14,6 @@ public enum ExerciseEntity {
     case wordView
 }
 
-public struct ExercisesSessionEntity {
-    public let words: [WordEntity]
-    public let exercises: [ExerciseEntity]
-}
-
 public protocol ExercisesInteractorProtocol {
     func getExercisesSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity>
 }
