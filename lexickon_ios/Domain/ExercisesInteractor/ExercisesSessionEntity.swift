@@ -8,15 +8,19 @@
 
 import LexickonStateEntity
 
+public struct SesstionWordEntity {
+    
+}
+
 public struct ExercisesSessionEntity {
     
-    private var currentWord: WordEntity? = nil
+    private var currentWord: SesstionWordEntity? = nil
     private var currentExercises: ExerciseEntity = .wordView
     
-    public let words: [WordEntity]
+    public let words: [SesstionWordEntity]
     public let exercises: [ExerciseEntity]
     
-    public var currentState: (WordEntity, ExerciseEntity)? {
+    public var currentState: (SesstionWordEntity, ExerciseEntity)? {
         guard
             let currentWord = self.currentWord
         else {
@@ -26,7 +30,7 @@ public struct ExercisesSessionEntity {
     }
     
     init(
-        words: [WordEntity],
+        words: [SesstionWordEntity],
         exercises: [ExerciseEntity]
     ) {
         self.words = words
