@@ -9,15 +9,33 @@
 import LexickonStateEntity
 
 public struct SesstionWordEntity {
+    public var word: WordEntity
+    let exercisesSet: [ExerciseEntity]
     
+    public var currentExercise: ExerciseEntity {
+        exercisesSet.first ?? .wordView
+    }
+    
+    public var difficultyRating: Int {
+        // Тут нужен будет не тривиальный алгоритм определения сложности слова, по колличеству букв, сложных букво сочитаный
+        10
+    }
+    
+    public init(
+        word: WordEntity,
+        exercisesSet: [ExerciseEntity]
+    ) {
+        self.word = word
+        self.exercisesSet = exercisesSet
+    }
 }
 
 public struct ExercisesSessionEntity {
     
     private var currentWord: SesstionWordEntity? = nil
-    private var currentExercises: ExerciseEntity = .wordView
+    private let words: [WordEntity]
     
-    public let words: [SesstionWordEntity]
+    public var sessionWords: [SesstionWordEntity] = []
     public let exercises: [ExerciseEntity]
     
     public var currentState: (SesstionWordEntity, ExerciseEntity)? {
@@ -26,11 +44,11 @@ public struct ExercisesSessionEntity {
         else {
             return nil
         }
-        return (currentWord, currentExercises)
+        return (currentWord, currentWord.currentExercise)
     }
     
     init(
-        words: [SesstionWordEntity],
+        words: [WordEntity],
         exercises: [ExerciseEntity]
     ) {
         self.words = words
