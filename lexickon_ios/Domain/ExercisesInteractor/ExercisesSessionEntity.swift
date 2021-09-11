@@ -10,10 +10,10 @@ import LexickonStateEntity
 
 public struct SesstionWordEntity {
     public var word: WordEntity
-    let exercisesSet: [ExerciseEntity]
+    private var exercises: [ExerciseEntity]
     
     public var currentExercise: ExerciseEntity {
-        exercisesSet.first ?? .wordView
+        exercises.first ?? .wordView
     }
     
     public var difficultyRating: Int {
@@ -23,35 +23,37 @@ public struct SesstionWordEntity {
     
     public init(
         word: WordEntity,
-        exercisesSet: [ExerciseEntity]
+        exercises: [ExerciseEntity]
     ) {
         self.word = word
-        self.exercisesSet = exercisesSet
+        self.exercises = exercises
     }
 }
 
-public struct ExercisesSessionEntity {
+public class ExercisesSessionEntity {
     
-    private var currentWord: SesstionWordEntity? = nil
-    private let words: [WordEntity]
-    
+    public var currentSessionWord: SesstionWordEntity? = nil
     public var sessionWords: [SesstionWordEntity] = []
-    public let exercises: [ExerciseEntity]
-    
-    public var currentState: (SesstionWordEntity, ExerciseEntity)? {
-        guard
-            let currentWord = self.currentWord
-        else {
-            return nil
-        }
-        return (currentWord, currentWord.currentExercise)
-    }
     
     init(
         words: [WordEntity],
         exercises: [ExerciseEntity]
     ) {
-        self.words = words
-        self.exercises = exercises
+        convertWordEntityToSesstionWord(
+            words: words,
+            exercises: exercises
+        )
+    }
+    
+    private func convertWordEntityToSesstionWord(
+        words: [WordEntity],
+        exercises: [ExerciseEntity]
+    ) {
+        sessionWords = words.map {
+            SesstionWordEntity(
+                word: $0,
+                exercises: exercises
+            )
+        }
     }
 }
