@@ -14,25 +14,33 @@ import LXUIKit
 final class StartExercisesPresenter {
     
     @Injected private var lexickonStateInteractor: LexickonStateInteractorProtocol
+    @Injected private var exercisesInteractor: ExercisesInteractorProtocol
     
     struct Input {
         
     }
     
     struct Output {
-        
+        let execisesSessionEntity: Signal<ExercisesSessionEntity>
     }
     
     func configure(input: Input) -> Output {
         
         let wordsForExerceses = lexickonStateInteractor.wordsForExercisesSession(count: 5)
             .asSignal { error in
-                print("❌ \(error.localizedDescription)")
+                print("❌ StartExercisesPresenter: \(error.localizedDescription)")
                 return .just([])
             }
         
-        _ = wordsForExerceses.debug("👨🏻").emit()
+        let execisesSessionEntity = wordsForExerceses
+            .flatMap { [unowned self] words -> Signal<ExercisesSessionEntity> in
+                exercisesInteractor.getExercisesSession(with: words)
+                    .asSignal { error in
+                        print("❌ StartExercisesPresenter: \(error.localizedDescription)")
+                        return .empty()
+                    }
+            }
         
-        return Output()
+        return Output(execisesSessionEntity: execisesSessionEntity)
     }
 }
