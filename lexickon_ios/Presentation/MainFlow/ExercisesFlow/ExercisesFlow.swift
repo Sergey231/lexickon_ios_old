@@ -102,5 +102,6 @@ extension Resolver {
         register { StartExercisesPresenter() }
         register { WordViewExerciseViewController() }
         register { WordViewExercisePresenter() }
+        register { ExercisesInteractor() as ExercisesInteractorProtocol }
     }
 }

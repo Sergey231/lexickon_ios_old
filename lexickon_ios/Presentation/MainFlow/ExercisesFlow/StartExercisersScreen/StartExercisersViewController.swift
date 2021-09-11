@@ -71,7 +71,9 @@ class StartExercisesViewController: UIViewController, Stepper {
     private func configureUI() {
         let presenterOutput = presenter.configure(input: .init())
         
-        presenterOutput.execisesSessionEntity.debug("👨🏻").emit()
+        presenterOutput.execisesSessionEntity.debug("👨🏻").emit(onNext: {
+            print($0.sessionWords)
+        })
     }
 }
 
