@@ -69,7 +69,9 @@ class StartExercisesViewController: UIViewController, Stepper {
     
     //MARK: Configure UI
     private func configureUI() {
-        _ = presenter.configure(input: .init())
+        let presenterOutput = presenter.configure(input: .init())
+        
+        presenterOutput.execisesSessionEntity.debug("👨🏻").emit()
     }
 }
 
