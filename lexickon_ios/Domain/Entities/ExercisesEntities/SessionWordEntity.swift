@@ -8,7 +8,7 @@
 
 import LexickonStateEntity
 
-public struct SesstionWordEntity {
+public class SesstionWordEntity {
     public var word: WordEntity
     private var exercises: [ExerciseEntity]
     
@@ -27,5 +27,9 @@ public struct SesstionWordEntity {
     ) {
         self.word = word
         self.exercises = exercises
+    }
+    
+    public func exerciseDidPass(_ exercise: ExerciseEntity) {
+        _ = exercises.remove { $0 == exercise }
     }
 }
