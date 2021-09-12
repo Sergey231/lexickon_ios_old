@@ -95,8 +95,9 @@ class StartExercisesViewController: UIViewController, Stepper {
     //MARK: Configure UI
     private func configureUI() {
         let presenterOutput = presenter.configure(input: .init())
-        presenterOutput.execisesSessionEntity.debug("👨🏻")
-            .emit(onNext: { [unowned self] in
+            
+        presenterOutput.execisesSessionEntity
+            .do(onNext: { [unowned self] in
                 print($0.sessionWords)
                 wordsForExercisesLabel.text = $0.sessionWords.reduce("", { result, sesstionWordEntity in
                     var result = result
@@ -104,6 +105,15 @@ class StartExercisesViewController: UIViewController, Stepper {
                     return result
                 })
             })
+            .compactMap { $0.currentSessionWord?.currentExercise ?? .wordView }
+            .throttle(RxTimeInterval.seconds(3))
+            .map {
+                switch $0 {
+                case .wordView:
+                    return ExercisesStep.wordViewExercise
+                }
+            }
+            .emit(to: steps)
             .disposed(by: disposeBag)
     }
 }
