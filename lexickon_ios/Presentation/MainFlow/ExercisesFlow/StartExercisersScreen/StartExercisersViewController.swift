@@ -30,6 +30,9 @@ class StartExercisesViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
+    private let activityView = UIActivityIndicatorView()
+    private let wordsForExercisesLabel = UILabel()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,16 +67,44 @@ class StartExercisesViewController: UIViewController, Stepper {
 
     //MARK: Create UI
     private func createUI() {
-        view.backgroundColor = .red
+        
+        activityView.setup {
+            $0.startAnimating()
+            $0.tintColor = .gray
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.center.equalToSuperview()
+            }
+        }
+        
+        wordsForExercisesLabel.setup {
+            $0.numberOfLines = 0
+            $0.textAlignment = .center
+            $0.textColor = .lightGray
+            $0.font = .regular24
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.left.equalToSuperview().offset(Margin.big)
+                $0.right.equalToSuperview().offset(-Margin.big)
+                $0.top.equalTo(activityView.snp.bottom).offset(Margin.regular)
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.huge)
+            }
+        }
     }
     
     //MARK: Configure UI
     private func configureUI() {
         let presenterOutput = presenter.configure(input: .init())
-        
-        presenterOutput.execisesSessionEntity.debug("👨🏻").emit(onNext: {
-            print($0.sessionWords)
-        })
+        presenterOutput.execisesSessionEntity.debug("👨🏻")
+            .emit(onNext: { [unowned self] in
+                print($0.sessionWords)
+                wordsForExercisesLabel.text = $0.sessionWords.reduce("", { result, sesstionWordEntity in
+                    var result = result
+                    result?.append("\n\(sesstionWordEntity.word.studyWord)")
+                    return result
+                })
+            })
+            .disposed(by: disposeBag)
     }
 }
 
