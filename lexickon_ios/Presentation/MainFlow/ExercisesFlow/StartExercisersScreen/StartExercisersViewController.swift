@@ -33,6 +33,8 @@ class StartExercisesViewController: UIViewController, Stepper {
     private let activityView = UIActivityIndicatorView()
     private let wordsForExercisesLabel = UILabel()
     
+    private let button = UIButton()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,7 +64,11 @@ class StartExercisesViewController: UIViewController, Stepper {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
+        button.setRoundedBorderedStyle(
+            bgColor: Colors.mainBG.color,
+            borderColor: Colors.mainBG.color,
+            titleColor: .white
+        )
     }
 
     //MARK: Create UI
@@ -73,7 +79,8 @@ class StartExercisesViewController: UIViewController, Stepper {
             $0.tintColor = .gray
             view.addSubview($0)
             $0.snp.makeConstraints {
-                $0.center.equalToSuperview()
+                $0.centerX.equalToSuperview()
+                $0.centerY.equalToSuperview().offset(UIScreen.main.bounds.height / -5)
             }
         }
         
@@ -90,29 +97,46 @@ class StartExercisesViewController: UIViewController, Stepper {
                 $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.huge)
             }
         }
+        
+        button.setup {
+            $0.setTitle("Закрепить слова", for: .normal)
+            $0.alpha = 0
+            view.addSubview($0)
+            button.snp.makeConstraints {
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+            }
+        }
     }
     
     //MARK: Configure UI
     private func configureUI() {
         let presenterOutput = presenter.configure(input: .init())
             
-        presenterOutput.execisesSessionEntity
-            .do(onNext: { [unowned self] in
-                print($0.sessionWords)
-                wordsForExercisesLabel.text = $0.sessionWords.reduce("", { result, sesstionWordEntity in
+        let execisesSessionEntity = presenterOutput.execisesSessionEntity
+            .map {
+                $0.sessionWords.reduce("", { result, sesstionWordEntity in
                     var result = result
-                    result?.append("\n\(sesstionWordEntity.word.studyWord)")
+                    result.append("\n\(sesstionWordEntity.word.studyWord)")
                     return result
                 })
-            })
-            .compactMap { $0.currentSessionWord?.currentExercise ?? .wordView }
-            .throttle(RxTimeInterval.seconds(3))
-            .map {
-                switch $0 {
-                case .wordView:
-                    return ExercisesStep.wordViewExercise
-                }
             }
+            .do(onCompleted: { [unowned self] in
+                activityView.stopAnimating()
+            })
+            
+        execisesSessionEntity
+            .emit(to: wordsForExercisesLabel.rx.textWithAnimaiton)
+            .disposed(by: disposeBag)
+        
+        execisesSessionEntity
+            .map { _ in 1 }
+            .emit(to: button.rx.alphaAnimated)
+            .disposed(by: disposeBag)
+        
+        button.rx.tap.asSignal()
+            .map { ExercisesStep.wordViewExercise }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }
