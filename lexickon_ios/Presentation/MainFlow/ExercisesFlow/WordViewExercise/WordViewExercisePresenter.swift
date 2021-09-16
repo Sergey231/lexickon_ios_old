@@ -14,7 +14,7 @@ import LXUIKit
 final class WordViewExercisePresenter {
     
     struct Input {
-        
+        let exerciseDidDone: Signal<Void>
     }
     
     struct Output {
@@ -22,6 +22,8 @@ final class WordViewExercisePresenter {
     }
     
     func configure(input: Input) -> Output {
+        
+        input.exerciseDidDone.debug("👨🏻").emit()
         
         return Output()
     }

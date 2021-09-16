@@ -156,5 +156,9 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             .map { 1 }
             .drive(translationLabel.rx.alphaSlowAnimated)
             .disposed(by: disposeBag)
+        
+        let presenterOutput = presenter.configure(
+            input: .init(exerciseDidDone: button.rx.tap.asSignal())
+        )
     }
 }
