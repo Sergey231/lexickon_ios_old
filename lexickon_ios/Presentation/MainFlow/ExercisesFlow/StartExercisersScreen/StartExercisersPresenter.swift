@@ -21,7 +21,7 @@ final class StartExercisesPresenter {
     }
     
     struct Output {
-        let execisesSessionEntity: Signal<ExercisesSessionEntity>
+        let execisesSessionCreated: Signal<ExercisesSessionEntity>
     }
     
     func configure(input: Input) -> Output {
@@ -34,13 +34,13 @@ final class StartExercisesPresenter {
         
         let execisesSessionEntity = wordsForExerceses
             .flatMap { [unowned self] words -> Signal<ExercisesSessionEntity> in
-                exercisesInteractor.getExercisesSession(with: words)
+                exercisesInteractor.createExerciseSession(with: words)
                     .asSignal { error in
                         print("❌ StartExercisesPresenter: \(error.localizedDescription)")
                         return .empty()
                     }
             }
         
-        return Output(execisesSessionEntity: execisesSessionEntity)
+        return Output(execisesSessionCreated: execisesSessionEntity)
     }
 }

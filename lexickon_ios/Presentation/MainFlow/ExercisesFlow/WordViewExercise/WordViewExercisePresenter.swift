@@ -13,6 +13,8 @@ import LXUIKit
 
 final class WordViewExercisePresenter {
     
+    @Injected var exercisesInteracor: ExercisesInteractorProtocol
+    
     struct Input {
         let exerciseDidDone: Signal<Void>
     }
@@ -23,7 +25,22 @@ final class WordViewExercisePresenter {
     
     func configure(input: Input) -> Output {
         
-        input.exerciseDidDone.debug("👨🏻").emit()
+        guard
+            let session = exercisesInteracor.currentSession,
+            let currentSessionWord = session.currentSessionWord
+        else {
+            print("👨🏻 ❌ With current Exercise Session is wrong!")
+            return Output()
+        }
+        
+        input.exerciseDidDone.debug("👨🏻")
+            .flatMap { _ -> Signal<ExercisesSessionEntity.ExerciseType> in
+                session.word(currentSessionWord, isPassedInExercise: .wordView)
+                    .asSignal(onErrorRecover: { error -> ExercisesSessionEntity.ExerciseType in
+                        print("👨🏻 ❌ With current Exercise Session is wrong!")
+                        return .none
+                    })
+            }
         
         return Output()
     }

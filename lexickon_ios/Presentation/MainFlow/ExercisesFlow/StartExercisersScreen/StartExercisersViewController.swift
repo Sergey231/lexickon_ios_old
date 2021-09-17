@@ -114,7 +114,7 @@ class StartExercisesViewController: UIViewController, Stepper {
     private func configureUI() {
         let presenterOutput = presenter.configure(input: .init())
             
-        let execisesSessionEntity = presenterOutput.execisesSessionEntity
+        let execisesSessionEntity = presenterOutput.execisesSessionCreated
             .map {
                 $0.sessionWords.reduce("", { result, sesstionWordEntity in
                     var result = result

@@ -13,7 +13,13 @@ import LexickonApi
 
 public class ExercisesInteractor: ExercisesInteractorProtocol {
     
-    public func getExercisesSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity> {
+    private var exerciseSession: ExercisesSessionEntity?
+    
+    public var currentSession: ExercisesSessionEntity? {
+        exerciseSession
+    }
+    
+    public func createExerciseSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity> {
         let exercisesSessionEntity = ExercisesSessionEntity(
             words: words,
             exercises: [.wordView]

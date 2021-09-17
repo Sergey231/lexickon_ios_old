@@ -10,10 +10,7 @@ import Foundation
 import LexickonStateEntity
 import RxSwift
 
-public enum ExerciseEntity {
-    case wordView
-}
-
 public protocol ExercisesInteractorProtocol {
-    func getExercisesSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity>
+    func createExerciseSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity>
+    var currentSession: ExercisesSessionEntity? { get }
 }
