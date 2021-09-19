@@ -20,7 +20,7 @@ final class WordViewExercisePresenter {
     }
     
     struct Output {
-      
+        let nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>
     }
     
     func configure(input: Input) -> Output {
@@ -30,10 +30,10 @@ final class WordViewExercisePresenter {
             let currentSessionWord = session.currentSessionWord
         else {
             print("👨🏻 ❌ With current Exercise Session is wrong!")
-            return Output()
+            return Output(nextExerciseType: .just(.none))
         }
         
-        input.exerciseDidDone.debug("👨🏻")
+        let nextExerciseType = input.exerciseDidDone.debug("👨🏻")
             .flatMap { _ -> Signal<ExercisesSessionEntity.ExerciseType> in
                 session.word(currentSessionWord, isPassedInExercise: .wordView)
                     .map { $0.exercise }
@@ -43,6 +43,6 @@ final class WordViewExercisePresenter {
                     })
             }
         
-        return Output()
+        return Output(nextExerciseType: nextExerciseType)
     }
 }
