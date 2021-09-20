@@ -160,5 +160,17 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         let presenterOutput = presenter.configure(
             input: .init(exerciseDidDone: button.rx.tap.asSignal())
         )
+        
+        presenterOutput.nextExerciseType
+            .map { nextExercise -> ExercisesStep in
+                switch nextExercise {
+                case .wordView:
+                    return ExercisesStep.wordViewExercise
+                case .none:
+                    return ExercisesStep.startExerceses
+                }
+            }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
 }
