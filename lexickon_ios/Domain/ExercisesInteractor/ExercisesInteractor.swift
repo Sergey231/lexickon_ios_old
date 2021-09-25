@@ -24,6 +24,7 @@ public class ExercisesInteractor: ExercisesInteractorProtocol {
             words: words,
             exercises: [.wordView]
         )
+        exerciseSession = exercisesSessionEntity
         return .just(exercisesSessionEntity)
     }
 }

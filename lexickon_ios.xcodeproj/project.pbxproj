@@ -36,7 +36,6 @@
 		EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEC025F0B92400CBED4D /* HomeViewController.swift */; };
 		EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEC125F0B92400CBED4D /* HomePresenter.swift */; };
 		EC1F9E2323E3478B0044EF9D /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC1F9E2223E3478B0044EF9D /* UIExtensions */; };
-		EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = EC31385A2535D4D4007FFCB0 /* RxExtensions */; };
 		EC35C2AB22DB506500785B3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */; };
 		EC3750EA25B18E320090F95F /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3750E925B18E320090F95F /* AppIcon.xcassets */; };
 		EC3750F225B195030090F95F /* Assets in Frameworks */ = {isa = PBXBuildFile; productRef = EC3750F125B195030090F95F /* Assets */; };
@@ -182,7 +181,6 @@
 				ECDCE5F825B41BE60018110F /* ApiRepository in Frameworks */,
 				EC443D3A26A2A6BA0004E854 /* LXUIKit in Frameworks */,
 				ECEF16EA25B01B6D00A7ABC9 /* KeyValueRepository in Frameworks */,
-				EC31385B2535D4D4007FFCB0 /* RxExtensions in Frameworks */,
 				ECFB46BA267E3148004B5A6F /* LexickonStateEntity in Frameworks */,
 				EC3750F225B195030090F95F /* Assets in Frameworks */,
 				EC3F44572520BF26004706DC /* RxCocoa in Frameworks */,
@@ -549,7 +547,6 @@
 				EC3F44542520BF26004706DC /* RxRelay */,
 				EC3F44562520BF26004706DC /* RxCocoa */,
 				EC3F44582520BF26004706DC /* RxBlocking */,
-				EC31385A2535D4D4007FFCB0 /* RxExtensions */,
 				EC3C3859254FED4D008D1D3C /* RxDataSources */,
 				EC3C385B254FED4D008D1D3C /* Differentiator */,
 				ECAF5062257E663300F021EA /* Utils */,
@@ -853,7 +850,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = lexickon_ios/Resources;
+				DEVELOPMENT_ASSET_PATHS = "lexickon_ios/Resources lexickon_ios/Helpers/RxExtensions";
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = lexickon_ios/Resources/Info.plist;
@@ -876,7 +873,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = lexickon_ios/Resources;
+				DEVELOPMENT_ASSET_PATHS = "lexickon_ios/Resources lexickon_ios/Helpers/RxExtensions";
 				DEVELOPMENT_TEAM = 6R8JR72J6T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = lexickon_ios/Resources/Info.plist;
@@ -1052,10 +1049,6 @@
 		EC1F9E2223E3478B0044EF9D /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIExtensions;
-		};
-		EC31385A2535D4D4007FFCB0 /* RxExtensions */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RxExtensions;
 		};
 		EC3750F125B195030090F95F /* Assets */ = {
 			isa = XCSwiftPackageProductDependency;

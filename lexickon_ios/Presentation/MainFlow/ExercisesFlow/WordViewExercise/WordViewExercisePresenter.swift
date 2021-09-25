@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Resolver
 import LXUIKit
+import LexickonStateEntity
 
 final class WordViewExercisePresenter {
     
@@ -21,6 +22,8 @@ final class WordViewExercisePresenter {
     
     struct Output {
         let nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>
+        let studyWord: String
+        let translation: String
     }
     
     func configure(input: Input) -> Output {
@@ -29,8 +32,8 @@ final class WordViewExercisePresenter {
             let session = exercisesInteracor.currentSession,
             let currentSessionWord = session.currentSessionWord
         else {
-            print("👨🏻 ❌ With current Exercise Session is wrong!")
-            return Output(nextExerciseType: .just(.none))
+            print("👨🏻 ❌ Current Exercise Session is wrong!")
+            return Output(nextExerciseType: .just(.none), studyWord: "", translation: "")
         }
         
         let nextExerciseType = input.exerciseDidDone.debug("👨🏻")
@@ -38,11 +41,15 @@ final class WordViewExercisePresenter {
                 session.word(currentSessionWord, isPassedInExercise: .wordView)
                     .map { item -> ExercisesSessionEntity.ExerciseType in item.exercise }
                     .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.ExerciseType> in
-                        print("👨🏻 ❌ With current Exercise Session is wrong!")
+                        print("👨🏻 ❌ Current Exercise Session is wrong!")
                         return .just(.none)
                     })
             }
         
-        return Output(nextExerciseType: nextExerciseType)
+        return Output(
+            nextExerciseType: nextExerciseType,
+            studyWord: currentSessionWord.word.studyWord,
+            translation: currentSessionWord.word.translates.first ?? ""
+        )
     }
 }

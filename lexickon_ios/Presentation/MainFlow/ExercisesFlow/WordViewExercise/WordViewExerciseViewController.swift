@@ -140,15 +140,15 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        studyWordLabel.text = "Knife"
-        translationLabel.text = "Нож"
         
         button.configureRoundedFilledStyle(
             fillColor: Colors.mainBG.color,
             titleColor: .white
         )
+        
         button.configureTapScaleAnimation()
             .disposed(by: disposeBag)
+        
         button.setTitle("Далее", for: .normal)
         
         rx.viewDidAppear
@@ -172,5 +172,8 @@ class WordViewExerciseViewController: UIViewController, Stepper {
             }
             .emit(to: steps)
             .disposed(by: disposeBag)
+        
+        studyWordLabel.text = presenterOutput.studyWord
+        translationLabel.text = presenterOutput.translation
     }
 }
