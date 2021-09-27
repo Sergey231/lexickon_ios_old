@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "ApiRepository",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v11),
         .iOS(.v13),
         .tvOS(.v13),
         .watchOS(.v6),
@@ -20,8 +20,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/Sergey231/LexickonApi.git", from: "0.5.9"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "4.5.1")
+        .package(url: "https://github.com/Sergey231/LexickonApi.git", from: "0.8.11"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .revision("c244d3275ab5d88c3355c907acd9be687feccb50"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
