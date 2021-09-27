@@ -12,9 +12,9 @@ import RxCocoa
 import LexickonApi
 import RxDataSources
 import Resolver
-import LXUIKit
+// import LXUIKit
 import RxExtensions
-import LexickonStateEntity
+// import LexickonStateEntity
 
 typealias HomeWordSectionModel = AnimatableSectionModel<String, HomeWordCellModel>
 typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWordSectionModel>

@@ -2,8 +2,8 @@
 import RxSwift
 import LexickonApi
 import Resolver
-import UserRepository
-import AuthTokenRepository
+// import UserRepository
+// import AuthTokenRepository
 
 final class AuthorizationInteractor {
     @Injected var authTokenRepository: AuthTokenRepositoryProtocol

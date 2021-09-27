@@ -9,9 +9,9 @@
 import RxSwift
 import LexickonApi
 import Resolver
-import ConfigsRepository
-import TranslationRepository
-import WordsRepository
+// import ConfigsRepository
+// import TranslationRepository
+// import WordsRepository
 
 final class NewWordInteractor: NewWordInteractorProtocol {
     

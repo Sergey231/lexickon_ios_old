@@ -11,8 +11,8 @@ import RxFlow
 import UIKit
 import RxFlow
 import Resolver
-import WordsRepository
-import LexickonStateEntity
+// import WordsRepository
+// import LexickonStateEntity
 
 enum ExercisesStep: Step {
     case startExerceses

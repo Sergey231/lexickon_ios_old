@@ -7,7 +7,7 @@
 //
 
 import RxSwift
-import TranslationRepository
+// import TranslationRepository
 
 protocol NewWordInteractorProtocol {
     func translate(_ text: String) -> Single<TranslationResultsDTO>

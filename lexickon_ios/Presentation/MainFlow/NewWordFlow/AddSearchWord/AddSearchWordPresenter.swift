@@ -10,9 +10,9 @@ import RxSwift
 import RxCocoa
 import Resolver
 import RxDataSources
-import LXUIKit
+// import LXUIKit
 import RxExtensions
-import TranslationRepository
+// import TranslationRepository
 import LexickonApi
 
 typealias TranslationsSection = SectionModel<String, TranslationCellModelEnum>

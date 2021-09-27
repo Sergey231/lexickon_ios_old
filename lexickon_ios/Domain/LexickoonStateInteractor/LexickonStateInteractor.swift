@@ -9,8 +9,8 @@
 import LexickonApi
 import RxSwift
 import Resolver
-import WordsRepository
-import LexickonStateEntity
+// import WordsRepository
+// import LexickonStateEntity
 
 public final class LexickonStateInteractor: LexickonStateInteractorProtocol {
     

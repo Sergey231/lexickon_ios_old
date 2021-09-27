@@ -9,7 +9,7 @@
 import RxCocoa
 import Resolver
 import LexickonApi
-import LexickonStateEntity
+// import LexickonStateEntity
 
 final class WordCardPresenter {
     

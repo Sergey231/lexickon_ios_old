@@ -9,8 +9,8 @@
 import RxSwift
 import RxCocoa
 import Resolver
-import LXUIKit
-import LexickonStateEntity
+// import LXUIKit
+// import LexickonStateEntity
 
 final class WordViewExercisePresenter {
     

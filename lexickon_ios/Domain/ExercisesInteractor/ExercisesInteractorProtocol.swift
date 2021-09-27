@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import LexickonStateEntity
+// import LexickonStateEntity
 import RxSwift
 
 public protocol ExercisesInteractorProtocol {

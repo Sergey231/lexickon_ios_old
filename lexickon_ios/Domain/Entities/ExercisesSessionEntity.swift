@@ -6,7 +6,7 @@
 //  Copyright © 2021 Sergey Borovikov. All rights reserved.
 //
 
-import LexickonStateEntity
+//// import LexickonStateEntity
 import RxSwift
 
 public class ExercisesSessionEntity {
