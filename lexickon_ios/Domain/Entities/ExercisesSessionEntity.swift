@@ -53,8 +53,7 @@ public class ExercisesSessionEntity {
         _ word: SessionWord,
         isPassedInExercise: ExerciseType
     ) -> Observable<NextSessionItem> {
-        
-        return .empty()
+        .empty()
     }
     
     public var currentSessionWord: SessionWord? {
