@@ -37,14 +37,14 @@ final class WordViewExercisePresenter {
         }
         
         let nextExerciseType = input.exerciseDidDone.debug("👨🏻")
-            .flatMap { _ -> Signal<ExercisesSessionEntity.ExerciseType> in
+            .map { _ -> ExercisesSessionEntity.ExerciseType in
                 session.word(currentSessionWord, isPassedInExercise: .wordView)
-                    .map { nextSessionItem -> ExercisesSessionEntity.ExerciseType in nextSessionItem.exercise }
-                    .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.ExerciseType> in
-                        print("👨🏻 ❌ Current Exercise Session is wrong!")
-                        return .just(.none)
-                    })
+                    .exercise
             }
+            .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.ExerciseType> in
+                print("👨🏻 ❌ Current Exercise Session is wrong!")
+                return .just(.none)
+            })
         
         return Output(
             nextExerciseType: nextExerciseType,

@@ -16,7 +16,7 @@ public class ExercisesSessionEntity {
         case none
     }
     
-    public class SessionWord {
+    public class SessionWord: Hashable {
         
         public var word: WordEntity
         public var notPassedExercises: [ExerciseType]
@@ -38,30 +38,63 @@ public class ExercisesSessionEntity {
             self.notPassedExercises = exercisesForThisSession
         }
         
-        public func exerciseDidPass(_ exercise: ExerciseType) {
+        fileprivate func exerciseDidPass(_ exercise: ExerciseType) {
             _ = notPassedExercises.remove { $0 == exercise }
+        }
+        
+        public static func == (
+            lhs: ExercisesSessionEntity.SessionWord,
+            rhs: ExercisesSessionEntity.SessionWord
+        ) -> Bool {
+            return lhs.word.studyWord == rhs.word.studyWord
+            && lhs.word.translates.first == rhs.word.translates.first
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(word.studyWord)
+            hasher.combine(word.translates.first)
         }
     }
 
     
     public struct NextSessionItem {
-        public let word: SessionWord
+        public let word: SessionWord?
         public let exercise: ExerciseType
     }
     
+    // Помечаем слово как прошедшее, конкретное упражнение и повышаем ему study rating
     public func word(
         _ word: SessionWord,
         isPassedInExercise: ExerciseType
-    ) -> Observable<NextSessionItem> {
-        .empty()
+    ) -> NextSessionItem {
+        word.exerciseDidPass(isPassedInExercise)
+        
+        // Удаляем слово из сесси, если все упражнения по этому слову пройдены
+        if word.notPassedExercises.count == 0 {
+            _ = sessionWords.remove {
+                $0 == word
+            }
+        }
+        
+        // Проверяем есть ли еще слова в сессии именно с этим видом упражнений
+        if let nextSessionWord = nextSessionWord(with: isPassedInExercise) {
+            return NextSessionItem(
+                word: nextSessionWord,
+                exercise: isPassedInExercise
+            )
+        }
+        
+        return NextSessionItem(word: nil, exercise: .none)
     }
     
     public var currentSessionWord: SessionWord? {
         sessionWords.last
     }
     
-    public var nextSessionWord: SessionWord? {
-        sessionWords.first
+    private func nextSessionWord(with exerciseType: ExerciseType = .wordView) -> SessionWord? {
+        sessionWords.first { sesstionWord in
+            sesstionWord.notPassedExercises.contains(exerciseType)
+        }
     }
     
     public var sessionWords: [SessionWord] = []
