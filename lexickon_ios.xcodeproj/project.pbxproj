@@ -807,7 +807,7 @@
 			children = (
 				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
-				EC0DBF2F25F0BA8600CBED4D /* LexickoonStateInteractor */,
+				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
 				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
 				EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */,
 				EC0DBF1C25F0B94400CBED4D /* NewWordInteractor */,
@@ -833,13 +833,13 @@
 			path = AuthorizationInteractor;
 			sourceTree = "<group>";
 		};
-		EC0DBF2F25F0BA8600CBED4D /* LexickoonStateInteractor */ = {
+		EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */ = {
 			isa = PBXGroup;
 			children = (
 				EC0DBEBD25F0B92400CBED4D /* LexickonStateInteractorProtocol.swift */,
 				EC0DBEBC25F0B92400CBED4D /* LexickonStateInteractor.swift */,
 			);
-			path = LexickoonStateInteractor;
+			path = LexickonStateInteractor;
 			sourceTree = "<group>";
 		};
 		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
