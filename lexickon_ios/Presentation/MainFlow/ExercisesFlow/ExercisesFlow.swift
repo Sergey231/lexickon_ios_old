@@ -18,7 +18,7 @@ enum ExercisesStep: Step {
     case startExerceses
     case wordViewExercise
     case home(animated: Bool)
-    case lobby
+    case result
 }
 
 class ExercisesFlow: Flow {
@@ -51,8 +51,8 @@ class ExercisesFlow: Flow {
             return navigateToViewExercise()
         case .home(let animated):
             return navigateToHome(animated: animated)
-        case .lobby:
-            return navigateToLobby()
+        case .result:
+            return navigateToResult()
         }
     }
     
@@ -90,8 +90,14 @@ class ExercisesFlow: Flow {
         return .end(forwardToParentFlowWithStep: MainStep.home(animated: false))
     }
     
-    private func navigateToLobby() -> FlowContributors {
-        return .none
+    private func navigateToResult() -> FlowContributors {
+        let vc: ExercisesResultViewController = Resolver.resolve()
+        guard
+            let nv = root as? UINavigationController else {
+                return .none
+            }
+        nv.setViewControllers([vc], animated: true)
+        return .one(flowContributor: .contribute(withNext: vc))
     }
 }
 
@@ -102,6 +108,8 @@ extension Resolver {
         register { StartExercisesPresenter() }
         register { WordViewExerciseViewController() }
         register { WordViewExercisePresenter() }
-        register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.application)
+        register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
+        register { ExercisesResultPresenter() }
+        register { ExercisesResultViewController() }
     }
 }

@@ -167,7 +167,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
                 case .wordView:
                     return ExercisesStep.wordViewExercise
                 case .none:
-                    return ExercisesStep.startExerceses
+                    return ExercisesStep.result
                 }
             }
             .emit(to: steps)
