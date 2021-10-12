@@ -81,13 +81,7 @@ class ExercisesFlow: Flow {
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
-        guard
-            let nv = root as? UINavigationController
-        else {
-            return .none
-        }
-        nv.popToRootViewController(animated: true)
-        return .end(forwardToParentFlowWithStep: MainStep.home(animated: false))
+        .end(forwardToParentFlowWithStep: MainStep.home(animated: animated))
     }
     
     private func navigateToResult() -> FlowContributors {

@@ -1018,9 +1018,9 @@
 			isa = PBXGroup;
 			children = (
 				ECDEECF226CE2A3100EB2F53 /* ExercisesFlow.swift */,
-				ECC3031D2714066A0083E905 /* ExercisesResults */,
 				ECF63C3426E5E866002E8F2F /* StartExercisersScreen */,
 				ECDAF0EB26CF76600020582E /* WordViewExercise */,
+				ECC3031D2714066A0083E905 /* ExercisesResults */,
 			);
 			path = ExercisesFlow;
 			sourceTree = "<group>";

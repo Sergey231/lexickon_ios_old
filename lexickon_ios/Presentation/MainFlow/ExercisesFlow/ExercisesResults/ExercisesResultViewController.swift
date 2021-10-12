@@ -27,6 +27,8 @@ class ExercisesResultViewController: UIViewController, Stepper {
     
     @Injected private var presenter: ExercisesResultPresenter
     
+    private let button = UIButton()
+    
     private let disposeBag = DisposeBag()
     
     init() {
@@ -59,11 +61,33 @@ class ExercisesResultViewController: UIViewController, Stepper {
 
     //MARK: Create UI
     private func createUI() {
-        view.backgroundColor = .green
+        view.backgroundColor = .white
+        
+        button.setup {
+            $0.setTitle("Ok", for: .normal)
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.size.equalTo(Size.button)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.mid)
+            }
+        }
     }
     
     //MARK: Configure UI
     private func configureUI() {
+        button.setRoundedBorderedStyle(
+            bgColor: Colors.mainBG.color,
+            borderColor: Colors.mainBG.color,
+            titleColor: .white
+        )
         
+        button.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
+        
+        button.rx.tap.asSignal()
+            .map { _ in ExercisesStep.home(animated: true) }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
 }
