@@ -30,7 +30,6 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private let disposeBag = DisposeBag()
     
-    private let titleView = ExercisesTitleView()
     private let wordStackView = UIView()
     private let studyWordLabel = UILabel()
     private let translationLabel = UILabel()
@@ -86,15 +85,15 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private func createUI() {
         
-        titleView.setup {
-            $0.frame = .init(
-                x: 0,
-                y: 0,
-                width: view.frame.width,
-                height: 44
-            )
-            navigationItem.titleView = $0
-        }
+//        titleView.setup {
+//            $0.frame = .init(
+//                x: 0,
+//                y: 0,
+//                width: view.frame.width,
+//                height: 44
+//            )
+//            navigationItem.titleView = $0
+//        }
         
         wordStackView.setup {
             view.addSubview($0)
@@ -136,14 +135,14 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let titleVIewOutput = titleView.configure(input: .init(value: .just(0.5)))
+//        let titleVIewOutput = titleView.configure(input: .init(value: .just(0.5)))
         navigationItem.largeTitleDisplayMode = .never
         
-        titleVIewOutput.closeDidTap
-            .map { ExercisesStep.home(animated: true) }
-            .emit(to: steps)
-            .disposed(by: disposeBag)
-        
+//        titleVIewOutput.closeDidTap
+//            .map { ExercisesStep.home(animated: true) }
+//            .emit(to: steps)
+//            .disposed(by: disposeBag)
+//
         
         button.configureRoundedFilledStyle(
             fillColor: Colors.mainBG.color,
