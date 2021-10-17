@@ -69,7 +69,11 @@ class SessionFlow: Flow {
     }
     
     private func navigateToExercises() -> FlowContributors {
-        .none
+        let exercisesFlow = ExercisesFlow()
+        return .one(flowContributor: .contribute(
+            withNextPresentable: exercisesFlow,
+            withNextStepper: OneStepper.init(withSingleStep: ExercisesStep.wordViewExercise)
+        ))
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
