@@ -136,7 +136,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let titleVIewOutput = titleView.configure(input: ExercisesTitleView.Input())
+        let titleVIewOutput = titleView.configure(input: .init(value: .just(0.5)))
         navigationItem.largeTitleDisplayMode = .never
         
         titleVIewOutput.closeDidTap

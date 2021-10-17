@@ -16,8 +16,15 @@ import LBTATools
 
 public final class ExercisesTitleView: UIView {
     
+    private struct UIConstants {
+        static let progressViewHeight: CGFloat = 12
+    }
+    
     public struct Input {
-        public init() {}
+        public init(value: Driver<CGFloat>) {
+            self.value = value
+        }
+        let value: Driver<CGFloat>
     }
     
     public struct Output {
@@ -28,6 +35,7 @@ public final class ExercisesTitleView: UIView {
     
     private let closeButton = UIButton()
     private let scaleView = UIView()
+    private let progressView = UIView()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +53,18 @@ public final class ExercisesTitleView: UIView {
 
         let scaleViewWidth = UIScreen.main.bounds.width - (44 + 8 + 8)
         scaleView.backgroundColor = .yellow
+        
+        progressView.setup {
+            $0.backgroundColor = Colors.mainBG.color
+            $0.layer.cornerRadius = UIConstants.progressViewHeight/2
+            scaleView.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.left.equalToSuperview().offset(Margin.regular)
+                $0.width.equalTo(100)
+                $0.height.equalTo(UIConstants.progressViewHeight)
+            }
+        }
         
         hstack(
             scaleView.withWidth(scaleViewWidth),
