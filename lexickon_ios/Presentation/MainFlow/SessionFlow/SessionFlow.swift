@@ -69,7 +69,7 @@ class SessionFlow: Flow {
     }
     
     private func navigateToExercises() -> FlowContributors {
-        let exercisesFlow = ExercisesFlow()
+        let exercisesFlow = ExercisesFlow(with: rootViewController)
         return .one(flowContributor: .contribute(
             withNextPresentable: exercisesFlow,
             withNextStepper: OneStepper.init(withSingleStep: ExercisesStep.wordViewExercise)
@@ -102,5 +102,6 @@ extension Resolver {
         register { ExercisesResultPresenter() }
         register { ExercisesResultViewController() }
         register { ExercisesContainerViewController() }
+        register { ExercisesPresenter() }
     }
 }

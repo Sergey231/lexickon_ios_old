@@ -18,10 +18,14 @@ import Resolver
 import Assets
 import LBTATools
 
-final class ExercisesContainerViewController: UIViewController {
+final class ExercisesContainerViewController: UIViewController, Stepper {
     
     private let titleView = ExercisesTitleView()
     private let disposeBag = DisposeBag()
+    
+    @Injected private var presenter: ExercisesPresenter
+    
+    let steps = PublishRelay<Step>()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -65,6 +69,8 @@ final class ExercisesContainerViewController: UIViewController {
     
     private func createUI() {
         
+        view.backgroundColor = .green
+        
         titleView.setup {
             $0.frame = .init(
                 x: 0,
@@ -84,6 +90,9 @@ final class ExercisesContainerViewController: UIViewController {
         let titleVIewOutput = titleView.configure(input: .init(value: .just(0.5)))
         navigationItem.largeTitleDisplayMode = .never
         
-        
+        titleVIewOutput.closeDidTap
+            .map { ExercisesStep.exit }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
 }

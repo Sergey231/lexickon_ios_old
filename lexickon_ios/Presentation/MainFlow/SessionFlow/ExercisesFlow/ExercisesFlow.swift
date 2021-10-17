@@ -8,11 +8,13 @@
 
 import RxFlow
 import UIKit
+import Resolver
 
 enum ExercisesStep: Step {
     case startExercises
     case wordViewExercise
     case result
+    case exit
 }
 
 final class ExercisesFlow: Flow {
@@ -21,9 +23,12 @@ final class ExercisesFlow: Flow {
         rootViewController
     }
     
-    private let rootViewController = UINavigationController()
+    private let rootViewController: UINavigationController
+    private let exercisesNavigationController = UINavigationController()
     
-    init() {}
+    init(with rootViewController: UINavigationController) {
+        self.rootViewController = rootViewController
+    }
     
     deinit {
         print("💀 \(type(of: self)): \(#function)")
@@ -43,12 +48,21 @@ final class ExercisesFlow: Flow {
             return navigateToWordViewExercise()
         case .result:
             return .end(forwardToParentFlowWithStep: SessionStep.result)
+        case .exit:
+            return .end(forwardToParentFlowWithStep: SessionStep.home(animated: true))
         }
     }
     
     private func navigateToWordViewExercise() -> FlowContributors {
+        let vc: ExercisesContainerViewController = Resolver.resolve()
+        guard
+            let nv = root as? UINavigationController
+        else {
+            return .none
+        }
         
-        return .none
+        nv.pushViewController(vc, animated: true)
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
 }

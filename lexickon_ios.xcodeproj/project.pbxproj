@@ -130,6 +130,7 @@
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAA1827271C418F005A3DE5 /* ExercisesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA1826271C418F005A3DE5 /* ExercisesContainerViewController.swift */; };
 		ECAA182A271C5022005A3DE5 /* ExercisesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA1829271C5022005A3DE5 /* ExercisesFlow.swift */; };
+		ECAA182C271C6DCD005A3DE5 /* ExercisesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA182B271C6DCD005A3DE5 /* ExercisesPresenter.swift */; };
 		ECAD3C0D27020D1C00710EB2 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = ECAD3C0C27020D1C00710EB2 /* RxAlamofire */; };
 		ECAD3C1927020F5100710EB2 /* Array+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAD3C1027020F5100710EB2 /* Array+Elements.swift */; };
 		ECAD3C1A27020F5100710EB2 /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAD3C1127020F5100710EB2 /* Array+Unique.swift */; };
@@ -290,6 +291,7 @@
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
 		ECAA1826271C418F005A3DE5 /* ExercisesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesContainerViewController.swift; sourceTree = "<group>"; };
 		ECAA1829271C5022005A3DE5 /* ExercisesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesFlow.swift; sourceTree = "<group>"; };
+		ECAA182B271C6DCD005A3DE5 /* ExercisesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPresenter.swift; sourceTree = "<group>"; };
 		ECAD3C1027020F5100710EB2 /* Array+Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Elements.swift"; sourceTree = "<group>"; };
 		ECAD3C1127020F5100710EB2 /* Array+Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
 		ECAD3C1227020F5100710EB2 /* Array+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Items.swift"; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 			isa = PBXGroup;
 			children = (
 				ECAA1826271C418F005A3DE5 /* ExercisesContainerViewController.swift */,
+				ECAA182B271C6DCD005A3DE5 /* ExercisesPresenter.swift */,
 			);
 			path = ExercisesContainer;
 			sourceTree = "<group>";
@@ -945,6 +948,7 @@
 			isa = PBXGroup;
 			children = (
 				ECAA1829271C5022005A3DE5 /* ExercisesFlow.swift */,
+				ECAA1825271C4162005A3DE5 /* ExercisesContainer */,
 				ECDAF0EB26CF76600020582E /* WordViewExercise */,
 			);
 			path = ExercisesFlow;
@@ -1040,7 +1044,6 @@
 			children = (
 				ECDEECF226CE2A3100EB2F53 /* SessionFlow.swift */,
 				ECAA1828271C4FFE005A3DE5 /* ExercisesFlow */,
-				ECAA1825271C4162005A3DE5 /* ExercisesContainer */,
 				ECF63C3426E5E866002E8F2F /* StartExercisersScreen */,
 				ECC3031D2714066A0083E905 /* ExercisesResults */,
 			);
@@ -1230,6 +1233,7 @@
 				ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */,
 				EC00FA072701FF6D0067DCF4 /* SubmenuItem.swift in Sources */,
 				EC00F9EF2701FF6D0067DCF4 /* WithoutWordsLabelView.swift in Sources */,
+				ECAA182C271C6DCD005A3DE5 /* ExercisesPresenter.swift in Sources */,
 				EC00F9E82701FF6D0067DCF4 /* FromNewWordToHomeAnimator.swift in Sources */,
 				EC00FA032701FF6D0067DCF4 /* AddWordHeaderView.swift in Sources */,
 				EC00FA54270207540067DCF4 /* KeyValueRepositoryKeys.swift in Sources */,
