@@ -86,7 +86,7 @@ class ExercisesResultViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         button.rx.tap.asSignal()
-            .map { _ in ExercisesStep.home(animated: true) }
+            .map { _ in SessionStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }

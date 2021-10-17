@@ -107,12 +107,12 @@ class MainFlow: Flow {
     }
     
     private func navigationToExercises() -> FlowContributors {
-        let exercisesFlow = ExercisesFlow(with: rootViewController)
+        let exercisesFlow = SessionFlow(with: rootViewController)
         let navigationController = (root as! UINavigationController)
         navigationController.navigationBar.isHidden = false
         return .one(flowContributor: .contribute(
             withNextPresentable: exercisesFlow,
-            withNextStepper: OneStepper(withSingleStep: ExercisesStep.startExerceses)
+            withNextStepper: OneStepper(withSingleStep: SessionStep.startExercises)
         ))
     }
 }

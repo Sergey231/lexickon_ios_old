@@ -14,14 +14,14 @@ import Resolver
 // import WordsRepository
 // import LexickonStateEntity
 
-enum ExercisesStep: Step {
-    case startExerceses
-    case wordViewExercise
+enum SessionStep: Step {
+    case startExercises
+    case exercises
     case home(animated: Bool)
     case result
 }
 
-class ExercisesFlow: Flow {
+class SessionFlow: Flow {
     
     var root: Presentable {
         rootViewController
@@ -39,16 +39,16 @@ class ExercisesFlow: Flow {
     
     func navigate(to step: Step) -> FlowContributors {
         guard
-            let step = step as? ExercisesStep
+            let step = step as? SessionStep
         else {
             return .none
         }
         
         switch step {
-        case .startExerceses:
+        case .startExercises:
             return navigateToStartExercises()
-        case .wordViewExercise:
-            return navigateToViewExercise()
+        case .exercises:
+            return navigateToExercises()
         case .home(let animated):
             return navigateToHome(animated: animated)
         case .result:
@@ -68,16 +68,8 @@ class ExercisesFlow: Flow {
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
-    private func navigateToViewExercise() -> FlowContributors {
-        let vc: WordViewExerciseViewController = Resolver.resolve()
-        guard
-            let nv = root as? UINavigationController
-        else {
-            return .none
-        }
-        
-        nv.pushViewController(vc, animated: true)
-        return .one(flowContributor: .contribute(withNext: vc))
+    private func navigateToExercises() -> FlowContributors {
+        .none
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {
@@ -105,5 +97,6 @@ extension Resolver {
         register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
         register { ExercisesResultPresenter() }
         register { ExercisesResultViewController() }
+        register { ExercisesContainerViewController() }
     }
 }

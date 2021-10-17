@@ -165,12 +165,12 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         )
         
         presenterOutput.nextExerciseType
-            .map { nextExercise -> ExercisesStep in
+            .map { nextExercise -> SessionStep in
                 switch nextExercise {
                 case .wordView:
-                    return ExercisesStep.wordViewExercise
+                    return SessionStep.exercises
                 case .none:
-                    return ExercisesStep.result
+                    return SessionStep.result
                 }
             }
             .emit(to: steps)
