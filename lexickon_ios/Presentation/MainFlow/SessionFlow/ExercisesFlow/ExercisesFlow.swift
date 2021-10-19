@@ -11,7 +11,6 @@ import UIKit
 import Resolver
 
 enum ExercisesStep: Step {
-    case startExercises
     case wordViewExercise
     case result
     case exit
@@ -42,8 +41,6 @@ final class ExercisesFlow: Flow {
         }
         
         switch step {
-        case .startExercises:
-            return .end(forwardToParentFlowWithStep: SessionStep.startExercises)
         case .wordViewExercise:
             return navigateToWordViewExercise()
         case .result:
