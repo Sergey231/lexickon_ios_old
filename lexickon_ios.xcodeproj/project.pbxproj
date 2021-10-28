@@ -129,8 +129,8 @@
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
 		ECAA1827271C418F005A3DE5 /* ExercisesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA1826271C418F005A3DE5 /* ExercisesContainerViewController.swift */; };
-		ECAA182A271C5022005A3DE5 /* ExercisesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA1829271C5022005A3DE5 /* ExercisesFlow.swift */; };
 		ECAA182C271C6DCD005A3DE5 /* ExercisesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA182B271C6DCD005A3DE5 /* ExercisesPresenter.swift */; };
+		ECAA183D272A7D4F005A3DE5 /* ExercisesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAA183C272A7D4F005A3DE5 /* ExercisesResultViewController.swift */; };
 		ECAD3C0D27020D1C00710EB2 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = ECAD3C0C27020D1C00710EB2 /* RxAlamofire */; };
 		ECAD3C1927020F5100710EB2 /* Array+Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAD3C1027020F5100710EB2 /* Array+Elements.swift */; };
 		ECAD3C1A27020F5100710EB2 /* Array+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAD3C1127020F5100710EB2 /* Array+Unique.swift */; };
@@ -146,11 +146,10 @@
 		ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBAB3D326E9E2970083C513 /* ExercisesSessionEntity.swift */; };
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
-		ECC3031F271406A70083E905 /* ExercisesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3031E271406A70083E905 /* ExercisesResultViewController.swift */; };
 		ECC30321271406BB0083E905 /* ExercisesResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC30320271406BB0083E905 /* ExercisesResultPresenter.swift */; };
 		ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */; };
 		ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */; };
-		ECDEECF326CE2A3100EB2F53 /* SessionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDEECF226CE2A3100EB2F53 /* SessionFlow.swift */; };
+		ECDEECF326CE2A3100EB2F53 /* ExercisesSessionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDEECF226CE2A3100EB2F53 /* ExercisesSessionFlow.swift */; };
 		ECEA376A25C2FF8A00D6C6DC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = ECEA376925C2FF8A00D6C6DC /* Lottie */; };
 		ECEA376E25C3000200D6C6DC /* linesLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = ECEA376D25C3000200D6C6DC /* linesLoading.json */; };
 		ECF20D61236D942500DA8715 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ECF20D5F236D942500DA8715 /* README.md */; };
@@ -290,8 +289,8 @@
 		ECA97C6B22D0814400918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = lexickon_iosTests.swift; sourceTree = "<group>"; };
 		ECAA1826271C418F005A3DE5 /* ExercisesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesContainerViewController.swift; sourceTree = "<group>"; };
-		ECAA1829271C5022005A3DE5 /* ExercisesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesFlow.swift; sourceTree = "<group>"; };
 		ECAA182B271C6DCD005A3DE5 /* ExercisesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPresenter.swift; sourceTree = "<group>"; };
+		ECAA183C272A7D4F005A3DE5 /* ExercisesResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExercisesResultViewController.swift; sourceTree = "<group>"; };
 		ECAD3C1027020F5100710EB2 /* Array+Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Elements.swift"; sourceTree = "<group>"; };
 		ECAD3C1127020F5100710EB2 /* Array+Unique.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Unique.swift"; sourceTree = "<group>"; };
 		ECAD3C1227020F5100710EB2 /* Array+Items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Items.swift"; sourceTree = "<group>"; };
@@ -305,13 +304,12 @@
 		ECB50D2F258F460B003B9A68 /* RxExtensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = RxExtensions; sourceTree = "<group>"; };
 		ECBAB3D326E9E2970083C513 /* ExercisesSessionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesSessionEntity.swift; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
-		ECC3031E271406A70083E905 /* ExercisesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesResultViewController.swift; sourceTree = "<group>"; };
 		ECC30320271406BB0083E905 /* ExercisesResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesResultPresenter.swift; sourceTree = "<group>"; };
 		ECD9143627019CD000E7E037 /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ConfigsRepository; path = lexickon_ios/Data/ConfigsRepository; sourceTree = "<group>"; };
 		ECD9143727019D3500E7E037 /* ApiRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ApiRepository; path = lexickon_ios/Data/ApiRepository; sourceTree = "<group>"; };
 		ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewExerciseViewController.swift; sourceTree = "<group>"; };
 		ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewExercisePresenter.swift; sourceTree = "<group>"; };
-		ECDEECF226CE2A3100EB2F53 /* SessionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionFlow.swift; sourceTree = "<group>"; };
+		ECDEECF226CE2A3100EB2F53 /* ExercisesSessionFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesSessionFlow.swift; sourceTree = "<group>"; };
 		ECEA376D25C3000200D6C6DC /* linesLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = linesLoading.json; sourceTree = "<group>"; };
 		ECF20D5F236D942500DA8715 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = lexickon_ios/Resources/README.md; sourceTree = SOURCE_ROOT; };
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
@@ -768,7 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				EC0DBEB725F0B92400CBED4D /* MainFlow.swift */,
-				ECDEECF126CE29B600EB2F53 /* SessionFlow */,
+				ECDEECF126CE29B600EB2F53 /* ExercisesSessionFlow */,
 				EC0DBEBF25F0B92400CBED4D /* Home */,
 				EC0DBE3725F0B92400CBED4D /* NewWordFlow */,
 				EC0B20C42671E1C900881DDD /* WordCardFlow */,
@@ -944,16 +942,6 @@
 			path = ExercisesContainer;
 			sourceTree = "<group>";
 		};
-		ECAA1828271C4FFE005A3DE5 /* ExercisesFlow */ = {
-			isa = PBXGroup;
-			children = (
-				ECAA1829271C5022005A3DE5 /* ExercisesFlow.swift */,
-				ECAA1825271C4162005A3DE5 /* ExercisesContainer */,
-				ECDAF0EB26CF76600020582E /* WordViewExercise */,
-			);
-			path = ExercisesFlow;
-			sourceTree = "<group>";
-		};
 		ECAD3C0E27020F5100710EB2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1015,7 +1003,7 @@
 		ECC3031D2714066A0083E905 /* ExercisesResults */ = {
 			isa = PBXGroup;
 			children = (
-				ECC3031E271406A70083E905 /* ExercisesResultViewController.swift */,
+				ECAA183C272A7D4F005A3DE5 /* ExercisesResultViewController.swift */,
 				ECC30320271406BB0083E905 /* ExercisesResultPresenter.swift */,
 			);
 			path = ExercisesResults;
@@ -1039,15 +1027,16 @@
 			path = WordViewExercise;
 			sourceTree = "<group>";
 		};
-		ECDEECF126CE29B600EB2F53 /* SessionFlow */ = {
+		ECDEECF126CE29B600EB2F53 /* ExercisesSessionFlow */ = {
 			isa = PBXGroup;
 			children = (
-				ECDEECF226CE2A3100EB2F53 /* SessionFlow.swift */,
-				ECAA1828271C4FFE005A3DE5 /* ExercisesFlow */,
+				ECDEECF226CE2A3100EB2F53 /* ExercisesSessionFlow.swift */,
 				ECF63C3426E5E866002E8F2F /* StartExercisersScreen */,
+				ECDAF0EB26CF76600020582E /* WordViewExercise */,
+				ECAA1825271C4162005A3DE5 /* ExercisesContainer */,
 				ECC3031D2714066A0083E905 /* ExercisesResults */,
 			);
-			path = SessionFlow;
+			path = ExercisesSessionFlow;
 			sourceTree = "<group>";
 		};
 		ECF63C3426E5E866002E8F2F /* StartExercisersScreen */ = {
@@ -1226,6 +1215,7 @@
 				EC00F9E22701FF6D0067DCF4 /* MainTranslationResultCell.swift in Sources */,
 				EC00F9EE2701FF6D0067DCF4 /* WordRatingView.swift in Sources */,
 				EC00F9FE2701FF6D0067DCF4 /* StartLogo.swift in Sources */,
+				ECAA183D272A7D4F005A3DE5 /* ExercisesResultViewController.swift in Sources */,
 				ECAD3C1927020F5100710EB2 /* Array+Elements.swift in Sources */,
 				EC00F9F72701FF6D0067DCF4 /* WordCardProgressBarView.swift in Sources */,
 				EC00F9FF2701FF6D0067DCF4 /* Logo.swift in Sources */,
@@ -1245,7 +1235,6 @@
 				EC00FA4D2702072D0067DCF4 /* KeychainRepositoryKeys.swift in Sources */,
 				ECAA1827271C418F005A3DE5 /* ExercisesContainerViewController.swift in Sources */,
 				ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */,
-				ECAA182A271C5022005A3DE5 /* ExercisesFlow.swift in Sources */,
 				EC00FA082701FF6D0067DCF4 /* WordsEditPanelView.swift in Sources */,
 				EC00FA4E2702072D0067DCF4 /* KeychainRepository.swift in Sources */,
 				EC00FA3A270206C50067DCF4 /* WordsRepositoryProtocol.swift in Sources */,
@@ -1293,7 +1282,6 @@
 				EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */,
 				EC3FCD0926DF822A00AF7C6E /* ExercisesInteractor.swift in Sources */,
 				EC0DBF1225F0B92500CBED4D /* LexickonStateInteractorProtocol.swift in Sources */,
-				ECC3031F271406A70083E905 /* ExercisesResultViewController.swift in Sources */,
 				ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */,
 				EC00FA2B270206A90067DCF4 /* RapidAPIGoogleTranslateRequestDTO.swift in Sources */,
 				EC00F9E62701FF6D0067DCF4 /* FromHomeToProfileAnimator.swift in Sources */,
@@ -1313,7 +1301,7 @@
 				EC00F9FB2701FF6D0067DCF4 /* WordsCountView.swift in Sources */,
 				EC00F9ED2701FF6D0067DCF4 /* SpeekerButton.swift in Sources */,
 				EC0DBF0F25F0B92500CBED4D /* MainFlow.swift in Sources */,
-				ECDEECF326CE2A3100EB2F53 /* SessionFlow.swift in Sources */,
+				ECDEECF326CE2A3100EB2F53 /* ExercisesSessionFlow.swift in Sources */,
 				ECF63C3826E5E8A8002E8F2F /* StartExercisersPresenter.swift in Sources */,
 				EC00FA0B2701FF6D0067DCF4 /* CheckBox.swift in Sources */,
 				ECAD3C1B27020F5100710EB2 /* Array+Items.swift in Sources */,

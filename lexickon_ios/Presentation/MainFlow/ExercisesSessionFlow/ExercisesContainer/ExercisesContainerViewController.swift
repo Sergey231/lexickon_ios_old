@@ -91,7 +91,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         navigationItem.largeTitleDisplayMode = .never
         
         titleVIewOutput.closeDidTap
-            .map { ExercisesStep.exit }
+            .map { ExercisesSessionStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }

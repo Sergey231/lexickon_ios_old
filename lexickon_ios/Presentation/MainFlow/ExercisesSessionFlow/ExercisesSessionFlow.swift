@@ -14,9 +14,9 @@ import Resolver
 // import WordsRepository
 // import LexickonStateEntity
 
-enum SessionStep: Step {
+enum ExercisesSessionStep: Step {
     case startExercises
-    case exercises
+    case wordViewExercise
     case home(animated: Bool)
     case result
 }
@@ -39,7 +39,7 @@ class SessionFlow: Flow {
     
     func navigate(to step: Step) -> FlowContributors {
         guard
-            let step = step as? SessionStep
+            let step = step as? ExercisesSessionStep
         else {
             return .none
         }
@@ -47,8 +47,8 @@ class SessionFlow: Flow {
         switch step {
         case .startExercises:
             return navigateToStartExercises()
-        case .exercises:
-            return navigateToExercises()
+        case .wordViewExercise:
+            return navigateToWordViewExercise()
         case .home(let animated):
             return navigateToHome(animated: animated)
         case .result:
@@ -68,12 +68,16 @@ class SessionFlow: Flow {
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
-    private func navigateToExercises() -> FlowContributors {
-        let exercisesFlow = ExercisesFlow(with: rootViewController)
-        return .one(flowContributor: .contribute(
-            withNextPresentable: exercisesFlow,
-            withNextStepper: OneStepper.init(withSingleStep: ExercisesStep.wordViewExercise)
-        ))
+    private func navigateToWordViewExercise() -> FlowContributors {
+        let vc: ExercisesContainerViewController = Resolver.resolve()
+        guard
+            let nv = root as? UINavigationController
+        else {
+            return .none
+        }
+        
+        nv.pushViewController(vc, animated: true)
+        return .one(flowContributor: .contribute(withNext: vc))
     }
     
     private func navigateToHome(animated: Bool) -> FlowContributors {

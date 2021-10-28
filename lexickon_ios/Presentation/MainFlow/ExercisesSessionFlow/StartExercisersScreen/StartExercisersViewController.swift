@@ -136,7 +136,7 @@ class StartExercisesViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         button.rx.tap.asSignal()
-            .map { SessionStep.exercises }
+            .map { ExercisesSessionStep.wordViewExercise }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }

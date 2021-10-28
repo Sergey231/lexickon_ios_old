@@ -112,7 +112,7 @@ class MainFlow: Flow {
         navigationController.navigationBar.isHidden = false
         return .one(flowContributor: .contribute(
             withNextPresentable: exercisesFlow,
-            withNextStepper: OneStepper(withSingleStep: SessionStep.startExercises)
+            withNextStepper: OneStepper(withSingleStep: ExercisesSessionStep.startExercises)
         ))
     }
 }
