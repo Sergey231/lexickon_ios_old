@@ -22,6 +22,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     
     private let titleView = ExercisesTitleView()
     private let disposeBag = DisposeBag()
+    private let exercisesNavigationController = UINavigationController()
     
     @Injected private var presenter: ExercisesPresenter
     
@@ -94,5 +95,17 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .map { ExercisesSessionStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
+        
+        exercisesNavigationController.setup {
+            $0.willMove(toParent: self)
+            view.addSubview($0.view)
+            addChild($0)
+            $0.view.snp.makeConstraints {
+                $0.left.right.bottom.equalToSuperview()
+                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            }
+            $0.didMove(toParent: self)
+        }
+        
     }
 }
