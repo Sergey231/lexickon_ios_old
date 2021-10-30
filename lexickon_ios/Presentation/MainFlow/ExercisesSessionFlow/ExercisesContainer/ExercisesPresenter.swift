@@ -16,12 +16,16 @@ final class ExercisesPresenter {
         
     }
     
+    @Injected private var exercisesInteractor: ExercisesInteractorProtocol
+    
     struct Output {
-        
+        let currentSession: ExercisesSessionEntity?
     }
     
     func configure(input: Input) -> Output {
         
-        return Output()
+        let currentSession = exercisesInteractor.currentSession
+        
+        return Output(currentSession: currentSession)
     }
 }

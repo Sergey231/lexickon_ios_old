@@ -18,13 +18,17 @@ import Resolver
 import Assets
 import LBTATools
 
-class WordViewExerciseViewController: UIViewController, Stepper {
+class WordViewExerciseViewController: UIViewController {
     
     struct UIConstants {
         
     }
     
-    let steps = PublishRelay<Step>()
+    var nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType> {
+        nextExerciseTypeRelay.asSignal()
+    }
+    
+    private let nextExerciseTypeRelay = PublishRelay<ExercisesSessionEntity.ExerciseType>()
     
     @Injected var presenter: WordViewExercisePresenter
     
@@ -85,16 +89,6 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     
     private func createUI() {
         
-//        titleView.setup {
-//            $0.frame = .init(
-//                x: 0,
-//                y: 0,
-//                width: view.frame.width,
-//                height: 44
-//            )
-//            navigationItem.titleView = $0
-//        }
-        
         wordStackView.setup {
             view.addSubview($0)
             $0.snp.makeConstraints {
@@ -134,16 +128,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
     //MARK: Configure UI
     
     private func configureUI() {
-        
-//        let titleVIewOutput = titleView.configure(input: .init(value: .just(0.5)))
         navigationItem.largeTitleDisplayMode = .never
-        
-//        titleVIewOutput.closeDidTap
-//            .map { ExercisesStep.home(animated: true) }
-//            .emit(to: steps)
-//            .disposed(by: disposeBag)
-//
-        
         button.configureRoundedFilledStyle(
             fillColor: Colors.mainBG.color,
             titleColor: .white
@@ -165,15 +150,7 @@ class WordViewExerciseViewController: UIViewController, Stepper {
         )
         
         presenterOutput.nextExerciseType
-            .map { nextExercise -> ExercisesSessionStep in
-                switch nextExercise {
-                case .wordView:
-                    return ExercisesSessionStep.wordViewExercise
-                case .none:
-                    return ExercisesSessionStep.result
-                }
-            }
-            .emit(to: steps)
+            .emit(to: nextExerciseTypeRelay)
             .disposed(by: disposeBag)
         
         studyWordLabel.text = presenterOutput.studyWord

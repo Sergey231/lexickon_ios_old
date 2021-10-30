@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import RxFlow
 import SnapKit
-// import LXUIKit
 import UIExtensions
 import RxExtensions
 import Resolver
@@ -19,10 +18,9 @@ import Assets
 import LBTATools
 
 final class ExercisesContainerViewController: UIViewController, Stepper {
-    
-    let exercisesNavigationController = UINavigationController()
 
     private let titleView = ExercisesTitleView()
+    private let exercisesView = ExercisesView()
     private let disposeBag = DisposeBag()
 
     @Injected private var presenter: ExercisesPresenter
@@ -97,16 +95,23 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        exercisesNavigationController.setup {
-            $0.willMove(toParent: self)
-            view.addSubview($0.view)
-            addChild($0)
-            $0.view.snp.makeConstraints {
-                $0.left.right.bottom.equalToSuperview()
-                $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            }
-            $0.didMove(toParent: self)
+        let presenterOutput = presenter.configure(input: ExercisesPresenter.Input())
+        
+        guard let currentSession = presenterOutput.currentSession else {
+            steps.accept(ExercisesSessionStep.home(animated: true))
+            return
         }
         
+        let exercisesViewOutput = exercisesView.configure(
+            input: .init(
+                session: currentSession,
+                parentViewController: self
+            )
+        )
+        
+        exercisesViewOutput.endSession
+            .debug("💪🏻")
+            .emit()
+            .disposed(by: disposeBag)
     }
 }

@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import RxFlow
 import SnapKit
-// import LXUIKit
 import UIExtensions
 import RxExtensions
 import Resolver
@@ -136,7 +135,7 @@ class StartExercisesViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         button.rx.tap.asSignal()
-            .map { ExercisesSessionStep.wordViewExercise }
+            .map { ExercisesSessionStep.exercises }
             .emit(to: steps)
             .disposed(by: disposeBag)
     }

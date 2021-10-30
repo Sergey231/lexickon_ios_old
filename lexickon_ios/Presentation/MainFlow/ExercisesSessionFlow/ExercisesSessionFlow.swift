@@ -11,12 +11,10 @@ import RxFlow
 import UIKit
 import RxFlow
 import Resolver
-// import WordsRepository
-// import LexickonStateEntity
 
 enum ExercisesSessionStep: Step {
     case startExercises
-    case wordViewExercise
+    case exercises
     case home(animated: Bool)
     case result
 }
@@ -47,8 +45,8 @@ class SessionFlow: Flow {
         switch step {
         case .startExercises:
             return navigateToStartExercises()
-        case .wordViewExercise:
-            return navigateToWordViewExercise()
+        case .exercises:
+            return navigateToExercises()
         case .home(let animated):
             return navigateToHome(animated: animated)
         case .result:
@@ -68,23 +66,14 @@ class SessionFlow: Flow {
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
-    private func navigateToWordViewExercise() -> FlowContributors {
-        
-        let vc: ExercisesContainerViewController = Resolver.resolve()
-        var exercisesNavigationController = UINavigationController()
+    private func navigateToExercises() -> FlowContributors {
         guard
             let rootNavigationController = root as? UINavigationController
         else {
             return .none
         }
-        
-        if !(rootNavigationController.viewControllers.last is ExercisesContainerViewController) {
-            exercisesNavigationController = vc.exercisesNavigationController
-            rootNavigationController.pushViewController(vc, animated: true)
-        }
-        let wordViewViewController: WordViewExerciseViewController = Resolver.resolve()
-        exercisesNavigationController.setViewControllers([wordViewViewController], animated: true)
-        
+        let vc: ExercisesContainerViewController = Resolver.resolve()
+        rootNavigationController.pushViewController(vc, animated: true)
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
@@ -113,7 +102,7 @@ extension Resolver {
         register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
         register { ExercisesResultPresenter() }
         register { ExercisesResultViewController() }
-        register { ExercisesContainerViewController() }
+        register { ExercisesContainerViewController() }.scope(.cached)
         register { ExercisesPresenter() }
     }
 }
