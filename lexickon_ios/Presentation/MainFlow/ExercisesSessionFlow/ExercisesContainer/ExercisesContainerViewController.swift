@@ -20,10 +20,11 @@ import LBTATools
 
 final class ExercisesContainerViewController: UIViewController, Stepper {
     
+    let exercisesNavigationController = UINavigationController()
+
     private let titleView = ExercisesTitleView()
     private let disposeBag = DisposeBag()
-    private let exercisesNavigationController = UINavigationController()
-    
+
     @Injected private var presenter: ExercisesPresenter
     
     let steps = PublishRelay<Step>()

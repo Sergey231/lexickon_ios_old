@@ -69,14 +69,22 @@ class SessionFlow: Flow {
     }
     
     private func navigateToWordViewExercise() -> FlowContributors {
+        
         let vc: ExercisesContainerViewController = Resolver.resolve()
+        var exercisesNavigationController = UINavigationController()
         guard
-            let nv = root as? UINavigationController
+            let rootNavigationController = root as? UINavigationController
         else {
             return .none
         }
         
-        nv.pushViewController(vc, animated: true)
+        if !(rootNavigationController.viewControllers.last is ExercisesContainerViewController) {
+            exercisesNavigationController = vc.exercisesNavigationController
+            rootNavigationController.pushViewController(vc, animated: true)
+        }
+        let wordViewViewController: WordViewExerciseViewController = Resolver.resolve()
+        exercisesNavigationController.setViewControllers([wordViewViewController], animated: true)
+        
         return .one(flowContributor: .contribute(withNext: vc))
     }
     
