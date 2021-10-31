@@ -20,8 +20,11 @@ public final class ExercisesView: UIView {
         createUI()
     }
     
-    private let exercisesNavigationController = UINavigationController()
+    fileprivate let exercisesNavigationController = UINavigationController()
+    private let nextExerciseTypeRelay = PublishRelay<ExercisesSessionEntity.ExerciseType>()
     private let endSessionRelay = PublishRelay<Void>()
+    
+//    fileprivate let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
     
     public struct Input {
         public init(
@@ -57,6 +60,14 @@ public final class ExercisesView: UIView {
     
     public func configure(input: Input) -> Output {
         
+//        wordViewExerciseViewController.nextExerciseType.debug("👨🏻")
+//            .emit(to: nextExerciseTypeRelay)
+//            .disposed(by: disposeBag)
+        
+        nextExerciseTypeRelay.asSignal()
+            .emit(to: rx.nextExerciseType)
+            .disposed(by: disposeBag)
+        
         exercisesNavigationController.setup {
             $0.willMove(toParent: input.parentViewController)
             input.parentViewController.view.addSubview($0.view)
@@ -72,14 +83,23 @@ public final class ExercisesView: UIView {
             return Output(endSession: .just(()))
         }
         
-        switch initExerciseType {
-        case .wordView:
-            let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
-            exercisesNavigationController.setViewControllers([wordViewExerciseViewController], animated: true)
-        case .none:
-            break
-        }
+        nextExerciseTypeRelay.accept(initExerciseType)
         
         return Output(endSession: endSessionRelay.asSignal())
+    }
+}
+
+private extension Reactive where Base: ExercisesView {
+    var nextExerciseType: Binder<ExercisesSessionEntity.ExerciseType> {
+        Binder(base) { base, exerciseType in
+            switch exerciseType {
+                
+            case .wordView:
+                let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
+                base.exercisesNavigationController.setViewControllers([wordViewExerciseViewController], animated: true)
+            case .none:
+                break
+            }
+        }
     }
 }

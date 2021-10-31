@@ -21,6 +21,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
 
     private let titleView = ExercisesTitleView()
     private let exercisesView = ExercisesView()
+    private let button = UIButton()
     private let disposeBag = DisposeBag()
 
     @Injected private var presenter: ExercisesPresenter
@@ -81,6 +82,14 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             navigationItem.titleView = $0
         }
         
+        button.setup {
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.centerX.equalToSuperview()
+                $0.size.equalTo(Size.button)
+                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.regular)
+            }
+        }
     }
     
     //MARK: Configure UI
@@ -95,7 +104,9 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .emit(to: steps)
             .disposed(by: disposeBag)
         
-        let presenterOutput = presenter.configure(input: ExercisesPresenter.Input())
+        let presenterOutput = presenter.configure(
+            input: .init(exerciseDidDone: button.rx.tap.asSignal())
+        )
         
         guard let currentSession = presenterOutput.currentSession else {
             steps.accept(ExercisesSessionStep.home(animated: true))
@@ -108,6 +119,16 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
                 parentViewController: self
             )
         )
+        
+        button.configureRoundedFilledStyle(
+            fillColor: Colors.mainBG.color,
+            titleColor: .white
+        )
+        
+        button.configureTapScaleAnimation()
+            .disposed(by: disposeBag)
+        
+        button.setTitle("Далее", for: .normal)
         
         exercisesViewOutput.endSession
             .debug("💪🏻")

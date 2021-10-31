@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import RxFlow
 import SnapKit
-// import LXUIKit
 import UIExtensions
 import RxExtensions
 import Resolver
@@ -29,6 +28,8 @@ class WordViewExerciseViewController: UIViewController {
     }
     
     private let nextExerciseTypeRelay = PublishRelay<ExercisesSessionEntity.ExerciseType>()
+    private let didTapSubmitButton = PublishRelay<Void>()
+    private let sessionItem: ExercisesSessionEntity.NextSessionItem
     
     @Injected var presenter: WordViewExercisePresenter
     
@@ -37,9 +38,9 @@ class WordViewExerciseViewController: UIViewController {
     private let wordStackView = UIView()
     private let studyWordLabel = UILabel()
     private let translationLabel = UILabel()
-    private let button = UIButton()
     
-    init() {
+    init(sessionItem: ExercisesSessionEntity.NextSessionItem) {
+        self.sessionItem = sessionItem
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -114,30 +115,12 @@ class WordViewExerciseViewController: UIViewController {
             translationLabel,
             spacing: 50
         )
-        
-        button.setup {
-            view.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.centerX.equalToSuperview()
-                $0.size.equalTo(Size.button)
-                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.regular)
-            }
-        }
     }
     
     //MARK: Configure UI
     
     private func configureUI() {
         navigationItem.largeTitleDisplayMode = .never
-        button.configureRoundedFilledStyle(
-            fillColor: Colors.mainBG.color,
-            titleColor: .white
-        )
-        
-        button.configureTapScaleAnimation()
-            .disposed(by: disposeBag)
-        
-        button.setTitle("Далее", for: .normal)
         
         rx.viewDidAppear
             .asDriver(onErrorDriveWith: .empty())
@@ -146,7 +129,7 @@ class WordViewExerciseViewController: UIViewController {
             .disposed(by: disposeBag)
         
         let presenterOutput = presenter.configure(
-            input: .init(exerciseDidDone: button.rx.tap.asSignal())
+            input: .init(exerciseDidDone: didTapSubmitButton.asSignal())
         )
         
         presenterOutput.nextExerciseType
