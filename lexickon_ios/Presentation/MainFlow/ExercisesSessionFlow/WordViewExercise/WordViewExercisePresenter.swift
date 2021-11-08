@@ -15,7 +15,7 @@ final class WordViewExercisePresenter {
     @Injected var exercisesInteracor: ExercisesInteractorProtocol
     
     struct Input {
-        let sessionItem: ExercisesSessionEntity.ExerciseType
+        
     }
     
     struct Output {

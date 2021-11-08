@@ -64,13 +64,13 @@ public class ExercisesSessionEntity {
     
     // Помечаем слово как прошедшее, конкретное упражнение и повышаем ему study rating
     public func word(
-        _ word: SessionWord,
+        _ word: SessionWord?,
         isPassedInExercise: ExerciseType
     ) -> NextSessionItem {
-        word.exerciseDidPass(isPassedInExercise)
+        word?.exerciseDidPass(isPassedInExercise)
         
         // Удаляем слово из сесси, если все упражнения по этому слову пройдены
-        if word.notPassedExercises.count == 0 {
+        if word?.notPassedExercises.count == 0 {
             _ = sessionWords.remove {
                 $0 == word
             }

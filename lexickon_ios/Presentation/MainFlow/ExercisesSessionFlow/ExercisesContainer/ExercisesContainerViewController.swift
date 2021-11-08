@@ -113,6 +113,8 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             return
         }
         
+        // При нинициализации, ExercissesView сома распологается во ViewController,
+        // который предедается в параметре parentViewController
         let exercisesViewOutput = exercisesView.configure(
             input: .init(
                 session: currentSession,

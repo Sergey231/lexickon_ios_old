@@ -60,10 +60,6 @@ public final class ExercisesView: UIView {
     
     public func configure(input: Input) -> Output {
         
-//        wordViewExerciseViewController.nextExerciseType.debug("👨🏻")
-//            .emit(to: nextExerciseTypeRelay)
-//            .disposed(by: disposeBag)
-        
         nextExerciseTypeRelay.asSignal()
             .emit(to: rx.nextExerciseType)
             .disposed(by: disposeBag)
@@ -73,7 +69,8 @@ public final class ExercisesView: UIView {
             input.parentViewController.view.addSubview($0.view)
             input.parentViewController.addChild($0)
             $0.view.snp.makeConstraints {
-                $0.left.right.bottom.equalToSuperview()
+                $0.left.right.equalToSuperview()
+                $0.bottom.equalToSuperview().offset(-80)
                 $0.top.equalTo(input.parentViewController.view.safeAreaLayoutGuide.snp.top)
             }
             $0.didMove(toParent: input.parentViewController)

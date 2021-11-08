@@ -23,13 +23,7 @@ class WordViewExerciseViewController: UIViewController {
         
     }
     
-    var nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType> {
-        nextExerciseTypeRelay.asSignal()
-    }
-    
-    private let nextExerciseTypeRelay = PublishRelay<ExercisesSessionEntity.ExerciseType>()
     private let didTapSubmitButton = PublishRelay<Void>()
-    private let sessionItem: ExercisesSessionEntity.NextSessionItem
     
     @Injected var presenter: WordViewExercisePresenter
     
@@ -39,8 +33,7 @@ class WordViewExerciseViewController: UIViewController {
     private let studyWordLabel = UILabel()
     private let translationLabel = UILabel()
     
-    init(sessionItem: ExercisesSessionEntity.NextSessionItem) {
-        self.sessionItem = sessionItem
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -128,13 +121,7 @@ class WordViewExerciseViewController: UIViewController {
             .drive(translationLabel.rx.alphaSlowAnimated)
             .disposed(by: disposeBag)
         
-        let presenterOutput = presenter.configure(
-            input: .init(exerciseDidDone: didTapSubmitButton.asSignal())
-        )
-        
-        presenterOutput.nextExerciseType
-            .emit(to: nextExerciseTypeRelay)
-            .disposed(by: disposeBag)
+        let presenterOutput = presenter.configure(input: .init())
         
         studyWordLabel.text = presenterOutput.studyWord
         translationLabel.text = presenterOutput.translation
