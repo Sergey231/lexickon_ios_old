@@ -83,11 +83,11 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         }
         
         button.setup {
-            view.addSubview($0)
+            UIApplication.shared.windows.first { $0.isKeyWindow }?.addSubview(button)
             $0.snp.makeConstraints {
                 $0.centerX.equalToSuperview()
                 $0.size.equalTo(Size.button)
-                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-Margin.regular)
+                $0.bottom.equalToSuperview().offset(-Margin.huge)
             }
         }
     }
