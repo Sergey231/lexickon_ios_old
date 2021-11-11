@@ -136,5 +136,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .debug("💪🏻")
             .emit()
             .disposed(by: disposeBag)
+        
+        presenterOutput.nextExerciseType.debug("👨🏻").emit()
     }
 }
