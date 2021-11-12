@@ -28,12 +28,15 @@ public final class ExercisesView: UIView {
     
     public struct Input {
         public init(
+            nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>,
             session: ExercisesSessionEntity,
             parentViewController: UIViewController
         ) {
+            self.nextExerciseType = nextExerciseType
             self.session = session
             self.parentViewController = parentViewController
         }
+        let nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>
         let session: ExercisesSessionEntity
         let parentViewController: UIViewController
     }
@@ -81,6 +84,10 @@ public final class ExercisesView: UIView {
         }
         
         nextExerciseTypeRelay.accept(initExerciseType)
+        
+        input.nextExerciseType
+            .emit(to: rx.nextExerciseType)
+            .disposed(by: disposeBag)
         
         return Output(endSession: endSessionRelay.asSignal())
     }

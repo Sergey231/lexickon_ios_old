@@ -117,6 +117,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         // который предедается в параметре parentViewController
         let exercisesViewOutput = exercisesView.configure(
             input: .init(
+                nextExerciseType: presenterOutput.nextExerciseType,
                 session: currentSession,
                 parentViewController: self
             )
@@ -136,7 +137,5 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .debug("💪🏻")
             .emit()
             .disposed(by: disposeBag)
-        
-        presenterOutput.nextExerciseType.debug("👨🏻").emit()
     }
 }
