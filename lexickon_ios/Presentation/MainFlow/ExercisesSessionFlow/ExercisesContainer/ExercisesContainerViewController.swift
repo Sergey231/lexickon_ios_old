@@ -123,6 +123,13 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             )
         )
         
+        presenterOutput.nextExerciseType
+            .filter { $0 == .none }
+            .do { [unowned self] _ in button.removeFromSuperview() }
+            .map { _ in ExercisesSessionStep.result }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
+        
         button.configureRoundedFilledStyle(
             fillColor: Colors.mainBG.color,
             titleColor: .white
