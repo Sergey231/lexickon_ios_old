@@ -53,6 +53,8 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.setHidesBackButton(true, animated: false)
+        addTitleView()
+        addButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,26 +72,32 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     private func createUI() {
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
-        titleView.setup {
-            guard let windows = (UIApplication.shared.windows.first { $0.isKeyWindow }) else {
-                return
-            }
-            windows.addSubview($0)
-            $0.snp.makeConstraints {
-                $0.top.equalToSuperview().offset(windows.safeAreaInsets.top)
-                $0.centerX.equalToSuperview()
-                $0.width.equalTo(windows.bounds.width)
-                $0.height.equalTo(44)
-            }
+    }
+    
+    private func addButton() {
+        UIApplication.shared.windows.first { $0.isKeyWindow }?.addSubview(button)
+        button.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(Size.button)
+            $0.bottom.equalToSuperview().offset(-Margin.huge)
         }
         
-        button.setup {
-            UIApplication.shared.windows.first { $0.isKeyWindow }?.addSubview(button)
-            $0.snp.makeConstraints {
-                $0.centerX.equalToSuperview()
-                $0.size.equalTo(Size.button)
-                $0.bottom.equalToSuperview().offset(-Margin.huge)
-            }
+        button.configureRoundedFilledStyle(
+            fillColor: Colors.mainBG.color,
+            titleColor: .white
+        )
+    }
+    
+    private func addTitleView() {
+        guard let windows = (UIApplication.shared.windows.first { $0.isKeyWindow }) else {
+            return
+        }
+        windows.addSubview(titleView)
+        titleView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(windows.safeAreaInsets.top)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(windows.bounds.width)
+            $0.height.equalTo(44)
         }
     }
     
@@ -143,11 +151,6 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .map { _ in ExercisesSessionStep.result }
             .emit(to: steps)
             .disposed(by: disposeBag)
-        
-        button.configureRoundedFilledStyle(
-            fillColor: Colors.mainBG.color,
-            titleColor: .white
-        )
         
         button.configureTapScaleAnimation()
             .disposed(by: disposeBag)

@@ -83,10 +83,13 @@ public final class ExercisesTitleView: UIView {
 extension Reactive where Base: ExercisesTitleView {
     var progress: Binder<CGFloat> {
         Binder(base) { base, value in
-            base.progressView.snp.updateConstraints {
-                let scaleViewMaxWidth = ExercisesTitleView.UIConstants.progressViewWidth
-                let currentProgressWidth = scaleViewMaxWidth * value
-                $0.width.equalTo(currentProgressWidth)
+            UIView.animate(withDuration: 0.3) {
+                base.progressView.snp.updateConstraints {
+                    let scaleViewMaxWidth = ExercisesTitleView.UIConstants.progressViewWidth
+                    let currentProgressWidth = scaleViewMaxWidth * value
+                    $0.width.equalTo(currentProgressWidth)
+                }
+                base.progressView.superview?.layoutIfNeeded()
             }
         }
     }
