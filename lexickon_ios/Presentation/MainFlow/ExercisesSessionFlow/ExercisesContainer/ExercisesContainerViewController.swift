@@ -46,7 +46,6 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
         createUI()
         configureUI()
     }
@@ -69,17 +68,19 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     //MARK: Create UI
     
     private func createUI() {
-        
-        view.backgroundColor = .green
-        
+        view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = true
         titleView.setup {
-            $0.frame = .init(
-                x: 0,
-                y: 0,
-                width: view.frame.width,
-                height: 44
-            )
-            navigationItem.titleView = $0
+            guard let windows = (UIApplication.shared.windows.first { $0.isKeyWindow }) else {
+                return
+            }
+            windows.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(windows.safeAreaInsets.top)
+                $0.centerX.equalToSuperview()
+                $0.width.equalTo(windows.bounds.width)
+                $0.height.equalTo(44)
+            }
         }
         
         button.setup {
@@ -96,10 +97,10 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let titleVIewOutput = titleView.configure(input: .init(value: .just(0.5)))
+        let titleViewOutput = titleView.configure(input: .init(value: .just(0.5)))
         navigationItem.largeTitleDisplayMode = .never
         
-        titleVIewOutput.closeDidTap
+        titleViewOutput.closeDidTap
             .map { ExercisesSessionStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
@@ -125,7 +126,10 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         
         presenterOutput.nextExerciseType
             .filter { $0 == .none }
-            .do { [unowned self] _ in button.removeFromSuperview() }
+            .do { [unowned self] _ in
+                button.removeFromSuperview()
+                titleView.removeFromSuperview()
+            }
             .map { _ in ExercisesSessionStep.result }
             .emit(to: steps)
             .disposed(by: disposeBag)
