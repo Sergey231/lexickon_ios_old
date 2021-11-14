@@ -16,8 +16,9 @@ import LBTATools
 
 public final class ExercisesTitleView: UIView {
     
-    private struct UIConstants {
+    fileprivate struct UIConstants {
         static let progressViewHeight: CGFloat = 12
+        static let progressViewWidth = UIScreen.main.bounds.width - (44 + 16 + 16)
     }
     
     public struct Input {
@@ -34,8 +35,8 @@ public final class ExercisesTitleView: UIView {
     private let disposeBag = DisposeBag()
     
     private let closeButton = UIButton()
-    private let scaleView = UIView()
-    private let progressView = UIView()
+    private let progressContainerView = UIView()
+    fileprivate let progressView = UIView()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,29 +52,42 @@ public final class ExercisesTitleView: UIView {
         closeButton.setImage(Images.closeIcon.image, for: .normal)
         closeButton.tintColor = .gray
 
-        let scaleViewWidth = UIScreen.main.bounds.width - (44 + 8 + 8)
-        scaleView.backgroundColor = .yellow
+        progressContainerView.backgroundColor = .yellow
         
         progressView.setup {
             $0.backgroundColor = Colors.mainBG.color
             $0.layer.cornerRadius = UIConstants.progressViewHeight/2
-            scaleView.addSubview($0)
+            progressContainerView.addSubview($0)
             $0.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
                 $0.left.equalToSuperview().offset(Margin.regular)
-                $0.width.equalTo(100)
+                $0.width.equalTo(0)
                 $0.height.equalTo(UIConstants.progressViewHeight)
             }
         }
         
         hstack(
-            scaleView.withWidth(scaleViewWidth),
+            progressContainerView.withWidth(UIConstants.progressViewWidth),
             closeButton.withWidth(44)
         )
     }
     
     public func configure(input: Input) -> Output {
-        
+        input.value
+            .drive(rx.progress)
+            .disposed(by: disposeBag)
         return Output(closeDidTap: closeButton.rx.tap.asSignal())
+    }
+}
+
+extension Reactive where Base: ExercisesTitleView {
+    var progress: Binder<CGFloat> {
+        Binder(base) { base, value in
+            base.progressView.snp.updateConstraints {
+                let scaleViewMaxWidth = ExercisesTitleView.UIConstants.progressViewWidth
+                let currentProgressWidth = scaleViewMaxWidth * value
+                $0.width.equalTo(currentProgressWidth)
+            }
+        }
     }
 }

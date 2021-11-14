@@ -6,8 +6,9 @@
 //  Copyright © 2021 Sergey Borovikov. All rights reserved.
 //
 
-//// import LexickonStateEntity
 import RxSwift
+import RxCocoa
+import UIKit
 
 public class ExercisesSessionEntity {
     
@@ -98,6 +99,10 @@ public class ExercisesSessionEntity {
     }
     
     public var sessionWords: [SessionWord] = []
+    
+    public var sessionProgress: Driver<CGFloat> {
+        .just(0.7)
+    }
     
     init(
         words: [WordEntity],

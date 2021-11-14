@@ -97,10 +97,16 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     
     private func configureUI() {
         
-        let titleViewOutput = titleView.configure(input: .init(value: .just(0.5)))
+        let progressRelay = BehaviorRelay<CGFloat>(value: 0)
+        
+        let titleViewOutput = titleView.configure(input: .init(value: progressRelay.asDriver()))
         navigationItem.largeTitleDisplayMode = .never
         
         titleViewOutput.closeDidTap
+            .do { [unowned self] _ in
+                button.removeFromSuperview()
+                titleView.removeFromSuperview()
+            }
             .map { ExercisesSessionStep.home(animated: true) }
             .emit(to: steps)
             .disposed(by: disposeBag)
@@ -113,6 +119,10 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             steps.accept(ExercisesSessionStep.home(animated: true))
             return
         }
+        
+        currentSession.sessionProgress
+            .drive(progressRelay)
+            .disposed(by: disposeBag)
         
         // При нинициализации, ExercissesView сома распологается во ViewController,
         // который предедается в параметре parentViewController
