@@ -53,13 +53,13 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.setHidesBackButton(true, animated: false)
-        addTitleView()
-        addButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        addTitleView()
+        addButton()
     }
     
     override func viewWillLayoutSubviews() {
@@ -75,6 +75,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     }
     
     private func addButton() {
+        button.alpha = 0
         UIApplication.shared.windows.first { $0.isKeyWindow }?.addSubview(button)
         button.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -86,18 +87,25 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             fillColor: Colors.mainBG.color,
             titleColor: .white
         )
+        UIView.animate(withDuration: 0.3) {
+            self.button.alpha = 1
+        }
     }
     
     private func addTitleView() {
         guard let windows = (UIApplication.shared.windows.first { $0.isKeyWindow }) else {
             return
         }
+        titleView.alpha = 0
         windows.addSubview(titleView)
         titleView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(windows.safeAreaInsets.top)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(windows.bounds.width)
             $0.height.equalTo(44)
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.titleView.alpha = 1
         }
     }
     
@@ -112,8 +120,8 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         
         titleViewOutput.closeDidTap
             .do { [unowned self] _ in
-                button.removeFromSuperview()
-                titleView.removeFromSuperview()
+                removeButtonFromView()
+                removeTitleViewFromView()
             }
             .map { ExercisesSessionStep.home(animated: true) }
             .emit(to: steps)
@@ -145,8 +153,8 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         presenterOutput.nextExerciseType
             .filter { $0 == .none }
             .do { [unowned self] _ in
-                button.removeFromSuperview()
-                titleView.removeFromSuperview()
+                removeButtonFromView()
+                removeTitleViewFromView()
             }
             .map { _ in ExercisesSessionStep.result }
             .emit(to: steps)
@@ -161,5 +169,21 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             .debug("💪🏻")
             .emit()
             .disposed(by: disposeBag)
+    }
+    
+    private func removeButtonFromView() {
+        UIView.animate(withDuration: 0.3) {
+            self.button.alpha = 0
+        } completion: { _ in
+            self.button.removeFromSuperview()
+        }
+    }
+    
+    private func removeTitleViewFromView() {
+        UIView.animate(withDuration: 0.3) {
+            self.titleView.alpha = 0
+        } completion: { _ in
+            self.titleView.removeFromSuperview()
+        }
     }
 }
