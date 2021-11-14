@@ -10,13 +10,11 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-// import Utils
 import RxDataSources
 import RxExtensions
 import UIExtensions
 import Assets
 import LexickonApi
-// import LexickonStateEntity
 
 // MARK: Cell Model
 
@@ -334,7 +332,7 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
         anySelection
             .map { [unowned self] _ in self.model.wordSelectionState }
             .asDriver()
-            .drive(rx.selectionStateOffset)
+            .drive(rx.selectionStateOffsetAnimated)
             .disposed(by: disposeBag)
         
         let stateAferEditModeChanging = model.isEditMode
@@ -348,8 +346,12 @@ public final class HomeWordCell: DisposableTableViewCell, UIScrollViewDelegate {
                 }
             }
             
-        stateAferEditModeChanging
+        Driver<HomeWordCellModel.SelectionState>.just(.none)
             .drive(rx.selectionStateOffset)
+            .disposed(by: disposeBag)
+        
+        stateAferEditModeChanging.skip(1)
+            .drive(rx.selectionStateOffsetAnimated)
             .disposed(by: disposeBag)
         
         let isWordSelected = stateAferEditModeChanging
@@ -381,7 +383,7 @@ extension HomeWordCell: ClassIdentifiable {}
 // MARK: Rx Extensions
 
 private extension Reactive where Base: HomeWordCell {
-    var selectionStateOffset: Binder<HomeWordCellModel.SelectionState> {
+    var selectionStateOffsetAnimated: Binder<HomeWordCellModel.SelectionState> {
         Binder(base) { base, state in
             base.model.wordSelectionState = state
             UIView.animate(withDuration: 0.2) {
@@ -399,6 +401,25 @@ private extension Reactive where Base: HomeWordCell {
                 }
                 base.progressView.superview?.layoutIfNeeded()
             }
+        }
+    }
+    
+    var selectionStateOffset: Binder<HomeWordCellModel.SelectionState> {
+        Binder(base) { base, state in
+            base.model.wordSelectionState = state
+            switch base.model.wordSelectionState {
+            case .selected, .notSelected:
+                base.selectionIcon.alpha = 1
+                base.selectionIcon.snp.updateConstraints {
+                    $0.width.equalTo(46)
+                }
+            case .none:
+                base.selectionIcon.alpha = 0
+                base.selectionIcon.snp.updateConstraints {
+                    $0.width.equalTo(Margin.regular)
+                }
+            }
+            base.progressView.superview?.layoutIfNeeded()
         }
     }
 }
