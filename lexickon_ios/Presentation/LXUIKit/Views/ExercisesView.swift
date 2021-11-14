@@ -73,7 +73,7 @@ public final class ExercisesView: UIView {
             input.parentViewController.addChild($0)
             $0.view.snp.makeConstraints {
                 $0.left.right.equalToSuperview()
-                $0.bottom.equalToSuperview().offset(-80)
+                $0.bottom.equalToSuperview()
                 $0.top.equalTo(input.parentViewController.view.safeAreaLayoutGuide.snp.top)
             }
             $0.didMove(toParent: input.parentViewController)
