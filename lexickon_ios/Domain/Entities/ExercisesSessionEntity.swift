@@ -12,6 +12,8 @@ import UIKit
 
 public class ExercisesSessionEntity {
     
+    private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
+    
     public enum ExerciseType {
         case wordView
         case none
@@ -85,6 +87,9 @@ public class ExercisesSessionEntity {
             )
         }
         
+        // Повышаем прогресс сессии
+//        sessionProgressRelay.accept(0.5)
+        
         return NextSessionItem(word: nil, exercise: .none)
     }
     
@@ -101,7 +106,7 @@ public class ExercisesSessionEntity {
     public var sessionWords: [SessionWord] = []
     
     public var sessionProgress: Driver<CGFloat> {
-        .just(0.7)
+        sessionProgressRelay.asDriver()
     }
     
     init(
