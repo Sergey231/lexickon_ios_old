@@ -12,8 +12,6 @@ import UIKit
 
 public class ExercisesSessionEntity {
     
-    private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
-    
     public enum ExerciseType {
         case wordView
         case none
@@ -65,6 +63,32 @@ public class ExercisesSessionEntity {
         public let exercise: ExerciseType
     }
     
+    public var sessionWords: [SessionWord] = []
+    private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
+    private var entireSession: Int
+    
+    public var currentSessionWord: SessionWord? {
+        sessionWords.last
+    }
+    
+    public var sessionProgress: Driver<CGFloat> {
+        // 100% прогересса сессии = количество слов * количество убражнений
+        sessionProgressRelay.asDriver()
+    }
+    
+    init(
+        words: [WordEntity],
+        exercises: [ExerciseType] = [.wordView]
+    ) {
+        convertWordEntityToSesstionWord(
+            words: words,
+            exercises: exercises
+        )
+        self.entireSession = sessionWords.reduce(0, { partialResult, word in
+            partialResult + word.notPassedExercises.count
+        })
+    }
+    
     // Помечаем слово как прошедшее, конкретное упражнение и повышаем ему study rating
     public func word(
         _ word: SessionWord?,
@@ -88,35 +112,15 @@ public class ExercisesSessionEntity {
         }
         
         // Повышаем прогресс сессии
-//        sessionProgressRelay.accept(0.5)
+        //        sessionProgressRelay.accept(0.5)
         
         return NextSessionItem(word: nil, exercise: .none)
-    }
-    
-    public var currentSessionWord: SessionWord? {
-        sessionWords.last
     }
     
     private func nextSessionWord(with exerciseType: ExerciseType = .wordView) -> SessionWord? {
         sessionWords.first { sesstionWord in
             sesstionWord.notPassedExercises.contains(exerciseType)
         }
-    }
-    
-    public var sessionWords: [SessionWord] = []
-    
-    public var sessionProgress: Driver<CGFloat> {
-        sessionProgressRelay.asDriver()
-    }
-    
-    init(
-        words: [WordEntity],
-        exercises: [ExerciseType] = [.wordView]
-    ) {
-        convertWordEntityToSesstionWord(
-            words: words,
-            exercises: exercises
-        )
     }
     
     private func convertWordEntityToSesstionWord(
