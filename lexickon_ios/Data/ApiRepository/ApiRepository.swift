@@ -1,7 +1,6 @@
 import Foundation
 import LexickonApi
 import Alamofire
-// import ConfigsRepository
 
 public protocol ApiRepository {
     var baseURL: String { get }

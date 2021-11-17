@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import Assets
-// import LexickonStateEntity
 
 public final class HomeHeaderView: UIView {
     

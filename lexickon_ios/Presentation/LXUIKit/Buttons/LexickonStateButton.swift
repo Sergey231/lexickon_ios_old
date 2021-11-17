@@ -11,7 +11,6 @@ import Assets
 import SnapKit
 import RxCocoa
 import RxSwift
-//// import LexickonStateEntity
 
 public final class LexickonStateButton: UIButton {
     

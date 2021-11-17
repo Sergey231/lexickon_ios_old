@@ -7,8 +7,6 @@
 
 import Alamofire
 import Foundation
-// import KeychainRepository
-// import ConfigsRepository
 import LexickonApi
 
 class LxRequestInterceptor: RequestInterceptor {
