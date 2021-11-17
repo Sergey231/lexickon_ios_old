@@ -65,7 +65,7 @@ public class ExercisesSessionEntity {
     
     public var sessionWords: [SessionWord] = []
     private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
-    private var entireSession: Int
+    private var entireSessionProgress: Int = 0
     
     public var currentSessionWord: SessionWord? {
         sessionWords.last
@@ -84,7 +84,7 @@ public class ExercisesSessionEntity {
             words: words,
             exercises: exercises
         )
-        self.entireSession = sessionWords.reduce(0, { partialResult, word in
+        self.entireSessionProgress = sessionWords.reduce(0, { partialResult, word in
             partialResult + word.notPassedExercises.count
         })
     }
