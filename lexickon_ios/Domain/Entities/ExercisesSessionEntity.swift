@@ -16,9 +16,22 @@ public class ExercisesSessionEntity {
     private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
     private var entireSessionProgress: Int = 0
     private var currentSessionProgress: Int = 0
+    private var sessionItem: NextSessionItem?
     
     public var currentSessionWord: SessionWord? {
         sessionWords.last
+    }
+    
+    public var currentSessionItem: NextSessionItem {
+        guard let sessionItem = sessionItem else {
+            let initSessionItem = NextSessionItem(
+                word: currentSessionWord,
+                exercise: currentSessionWord?.notPassedExercises.last ?? .none
+            )
+            self.sessionItem = initSessionItem
+            return initSessionItem
+        }
+        return sessionItem
     }
     
     public var sessionProgress: Driver<CGFloat> {
@@ -57,13 +70,19 @@ public class ExercisesSessionEntity {
         
         // Проверяем есть ли еще слова в сессии именно с этим видом упражнений
         if let nextSessionWord = nextSessionWord(with: isPassedInExercise) {
-            return NextSessionItem(
+            // Деллаем поле currentSessionItem всегда актуальное
+            let sessionItem = NextSessionItem(
                 word: nextSessionWord,
                 exercise: isPassedInExercise
             )
+            self.sessionItem = sessionItem
+            return sessionItem
         }
         
-        return NextSessionItem(word: nil, exercise: .none)
+        // Деллаем поле currentSessionItem всегда актуальное
+        let sessionItem = NextSessionItem(word: nil, exercise: .none)
+        self.sessionItem = sessionItem
+        return sessionItem
     }
     
     private func nextSessionWord(with exerciseType: ExerciseType = .wordView) -> SessionWord? {
@@ -102,7 +121,7 @@ public extension ExercisesSessionEntity {
         public let word: SessionWord?
         public let exercise: ExerciseType
         
-        public static var zero: Self {
+        public static var emptyItem: Self {
             NextSessionItem(word: nil, exercise: .none)
         }
     }
