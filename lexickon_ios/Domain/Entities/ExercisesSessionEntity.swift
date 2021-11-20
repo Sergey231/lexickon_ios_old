@@ -14,8 +14,8 @@ public class ExercisesSessionEntity {
     
     public var sessionWords: [SessionWord] = []
     private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
-    private var entireSessionProgress: Int = 0
-    private var currentSessionProgress: Int = 0
+    private var entireSessionProgress: CGFloat = 0
+    private var currentSessionProgress: CGFloat = 0
     private var sessionItem: NextSessionItem?
     
     public var currentSessionWord: SessionWord? {
@@ -47,8 +47,8 @@ public class ExercisesSessionEntity {
             words: words,
             exercises: exercises
         )
-        self.entireSessionProgress = sessionWords.reduce(0, { partialResult, word in
-            partialResult + word.notPassedExercises.count
+        self.entireSessionProgress = sessionWords.reduce(CGFloat(0), { partialResult, word in
+            partialResult + CGFloat(word.notPassedExercises.count)
         })
     }
     
@@ -62,11 +62,7 @@ public class ExercisesSessionEntity {
         word?.exerciseDidPass(isPassedInExercise)
         
         // Перещитываем currentSessionProgress
-        currentSessionProgress = sessionWords.reduce(0, { partialResult, word in
-            partialResult + word.notPassedExercises.count
-        })
-        
-        print("👨🏻 \(currentSessionProgress)")
+        culcSessionProgress()
         
         // Проверяем есть ли еще слова в сессии именно с этим видом упражнений
         if let nextSessionWord = nextSessionWord(with: isPassedInExercise) {
@@ -83,6 +79,16 @@ public class ExercisesSessionEntity {
         let sessionItem = NextSessionItem(word: nil, exercise: .none)
         self.sessionItem = sessionItem
         return sessionItem
+    }
+    
+    private func culcSessionProgress() {
+        currentSessionProgress = sessionWords.reduce(CGFloat(0), { partialResult, word in
+            partialResult + CGFloat(word.notPassedExercises.count)
+        })
+        
+        let persent = entireSessionProgress / currentSessionProgress
+        
+        sessionProgressRelay.accept(persent)
     }
     
     private func nextSessionWord(with exerciseType: ExerciseType = .wordView) -> SessionWord? {
