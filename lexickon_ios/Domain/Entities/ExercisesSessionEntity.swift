@@ -12,61 +12,6 @@ import UIKit
 
 public class ExercisesSessionEntity {
     
-    public enum ExerciseType {
-        case wordView
-        case none
-    }
-    
-    public class SessionWord: Hashable {
-        
-        public var word: WordEntity
-        public var notPassedExercises: [ExerciseType]
-        
-        public var currentExercise: ExerciseType {
-            notPassedExercises.first ?? .wordView
-        }
-        
-        public var difficultyRating: Int {
-            // Тут нужен будет не тривиальный алгоритм определения сложности слова, по колличеству букв, сложных букво сочитаный
-            10
-        }
-        
-        public init(
-            word: WordEntity,
-            exercisesForThisSession: [ExerciseType]
-        ) {
-            self.word = word
-            self.notPassedExercises = exercisesForThisSession
-        }
-        
-        fileprivate func exerciseDidPass(_ exercise: ExerciseType) {
-            _ = notPassedExercises.remove { $0 == exercise }
-        }
-        
-        public static func == (
-            lhs: ExercisesSessionEntity.SessionWord,
-            rhs: ExercisesSessionEntity.SessionWord
-        ) -> Bool {
-            return lhs.word.studyWord == rhs.word.studyWord
-            && lhs.word.translates.first == rhs.word.translates.first
-        }
-        
-        public func hash(into hasher: inout Hasher) {
-            hasher.combine(word.studyWord)
-            hasher.combine(word.translates.first)
-        }
-    }
-
-    
-    public struct NextSessionItem {
-        public let word: SessionWord?
-        public let exercise: ExerciseType
-        
-        public static var zero: Self {
-            NextSessionItem(word: nil, exercise: .none)
-        }
-    }
-    
     public var sessionWords: [SessionWord] = []
     private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
     private var entireSessionProgress: Int = 0
@@ -137,6 +82,72 @@ public class ExercisesSessionEntity {
                 word: $0,
                 exercisesForThisSession: exercises
             )
+        }
+    }
+}
+
+// MARK: ExerciseType
+
+public extension ExercisesSessionEntity {
+    enum ExerciseType {
+        case wordView
+        case none
+    }
+}
+
+// MARK: NextSessionItem
+
+public extension ExercisesSessionEntity {
+    struct NextSessionItem {
+        public let word: SessionWord?
+        public let exercise: ExerciseType
+        
+        public static var zero: Self {
+            NextSessionItem(word: nil, exercise: .none)
+        }
+    }
+}
+
+// MARK: SessionWord
+
+public extension ExercisesSessionEntity {
+    class SessionWord: Hashable {
+        
+        public var word: WordEntity
+        public var notPassedExercises: [ExerciseType]
+        
+        public var currentExercise: ExerciseType {
+            notPassedExercises.first ?? .wordView
+        }
+        
+        public var difficultyRating: Int {
+            // Тут нужен будет не тривиальный алгоритм определения сложности слова, по колличеству букв, сложных букво сочитаный
+            10
+        }
+        
+        public init(
+            word: WordEntity,
+            exercisesForThisSession: [ExerciseType]
+        ) {
+            self.word = word
+            self.notPassedExercises = exercisesForThisSession
+        }
+        
+        fileprivate func exerciseDidPass(_ exercise: ExerciseType) {
+            _ = notPassedExercises.remove { $0 == exercise }
+        }
+        
+        public static func == (
+            lhs: ExercisesSessionEntity.SessionWord,
+            rhs: ExercisesSessionEntity.SessionWord
+        ) -> Bool {
+            return lhs.word.studyWord == rhs.word.studyWord
+            && lhs.word.translates.first == rhs.word.translates.first
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(word.studyWord)
+            hasher.combine(word.translates.first)
         }
     }
 }
