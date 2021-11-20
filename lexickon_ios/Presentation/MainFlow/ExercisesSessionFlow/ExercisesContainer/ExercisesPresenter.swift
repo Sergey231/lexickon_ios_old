@@ -29,7 +29,7 @@ final class ExercisesPresenter {
         
         let nextExerciseType = input.exerciseDidDone
             .map { _ -> ExercisesSessionEntity.NextSessionItem in
-                currentSession?.word(currentSession?.currentSessionWord, isPassedInExercise: .wordView)
+                currentSession?.word(currentSession?.currentSessionItem.word, isPassedInExercise: .wordView)
                 ?? .emptyItem
             }
             .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.NextSessionItem> in

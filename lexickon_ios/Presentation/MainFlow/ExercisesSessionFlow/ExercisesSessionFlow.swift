@@ -97,7 +97,7 @@ extension Resolver {
     public static func registerExercisesObjects() {
         register { StartExercisesViewController() }
         register { StartExercisesPresenter() }
-        register { WordViewExerciseViewController() }
+        register { _, args in WordViewExerciseViewController(nextSessionItem: args()) }
         register { WordViewExercisePresenter() }
         register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
         register { ExercisesResultPresenter() }

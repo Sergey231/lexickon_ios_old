@@ -19,12 +19,10 @@ import LBTATools
 
 class WordViewExerciseViewController: UIViewController {
     
-    struct UIConstants {
-        
-    }
+    struct UIConstants {}
     
     private let didTapSubmitButton = PublishRelay<Void>()
-    private let nextSessionItem: ExercisesSessionEntity.NextSessionItem = .emptyItem
+    private let nextSessionItem: ExercisesSessionEntity.NextSessionItem
     
     @Injected var presenter: WordViewExercisePresenter
     
@@ -34,7 +32,8 @@ class WordViewExerciseViewController: UIViewController {
     private let studyWordLabel = UILabel()
     private let translationLabel = UILabel()
     
-    init() {
+    init(nextSessionItem: ExercisesSessionEntity.NextSessionItem) {
+        self.nextSessionItem = nextSessionItem
         super.init(nibName: nil, bundle: nil)
     }
     

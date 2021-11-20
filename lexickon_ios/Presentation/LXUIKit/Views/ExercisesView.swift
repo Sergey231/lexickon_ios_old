@@ -96,7 +96,7 @@ private extension Reactive where Base: ExercisesView {
         Binder(base) { base, nextSessionItem in
             switch nextSessionItem.exercise {
             case .wordView:
-                let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
+                let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve(args: nextSessionItem)
                 base.exercisesNavigationController.setViewControllers([wordViewExerciseViewController], animated: true)
             case .none:
                 break
