@@ -61,11 +61,16 @@ public class ExercisesSessionEntity {
     public struct NextSessionItem {
         public let word: SessionWord?
         public let exercise: ExerciseType
+        
+        public static var zero: Self {
+            NextSessionItem(word: nil, exercise: .none)
+        }
     }
     
     public var sessionWords: [SessionWord] = []
     private let sessionProgressRelay = BehaviorRelay<CGFloat>(value: 0)
     private var entireSessionProgress: Int = 0
+    private var currentSessionProgress: Int = 0
     
     public var currentSessionWord: SessionWord? {
         sessionWords.last
@@ -94,14 +99,16 @@ public class ExercisesSessionEntity {
         _ word: SessionWord?,
         isPassedInExercise: ExerciseType
     ) -> NextSessionItem {
+       
+        // Удаляем упражнение из слова.
         word?.exerciseDidPass(isPassedInExercise)
         
-        // Удаляем слово из сесси, если все упражнения по этому слову пройдены
-        if word?.notPassedExercises.count == 0 {
-            _ = sessionWords.remove {
-                $0 == word
-            }
-        }
+        // Перещитываем currentSessionProgress
+        currentSessionProgress = sessionWords.reduce(0, { partialResult, word in
+            partialResult + word.notPassedExercises.count
+        })
+        
+        print("👨🏻 \(currentSessionProgress)")
         
         // Проверяем есть ли еще слова в сессии именно с этим видом упражнений
         if let nextSessionWord = nextSessionWord(with: isPassedInExercise) {
@@ -111,13 +118,11 @@ public class ExercisesSessionEntity {
             )
         }
         
-        // Повышаем прогресс сессии
-        //        sessionProgressRelay.accept(0.5)
-        
         return NextSessionItem(word: nil, exercise: .none)
     }
     
     private func nextSessionWord(with exerciseType: ExerciseType = .wordView) -> SessionWord? {
+        // Тут нужно будет добавить рандом
         sessionWords.first { sesstionWord in
             sesstionWord.notPassedExercises.contains(exerciseType)
         }

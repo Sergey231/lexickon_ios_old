@@ -20,7 +20,7 @@ final class ExercisesPresenter {
     
     struct Output {
         let currentSession: ExercisesSessionEntity?
-        let nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>
+        let nextSessionItem: Signal<ExercisesSessionEntity.NextSessionItem>
     }
     
     func configure(input: Input) -> Output {
@@ -28,15 +28,15 @@ final class ExercisesPresenter {
         let currentSession = exercisesInteractor.currentSession
         
         let nextExerciseType = input.exerciseDidDone
-            .map { _ -> ExercisesSessionEntity.ExerciseType in
+            .map { _ -> ExercisesSessionEntity.NextSessionItem in
                 currentSession?.word(currentSession?.currentSessionWord, isPassedInExercise: .wordView)
-                    .exercise ?? .none
+                ?? .zero
             }
-            .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.ExerciseType> in
+            .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.NextSessionItem> in
                 print("👨🏻 ❌ Current Exercise Session is wrong!")
-                return .just(.none)
+                return .just(.zero)
             })
         
-        return Output(currentSession: currentSession, nextExerciseType: nextExerciseType)
+        return Output(currentSession: currentSession, nextSessionItem: nextExerciseType)
     }
 }

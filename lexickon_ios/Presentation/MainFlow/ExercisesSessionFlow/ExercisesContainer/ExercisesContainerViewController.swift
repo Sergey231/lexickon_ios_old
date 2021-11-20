@@ -144,14 +144,14 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         // который предедается в параметре parentViewController
         let exercisesViewOutput = exercisesView.configure(
             input: .init(
-                nextExerciseType: presenterOutput.nextExerciseType,
+                nextExerciseType: presenterOutput.nextSessionItem.map { $0.exercise },
                 session: currentSession,
                 parentViewController: self
             )
         )
         
-        presenterOutput.nextExerciseType
-            .filter { $0 == .none }
+        presenterOutput.nextSessionItem
+            .filter { $0.exercise == .none }
             .do { [unowned self] _ in
                 removeButtonFromView()
                 removeTitleViewFromView()
