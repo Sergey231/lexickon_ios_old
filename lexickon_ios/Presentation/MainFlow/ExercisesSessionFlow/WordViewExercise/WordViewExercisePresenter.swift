@@ -12,10 +12,8 @@ import Resolver
 
 final class WordViewExercisePresenter {
     
-    @Injected var exercisesInteracor: ExercisesInteractorProtocol
-    
     struct Input {
-        
+        let nextSessionItem: ExercisesSessionEntity.NextSessionItem
     }
     
     struct Output {
@@ -26,8 +24,7 @@ final class WordViewExercisePresenter {
     func configure(input: Input) -> Output {
         
         guard
-            let session = exercisesInteracor.currentSession,
-            let currentSessionWord = session.currentSessionWord
+            let currentSessionWord = input.nextSessionItem.word
         else {
             print("👨🏻 ❌ Current Exercise Session is wrong!")
             return Output(studyWord: "", translation: "")

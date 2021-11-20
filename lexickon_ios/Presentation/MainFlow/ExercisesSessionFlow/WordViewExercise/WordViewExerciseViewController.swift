@@ -24,6 +24,7 @@ class WordViewExerciseViewController: UIViewController {
     }
     
     private let didTapSubmitButton = PublishRelay<Void>()
+    private let nextSessionItem: ExercisesSessionEntity.NextSessionItem = .emptyItem
     
     @Injected var presenter: WordViewExercisePresenter
     
@@ -121,7 +122,11 @@ class WordViewExerciseViewController: UIViewController {
             .drive(translationLabel.rx.alphaSlowAnimated)
             .disposed(by: disposeBag)
         
-        let presenterOutput = presenter.configure(input: .init())
+        let presenterOutput = presenter.configure(
+            input: .init(
+                nextSessionItem: nextSessionItem
+            )
+        )
         
         studyWordLabel.text = presenterOutput.studyWord
         translationLabel.text = presenterOutput.translation

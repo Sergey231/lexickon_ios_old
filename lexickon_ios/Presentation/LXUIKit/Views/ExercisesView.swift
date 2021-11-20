@@ -21,22 +21,22 @@ public final class ExercisesView: UIView {
     }
     
     fileprivate let exercisesNavigationController = UINavigationController()
-    private let nextExerciseTypeRelay = PublishRelay<ExercisesSessionEntity.ExerciseType>()
+    private let nextSessionItemRelay = PublishRelay<ExercisesSessionEntity.NextSessionItem>()
     private let endSessionRelay = PublishRelay<Void>()
     
 //    fileprivate let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
     
     public struct Input {
         public init(
-            nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>,
+            nextSessionItem: Signal<ExercisesSessionEntity.NextSessionItem>,
             session: ExercisesSessionEntity,
             parentViewController: UIViewController
         ) {
-            self.nextExerciseType = nextExerciseType
+            self.nextSessionItem = nextSessionItem
             self.session = session
             self.parentViewController = parentViewController
         }
-        let nextExerciseType: Signal<ExercisesSessionEntity.ExerciseType>
+        let nextSessionItem: Signal<ExercisesSessionEntity.NextSessionItem>
         let session: ExercisesSessionEntity
         let parentViewController: UIViewController
     }
@@ -63,8 +63,8 @@ public final class ExercisesView: UIView {
     
     public func configure(input: Input) -> Output {
         
-        nextExerciseTypeRelay.asSignal()
-            .emit(to: rx.nextExerciseType)
+        nextSessionItemRelay.asSignal()
+            .emit(to: rx.nextSessionItem)
             .disposed(by: disposeBag)
         
         exercisesNavigationController.setup {
@@ -79,14 +79,12 @@ public final class ExercisesView: UIView {
             $0.didMove(toParent: input.parentViewController)
         }
         
-        guard let initExerciseType = input.session.currentSessionWord?.currentExercise else {
-            return Output(endSession: .just(()))
-        }
+        let initSessionItem = input.session.currentSessionItem
         
-        nextExerciseTypeRelay.accept(initExerciseType)
+        nextSessionItemRelay.accept(initSessionItem)
         
-        input.nextExerciseType
-            .emit(to: rx.nextExerciseType)
+        input.nextSessionItem
+            .emit(to: rx.nextSessionItem)
             .disposed(by: disposeBag)
         
         return Output(endSession: endSessionRelay.asSignal())
@@ -94,10 +92,9 @@ public final class ExercisesView: UIView {
 }
 
 private extension Reactive where Base: ExercisesView {
-    var nextExerciseType: Binder<ExercisesSessionEntity.ExerciseType> {
-        Binder(base) { base, exerciseType in
-            switch exerciseType {
-                
+    var nextSessionItem: Binder<ExercisesSessionEntity.NextSessionItem> {
+        Binder(base) { base, nextSessionItem in
+            switch nextSessionItem.exercise {
             case .wordView:
                 let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
                 base.exercisesNavigationController.setViewControllers([wordViewExerciseViewController], animated: true)

@@ -144,7 +144,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
         // который предедается в параметре parentViewController
         let exercisesViewOutput = exercisesView.configure(
             input: .init(
-                nextExerciseType: presenterOutput.nextSessionItem.map { $0.exercise },
+                nextSessionItem: presenterOutput.nextSessionItem,
                 session: currentSession,
                 parentViewController: self
             )
