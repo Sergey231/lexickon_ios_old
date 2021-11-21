@@ -82,13 +82,16 @@ public class ExercisesSessionEntity {
     }
     
     private func culcSessionProgress() {
-        currentSessionProgress = sessionWords.reduce(CGFloat(0), { partialResult, word in
-            partialResult + CGFloat(word.notPassedExercises.count)
-        })
+        currentSessionProgress = entireSessionProgress - sessionWords
+            .reduce(CGFloat(0), { partialResult, word in
+                partialResult + CGFloat(word.notPassedExercises.count)
+            })
         
-        let persent = entireSessionProgress / currentSessionProgress
-        
-        sessionProgressRelay.accept(persent)
+        let onePersent = 100 / entireSessionProgress
+        let persent = onePersent * currentSessionProgress
+        let result = persent / 100
+
+        sessionProgressRelay.accept(result)
     }
     
     private func nextSessionWord(with exerciseType: ExerciseType = .wordView) -> SessionWord? {
