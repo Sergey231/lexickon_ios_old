@@ -10,9 +10,11 @@ import Foundation
 // import LexickonStateEntity
 import RxSwift
 import LexickonApi
+import Resolver
 
 public class ExercisesInteractor: ExercisesInteractorProtocol {
     
+    @Injected var wordsRepository: WordsRepositoryProtocol
     private var exerciseSession: ExercisesSessionEntity?
     
     public var currentSession: ExercisesSessionEntity? {
@@ -26,5 +28,9 @@ public class ExercisesInteractor: ExercisesInteractorProtocol {
         )
         exerciseSession = exercisesSessionEntity
         return .just(exercisesSessionEntity)
+    }
+    
+    public func saveSession(_ session: ExercisesSessionEntity) {
+        
     }
 }

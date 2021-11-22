@@ -7,10 +7,10 @@
 //
 
 import Foundation
-// import LexickonStateEntity
 import RxSwift
 
 public protocol ExercisesInteractorProtocol {
     func createExerciseSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity>
     var currentSession: ExercisesSessionEntity? { get }
+    func saveSession(_ session: ExercisesSessionEntity)
 }
