@@ -12,5 +12,5 @@ import RxSwift
 public protocol ExercisesInteractorProtocol {
     func createExerciseSession(with words: [WordEntity]) -> Single<ExercisesSessionEntity>
     var currentSession: ExercisesSessionEntity? { get }
-    func saveSession(_ session: ExercisesSessionEntity)
+    func saveCurrentSession() -> Single<Void>
 }

@@ -104,4 +104,8 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
             return Disposables.create()
         }
     }
+    
+    public func update(words: [LxWordUpdate]) -> Single<Void> {
+        return .error(LxHTTPObject.Error(with: 404))
+    }
 }

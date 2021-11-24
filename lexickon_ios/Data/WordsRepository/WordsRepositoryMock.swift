@@ -14,6 +14,10 @@ import Foundation
 
 public final class WordsRepositoryMock: WordsRepositoryProtocol, ApiRepository {
     
+    public func update(words: [LxWordUpdate]) -> Single<Void> {
+        .error(LxHTTPObject.Error(with: 404))
+    }
+    
     public init() {}
     
     public func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
