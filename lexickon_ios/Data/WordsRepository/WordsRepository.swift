@@ -9,9 +9,7 @@
 import LexickonApi
 import RxSwift
 import Alamofire
-//import SwiftKeychainWrapper
 import Foundation
-// import ApiRepository
 
 public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     
@@ -105,7 +103,40 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         }
     }
     
-    public func update(words: [LxWordUpdate]) -> Single<Void> {
-        return .error(LxHTTPObject.Error(with: 404))
+    public func update(words: [LxWordUpdate]) -> Single<[LxWordGet]> {
+        guard let url = URL(string: baseURL + "/api/updateWords") else {
+            return .error(LxHTTPObject.Error.invalidRepositoryRequest)
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        let session = LxSessionManager.shared.session
+        
+        let wordsParametrs = words.map {
+            [
+                "id" : $0.id,
+                "updatingStudyRatingDate" : $0.updatingStudyRatingDate,
+                "studyRating" : $0.studyRating
+            ]
+        }
+        
+        request.httpBody = try! JSONSerialization.data(withJSONObject: wordsParametrs)
+        
+        return Single.create { single -> Disposable in
+            
+            session.request(request)
+                .responseDecodable(
+                    of: [LxWordGet].self,
+                    decoder: self.jsonDecoder
+                ) { res in
+                    switch res.result {
+                    case .success(let model):
+                        single(.success(model))
+                    case .failure(let failure):
+                        single(.failure(LxHTTPObject.Error(with: failure.asAFError?.responseCode)))
+                    }
+                }
+            return Disposables.create()
+        }
     }
 }

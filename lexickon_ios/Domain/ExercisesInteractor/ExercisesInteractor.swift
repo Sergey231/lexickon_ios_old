@@ -32,5 +32,6 @@ public class ExercisesInteractor: ExercisesInteractorProtocol {
     public func saveCurrentSession() -> Single<Void> {
         let wordsForSave = exerciseSession?.sessionWords
         return wordsRepository.update(words: [])
+            .map { _ in () }
     }
 }
