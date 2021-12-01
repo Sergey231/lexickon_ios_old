@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/Sergey231/LexickonApi.git",
         "state": {
           "branch": null,
-          "revision": "6bb62d6e67d90b1ddaffd26ecc523c4b17aa0141",
-          "version": "0.8.11"
+          "revision": "cdd7699024b7df993fa4f506e8cdcffaffd40c78",
+          "version": "0.8.12"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources.git",
         "state": {
           "branch": null,
-          "revision": "e4627ac4f5a8dc10719030561801825c443acfec",
-          "version": "5.0.1"
+          "revision": "90c29b48b628479097fe775ed1966d75ac374518",
+          "version": "5.0.2"
         }
       },
       {

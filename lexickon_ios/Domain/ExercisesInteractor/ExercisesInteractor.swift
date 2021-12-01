@@ -30,7 +30,16 @@ public class ExercisesInteractor: ExercisesInteractorProtocol {
     }
     
     public func saveCurrentSession() -> Single<Void> {
-        let wordsForSave = exerciseSession?.sessionWords
-        return wordsRepository.update(words: [])
+        let wordsForSave: [LxWordUpdate] = exerciseSession?.sessionWords
+            .map {
+                return LxWordUpdate.create(with: $0)
+            } ?? []
+        return wordsRepository.update(words: wordsForSave)
+    }
+}
+
+fileprivate extension LxWordUpdate {
+    static func create(with: ExercisesSessionEntity.SessionWord) -> Self {
+        
     }
 }
