@@ -14,7 +14,7 @@ import Foundation
 
 public final class WordsRepositoryMock: WordsRepositoryProtocol, ApiRepository {
     
-    public func update(words: [LxWordUpdate]) -> Single<Void> {
+    public func update(words: [LxWordUpdate]) -> Single<[LxWordGet]> {
         .error(LxHTTPObject.Error(with: 404))
     }
     
