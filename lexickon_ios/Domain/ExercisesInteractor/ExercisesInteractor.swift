@@ -40,7 +40,11 @@ public class ExercisesInteractor: ExercisesInteractorProtocol {
 }
 
 fileprivate extension LxWordUpdate {
-    static func create(with: ExercisesSessionEntity.SessionWord) -> Self {
-        
+    static func create(with sessionWord: ExercisesSessionEntity.SessionWord) -> Self {
+        LxWordUpdate(
+            id: sessionWord.word.id,
+            updatingStudyRatingDate: UInt(sessionWord.word.updatingStudyRatingDate ?? 0),
+            studyRating: UInt(sessionWord.word.studyRating)
+        )
     }
 }
