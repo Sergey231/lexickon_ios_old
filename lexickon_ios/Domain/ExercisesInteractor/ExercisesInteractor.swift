@@ -35,6 +35,7 @@ public class ExercisesInteractor: ExercisesInteractorProtocol {
                 return LxWordUpdate.create(with: $0)
             } ?? []
         return wordsRepository.update(words: wordsForSave)
+            .map { _ in () }
     }
 }
 
