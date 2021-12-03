@@ -13,17 +13,24 @@ import Resolver
 
 final class ExercisesResultPresenter {
     
+    @Injected var exercisesInteractor: ExercisesInteractorProtocol
+    
     struct Input {
-        
+        let submitButtonDidTap: Signal<Void>
     }
     
     struct Output {
-        
+        let sessionDidFinish: Signal<Void>
     }
     
     func configure(input: Input) -> Output {
         
-        return Output()
+        let sessionDidFinish = input.submitButtonDidTap
+            .flatMap { [unowned self] _ in
+                exercisesInteractor.saveCurrentSession()
+                    .asSignal(onErrorSignalWith: .just(()))
+            }
+        
+        return Output(sessionDidFinish: sessionDidFinish)
     }
 }
-

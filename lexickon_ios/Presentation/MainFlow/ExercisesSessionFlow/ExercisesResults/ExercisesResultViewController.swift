@@ -85,9 +85,13 @@ class ExercisesResultViewController: UIViewController, Stepper {
         button.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
-        button.rx.tap.asSignal()
-            .map { _ in ExercisesSessionStep.home(animated: true) }
-            .emit(to: steps)
-            .disposed(by: disposeBag)
+        let presenterOutput = presenter.configure(
+            input: .init(submitButtonDidTap: button.rx.tap.asSignal())
+        )
+        
+        presenterOutput.sessionDidFinish.debug("💩").emit()
+//            .map { _ in ExercisesSessionStep.home(animated: true) }
+//            .emit(to: steps)
+//            .disposed(by: disposeBag)
     }
 }
