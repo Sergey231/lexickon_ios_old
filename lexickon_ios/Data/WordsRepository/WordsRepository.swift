@@ -114,7 +114,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
         
         let wordsParametrs = words.map {
             [
-                "id" : $0.id,
+                "id" : $0.id.uuidString,
                 "updatingStudyRatingDate" : $0.updatingStudyRatingDate,
                 "studyRating" : $0.studyRating
             ]
