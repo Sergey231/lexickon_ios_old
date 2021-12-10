@@ -150,7 +150,8 @@ public extension ExercisesSessionEntity {
         
         public var difficultyRating: Int {
             // Тут нужен будет не тривиальный алгоритм определения сложности слова, по колличеству букв, сложных букво сочитаный
-            10
+            let lettersCount = word.studyWord.count * 10
+            return lettersCount
         }
         
         public init(

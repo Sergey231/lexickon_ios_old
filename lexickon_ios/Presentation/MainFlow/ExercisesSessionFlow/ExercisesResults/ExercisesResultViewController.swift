@@ -89,9 +89,9 @@ class ExercisesResultViewController: UIViewController, Stepper {
             input: .init(submitButtonDidTap: button.rx.tap.asSignal())
         )
         
-        presenterOutput.sessionDidFinish.debug("💩").emit()
-//            .map { _ in ExercisesSessionStep.home(animated: true) }
-//            .emit(to: steps)
-//            .disposed(by: disposeBag)
+        presenterOutput.sessionDidFinish
+            .map { _ in ExercisesSessionStep.home(animated: true) }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
 }
