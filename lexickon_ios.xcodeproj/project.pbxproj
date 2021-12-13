@@ -123,6 +123,8 @@
 		EC40862526DA70F20096CD72 /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862426DA70F20096CD72 /* LexickonApi */; };
 		EC40862826DA71520096CD72 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862726DA71520096CD72 /* LBTATools */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
+		EC5B37092767206C00BBF466 /* SwiftSyllables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B37082767206C00BBF466 /* SwiftSyllables.swift */; };
+		EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */; };
 		EC5C3F3E272D6561008C95A7 /* ExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C3F3D272D6561008C95A7 /* ExercisesView.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8880A426AA7FDB00C2294F /* UserEntity.swift */; };
@@ -283,6 +285,8 @@
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
+		EC5B37082767206C00BBF466 /* SwiftSyllables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllables.swift; sourceTree = "<group>"; };
+		EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllablesHeuristic.swift; sourceTree = "<group>"; };
 		EC5C3F3D272D6561008C95A7 /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
 		EC8880A426AA7FDB00C2294F /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -856,6 +860,7 @@
 		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC5B37072767202900BBF466 /* Syllables */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -916,6 +921,15 @@
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC5B37072767202900BBF466 /* Syllables */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B37082767206C00BBF466 /* SwiftSyllables.swift */,
+				EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */,
+			);
+			name = Syllables;
 			sourceTree = "<group>";
 		};
 		EC75A1E625C551160053F88E /* LottieJSONAnimations */ = {
@@ -1200,6 +1214,7 @@
 				EC0DBF1325F0B92500CBED4D /* HomeViewController.swift in Sources */,
 				EC00F9E32701FF6D0067DCF4 /* OtherTranslationResultCell.swift in Sources */,
 				EC00F9E92701FF6D0067DCF4 /* AddSearchWordButton.swift in Sources */,
+				EC5B37092767206C00BBF466 /* SwiftSyllables.swift in Sources */,
 				ECAD3C1E27020F5100710EB2 /* String+ObjectAddress.swift in Sources */,
 				EC0DBF0E25F0B92500CBED4D /* LoginPresenter.swift in Sources */,
 				EC00FA15270205270067DCF4 /* UserTokenRepositoryProtocol.swift in Sources */,
@@ -1258,6 +1273,7 @@
 				EC00FA31270206AA0067DCF4 /* TranslationRequestDTO.swift in Sources */,
 				EC00FA34270206AA0067DCF4 /* TranslationRepositoryProtocol.swift in Sources */,
 				EC00F9F22701FF6D0067DCF4 /* HomeHeaderView.swift in Sources */,
+				EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */,
 				EC00F9E42701FF6D0067DCF4 /* HomeWordCell.swift in Sources */,
 				ECF63C3626E5E89B002E8F2F /* StartExercisersViewController.swift in Sources */,
 				EC0DBF0C25F0B92500CBED4D /* StartPresenter.swift in Sources */,
