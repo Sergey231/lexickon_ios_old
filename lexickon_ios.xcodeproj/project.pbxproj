@@ -122,6 +122,7 @@
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC40862526DA70F20096CD72 /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862426DA70F20096CD72 /* LexickonApi */; };
 		EC40862826DA71520096CD72 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862726DA71520096CD72 /* LBTATools */; };
+		EC43F3CF2777305B0046EAA3 /* GetStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC5B37092767206C00BBF466 /* SwiftSyllables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B37082767206C00BBF466 /* SwiftSyllables.swift */; };
 		EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */; };
@@ -284,6 +285,7 @@
 		EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesInteractor.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStateUseCase.swift; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
 		EC5B37082767206C00BBF466 /* SwiftSyllables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllables.swift; sourceTree = "<group>"; };
 		EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllablesHeuristic.swift; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EC43F3CD277730220046EAA3 /* GetStateUseCase */,
 				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
@@ -921,6 +924,14 @@
 				EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC43F3CD277730220046EAA3 /* GetStateUseCase */ = {
+			isa = PBXGroup;
+			children = (
+				EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */,
+			);
+			path = GetStateUseCase;
 			sourceTree = "<group>";
 		};
 		EC5B37072767202900BBF466 /* Syllables */ = {
@@ -1235,6 +1246,7 @@
 				EC00F9EE2701FF6D0067DCF4 /* WordRatingView.swift in Sources */,
 				EC00F9FE2701FF6D0067DCF4 /* StartLogo.swift in Sources */,
 				ECAA183D272A7D4F005A3DE5 /* ExercisesResultViewController.swift in Sources */,
+				EC43F3CF2777305B0046EAA3 /* GetStateUseCase.swift in Sources */,
 				ECAD3C1927020F5100710EB2 /* Array+Elements.swift in Sources */,
 				EC00F9F72701FF6D0067DCF4 /* WordCardProgressBarView.swift in Sources */,
 				EC00F9FF2701FF6D0067DCF4 /* Logo.swift in Sources */,

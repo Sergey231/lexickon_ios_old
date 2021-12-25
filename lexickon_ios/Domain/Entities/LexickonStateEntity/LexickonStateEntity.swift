@@ -27,6 +27,15 @@ public struct LexickonStateEntity {
         self.waitingWordsCount = waitingWordsCount
     }
     
+    public static func empty() -> Self {
+        LexickonStateEntity(
+            fireWordsCount: 0,
+            readyWordsCount: 0,
+            newWordsCount: 0,
+            waitingWordsCount: 0
+        )
+    }
+    
     public var state: State {
         if fireWordsCount != 0 {
             return .hasFireWords

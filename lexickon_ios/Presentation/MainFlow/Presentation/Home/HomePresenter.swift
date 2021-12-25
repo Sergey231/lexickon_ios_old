@@ -20,6 +20,7 @@ typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWord
 final class HomePresenter {
     
     @Injected var lexickonStateInteractor: LexickonStateInteractorProtocol
+    @Injected var getStateUseCase: GetStateUseCase
     
     struct Input {
         let refreshData: Signal<Void>
@@ -60,6 +61,10 @@ final class HomePresenter {
     // MARK: Configure
     
     func configurate(input: Input) -> Output {
+        
+        getStateUseCase.configure(.init(updateState: .just(())))
+            .state.debug("👨🏻")
+            .drive()
         
         let isNextPageLoading = RxActivityIndicator()
         let isWordsUpdating = RxActivityIndicator()

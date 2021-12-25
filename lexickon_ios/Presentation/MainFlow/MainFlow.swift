@@ -122,7 +122,10 @@ extension Resolver {
     public static func registerMainObjects() {
         register { HomeViewController() }
         register { HomePresenter() }
-        register { LexickonStateInteractor() as LexickonStateInteractorProtocol }
         register { WordsRepository() as WordsRepositoryProtocol }
+        register { WordsStateRepository() as WordsStateRepositoryProtocol }
+        register { GetStateUseCase() }
+        
+        register { LexickonStateInteractor() as LexickonStateInteractorProtocol }
     }
 }
