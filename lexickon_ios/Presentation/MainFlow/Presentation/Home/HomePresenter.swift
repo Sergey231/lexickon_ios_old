@@ -19,8 +19,8 @@ typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWord
 
 final class HomePresenter {
     
-    @Injected var lexickonStateInteractor: LexickonStateInteractorProtocol
     @Injected var getStateUseCase: GetStateUseCase
+    @Injected var getWordsUseCase: GetWordsUseCase
     
     struct Input {
         let refreshData: Signal<Void>
@@ -74,17 +74,18 @@ final class HomePresenter {
             oneHoureTimer
         ) { _, _ in () }
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
-                lexickonStateInteractor.words(
+                getWordsUseCase.configure(GetWordsUseCase.Input(
                     per: 10,
                     page: 1
-                )
-                .map { $0.items }
-                .trackActivity(isWordsUpdating)
-                .asDriver(onErrorJustReturn: [])
-                .do(onNext: { _ in
-                    self.loadedWordsCount = 10
-                    self.pagesCount = 1
-                })
+                ))
+                    .words
+                    .map { $0.items }
+                    .trackActivity(isWordsUpdating)
+                    .asDriver(onErrorJustReturn: [])
+                    .do(onNext: { _ in
+                        self.loadedWordsCount = 10
+                        self.pagesCount = 1
+                    })
             }
         
         let refreshDataResetSelectionStateDisposable = input.refreshData
@@ -98,17 +99,18 @@ final class HomePresenter {
         let words = input.needLoadNextWordsPage
             .startWith(())
             .flatMapLatest { [unowned self] _ -> Driver<[WordEntity]> in
-                self.lexickonStateInteractor.words(
-                    per: self.loadedWordsCount,
-                    page: self.pagesCount
-                )
-                .map { $0.items }
-                .trackActivity(isNextPageLoading)
-                .asDriver(onErrorJustReturn: [])
-                .do(onNext: {
-                    self.loadedWordsCount += $0.count
-                    self.pagesCount += 1
-                })
+                getWordsUseCase.configure(GetWordsUseCase.Input(
+                    per: loadedWordsCount,
+                    page: pagesCount
+                ))
+                    .words
+                    .map { $0.items }
+                    .trackActivity(isNextPageLoading)
+                    .asDriver(onErrorJustReturn: [])
+                    .do(onNext: {
+                        self.loadedWordsCount += $0.count
+                        self.pagesCount += 1
+                    })
             }
         
         let sections = Driver.merge(
