@@ -124,6 +124,7 @@
 		EC40862826DA71520096CD72 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862726DA71520096CD72 /* LBTATools */; };
 		EC43F3CF2777305B0046EAA3 /* GetStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */; };
 		EC43F3D12778538D0046EAA3 /* GetWordsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */; };
+		EC43F3D327785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC5B37092767206C00BBF466 /* SwiftSyllables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B37082767206C00BBF466 /* SwiftSyllables.swift */; };
 		EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */; };
@@ -288,6 +289,7 @@
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStateUseCase.swift; sourceTree = "<group>"; };
 		EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWordsUseCase.swift; sourceTree = "<group>"; };
+		EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWordsForExerciseUseCase.swift; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
 		EC5B37082767206C00BBF466 /* SwiftSyllables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllables.swift; sourceTree = "<group>"; };
 		EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllablesHeuristic.swift; sourceTree = "<group>"; };
@@ -824,7 +826,9 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */,
 				EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */,
+				EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */,
 				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
@@ -873,7 +877,6 @@
 		EC4278CC22D070E5001218AB = {
 			isa = PBXGroup;
 			children = (
-				EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */,
 				ECD9143527019CD000E7E037 /* Packages */,
 				EC4278D722D070E5001218AB /* lexickon_ios */,
 				EC4278EE22D070E7001218AB /* lexickon_iosTests */,
@@ -1339,6 +1342,7 @@
 				EC43F3D12778538D0046EAA3 /* GetWordsUseCase.swift in Sources */,
 				EC0DBEC225F0B92500CBED4D /* NewWordFlow.swift in Sources */,
 				EC00FA32270206AA0067DCF4 /* YandexDictionaryApiResultDTO.swift in Sources */,
+				EC43F3D327785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift in Sources */,
 				EC00FA012701FF6D0067DCF4 /* AddSerachWordTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

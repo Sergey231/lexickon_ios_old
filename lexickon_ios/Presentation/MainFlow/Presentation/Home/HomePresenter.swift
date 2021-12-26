@@ -19,8 +19,9 @@ typealias HomeWordRxDataSource = RxTableViewSectionedAnimatedDataSource<HomeWord
 
 final class HomePresenter {
     
-    @Injected var getStateUseCase: GetStateUseCase
-    @Injected var getWordsUseCase: GetWordsUseCase
+    @Injected private var getStateUseCase: GetStateUseCase
+    @Injected private var getWordsUseCase: GetWordsUseCase
+    @Injected private var getWordsForExercise: GetWordsForExerciseUseCase
     
     struct Input {
         let refreshData: Signal<Void>

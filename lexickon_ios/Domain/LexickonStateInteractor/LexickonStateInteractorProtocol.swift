@@ -8,7 +8,6 @@
 
 import RxSwift
 import LexickonApi
-// import LexickonStateEntity
 
 protocol LexickonStateInteractorProtocol {
     func state() -> Single<LexickonStateEntity>

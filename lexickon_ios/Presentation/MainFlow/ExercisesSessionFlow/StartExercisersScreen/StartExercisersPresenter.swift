@@ -9,12 +9,12 @@
 import RxSwift
 import RxCocoa
 import Resolver
-// import LXUIKit
 
 final class StartExercisesPresenter {
     
     @Injected private var lexickonStateInteractor: LexickonStateInteractorProtocol
     @Injected private var exercisesInteractor: ExercisesInteractorProtocol
+    @Injected private var getWordsForExercise: GetWordsForExerciseUseCase
     
     struct Input {
         
@@ -26,7 +26,8 @@ final class StartExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
-        let wordsForExerceses = lexickonStateInteractor.wordsForExercisesSession(count: 5)
+        let wordsForExerceses = getWordsForExercise.configure(GetWordsForExerciseUseCase.Input(count: 5))
+            .wordsForExercise
             .asSignal { error in
                 print("❌ StartExercisesPresenter: \(error.localizedDescription)")
                 return .just([])
