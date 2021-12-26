@@ -129,6 +129,7 @@
 		EC5B37092767206C00BBF466 /* SwiftSyllables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B37082767206C00BBF466 /* SwiftSyllables.swift */; };
 		EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */; };
 		EC5C3F3E272D6561008C95A7 /* ExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5C3F3D272D6561008C95A7 /* ExercisesView.swift */; };
+		EC6B2D12277879E400FDF38F /* CreatExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8880A426AA7FDB00C2294F /* UserEntity.swift */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
@@ -294,6 +295,7 @@
 		EC5B37082767206C00BBF466 /* SwiftSyllables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllables.swift; sourceTree = "<group>"; };
 		EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllablesHeuristic.swift; sourceTree = "<group>"; };
 		EC5C3F3D272D6561008C95A7 /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
+		EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		EC8880A426AA7FDB00C2294F /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -829,6 +831,7 @@
 				EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */,
 				EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */,
 				EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */,
+				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
 				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
@@ -1298,6 +1301,7 @@
 				EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */,
 				ECAD3C1F27020F5100710EB2 /* NSObject+Setupable.swift in Sources */,
 				EC00F9F02701FF6D0067DCF4 /* HomeWordsSectionHeaderView.swift in Sources */,
+				EC6B2D12277879E400FDF38F /* CreatExerciseSessionUseCase.swift in Sources */,
 				EC00F9F12701FF6D0067DCF4 /* StartAddingWordsView.swift in Sources */,
 				EC0DBED825F0B92500CBED4D /* AddSearchWordPresenter.swift in Sources */,
 				EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */,
