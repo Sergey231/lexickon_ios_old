@@ -12,9 +12,8 @@ import Resolver
 
 final class StartExercisesPresenter {
     
-    @Injected private var lexickonStateInteractor: LexickonStateInteractorProtocol
-    @Injected private var exercisesInteractor: ExercisesInteractorProtocol
     @Injected private var getWordsForExercise: GetWordsForExerciseUseCase
+    @Injected private var creatExerciseSession: CreatExerciseSessionUseCase
     
     struct Input {
         
@@ -34,12 +33,13 @@ final class StartExercisesPresenter {
             }
         
         let execisesSessionEntity = wordsForExerceses
-            .flatMap { [unowned self] words -> Signal<ExercisesSessionEntity> in
-                exercisesInteractor.createExerciseSession(with: words)
-                    .asSignal { error in
-                        print("❌ StartExercisesPresenter: \(error.localizedDescription)")
-                        return .empty()
-                    }
+            .map { [unowned self] words -> ExercisesSessionEntity in
+                creatExerciseSession.configure(CreatExerciseSessionUseCase.Input(words: words))
+                    .session
+            }
+            .asSignal { error in
+                print("❌ StartExercisesPresenter: \(error.localizedDescription)")
+                return .empty()
             }
         
         return Output(execisesSessionCreated: execisesSessionEntity)

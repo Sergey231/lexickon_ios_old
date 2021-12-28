@@ -126,6 +126,7 @@ extension Resolver {
         register { GetStateUseCase() }
         register { GetWordsUseCase() }
         register { GetWordsForExerciseUseCase() }
+        register { CreatExerciseSessionUseCase() }
         
         register { WordsRepository() as WordsRepositoryProtocol }
         register { LexickonStateInteractor() as LexickonStateInteractorProtocol }
