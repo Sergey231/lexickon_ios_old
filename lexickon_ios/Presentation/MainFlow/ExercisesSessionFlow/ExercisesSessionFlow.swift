@@ -14,6 +14,7 @@ import Resolver
 
 enum ExercisesSessionStep: Step {
     case startExercises
+    // Можно попробовать передовать по верху
     case exercises
     case home(animated: Bool)
     case result
