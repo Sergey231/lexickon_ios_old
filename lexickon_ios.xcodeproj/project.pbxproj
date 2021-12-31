@@ -132,6 +132,9 @@
 		EC6B2D12277879E400FDF38F /* CreatExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8880A426AA7FDB00C2294F /* UserEntity.swift */; };
+		EC9E7AC5277EEFE400786F0C /* SaveExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */; };
+		EC9E7AC7277EF07A00786F0C /* ExerciseSessionRepository.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */; };
+		EC9E7AC9277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */; };
 		ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */; };
 		ECA61E3522D07798003DD5B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA61E3322D07798003DD5B1 /* AppDelegate.swift */; };
 		ECA97C6F22D0819B00918828 /* lexickon_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA97C6C22D0814400918828 /* lexickon_iosTests.swift */; };
@@ -297,6 +300,9 @@
 		EC5C3F3D272D6561008C95A7 /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
 		EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		EC8880A426AA7FDB00C2294F /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExerciseSessionUseCase.swift; sourceTree = "<group>"; };
+		EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSessionRepository.swift.swift; sourceTree = "<group>"; };
+		EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
 		ECA61E3222D07798003DD5B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA61E3322D07798003DD5B1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		ECA97C6922D0808500918828 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -821,6 +827,8 @@
 				EC00FA162702055F0067DCF4 /* UserRepository */,
 				EC00FA0C270204E50067DCF4 /* WordsStateRepository */,
 				EC00FA11270205270067DCF4 /* AuthTokenRepository */,
+				EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */,
+				EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -832,6 +840,7 @@
 				EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */,
 				EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */,
 				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
+				EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */,
 				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
@@ -1285,6 +1294,7 @@
 				EC00F9FD2701FF6D0067DCF4 /* ProfileButtonsSetView.swift in Sources */,
 				EC00FA31270206AA0067DCF4 /* TranslationRequestDTO.swift in Sources */,
 				EC00FA34270206AA0067DCF4 /* TranslationRepositoryProtocol.swift in Sources */,
+				EC9E7AC7277EF07A00786F0C /* ExerciseSessionRepository.swift.swift in Sources */,
 				EC00F9F22701FF6D0067DCF4 /* HomeHeaderView.swift in Sources */,
 				EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */,
 				EC00F9E42701FF6D0067DCF4 /* HomeWordCell.swift in Sources */,
@@ -1292,6 +1302,7 @@
 				EC0DBF0C25F0B92500CBED4D /* StartPresenter.swift in Sources */,
 				EC00F9E12701FF6D0067DCF4 /* TranslationCellModelEnum.swift in Sources */,
 				EC00FA4F2702072D0067DCF4 /* KeychainRepositoryProtocol.swift in Sources */,
+				EC9E7AC9277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift in Sources */,
 				EC00F9F82701FF6D0067DCF4 /* NotificationsView.swift in Sources */,
 				EC00FA022701FF6D0067DCF4 /* MultiLabelView.swift in Sources */,
 				EC0DBF0125F0B92500CBED4D /* ProfileMainScreenPresenter.swift in Sources */,
@@ -1307,6 +1318,7 @@
 				EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */,
 				EC0DBF1125F0B92500CBED4D /* LexickonStateInteractor.swift in Sources */,
 				EC00FA0F270204E50067DCF4 /* WordsStateRepositoryProtocol.swift in Sources */,
+				EC9E7AC5277EEFE400786F0C /* SaveExerciseSessionUseCase.swift in Sources */,
 				EC00F9F42701FF6D0067DCF4 /* PaginationProgressView.swift in Sources */,
 				EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC00F9EC2701FF6D0067DCF4 /* MoreButton.swift in Sources */,

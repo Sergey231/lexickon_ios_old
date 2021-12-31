@@ -114,6 +114,8 @@ class StartExercisesViewController: UIViewController, Stepper {
         let presenterOutput = presenter.configure(input: .init())
             
         let execisesSessionEntity = presenterOutput.execisesSessionCreated
+        
+        let sessionWords = execisesSessionEntity
             .map {
                 $0.sessionWords.reduce("", { result, sesstionWordEntity in
                     var result = result
@@ -125,7 +127,7 @@ class StartExercisesViewController: UIViewController, Stepper {
                 activityView.stopAnimating()
             })
             
-        execisesSessionEntity
+        sessionWords
             .emit(to: wordsForExercisesLabel.rx.textWithAnimaiton)
             .disposed(by: disposeBag)
         
@@ -135,6 +137,9 @@ class StartExercisesViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         button.rx.tap.asSignal()
+            .flatMap { _ -> Signal<ExercisesSessionEntity> in
+                execisesSessionEntity.asSignal()
+            }
             .map { ExercisesSessionStep.exercises }
             .emit(to: steps)
             .disposed(by: disposeBag)
