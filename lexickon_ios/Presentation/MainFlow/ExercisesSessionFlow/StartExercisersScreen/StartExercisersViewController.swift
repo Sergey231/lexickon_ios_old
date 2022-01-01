@@ -137,9 +137,6 @@ class StartExercisesViewController: UIViewController, Stepper {
             .disposed(by: disposeBag)
         
         button.rx.tap.asSignal()
-            .flatMap { _ -> Signal<ExercisesSessionEntity> in
-                execisesSessionEntity.asSignal()
-            }
             .map { ExercisesSessionStep.exercises }
             .emit(to: steps)
             .disposed(by: disposeBag)
