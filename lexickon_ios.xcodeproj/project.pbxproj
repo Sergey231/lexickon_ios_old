@@ -827,8 +827,7 @@
 				EC00FA162702055F0067DCF4 /* UserRepository */,
 				EC00FA0C270204E50067DCF4 /* WordsStateRepository */,
 				EC00FA11270205270067DCF4 /* AuthTokenRepository */,
-				EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */,
-				EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */,
+				ECFDC62E278C849300C26E9B /* ExerciseSessionRepository */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1084,6 +1083,15 @@
 				ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */,
 			);
 			path = StartExercisersScreen;
+			sourceTree = "<group>";
+		};
+		ECFDC62E278C849300C26E9B /* ExerciseSessionRepository */ = {
+			isa = PBXGroup;
+			children = (
+				EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */,
+				EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */,
+			);
+			path = ExerciseSessionRepository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

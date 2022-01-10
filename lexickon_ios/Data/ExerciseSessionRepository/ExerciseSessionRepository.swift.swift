@@ -19,6 +19,6 @@ final class ExerciseSessionRepository: ExerciseSessionRepositoryProtocol {
     }
     
     public func getCurrentSession() -> Single<ExercisesSessionEntity?> {
-        return .just(self.currentSession)
+        .just(currentSession)
     }
 }
