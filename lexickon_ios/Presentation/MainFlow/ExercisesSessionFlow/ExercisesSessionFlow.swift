@@ -99,10 +99,12 @@ extension Resolver {
         register { StartExercisesPresenter() }
         register { _, args in WordViewExerciseViewController(nextSessionItem: args()) }
         register { WordViewExercisePresenter() }
-        register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
         register { ExercisesResultPresenter() }
         register { ExercisesResultViewController() }
         register { ExercisesContainerViewController() }.scope(.cached)
         register { ExercisesPresenter() }
+        register { ExerciseSessionRepository() as ExerciseSessionRepositoryProtocol }.scope(.cached)
+        
+        register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
     }
 }

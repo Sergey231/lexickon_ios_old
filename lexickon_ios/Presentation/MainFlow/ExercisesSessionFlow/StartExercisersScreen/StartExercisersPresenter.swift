@@ -12,8 +12,8 @@ import Resolver
 
 final class StartExercisesPresenter {
     
-    @Injected private var getWordsForExercise: GetWordsForExerciseUseCase
-    @Injected private var creatExerciseSession: CreatExerciseSessionUseCase
+    @Injected private var getWordsForExerciseUseCase: GetWordsForExerciseUseCase
+    @Injected private var creatExerciseSessionUseCase: CreatExerciseSessionUseCase
     
     struct Input {
         
@@ -25,7 +25,7 @@ final class StartExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
-        let wordsForExerceses = getWordsForExercise.configure(GetWordsForExerciseUseCase.Input(count: 5))
+        let wordsForExerceses = getWordsForExerciseUseCase.configure(GetWordsForExerciseUseCase.Input(count: 5))
             .wordsForExercise
             .asSignal { error in
                 print("❌ StartExercisesPresenter: \(error.localizedDescription)")
@@ -33,13 +33,13 @@ final class StartExercisesPresenter {
             }
         
         let execisesSessionEntity = wordsForExerceses
-            .map { [unowned self] words -> ExercisesSessionEntity in
-                creatExerciseSession.configure(CreatExerciseSessionUseCase.Input(words: words))
+            .flatMap { [unowned self] words in
+                creatExerciseSessionUseCase.configure(CreatExerciseSessionUseCase.Input(words: words))
                     .session
-            }
-            .asSignal { error in
-                print("❌ StartExercisesPresenter: \(error.localizedDescription)")
-                return .empty()
+                    .asSignal { error in
+                        print("❌ StartExercisesPresenter: \(error.localizedDescription)")
+                        return .empty()
+                    }
             }
         
         return Output(execisesSessionCreated: execisesSessionEntity)

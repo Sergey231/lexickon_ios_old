@@ -14,20 +14,25 @@ import LexickonApi
 final class CreatExerciseSessionUseCase {
     
     @Injected private var wordsRepository: WordsRepositoryProtocol
+    @Injected private var exerciseSessionRepository: ExerciseSessionRepositoryProtocol
     
     public struct Input {
         let words: [WordEntity]
     }
     
     public struct Output {
-        let session: ExercisesSessionEntity
+        let session: Single<ExercisesSessionEntity>
     }
     
     public func configure(_ input: Input) -> Output {
-        let exercisesSessionEntity = ExercisesSessionEntity(
+        let session = ExercisesSessionEntity(
             words: input.words,
             exercises: [.wordView]
         )
+        
+        let exercisesSessionEntity = exerciseSessionRepository.saveSession(session: session)
+            .map { _ in session }
+        
         return Output(session: exercisesSessionEntity)
     }
 }
