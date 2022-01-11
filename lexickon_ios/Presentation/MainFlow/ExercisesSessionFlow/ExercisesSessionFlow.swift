@@ -104,6 +104,7 @@ extension Resolver {
         register { ExercisesContainerViewController() }.scope(.cached)
         register { ExercisesPresenter() }
         register { ExerciseSessionRepository() as ExerciseSessionRepositoryProtocol }.scope(.cached)
+        register { GetExerciseSessionUseCase() }
         
         register { ExercisesInteractor() as ExercisesInteractorProtocol }.scope(.cached)
     }

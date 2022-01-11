@@ -16,6 +16,8 @@ final class ExercisesPresenter {
         let exerciseDidDone: Signal<Void>
     }
     
+    @Injected private var getExerciseuseCase: GetExerciseSessionUseCase
+    
     @Injected private var exercisesInteractor: ExercisesInteractorProtocol
     
     struct Output {
@@ -25,7 +27,7 @@ final class ExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
-        let currentSession = exercisesInteractor.currentSession
+        let currentSession = getExerciseuseCase.configure().session
         
         let nextExerciseType = input.exerciseDidDone
             .map { _ -> ExercisesSessionEntity.NextSessionItem in

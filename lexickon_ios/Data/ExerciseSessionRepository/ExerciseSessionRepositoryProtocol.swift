@@ -12,5 +12,5 @@ import RxSwift
 
 protocol ExerciseSessionRepositoryProtocol {
     func saveSession(session: ExercisesSessionEntity) -> Single<Void>
-    func getCurrentSession() -> Single<ExercisesSessionEntity?>
+    func getCurrentSession() -> ExercisesSessionEntity?
 }

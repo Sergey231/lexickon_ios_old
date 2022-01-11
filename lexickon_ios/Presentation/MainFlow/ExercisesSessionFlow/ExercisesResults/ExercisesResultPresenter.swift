@@ -9,7 +9,6 @@
 import RxSwift
 import RxCocoa
 import Resolver
-// import LXUIKit
 
 final class ExercisesResultPresenter {
     

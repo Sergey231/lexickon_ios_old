@@ -15,7 +15,7 @@ final class SaveExerciseSessionUseCase {
     
     @Injected private var exerciseSessionRepository: ExerciseSessionRepositoryProtocol
     
-    public func saveSession(_ session: ExercisesSessionEntity) -> Single<Void> {
+    public func configure(_ session: ExercisesSessionEntity) -> Single<Void> {
         exerciseSessionRepository.saveSession(session: session)
     }
 }

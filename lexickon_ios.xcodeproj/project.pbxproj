@@ -169,6 +169,7 @@
 		ECF4518D270054B5006E39D9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ECF4518C270054B5006E39D9 /* RxSwift */; };
 		ECF63C3626E5E89B002E8F2F /* StartExercisersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF63C3526E5E89B002E8F2F /* StartExercisersViewController.swift */; };
 		ECF63C3826E5E8A8002E8F2F /* StartExercisersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */; };
+		ECFDC630278DDD2900C26E9B /* GetExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +336,7 @@
 		ECF20D60236D942500DA8715 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = lexickon_ios/Resources/logo.png; sourceTree = SOURCE_ROOT; };
 		ECF63C3526E5E89B002E8F2F /* StartExercisersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExercisersViewController.swift; sourceTree = "<group>"; };
 		ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExercisersPresenter.swift; sourceTree = "<group>"; };
+		ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -840,6 +842,7 @@
 				EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */,
 				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
 				EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */,
+				ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */,
 				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
@@ -975,6 +978,7 @@
 			children = (
 				ECAA1826271C418F005A3DE5 /* ExercisesContainerViewController.swift */,
 				ECAA182B271C6DCD005A3DE5 /* ExercisesPresenter.swift */,
+				ECDAF0EB26CF76600020582E /* WordViewExercise */,
 			);
 			path = ExercisesContainer;
 			sourceTree = "<group>";
@@ -1069,7 +1073,6 @@
 			children = (
 				ECDEECF226CE2A3100EB2F53 /* ExercisesSessionFlow.swift */,
 				ECF63C3426E5E866002E8F2F /* StartExercisersScreen */,
-				ECDAF0EB26CF76600020582E /* WordViewExercise */,
 				ECAA1825271C4162005A3DE5 /* ExercisesContainer */,
 				ECC3031D2714066A0083E905 /* ExercisesResults */,
 			);
@@ -1251,6 +1254,7 @@
 				EC00F9F62701FF6D0067DCF4 /* WordCardBottomBarView.swift in Sources */,
 				EC00FA2D270206A90067DCF4 /* TranslationResultsDTO.swift in Sources */,
 				EC00F9EB2701FF6D0067DCF4 /* LexickonStateButton.swift in Sources */,
+				ECFDC630278DDD2900C26E9B /* GetExerciseSessionUseCase.swift in Sources */,
 				EC00FA092701FF6D0067DCF4 /* TextView.swift in Sources */,
 				EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */,
 				ECBEB5092439C2190017855E /* AppFlow.swift in Sources */,
