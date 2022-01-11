@@ -18,8 +18,6 @@ final class ExercisesPresenter {
     
     @Injected private var getExerciseuseCase: GetExerciseSessionUseCase
     
-    @Injected private var exercisesInteractor: ExercisesInteractorProtocol
-    
     struct Output {
         let currentSession: ExercisesSessionEntity?
         let nextSessionItem: Signal<ExercisesSessionEntity.NextSessionItem>

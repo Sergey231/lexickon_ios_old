@@ -82,7 +82,6 @@
 		EC00FA54270207540067DCF4 /* KeyValueRepositoryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00FA51270207540067DCF4 /* KeyValueRepositoryKeys.swift */; };
 		EC00FA55270207540067DCF4 /* KeyValueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00FA52270207540067DCF4 /* KeyValueRepository.swift */; };
 		EC00FA56270207540067DCF4 /* KeyValueRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC00FA53270207540067DCF4 /* KeyValueRepositoryProtocol.swift */; };
-		EC08F05526DCAD0200790316 /* ExercisesInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */; };
 		EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20C52671E23600881DDD /* WordCordFlow.swift */; };
 		EC0B20C92671E3FE00881DDD /* WordCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */; };
 		EC0B20CB2671E55A00881DDD /* WordCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0B20CA2671E55A00881DDD /* WordCardPresenter.swift */; };
@@ -118,7 +117,6 @@
 		EC3F44552520BF26004706DC /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44542520BF26004706DC /* RxRelay */; };
 		EC3F44572520BF26004706DC /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44562520BF26004706DC /* RxCocoa */; };
 		EC3F44592520BF26004706DC /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = EC3F44582520BF26004706DC /* RxBlocking */; };
-		EC3FCD0926DF822A00AF7C6E /* ExercisesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */; };
 		EC407EDF237C3B8400A3FD42 /* Validator in Frameworks */ = {isa = PBXBuildFile; productRef = EC407EDE237C3B8400A3FD42 /* Validator */; };
 		EC40862526DA70F20096CD72 /* LexickonApi in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862426DA70F20096CD72 /* LexickonApi */; };
 		EC40862826DA71520096CD72 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = EC40862726DA71520096CD72 /* LBTATools */; };
@@ -258,7 +256,6 @@
 		EC00FA51270207540067DCF4 /* KeyValueRepositoryKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueRepositoryKeys.swift; sourceTree = "<group>"; };
 		EC00FA52270207540067DCF4 /* KeyValueRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueRepository.swift; sourceTree = "<group>"; };
 		EC00FA53270207540067DCF4 /* KeyValueRepositoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueRepositoryProtocol.swift; sourceTree = "<group>"; };
-		EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC0B20C52671E23600881DDD /* WordCordFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCordFlow.swift; sourceTree = "<group>"; };
 		EC0B20C82671E3FE00881DDD /* WordCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardViewController.swift; sourceTree = "<group>"; };
 		EC0B20CA2671E55A00881DDD /* WordCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardPresenter.swift; sourceTree = "<group>"; };
@@ -289,7 +286,6 @@
 		EC35C2AA22DB506500785B3A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3750B625B085540090F95F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		EC3750E925B18E320090F95F /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesInteractor.swift; sourceTree = "<group>"; };
 		EC4278D522D070E5001218AB /* lexickon_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lexickon_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4278EB22D070E7001218AB /* lexickon_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lexickon_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStateUseCase.swift; sourceTree = "<group>"; };
@@ -673,15 +669,6 @@
 			path = KeyValueRepository;
 			sourceTree = "<group>";
 		};
-		EC08F05326DCACD900790316 /* ExercisesInteractor */ = {
-			isa = PBXGroup;
-			children = (
-				EC08F05426DCAD0200790316 /* ExercisesInteractorProtocol.swift */,
-				EC3FCD0826DF822A00AF7C6E /* ExercisesInteractor.swift */,
-			);
-			path = ExercisesInteractor;
-			sourceTree = "<group>";
-		};
 		EC0B20C42671E1C900881DDD /* WordCardFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,7 +830,6 @@
 				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
 				EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */,
 				ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */,
-				EC08F05326DCACD900790316 /* ExercisesInteractor */,
 				EC8880A326AA7FB100C2294F /* Entities */,
 				EC0DBF2F25F0BA8600CBED4D /* LexickonStateInteractor */,
 				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
@@ -1338,7 +1324,6 @@
 				EC00FA56270207540067DCF4 /* KeyValueRepositoryProtocol.swift in Sources */,
 				ECAD3C292702108300710EB2 /* WordEnity.swift in Sources */,
 				EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */,
-				EC3FCD0926DF822A00AF7C6E /* ExercisesInteractor.swift in Sources */,
 				EC0DBF1225F0B92500CBED4D /* LexickonStateInteractorProtocol.swift in Sources */,
 				ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */,
 				EC00FA2B270206A90067DCF4 /* RapidAPIGoogleTranslateRequestDTO.swift in Sources */,
@@ -1354,7 +1339,6 @@
 				EC00FA14270205270067DCF4 /* UserTokenRepository.swift in Sources */,
 				ECA61E3422D07798003DD5B1 /* SceneDelegate.swift in Sources */,
 				EC0DBF1425F0B92500CBED4D /* HomePresenter.swift in Sources */,
-				EC08F05526DCAD0200790316 /* ExercisesInteractorProtocol.swift in Sources */,
 				ECAD3C1C27020F5100710EB2 /* ArraySlice+Items.swift in Sources */,
 				EC00F9FB2701FF6D0067DCF4 /* WordsCountView.swift in Sources */,
 				EC00F9ED2701FF6D0067DCF4 /* SpeekerButton.swift in Sources */,
