@@ -166,6 +166,7 @@
 		ECF63C3626E5E89B002E8F2F /* StartExercisersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF63C3526E5E89B002E8F2F /* StartExercisersViewController.swift */; };
 		ECF63C3826E5E8A8002E8F2F /* StartExercisersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */; };
 		ECFDC630278DDD2900C26E9B /* GetExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */; };
+		ECFDC634279078C000C26E9B /* HasAuthTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +330,7 @@
 		ECF63C3526E5E89B002E8F2F /* StartExercisersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExercisersViewController.swift; sourceTree = "<group>"; };
 		ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExercisersPresenter.swift; sourceTree = "<group>"; };
 		ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExerciseSessionUseCase.swift; sourceTree = "<group>"; };
+		ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasAuthTokenUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -820,14 +822,10 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */,
-				EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */,
-				EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */,
-				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
-				EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */,
-				ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */,
+				ECFDC6322790780300C26E9B /* Word UseCases */,
+				ECFDC631279077E400C26E9B /* Exercises UseCases */,
 				EC8880A326AA7FB100C2294F /* Entities */,
-				EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */,
+				EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */,
 				EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */,
 				EC0DBF1C25F0B94400CBED4D /* NewWordInteractor */,
 			);
@@ -843,13 +841,14 @@
 			path = ProfileInteractor;
 			sourceTree = "<group>";
 		};
-		EC0DBF2A25F0BA3400CBED4D /* AuthorizationInteractor */ = {
+		EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */ = {
 			isa = PBXGroup;
 			children = (
 				EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */,
 				EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */,
+				ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */,
 			);
-			path = AuthorizationInteractor;
+			path = "Authorization UseCases";
 			sourceTree = "<group>";
 		};
 		EC1F9E2123E3478B0044EF9D /* Frameworks */ = {
@@ -1069,6 +1068,26 @@
 			path = ExerciseSessionRepository;
 			sourceTree = "<group>";
 		};
+		ECFDC631279077E400C26E9B /* Exercises UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
+				EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */,
+				ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */,
+			);
+			path = "Exercises UseCases";
+			sourceTree = "<group>";
+		};
+		ECFDC6322790780300C26E9B /* Word UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */,
+				EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */,
+				EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */,
+			);
+			path = "Word UseCases";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1233,6 +1252,7 @@
 				EC00F9E72701FF6D0067DCF4 /* FromHomeToNewWordAnimator.swift in Sources */,
 				EC00FA062701FF6D0067DCF4 /* LXTextField.swift in Sources */,
 				EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */,
+				ECFDC634279078C000C26E9B /* HasAuthTokenUseCase.swift in Sources */,
 				EC00FA0A2701FF6D0067DCF4 /* RefreshView.swift in Sources */,
 				EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */,
 				EC00FA192702055F0067DCF4 /* UserRepository.swift in Sources */,

@@ -85,9 +85,11 @@ extension Resolver {
         register { LoginPresenter() }
         register { RegistrationViewController() }
         register { RegistrationPresenter() }
-        register { AuthorizationInteractor() as AuthorizationInteractorProtocol }
         register { UserRepository() as UserRepositoryProtocol }
         register { AuthTokenRepository() as AuthTokenRepositoryProtocol }
         register { KeychainRepository() as KeychainRepositoryProtocol }
+        register { HasAuthTokenUseCase() }
+        
+        register { AuthorizationInteractor() as AuthorizationInteractorProtocol }
     }
 }

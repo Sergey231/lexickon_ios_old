@@ -11,7 +11,7 @@ import Resolver
 
 final class StartPresenter {
     
-    @Injected var authorisationInteractor: AuthorizationInteractorProtocol
+    @Injected var hasAuthTokenUseCase: HasAuthTokenUseCase
     
     struct Input {
         let beginButtonTapped: Signal<Void>
@@ -25,7 +25,7 @@ final class StartPresenter {
     
     func configure(input: Input) -> Output {
         
-        let isAuthorized = authorisationInteractor.hasAuthToken
+        let isAuthorized = hasAuthTokenUseCase.configure().hasAuthToken
             .asDriver(onErrorJustReturn: false)
         
         return Output(isAuthorized: isAuthorized)

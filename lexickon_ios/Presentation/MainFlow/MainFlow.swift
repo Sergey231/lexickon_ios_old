@@ -129,6 +129,5 @@ extension Resolver {
         register { CreatExerciseSessionUseCase() }
         
         register { WordsRepository() as WordsRepositoryProtocol }
-        register { LexickonStateInteractor() as LexickonStateInteractorProtocol }
     }
 }
