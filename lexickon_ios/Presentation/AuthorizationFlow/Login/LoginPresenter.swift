@@ -15,6 +15,8 @@ import Assets
 
 final class LoginPresenter {
     
+    @Injected var loginUseCase: LoginUseCase
+    
     @Injected var authorisationInteractor: AuthorizationInteractorProtocol
 
     struct Input {
@@ -121,15 +123,18 @@ final class LoginPresenter {
                 else {
                     return .empty()
                 }
-                return self.authorisationInteractor.login(
-                    login: login,
-                    password: password
+                return self.loginUseCase.configure(
+                    LoginUseCase.Input(
+                        login: login,
+                        password: password
+                    )
                 )
-                .asSignal { error -> Signal<()> in
-                    errorMsg.accept(error.localizedDescription)
-                    showLoading.accept(false)
-                    return .empty()
-                }
+                    .didLogin
+                    .asSignal { error -> Signal<()> in
+                        errorMsg.accept(error.localizedDescription)
+                        showLoading.accept(false)
+                        return .empty()
+                    }
             })
             .do(onNext: { _ in showLoading.accept(false) })
             .asSignal(onErrorSignalWith: .empty())

@@ -167,6 +167,7 @@
 		ECF63C3826E5E8A8002E8F2F /* StartExercisersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */; };
 		ECFDC630278DDD2900C26E9B /* GetExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */; };
 		ECFDC634279078C000C26E9B /* HasAuthTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */; };
+		ECFDC6362791BD1E00C26E9B /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +332,7 @@
 		ECF63C3726E5E8A8002E8F2F /* StartExercisersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartExercisersPresenter.swift; sourceTree = "<group>"; };
 		ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasAuthTokenUseCase.swift; sourceTree = "<group>"; };
+		ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -847,6 +849,7 @@
 				EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */,
 				EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */,
 				ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */,
+				ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */,
 			);
 			path = "Authorization UseCases";
 			sourceTree = "<group>";
@@ -1264,6 +1267,7 @@
 				ECAD3C1927020F5100710EB2 /* Array+Elements.swift in Sources */,
 				EC00F9F72701FF6D0067DCF4 /* WordCardProgressBarView.swift in Sources */,
 				EC00F9FF2701FF6D0067DCF4 /* Logo.swift in Sources */,
+				ECFDC6362791BD1E00C26E9B /* LoginUseCase.swift in Sources */,
 				EC00F9E02701FF6D0067DCF4 /* UIConstants.swift in Sources */,
 				ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */,
 				EC00FA072701FF6D0067DCF4 /* SubmenuItem.swift in Sources */,
