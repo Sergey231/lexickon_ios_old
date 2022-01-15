@@ -90,6 +90,7 @@ extension Resolver {
         register { KeychainRepository() as KeychainRepositoryProtocol }
         register { HasAuthTokenUseCase() }
         register { LoginUseCase() }
+        register { RegistrationUseCase() }
         
         register { AuthorizationInteractor() as AuthorizationInteractorProtocol }
     }

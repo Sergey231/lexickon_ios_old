@@ -168,6 +168,7 @@
 		ECFDC630278DDD2900C26E9B /* GetExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */; };
 		ECFDC634279078C000C26E9B /* HasAuthTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */; };
 		ECFDC6362791BD1E00C26E9B /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */; };
+		ECFDC6382792DD9C00C26E9B /* RegistrationUseCase.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC6372792DD9C00C26E9B /* RegistrationUseCase.swift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -333,6 +334,7 @@
 		ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasAuthTokenUseCase.swift; sourceTree = "<group>"; };
 		ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		ECFDC6372792DD9C00C26E9B /* RegistrationUseCase.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUseCase.swift.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -850,6 +852,7 @@
 				EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */,
 				ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */,
 				ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */,
+				ECFDC6372792DD9C00C26E9B /* RegistrationUseCase.swift.swift */,
 			);
 			path = "Authorization UseCases";
 			sourceTree = "<group>";
@@ -1334,6 +1337,7 @@
 				ECAD3C292702108300710EB2 /* WordEnity.swift in Sources */,
 				EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */,
 				ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */,
+				ECFDC6382792DD9C00C26E9B /* RegistrationUseCase.swift.swift in Sources */,
 				EC00FA2B270206A90067DCF4 /* RapidAPIGoogleTranslateRequestDTO.swift in Sources */,
 				EC00F9E62701FF6D0067DCF4 /* FromHomeToProfileAnimator.swift in Sources */,
 				EC00F9FC2701FF6D0067DCF4 /* VocabularyView.swift in Sources */,

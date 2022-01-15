@@ -13,7 +13,8 @@ import Assets
 
 final class RegistrationPresenter {
     
-    @Injected var authorisationInteractor: AuthorizationInteractorProtocol
+    @Injected var registrationUseCase: RegistrationUseCase
+    @Injected var loginUseCase: LoginUseCase
 
     struct Input {
         let name: Driver<String>
@@ -222,29 +223,35 @@ final class RegistrationPresenter {
             .withLatestFrom(userCreateInfo)
             .flatMapLatest ({ arg -> Signal<Void> in
                 showLoading.accept(true)
-                return self.authorisationInteractor.registrate(
-                    name: arg.name,
-                    email: arg.email,
-                    password: arg.password
+                return self.registrationUseCase.configure(
+                    RegistrationUseCase.Input(
+                        name: "",
+                        email: arg.email,
+                        password: arg.password
+                    )
                 )
-                .asSignal { error -> Signal<()> in
-                    errorMsg.accept(error.localizedDescription)
-                    showLoading.accept(false)
-                    return .empty()
-                }
+                    .didRegistred
+                    .asSignal { error -> Signal<()> in
+                        errorMsg.accept(error.localizedDescription)
+                        showLoading.accept(false)
+                        return .empty()
+                    }
             })
             .withLatestFrom(userCreateInfo)
-            .flatMapLatest ({ arg -> Signal<Void> in
-                self.authorisationInteractor.login(
-                    login: arg.email,
-                    password: arg.password
+            .flatMapLatest { arg -> Signal<Void> in
+                self.loginUseCase.configure(
+                    LoginUseCase.Input(
+                        login: arg.email,
+                        password: arg.password
+                    )
                 )
-                .asSignal { error -> Signal<()> in
-                    errorMsg.accept(error.localizedDescription)
-                    showLoading.accept(false)
-                    return .empty()
-                }
-            })
+                    .didLogin
+                    .asSignal { error -> Signal<()> in
+                        errorMsg.accept(error.localizedDescription)
+                        showLoading.accept(false)
+                        return .empty()
+                    }
+            }
             .do(onNext: { _ in showLoading.accept(false) })
             .asSignal(onErrorSignalWith: .empty())
         
