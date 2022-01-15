@@ -91,7 +91,5 @@ extension Resolver {
         register { HasAuthTokenUseCase() }
         register { LoginUseCase() }
         register { RegistrationUseCase() }
-        
-        register { AuthorizationInteractor() as AuthorizationInteractorProtocol }
     }
 }

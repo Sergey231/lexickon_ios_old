@@ -16,8 +16,6 @@ import Assets
 final class LoginPresenter {
     
     @Injected var loginUseCase: LoginUseCase
-    
-    @Injected var authorisationInteractor: AuthorizationInteractorProtocol
 
     struct Input {
         let email: Driver<String?>

@@ -96,8 +96,6 @@
 		EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */; };
 		EC0DBF0125F0B92500CBED4D /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */; };
 		EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */; };
-		EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */; };
-		EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */; };
 		EC0DBF0925F0B92500CBED4D /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */; };
 		EC0DBF0A25F0B92500CBED4D /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEAF25F0B92400CBED4D /* RegistrationViewController.swift */; };
 		EC0DBF0B25F0B92500CBED4D /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEB125F0B92400CBED4D /* StartViewController.swift */; };
@@ -271,8 +269,6 @@
 		EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
 		EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
 		EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
-		EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractor.swift; sourceTree = "<group>"; };
-		EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationInteractorProtocol.swift; sourceTree = "<group>"; };
 		EC0DBEAE25F0B92400CBED4D /* RegistrationPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		EC0DBEAF25F0B92400CBED4D /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		EC0DBEB125F0B92400CBED4D /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
@@ -826,10 +822,8 @@
 		EC0DBF2225F0B98C00CBED4D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				ECFDC6322790780300C26E9B /* Word UseCases */,
-				ECFDC631279077E400C26E9B /* Exercises UseCases */,
+				ECFDC6392792E45B00C26E9B /* UseCases */,
 				EC8880A326AA7FB100C2294F /* Entities */,
-				EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */,
 				EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */,
 				EC0DBF1C25F0B94400CBED4D /* NewWordInteractor */,
 			);
@@ -848,8 +842,6 @@
 		EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				EC0DBEAA25F0B92400CBED4D /* AuthorizationInteractor.swift */,
-				EC0DBEAB25F0B92400CBED4D /* AuthorizationInteractorProtocol.swift */,
 				ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */,
 				ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */,
 				ECFDC6372792DD9C00C26E9B /* RegistrationUseCase.swift.swift */,
@@ -1094,6 +1086,16 @@
 			path = "Word UseCases";
 			sourceTree = "<group>";
 		};
+		ECFDC6392792E45B00C26E9B /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */,
+				ECFDC631279077E400C26E9B /* Exercises UseCases */,
+				ECFDC6322790780300C26E9B /* Word UseCases */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1320,7 +1322,6 @@
 				EC00FA40270206EC0067DCF4 /* RequestIntercepter.swift in Sources */,
 				EC0DBF0D25F0B92500CBED4D /* LoginViewController.swift in Sources */,
 				EC00FA10270204E50067DCF4 /* WordsStateRepository.swift in Sources */,
-				EC0DBF0725F0B92500CBED4D /* AuthorizationInteractor.swift in Sources */,
 				ECAD3C1F27020F5100710EB2 /* NSObject+Setupable.swift in Sources */,
 				EC00F9F02701FF6D0067DCF4 /* HomeWordsSectionHeaderView.swift in Sources */,
 				EC6B2D12277879E400FDF38F /* CreatExerciseSessionUseCase.swift in Sources */,
@@ -1330,7 +1331,6 @@
 				EC00FA0F270204E50067DCF4 /* WordsStateRepositoryProtocol.swift in Sources */,
 				EC9E7AC5277EEFE400786F0C /* SaveExerciseSessionUseCase.swift in Sources */,
 				EC00F9F42701FF6D0067DCF4 /* PaginationProgressView.swift in Sources */,
-				EC0DBF0825F0B92500CBED4D /* AuthorizationInteractorProtocol.swift in Sources */,
 				EC00F9EC2701FF6D0067DCF4 /* MoreButton.swift in Sources */,
 				EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */,
 				EC00FA56270207540067DCF4 /* KeyValueRepositoryProtocol.swift in Sources */,
