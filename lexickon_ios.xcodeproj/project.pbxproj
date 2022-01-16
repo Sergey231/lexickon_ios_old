@@ -167,6 +167,8 @@
 		ECFDC634279078C000C26E9B /* HasAuthTokenUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */; };
 		ECFDC6362791BD1E00C26E9B /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */; };
 		ECFDC6382792DD9C00C26E9B /* RegistrationUseCase.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC6372792DD9C00C26E9B /* RegistrationUseCase.swift.swift */; };
+		ECFDC63C27945FF500C26E9B /* GetUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC63B27945FF500C26E9B /* GetUserUseCase.swift */; };
+		ECFDC63E2794600700C26E9B /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC63D2794600700C26E9B /* LogoutUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +333,8 @@
 		ECFDC633279078C000C26E9B /* HasAuthTokenUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasAuthTokenUseCase.swift; sourceTree = "<group>"; };
 		ECFDC6352791BD1E00C26E9B /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
 		ECFDC6372792DD9C00C26E9B /* RegistrationUseCase.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUseCase.swift.swift; sourceTree = "<group>"; };
+		ECFDC63B27945FF500C26E9B /* GetUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserUseCase.swift; sourceTree = "<group>"; };
+		ECFDC63D2794600700C26E9B /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1089,11 +1093,21 @@
 		ECFDC6392792E45B00C26E9B /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				ECFDC63A27945FA900C26E9B /* Profile UseCases */,
 				EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */,
 				ECFDC631279077E400C26E9B /* Exercises UseCases */,
 				ECFDC6322790780300C26E9B /* Word UseCases */,
 			);
 			path = UseCases;
+			sourceTree = "<group>";
+		};
+		ECFDC63A27945FA900C26E9B /* Profile UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				ECFDC63B27945FF500C26E9B /* GetUserUseCase.swift */,
+				ECFDC63D2794600700C26E9B /* LogoutUseCase.swift */,
+			);
+			path = "Profile UseCases";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1327,6 +1341,7 @@
 				EC6B2D12277879E400FDF38F /* CreatExerciseSessionUseCase.swift in Sources */,
 				EC00F9F12701FF6D0067DCF4 /* StartAddingWordsView.swift in Sources */,
 				EC0DBED825F0B92500CBED4D /* AddSearchWordPresenter.swift in Sources */,
+				ECFDC63E2794600700C26E9B /* LogoutUseCase.swift in Sources */,
 				EC0B20C62671E23600881DDD /* WordCordFlow.swift in Sources */,
 				EC00FA0F270204E50067DCF4 /* WordsStateRepositoryProtocol.swift in Sources */,
 				EC9E7AC5277EEFE400786F0C /* SaveExerciseSessionUseCase.swift in Sources */,
@@ -1356,6 +1371,7 @@
 				EC00F9ED2701FF6D0067DCF4 /* SpeekerButton.swift in Sources */,
 				EC0DBF0F25F0B92500CBED4D /* MainFlow.swift in Sources */,
 				ECDEECF326CE2A3100EB2F53 /* ExercisesSessionFlow.swift in Sources */,
+				ECFDC63C27945FF500C26E9B /* GetUserUseCase.swift in Sources */,
 				ECF63C3826E5E8A8002E8F2F /* StartExercisersPresenter.swift in Sources */,
 				EC00FA0B2701FF6D0067DCF4 /* CheckBox.swift in Sources */,
 				ECAD3C1B27020F5100710EB2 /* Array+Items.swift in Sources */,

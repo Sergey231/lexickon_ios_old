@@ -13,6 +13,8 @@ import Resolver
 
 final class ProfileMainScreenPresenter {
     
+    @Injected var logoutUseCase: LogoutUseCase
+    
     @Injected var interactor: ProfileInteractorProtocol
     
     struct Input {
@@ -34,7 +36,7 @@ final class ProfileMainScreenPresenter {
         
         let didLogout = input.didTapLogOut
             .flatMap { [unowned self] in
-                self.interactor.logout()
+                self.logoutUseCase.configure().didLogout
                     .asSignal(onErrorSignalWith: .empty())
             }
         

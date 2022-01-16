@@ -76,7 +76,9 @@ extension Resolver {
     public static func registerProfileObjects() {
         register { ProfileMainScreenViewController() }
         register { ProfileMainScreenPresenter() }
-        register { ProfileInteractor() as ProfileInteractorProtocol }
         register { AuthTokenRepository() as AuthTokenRepositoryProtocol }
+        register { LogoutUseCase() }
+        
+        register { ProfileInteractor() as ProfileInteractorProtocol }
     }
 }
