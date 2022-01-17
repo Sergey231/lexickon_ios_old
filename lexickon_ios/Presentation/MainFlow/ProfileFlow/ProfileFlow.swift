@@ -78,7 +78,6 @@ extension Resolver {
         register { ProfileMainScreenPresenter() }
         register { AuthTokenRepository() as AuthTokenRepositoryProtocol }
         register { LogoutUseCase() }
-        
-        register { ProfileInteractor() as ProfileInteractorProtocol }
+        register { GetUserUseCase() }
     }
 }

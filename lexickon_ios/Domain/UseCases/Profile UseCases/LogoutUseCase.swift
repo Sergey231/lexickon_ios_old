@@ -24,4 +24,3 @@ final class LogoutUseCase {
         return Output(didLogout: didLogout)
     }
 }
-

@@ -9,13 +9,11 @@
 import RxSwift
 import RxCocoa
 import Resolver
-// import LXUIKit
 
 final class ProfileMainScreenPresenter {
     
     @Injected var logoutUseCase: LogoutUseCase
-    
-    @Injected var interactor: ProfileInteractorProtocol
+    @Injected var getUserUseCase: GetUserUseCase
     
     struct Input {
         let didTapProfileIcon: Signal<Void>
@@ -40,10 +38,14 @@ final class ProfileMainScreenPresenter {
                     .asSignal(onErrorSignalWith: .empty())
             }
         
-        let name = interactor.user.name
+        let getUserUseCaseOutput = getUserUseCase.configure()
+        
+        let name = getUserUseCaseOutput.user
+            .map { $0.name }
             .asDriver(onErrorJustReturn: "")
         
-        let email = interactor.user.email
+        let email = getUserUseCaseOutput.user
+            .map { $0.email }
             .asDriver(onErrorJustReturn: "")
         
         let isEditModeRelay = BehaviorRelay<Bool>(value: false)

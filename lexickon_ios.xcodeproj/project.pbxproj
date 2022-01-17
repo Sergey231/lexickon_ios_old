@@ -91,8 +91,6 @@
 		EC0DBED825F0B92500CBED4D /* AddSearchWordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */; };
 		EC0DBED925F0B92500CBED4D /* AddSearchWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE6125F0B92400CBED4D /* AddSearchWordViewController.swift */; };
 		EC0DBEFD25F0B92500CBED4D /* ProfileFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9825F0B92400CBED4D /* ProfileFlow.swift */; };
-		EC0DBEFE25F0B92500CBED4D /* ProfileInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9A25F0B92400CBED4D /* ProfileInteractorProtocol.swift */; };
-		EC0DBEFF25F0B92500CBED4D /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9B25F0B92400CBED4D /* ProfileInteractor.swift */; };
 		EC0DBF0025F0B92500CBED4D /* ProfileMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */; };
 		EC0DBF0125F0B92500CBED4D /* ProfileMainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */; };
 		EC0DBF0225F0B92500CBED4D /* AuthorizationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */; };
@@ -151,6 +149,7 @@
 		ECBEB5072439C0DE0017855E /* RxFlow in Frameworks */ = {isa = PBXBuildFile; productRef = ECBEB5062439C0DE0017855E /* RxFlow */; };
 		ECBEB5092439C2190017855E /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEB5082439C2190017855E /* AppFlow.swift */; };
 		ECC30321271406BB0083E905 /* ExercisesResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC30320271406BB0083E905 /* ExercisesResultPresenter.swift */; };
+		ECD51CB62795427F00634AAA /* AddNewWordsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD51CB52795427F00634AAA /* AddNewWordsUseCase.swift */; };
 		ECDAF0ED26CF84A80020582E /* WordViewExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */; };
 		ECDAF0EF26CF85170020582E /* WordViewExercisePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDAF0EE26CF85170020582E /* WordViewExercisePresenter.swift */; };
 		ECDEECF326CE2A3100EB2F53 /* ExercisesSessionFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDEECF226CE2A3100EB2F53 /* ExercisesSessionFlow.swift */; };
@@ -266,8 +265,6 @@
 		EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSearchWordPresenter.swift; sourceTree = "<group>"; };
 		EC0DBE6125F0B92400CBED4D /* AddSearchWordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSearchWordViewController.swift; sourceTree = "<group>"; };
 		EC0DBE9825F0B92400CBED4D /* ProfileFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFlow.swift; sourceTree = "<group>"; };
-		EC0DBE9A25F0B92400CBED4D /* ProfileInteractorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractorProtocol.swift; sourceTree = "<group>"; };
-		EC0DBE9B25F0B92400CBED4D /* ProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
 		EC0DBE9E25F0B92400CBED4D /* ProfileMainScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenViewController.swift; sourceTree = "<group>"; };
 		EC0DBE9F25F0B92400CBED4D /* ProfileMainScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenPresenter.swift; sourceTree = "<group>"; };
 		EC0DBEA125F0B92400CBED4D /* AuthorizationFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationFlow.swift; sourceTree = "<group>"; };
@@ -319,6 +316,7 @@
 		ECBAB3D326E9E2970083C513 /* ExercisesSessionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesSessionEntity.swift; sourceTree = "<group>"; };
 		ECBEB5082439C2190017855E /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 		ECC30320271406BB0083E905 /* ExercisesResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesResultPresenter.swift; sourceTree = "<group>"; };
+		ECD51CB52795427F00634AAA /* AddNewWordsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewWordsUseCase.swift; sourceTree = "<group>"; };
 		ECD9143627019CD000E7E037 /* ConfigsRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ConfigsRepository; path = lexickon_ios/Data/ConfigsRepository; sourceTree = "<group>"; };
 		ECD9143727019D3500E7E037 /* ApiRepository */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ApiRepository; path = lexickon_ios/Data/ApiRepository; sourceTree = "<group>"; };
 		ECDAF0EC26CF84A80020582E /* WordViewExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewExerciseViewController.swift; sourceTree = "<group>"; };
@@ -828,19 +826,9 @@
 			children = (
 				ECFDC6392792E45B00C26E9B /* UseCases */,
 				EC8880A326AA7FB100C2294F /* Entities */,
-				EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */,
 				EC0DBF1C25F0B94400CBED4D /* NewWordInteractor */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		EC0DBF2725F0B9D700CBED4D /* ProfileInteractor */ = {
-			isa = PBXGroup;
-			children = (
-				EC0DBE9A25F0B92400CBED4D /* ProfileInteractorProtocol.swift */,
-				EC0DBE9B25F0B92400CBED4D /* ProfileInteractor.swift */,
-			);
-			path = ProfileInteractor;
 			sourceTree = "<group>";
 		};
 		EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */ = {
@@ -1023,6 +1011,14 @@
 			path = ExercisesResults;
 			sourceTree = "<group>";
 		};
+		ECD51CB42795425D00634AAA /* NewWords UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				ECD51CB52795427F00634AAA /* AddNewWordsUseCase.swift */,
+			);
+			path = "NewWords UseCases";
+			sourceTree = "<group>";
+		};
 		ECD9143527019CD000E7E037 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1093,6 +1089,7 @@
 		ECFDC6392792E45B00C26E9B /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				ECD51CB42795425D00634AAA /* NewWords UseCases */,
 				ECFDC63A27945FA900C26E9B /* Profile UseCases */,
 				EC0DBF2A25F0BA3400CBED4D /* Authorization UseCases */,
 				ECFDC631279077E400C26E9B /* Exercises UseCases */,
@@ -1246,7 +1243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC0DBEFE25F0B92500CBED4D /* ProfileInteractorProtocol.swift in Sources */,
 				EC0DBF0925F0B92500CBED4D /* RegistrationPresenter.swift in Sources */,
 				EC0DBED925F0B92500CBED4D /* AddSearchWordViewController.swift in Sources */,
 				EC5C3F3E272D6561008C95A7 /* ExercisesView.swift in Sources */,
@@ -1288,6 +1284,7 @@
 				EC00F9FF2701FF6D0067DCF4 /* Logo.swift in Sources */,
 				ECFDC6362791BD1E00C26E9B /* LoginUseCase.swift in Sources */,
 				EC00F9E02701FF6D0067DCF4 /* UIConstants.swift in Sources */,
+				ECD51CB62795427F00634AAA /* AddNewWordsUseCase.swift in Sources */,
 				ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */,
 				EC00FA072701FF6D0067DCF4 /* SubmenuItem.swift in Sources */,
 				EC00F9EF2701FF6D0067DCF4 /* WithoutWordsLabelView.swift in Sources */,
@@ -1360,7 +1357,6 @@
 				ECC30321271406BB0083E905 /* ExercisesResultPresenter.swift in Sources */,
 				EC00F9F32701FF6D0067DCF4 /* WideWordProgressView.swift in Sources */,
 				EC00FA30270206AA0067DCF4 /* MicrosoftTranslatorResultsDTO.swift in Sources */,
-				EC0DBEFF25F0B92500CBED4D /* ProfileInteractor.swift in Sources */,
 				ECAD3C2A2702108300710EB2 /* LexickonStateEntity.swift in Sources */,
 				ECAD3C1A27020F5100710EB2 /* Array+Unique.swift in Sources */,
 				EC00FA14270205270067DCF4 /* UserTokenRepository.swift in Sources */,

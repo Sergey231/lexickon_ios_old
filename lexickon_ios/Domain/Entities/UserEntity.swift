@@ -10,12 +10,12 @@ import RxSwift
 
 public struct UserEntity {
     
-    public let name: Observable<String>
-    public let email: Observable<String>
+    public let name: String
+    public let email: String
     
     public init(
-        name: Observable<String>,
-        email: Observable<String>
+        name: String,
+        email: String
     ) {
         self.name = name
         self.email = email

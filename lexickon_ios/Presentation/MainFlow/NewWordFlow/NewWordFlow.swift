@@ -9,10 +9,6 @@
 import UIKit
 import RxFlow
 import Resolver
-// import KeyValueRepository
-// import ConfigsRepository
-// import TranslationRepository
-// import WordsRepository
 
 enum NewWordStep: Step {
     case addSearch
@@ -70,9 +66,11 @@ extension Resolver {
     public static func registerNewWordObjects() {
         register { AddSearchWordViewController() }
         register { AddSearchWordPresenter() }
-        register { NewWordInteractor() as NewWordInteractorProtocol }
         register { TranslationRepository() as TranslationRepositoryProtocol }
         register { KeyValueRepository() as KeyValueRepositoryProtocol }
         register { ConfigsRepository() as ConfigsRepositoryProtocol }
+        register { AddNewWordsUseCase() }
+
+        register { NewWordInteractor() as NewWordInteractorProtocol }
     }
 }

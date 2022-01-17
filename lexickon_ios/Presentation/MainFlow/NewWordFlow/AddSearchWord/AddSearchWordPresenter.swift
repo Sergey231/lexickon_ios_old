@@ -10,15 +10,15 @@ import RxSwift
 import RxCocoa
 import Resolver
 import RxDataSources
-// import LXUIKit
 import RxExtensions
-// import TranslationRepository
 import LexickonApi
 
 typealias TranslationsSection = SectionModel<String, TranslationCellModelEnum>
 typealias TranslationReulstRxDataSource = RxTableViewSectionedReloadDataSource<TranslationsSection>
 
 final class AddSearchWordPresenter {
+    
+    @Injected private var addNewWordsUseCase: AddNewWordsUseCase
     
     @Injected var interacor: NewWordInteractorProtocol
     private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
@@ -177,7 +177,12 @@ final class AddSearchWordPresenter {
                         gender: .unknown
                     )
                 }
-                return self.interacor.addWords(wordsTranslations)
+                return self.addNewWordsUseCase.configure(
+                    AddNewWordsUseCase.Input(
+                        newWords: wordsTranslations
+                    )
+                )
+                    .wordsDidAdded
             }
             .subscribe()
         
