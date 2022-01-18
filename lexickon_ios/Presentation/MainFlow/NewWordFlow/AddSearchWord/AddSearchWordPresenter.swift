@@ -19,8 +19,8 @@ typealias TranslationReulstRxDataSource = RxTableViewSectionedReloadDataSource<T
 final class AddSearchWordPresenter {
     
     @Injected private var addNewWordsUseCase: AddNewWordsUseCase
+    @Injected private var translateUseCase: TranslateUseCase
     
-    @Injected var interacor: NewWordInteractorProtocol
     private let isEditModeRelay = BehaviorRelay<Bool>(value: false)
     fileprivate var selectedWordModels: [TranslationCellModelEnum] = []
     
@@ -47,7 +47,8 @@ final class AddSearchWordPresenter {
         
         let translationResult = input.textForTranslate
             .flatMapLatest { text -> Driver<TranslationResultsDTO> in
-                self.interacor.translate(text)
+                self.translateUseCase.configure(TranslateUseCase.Input(text: text))
+                    .translationResult
                     .asObservable()
                     .trackActivity(activityIndicator)
                     .provideError(errorDetector)

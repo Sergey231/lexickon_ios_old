@@ -1,45 +1,42 @@
 //
-//  NewWordInteractor.swift
+//  TranslateUseCase.swift
 //  lexickon_ios
 //
-//  Created by Sergey Borovikov on 29.12.2020.
-//  Copyright © 2020 Sergey Borovikov. All rights reserved.
+//  Created by Sergey Borovikov on 18.01.2022.
+//  Copyright © 2022 Sergey Borovikov. All rights reserved.
 //
 
+import RxCocoa
 import RxSwift
-import LexickonApi
 import Resolver
-// import ConfigsRepository
-// import TranslationRepository
-// import WordsRepository
+import LexickonApi
 
-final class NewWordInteractor: NewWordInteractorProtocol {
-    
-    @Injected private var translationRepository: TranslationRepositoryProtocol
-    @Injected private var configsRepository: ConfigsRepositoryProtocol
-    @Injected private var wordRepository: WordsRepositoryProtocol
+final class TranslateUseCase {
     
     private typealias Translation = TranslationResultsDTO.Translation
     
-    func translate(_ text: String) -> Single<TranslationResultsDTO> {
+    @Injected private var translationRepository: TranslationRepositoryProtocol
+    @Injected private var configsRepository: ConfigsRepositoryProtocol
+    
+    public struct Input {
+        let text: String
+    }
+    
+    public struct Output {
+        let translationResult: Single<TranslationResultsDTO>
+    }
+    
+    public func configure(_ input: Input) -> Output {
+        
         let requestDTO = TranslationRequestDTO(
-            text: text,
+            text: input.text,
             targetLanguage: .ru,
             sourceLanguage: .en
         )
-        return translateByMicrosoftDictionary(requestDTO)
-    }
-    
-    public func addWords(_ words: [TranslationResultsDTO.Translation]) -> Single<Void> {
-        let wordCreateModels = words.map {
-            LxWordCreate(
-                studyWord: $0.text,
-                translates: [$0.translation],
-                image: ""
-            )
-        }
-        return wordRepository.add(wordCreateModels)
-            .map { _ in () }
+        
+        let translationResult = translateByMicrosoftDictionary(requestDTO)
+        
+        return Output(translationResult: translationResult)
     }
     
     private func translateByYandexDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {
@@ -118,7 +115,7 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             dto: dto,
             subscriptionKey: key,
             subscriptionRegion: region
-        ) 
+        )
         
         return translationRepository.translateByMicrosoftTranslate(request)
             .map {
@@ -192,3 +189,4 @@ final class NewWordInteractor: NewWordInteractorProtocol {
             }
     }
 }
+

@@ -70,7 +70,6 @@ extension Resolver {
         register { KeyValueRepository() as KeyValueRepositoryProtocol }
         register { ConfigsRepository() as ConfigsRepositoryProtocol }
         register { AddNewWordsUseCase() }
-
-        register { NewWordInteractor() as NewWordInteractorProtocol }
+        register { TranslateUseCase() }
     }
 }
