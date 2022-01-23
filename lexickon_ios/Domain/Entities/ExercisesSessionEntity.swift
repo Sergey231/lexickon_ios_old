@@ -149,9 +149,10 @@ public extension ExercisesSessionEntity {
         }
         
         public var difficultyRating: Int {
-            // Тут нужен будет не тривиальный алгоритм определения сложности слова, по колличеству букв, сложных букво сочитаный
-            let lettersCount = word.studyWord.count * 10
-            return lettersCount
+            // Пока так, а там посмотрим.
+            let syllablesCount = SwiftSyllables.getSyllables(word.studyWord)
+            let defficulty = syllablesCount * word.studyWord.count
+            return defficulty
         }
         
         public init(

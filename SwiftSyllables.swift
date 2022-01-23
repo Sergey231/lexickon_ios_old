@@ -51,7 +51,11 @@ open class SwiftSyllables {
                     guard let path = resourcePath else { return nil }
                     let data : NSMutableData? = NSMutableData.init(contentsOfFile: path)
                     if let foundData = data {
-                        let unarchiver : NSKeyedUnarchiver = NSKeyedUnarchiver.init(forReadingWith: foundData as Data)
+//                        let unarchiver : NSKeyedUnarchiver = NSKeyedUnarchiver.init(forReadingWith: foundData as Data)
+                        guard let unarchiver: NSKeyedUnarchiver = try? NSKeyedUnarchiver(forReadingFrom: foundData as Data) else {
+                            assertionFailure("Could not find data")
+                            return self.syllableDict
+                        }
                         let dict : Any? = unarchiver.decodeObject(forKey: "cmudict")
                         unarchiver.finishDecoding()
                         if let processedDict = dict as? [String : Int] {
