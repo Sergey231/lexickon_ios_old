@@ -14,7 +14,6 @@ import RxSwift
 import UIExtensions
 import RxDataSources
 import Resolver
-// import LXUIKit
 import Lottie
 import Assets
 import LexickonApi
@@ -183,11 +182,13 @@ final class HomeViewController: UIViewController, Stepper {
     private func configureUI() {
         
         let refreshData = PublishRelay<Void>()
+        let learnWordsDidTapRelay = PublishRelay<Void>()
         
         let presenterOutput = presenter.configurate(
             input: .init(
                 refreshData: refreshData.asSignal(),
-                needLoadNextWordsPage: needToRefrash.asSignal()
+                needLoadNextWordsPage: needToRefrash.asSignal(),
+                learnWordsDidTap: learnWordsDidTapRelay.asSignal()
             )
         )
         
@@ -289,8 +290,11 @@ final class HomeViewController: UIViewController, Stepper {
             )
         )
         
+        wordsEditPanelViewOutput.learnWordsDidTap
+            .emit(to: learnWordsDidTapRelay)
+            .disposed(by: disposeBag)
+        
 //        wordsEditPanelViewOutput.addWordsDidTap.debug("📥").emit()
-//        wordsEditPanelViewOutput.learnWordsDidTap.debug("🚀").emit()
 //        wordsEditPanelViewOutput.resetWordsDidTap.debug("🧹").emit()
 //        wordsEditPanelViewOutput.deleteWordsDidTap.debug("🔥").emit()
         

@@ -15,4 +15,6 @@ public protocol WordsRepositoryProtocol {
     func word(by id: String) -> Single<LxWordGet>
     func add(_ words: [LxWordCreate]) -> Single<[LxWordGet]>
     func update(words: [LxWordUpdate]) -> Single<[LxWordGet]>
+    func putWordsForExercises(_ words: [WordEntity])
+    func popHoldedWordsForExercises() -> [WordEntity]
 }

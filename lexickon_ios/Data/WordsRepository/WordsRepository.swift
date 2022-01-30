@@ -13,6 +13,8 @@ import Foundation
 
 public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
     
+    private var wordsForExercises: [WordEntity] = []
+    
     public init() {}
     
     public func words(per: Int, page: Int) -> Single<LxPage<LxWordList>> {
@@ -138,5 +140,14 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
                 }
             return Disposables.create()
         }
+    }
+    
+    public func putWordsForExercises(_ words: [WordEntity]) {
+        wordsForExercises = words
+        print(wordsForExercises)
+    }
+    
+    public func popHoldedWordsForExercises() -> [WordEntity] {
+        return []
     }
 }

@@ -22,10 +22,14 @@ final class HomePresenter {
     @Injected private var getStateUseCase: GetStateUseCase
     @Injected private var getWordsUseCase: GetWordsUseCase
     @Injected private var getWordsForExercise: GetWordsForExerciseUseCase
+    @Injected private var creatExerciseSessionUseCase: CreatExerciseSessionUseCase
+    
+    private var wordsForLearn: [WordEntity] = []
     
     struct Input {
         let refreshData: Signal<Void>
         let needLoadNextWordsPage: Signal<Void>
+        let learnWordsDidTap: Signal<Void>
     }
     
     struct Output {
@@ -246,6 +250,21 @@ final class HomePresenter {
             .map { [unowned self] _ -> [HomeWordCellModel] in
                 selectedWordModels.filter { $0.studyState.canBeLearnt }
             }
+            .do(onNext: { [unowned self] in
+                self.wordsForLearn = $0.map { $0.wordEntity }
+            })
+        
+        _ = input.learnWordsDidTap
+            .flatMapLatest { [unowned self] _ -> Signal<Void> in
+                self.creatExerciseSessionUseCase.configure(
+                    CreatExerciseSessionUseCase.Input(words: self.wordsForLearn)
+                )
+                    .session
+                    .map { _ in () }
+                    .asSignal(onErrorSignalWith: .empty())
+            }
+            .emit()
+
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
         
@@ -266,7 +285,7 @@ final class HomePresenter {
             isEditMode: isEditModeForOutput,
             wordsForDelete: wordsForDelete,
             wordsForReset: wordsForReset,
-            wordsForLearn: wordsForLearn,
+            wordsForLearn: wordsForLearn.debug("🤩"),
             lexickonState: .just(LexickonStateEntity.State.hasFireWords),
             wordTap: wordTapSignal,
             disposables: disposables

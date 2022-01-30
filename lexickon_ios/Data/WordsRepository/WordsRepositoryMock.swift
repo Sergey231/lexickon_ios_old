@@ -8,11 +8,11 @@
 import LexickonApi
 import RxSwift
 import Alamofire
-//import SwiftKeychainWrapper
 import Foundation
-// import ApiRepository
 
 public final class WordsRepositoryMock: WordsRepositoryProtocol, ApiRepository {
+    
+    private var wordsForExercises: [WordEntity] = []
     
     public func update(words: [LxWordUpdate]) -> Single<[LxWordGet]> {
         .error(LxHTTPObject.Error(with: 404))
@@ -123,5 +123,13 @@ public final class WordsRepositoryMock: WordsRepositoryProtocol, ApiRepository {
                 image: ""
             )
         ]
+    }
+    
+    public func putWordsForExercises(_ words: [WordEntity]) {
+        wordsForExercises = words
+    }
+    
+    public func popHoldedWordsForExercises() -> [WordEntity] {
+        return wordsForExercises
     }
 }
