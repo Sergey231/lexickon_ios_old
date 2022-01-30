@@ -42,6 +42,7 @@ final class HomePresenter {
         let wordsForLearn: Driver<[HomeWordCellModel]>
         let lexickonState: Driver<LexickonStateEntity.State>
         let wordTap: Signal<WordEntity>
+        let sessionCreated: Signal<Void>
         let disposables: CompositeDisposable
     }
     
@@ -254,7 +255,7 @@ final class HomePresenter {
                 self.wordsForLearn = $0.map { $0.wordEntity }
             })
         
-        _ = input.learnWordsDidTap
+        let sessionCreated = input.learnWordsDidTap
             .flatMapLatest { [unowned self] _ -> Signal<Void> in
                 self.creatExerciseSessionUseCase.configure(
                     CreatExerciseSessionUseCase.Input(words: self.wordsForLearn)
@@ -263,8 +264,6 @@ final class HomePresenter {
                     .map { _ in () }
                     .asSignal(onErrorSignalWith: .empty())
             }
-            .emit()
-
         
         let resetWordCellsSelectionDisposable = isEditMode.drive(isEditModeRelay)
         
@@ -288,6 +287,7 @@ final class HomePresenter {
             wordsForLearn: wordsForLearn.debug("🤩"),
             lexickonState: .just(LexickonStateEntity.State.hasFireWords),
             wordTap: wordTapSignal,
+            sessionCreated: sessionCreated,
             disposables: disposables
         )
     }

@@ -14,6 +14,7 @@ final class StartExercisesPresenter {
     
     @Injected private var getWordsForExerciseUseCase: GetWordsForExerciseUseCase
     @Injected private var creatExerciseSessionUseCase: CreatExerciseSessionUseCase
+    @Injected private var getExerciseSessionUseCase: GetExerciseSessionUseCase
     
     struct Input {
         
@@ -24,6 +25,10 @@ final class StartExercisesPresenter {
     }
     
     func configure(input: Input) -> Output {
+        
+        if let session = getExerciseSessionUseCase.configure().session {
+            return Output(execisesSessionCreated: .just(session))
+        }
         
         let wordsForExerceses = getWordsForExerciseUseCase.configure(GetWordsForExerciseUseCase.Input(count: 5))
             .wordsForExercise

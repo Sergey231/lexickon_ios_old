@@ -336,6 +336,11 @@ final class HomeViewController: UIViewController, Stepper {
         .distinctUntilChanged()
         .drive(rx.wordsEditPanelViewHieght)
         .disposed(by: disposeBag)
+        
+        presenterOutput.sessionCreated
+            .map { MainStep.exercises }
+            .emit(to: steps)
+            .disposed(by: disposeBag)
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
