@@ -27,6 +27,7 @@ class ExercisesResultViewController: UIViewController, Stepper {
     
     @Injected private var presenter: ExercisesResultPresenter
     
+    private let label = UILabel()
     private let button = UIButton()
     
     private let disposeBag = DisposeBag()
@@ -62,6 +63,16 @@ class ExercisesResultViewController: UIViewController, Stepper {
     //MARK: Create UI
     private func createUI() {
         view.backgroundColor = .white
+        
+        label.setup {
+            $0.text = "😉"
+            $0.textAlignment = .center
+            $0.font = .regular32
+            view.addSubview($0)
+            $0.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
         
         button.setup {
             $0.setTitle("Ok", for: .normal)
