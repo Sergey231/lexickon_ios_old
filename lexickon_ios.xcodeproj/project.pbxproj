@@ -796,10 +796,10 @@
 		EC0DBF1F25F0B96600CBED4D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				EC00FA3D270206EC0067DCF4 /* ApiRepository */,
 				EC00FA50270207540067DCF4 /* KeyValueRepository */,
 				EC00FA492702072D0067DCF4 /* KeychainRepository */,
 				EC00FA42270207110067DCF4 /* ConfigsRepository */,
-				EC00FA3D270206EC0067DCF4 /* ApiRepository */,
 				EC00FA36270206C50067DCF4 /* WordsRepository */,
 				EC00FA1B270206A90067DCF4 /* TranslationRepository */,
 				EC00FA162702055F0067DCF4 /* UserRepository */,

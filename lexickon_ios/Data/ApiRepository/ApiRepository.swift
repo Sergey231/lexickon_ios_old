@@ -27,8 +27,8 @@ public class LxSessionManager {
 public extension ApiRepository {
     
     var baseURL: String {
-//        ConfigsRepository().object(forKey: .BaseURL)!
-        "http://192.168.1.63:8080"
+        ConfigsRepository().object(forKey: .BaseURL)!
+//        "http://192.168.1.63:8080"
     }
     
     var jsonDecoder: JSONDecoder {
