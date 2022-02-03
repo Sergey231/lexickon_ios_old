@@ -92,6 +92,9 @@ public final class SubmenuItem: UIView {
             .drive(emojiIcon.rx.text)
             .disposed(by: disposeBag)
         
+        button.configureTapScaleAnimation(withScale: 0.95, viewForScale: self)
+            .disposed(by: disposeBag)
+        
         titleLabel.textColor = input.titleColor
         
         return Output(didTap: button.rx.tap.asSignal())

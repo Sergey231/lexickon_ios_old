@@ -37,11 +37,17 @@ public extension UIButton {
         )
     }
     
-    func configureTapScaleAnimation(withScale: CGFloat = 0.95) -> CompositeDisposable {
+    func configureTapScaleAnimation(
+        withScale: CGFloat = 0.95,
+        viewForScale: UIView? = nil
+    ) -> CompositeDisposable {
+        
+        let viewForScale = viewForScale ?? self
+        
         let tapOnDisposable = rx.controlEvent(.touchDown)
             .subscribe(onNext: { _ in
                 UIView.animate(withDuration: 0.1) {
-                    self.transform = CGAffineTransform(
+                    viewForScale.transform = CGAffineTransform(
                         scaleX: withScale,
                         y: withScale
                     )
@@ -54,7 +60,7 @@ public extension UIButton {
         )
             .subscribe(onNext: { _ in
                 UIView.animate(withDuration: 0.1) {
-                    self.transform = CGAffineTransform(
+                    viewForScale.transform = CGAffineTransform(
                         scaleX: 1,
                         y: 1
                     )
