@@ -29,6 +29,7 @@ public final class ExercisesTitleView: UIView {
     }
     
     public struct Output {
+        public let animationCompleted: Signal<Void>
         public let closeDidTap: Signal<Void>
     }
     
@@ -37,6 +38,7 @@ public final class ExercisesTitleView: UIView {
     private let closeButton = UIButton()
     private let progressContainerView = UIView()
     fileprivate let progressView = UIView()
+    fileprivate let animationCompletedRelay = PublishRelay<Void>()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,21 +78,26 @@ public final class ExercisesTitleView: UIView {
         input.value
             .drive(rx.progress)
             .disposed(by: disposeBag)
-        return Output(closeDidTap: closeButton.rx.tap.asSignal())
+        return Output(
+            animationCompleted: animationCompletedRelay.asSignal(),
+            closeDidTap: closeButton.rx.tap.asSignal()
+        )
     }
 }
 
 extension Reactive where Base: ExercisesTitleView {
     var progress: Binder<CGFloat> {
         Binder(base) { base, value in
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: 0.3, animations: {
                 base.progressView.snp.updateConstraints {
                     let scaleViewMaxWidth = ExercisesTitleView.UIConstants.progressViewWidth
                     let currentProgressWidth = scaleViewMaxWidth * value
                     $0.width.equalTo(currentProgressWidth)
                 }
                 base.progressView.superview?.layoutIfNeeded()
-            }
+            }, completion: { _ in
+                base.animationCompletedRelay.accept(())
+            })
         }
     }
 }

@@ -22,7 +22,7 @@ public final class ExercisesView: UIView {
     
     fileprivate let exercisesNavigationController = UINavigationController()
     private let nextSessionItemRelay = PublishRelay<ExercisesSessionEntity.NextSessionItem>()
-    private let endSessionRelay = PublishRelay<Void>()
+    fileprivate let endSessionRelay = PublishRelay<Void>()
     
 //    fileprivate let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve()
     
@@ -99,7 +99,7 @@ private extension Reactive where Base: ExercisesView {
                 let wordViewExerciseViewController: WordViewExerciseViewController = Resolver.resolve(args: nextSessionItem)
                 base.exercisesNavigationController.setViewControllers([wordViewExerciseViewController], animated: true)
             case .none:
-                break
+                base.endSessionRelay.accept(())
             }
         }
     }

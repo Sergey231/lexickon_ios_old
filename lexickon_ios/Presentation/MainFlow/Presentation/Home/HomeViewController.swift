@@ -31,6 +31,7 @@ final class HomeViewController: UIViewController, Stepper {
     let steps = PublishRelay<Step>()
     
     @Injected var presenter: HomePresenter
+    
     fileprivate var disposeBag = DisposeBag()
     private var dataSource: HomeWordRxDataSource!
     private let needToRefrash = PublishRelay<Void>()

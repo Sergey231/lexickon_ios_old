@@ -150,24 +150,21 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
             )
         )
         
-        presenterOutput.nextSessionItem
-            .filter { $0.exercise == .none }
-            .do { [unowned self] _ in
-                removeButtonFromView()
-                removeTitleViewFromView()
-            }
-            .map { _ in ExercisesSessionStep.result }
-            .emit(to: steps)
-            .disposed(by: disposeBag)
-        
         button.configureTapScaleAnimation()
             .disposed(by: disposeBag)
         
         button.setTitle("Далее", for: .normal)
         
         exercisesViewOutput.endSession
-            .debug("💪🏻")
-            .emit()
+            .flatMapLatest { _ in
+                titleViewOutput.animationCompleted
+            }
+            .do { [unowned self] _ in
+                removeButtonFromView()
+                removeTitleViewFromView()
+            }
+            .map { _ in ExercisesSessionStep.result }
+            .emit(to: steps)
             .disposed(by: disposeBag)
     }
     
