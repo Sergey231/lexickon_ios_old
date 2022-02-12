@@ -260,7 +260,6 @@ final class HomePresenter {
                 self.creatExerciseSessionUseCase.configure(
                     CreatExerciseSessionUseCase.Input(words: self.wordsForLearn)
                 )
-                    .session
                     .map { _ in () }
                     .asSignal(onErrorSignalWith: .empty())
             }

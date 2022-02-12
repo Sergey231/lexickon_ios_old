@@ -24,7 +24,7 @@ final class CreatExerciseSessionUseCase {
         let session: Single<ExercisesSessionEntity>
     }
     
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<ExercisesSessionEntity> {
         let session = ExercisesSessionEntity(
             words: input.words,
             exercises: [.wordView]
@@ -33,7 +33,7 @@ final class CreatExerciseSessionUseCase {
         let exercisesSessionEntity = exerciseSessionRepository.saveSession(session: session)
             .map { _ in session }
         
-        return Output(session: exercisesSessionEntity)
+        return exercisesSessionEntity
     }
 }
 

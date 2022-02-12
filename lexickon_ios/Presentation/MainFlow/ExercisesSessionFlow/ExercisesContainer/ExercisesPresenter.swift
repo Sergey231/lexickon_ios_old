@@ -16,7 +16,7 @@ final class ExercisesPresenter {
         let exerciseDidDone: Signal<Void>
     }
     
-    @Injected private var getExerciseuseCase: GetExerciseSessionUseCase
+    @Injected private var getExerciseUseCase: GetExerciseSessionUseCase
     
     struct Output {
         let currentSession: ExercisesSessionEntity?
@@ -25,7 +25,7 @@ final class ExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
-        let currentSession = getExerciseuseCase.configure().session
+        let currentSession = getExerciseUseCase.configure().session
         
         let nextExerciseType = input.exerciseDidDone
             .map { _ -> ExercisesSessionEntity.NextSessionItem in

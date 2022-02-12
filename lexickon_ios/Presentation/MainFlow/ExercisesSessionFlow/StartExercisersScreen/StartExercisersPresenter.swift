@@ -40,7 +40,6 @@ final class StartExercisesPresenter {
         let execisesSessionEntity = wordsForExerceses
             .flatMap { [unowned self] words in
                 creatExerciseSessionUseCase.configure(CreatExerciseSessionUseCase.Input(words: words))
-                    .session
                     .asSignal { error in
                         print("❌ StartExercisesPresenter: \(error.localizedDescription)")
                         return .empty()
