@@ -20,10 +20,6 @@ final class CreatExerciseSessionUseCase {
         let words: [WordEntity]
     }
     
-    public struct Output {
-        let session: Single<ExercisesSessionEntity>
-    }
-    
     public func configure(_ input: Input) -> Single<ExercisesSessionEntity> {
         let session = ExercisesSessionEntity(
             words: input.words,
