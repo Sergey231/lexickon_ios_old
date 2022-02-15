@@ -13,13 +13,9 @@ import LexickonApi
 
 final class GetExerciseSessionUseCase {
     
-    public struct Output {
-        let session: ExercisesSessionEntity?
-    }
-    
     @Injected private var exerciseSessionRepository: ExerciseSessionRepositoryProtocol
     
-    public func configure() -> Output {
-        Output(session: exerciseSessionRepository.getCurrentSession())
+    public func configure() -> ExercisesSessionEntity? {
+        exerciseSessionRepository.getCurrentSession()
     }
 }
