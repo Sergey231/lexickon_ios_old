@@ -25,7 +25,7 @@ final class ExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
-        let currentSession = getExerciseUseCase.configure().session
+        let currentSession = getExerciseUseCase.configure()
         
         let nextExerciseType = input.exerciseDidDone
             .map { _ -> ExercisesSessionEntity.NextSessionItem in

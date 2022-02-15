@@ -26,7 +26,7 @@ final class StartExercisesPresenter {
     
     func configure(input: Input) -> Output {
         
-        if let session = getExerciseSessionUseCase.configure().session {
+        if let session = getExerciseSessionUseCase.configure() {
             return Output(execisesSessionCreated: .just(session))
         }
         
