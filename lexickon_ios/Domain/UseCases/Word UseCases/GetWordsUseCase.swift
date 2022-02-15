@@ -18,13 +18,9 @@ final class GetWordsUseCase {
         let page: Int
     }
     
-    public struct Output {
-        let words: Single<LxPage<WordEntity>>
-    }
-    
     @Injected private var wordsRepository: WordsRepositoryProtocol
     
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<LxPage<WordEntity>> {
         
         let words = wordsRepository.words(per: input.per, page: input.page)
             .map { page -> LxPage<WordEntity> in
@@ -43,6 +39,6 @@ final class GetWordsUseCase {
                 )
             }
         
-        return Output(words: words)
+        return words
     }
 }

@@ -84,7 +84,6 @@ final class HomePresenter {
                     per: 10,
                     page: 1
                 ))
-                    .words
                     .map { $0.items }
                     .trackActivity(isWordsUpdating)
                     .asDriver(onErrorJustReturn: [])
@@ -109,7 +108,6 @@ final class HomePresenter {
                     per: loadedWordsCount,
                     page: pagesCount
                 ))
-                    .words
                     .map { $0.items }
                     .trackActivity(isNextPageLoading)
                     .asDriver(onErrorJustReturn: [])
