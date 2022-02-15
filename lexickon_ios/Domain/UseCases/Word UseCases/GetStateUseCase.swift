@@ -21,11 +21,7 @@ final class GetStateUseCase {
         let updateEverySeconds: Int = 60
     }
     
-    public struct Output {
-        let state: Driver<LexickonStateEntity>
-    }
-    
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Driver<LexickonStateEntity> {
         
         let state = input.updateState
             .asObservable()
@@ -42,6 +38,6 @@ final class GetStateUseCase {
             }
             .asDriver(onErrorJustReturn: .empty())
         
-        return Output(state: state)
+        return state
     }
 }

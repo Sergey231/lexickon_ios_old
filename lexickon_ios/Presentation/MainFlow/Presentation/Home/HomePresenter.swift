@@ -69,7 +69,7 @@ final class HomePresenter {
     func configurate(input: Input) -> Output {
         
         getStateUseCase.configure(.init(updateState: .just(())))
-            .state.debug("👨🏻")
+            .debug("👨🏻")
             .drive()
         
         let isNextPageLoading = RxActivityIndicator()
