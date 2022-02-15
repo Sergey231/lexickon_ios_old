@@ -19,11 +19,7 @@ final class GetWordsForExerciseUseCase {
         let count: Int
     }
     
-    public struct Output {
-        let wordsForExercise: Single<[WordEntity]>
-    }
-    
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<[WordEntity]> {
         
         let wordsForExercise = wordsRepository.words(per: input.count, page: 1)
             .map { page -> [WordEntity] in
@@ -33,6 +29,6 @@ final class GetWordsForExerciseUseCase {
                 }
             }
         
-        return Output(wordsForExercise: wordsForExercise)
+        return wordsForExercise
     }
 }

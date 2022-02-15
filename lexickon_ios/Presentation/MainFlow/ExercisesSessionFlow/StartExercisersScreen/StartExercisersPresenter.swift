@@ -31,7 +31,6 @@ final class StartExercisesPresenter {
         }
         
         let wordsForExerceses = getWordsForExerciseUseCase.configure(GetWordsForExerciseUseCase.Input(count: 5))
-            .wordsForExercise
             .asSignal { error in
                 print("❌ StartExercisesPresenter: \(error.localizedDescription)")
                 return .just([])
