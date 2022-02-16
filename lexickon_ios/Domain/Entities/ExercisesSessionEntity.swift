@@ -75,7 +75,10 @@ public class ExercisesSessionEntity {
             return sessionItem
         }
         
-        // Деллаем поле currentSessionItem всегда актуальное
+        // повышаем рейтинг знания слова
+        
+        
+        // Деллаем поле currentSessionItem актуальным
         let sessionItem = NextSessionItem(word: nil, exercise: .none)
         self.sessionItem = sessionItem
         return sessionItem
@@ -146,13 +149,6 @@ public extension ExercisesSessionEntity {
         
         public var currentExercise: ExerciseType {
             notPassedExercises.first ?? .wordView
-        }
-        
-        public var difficultyRating: Int {
-            // Пока так, а там посмотрим.
-            let syllablesCount = SwiftSyllables.getSyllables(word.studyWord)
-            let defficulty = syllablesCount * word.studyWord.count
-            return defficulty
         }
         
         public init(

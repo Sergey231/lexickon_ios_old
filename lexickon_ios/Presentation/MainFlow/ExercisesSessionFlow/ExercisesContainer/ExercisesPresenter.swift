@@ -29,14 +29,19 @@ final class ExercisesPresenter {
         
         let nextExerciseType = input.exerciseDidDone
             .map { _ -> ExercisesSessionEntity.NextSessionItem in
-                currentSession?.word(currentSession?.currentSessionItem.word, isPassedInExercise: .wordView)
-                ?? .emptyItem
+                currentSession?.word(
+                    currentSession?.currentSessionItem.word,
+                    isPassedInExercise: .wordView
+                ) ?? .emptyItem
             }
             .asSignal(onErrorRecover: { error -> Signal<ExercisesSessionEntity.NextSessionItem> in
                 print("👨🏻 ❌ Current Exercise Session is wrong!")
                 return .just(.emptyItem)
             })
         
-        return Output(currentSession: currentSession, nextSessionItem: nextExerciseType)
+        return Output(
+            currentSession: currentSession,
+            nextSessionItem: nextExerciseType
+        )
     }
 }

@@ -14,7 +14,7 @@ public struct WordEntity: Decodable {
     public let studyWord: String
     public let translates: [String]
     public let updatingStudyRatingDate: Int?
-    public let studyRating: Int
+    public var studyRating: Int
     public let image: String
     
     public init(
@@ -105,5 +105,28 @@ public struct WordEntity: Decodable {
         let oneSafeResult = resultPersent > 1 ? 1 : resultPersent
         let result = oneSafeResult < 0 ? 0 : oneSafeResult
         return result
+    }
+    
+    public mutating func updateStudyRating(
+        exerciseType: ExercisesSessionEntity.ExerciseType,
+        ratingAmount: Int
+    ) {
+        switch exerciseType {
+            
+        case .wordView:
+            // повышаем рейтинг знания слова
+            let newStudyRating = difficultyRating * ratingAmount
+            studyRating = newStudyRating
+        case .none:
+            // повышаем рейтинг правописания
+            break
+        }
+    }
+    
+    private var difficultyRating: Int {
+        // Пока так, а там посмотрим.
+        let syllablesCount = SwiftSyllables.getSyllables(studyWord)
+        let defficulty = syllablesCount * studyWord.count
+        return defficulty
     }
 }
