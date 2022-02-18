@@ -21,11 +21,7 @@ final class RegistrationUseCase {
         let password: String
     }
     
-    public struct Output {
-        let didRegistred: Single<Void>
-    }
-    
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<Void> {
         
         let userCreateObject = LxUserCreate(
             email: input.email,
@@ -35,6 +31,6 @@ final class RegistrationUseCase {
         let didRegistred = userRepository.createUser(with: userCreateObject)
             .map { _ in () }
         
-        return Output(didRegistred: didRegistred)
+        return didRegistred
     }
 }

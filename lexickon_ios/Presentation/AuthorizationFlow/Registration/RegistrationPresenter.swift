@@ -230,7 +230,6 @@ final class RegistrationPresenter {
                         password: arg.password
                     )
                 )
-                    .didRegistred
                     .asSignal { error -> Signal<()> in
                         errorMsg.accept(error.localizedDescription)
                         showLoading.accept(false)
