@@ -15,14 +15,10 @@ final class HasAuthTokenUseCase {
     
     @Injected var authTokenRepository: AuthTokenRepositoryProtocol
     
-    public struct Output {
-        let hasAuthToken: Single<Bool>
-    }
-    
-    public func configure() -> Output {
+    public func configure() -> Single<Bool> {
         let hasAuthToken = authTokenRepository.cach
             .map { _ -> Bool in true }
             .catchAndReturn(false)
-        return Output(hasAuthToken: hasAuthToken)
+        return hasAuthToken
     }
 }

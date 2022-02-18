@@ -25,7 +25,7 @@ final class StartPresenter {
     
     func configure(input: Input) -> Output {
         
-        let isAuthorized = hasAuthTokenUseCase.configure().hasAuthToken
+        let isAuthorized = hasAuthTokenUseCase.configure()
             .asDriver(onErrorJustReturn: false)
         
         return Output(isAuthorized: isAuthorized)
