@@ -7,6 +7,7 @@
 
 import Foundation
 import LexickonApi
+import UIKit
 
 public struct WordEntity: Decodable {
     
@@ -109,14 +110,14 @@ public struct WordEntity: Decodable {
     
     public mutating func updateStudyRating(
         exerciseType: ExercisesSessionEntity.ExerciseType,
-        ratingAmount: Int
+        exerciseResultRatingAmount: CGFloat // от 0.9 до 1
     ) {
         switch exerciseType {
             
         case .wordView:
             // повышаем рейтинг знания слова
-            let newStudyRating = difficultyRating * ratingAmount
-            studyRating = newStudyRating
+            let newStudyRating: CGFloat = CGFloat(difficultyRating) * exerciseResultRatingAmount
+            studyRating = Int(newStudyRating)
         case .none:
             // повышаем рейтинг правописания
             break

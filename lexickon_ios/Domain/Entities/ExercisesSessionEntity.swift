@@ -55,11 +55,12 @@ public class ExercisesSessionEntity {
     // Помечаем слово как прошедшее, конкретное упражнение и повышаем ему study rating
     public func word(
         _ word: SessionWord?,
-        isPassedInExercise: ExerciseType
+        isPassedInExercise: ExerciseType,
+        exerciseResultRatingAmount: CGFloat
     ) -> NextSessionItem {
        
         // Удаляем упражнение из слова.
-        word?.exerciseDidPass(isPassedInExercise)
+        word?.exerciseDidPass(isPassedInExercise, with: exerciseResultRatingAmount)
         
         // Перещитываем currentSessionProgress
         culcSessionProgress()
@@ -74,9 +75,6 @@ public class ExercisesSessionEntity {
             self.sessionItem = sessionItem
             return sessionItem
         }
-        
-        // повышаем рейтинг знания слова
-        
         
         // Деллаем поле currentSessionItem актуальным
         let sessionItem = NextSessionItem(word: nil, exercise: .none)
@@ -147,6 +145,10 @@ public extension ExercisesSessionEntity {
         public var word: WordEntity
         public var notPassedExercises: [ExerciseType]
         
+        // Колличество попыток закрепления этого слова
+        private var triesCount: UInt = 0
+        private let maxTriesCount = 3
+        
         public var currentExercise: ExerciseType {
             notPassedExercises.first ?? .wordView
         }
@@ -159,8 +161,16 @@ public extension ExercisesSessionEntity {
             self.notPassedExercises = exercisesForThisSession
         }
         
-        fileprivate func exerciseDidPass(_ exercise: ExerciseType) {
+        fileprivate func exerciseDidPass(_ exercise: ExerciseType, with resultRaging: CGFloat) {
+            word.updateStudyRating(exerciseType: exercise, exerciseResultRatingAmount: resultRaging)
+            
+            if resultRaging > 0 && triesCount >= maxTriesCount {
+            // Удаляем это упражнения из объекта SessionWord, т.к. это упражнение уже пройдено
+            // Или Исчерпаны все попытки его пройти
             _ = notPassedExercises.remove { $0 == exercise }
+            } else {
+                triesCount += 1
+            }
         }
         
         public static func == (
