@@ -127,7 +127,6 @@ final class LoginPresenter {
                         password: password
                     )
                 )
-                    .didLogin
                     .asSignal { error -> Signal<()> in
                         errorMsg.accept(error.localizedDescription)
                         showLoading.accept(false)

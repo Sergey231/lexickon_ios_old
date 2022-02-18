@@ -20,11 +20,7 @@ final class LoginUseCase {
         let password: String
     }
     
-    public struct Output {
-        let didLogin: Single<Void>
-    }
-    
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<Void> {
         
         let userCredantions = LxUserCreate(
             email: input.login,
@@ -34,6 +30,6 @@ final class LoginUseCase {
         let didLogin = authTokenRepository.get(with: userCredantions)
             .map { _ in () }
         
-        return Output(didLogin: didLogin)
+        return didLogin
     }
 }
