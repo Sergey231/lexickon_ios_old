@@ -124,7 +124,7 @@ public struct WordEntity: Decodable {
             
         case .wordView:
             // изменяем рейтинг знания слова
-            let newStudyRating: CGFloat = CGFloat(difficultyRating) * exerciseResultRatingAmount
+            let newStudyRating: CGFloat = CGFloat(ratingСalculationСoefficient) * exerciseResultRatingAmount
             studyRating = Int(newStudyRating)
         case .none:
             // изменяем рейтинг правописания
@@ -137,5 +137,17 @@ public struct WordEntity: Decodable {
         let syllablesCount = SwiftSyllables.getSyllables(studyWord)
         let defficulty = syllablesCount * studyWord.count
         return defficulty
+    }
+    
+    /*
+     Это коэффициент нужный для расчета будущего рейтинга знания (или правописания) слова (словосочетания)
+     ВАЖНО! чем сложнее слово, тем он должен быть ниже!
+     Это приведет к замедлению роста рейтинга таких слов.
+     Нужно это для более частного повторения сложных слов и словосочетаний
+     */
+    private var ratingСalculationСoefficient: Int {
+        let wordsCountInStudyWord = studyWord.split(separator: " ").count
+        let result = wordsCountInStudyWord * 100
+        return result
     }
 }
