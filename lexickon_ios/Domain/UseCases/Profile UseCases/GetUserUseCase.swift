@@ -15,16 +15,12 @@ final class GetUserUseCase {
     
     @Injected var userRepository: UserRepositoryProtocol
     
-    public struct Output {
-        let user: Single<UserEntity>
-    }
-    
-    public func configure() -> Output {
+    public func configure() -> Single<UserEntity> {
         let stubUser = UserEntity(
             name: "name",
             email: "email"
         )
-        return Output(user: .just(stubUser))
+        return .just(stubUser)
     }
 }
 

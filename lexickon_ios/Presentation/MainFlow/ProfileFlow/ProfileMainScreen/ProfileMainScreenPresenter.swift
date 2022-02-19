@@ -38,13 +38,13 @@ final class ProfileMainScreenPresenter {
                     .asSignal(onErrorSignalWith: .empty())
             }
         
-        let getUserUseCaseOutput = getUserUseCase.configure()
+        let user = getUserUseCase.configure()
         
-        let name = getUserUseCaseOutput.user
+        let name = user
             .map { $0.name }
             .asDriver(onErrorJustReturn: "")
         
-        let email = getUserUseCaseOutput.user
+        let email = user
             .map { $0.email }
             .asDriver(onErrorJustReturn: "")
         
