@@ -15,12 +15,8 @@ final class LogoutUseCase {
     
     @Injected var authTokenRepository: AuthTokenRepositoryProtocol
     
-    public struct Output {
-        let didLogout: Single<Void>
-    }
-    
-    public func configure() -> Output {
+    public func configure() -> Single<Void> {
         let didLogout = authTokenRepository.erasе()
-        return Output(didLogout: didLogout)
+        return didLogout
     }
 }

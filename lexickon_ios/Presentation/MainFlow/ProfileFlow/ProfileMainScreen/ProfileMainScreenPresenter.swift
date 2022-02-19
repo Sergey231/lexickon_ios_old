@@ -34,7 +34,7 @@ final class ProfileMainScreenPresenter {
         
         let didLogout = input.didTapLogOut
             .flatMap { [unowned self] in
-                self.logoutUseCase.configure().didLogout
+                self.logoutUseCase.configure()
                     .asSignal(onErrorSignalWith: .empty())
             }
         
