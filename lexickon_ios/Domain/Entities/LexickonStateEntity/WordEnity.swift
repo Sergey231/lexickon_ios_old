@@ -110,16 +110,24 @@ public struct WordEntity: Decodable {
     
     public mutating func updateStudyRating(
         exerciseType: ExercisesSessionEntity.ExerciseType,
-        exerciseResultRatingAmount: CGFloat // от 0.9 до 1
+        /*
+         exerciseResultRatingAmount это специальный коэффициент, который говорит о том,
+         на сколько успешно было закреплено это слово в упражнении.
+         Например, если небыло ошибок он будет равен 1.
+         В зависимости от упражнения количество ошибок будет менять этот коэффициент, вплодь до -1.
+         Соответственно, положительный результат повысит рейтинг занания (или правописания) слова,
+         Нуль не изменит, а отрицательный уменьшит.
+         */
+        exerciseResultRatingAmount: CGFloat // от -1 до 1
     ) {
         switch exerciseType {
             
         case .wordView:
-            // повышаем рейтинг знания слова
+            // изменяем рейтинг знания слова
             let newStudyRating: CGFloat = CGFloat(difficultyRating) * exerciseResultRatingAmount
             studyRating = Int(newStudyRating)
         case .none:
-            // повышаем рейтинг правописания
+            // изменяем рейтинг правописания
             break
         }
     }
