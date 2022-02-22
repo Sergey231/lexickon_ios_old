@@ -183,7 +183,6 @@ final class AddSearchWordPresenter {
                         newWords: wordsTranslations
                     )
                 )
-                    .wordsDidAdded
             }
             .subscribe()
         

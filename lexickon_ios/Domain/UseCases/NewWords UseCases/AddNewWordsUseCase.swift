@@ -19,11 +19,7 @@ final class AddNewWordsUseCase {
         let newWords: [TranslationResultsDTO.Translation]
     }
     
-    public struct Output {
-        let wordsDidAdded: Single<Void>
-    }
-    
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<Void> {
         
         let wordCreateModels = input.newWords
             .map {
@@ -37,6 +33,6 @@ final class AddNewWordsUseCase {
         let wordsDidAdded = wordRepository.add(wordCreateModels)
             .map { _ in () }
         
-        return Output(wordsDidAdded: wordsDidAdded)
+        return wordsDidAdded
     }
 }
