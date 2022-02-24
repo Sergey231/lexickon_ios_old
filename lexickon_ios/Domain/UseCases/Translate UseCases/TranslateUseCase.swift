@@ -22,11 +22,7 @@ final class TranslateUseCase {
         let text: String
     }
     
-    public struct Output {
-        let translationResult: Single<TranslationResultsDTO>
-    }
-    
-    public func configure(_ input: Input) -> Output {
+    public func configure(_ input: Input) -> Single<TranslationResultsDTO> {
         
         let requestDTO = TranslationRequestDTO(
             text: input.text,
@@ -36,7 +32,7 @@ final class TranslateUseCase {
         
         let translationResult = translateByMicrosoftDictionary(requestDTO)
         
-        return Output(translationResult: translationResult)
+        return translationResult
     }
     
     private func translateByYandexDictionary(_ dto: TranslationRequestDTO) -> Single<TranslationResultsDTO> {

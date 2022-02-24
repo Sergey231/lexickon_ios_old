@@ -48,7 +48,6 @@ final class AddSearchWordPresenter {
         let translationResult = input.textForTranslate
             .flatMapLatest { text -> Driver<TranslationResultsDTO> in
                 self.translateUseCase.configure(TranslateUseCase.Input(text: text))
-                    .translationResult
                     .asObservable()
                     .trackActivity(activityIndicator)
                     .provideError(errorDetector)

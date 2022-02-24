@@ -59,7 +59,7 @@ public class ExercisesSessionEntity {
         exerciseResultRatingAmount: CGFloat
     ) -> NextSessionItem {
        
-        // Удаляем упражнение из слова.
+        // Изменяем состояние слова
         word?.exerciseDidPass(isPassedInExercise, with: exerciseResultRatingAmount)
         
         // Перещитываем currentSessionProgress
