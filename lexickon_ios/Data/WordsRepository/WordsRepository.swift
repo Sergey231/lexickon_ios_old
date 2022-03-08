@@ -118,7 +118,7 @@ public final class WordsRepository: WordsRepositoryProtocol, ApiRepository {
             [
                 "id" : $0.id.uuidString,
                 "updatingStudyRatingDate" : $0.updatingStudyRatingDate,
-                "studyRating" : 25 //$0.studyRating
+                "studyRating" : $0.studyRating
             ]
         }
         

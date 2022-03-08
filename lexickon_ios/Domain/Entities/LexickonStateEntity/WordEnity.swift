@@ -128,6 +128,7 @@ public struct WordEntity: Decodable {
             studyRating = Int(newStudyRating)
         case .none:
             // изменяем рейтинг правописания
+            // пока заглушка
             break
         }
     }
