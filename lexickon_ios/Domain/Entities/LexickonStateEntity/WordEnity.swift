@@ -138,7 +138,7 @@ public struct WordEntity: Decodable {
         let syllablesCount = SwiftSyllables.getSyllables(studyWord)
         let defficulty = syllablesCount * studyWord.count
         return defficulty
-    }
+    } 
     
     /*
      Это коэффициент нужный для расчета будущего рейтинга знания (или правописания) слова (словосочетания)

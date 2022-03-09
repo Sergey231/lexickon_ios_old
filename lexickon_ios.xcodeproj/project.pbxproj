@@ -122,6 +122,7 @@
 		EC6B2D12277879E400FDF38F /* CreatExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */; };
 		EC7B6FA425861A1500EB1D28 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EC7B6FA325861A1500EB1D28 /* SnapKit */; };
 		EC8880A526AA7FDB00C2294F /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8880A426AA7FDB00C2294F /* UserEntity.swift */; };
+		EC98C05427D884E20096A00A /* SyncExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC98C05327D884E10096A00A /* SyncExerciseSessionUseCase.swift */; };
 		EC9E7AC5277EEFE400786F0C /* SaveExerciseSessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */; };
 		EC9E7AC7277EF07A00786F0C /* ExerciseSessionRepository.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */; };
 		EC9E7AC9277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */; };
@@ -288,6 +289,7 @@
 		EC5C3F3D272D6561008C95A7 /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
 		EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		EC8880A426AA7FDB00C2294F /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		EC98C05327D884E10096A00A /* SyncExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveExerciseSessionUseCase.swift; sourceTree = "<group>"; };
 		EC9E7AC6277EF07A00786F0C /* ExerciseSessionRepository.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSessionRepository.swift.swift; sourceTree = "<group>"; };
 		EC9E7AC8277EF20100786F0C /* ExerciseSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -1068,6 +1070,7 @@
 				EC6B2D11277879E400FDF38F /* CreatExerciseSessionUseCase.swift */,
 				EC9E7AC4277EEFE400786F0C /* SaveExerciseSessionUseCase.swift */,
 				ECFDC62F278DDD2900C26E9B /* GetExerciseSessionUseCase.swift */,
+				EC98C05327D884E10096A00A /* SyncExerciseSessionUseCase.swift */,
 			);
 			path = "Exercises UseCases";
 			sourceTree = "<group>";
@@ -1350,6 +1353,7 @@
 				EC00F9E62701FF6D0067DCF4 /* FromHomeToProfileAnimator.swift in Sources */,
 				EC00F9FC2701FF6D0067DCF4 /* VocabularyView.swift in Sources */,
 				EC0B20CB2671E55A00881DDD /* WordCardPresenter.swift in Sources */,
+				EC98C05427D884E20096A00A /* SyncExerciseSessionUseCase.swift in Sources */,
 				ECC30321271406BB0083E905 /* ExercisesResultPresenter.swift in Sources */,
 				EC00F9F32701FF6D0067DCF4 /* WideWordProgressView.swift in Sources */,
 				EC00FA30270206AA0067DCF4 /* MicrosoftTranslatorResultsDTO.swift in Sources */,
