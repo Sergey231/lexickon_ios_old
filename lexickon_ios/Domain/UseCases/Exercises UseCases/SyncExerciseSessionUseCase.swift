@@ -11,7 +11,25 @@ import RxSwift
 import Resolver
 import LexickonApi
 
+// UseCase для сохранения состояния слов в БД, на сервере
 final class SyncExerciseSessionUseCase {
     
-    // UseCase для сохранения состояния слов в БД, на сервере
+    @Injected private var wordsRepository: WordsRepositoryProtocol
+    
+    public struct Input {
+        let session: ExercisesSessionEntity
+    }
+    
+    func configure(_ input: Input) -> Observable<Void> {
+        let lxWordCreates = input.session.sessionWords.map {
+            LxWordCreate(
+                studyWord: $0.word.studyWord,
+                translates: $0.word.translates,
+                image: $0.word.image
+            )
+        }
+        return wordsRepository.add(lxWordCreates)
+            .map { _ in () }
+            .asObservable()
+    }
 }
