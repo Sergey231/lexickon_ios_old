@@ -105,5 +105,6 @@ extension Resolver {
         register { ExercisesPresenter() }
         register { ExerciseSessionRepository() as ExerciseSessionRepositoryProtocol }.scope(.cached)
         register { GetExerciseSessionUseCase() }
+        register { SyncExerciseSessionUseCase() }
     }
 }

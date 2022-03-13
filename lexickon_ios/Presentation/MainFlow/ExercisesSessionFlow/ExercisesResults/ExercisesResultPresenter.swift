@@ -20,11 +20,18 @@ final class ExercisesResultPresenter {
         let sessionDidFinish: Signal<Void>
     }
     
+    @Injected private var syncExerciseSessionUseCase: SyncExerciseSessionUseCase
+    @Injected private var getExerciseSessionUseCase: GetExerciseSessionUseCase
+    
     func configure(input: Input) -> Output {
         
         let sessionDidFinish = input.submitButtonDidTap
-            .map { //[unowned self] _ in
-                
+            .flatMap { [weak self] _ in
+                let session = self?.getExerciseSessionUseCase.configure()
+                return self?.syncExerciseSessionUseCase.configure(
+                    SyncExerciseSessionUseCase.Input(session: session)
+                )
+                    .asSignal(onErrorSignalWith: .empty())
             }
         
         return Output(sessionDidFinish: sessionDidFinish)
