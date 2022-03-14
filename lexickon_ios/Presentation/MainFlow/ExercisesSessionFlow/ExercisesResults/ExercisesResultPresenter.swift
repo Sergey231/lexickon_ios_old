@@ -26,9 +26,15 @@ final class ExercisesResultPresenter {
     func configure(input: Input) -> Output {
         
         let sessionDidFinish = input.submitButtonDidTap
-            .flatMap { [weak self] _ in
-                let session = self?.getExerciseSessionUseCase.configure()
-                return self?.syncExerciseSessionUseCase.configure(
+            .asSignal()
+            .compactMap { [weak self] _ in
+                self?.getExerciseSessionUseCase.configure()
+            }
+            .flatMap { [weak self] session -> Signal<Void> in
+                
+                guard let self = self else { return .empty() }
+                
+                return self.syncExerciseSessionUseCase.configure(
                     SyncExerciseSessionUseCase.Input(session: session)
                 )
                     .asSignal(onErrorSignalWith: .empty())
