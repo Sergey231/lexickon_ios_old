@@ -18,11 +18,7 @@ import Assets
 import LBTATools
 
 class ExercisesResultViewController: UIViewController, Stepper {
-    
-    struct UIConstants {
-        
-    }
-    
+
     let steps = PublishRelay<Step>()
     
     @Injected private var presenter: ExercisesResultPresenter

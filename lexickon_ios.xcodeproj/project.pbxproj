@@ -710,8 +710,8 @@
 		EC0DBE5F25F0B92400CBED4D /* AddSearchWord */ = {
 			isa = PBXGroup;
 			children = (
-				EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */,
 				EC0DBE6125F0B92400CBED4D /* AddSearchWordViewController.swift */,
+				EC0DBE6025F0B92400CBED4D /* AddSearchWordPresenter.swift */,
 			);
 			path = AddSearchWord;
 			sourceTree = "<group>";

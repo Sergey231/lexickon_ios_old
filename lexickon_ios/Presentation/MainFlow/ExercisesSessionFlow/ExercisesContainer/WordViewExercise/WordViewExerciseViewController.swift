@@ -19,8 +19,6 @@ import LBTATools
 
 class WordViewExerciseViewController: UIViewController {
     
-    struct UIConstants {}
-    
     private let didTapSubmitButton = PublishRelay<Void>()
     private let nextSessionItem: ExercisesSessionEntity.NextSessionItem
     
