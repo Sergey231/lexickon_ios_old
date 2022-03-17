@@ -9,9 +9,11 @@
 import Foundation
 
 public struct RapidApiGoogleTranslateRequestDTO {
+   
     public let dto: TranslationRequestDTO
     public let rapidApiKey: String
     public let rapidApiHost: String
+    
     public init(
         dto: TranslationRequestDTO,
         rapidApiKey: String,
