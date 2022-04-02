@@ -161,10 +161,16 @@ public extension ExercisesSessionEntity {
             self.notPassedExercises = exercisesForThisSession
         }
         
-        fileprivate func exerciseDidPass(_ exercise: ExerciseType, with resultRaging: CGFloat) {
-            word.updateStudyRating(exerciseType: exercise, exerciseResultRatingAmount: resultRaging)
+        fileprivate func exerciseDidPass(
+            _ exercise: ExerciseType,
+            with resultRaging: CGFloat
+        ) {
+            word.updateStudyRating(
+                exerciseType: exercise,
+                exerciseResultRatingAmount: resultRaging
+            )
             
-            if resultRaging > 0 && triesCount >= maxTriesCount {
+            if resultRaging > 0 {
             // Удаляем это упражнения из объекта SessionWord, т.к. это упражнение уже пройдено
             // Или Исчерпаны все попытки его пройти
             _ = notPassedExercises.remove { $0 == exercise }
