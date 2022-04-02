@@ -68,18 +68,18 @@ public class ExercisesSessionEntity {
         // Проверяем есть ли еще слова в сессии именно с этим видом упражнений
         if let nextSessionWord = nextSessionWord(with: isPassedInExercise) {
             // Деллаем поле currentSessionItem всегда актуальное
-            let sessionItem = NextSessionItem(
+            let nextSessionItem = NextSessionItem(
                 word: nextSessionWord,
                 exercise: isPassedInExercise
             )
-            self.sessionItem = sessionItem
-            return sessionItem
+            self.sessionItem = nextSessionItem
+            return nextSessionItem
         }
         
         // Деллаем поле currentSessionItem актуальным
-        let sessionItem = NextSessionItem(word: nil, exercise: .none)
-        self.sessionItem = sessionItem
-        return sessionItem
+        let nextSessionItem = NextSessionItem(word: nil, exercise: .none)
+        self.sessionItem = nextSessionItem
+        return nextSessionItem
     }
     
     private func culcSessionProgress() {
