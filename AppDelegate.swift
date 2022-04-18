@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Resolver
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
