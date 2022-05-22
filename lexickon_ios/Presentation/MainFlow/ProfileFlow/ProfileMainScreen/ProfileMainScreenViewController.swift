@@ -14,7 +14,6 @@ import SnapKit
 import UIExtensions
 import RxExtensions
 import Resolver
-import Assets
 
 class ProfileMainScreenViewController: UIViewController, Stepper {
     

@@ -14,7 +14,6 @@ import SnapKit
 import UIExtensions
 import RxExtensions
 import Resolver
-import Assets
 import LBTATools
 
 final class ExercisesContainerViewController: UIViewController, Stepper {

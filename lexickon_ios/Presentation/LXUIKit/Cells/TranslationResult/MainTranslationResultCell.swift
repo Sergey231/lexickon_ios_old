@@ -11,7 +11,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import UIExtensions
-import Assets
 import LexickonApi
 
 // MARK: Cell Model

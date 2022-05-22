@@ -9,7 +9,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
-import Assets
 import LexickonApi
 
 public final class WordCardTopBarView: UIView {

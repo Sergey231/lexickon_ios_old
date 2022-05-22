@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import RxExtensions
-import Assets
 
 public final class ProfileIconView: UIView {
     

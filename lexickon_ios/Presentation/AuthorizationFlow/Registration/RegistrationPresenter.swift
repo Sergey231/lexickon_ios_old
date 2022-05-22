@@ -9,7 +9,6 @@
 import RxCocoa
 import Validator
 import Resolver
-import Assets
 
 final class RegistrationPresenter {
     

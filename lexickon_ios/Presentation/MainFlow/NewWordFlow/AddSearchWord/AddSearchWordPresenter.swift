@@ -32,7 +32,7 @@ final class AddSearchWordPresenter {
     struct Output {
         let sections: Driver<[TranslationsSection]>
         let isLoading: Driver<Bool>
-        let disposables: CompositeDisposable
+        let disposables: CompositeDisposable    
         let isEditMode: Driver<Bool>
         let wordsForDelete: Driver<[TranslationCellModelEnum]>
         let wordsForReset: Driver<[TranslationCellModelEnum]>

@@ -11,7 +11,6 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 import SnapKit
-import Assets
 import LBTATools
 
 public final class ExercisesTitleView: UIView {

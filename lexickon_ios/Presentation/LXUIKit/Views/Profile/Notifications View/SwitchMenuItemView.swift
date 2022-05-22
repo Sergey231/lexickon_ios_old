@@ -8,7 +8,6 @@
 import RxSwift
 import RxCocoa
 import UIKit
-import Assets
 import SnapKit
 
 public final class SwitchMenuItemView: UIView {

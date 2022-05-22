@@ -9,7 +9,6 @@
 import UIKit
 import UIExtensions
 import SnapKit
-import Assets
 import LexickonApi
 
 public final class HomeWordsSectionHeaderView: UIView {

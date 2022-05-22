@@ -11,7 +11,6 @@ import Validator
 import LexickonApi
 import RxCocoa
 import Resolver
-import Assets
 
 final class LoginPresenter {
     

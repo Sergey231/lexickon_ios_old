@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Assets
 import UIExtensions
 import RxExtensions
 

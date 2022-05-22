@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
-import Assets
 import Resolver
 
 public final class ExercisesView: UIView {

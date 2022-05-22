@@ -6,7 +6,6 @@
 //
 import UIKit
 import UIExtensions
-import Assets
 import SnapKit
 import RxSwift
 import RxCocoa

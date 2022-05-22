@@ -7,7 +7,6 @@ import RxFlow
 import RxSwift
 import RxCocoa
 import Resolver
-import Assets
 
 final class RegistrationViewController: UIViewController, Stepper {
     

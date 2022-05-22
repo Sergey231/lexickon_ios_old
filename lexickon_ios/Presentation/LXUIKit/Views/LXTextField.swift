@@ -12,7 +12,6 @@ import RxSwift
 import UIExtensions
 import RxExtensions
 import SnapKit
-import Assets
 
 public final class LXTextField: UIView {
     

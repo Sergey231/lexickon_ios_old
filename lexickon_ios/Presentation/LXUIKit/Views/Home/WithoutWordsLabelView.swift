@@ -7,7 +7,6 @@
 
 import UIKit
 import UIExtensions
-import Assets
 import SnapKit
 
 public final class WithoutWordsLabelView: UIView {

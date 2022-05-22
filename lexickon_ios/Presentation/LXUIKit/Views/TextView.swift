@@ -11,7 +11,6 @@ import RxCocoa
 import RxSwift
 import UIExtensions
 import SnapKit
-import Assets
 
 public final class TextView: UITextView {
     

@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import Combine
-import Assets
 
 public final class Logo: UIView {
     

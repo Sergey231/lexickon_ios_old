@@ -9,7 +9,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 import UIExtensions
-import Assets
 
 public final class SubmenuItem: UIView {
     

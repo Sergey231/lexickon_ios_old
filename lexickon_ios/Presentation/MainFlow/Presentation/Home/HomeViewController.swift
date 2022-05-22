@@ -15,7 +15,6 @@ import UIExtensions
 import RxDataSources
 import Resolver
 import Lottie
-import Assets
 import LexickonApi
 
 final class HomeViewController: UIViewController, Stepper {
