@@ -47,6 +47,24 @@
         }
       },
       {
+        "package": "R.swift.Library",
+        "repositoryURL": "https://github.com/mac-cain13/R.swift.Library",
+        "state": {
+          "branch": null,
+          "revision": "8998cfe77f4fce79ee6dfab0c88a7d551659d8fb",
+          "version": "5.4.0"
+        }
+      },
+      {
+        "package": "R.swift.Plugin",
+        "repositoryURL": "https://github.com/quentinfasquel/R.swift.Plugin",
+        "state": {
+          "branch": null,
+          "revision": "90329b1a763367e008a20c227227e76028f9f1d2",
+          "version": "5.4.0"
+        }
+      },
+      {
         "package": "Resolver",
         "repositoryURL": "https://github.com/hmlongco/Resolver.git",
         "state": {
