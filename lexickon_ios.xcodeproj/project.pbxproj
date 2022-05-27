@@ -114,6 +114,7 @@
 		EC43F3CF2777305B0046EAA3 /* GetStateUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */; };
 		EC43F3D12778538D0046EAA3 /* GetWordsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */; };
 		EC43F3D327785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */; };
+		EC46B919283F528E004CAC29 /* UIApplication+keyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46B918283F528E004CAC29 /* UIApplication+keyWindow.swift */; };
 		EC4CB13022D2418800CB826E /* AppResolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4CB12F22D2418800CB826E /* AppResolder.swift */; };
 		EC5B37092767206C00BBF466 /* SwiftSyllables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B37082767206C00BBF466 /* SwiftSyllables.swift */; };
 		EC5B370B276720EF00BBF466 /* SwiftSyllablesHeuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */; };
@@ -288,6 +289,7 @@
 		EC43F3CE2777305B0046EAA3 /* GetStateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStateUseCase.swift; sourceTree = "<group>"; };
 		EC43F3D02778538D0046EAA3 /* GetWordsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWordsUseCase.swift; sourceTree = "<group>"; };
 		EC43F3D227785E7C0046EAA3 /* GetWordsForExerciseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWordsForExerciseUseCase.swift; sourceTree = "<group>"; };
+		EC46B918283F528E004CAC29 /* UIApplication+keyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+keyWindow.swift"; sourceTree = "<group>"; };
 		EC4CB12F22D2418800CB826E /* AppResolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResolder.swift; sourceTree = "<group>"; };
 		EC5B37082767206C00BBF466 /* SwiftSyllables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllables.swift; sourceTree = "<group>"; };
 		EC5B370A276720EF00BBF466 /* SwiftSyllablesHeuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSyllablesHeuristic.swift; sourceTree = "<group>"; };
@@ -917,6 +919,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EC46B917283F5267004CAC29 /* UIApplication */ = {
+			isa = PBXGroup;
+			children = (
+				EC46B918283F528E004CAC29 /* UIApplication+keyWindow.swift */,
+			);
+			path = UIApplication;
+			sourceTree = "<group>";
+		};
 		EC5B37072767202900BBF466 /* Syllables */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +975,7 @@
 		ECAD3C0E27020F5100710EB2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EC46B917283F5267004CAC29 /* UIApplication */,
 				ECAD3C0F27020F5100710EB2 /* Array */,
 				ECAD3C1527020F5100710EB2 /* String */,
 				ECAD3C1727020F5100710EB2 /* NSObject */,
@@ -1310,6 +1321,7 @@
 				EC00F9E02701FF6D0067DCF4 /* UIConstants.swift in Sources */,
 				ECD086FC283A522100E61D0D /* Colors.swift in Sources */,
 				ECD51CB62795427F00634AAA /* AddNewWordsUseCase.swift in Sources */,
+				EC46B919283F528E004CAC29 /* UIApplication+keyWindow.swift in Sources */,
 				ECBAB3D426E9E2970083C513 /* ExercisesSessionEntity.swift in Sources */,
 				EC00FA072701FF6D0067DCF4 /* SubmenuItem.swift in Sources */,
 				EC00F9EF2701FF6D0067DCF4 /* WithoutWordsLabelView.swift in Sources */,

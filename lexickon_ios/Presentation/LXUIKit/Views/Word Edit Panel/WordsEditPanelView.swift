@@ -183,8 +183,8 @@ public final class WordEditPanelView: UIView {
         }
         .map { itemsCount -> CGFloat in
             let itemHeight = (WordEditPanelView.UIConstants.itemHeight + Margin.regular)
-            let window = UIApplication.shared.windows[0]
-            let bottomPadding = window.safeAreaInsets.bottom
+            let window = UIApplication.shared.keyWindow
+            let bottomPadding = window?.safeAreaInsets.bottom ?? 0
             return CGFloat(itemsCount) * itemHeight + bottomPadding
         }
         

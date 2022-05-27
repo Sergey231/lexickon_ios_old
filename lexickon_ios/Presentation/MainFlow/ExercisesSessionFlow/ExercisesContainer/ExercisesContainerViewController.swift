@@ -75,7 +75,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     
     private func addButton() {
         button.alpha = 0
-        UIApplication.shared.windows.first { $0.isKeyWindow }?.addSubview(button)
+        UIApplication.shared.keyWindow?.addSubview(button)
         button.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.size.equalTo(Size.button)
@@ -92,7 +92,7 @@ final class ExercisesContainerViewController: UIViewController, Stepper {
     }
     
     private func addTitleView() {
-        guard let windows = (UIApplication.shared.windows.first { $0.isKeyWindow }) else {
+        guard let windows = (UIApplication.shared.keyWindow) else {
             return
         }
         titleView.alpha = 0
