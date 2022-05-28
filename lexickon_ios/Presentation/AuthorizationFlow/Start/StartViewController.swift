@@ -15,8 +15,6 @@ import UIExtensions
 import RxExtensions
 import Resolver
 
-import Assets
-
 extension UINavigationController {
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
