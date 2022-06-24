@@ -68,7 +68,7 @@ final class HomePresenter {
     
     func configurate(input: Input) -> Output {
         
-        getStateUseCase.configure(.init(updateState: .just(())))
+        _ = getStateUseCase.configure(.init(updateState: .just(())))
             .debug("👨🏻")
             .drive()
         

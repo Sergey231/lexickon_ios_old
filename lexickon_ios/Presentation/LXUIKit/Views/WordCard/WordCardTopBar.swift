@@ -47,7 +47,7 @@ public final class WordCardTopBarView: UIView {
     private func createUI() {
         backgroundColor = .gray
         snp.makeConstraints {
-            let safeAreaTop = UIApplication.shared.windows[0].safeAreaInsets.top
+            let safeAreaTop = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0
             $0.height.equalTo(safeAreaTop + 48)
         }
         
